@@ -25,11 +25,11 @@ public class DisplayableItem implements Parcelable {
 	protected void updateVisibility(final int windowX, final int windowY, final int windowWidth, final int windowHeight) {
 		final int borderLeft = windowX - mWidth;
 		final int borderTop = windowY - mHeight;
-		final int borderRight = borderLeft + windowWidth + 2 * mWidth;
-		final int borderBottom = borderTop + windowHeight + 2 * mHeight;
-		if(mX > borderLeft && mX < borderRight && mY > borderBottom && mY < borderTop){
+		final int borderRight = borderLeft + windowWidth + mWidth;
+		final int borderBottom = borderTop + windowHeight + mHeight;
+		if (mX > borderLeft && mX < borderRight && mY > borderBottom && mY < borderTop) {
 			mIsVisible = true;
-		}else{
+		} else {
 			mIsVisible = false;
 		}
 	}
