@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  *
  */
-public class DisplayableItem implements Parcelable{
+public class DisplayableItem implements Parcelable {
 	// x coordinate
 	private int mX;
 	// y coordinate
@@ -18,8 +18,20 @@ public class DisplayableItem implements Parcelable{
 	// tells if the item is active/visible
 	private boolean mIsVisible;
 
-	protected DisplayableItem(Parcel in){
+	protected DisplayableItem(Parcel in) {
 		readFromParcel(in);
+	}
+
+	protected void updateVisibility(final int windowX, final int windowY, final int windowWidth, final int windowHeight) {
+		final int borderLeft = windowX - mWidth;
+		final int borderTop = windowY - mHeight;
+		final int borderRight = borderLeft + windowWidth + 2 * mWidth;
+		final int borderBottom = borderTop + windowHeight + 2 * mHeight;
+		if(mX > borderLeft && mX < borderRight && mY > borderBottom && mY < borderTop){
+			mIsVisible = true;
+		}else{
+			mIsVisible = false;
+		}
 	}
 
 	@Override
@@ -41,7 +53,7 @@ public class DisplayableItem implements Parcelable{
 	 *
 	 * @param in input Parcel to read from
 	 */
-	public void readFromParcel(Parcel in){
+	public void readFromParcel(Parcel in) {
 		this.mX = in.readInt();
 		this.mY = in.readInt();
 		this.mWidth = in.readInt();
