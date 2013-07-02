@@ -16,13 +16,11 @@ public class DisplayableItem implements Parcelable{
 	// height
 	private int mHeight;
 	// tells if the item is active/visible
-	private boolean mIsActive;
-
+	private boolean mIsVisible;
 
 	protected DisplayableItem(Parcel in){
 		readFromParcel(in);
 	}
-
 
 	@Override
 	public int describeContents() {
@@ -35,7 +33,7 @@ public class DisplayableItem implements Parcelable{
 		out.writeInt(mY);
 		out.writeInt(mWidth);
 		out.writeInt(mHeight);
-		out.writeByte((byte) (mIsActive ? 1 : 0));
+		out.writeByte((byte) (mIsVisible ? 1 : 0));
 	}
 
 	/**
@@ -48,7 +46,7 @@ public class DisplayableItem implements Parcelable{
 		this.mY = in.readInt();
 		this.mWidth = in.readInt();
 		this.mHeight = in.readInt();
-		this.mIsActive = in.readByte() == 1;
+		this.mIsVisible = in.readByte() == 1;
 	}
 
 	public static final Parcelable.Creator<DisplayableItem> CREATOR = new Parcelable.Creator<DisplayableItem>() {
@@ -97,11 +95,11 @@ public class DisplayableItem implements Parcelable{
 	}
 
 	public boolean isActive() {
-		return mIsActive;
+		return mIsVisible;
 	}
 
 	public void setActive(boolean active) {
-		mIsActive = active;
+		mIsVisible = active;
 	}
 
 }
