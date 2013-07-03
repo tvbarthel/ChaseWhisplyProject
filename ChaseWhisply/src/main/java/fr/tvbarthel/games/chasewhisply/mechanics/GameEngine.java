@@ -1,8 +1,8 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
-	private GameInformation mGameInformation;
-	private ReloadingRoutine mReloadingRoutine;
+	protected GameInformation mGameInformation;
+	protected ReloadingRoutine mReloadingRoutine;
 
 	public GameEngine(GameInformation gameInformation) {
 		mGameInformation = gameInformation;
