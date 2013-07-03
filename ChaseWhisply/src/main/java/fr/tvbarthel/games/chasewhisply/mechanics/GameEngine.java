@@ -10,18 +10,22 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	}
 
 	public void startGame() {
+		mReloadingRoutine.startRoutine();
 		//TODO
 	}
 
 	public void pauseGame() {
+		mReloadingRoutine.stopRoutine();
 		//TODO
 	}
 
 	public void resumeGame() {
+		mReloadingRoutine.startRoutine();
 		//TODO
 	}
 
 	public void stopGame() {
+		mReloadingRoutine.stopRoutine();
 		//TODO
 	}
 
