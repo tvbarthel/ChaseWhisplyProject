@@ -33,4 +33,8 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	public void reload() {
 		mGameInformation.getWeapon().reload();
 	}
+
+	public int fire() {
+		return mGameInformation.getWeapon().fire();
+	}
 }
