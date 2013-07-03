@@ -46,7 +46,5 @@ public class GameTimer extends Handler {
 
 	public interface IGameTimer {
 		abstract void timerEnd();
-
-		abstract int timerAbort();
 	}
 }
