@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_play"
                 android:id="@+id/home_play"
-                android:background="@drawable/play"
+                android:background="@drawable/button_play"
                 android:textColor="#FFFFFF" />
 
             <Button
