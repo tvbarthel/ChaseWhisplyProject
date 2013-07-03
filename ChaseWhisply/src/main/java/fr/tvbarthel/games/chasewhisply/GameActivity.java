@@ -5,6 +5,9 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
@@ -30,7 +33,7 @@ public class GameActivity extends Activity {
 		} else {
 			mCameraPreview = new CameraPreview(this, mCamera);
 			setContentView(mCameraPreview);
-			mGameView = new GameView(this);
+			mGameView = new GameView(this, new ArrayList<DisplayableItem>());
 			addContentView(mGameView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
 					, ViewGroup.LayoutParams.WRAP_CONTENT));
 		}
