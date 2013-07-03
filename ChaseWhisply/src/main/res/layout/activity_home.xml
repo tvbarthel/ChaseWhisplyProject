@@ -11,47 +11,66 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:gravity="center">
 
-        <Button
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/home_play"
-            android:id="@+id/home_play" />
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/home_leaderboard"
-            android:id="@+id/home_leaderboard" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_play"
+                android:id="@+id/home_play" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/home_achievement"
-            android:id="@+id/home_achievement" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_leaderboard"
+                android:id="@+id/home_leaderboard" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/home_about"
-            android:id="@+id/home_about"
-            android:layout_gravity="center" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_achievement"
+                android:id="@+id/home_achievement" />
 
-        <Button
-            android:layout_width="match_parent"
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_about"
+                android:id="@+id/home_about"
+                android:layout_gravity="center" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_sign_in"
+                android:id="@+id/home_sign_in"
+                android:background="@drawable/button_signin"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="20dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/home_sign_in"
-            android:id="@+id/home_sign_in"
-            android:background="@drawable/button_signin"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/home_sign_info"
+            android:id="@+id/textView"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:layout_gravity="center" />
-
-
+            android:textColor="#888888" />
     </LinearLayout>
 
 </RelativeLayout>

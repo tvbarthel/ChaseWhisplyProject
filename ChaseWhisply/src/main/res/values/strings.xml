@@ -10,5 +10,7 @@
     <string name="home_achievement">Achievement</string>
     <string name="home_about">About</string>
     <string name="home_sign_in">Sign in</string>
+    <string name="home_sign_info">Sign in with Google to share your scores and achievements with your friends.</string>
+
 
 </resources>
