@@ -62,4 +62,12 @@ public class GameInformation implements Parcelable {
 	public Weapon getWeapon() {
 		return mWeapon;
 	}
+
+	public long getRemainingTime() {
+		return mRemainingTime;
+	}
+
+	public void setRemainingTime(long time) {
+		mRemainingTime = time;
+	}
 }
