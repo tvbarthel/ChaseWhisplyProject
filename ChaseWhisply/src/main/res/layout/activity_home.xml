@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_achievement"
                 android:id="@+id/home_achievement"
-                android:background="@drawable/achievement"
+                android:background="@drawable/button_achievement"
                 android:textColor="#FFFFFF" />
 
             <Button
