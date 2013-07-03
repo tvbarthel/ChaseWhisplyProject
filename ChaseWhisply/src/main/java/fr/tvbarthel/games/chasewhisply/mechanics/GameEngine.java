@@ -6,7 +6,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 
 	public GameEngine(GameInformation gameInformation) {
 		mGameInformation = gameInformation;
-		mReloadingRoutine = new ReloadingRoutine(mGameInformation.getReloadingTime(), this);
+		mReloadingRoutine = new ReloadingRoutine(mGameInformation.getWeapon().getReloadingTime(), this);
 	}
 
 	/**

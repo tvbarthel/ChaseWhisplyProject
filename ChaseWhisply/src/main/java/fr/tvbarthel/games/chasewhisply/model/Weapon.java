@@ -7,11 +7,13 @@ public class Weapon implements Parcelable {
 	private int mDamage;
 	private int mCurrentAmmunition;
 	private int mAmmunitionLimit;
+	private long mReloadingTime;
 
 	public Weapon() {
 		mDamage = 0;
 		mCurrentAmmunition = 0;
-		mAmmunitionLimit = 0;
+		mAmmunitionLimit = 1;
+		mReloadingTime = 1;
 	}
 
 	public Weapon(Parcel in) {
@@ -81,6 +83,14 @@ public class Weapon implements Parcelable {
 
 	public int getAmmunitionLimit() {
 		return mAmmunitionLimit;
+	}
+
+	public void setReloadingTime(long reloadingTime) {
+		mReloadingTime = reloadingTime;
+	}
+
+	public long getReloadingTime() {
+		return mReloadingTime;
 	}
 
 }
