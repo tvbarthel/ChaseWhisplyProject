@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"
             android:text="@string/home_about"
             android:id="@+id/home_about"
-            android:background="@drawable/signin_disabled"
             android:layout_gravity="center" />
 
         <Button
@@ -48,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="@string/home_sign_in"
             android:id="@+id/home_sign_in"
-            android:background="@drawable/signin_normal"
+            android:background="@drawable/button_signin"
             android:gravity="center"
             android:layout_gravity="center" />
 
