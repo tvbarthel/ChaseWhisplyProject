@@ -22,6 +22,15 @@ abstract public class DisplayableItem implements Parcelable {
 		readFromParcel(in);
 	}
 
+	/**
+	 * If the item is located in the window, updateVisibility sets mIsVisible on true
+	 * else updateVisibility sets mIsVisible on false
+	 *
+	 * @param windowX
+	 * @param windowY
+	 * @param windowWidth
+	 * @param windowHeight
+	 */
 	protected void updateVisibility(final int windowX, final int windowY, final int windowWidth, final int windowHeight) {
 		final int borderLeft = windowX - mWidth;
 		final int borderTop = windowY - mHeight;
