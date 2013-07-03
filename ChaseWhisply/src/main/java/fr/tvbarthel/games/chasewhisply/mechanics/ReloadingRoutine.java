@@ -7,9 +7,9 @@ public class ReloadingRoutine extends Handler {
 	private final long mReloadingTime;
 	private final Runnable mRunnable;
 	private boolean mIsRunning;
-	private final ITimeBasedRoutine mInterface;
+	private final IReloadingRoutine mInterface;
 
-	public ReloadingRoutine(long reloadingTime, ITimeBasedRoutine iTimeBasedRoutine) {
+	public ReloadingRoutine(long reloadingTime, IReloadingRoutine iTimeBasedRoutine) {
 		mReloadingTime = reloadingTime;
 		mIsRunning = false;
 		mInterface = iTimeBasedRoutine;
@@ -36,7 +36,7 @@ public class ReloadingRoutine extends Handler {
 		removeCallbacks(mRunnable);
 	}
 
-	public interface ITimeBasedRoutine {
+	public interface IReloadingRoutine {
 		abstract public void reload();
 	}
 
