@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.model;
+package fr.tvbarthel.games.chasewhisply.mechanics;
 
 
 import android.os.Handler;
