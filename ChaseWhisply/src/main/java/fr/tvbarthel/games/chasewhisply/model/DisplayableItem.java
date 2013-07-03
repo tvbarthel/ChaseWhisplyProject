@@ -18,6 +18,11 @@ public class DisplayableItem implements Parcelable {
 	// tells if the item is active/visible
 	protected boolean mIsVisible;
 
+	public DisplayableItem(int x, int y) {
+		mX = x;
+		mY = y;
+	}
+
 	protected DisplayableItem(Parcel in) {
 		readFromParcel(in);
 	}
