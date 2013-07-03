@@ -12,9 +12,11 @@ public class GameInformation implements Parcelable {
 	private int mScore;
 	private long mCurrentTime;
 	private int mAmmunition;
+	private long mReloadingTime;
 	private ArrayList<DisplayableItemView> mItems;
 
-	public GameInformation() {
+	public GameInformation(long reloadingTime) {
+		mReloadingTime = reloadingTime;
 		mScore = 0;
 		mCurrentTime = 0;
 		mAmmunition = 0;
@@ -31,6 +33,7 @@ public class GameInformation implements Parcelable {
 	}
 
 	public void readFromParcel(Parcel in) {
+		mReloadingTime = in.readLong();
 		mScore = in.readInt();
 		mCurrentTime = in.readLong();
 		mAmmunition = in.readInt();
@@ -40,6 +43,7 @@ public class GameInformation implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel out, int i) {
+		out.writeLong(mReloadingTime);
 		out.writeInt(mScore);
 		out.writeLong(mCurrentTime);
 		out.writeInt(mAmmunition);
@@ -55,4 +59,11 @@ public class GameInformation implements Parcelable {
 			return new GameInformation[size];
 		}
 	};
+
+	/**
+	 * Getters & Setters
+	 */
+	public long getReloadingTime() {
+		return mReloadingTime;
+	}
 }
