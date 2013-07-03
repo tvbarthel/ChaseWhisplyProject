@@ -18,6 +18,11 @@ public class GameActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		mCamera = getCameraInstance();
 
 		if (mCamera == null) {
@@ -29,11 +34,6 @@ public class GameActivity extends Activity {
 			addContentView(mGameView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
 					, ViewGroup.LayoutParams.WRAP_CONTENT));
 		}
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
 	}
 
 	@Override
