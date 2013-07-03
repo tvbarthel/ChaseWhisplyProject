@@ -6,20 +6,21 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import fr.tvbarthel.games.chasewhisply.model.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.DisplayableItemView;
 
 public class GameInformation implements Parcelable {
 	private int mScore;
 	private long mCurrentTime;
-	private int mAmmunition;
+	private Weapon mWeapon;
 	private long mReloadingTime;
 	private ArrayList<DisplayableItemView> mItems;
 
-	public GameInformation(long reloadingTime) {
+	public GameInformation(long reloadingTime, Weapon weapon) {
 		mReloadingTime = reloadingTime;
 		mScore = 0;
 		mCurrentTime = 0;
-		mAmmunition = 0;
+		mWeapon = weapon;
 		mItems = new ArrayList<DisplayableItemView>();
 	}
 
@@ -36,7 +37,7 @@ public class GameInformation implements Parcelable {
 		mReloadingTime = in.readLong();
 		mScore = in.readInt();
 		mCurrentTime = in.readLong();
-		mAmmunition = in.readInt();
+		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
 		mItems = new ArrayList<DisplayableItemView>(Arrays.asList((
 				DisplayableItemView[]) in.readParcelableArray(DisplayableItemView.class.getClassLoader())));
 	}
@@ -46,7 +47,7 @@ public class GameInformation implements Parcelable {
 		out.writeLong(mReloadingTime);
 		out.writeInt(mScore);
 		out.writeLong(mCurrentTime);
-		out.writeInt(mAmmunition);
+		out.writeParcelable(mWeapon, i);
 		out.writeParcelableArray((DisplayableItemView[]) mItems.toArray(), i);
 	}
 
