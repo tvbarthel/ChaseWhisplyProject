@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/menu"
         android:gravity="center"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
         <LinearLayout
             android:orientation="vertical"
@@ -90,6 +91,9 @@
         android:id="@+id/textView2"
         android:layout_above="@+id/menu"
         android:layout_centerHorizontal="true"
-        android:textColor="#888888" />
+        android:textColor="#888888"
+        android:textSize="28sp"
+        android:textIsSelectable="false"
+        />
 
 </RelativeLayout>
