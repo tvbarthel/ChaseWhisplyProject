@@ -8,15 +8,15 @@ import android.os.Parcelable;
  */
 abstract public class DisplayableItem implements Parcelable {
 	// x coordinate
-	private int mX;
+	protected int mX;
 	// y coordinate
-	private int mY;
+	protected int mY;
 	// width
-	private int mWidth;
+	protected int mWidth;
 	// height
-	private int mHeight;
+	protected int mHeight;
 	// tells if the item is active/visible
-	private boolean mIsVisible;
+	protected boolean mIsVisible;
 
 	protected DisplayableItem(Parcel in) {
 		readFromParcel(in);
