@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply;
+package fr.tvbarthel.games.chasewhisply.mechanics;
 
 import android.os.Parcel;
 import android.os.Parcelable;
