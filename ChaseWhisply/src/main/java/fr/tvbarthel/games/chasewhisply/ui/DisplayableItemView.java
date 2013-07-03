@@ -11,8 +11,7 @@ public class DisplayableItemView implements Parcelable {
 	protected int mDrawable;
 
 	public DisplayableItemView(Parcel in) {
-		mModel = (DisplayableItem) in.readParcelable(DisplayableItem.class.getClassLoader());
-		mDrawable = in.readInt();
+		readFromParcel(in);
 	}
 
 	@Override
@@ -24,6 +23,11 @@ public class DisplayableItemView implements Parcelable {
 	public void writeToParcel(Parcel out, int i) {
 		out.writeParcelable(mModel, i);
 		out.writeInt(mDrawable);
+	}
+
+	public void readFromParcel(Parcel in) {
+		mModel = (DisplayableItem) in.readParcelable(DisplayableItem.class.getClassLoader());
+		mDrawable = in.readInt();
 	}
 
 	public static final Parcelable.Creator<DisplayableItemView> CREATOR = new Parcelable.Creator<DisplayableItemView>() {
