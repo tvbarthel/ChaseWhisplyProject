@@ -7,14 +7,14 @@ import fr.tvbarthel.games.chasewhisply.model.Weapon;
 
 public class GameInformation implements Parcelable {
 	private int mScore;
-	private long mCurrentTime;
+	private long mRemainingTime;
 	private Weapon mWeapon;
 	private long mReloadingTime;
 
-	public GameInformation(long reloadingTime, Weapon weapon) {
+	public GameInformation(long reloadingTime, long remainingTime, Weapon weapon) {
 		mReloadingTime = reloadingTime;
 		mScore = 0;
-		mCurrentTime = 0;
+		mRemainingTime = remainingTime;
 		mWeapon = weapon;
 	}
 
@@ -30,7 +30,7 @@ public class GameInformation implements Parcelable {
 	public void readFromParcel(Parcel in) {
 		mReloadingTime = in.readLong();
 		mScore = in.readInt();
-		mCurrentTime = in.readLong();
+		mRemainingTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
 	}
 
@@ -38,7 +38,7 @@ public class GameInformation implements Parcelable {
 	public void writeToParcel(Parcel out, int i) {
 		out.writeLong(mReloadingTime);
 		out.writeInt(mScore);
-		out.writeLong(mCurrentTime);
+		out.writeLong(mRemainingTime);
 		out.writeParcelable(mWeapon, i);
 	}
 
