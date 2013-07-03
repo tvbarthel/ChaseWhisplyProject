@@ -3,6 +3,8 @@ package fr.tvbarthel.games.chasewhisply;
 import android.app.Activity;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -34,6 +36,12 @@ public class GameActivity extends Activity {
 			mCameraPreview = new CameraPreview(this, mCamera);
 			setContentView(mCameraPreview);
 			mGameView = new GameView(this, new ArrayList<DisplayableItem>());
+			mGameView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Log.i("Debug", "clicked !");
+				}
+			});
 			addContentView(mGameView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
 					, ViewGroup.LayoutParams.WRAP_CONTENT));
 		}
