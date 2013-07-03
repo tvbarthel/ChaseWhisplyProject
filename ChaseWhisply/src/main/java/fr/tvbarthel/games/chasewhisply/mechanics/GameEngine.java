@@ -31,6 +31,6 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 
 	@Override
 	public void reload() {
-
+		mGameInformation.getWeapon().reload();
 	}
 }
