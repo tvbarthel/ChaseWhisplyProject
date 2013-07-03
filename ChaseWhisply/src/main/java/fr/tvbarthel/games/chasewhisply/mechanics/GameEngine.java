@@ -1,6 +1,6 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
-public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
+abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	private GameInformation mGameInformation;
 	private ReloadingRoutine mReloadingRoutine;
 
