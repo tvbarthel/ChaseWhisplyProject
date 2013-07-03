@@ -30,6 +30,18 @@ abstract public class TargetableItem extends DisplayableItem {
 		mHealth = Math.max(0, mHealth - damage);
 	}
 
+	@Override
+	public void writeToParcel(Parcel out, int i) {
+		super.writeToParcel(out, i);
+		out.writeInt(mHealth);
+	}
+
+	@Override
+	public void readFromParcel(Parcel in) {
+		super.readFromParcel(in);
+		mHealth = in.readInt();
+	}
+
 	/**
 	 * Getters and Setters
 	 */
