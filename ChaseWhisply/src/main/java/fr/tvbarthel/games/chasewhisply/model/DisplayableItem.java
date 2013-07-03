@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  *
  */
-abstract public class DisplayableItem implements Parcelable {
+public class DisplayableItem implements Parcelable {
 	// x coordinate
 	protected int mX;
 	// y coordinate
@@ -69,6 +69,16 @@ abstract public class DisplayableItem implements Parcelable {
 		this.mHeight = in.readInt();
 		this.mIsVisible = in.readByte() == 1;
 	}
+
+	public static final Parcelable.Creator<DisplayableItem> CREATOR = new Parcelable.Creator<DisplayableItem>() {
+		public DisplayableItem createFromParcel(Parcel in) {
+			return new DisplayableItem(in);
+		}
+
+		public DisplayableItem[] newArray(int size) {
+			return new DisplayableItem[size];
+		}
+	};
 
 	/**
 	 * Getters and Setters
