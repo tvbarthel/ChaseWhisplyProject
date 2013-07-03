@@ -29,21 +29,24 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_play"
                 android:id="@+id/home_play"
-                android:background="@drawable/play"/>
+                android:background="@drawable/play"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/home_leaderboard"
                 android:id="@+id/home_leaderboard"
-                android:background="@drawable/leaderboard"/>
+                android:background="@drawable/leaderboard"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/home_achievement"
                 android:id="@+id/home_achievement"
-                android:background="@drawable/achievement"/>
+                android:background="@drawable/achievement"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:layout_width="match_parent"
@@ -51,7 +54,8 @@
                 android:text="@string/home_about"
                 android:id="@+id/home_about"
                 android:layout_gravity="center"
-                android:background="@drawable/about"/>
+                android:background="@drawable/about"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:layout_width="match_parent"
