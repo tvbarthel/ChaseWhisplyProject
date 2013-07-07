@@ -57,6 +57,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 		return mGameInformation.getWeapon().fire();
 	}
 
+
 	/**
 	 * Getters & Setters
 	 */
@@ -76,7 +77,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 		mSceneHeight = sceneHeight;
 	}
 
-	public void setCurrentPos(int posX, int posY) {
+	public void setCurrentPos(float posX, float posY) {
 		mCurrentPosX = posX;
 		mCurrentPosY = posY;
 	}
