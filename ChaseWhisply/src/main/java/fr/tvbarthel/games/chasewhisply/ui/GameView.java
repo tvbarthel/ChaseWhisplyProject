@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 
 public class GameView extends View {
 
@@ -32,6 +33,7 @@ public class GameView extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		drawCrossHair(canvas);
+		drawDisplayableItems(canvas);
 	}
 
 	private void drawCrossHair(Canvas canvas) {
@@ -43,6 +45,19 @@ public class GameView extends View {
 		coordinatePaint.setColor(Color.BLACK);
 		coordinatePaint.setTextSize(30);
 		canvas.drawText(new DecimalFormat("##.##").format(mCoordinate[0]) + " ; " + new DecimalFormat("##.##").format(mCoordinate[1]), 30, 30, coordinatePaint);
+	}
+
+	/**
+	 * draw active items on the screen
+	 *
+	 * @param canvas canvas from View.onDraw method
+	 */
+	private void drawDisplayableItems(Canvas canvas) {
+		for (DisplayableItem i : mModel.getItems()) {
+			if (i.isActive()) {
+				//draw items
+			}
+		}
 	}
 
 	//TODO remove coordinate
