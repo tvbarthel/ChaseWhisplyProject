@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.View;
 
 import java.text.DecimalFormat;
@@ -23,12 +22,19 @@ public class GameView extends View {
 	private float[] mCoordinate;
 	private final Bitmap mCrossHairs;
 	private final Bitmap mGhostBitmap;
+	//ratio for displaying items
+	private float mWidthRatioDegreeToPx;
+	private float mHeightRatioDegreeToPx;
+
 
 	public GameView(Context context, GameInformation model) {
 		super(context);
 		mModel = model;
+
+		//initialize bitmap drawn after
 		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
 		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost);
+
 		//TODO remove coordinate
 		mCoordinate = new float[2];
 	}
@@ -36,6 +42,11 @@ public class GameView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
+
+		//initialize ratio degree / screen px
+		mWidthRatioDegreeToPx = this.getWidth() / mModel.getSceneWidth();
+		mHeightRatioDegreeToPx = this.getHeight() / mModel.getSceneHeight();
+
 		drawCrossHair(canvas);
 		drawDisplayableItems(canvas);
 	}
@@ -57,33 +68,22 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawDisplayableItems(Canvas canvas) {
-		//TODO clean code
 		for (DisplayableItem i : mModel.getItems()) {
-			int itemWidth = 50;//in px, default value
-			int itemHeight = 50;//in px, default value
-
 			switch (i.getType()) {
-				case DisplayableItemFactory.TYPE_EASY_GHOST :
-					itemWidth = 140;
-					itemHeight = 150;
+				case DisplayableItemFactory.TYPE_EASY_GHOST:
+					renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
 					break;
 			}
-			renderItem(canvas,mGhostBitmap, i, itemWidth, itemHeight);
 		}
 	}
 
-	public void renderItem(final Canvas canvas,final Bitmap bitmap, final DisplayableItem item, final int mWidth, final int mHeight) {
-		//TODO clean code
-		boolean isVisible = false;
-
+	public void renderItem(final Canvas canvas, final Bitmap bitmap, final DisplayableItem item, final int mWidth, final int mHeight) {
 		final float[] currentPosInDegree = mModel.getCurrentPosition();
-		final float widthRatioDegreeToPx = this.getWidth() / mModel.getSceneWidth();
-		final float heightRatioDegreeToPx = this.getHeight() / mModel.getSceneHeight();
 
-		final float windowXInPx = currentPosInDegree[0] * widthRatioDegreeToPx;
-		final float windowYInPx = currentPosInDegree[1] * heightRatioDegreeToPx;
-		final float itemXInPx = item.getX() * widthRatioDegreeToPx;
-		final float itemYInPx = item.getY() * heightRatioDegreeToPx;
+		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx;
+		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx;
+		final float itemXInPx = item.getX() * mWidthRatioDegreeToPx;
+		final float itemYInPx = item.getY() * mHeightRatioDegreeToPx;
 
 		final float borderLeft = windowXInPx - mWidth;
 		final float borderTop = windowYInPx - mHeight;
@@ -91,7 +91,7 @@ public class GameView extends View {
 		final float borderBottom = borderTop + this.getHeight() + mHeight;
 
 		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
-			canvas.drawBitmap(bitmap,itemXInPx - windowXInPx, itemYInPx - windowYInPx,new Paint());
+			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, new Paint());
 		}
 	}
 
