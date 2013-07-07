@@ -3,17 +3,23 @@ package fr.tvbarthel.games.chasewhisply.mechanics;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
 
 public class GameInformation implements Parcelable {
 	private int mScore;
 	private long mRemainingTime;
 	private Weapon mWeapon;
+	private List<DisplayableItem> mItems;
 
 	public GameInformation(long remainingTime, Weapon weapon) {
 		mScore = 0;
 		mRemainingTime = remainingTime;
 		mWeapon = weapon;
+		mItems = new ArrayList<DisplayableItem>();
 	}
 
 	public GameInformation(Parcel in) {
@@ -61,5 +67,13 @@ public class GameInformation implements Parcelable {
 
 	public void setRemainingTime(long time) {
 		mRemainingTime = time;
+	}
+
+	public void addItem(DisplayableItem item) {
+		mItems.add(item);
+	}
+
+	public List<DisplayableItem> getItems() {
+		return mItems;
 	}
 }
