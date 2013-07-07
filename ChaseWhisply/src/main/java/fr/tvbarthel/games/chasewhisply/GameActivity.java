@@ -70,6 +70,8 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
 
+		//TODO load GameInformation in GameEngine
+
 		mGameView.setCoordinate(mCoordinate);
 	}
 
