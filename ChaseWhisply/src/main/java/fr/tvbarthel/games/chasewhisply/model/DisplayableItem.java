@@ -20,6 +20,12 @@ public class DisplayableItem implements Parcelable {
 	// type
 	protected int mType;
 
+	public DisplayableItem(){
+		mX = 0;
+		mY = 0;
+		mType = 0;
+	}
+
 	public DisplayableItem(int x, int y, int type) {
 		mX = x;
 		mY = y;
