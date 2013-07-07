@@ -93,6 +93,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mGameEngine = new TimeLimitedGameEngine(gameInformation);
 		//TODO mGameEngine.startGame();
 
+		//TODO delete
 		mGameView.setCoordinate(mCoordinate);
 	}
 	
