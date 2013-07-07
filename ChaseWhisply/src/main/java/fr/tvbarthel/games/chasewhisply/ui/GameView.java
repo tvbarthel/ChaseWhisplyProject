@@ -22,6 +22,7 @@ public class GameView extends View {
 	private float[] mCoordinate;
 	private final Bitmap mCrossHairs;
 	private final Bitmap mGhostBitmap;
+	private final Bitmap mAmmoBitmap;
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
@@ -34,6 +35,7 @@ public class GameView extends View {
 		//initialize bitmap drawn after
 		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
 		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost);
+		mAmmoBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo);
 
 		//TODO remove coordinate
 		mCoordinate = new float[2];
@@ -49,6 +51,7 @@ public class GameView extends View {
 
 		drawDisplayableItems(canvas);
 		drawCrossHair(canvas);
+		drawAmmo(canvas);
 	}
 
 	private void drawCrossHair(Canvas canvas) {
@@ -60,6 +63,16 @@ public class GameView extends View {
 		coordinatePaint.setColor(Color.BLACK);
 		coordinatePaint.setTextSize(30);
 		canvas.drawText(new DecimalFormat("##.##").format(mCoordinate[0]) + " ; " + new DecimalFormat("##.##").format(mCoordinate[1]), 30, 30, coordinatePaint);
+	}
+
+	/**
+	 * draw ammo on player screen
+	 *
+	 * @param canvas canvas from View.onDraw method
+	 */
+	private void drawAmmo(Canvas canvas) {
+		canvas.drawBitmap(mAmmoBitmap, (float) (getWidth() - mAmmoBitmap.getWidth()-10),
+				(float) (getHeight() - mAmmoBitmap.getHeight()), new Paint());
 	}
 
 	/**
