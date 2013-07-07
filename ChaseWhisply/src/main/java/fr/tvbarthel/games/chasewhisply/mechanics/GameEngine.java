@@ -57,6 +57,10 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 		return mGameInformation.getWeapon().fire();
 	}
 
+	public void changePosition(float posX, float posY) {
+		setCurrentPos(posX, posY);
+		mGameInformation.updateItemVisibility(posX - mSceneWidth/2, posY - mSceneHeight/2, mSceneWidth, mSceneHeight);
+	}
 
 	/**
 	 * Getters & Setters
