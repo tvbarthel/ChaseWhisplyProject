@@ -3,6 +3,13 @@ package fr.tvbarthel.games.chasewhisply.mechanics;
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	protected GameInformation mGameInformation;
 	protected ReloadingRoutine mReloadingRoutine;
+	protected int mSceneWidthInPx;
+	protected int mSceneWidth;
+	protected int mSceneHeightInPx;
+	protected int mSceneHeight;
+	protected float mCurrentPosX;
+	protected float mCurrentPosY;
+
 
 	public GameEngine(GameInformation gameInformation) {
 		mGameInformation = gameInformation;
@@ -48,5 +55,29 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 
 	public int fire() {
 		return mGameInformation.getWeapon().fire();
+	}
+
+	/**
+	 * Getters & Setters
+	 */
+	public void setSceneWidthInPx(int sceneWidthInPx) {
+		mSceneWidthInPx = sceneWidthInPx;
+	}
+
+	public void setSceneHeightInPx(int sceneHeightInPx) {
+		mSceneHeightInPx = sceneHeightInPx;
+	}
+
+	public void setSceneWidth(int sceneWidth) {
+		mSceneWidth = sceneWidth;
+	}
+
+	public void setSceneheight(int sceneHeight) {
+		mSceneHeight = sceneHeight;
+	}
+
+	public void setCurrentPos(int posX, int posY) {
+		mCurrentPosX = posX;
+		mCurrentPosY = posY;
 	}
 }
