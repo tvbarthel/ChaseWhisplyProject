@@ -7,6 +7,10 @@ public class TargetableItem extends DisplayableItem {
 	//health of the item
 	protected int mHealth;
 
+	public TargetableItem(int x, int y, int type) {
+		super(x,y,type);
+	}
+
 	protected TargetableItem(Parcel in) {
 		super(in);
 	}
