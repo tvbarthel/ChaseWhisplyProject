@@ -100,8 +100,16 @@ public class GameInformation implements Parcelable {
 		mSceneWidth = sceneWidth;
 	}
 
+	public int getSceneWidth(){
+		return mSceneWidth;
+	}
+
 	public void setSceneHeight(int sceneHeight) {
 		mSceneHeight = sceneHeight;
+	}
+
+	public int getmSceneHeight(){
+		return mSceneHeight;
 	}
 
 }
