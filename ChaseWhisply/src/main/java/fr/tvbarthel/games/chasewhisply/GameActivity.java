@@ -161,6 +161,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 			mCoordinate[1] = (float)Math.toDegrees(mLastOrientationVals[2]);
 
 			//TODO update DisplayableItemsList
+			mGameEngine.changePosition(mCoordinate[0], mCoordinate[1]);
 			mGameView.invalidate();
 
 		} else {
