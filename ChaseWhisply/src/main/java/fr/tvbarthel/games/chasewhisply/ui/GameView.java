@@ -46,9 +46,9 @@ public class GameView extends View {
 		//initialize ratio degree / screen px
 		mWidthRatioDegreeToPx = this.getWidth() / mModel.getSceneWidth();
 		mHeightRatioDegreeToPx = this.getHeight() / mModel.getSceneHeight();
-
-		drawCrossHair(canvas);
+		
 		drawDisplayableItems(canvas);
+		drawCrossHair(canvas);
 	}
 
 	private void drawCrossHair(Canvas canvas) {
