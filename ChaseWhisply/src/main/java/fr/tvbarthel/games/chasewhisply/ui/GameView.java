@@ -13,6 +13,7 @@ import java.text.DecimalFormat;
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 
 public class GameView extends View {
 
@@ -20,11 +21,14 @@ public class GameView extends View {
 	//TODO remove coordinate
 	private float[] mCoordinate;
 	private final Bitmap mCrossHairs;
+	private final Bitmap mGhostBitmap;
 
 	public GameView(Context context, GameInformation model) {
 		super(context);
 		mModel = model;
 		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
+		//TODO add ressource
+		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
 		//TODO remove coordinate
 		mCoordinate = new float[2];
 	}
@@ -53,9 +57,13 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawDisplayableItems(Canvas canvas) {
+		Paint displyablePaint = new Paint();
 		for (DisplayableItem i : mModel.getItems()) {
 			if (i.isActive()) {
 				//draw items
+				if(DisplayableItemFactory.TYPE_EASY_GHOST == i.getType()){
+					//canvas.drawBitmap(mGhostBitmap,i.getX(),i.getY(),new Paint());
+				}
 			}
 		}
 	}
