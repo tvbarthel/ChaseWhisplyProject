@@ -14,6 +14,8 @@ public class GameInformation implements Parcelable {
 	private long mRemainingTime;
 	private Weapon mWeapon;
 	private List<DisplayableItem> mItems;
+	protected int mSceneWidth;
+	protected int mSceneHeight;
 
 	/**
 	 * create new game information
@@ -29,6 +31,10 @@ public class GameInformation implements Parcelable {
 
 	public GameInformation(Parcel in) {
 		readFromParcel(in);
+	}
+
+	public void updateItemVisibility(final float currentPosX, final float currentPosY) {
+		updateItemVisibility(currentPosX - mSceneWidth/2, currentPosY - mSceneHeight/2, mSceneWidth, mSceneHeight);
 	}
 
 	public void updateItemVisibility(final float windowX, final float windowY, final int windowWidth, final int windowHeight) {
@@ -88,6 +94,14 @@ public class GameInformation implements Parcelable {
 
 	public List<DisplayableItem> getItems() {
 		return mItems;
+	}
+
+	public void setSceneWidth(int sceneWidth) {
+		mSceneWidth = sceneWidth;
+	}
+
+	public void setSceneHeight(int sceneHeight) {
+		mSceneHeight = sceneHeight;
 	}
 
 }

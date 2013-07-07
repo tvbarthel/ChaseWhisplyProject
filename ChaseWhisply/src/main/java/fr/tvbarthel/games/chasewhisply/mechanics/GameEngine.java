@@ -3,8 +3,6 @@ package fr.tvbarthel.games.chasewhisply.mechanics;
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	protected GameInformation mGameInformation;
 	protected ReloadingRoutine mReloadingRoutine;
-	protected int mSceneWidth;
-	protected int mSceneHeight;
 	protected float mCurrentPosX;
 	protected float mCurrentPosY;
 
@@ -57,18 +55,18 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 
 	public void changePosition(float posX, float posY) {
 		setCurrentPos(posX, posY);
-		mGameInformation.updateItemVisibility(posX - mSceneWidth/2, posY - mSceneHeight/2, mSceneWidth, mSceneHeight);
+		mGameInformation.updateItemVisibility(posX, posY);
 	}
 
 	/**
 	 * Getters & Setters
 	 */
 	public void setSceneWidth(int sceneWidth) {
-		mSceneWidth = sceneWidth;
+		mGameInformation.setSceneWidth(sceneWidth);
 	}
 
-	public void setSceneheight(int sceneHeight) {
-		mSceneHeight = sceneHeight;
+	public void setSceneHeight(int sceneHeight) {
+		mGameInformation.setSceneHeight(sceneHeight);
 	}
 
 	public void setCurrentPos(float posX, float posY) {
