@@ -61,7 +61,8 @@ public class GameView extends View {
 			if (i.isActive()) {
 				//draw items
 				if(DisplayableItemFactory.TYPE_EASY_GHOST == i.getType()){
-					//canvas.drawBitmap(mGhostBitmap,i.getX(),i.getY(),new Paint());
+					canvas.drawBitmap(mGhostBitmap,i.getX()*this.getWidth()/mModel.getSceneWidth()
+							,i.getY()*this.getHeight()/mModel.getSceneHeight(),new Paint());
 				}
 			}
 		}
