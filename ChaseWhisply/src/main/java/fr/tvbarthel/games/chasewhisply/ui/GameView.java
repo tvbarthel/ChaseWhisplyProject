@@ -27,8 +27,7 @@ public class GameView extends View {
 		super(context);
 		mModel = model;
 		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
-		//TODO add ressource
-		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
+		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost);
 		//TODO remove coordinate
 		mCoordinate = new float[2];
 	}
