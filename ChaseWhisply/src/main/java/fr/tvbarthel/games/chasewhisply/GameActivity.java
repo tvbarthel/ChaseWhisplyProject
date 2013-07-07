@@ -34,6 +34,10 @@ public class GameActivity extends Activity implements SensorEventListener {
 	private static final float NOISE = 0.10f;
 	private final double[] mCoordinate = new double[2];
 
+	//View Angle
+	private float mHorizontalViewAngle;
+	private float mVerticalViewAngle;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,6 +73,11 @@ public class GameActivity extends Activity implements SensorEventListener {
 		//Sensor
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
+
+		//Angle view
+		final Camera.Parameters params = mCamera.getParameters();
+		mHorizontalViewAngle = params.getHorizontalViewAngle();
+		mVerticalViewAngle = params.getVerticalViewAngle();
 
 		//TODO load GameInformation in GameEngine
 
