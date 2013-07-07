@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
@@ -22,6 +24,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 	private Camera mCamera;
 	private CameraPreview mCameraPreview;
+	private GameEngine mGameEngine;
 	private GameView mGameView;
 
 	//Sensor
@@ -57,20 +60,25 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		if (mCamera == null) {
 			finish();
-		} else {
-			mCameraPreview = new CameraPreview(this, mCamera);
-			setContentView(mCameraPreview);
-			mGameView = new GameView(this, new GameInformation(DEFAULT_REMAINING_TIME, new Weapon()));
-			mGameView.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					//TODO call fire method
-					mGameView.invalidate();
-				}
-			});
-			addContentView(mGameView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
-					, ViewGroup.LayoutParams.WRAP_CONTENT));
 		}
+
+		mCameraPreview = new CameraPreview(this, mCamera);
+		setContentView(mCameraPreview);
+
+		//create new game information
+		final GameInformation gameInformation = new GameInformation(DEFAULT_REMAINING_TIME, new Weapon());
+
+		//instantiate GameView with GameModel
+		mGameView = new GameView(this, gameInformation);
+		mGameView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				//TODO call fire method
+				mGameView.invalidate();
+			}
+		});
+		addContentView(mGameView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
+				, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 		//Sensor
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
@@ -81,12 +89,13 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mHorizontalViewAngle = params.getHorizontalViewAngle();
 		mVerticalViewAngle = params.getVerticalViewAngle();
 
-		//TODO load GameInformation in GameEngine
-
-		//TODO set model to view
+		//instantiate game engine
+		mGameEngine = new TimeLimitedGameEngine(gameInformation);
+		//TODO mGameEngine.startGame();
 
 		mGameView.setCoordinate(mCoordinate);
 	}
+	
 
 	@Override
 	protected void onPause() {
