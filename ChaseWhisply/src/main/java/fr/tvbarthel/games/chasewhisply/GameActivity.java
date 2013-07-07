@@ -10,13 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
-import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
+import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
 public class GameActivity extends Activity implements SensorEventListener {
+
+	//Game default values
+	private static final long DEFAULT_REMAINING_TIME = 2 * 60 * 1000;
 
 	private Camera mCamera;
 	private CameraPreview mCameraPreview;
@@ -58,7 +60,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 		} else {
 			mCameraPreview = new CameraPreview(this, mCamera);
 			setContentView(mCameraPreview);
-			mGameView = new GameView(this, new ArrayList<DisplayableItem>());
+			mGameView = new GameView(this, new GameInformation(DEFAULT_REMAINING_TIME, new Weapon()));
 			mGameView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {

@@ -15,6 +15,11 @@ public class GameInformation implements Parcelable {
 	private Weapon mWeapon;
 	private List<DisplayableItem> mItems;
 
+	/**
+	 * create new game information
+	 * @param remainingTime remaining time in millisecond
+	 * @param weapon weapon used for this game
+	 */
 	public GameInformation(long remainingTime, Weapon weapon) {
 		mScore = 0;
 		mRemainingTime = remainingTime;
