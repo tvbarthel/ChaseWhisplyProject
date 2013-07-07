@@ -37,7 +37,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 	private float[] mLastOrientationVals = null;
 	private float[] rotationMatrix = new float[9];
 	private static final float NOISE = 0.10f;
-	private final double[] mCoordinate = new double[2];
+	private final float[] mCoordinate = new float[2];
 
 	//View Angle
 	private float mHorizontalViewAngle;
@@ -157,11 +157,10 @@ public class GameActivity extends Activity implements SensorEventListener {
 			if (Math.abs(mLastOrientationVals[2] - orientationVals[2]) > NOISE)
 				mLastOrientationVals[2] = orientationVals[2];
 
-			mCoordinate[0] = Math.toDegrees(mLastOrientationVals[0]);
-			mCoordinate[1] = Math.toDegrees(mLastOrientationVals[2]);
+			mCoordinate[0] = (float)Math.toDegrees(mLastOrientationVals[0]);
+			mCoordinate[1] = (float)Math.toDegrees(mLastOrientationVals[2]);
 
 			//TODO update DisplayableItemsList
-
 			mGameView.invalidate();
 
 		} else {
