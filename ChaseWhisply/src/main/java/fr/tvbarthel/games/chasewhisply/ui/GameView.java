@@ -9,21 +9,20 @@ import android.graphics.Paint;
 import android.view.View;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
+import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 
 public class GameView extends View {
 
-	private ArrayList<DisplayableItem> mDisplayableItems;
+	private GameInformation mModel;
 	//TODO remove coordinate
 	private double[] mCoordinate;
 	private final Bitmap mCrossHairs;
 
-	public GameView(Context context, ArrayList<DisplayableItem> displayableItems) {
+	public GameView(Context context, GameInformation model) {
 		super(context);
-		mDisplayableItems = displayableItems;
+		mModel = model;
 		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
 		//TODO remove coordinate
 		mCoordinate = new double[2];
@@ -32,14 +31,6 @@ public class GameView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		final Paint paint = new Paint();
-		for (DisplayableItem d : mDisplayableItems) {
-			paint.reset();
-			//TODO draw the items correctly
-			paint.setStyle(Paint.Style.FILL);
-			paint.setColor(Color.BLACK);
-			canvas.drawText("DISPLAY ITEM", d.getX(), d.getY(), paint);
-		}
 		drawCrossHair(canvas);
 	}
 
