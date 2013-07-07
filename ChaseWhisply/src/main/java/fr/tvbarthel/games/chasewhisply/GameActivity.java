@@ -91,12 +91,14 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		//instantiate game engine
 		mGameEngine = new TimeLimitedGameEngine(gameInformation);
+		mGameEngine.setSceneheight((int) Math.floor(mVerticalViewAngle));
+		mGameEngine.setSceneWidth((int) Math.floor(mHorizontalViewAngle));
 		//TODO mGameEngine.startGame();
 
 		//TODO delete
 		mGameView.setCoordinate(mCoordinate);
 	}
-	
+
 
 	@Override
 	protected void onPause() {
