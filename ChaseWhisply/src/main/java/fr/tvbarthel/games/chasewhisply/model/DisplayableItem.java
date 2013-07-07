@@ -17,10 +17,13 @@ public class DisplayableItem implements Parcelable {
 	protected int mHeight;
 	// tells if the item is active/visible
 	protected boolean mIsVisible;
+	// type
+	protected int mType;
 
-	public DisplayableItem(int x, int y) {
+	public DisplayableItem(int x, int y, int type) {
 		mX = x;
 		mY = y;
+		mType = type;
 	}
 
 	protected DisplayableItem(Parcel in) {
