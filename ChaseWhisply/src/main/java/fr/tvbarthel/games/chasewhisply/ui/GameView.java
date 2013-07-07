@@ -17,7 +17,7 @@ public class GameView extends View {
 
 	private GameInformation mModel;
 	//TODO remove coordinate
-	private double[] mCoordinate;
+	private float[] mCoordinate;
 	private final Bitmap mCrossHairs;
 
 	public GameView(Context context, GameInformation model) {
@@ -25,7 +25,7 @@ public class GameView extends View {
 		mModel = model;
 		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
 		//TODO remove coordinate
-		mCoordinate = new double[2];
+		mCoordinate = new float[2];
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class GameView extends View {
 	}
 
 	//TODO remove coordinate
-	public void setCoordinate(double[] coordinate) {
+	public void setCoordinate(float[] coordinate) {
 		mCoordinate = coordinate;
 	}
 }
