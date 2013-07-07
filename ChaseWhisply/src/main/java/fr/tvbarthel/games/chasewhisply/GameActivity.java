@@ -81,6 +81,8 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		//TODO load GameInformation in GameEngine
 
+		//TODO set model to view
+
 		mGameView.setCoordinate(mCoordinate);
 	}
 
@@ -143,6 +145,9 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 			mCoordinate[0] = Math.toDegrees(mLastOrientationVals[0]);
 			mCoordinate[1] = Math.toDegrees(mLastOrientationVals[2]);
+
+			//TODO update DisplayableItemsList
+
 			mGameView.invalidate();
 
 		} else {
