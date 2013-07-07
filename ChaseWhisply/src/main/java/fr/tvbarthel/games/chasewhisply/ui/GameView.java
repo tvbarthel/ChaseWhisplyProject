@@ -71,8 +71,17 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawAmmo(Canvas canvas) {
-		canvas.drawBitmap(mAmmoBitmap, (float) (getWidth() - mAmmoBitmap.getWidth()-10),
+		canvas.drawBitmap(mAmmoBitmap, (float) (getWidth() - mAmmoBitmap.getWidth() - 10),
 				(float) (getHeight() - mAmmoBitmap.getHeight()), new Paint());
+		Paint ammos = new Paint();
+		ammos.setStyle(Paint.Style.FILL_AND_STROKE);
+		ammos.setColor(Color.WHITE);
+		ammos.setStrokeWidth(4);
+		ammos.setTextSize(mAmmoBitmap.getHeight() / 2);
+		canvas.drawText(String.valueOf(mModel.getWeapon().getCurrentAmmunition())
+				, getWidth() - mAmmoBitmap.getWidth() - ammos.getTextSize()
+				, getHeight() - (mAmmoBitmap.getHeight() / 4)
+				, ammos);
 	}
 
 	/**
