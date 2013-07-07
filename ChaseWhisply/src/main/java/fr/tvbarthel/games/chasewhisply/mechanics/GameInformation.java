@@ -35,6 +35,7 @@ public class GameInformation implements Parcelable {
 		mScore = in.readInt();
 		mRemainingTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
+		in.readTypedList(mItems, DisplayableItem.CREATOR);
 	}
 
 	@Override
@@ -42,6 +43,7 @@ public class GameInformation implements Parcelable {
 		out.writeInt(mScore);
 		out.writeLong(mRemainingTime);
 		out.writeParcelable(mWeapon, i);
+		out.writeTypedList(mItems);
 	}
 
 	public static final Parcelable.Creator<GameInformation> CREATOR = new Parcelable.Creator<GameInformation>() {
