@@ -7,8 +7,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
@@ -37,8 +40,12 @@ public class GameActivity extends Activity implements SensorEventListener {
 	private float[] orientationVals = new float[3];
 	private float[] mLastOrientationVals = null;
 	private float[] rotationMatrix = new float[9];
-	private static final float NOISE = 0.10f;
+	private static final float NOISE = 0.03f;
+	private static final int TEMP_SIZE = 10;
 	private final float[] mCoordinate = new float[2];
+
+	private ArrayList<float[]> mCoordinateTemp = new ArrayList<float[]>();
+	private int mCoordinateTempCursor = 0;
 
 	//View Angle
 	private float mHorizontalViewAngle;
@@ -150,25 +157,55 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		mSensorManager.getRotationMatrix(rotationMatrix, null, accelVals, magVals);
 		mSensorManager.getOrientation(rotationMatrix, orientationVals);
+		boolean storeCoordinate = false;
+		mCoordinate[0] = orientationVals[0];
+		mCoordinate[1] = orientationVals[2];
 
-		if (mLastOrientationVals != null) {
-			if (Math.abs(mLastOrientationVals[0] - orientationVals[0]) > NOISE)
-				mLastOrientationVals[0] = orientationVals[0];
-			if (Math.abs(mLastOrientationVals[1] - orientationVals[1]) > NOISE)
-				mLastOrientationVals[1] = orientationVals[1];
-			if (Math.abs(mLastOrientationVals[2] - orientationVals[2]) > NOISE)
-				mLastOrientationVals[2] = orientationVals[2];
+		if (mCoordinateTemp.size() != 0) {
+			float[] smoothCoordinate = getSmoothCoordinate();
 
-			mCoordinate[0] = (float) Math.toDegrees(mLastOrientationVals[0]);
-			mCoordinate[1] = (float) Math.toDegrees(mLastOrientationVals[2]);
+			Log.d("argonne", "lastX:"+smoothCoordinate[0] + " currentX:"+orientationVals[0]);
 
-			//TODO update DisplayableItemsList
-			mGameEngine.changePosition(mCoordinate[0], mCoordinate[1]);
-			mGameView.invalidate();
-
-		} else {
-			mLastOrientationVals = orientationVals.clone();
+			if (Math.abs(smoothCoordinate[0] - orientationVals[0]) > NOISE)
+				storeCoordinate = true;
+			Log.d("argonne", "deltaX:"+ Math.abs(smoothCoordinate[0] - orientationVals[0]));
+			if (Math.abs(smoothCoordinate[1] - orientationVals[2]) > NOISE)
+				storeCoordinate = true;
+			Log.d("argonne", "deltaY:"+ Math.abs(smoothCoordinate[1] - orientationVals[2]));
+		}else{
+			storeCoordinate = true;
 		}
+
+		//store current coordinate
+		if(storeCoordinate){
+			if(mCoordinateTemp.size()<TEMP_SIZE){
+				mCoordinateTemp.add(mCoordinateTempCursor, mCoordinate.clone());
+			}else{
+				mCoordinateTemp.set(mCoordinateTempCursor, mCoordinate.clone());
+			}
+			mCoordinateTempCursor = (mCoordinateTempCursor + 1) % TEMP_SIZE;
+			//TODO update DisplayableItemsList
+			float[] smoothCoordinate = getSmoothCoordinate();
+			Log.d("argonne", "smoothCoordinate, x:"+smoothCoordinate[0] + " y:"+smoothCoordinate[1]);
+			mGameEngine.changePosition((float)Math.toDegrees(smoothCoordinate[0]), (float)Math.toDegrees(smoothCoordinate[1]));
+			mGameView.invalidate();
+		}
+
+	}
+
+	public float[] getSmoothCoordinate() {
+		float[] smoothCoordinate = new float[2];
+		int coordinateSize = mCoordinateTemp.size();
+
+		for(int j = 0; j<coordinateSize; j++){
+			float[] temp = mCoordinateTemp.get(j);
+			smoothCoordinate[0] += temp[0];
+			smoothCoordinate[1] += temp[1];
+		}
+
+		smoothCoordinate[0] /= coordinateSize;
+		smoothCoordinate[1] /= coordinateSize;
+		return  smoothCoordinate;
 	}
 
 	@Override
