@@ -31,7 +31,7 @@ public class GameInformation implements Parcelable {
 		readFromParcel(in);
 	}
 
-	public void updateItemVisibility(final int windowX, final int windowY, final int windowWidth, final int windowHeight) {
+	public void updateItemVisibility(final float windowX, final float windowY, final int windowWidth, final int windowHeight) {
 		for (DisplayableItem item : mItems) {
 			item.updateVisibility(windowX, windowY, windowWidth, windowHeight);
 		}
