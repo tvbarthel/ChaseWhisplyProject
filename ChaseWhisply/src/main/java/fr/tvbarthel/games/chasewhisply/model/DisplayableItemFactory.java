@@ -10,6 +10,8 @@ public class DisplayableItemFactory {
 	public static TargetableItem createEasyGhost() {
 		TargetableItem easyGhost = new TargetableItem();
 		easyGhost.setType(TYPE_EASY_GHOST);
+		easyGhost.setX(-140);
+		easyGhost.setY(-70);
 		easyGhost.setHealth(HEALTH_EASY_GHOST);
 		return easyGhost;
 	}

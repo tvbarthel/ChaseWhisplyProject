@@ -20,17 +20,6 @@ public class TargetableItem extends DisplayableItem {
 	}
 
 	/**
-	 * check if the item is under the crosshairs
-	 *
-	 * @param crosshairsX
-	 * @param crosshairsY
-	 * @return
-	 */
-	public boolean isTargetable(int crosshairsX, int crosshairsY) {
-		return (crosshairsX > mX && crosshairsX < (mX + mWidth) && crosshairsY > mY && crosshairsY < (mY + mHeight));
-	}
-
-	/**
 	 * Hit the item with damage
 	 *
 	 * @param damage

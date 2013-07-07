@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
@@ -65,10 +66,16 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mCameraPreview = new CameraPreview(this, mCamera);
 		setContentView(mCameraPreview);
 
+		//Angle view
+		final Camera.Parameters params = mCamera.getParameters();
+		mHorizontalViewAngle = params.getHorizontalViewAngle();
+		mVerticalViewAngle = params.getVerticalViewAngle();
+
 		//create new game information
 		final GameInformation gameInformation = new GameInformation(DEFAULT_REMAINING_TIME, new Weapon());
 		gameInformation.setSceneWidth((int) Math.floor(mHorizontalViewAngle));
 		gameInformation.setSceneHeight((int) Math.floor(mVerticalViewAngle));
+		gameInformation.addItem(DisplayableItemFactory.createEasyGhost());
 
 		//instantiate GameView with GameModel
 		mGameView = new GameView(this, gameInformation);
@@ -85,11 +92,6 @@ public class GameActivity extends Activity implements SensorEventListener {
 		//Sensor
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
-
-		//Angle view
-		final Camera.Parameters params = mCamera.getParameters();
-		mHorizontalViewAngle = params.getHorizontalViewAngle();
-		mVerticalViewAngle = params.getVerticalViewAngle();
 
 		//instantiate game engine
 		mGameEngine = new TimeLimitedGameEngine(gameInformation);

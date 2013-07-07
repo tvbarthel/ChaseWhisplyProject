@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
 
 import java.text.DecimalFormat;
@@ -56,15 +57,41 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawDisplayableItems(Canvas canvas) {
-		Paint displyablePaint = new Paint();
+		//TODO clean code
 		for (DisplayableItem i : mModel.getItems()) {
-			if (i.isActive()) {
-				//draw items
-				if(DisplayableItemFactory.TYPE_EASY_GHOST == i.getType()){
-					canvas.drawBitmap(mGhostBitmap,i.getX()*this.getWidth()/mModel.getSceneWidth()
-							,i.getY()*this.getHeight()/mModel.getSceneHeight(),new Paint());
-				}
+			int itemWidth = 50;//in px, default value
+			int itemHeight = 50;//in px, default value
+
+			switch (i.getType()) {
+				case DisplayableItemFactory.TYPE_EASY_GHOST :
+					itemWidth = 140;
+					itemHeight = 150;
+					break;
 			}
+			renderItem(canvas,mGhostBitmap, i, itemWidth, itemHeight);
+		}
+	}
+
+	public void renderItem(final Canvas canvas,final Bitmap bitmap, final DisplayableItem item, final int mWidth, final int mHeight) {
+		//TODO clean code
+		boolean isVisible = false;
+
+		final float[] currentPosInDegree = mModel.getCurrentPosition();
+		final float widthRatioDegreeToPx = this.getWidth() / mModel.getSceneWidth();
+		final float heightRatioDegreeToPx = this.getHeight() / mModel.getSceneHeight();
+
+		final float windowXInPx = currentPosInDegree[0] * widthRatioDegreeToPx;
+		final float windowYInPx = currentPosInDegree[1] * heightRatioDegreeToPx;
+		final float itemXInPx = item.getX() * widthRatioDegreeToPx;
+		final float itemYInPx = item.getY() * heightRatioDegreeToPx;
+
+		final float borderLeft = windowXInPx - mWidth;
+		final float borderTop = windowYInPx - mHeight;
+		final float borderRight = borderLeft + this.getWidth() + mWidth;
+		final float borderBottom = borderTop + this.getHeight() + mHeight;
+
+		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
+			canvas.drawBitmap(bitmap,itemXInPx - windowXInPx, itemYInPx - windowYInPx,new Paint());
 		}
 	}
 

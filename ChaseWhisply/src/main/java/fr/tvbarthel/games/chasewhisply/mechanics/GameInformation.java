@@ -16,6 +16,8 @@ public class GameInformation implements Parcelable {
 	private List<DisplayableItem> mItems;
 	protected int mSceneWidth;
 	protected int mSceneHeight;
+	protected float mCurrentX;
+	protected float mCurrentY;
 
 	/**
 	 * create new game information
@@ -31,16 +33,6 @@ public class GameInformation implements Parcelable {
 
 	public GameInformation(Parcel in) {
 		readFromParcel(in);
-	}
-
-	public void updateItemVisibility(final float currentPosX, final float currentPosY) {
-		updateItemVisibility(currentPosX - mSceneWidth/2, currentPosY - mSceneHeight/2, mSceneWidth, mSceneHeight);
-	}
-
-	public void updateItemVisibility(final float windowX, final float windowY, final int windowWidth, final int windowHeight) {
-		for (DisplayableItem item : mItems) {
-			item.updateVisibility(windowX, windowY, windowWidth, windowHeight);
-		}
 	}
 
 	@Override
@@ -110,6 +102,15 @@ public class GameInformation implements Parcelable {
 
 	public int getSceneHeight(){
 		return mSceneHeight;
+	}
+
+	public void setCurrentPosition(float x, float y) {
+		mCurrentX = x;
+		mCurrentY = y;
+	}
+
+	public float[] getCurrentPosition() {
+		return new float[]{mCurrentX, mCurrentY};
 	}
 
 }

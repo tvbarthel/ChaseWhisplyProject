@@ -52,7 +52,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	}
 
 	public void changePosition(float posX, float posY) {
-		mGameInformation.updateItemVisibility(posX, posY);
+		mGameInformation.setCurrentPosition(posX, posY);
 	}
 
 	/**

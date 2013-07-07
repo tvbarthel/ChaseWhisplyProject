@@ -2,6 +2,7 @@ package fr.tvbarthel.games.chasewhisply.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 /**
  *
@@ -11,10 +12,6 @@ public class DisplayableItem implements Parcelable {
 	protected int mX;
 	// y coordinate
 	protected int mY;
-	// width
-	protected int mWidth;
-	// height
-	protected int mHeight;
 	// tells if the item is active/visible
 	protected boolean mIsVisible;
 	// type
@@ -36,27 +33,6 @@ public class DisplayableItem implements Parcelable {
 		readFromParcel(in);
 	}
 
-	/**
-	 * If the item is located in the window, updateVisibility sets mIsVisible on true
-	 * else updateVisibility sets mIsVisible on false
-	 *
-	 * @param windowX
-	 * @param windowY
-	 * @param windowWidth
-	 * @param windowHeight
-	 */
-	public void updateVisibility(final float windowX, final float windowY, final int windowWidth, final int windowHeight) {
-		final float borderLeft = windowX - mWidth;
-		final float borderTop = windowY - mHeight;
-		final float borderRight = borderLeft + windowWidth + mWidth;
-		final float borderBottom = borderTop + windowHeight + mHeight;
-		if (mX > borderLeft && mX < borderRight && mY > borderBottom && mY < borderTop) {
-			mIsVisible = true;
-		} else {
-			mIsVisible = false;
-		}
-	}
-
 	@Override
 	public int describeContents() {
 		return 0;
@@ -66,8 +42,6 @@ public class DisplayableItem implements Parcelable {
 	public void writeToParcel(Parcel out, int i) {
 		out.writeInt(mX);
 		out.writeInt(mY);
-		out.writeInt(mWidth);
-		out.writeInt(mHeight);
 		out.writeByte((byte) (mIsVisible ? 1 : 0));
 	}
 
@@ -79,8 +53,6 @@ public class DisplayableItem implements Parcelable {
 	public void readFromParcel(Parcel in) {
 		this.mX = in.readInt();
 		this.mY = in.readInt();
-		this.mWidth = in.readInt();
-		this.mHeight = in.readInt();
 		this.mIsVisible = in.readByte() == 1;
 	}
 
@@ -111,22 +83,6 @@ public class DisplayableItem implements Parcelable {
 
 	public void setY(int mY) {
 		this.mY = mY;
-	}
-
-	public int getWidth() {
-		return mWidth;
-	}
-
-	public void setWidth(int mWidth) {
-		this.mWidth = mWidth;
-	}
-
-	public int getHeight() {
-		return mHeight;
-	}
-
-	public void setHeight(int mHeight) {
-		this.mHeight = mHeight;
 	}
 
 	public boolean isActive() {
