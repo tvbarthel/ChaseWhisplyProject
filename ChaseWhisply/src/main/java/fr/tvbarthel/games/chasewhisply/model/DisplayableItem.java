@@ -137,4 +137,12 @@ public class DisplayableItem implements Parcelable {
 		mIsVisible = active;
 	}
 
+	public void setType(int type) {
+		mType = type;
+	}
+
+	public int getType() {
+		return mType;
+	}
+
 }
