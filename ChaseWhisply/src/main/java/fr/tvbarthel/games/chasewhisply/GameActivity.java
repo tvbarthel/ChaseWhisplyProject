@@ -67,6 +67,8 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		//create new game information
 		final GameInformation gameInformation = new GameInformation(DEFAULT_REMAINING_TIME, new Weapon());
+		gameInformation.setSceneWidth((int) Math.floor(mHorizontalViewAngle));
+		gameInformation.setSceneHeight((int) Math.floor(mVerticalViewAngle));
 
 		//instantiate GameView with GameModel
 		mGameView = new GameView(this, gameInformation);
@@ -91,8 +93,6 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		//instantiate game engine
 		mGameEngine = new TimeLimitedGameEngine(gameInformation);
-		mGameEngine.setSceneheight((int) Math.floor(mVerticalViewAngle));
-		mGameEngine.setSceneWidth((int) Math.floor(mHorizontalViewAngle));
 		//TODO mGameEngine.startGame();
 
 		//TODO delete
@@ -157,8 +157,8 @@ public class GameActivity extends Activity implements SensorEventListener {
 			if (Math.abs(mLastOrientationVals[2] - orientationVals[2]) > NOISE)
 				mLastOrientationVals[2] = orientationVals[2];
 
-			mCoordinate[0] = (float)Math.toDegrees(mLastOrientationVals[0]);
-			mCoordinate[1] = (float)Math.toDegrees(mLastOrientationVals[2]);
+			mCoordinate[0] = (float) Math.toDegrees(mLastOrientationVals[0]);
+			mCoordinate[1] = (float) Math.toDegrees(mLastOrientationVals[2]);
 
 			//TODO update DisplayableItemsList
 			mGameEngine.changePosition(mCoordinate[0], mCoordinate[1]);
