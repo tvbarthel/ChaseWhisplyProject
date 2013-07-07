@@ -7,7 +7,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -163,31 +162,25 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		if (mCoordinateTemp.size() != 0) {
 			float[] smoothCoordinate = getSmoothCoordinate();
-
-			Log.d("argonne", "lastX:"+smoothCoordinate[0] + " currentX:"+orientationVals[0]);
-
 			if (Math.abs(smoothCoordinate[0] - orientationVals[0]) > NOISE)
 				storeCoordinate = true;
-			Log.d("argonne", "deltaX:"+ Math.abs(smoothCoordinate[0] - orientationVals[0]));
 			if (Math.abs(smoothCoordinate[1] - orientationVals[2]) > NOISE)
 				storeCoordinate = true;
-			Log.d("argonne", "deltaY:"+ Math.abs(smoothCoordinate[1] - orientationVals[2]));
-		}else{
+		} else {
 			storeCoordinate = true;
 		}
 
 		//store current coordinate
-		if(storeCoordinate){
-			if(mCoordinateTemp.size()<TEMP_SIZE){
+		if (storeCoordinate) {
+			if (mCoordinateTemp.size() < TEMP_SIZE) {
 				mCoordinateTemp.add(mCoordinateTempCursor, mCoordinate.clone());
-			}else{
+			} else {
 				mCoordinateTemp.set(mCoordinateTempCursor, mCoordinate.clone());
 			}
 			mCoordinateTempCursor = (mCoordinateTempCursor + 1) % TEMP_SIZE;
 			//TODO update DisplayableItemsList
 			float[] smoothCoordinate = getSmoothCoordinate();
-			Log.d("argonne", "smoothCoordinate, x:"+smoothCoordinate[0] + " y:"+smoothCoordinate[1]);
-			mGameEngine.changePosition((float)Math.toDegrees(smoothCoordinate[0]), (float)Math.toDegrees(smoothCoordinate[1]));
+			mGameEngine.changePosition((float) Math.toDegrees(smoothCoordinate[0]), (float) Math.toDegrees(smoothCoordinate[1]));
 			mGameView.invalidate();
 		}
 
@@ -197,7 +190,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 		float[] smoothCoordinate = new float[2];
 		int coordinateSize = mCoordinateTemp.size();
 
-		for(int j = 0; j<coordinateSize; j++){
+		for (int j = 0; j < coordinateSize; j++) {
 			float[] temp = mCoordinateTemp.get(j);
 			smoothCoordinate[0] += temp[0];
 			smoothCoordinate[1] += temp[1];
@@ -205,7 +198,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		smoothCoordinate[0] /= coordinateSize;
 		smoothCoordinate[1] /= coordinateSize;
-		return  smoothCoordinate;
+		return smoothCoordinate;
 	}
 
 	@Override
