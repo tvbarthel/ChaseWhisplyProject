@@ -3,9 +3,7 @@ package fr.tvbarthel.games.chasewhisply.mechanics;
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	protected GameInformation mGameInformation;
 	protected ReloadingRoutine mReloadingRoutine;
-	protected int mSceneWidthInPx;
 	protected int mSceneWidth;
-	protected int mSceneHeightInPx;
 	protected int mSceneHeight;
 	protected float mCurrentPosX;
 	protected float mCurrentPosY;
@@ -65,14 +63,6 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	/**
 	 * Getters & Setters
 	 */
-	public void setSceneWidthInPx(int sceneWidthInPx) {
-		mSceneWidthInPx = sceneWidthInPx;
-	}
-
-	public void setSceneHeightInPx(int sceneHeightInPx) {
-		mSceneHeightInPx = sceneHeightInPx;
-	}
-
 	public void setSceneWidth(int sceneWidth) {
 		mSceneWidth = sceneWidth;
 	}
