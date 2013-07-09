@@ -213,9 +213,7 @@ public class GameInformation implements Parcelable {
 	 * reset current combo counter
 	 */
 	public void resetCombo() {
-		if (mMaxCombo < mCurrentCombo) {
-			mMaxCombo = mCurrentCombo;
-		}
+		if (mCurrentCombo > mMaxCombo) mMaxCombo = mCurrentCombo;
 		mCurrentCombo = 0;
 	}
 
