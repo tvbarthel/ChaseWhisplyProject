@@ -9,6 +9,7 @@ public class WeaponFactory {
 		Weapon basicWeapon = new Weapon();
 		basicWeapon.setDamage(BASIC_WEAPON_DAMAGE);
 		basicWeapon.setAmmunitionLimit(BASIC_WEAPON_AMMUNITION_LIMIT);
+		basicWeapon.setReloadingTime(BASIC_WEAPON_RELOADING_TIME);
 		basicWeapon.reload(BASIC_WEAPON_AMMUNITION_LIMIT);
 		return basicWeapon;
 	}
