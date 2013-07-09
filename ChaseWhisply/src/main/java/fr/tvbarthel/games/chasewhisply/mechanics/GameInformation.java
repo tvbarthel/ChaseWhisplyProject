@@ -19,6 +19,8 @@ public class GameInformation implements Parcelable {
 	protected List<DisplayableItem> mDisplayableItems;
 	protected int mTargetKilled;
 	protected int mBulletFired;
+	protected int mCurrentCombo;
+	protected int mMaxCombo;
 	protected int mSceneWidth;
 	protected int mSceneHeight;
 	protected float mCurrentX;
@@ -34,6 +36,8 @@ public class GameInformation implements Parcelable {
 		mScore = 0;
 		mTargetKilled = 0;
 		mBulletFired = 0;
+		mCurrentCombo = 0;
+		mMaxCombo = 0;
 		mRemainingTime = remainingTime;
 		mWeapon = weapon;
 		mCurrentTarget = null;
@@ -177,6 +181,42 @@ public class GameInformation implements Parcelable {
 	 */
 	public void bulletFired() {
 		mBulletFired++;
+	}
+
+	/**
+	 * used to get combo number
+	 *
+	 * @return current combo
+	 */
+	public int getCurrentCombo() {
+		return mCurrentCombo;
+	}
+
+	/**
+	 * return maximum combo during the game
+	 *
+	 * @return max combo number
+	 */
+	public int getMaxCombo() {
+		if (mCurrentCombo > mMaxCombo) mMaxCombo = mCurrentCombo;
+		return mMaxCombo;
+	}
+
+	/**
+	 * add combo
+	 */
+	public void stackCombo() {
+		mCurrentCombo++;
+	}
+
+	/**
+	 * reset current combo counter
+	 */
+	public void resetCombo() {
+		if (mMaxCombo < mCurrentCombo) {
+			mMaxCombo = mCurrentCombo;
+		}
+		mCurrentCombo = 0;
 	}
 
 }
