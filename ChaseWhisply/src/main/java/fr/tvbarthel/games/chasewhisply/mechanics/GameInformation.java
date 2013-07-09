@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
+import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
 
 public class GameInformation implements Parcelable {
 	private int mScore;
 	private long mRemainingTime;
 	private Weapon mWeapon;
-	private List<DisplayableItem> mItems;
+	private List<TargetableItem> mTargetableItems;
+	private List<DisplayableItem> mDisplayableItems;
 	protected int mSceneWidth;
 	protected int mSceneHeight;
 	protected float mCurrentX;
@@ -21,14 +23,16 @@ public class GameInformation implements Parcelable {
 
 	/**
 	 * create new game information
+	 *
 	 * @param remainingTime remaining time in millisecond
-	 * @param weapon weapon used for this game
+	 * @param weapon        weapon used for this game
 	 */
 	public GameInformation(long remainingTime, Weapon weapon) {
 		mScore = 0;
 		mRemainingTime = remainingTime;
 		mWeapon = weapon;
-		mItems = new ArrayList<DisplayableItem>();
+		mTargetableItems = new ArrayList<TargetableItem>();
+		mDisplayableItems = new ArrayList<DisplayableItem>();
 	}
 
 	public GameInformation(Parcel in) {
@@ -44,7 +48,7 @@ public class GameInformation implements Parcelable {
 		mScore = in.readInt();
 		mRemainingTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
-		in.readTypedList(mItems, DisplayableItem.CREATOR);
+		in.readTypedList(mTargetableItems, TargetableItem.CREATOR);
 	}
 
 	@Override
@@ -52,7 +56,7 @@ public class GameInformation implements Parcelable {
 		out.writeInt(mScore);
 		out.writeLong(mRemainingTime);
 		out.writeParcelable(mWeapon, i);
-		out.writeTypedList(mItems);
+		out.writeTypedList(mTargetableItems);
 	}
 
 	public static final Parcelable.Creator<GameInformation> CREATOR = new Parcelable.Creator<GameInformation>() {
@@ -80,19 +84,26 @@ public class GameInformation implements Parcelable {
 		mRemainingTime = time;
 	}
 
-	public void addItem(DisplayableItem item) {
-		mItems.add(item);
+	public void addTargetableItem(TargetableItem item) {
+		mTargetableItems.add(item);
 	}
 
-	public List<DisplayableItem> getItems() {
-		return mItems;
+	public void addDisplayableItem(DisplayableItem item) {
+		mDisplayableItems.add(item);
+	}
+
+	public List<DisplayableItem> getItemsForDisplay() {
+		final ArrayList<DisplayableItem> displayAll = new ArrayList<DisplayableItem>();
+		displayAll.addAll(mTargetableItems);
+		displayAll.addAll(mDisplayableItems);
+		return displayAll;
 	}
 
 	public void setSceneWidth(int sceneWidth) {
 		mSceneWidth = sceneWidth;
 	}
 
-	public int getSceneWidth(){
+	public int getSceneWidth() {
 		return mSceneWidth;
 	}
 
@@ -100,7 +111,7 @@ public class GameInformation implements Parcelable {
 		mSceneHeight = sceneHeight;
 	}
 
-	public int getSceneHeight(){
+	public int getSceneHeight() {
 		return mSceneHeight;
 	}
 

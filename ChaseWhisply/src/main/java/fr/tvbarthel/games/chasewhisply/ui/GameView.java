@@ -90,7 +90,7 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawDisplayableItems(Canvas canvas) {
-		for (DisplayableItem i : mModel.getItems()) {
+		for (DisplayableItem i : mModel.getItemsForDisplay()) {
 			switch (i.getType()) {
 				case DisplayableItemFactory.TYPE_EASY_GHOST:
 					renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());

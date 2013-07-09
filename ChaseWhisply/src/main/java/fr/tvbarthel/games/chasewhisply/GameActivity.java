@@ -81,7 +81,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 		final GameInformation gameInformation = new GameInformation(DEFAULT_REMAINING_TIME, WeaponFactory.createBasicWeapon());
 		gameInformation.setSceneWidth((int) Math.floor(mHorizontalViewAngle));
 		gameInformation.setSceneHeight((int) Math.floor(mVerticalViewAngle));
-		gameInformation.addItem(DisplayableItemFactory.createEasyGhost());
+		gameInformation.addTargetableItem(DisplayableItemFactory.createEasyGhost());
 
 		//instantiate GameView with GameModel
 		mGameView = new GameView(this, gameInformation);
