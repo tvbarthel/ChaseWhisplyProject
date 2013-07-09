@@ -4,20 +4,27 @@ import android.os.Handler;
 
 public class GameTimer extends Handler {
 	private final Runnable mRunnable;
-	private long mTimeLimit;
+	private long mRemainingTime;
 	private final IGameTimer mIGameTimer;
 	private boolean mIsRunning;
 	private long mStartTime;
 
-	public GameTimer(long timeLimit, IGameTimer iGameTimer) {
-		mTimeLimit = timeLimit;
+	public GameTimer(long remainingLimit, IGameTimer iGameTimer) {
+		mRemainingTime = remainingLimit;
 		mIGameTimer = iGameTimer;
 		mIsRunning = false;
 		mRunnable = new Runnable() {
 			@Override
 			public void run() {
-				mIsRunning = false;
-				mIGameTimer.timerEnd();
+				mRemainingTime -= 1000;
+				mRemainingTime = Math.max(mRemainingTime, 0);
+				if (mIsRunning && mRemainingTime > 0) {
+					mIGameTimer.timerTick(mRemainingTime);
+					postDelayed(this, 1000);
+				} else if (mRemainingTime == 0) {
+					stopTimer();
+					mIGameTimer.timerEnd();
+				}
 			}
 		};
 	}
@@ -26,25 +33,24 @@ public class GameTimer extends Handler {
 		if (mIsRunning) {
 			return false;
 		}
-		postDelayed(mRunnable, mTimeLimit);
+		postDelayed(mRunnable, 1000);
 		mIsRunning = true;
 		mStartTime = System.currentTimeMillis();
 		return true;
 	}
 
 	public long stopTimer() {
-		long remainingTime = 0;
 		if (mIsRunning) {
 			removeCallbacks(mRunnable);
 			mIsRunning = false;
-			remainingTime = mTimeLimit - (System.currentTimeMillis() - mStartTime);
-			mTimeLimit = remainingTime;
 		}
-		return remainingTime;
+		return mRemainingTime;
 	}
 
 
 	public interface IGameTimer {
 		abstract void timerEnd();
+
+		abstract void timerTick(long remainingTime);
 	}
 }

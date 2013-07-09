@@ -36,4 +36,9 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 	public void timerEnd() {
 		stopGame();
 	}
+
+	@Override
+	public void timerTick(long remainingTime) {
+		mGameInformation.setRemainingTime(remainingTime);
+	}
 }
