@@ -16,7 +16,7 @@ import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
-import fr.tvbarthel.games.chasewhisply.model.Weapon;
+import fr.tvbarthel.games.chasewhisply.model.WeaponFactory;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
@@ -78,7 +78,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mVerticalViewAngle = params.getVerticalViewAngle();
 
 		//create new game information
-		final GameInformation gameInformation = new GameInformation(DEFAULT_REMAINING_TIME, new Weapon());
+		final GameInformation gameInformation = new GameInformation(DEFAULT_REMAINING_TIME, WeaponFactory.createBasicWeapon());
 		gameInformation.setSceneWidth((int) Math.floor(mHorizontalViewAngle));
 		gameInformation.setSceneHeight((int) Math.floor(mVerticalViewAngle));
 		gameInformation.addItem(DisplayableItemFactory.createEasyGhost());
@@ -88,7 +88,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mGameView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				//TODO call fire method
+				mGameEngine.fire();
 				mGameView.invalidate();
 			}
 		});
