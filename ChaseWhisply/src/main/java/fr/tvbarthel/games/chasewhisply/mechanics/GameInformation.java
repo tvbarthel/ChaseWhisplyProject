@@ -18,6 +18,7 @@ public class GameInformation implements Parcelable {
 	protected List<TargetableItem> mTargetableItems;
 	protected List<DisplayableItem> mDisplayableItems;
 	protected int mTargetKilled;
+	protected int mBulletFired;
 	protected int mSceneWidth;
 	protected int mSceneHeight;
 	protected float mCurrentX;
@@ -32,6 +33,7 @@ public class GameInformation implements Parcelable {
 	public GameInformation(long remainingTime, Weapon weapon) {
 		mScore = 0;
 		mTargetKilled = 0;
+		mBulletFired = 0;
 		mRemainingTime = remainingTime;
 		mWeapon = weapon;
 		mCurrentTarget = null;
@@ -153,8 +155,18 @@ public class GameInformation implements Parcelable {
 		mCurrentTarget = null;
 	}
 
-	public void targetKilled(){
+	/**
+	 * increase targets killed number
+	 */
+	public void targetKilled() {
 		mTargetKilled++;
+	}
+
+	/**
+	 * increase bullets fired number
+	 */
+	public void bulletFired() {
+		mBulletFired++;
 	}
 
 }

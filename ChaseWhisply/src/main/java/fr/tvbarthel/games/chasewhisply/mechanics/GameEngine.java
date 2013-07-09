@@ -59,6 +59,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 		final int dmg = mGameInformation.getWeapon().fire();
 		final TargetableItem currentTarget = mGameInformation.getCurrentTarget();
 		if (dmg != 0) {
+			mGameInformation.bulletFired();
 			if (currentTarget == null) {
 				DisplayableItem hole = DisplayableItemFactory.createBulletHole();
 				final float[] currentPosition = mGameInformation.getCurrentPosition();
