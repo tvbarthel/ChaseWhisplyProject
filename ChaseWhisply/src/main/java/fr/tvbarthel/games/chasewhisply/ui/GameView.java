@@ -23,6 +23,7 @@ public class GameView extends View {
 	private final Bitmap mCrossHairs;
 	private final Bitmap mGhostBitmap;
 	private final Bitmap mAmmoBitmap;
+	private final Bitmap mBulletHoleBitmap;
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
@@ -36,6 +37,7 @@ public class GameView extends View {
 		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
 		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost);
 		mAmmoBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo);
+		mBulletHoleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullethole);
 
 		//TODO remove coordinate
 		mCoordinate = new float[2];
@@ -96,7 +98,7 @@ public class GameView extends View {
 					renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
 					break;
 				case DisplayableItemFactory.TYPE_BULLET_HOLE:
-					renderItem(canvas, mCrossHairs, i, mCrossHairs.getWidth(), mCrossHairs.getHeight());
+					renderItem(canvas, mBulletHoleBitmap, i, mBulletHoleBitmap.getWidth(), mBulletHoleBitmap.getHeight());
 					break;
 			}
 		}
