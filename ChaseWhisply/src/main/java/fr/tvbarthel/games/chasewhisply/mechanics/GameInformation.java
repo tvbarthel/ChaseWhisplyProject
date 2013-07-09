@@ -163,6 +163,15 @@ public class GameInformation implements Parcelable {
 	}
 
 	/**
+	 * used to know frag number
+	 *
+	 * @return number of frag
+	 */
+	public int getFragNumber() {
+		return mTargetKilled;
+	}
+
+	/**
 	 * increase bullets fired number
 	 */
 	public void bulletFired() {

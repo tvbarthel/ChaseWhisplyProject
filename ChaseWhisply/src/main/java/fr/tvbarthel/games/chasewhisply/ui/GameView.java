@@ -1,6 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.ui;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -26,6 +27,7 @@ public class GameView extends View {
 	private final Bitmap mGhostTargetedBitmap;
 	private final Bitmap mAmmoBitmap;
 	private final Bitmap mBulletHoleBitmap;
+	private final String mFragString;
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
@@ -42,6 +44,9 @@ public class GameView extends View {
 		mAmmoBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo);
 		mBulletHoleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullethole);
 
+		final Resources res = getResources();
+		mFragString = res.getString(R.string.in_game_kill_counter);
+
 		//TODO remove coordinate
 		mCoordinate = new float[2];
 	}
@@ -57,6 +62,7 @@ public class GameView extends View {
 		drawDisplayableItems(canvas);
 		drawCrossHair(canvas);
 		drawAmmo(canvas);
+		drawKill(canvas);
 	}
 
 	private void drawCrossHair(Canvas canvas) {
@@ -89,6 +95,18 @@ public class GameView extends View {
 				, ammos);
 	}
 
+	private void drawKill(Canvas canvas) {
+		Paint kill = new Paint();
+		kill.setStyle(Paint.Style.FILL_AND_STROKE);
+		kill.setColor(Color.WHITE);
+		kill.setStrokeWidth(4);
+		kill.setTextSize(getWidth() / 20);
+		canvas.drawText(String.format(mFragString, mModel.getFragNumber())
+				, 10
+				, 10 + getWidth() / 20
+				, kill);
+	}
+
 	/**
 	 * draw active items on the screen
 	 *
@@ -102,11 +120,13 @@ public class GameView extends View {
 			switch (i.getType()) {
 				case DisplayableItemFactory.TYPE_EASY_GHOST:
 					if (isTargeted(currentPos, i, mGhostBitmap)) {
+						//Ghost alive and targeted
 						renderItem(canvas, mGhostTargetedBitmap, i, mGhostTargetedBitmap.getWidth(), mGhostTargetedBitmap.getHeight());
-						mModel.setCurrentTarget((TargetableItem)i);
+						mModel.setCurrentTarget((TargetableItem) i);
 					} else {
+						//Ghost alive and not targeted
 						renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
-						if(i==mModel.getCurrentTarget()){
+						if (i == mModel.getCurrentTarget()) {
 							mModel.removeTarget();
 						}
 					}

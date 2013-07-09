@@ -12,5 +12,7 @@
     <string name="home_sign_in">Sign in</string>
     <string name="home_sign_info">Sign in with Google to share your scores and achievements with your friends.</string>
 
+    <!-- in game !-->
+    <string name="in_game_kill_counter">Frag : %1$d</string>
 
 </resources>
