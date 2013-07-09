@@ -40,7 +40,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 	private float[] mLastOrientationVals = null;
 	private float[] rotationMatrix = new float[9];
 	private static final float NOISE = 0.03f;
-	private static final int TEMP_SIZE = 10;
+	private static final int TEMP_SIZE = 20;
 	private final float[] mCoordinate = new float[2];
 
 	private ArrayList<float[]> mCoordinateTemp = new ArrayList<float[]>();
@@ -96,8 +96,8 @@ public class GameActivity extends Activity implements SensorEventListener {
 				, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 		//Sensor
-		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
+		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
 
 		//instantiate game engine
 		mGameEngine = new TimeLimitedGameEngine(gameInformation);
