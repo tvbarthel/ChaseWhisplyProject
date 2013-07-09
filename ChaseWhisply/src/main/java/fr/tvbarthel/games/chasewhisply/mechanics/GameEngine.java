@@ -85,4 +85,8 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 		mGameInformation.setSceneHeight(sceneHeight);
 	}
 
+	public GameInformation getGameInformation() {
+		return mGameInformation;
+	}
+
 }
