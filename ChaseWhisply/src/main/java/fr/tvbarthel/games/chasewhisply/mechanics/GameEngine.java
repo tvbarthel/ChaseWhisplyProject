@@ -1,13 +1,17 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
+import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
+
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	protected GameInformation mGameInformation;
 	protected ReloadingRoutine mReloadingRoutine;
+	protected TargetableItem mCurrentTarget;
 
 
 	public GameEngine(GameInformation gameInformation) {
 		mGameInformation = gameInformation;
 		mReloadingRoutine = new ReloadingRoutine(mGameInformation.getWeapon().getReloadingTime(), this);
+		mCurrentTarget = null;
 	}
 
 	/**
@@ -47,8 +51,17 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 		mGameInformation.getWeapon().reload();
 	}
 
-	public int fire() {
-		return mGameInformation.getWeapon().fire();
+	/**
+	 * call when use touch screen
+	 * create bullet hole or hit current target
+	 */
+	public void fire() {
+		final int dmg = mGameInformation.getWeapon().fire();
+		if (mCurrentTarget == null) {
+			//TODO create a bullet hole
+		} else {
+			//TODO hit currentTarget
+		}
 	}
 
 	public void changePosition(float posX, float posY) {
