@@ -67,6 +67,9 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 				mGameInformation.addDisplayableItem(hole);
 			} else {
 				currentTarget.hit(dmg);
+				if (currentTarget.getHealth() == 0) {
+					mGameInformation.targetKilled();
+				}
 			}
 		}
 	}

@@ -11,12 +11,13 @@ import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
 
 public class GameInformation implements Parcelable {
-	private int mScore;
-	private long mRemainingTime;
-	private Weapon mWeapon;
+	protected int mScore;
+	protected long mRemainingTime;
+	protected Weapon mWeapon;
 	protected TargetableItem mCurrentTarget;
-	private List<TargetableItem> mTargetableItems;
-	private List<DisplayableItem> mDisplayableItems;
+	protected List<TargetableItem> mTargetableItems;
+	protected List<DisplayableItem> mDisplayableItems;
+	protected int mTargetKilled;
 	protected int mSceneWidth;
 	protected int mSceneHeight;
 	protected float mCurrentX;
@@ -30,6 +31,7 @@ public class GameInformation implements Parcelable {
 	 */
 	public GameInformation(long remainingTime, Weapon weapon) {
 		mScore = 0;
+		mTargetKilled = 0;
 		mRemainingTime = remainingTime;
 		mWeapon = weapon;
 		mCurrentTarget = null;
@@ -149,6 +151,10 @@ public class GameInformation implements Parcelable {
 	 */
 	public void removeTarget() {
 		mCurrentTarget = null;
+	}
+
+	public void targetKilled(){
+		mTargetKilled++;
 	}
 
 }
