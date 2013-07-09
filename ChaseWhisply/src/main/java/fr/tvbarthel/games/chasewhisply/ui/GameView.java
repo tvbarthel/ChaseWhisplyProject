@@ -119,15 +119,20 @@ public class GameView extends View {
 		for (DisplayableItem i : mModel.getItemsForDisplay()) {
 			switch (i.getType()) {
 				case DisplayableItemFactory.TYPE_EASY_GHOST:
-					if (isTargeted(currentPos, i, mGhostBitmap)) {
-						//Ghost alive and targeted
-						renderItem(canvas, mGhostTargetedBitmap, i, mGhostTargetedBitmap.getWidth(), mGhostTargetedBitmap.getHeight());
-						mModel.setCurrentTarget((TargetableItem) i);
+					if (!((TargetableItem) i).isAlive()) {
+						//Ghost dead
 					} else {
-						//Ghost alive and not targeted
-						renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
-						if (i == mModel.getCurrentTarget()) {
-							mModel.removeTarget();
+						//Ghost alive
+						if (isTargeted(currentPos, i, mGhostBitmap)) {
+							//Ghost alive and targeted
+							renderItem(canvas, mGhostTargetedBitmap, i, mGhostTargetedBitmap.getWidth(), mGhostTargetedBitmap.getHeight());
+							mModel.setCurrentTarget((TargetableItem) i);
+						} else {
+							//Ghost alive and not targeted
+							renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
+							if (i == mModel.getCurrentTarget()) {
+								mModel.removeTarget();
+							}
 						}
 					}
 					break;

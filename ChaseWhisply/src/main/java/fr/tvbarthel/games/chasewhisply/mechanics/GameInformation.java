@@ -159,6 +159,7 @@ public class GameInformation implements Parcelable {
 	 * increase targets killed number
 	 */
 	public void targetKilled() {
+		mCurrentTarget = null;
 		mTargetKilled++;
 	}
 
