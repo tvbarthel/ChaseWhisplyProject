@@ -51,6 +51,16 @@ public class TargetableItem extends DisplayableItem {
 	};
 
 	/**
+	 * used to know if this targetable is alive
+	 *
+	 * @return true if alive
+	 */
+	public boolean isAlive() {
+		if (mHealth == 0) return false;
+		return true;
+	}
+
+	/**
 	 * Getters and Setters
 	 */
 	public int getHealth() {
