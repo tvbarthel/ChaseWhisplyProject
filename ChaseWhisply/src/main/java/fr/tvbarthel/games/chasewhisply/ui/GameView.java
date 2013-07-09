@@ -104,16 +104,18 @@ public class GameView extends View {
 
 	public void renderItem(final Canvas canvas, final Bitmap bitmap, final DisplayableItem item, final int mWidth, final int mHeight) {
 		final float[] currentPosInDegree = mModel.getCurrentPosition();
+		final int thisWidth = this.getWidth();
+		final int thisHeight = this.getHeight();
 
-		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx;
-		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx;
+		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx - thisWidth/2;
+		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx - thisHeight/2;
 		final float itemXInPx = item.getX() * mWidthRatioDegreeToPx;
 		final float itemYInPx = item.getY() * mHeightRatioDegreeToPx;
 
 		final float borderLeft = windowXInPx - mWidth;
 		final float borderTop = windowYInPx - mHeight;
-		final float borderRight = borderLeft + this.getWidth() + mWidth;
-		final float borderBottom = borderTop + this.getHeight() + mHeight;
+		final float borderRight = borderLeft + thisWidth + mWidth;
+		final float borderBottom = borderTop + thisHeight + mHeight;
 
 		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
 			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, new Paint());
