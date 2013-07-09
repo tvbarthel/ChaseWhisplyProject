@@ -95,6 +95,9 @@ public class GameView extends View {
 				case DisplayableItemFactory.TYPE_EASY_GHOST:
 					renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
 					break;
+				case DisplayableItemFactory.TYPE_BULLET_HOLE:
+					renderItem(canvas, mCrossHairs, i, mCrossHairs.getWidth(), mCrossHairs.getHeight());
+					break;
 			}
 		}
 	}
