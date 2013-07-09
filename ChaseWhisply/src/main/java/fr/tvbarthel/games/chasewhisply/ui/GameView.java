@@ -28,6 +28,7 @@ public class GameView extends View {
 	private final Bitmap mAmmoBitmap;
 	private final Bitmap mBulletHoleBitmap;
 	private final String mFragString;
+	private final String mComboString;
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
@@ -46,6 +47,7 @@ public class GameView extends View {
 
 		final Resources res = getResources();
 		mFragString = res.getString(R.string.in_game_kill_counter);
+		mComboString = res.getString(R.string.in_game_combo_counter);
 
 		//TODO remove coordinate
 		mCoordinate = new float[2];
@@ -63,6 +65,7 @@ public class GameView extends View {
 		drawCrossHair(canvas);
 		drawAmmo(canvas);
 		drawKill(canvas);
+		drawCombo(canvas);
 	}
 
 	private void drawCrossHair(Canvas canvas) {
@@ -95,6 +98,11 @@ public class GameView extends View {
 				, ammos);
 	}
 
+	/**
+	 * draw kill counter
+	 *
+	 * @param canvas canvas from View.onDraw method
+	 */
 	private void drawKill(Canvas canvas) {
 		Paint kill = new Paint();
 		kill.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -105,6 +113,23 @@ public class GameView extends View {
 				, 10
 				, 10 + getWidth() / 20
 				, kill);
+	}
+
+	/**
+	 * draw combo counter
+	 *
+	 * @param canvas canvas from View.onDraw method
+	 */
+	private void drawCombo(Canvas canvas) {
+		Paint combo = new Paint();
+		combo.setStyle(Paint.Style.FILL_AND_STROKE);
+		combo.setColor(Color.WHITE);
+		combo.setStrokeWidth(4);
+		combo.setTextSize(getWidth() / 20);
+		canvas.drawText(String.format(mComboString, mModel.getCurrentCombo())
+				, 10
+				, 10 + (getWidth() / 20) * 2
+				, combo);
 	}
 
 	/**
