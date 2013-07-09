@@ -1,5 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
@@ -58,7 +60,11 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	public void fire() {
 		final int dmg = mGameInformation.getWeapon().fire();
 		if (mCurrentTarget == null) {
-			//TODO create a bullet hole
+			DisplayableItem hole = DisplayableItemFactory.createBulletHole();
+			final float[] currentPosition = mGameInformation.getCurrentPosition();
+			hole.setX((int) currentPosition[0]);
+			hole.setY((int) currentPosition[1]);
+			mGameInformation.addDisplayableItem(hole);
 		} else {
 			//TODO hit currentTarget
 		}

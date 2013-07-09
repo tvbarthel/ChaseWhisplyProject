@@ -107,10 +107,10 @@ public class GameView extends View {
 		final int thisWidth = this.getWidth();
 		final int thisHeight = this.getHeight();
 
-		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx - thisWidth/2;
-		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx - thisHeight/2;
-		final float itemXInPx = item.getX() * mWidthRatioDegreeToPx;
-		final float itemYInPx = item.getY() * mHeightRatioDegreeToPx;
+		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx - thisWidth / 2;
+		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx - thisHeight / 2;
+		final float itemXInPx = item.getX() * mWidthRatioDegreeToPx - mWidth / 2;
+		final float itemYInPx = item.getY() * mHeightRatioDegreeToPx - mHeight / 2;
 
 		final float borderLeft = windowXInPx - mWidth;
 		final float borderTop = windowYInPx - mHeight;
