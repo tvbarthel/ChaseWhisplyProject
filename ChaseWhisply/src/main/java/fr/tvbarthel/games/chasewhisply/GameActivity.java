@@ -160,11 +160,13 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mCoordinate[0] = orientationVals[0];
 		mCoordinate[1] = orientationVals[2];
 
+		float[] smoothCoordinate = getSmoothCoordinate();
+
 		if (mCoordinateTemp.size() != 0) {
-			float[] smoothCoordinate = getSmoothCoordinate();
-			if (Math.abs(smoothCoordinate[0] - orientationVals[0]) > NOISE)
+
+			if (Math.abs(smoothCoordinate[0] - mCoordinate[0]) > NOISE)
 				storeCoordinate = true;
-			if (Math.abs(smoothCoordinate[1] - orientationVals[2]) > NOISE)
+			if (Math.abs(smoothCoordinate[1] - mCoordinate[1]) > NOISE)
 				storeCoordinate = true;
 		} else {
 			storeCoordinate = true;
@@ -172,6 +174,13 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		//store current coordinate
 		if (storeCoordinate) {
+
+			if (mCoordinateTemp.size() != 0
+					&& (smoothCoordinate[0] * mCoordinate[0] < 0 || smoothCoordinate[1] * mCoordinate[1] < 0)) {
+				mCoordinateTemp.clear();
+				mCoordinateTempCursor = 0;
+			}
+
 			if (mCoordinateTemp.size() < TEMP_SIZE) {
 				mCoordinateTemp.add(mCoordinateTempCursor, mCoordinate.clone());
 			} else {
@@ -179,7 +188,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 			}
 			mCoordinateTempCursor = (mCoordinateTempCursor + 1) % TEMP_SIZE;
 			//TODO update DisplayableItemsList
-			float[] smoothCoordinate = getSmoothCoordinate();
+			smoothCoordinate = getSmoothCoordinate();
 			mGameEngine.changePosition((float) Math.toDegrees(smoothCoordinate[0]), (float) Math.toDegrees(smoothCoordinate[1]));
 			mGameView.invalidate();
 		}

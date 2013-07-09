@@ -139,13 +139,37 @@ public class GameView extends View {
 
 	public void renderItem(final Canvas canvas, final Bitmap bitmap, final DisplayableItem item, final int mWidth, final int mHeight) {
 		final float[] currentPosInDegree = mModel.getCurrentPosition();
+		//normalization, avoid negative value.
+		currentPosInDegree[0] += 180;
+		currentPosInDegree[1] += 180;
+
+		final float[] itemPosInDegree = new float[]{item.getX() + 180, item.getY() + 180};
+
 		final int thisWidth = this.getWidth();
 		final int thisHeight = this.getHeight();
 
 		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx - thisWidth / 2;
 		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx - thisHeight / 2;
-		final float itemXInPx = item.getX() * mWidthRatioDegreeToPx - mWidth / 2;
-		final float itemYInPx = item.getY() * mHeightRatioDegreeToPx - mHeight / 2;
+
+		float itemXInPx = itemPosInDegree[0];
+		float itemYInPx = itemPosInDegree[1];
+
+		float diffX = currentPosInDegree[0] - itemPosInDegree[0];
+		float diffY = currentPosInDegree[1] - itemPosInDegree[1];
+
+		float distX = Math.abs(diffX);
+		float distY = Math.abs(diffY);
+
+		if (distX > 360 - distX) {
+			itemXInPx = currentPosInDegree[0] - diffX + Math.signum(diffX) * 360;
+		}
+
+		if (distY > 360 - distY) {
+			itemYInPx = currentPosInDegree[1] - diffY + Math.signum(diffY) * 360;
+		}
+
+		itemXInPx = itemXInPx * mWidthRatioDegreeToPx - mWidth / 2;
+		itemYInPx = itemYInPx * mHeightRatioDegreeToPx - mHeight / 2;
 
 		final float borderLeft = windowXInPx - mWidth;
 		final float borderTop = windowYInPx - mHeight;
