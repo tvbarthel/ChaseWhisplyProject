@@ -26,6 +26,12 @@ public class Weapon implements Parcelable {
 		}
 	}
 
+	public void reload(int ammoAmount) {
+		if (ammoAmount <= mAmmunitionLimit) {
+			mCurrentAmmunition = ammoAmount;
+		}
+	}
+
 	public int fire() {
 		if (mCurrentAmmunition > 0) {
 			mCurrentAmmunition -= 1;
