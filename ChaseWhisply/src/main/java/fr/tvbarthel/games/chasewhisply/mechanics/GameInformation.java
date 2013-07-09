@@ -14,6 +14,7 @@ public class GameInformation implements Parcelable {
 	private int mScore;
 	private long mRemainingTime;
 	private Weapon mWeapon;
+	protected TargetableItem mCurrentTarget;
 	private List<TargetableItem> mTargetableItems;
 	private List<DisplayableItem> mDisplayableItems;
 	protected int mSceneWidth;
@@ -31,6 +32,7 @@ public class GameInformation implements Parcelable {
 		mScore = 0;
 		mRemainingTime = remainingTime;
 		mWeapon = weapon;
+		mCurrentTarget = null;
 		mTargetableItems = new ArrayList<TargetableItem>();
 		mDisplayableItems = new ArrayList<DisplayableItem>();
 	}
@@ -122,6 +124,31 @@ public class GameInformation implements Parcelable {
 
 	public float[] getCurrentPosition() {
 		return new float[]{mCurrentX, mCurrentY};
+	}
+
+	/**
+	 * get current target
+	 *
+	 * @return current target
+	 */
+	public TargetableItem getCurrentTarget() {
+		return mCurrentTarget;
+	}
+
+	/**
+	 * set current target
+	 *
+	 * @param t current TargetableItem targeted
+	 */
+	public void setCurrentTarget(TargetableItem t) {
+		mCurrentTarget = t;
+	}
+
+	/**
+	 * set current target to null
+	 */
+	public void removeTarget() {
+		mCurrentTarget = null;
 	}
 
 }

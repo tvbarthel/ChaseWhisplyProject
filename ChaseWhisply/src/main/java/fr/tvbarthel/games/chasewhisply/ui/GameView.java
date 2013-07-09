@@ -14,6 +14,7 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
 public class GameView extends View {
 
@@ -22,6 +23,7 @@ public class GameView extends View {
 	private float[] mCoordinate;
 	private final Bitmap mCrossHairs;
 	private final Bitmap mGhostBitmap;
+	private final Bitmap mGhostTargetedBitmap;
 	private final Bitmap mAmmoBitmap;
 	private final Bitmap mBulletHoleBitmap;
 	//ratio for displaying items
@@ -36,6 +38,7 @@ public class GameView extends View {
 		//initialize bitmap drawn after
 		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
 		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost);
+		mGhostTargetedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost_targeted);
 		mAmmoBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo);
 		mBulletHoleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullethole);
 
@@ -92,15 +95,45 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawDisplayableItems(Canvas canvas) {
+		final float[] currentPos = mModel.getCurrentPosition();
+		currentPos[0] *= mWidthRatioDegreeToPx;
+		currentPos[1] *= mHeightRatioDegreeToPx;
 		for (DisplayableItem i : mModel.getItemsForDisplay()) {
 			switch (i.getType()) {
 				case DisplayableItemFactory.TYPE_EASY_GHOST:
-					renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
+					if (isTargeted(currentPos, i, mGhostBitmap)) {
+						renderItem(canvas, mGhostTargetedBitmap, i, mGhostTargetedBitmap.getWidth(), mGhostTargetedBitmap.getHeight());
+						mModel.setCurrentTarget((TargetableItem)i);
+					} else {
+						renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
+						if(i==mModel.getCurrentTarget()){
+							mModel.removeTarget();
+						}
+					}
 					break;
 				case DisplayableItemFactory.TYPE_BULLET_HOLE:
 					renderItem(canvas, mBulletHoleBitmap, i, mBulletHoleBitmap.getWidth(), mBulletHoleBitmap.getHeight());
 					break;
 			}
+		}
+	}
+
+	/**
+	 * used to know if a targetable item is targeted
+	 *
+	 * @param crosshairPosition current crosshair x and y
+	 * @param t                 targetable item
+	 * @param targetableRes     bitmap used to draw this targetable
+	 * @return true if targeted
+	 */
+	private boolean isTargeted(float[] crosshairPosition, DisplayableItem t, Bitmap targetableRes) {
+		final int xInPx = (int) (t.getX() * mWidthRatioDegreeToPx);
+		final int yInPx = (int) (t.getY() * mHeightRatioDegreeToPx);
+		if (crosshairPosition[0] > xInPx - targetableRes.getWidth() / 2 & crosshairPosition[0] < xInPx + targetableRes.getWidth() / 2
+				& crosshairPosition[1] > yInPx - targetableRes.getHeight() / 2 & crosshairPosition[1] < yInPx + targetableRes.getHeight() / 2) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

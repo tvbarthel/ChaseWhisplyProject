@@ -7,13 +7,11 @@ import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	protected GameInformation mGameInformation;
 	protected ReloadingRoutine mReloadingRoutine;
-	protected TargetableItem mCurrentTarget;
 
 
 	public GameEngine(GameInformation gameInformation) {
 		mGameInformation = gameInformation;
 		mReloadingRoutine = new ReloadingRoutine(mGameInformation.getWeapon().getReloadingTime(), this);
-		mCurrentTarget = null;
 	}
 
 	/**
@@ -59,15 +57,16 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	 */
 	public void fire() {
 		final int dmg = mGameInformation.getWeapon().fire();
+		final TargetableItem currentTarget = mGameInformation.getCurrentTarget();
 		if (dmg != 0) {
-			if (mCurrentTarget == null) {
+			if (currentTarget == null) {
 				DisplayableItem hole = DisplayableItemFactory.createBulletHole();
 				final float[] currentPosition = mGameInformation.getCurrentPosition();
 				hole.setX((int) currentPosition[0]);
 				hole.setY((int) currentPosition[1]);
 				mGameInformation.addDisplayableItem(hole);
 			} else {
-				//TODO hit currentTarget
+				currentTarget.hit(dmg);
 			}
 		}
 	}
