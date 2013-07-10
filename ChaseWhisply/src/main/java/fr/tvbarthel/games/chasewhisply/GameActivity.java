@@ -20,10 +20,6 @@ import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
 public class GameActivity extends Activity implements SensorEventListener {
-
-	//Game default values
-	private static final long DEFAULT_REMAINING_TIME = 2 * 60 * 1000;
-
 	private Camera mCamera;
 	private CameraPreview mCameraPreview;
 	private GameInformation mGameInformation;
