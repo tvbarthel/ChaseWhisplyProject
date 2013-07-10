@@ -7,6 +7,7 @@ import fr.tvbarthel.games.chasewhisply.model.WeaponFactory;
 public class GameInformationFactory {
 
 	private static final long DEFAULT_REMAINING_TIME = 2 * 60 * 1000;
+	private static final long DEFAULT_SPAWNING_TIME = 1000;
 	private static final int DEMO_WORLD_ENEMY_NUMBER = 20;
 
 	/**
@@ -18,7 +19,7 @@ public class GameInformationFactory {
 	 */
 	public static GameInformation createDemoWorld(float cameraHorizontalViewAngle, float cameraVerticalViewAngle) {
 		//create basic game information
-		GameInformation demoWorld = new GameInformation(DEFAULT_REMAINING_TIME, WeaponFactory.createBasicWeapon());
+		GameInformation demoWorld = new GameInformation(DEFAULT_REMAINING_TIME, DEFAULT_SPAWNING_TIME, WeaponFactory.createBasicWeapon());
 		demoWorld.setSceneWidth((int) Math.floor(cameraHorizontalViewAngle));
 		demoWorld.setSceneHeight((int) Math.floor(cameraVerticalViewAngle));
 

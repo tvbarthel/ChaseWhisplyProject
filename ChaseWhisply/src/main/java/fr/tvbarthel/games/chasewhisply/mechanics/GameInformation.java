@@ -13,6 +13,7 @@ import fr.tvbarthel.games.chasewhisply.model.Weapon;
 public class GameInformation implements Parcelable {
 	protected int mScore;
 	protected long mRemainingTime;
+	protected long mSpawningTime;
 	protected Weapon mWeapon;
 	protected TargetableItem mCurrentTarget;
 	protected List<TargetableItem> mTargetableItems;
@@ -27,18 +28,20 @@ public class GameInformation implements Parcelable {
 	protected float mCurrentY;
 
 	/**
-	 * create new game information
+	 * Create a new GameInformation
 	 *
 	 * @param remainingTime remaining time in millisecond
+	 * @param spawningTime  spawning time in millisecond
 	 * @param weapon        weapon used for this game
 	 */
-	public GameInformation(long remainingTime, Weapon weapon) {
+	public GameInformation(long remainingTime, long spawningTime, Weapon weapon) {
 		mScore = 0;
 		mTargetKilled = 0;
 		mBulletFired = 0;
 		mCurrentCombo = 0;
 		mMaxCombo = 0;
 		mRemainingTime = remainingTime;
+		mSpawningTime = spawningTime;
 		mWeapon = weapon;
 		mCurrentTarget = null;
 		mTargetableItems = new ArrayList<TargetableItem>();
@@ -61,6 +64,7 @@ public class GameInformation implements Parcelable {
 		mCurrentCombo = in.readInt();
 		mMaxCombo = in.readInt();
 		mRemainingTime = in.readLong();
+		mSpawningTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
 		mCurrentTarget = in.readParcelable(TargetableItem.class.getClassLoader());
 		in.readTypedList(mTargetableItems, TargetableItem.CREATOR);
@@ -75,6 +79,7 @@ public class GameInformation implements Parcelable {
 		out.writeInt(mCurrentCombo);
 		out.writeInt(mMaxCombo);
 		out.writeLong(mRemainingTime);
+		out.writeLong(mSpawningTime);
 		out.writeParcelable(mWeapon, i);
 		out.writeParcelable(mCurrentTarget, i);
 		out.writeTypedList(mTargetableItems);
@@ -104,6 +109,14 @@ public class GameInformation implements Parcelable {
 
 	public void setRemainingTime(long time) {
 		mRemainingTime = time;
+	}
+
+	public long getSpawningTime() {
+		return mSpawningTime;
+	}
+
+	public void setSpawningTime(long spawningTime) {
+		mSpawningTime = spawningTime;
 	}
 
 	public void addTargetableItem(TargetableItem item) {
