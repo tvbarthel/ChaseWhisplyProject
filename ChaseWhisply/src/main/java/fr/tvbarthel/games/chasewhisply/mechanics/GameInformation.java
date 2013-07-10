@@ -244,4 +244,24 @@ public class GameInformation implements Parcelable {
 		mCurrentCombo = 0;
 	}
 
+	/**
+	 * increase score
+	 *
+	 * @param ammount score you want to add to the current one
+	 */
+	public void increaseScore(int ammount) {
+		if (ammount > 0) {
+			mScore += ammount;
+		}
+	}
+
+	/**
+	 * get current score
+	 *
+	 * @return current score
+	 */
+	public int getCurrentScore() {
+		return mScore;
+	}
+
 }

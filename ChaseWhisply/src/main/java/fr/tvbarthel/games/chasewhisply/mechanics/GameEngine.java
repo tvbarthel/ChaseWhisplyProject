@@ -1,5 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
+import android.util.Log;
+
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
@@ -82,6 +84,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 		if (dmg != 0) {
 			mGameInformation.bulletFired();
 			if (currentTarget == null) {
+				//player miss
 				mGameInformation.resetCombo();
 				DisplayableItem hole = DisplayableItemFactory.createBulletHole();
 				final float[] currentPosition = mGameInformation.getCurrentPosition();
@@ -93,7 +96,11 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 				if (!currentTarget.isAlive()) {
 					//traget killed
 					mGameInformation.targetKilled();
+					//increase combo
 					mGameInformation.stackCombo();
+					//add score
+					mGameInformation.increaseScore(10 + 10 * mGameInformation.getCurrentCombo());
+					Log.d("Debug", "score : " + mGameInformation.getCurrentScore());
 				}
 			}
 		}
