@@ -28,6 +28,8 @@ public class GameView extends View {
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
+	private int mScreenWidth;
+	private int mScreenHeight;
 
 
 	public GameView(Context context, GameInformation model) {
@@ -50,9 +52,12 @@ public class GameView extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 
+		mScreenWidth = this.getWidth();
+		mScreenHeight = this.getHeight();
+
 		//initialize ratio degree / screen px
-		mWidthRatioDegreeToPx = this.getWidth() / mModel.getSceneWidth();
-		mHeightRatioDegreeToPx = this.getHeight() / mModel.getSceneHeight();
+		mWidthRatioDegreeToPx = mScreenWidth / mModel.getSceneWidth();
+		mHeightRatioDegreeToPx = mScreenHeight / mModel.getSceneHeight();
 
 		drawDisplayableItems(canvas);
 		drawCrossHair(canvas);
@@ -62,8 +67,8 @@ public class GameView extends View {
 	}
 
 	private void drawCrossHair(Canvas canvas) {
-		canvas.drawBitmap(mCrossHairs, (float) (getWidth() - mCrossHairs.getWidth()) / 2,
-				(float) (getHeight() - mCrossHairs.getHeight()) / 2, new Paint());
+		canvas.drawBitmap(mCrossHairs, (float) (mScreenWidth - mCrossHairs.getWidth()) / 2,
+				(float) (mScreenHeight - mCrossHairs.getHeight()) / 2, new Paint());
 	}
 
 	/**
@@ -72,7 +77,7 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawAmmo(Canvas canvas) {
-		canvas.drawBitmap(mAmmoBitmap, (float) (getWidth() - mAmmoBitmap.getWidth() - 10),
+		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - 10),
 				(float) (getHeight() - mAmmoBitmap.getHeight()), new Paint());
 		Paint ammos = new Paint();
 		ammos.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -80,8 +85,8 @@ public class GameView extends View {
 		ammos.setStrokeWidth(4);
 		ammos.setTextSize(mAmmoBitmap.getHeight() / 2);
 		canvas.drawText(String.valueOf(mModel.getWeapon().getCurrentAmmunition())
-				, getWidth() - mAmmoBitmap.getWidth() - ammos.getTextSize()
-				, getHeight() - (mAmmoBitmap.getHeight() / 4)
+				, mScreenWidth - mAmmoBitmap.getWidth() - ammos.getTextSize()
+				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
 				, ammos);
 	}
 
@@ -95,10 +100,10 @@ public class GameView extends View {
 		kill.setStyle(Paint.Style.FILL_AND_STROKE);
 		kill.setColor(Color.WHITE);
 		kill.setStrokeWidth(4);
-		kill.setTextSize(getWidth() / 20);
+		kill.setTextSize(mScreenWidth / 20);
 		canvas.drawText(String.format(mFragString, mModel.getFragNumber())
 				, 10
-				, 10 + getWidth() / 20
+				, 10 + mScreenWidth / 20
 				, kill);
 	}
 
@@ -114,10 +119,10 @@ public class GameView extends View {
 			combo.setStyle(Paint.Style.FILL_AND_STROKE);
 			combo.setColor(Color.WHITE);
 			combo.setStrokeWidth(4);
-			combo.setTextSize(getWidth() / 30);
+			combo.setTextSize(mScreenWidth / 30);
 			canvas.drawText(String.format(mComboString, mModel.getCurrentCombo())
-					, getWidth() / 2 + mCrossHairs.getWidth() / 2
-					, getHeight() / 2 + mCrossHairs.getHeight() / 2
+					, mScreenWidth / 2 + mCrossHairs.getWidth() / 2
+					, mScreenHeight / 2 + mCrossHairs.getHeight() / 2
 					, combo);
 		}
 	}
@@ -185,11 +190,8 @@ public class GameView extends View {
 
 		final float[] itemPosInDegree = new float[]{item.getX() + 180, item.getY() + 180};
 
-		final int thisWidth = this.getWidth();
-		final int thisHeight = this.getHeight();
-
-		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx - thisWidth / 2;
-		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx - thisHeight / 2;
+		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx - mScreenWidth / 2;
+		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx - mScreenHeight / 2;
 
 		float itemXInPx = itemPosInDegree[0];
 		float itemYInPx = itemPosInDegree[1];
@@ -213,8 +215,8 @@ public class GameView extends View {
 
 		final float borderLeft = windowXInPx - mWidth;
 		final float borderTop = windowYInPx - mHeight;
-		final float borderRight = borderLeft + thisWidth + mWidth;
-		final float borderBottom = borderTop + thisHeight + mHeight;
+		final float borderRight = borderLeft + mScreenWidth + mWidth;
+		final float borderBottom = borderTop + mScreenHeight + mHeight;
 
 		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
 			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, new Paint());
