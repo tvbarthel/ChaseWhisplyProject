@@ -12,8 +12,8 @@ public class ReloadingRoutine extends Handler {
 	/**
 	 * Create a ReloadingRoutine
 	 *
-	 * @param reloadingTime in millisecond
-	 * @param iTimeBasedRoutine
+	 * @param reloadingTime     in millisecond
+	 * @param iTimeBasedRoutine interface
 	 */
 	public ReloadingRoutine(long reloadingTime, IReloadingRoutine iTimeBasedRoutine) {
 		mReloadingTime = reloadingTime;
