@@ -114,7 +114,7 @@ public class GameView extends View {
 	 */
 	private void drawCombo(Canvas canvas) {
 		final int comboNumber = mModel.getCurrentCombo();
-		if (comboNumber > 0) {
+		if (comboNumber > 1) {
 			Paint combo = new Paint();
 			combo.setStyle(Paint.Style.FILL_AND_STROKE);
 			combo.setColor(Color.WHITE);

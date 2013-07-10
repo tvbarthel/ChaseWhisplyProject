@@ -215,10 +215,12 @@ public class GameInformation implements Parcelable {
 	}
 
 	/**
-	 * add combo
+	 * increase combo if conditions are filled
 	 */
 	public void stackCombo() {
-		mCurrentCombo++;
+		if (mTargetKilled > mCurrentCombo * mCurrentCombo) {
+			mCurrentCombo++;
+		}
 	}
 
 	/**
