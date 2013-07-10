@@ -26,6 +26,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 	private Camera mCamera;
 	private CameraPreview mCameraPreview;
+	private GameInformation mGameInformation;
 	private GameEngine mGameEngine;
 	private GameView mGameView;
 
@@ -68,20 +69,22 @@ public class GameActivity extends Activity implements SensorEventListener {
 			finish();
 		}
 
+		if(mGameInformation == null) {
+			//Angle view
+			final Camera.Parameters params = mCamera.getParameters();
+			mHorizontalViewAngle = params.getHorizontalViewAngle();
+			mVerticalViewAngle = params.getVerticalViewAngle();
+
+			mGameInformation =
+					GameInformationFactory.createDemoWorld(mHorizontalViewAngle, mVerticalViewAngle);
+		}
+
 		mCameraPreview = new CameraPreview(this, mCamera);
 		setContentView(mCameraPreview);
 
-		//Angle view
-		final Camera.Parameters params = mCamera.getParameters();
-		mHorizontalViewAngle = params.getHorizontalViewAngle();
-		mVerticalViewAngle = params.getVerticalViewAngle();
-
-		//create new game information
-		final GameInformation gameInformation =
-				GameInformationFactory.createDemoWorld(mHorizontalViewAngle, mVerticalViewAngle);
 
 		//instantiate GameView with GameModel
-		mGameView = new GameView(this, gameInformation);
+		mGameView = new GameView(this, mGameInformation);
 		mGameView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -97,7 +100,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
 
 		//instantiate game engine
-		mGameEngine = new TimeLimitedGameEngine(gameInformation);
+		mGameEngine = new TimeLimitedGameEngine(mGameInformation);
 		//TODO mGameEngine.startGame();
 
 		//TODO delete
