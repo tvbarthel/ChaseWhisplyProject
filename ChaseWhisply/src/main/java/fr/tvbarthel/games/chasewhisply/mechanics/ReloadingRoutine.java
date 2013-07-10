@@ -9,6 +9,12 @@ public class ReloadingRoutine extends Handler {
 	private boolean mIsRunning;
 	private final IReloadingRoutine mInterface;
 
+	/**
+	 * Create a ReloadingRoutine
+	 *
+	 * @param reloadingTime in millisecond
+	 * @param iTimeBasedRoutine
+	 */
 	public ReloadingRoutine(long reloadingTime, IReloadingRoutine iTimeBasedRoutine) {
 		mReloadingTime = reloadingTime;
 		mIsRunning = false;
