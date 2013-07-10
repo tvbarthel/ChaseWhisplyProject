@@ -25,6 +25,7 @@ public class GameView extends View {
 	private final Bitmap mBulletHoleBitmap;
 	private final String mFragString;
 	private final String mComboString;
+	private final String mScoreString;
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
@@ -46,6 +47,7 @@ public class GameView extends View {
 		final Resources res = getResources();
 		mFragString = res.getString(R.string.in_game_kill_counter);
 		mComboString = res.getString(R.string.in_game_combo_counter);
+		mScoreString = res.getString(R.string.in_game_score);
 	}
 
 	@Override
@@ -64,6 +66,7 @@ public class GameView extends View {
 		drawAmmo(canvas);
 		drawKill(canvas);
 		drawCombo(canvas);
+		drawScore(canvas);
 	}
 
 	private void drawCrossHair(Canvas canvas) {
@@ -125,6 +128,24 @@ public class GameView extends View {
 					, mScreenHeight / 2 + mCrossHairs.getHeight() / 2
 					, combo);
 		}
+	}
+
+	/**
+	 * draw score
+	 *
+	 * @param canvas canvas from View.onDraw method
+	 */
+	private void drawScore(Canvas canvas) {
+		Paint score = new Paint();
+		score.setStyle(Paint.Style.FILL_AND_STROKE);
+		score.setColor(Color.WHITE);
+		score.setStrokeWidth(4);
+		score.setTextSize(mScreenWidth / 30);
+		canvas.drawText(String.format(mScoreString, mModel.getCurrentScore())
+				, 10
+				, mScreenHeight - score.getTextSize()
+				, score);
+
 	}
 
 	/**
