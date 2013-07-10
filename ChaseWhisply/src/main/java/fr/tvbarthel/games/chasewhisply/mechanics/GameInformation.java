@@ -56,17 +56,29 @@ public class GameInformation implements Parcelable {
 
 	public void readFromParcel(Parcel in) {
 		mScore = in.readInt();
+		mTargetKilled = in.readInt();
+		mBulletFired = in.readInt();
+		mCurrentCombo = in.readInt();
+		mMaxCombo = in.readInt();
 		mRemainingTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
+		mCurrentTarget = in.readParcelable(TargetableItem.class.getClassLoader());
 		in.readTypedList(mTargetableItems, TargetableItem.CREATOR);
+		in.readTypedList(mDisplayableItems, DisplayableItem.CREATOR);
 	}
 
 	@Override
 	public void writeToParcel(Parcel out, int i) {
 		out.writeInt(mScore);
+		out.writeInt(mTargetKilled);
+		out.writeInt(mBulletFired);
+		out.writeInt(mCurrentCombo);
+		out.writeInt(mMaxCombo);
 		out.writeLong(mRemainingTime);
 		out.writeParcelable(mWeapon, i);
+		out.writeParcelable(mCurrentTarget, i);
 		out.writeTypedList(mTargetableItems);
+		out.writeTypedList(mDisplayableItems);
 	}
 
 	public static final Parcelable.Creator<GameInformation> CREATOR = new Parcelable.Creator<GameInformation>() {
