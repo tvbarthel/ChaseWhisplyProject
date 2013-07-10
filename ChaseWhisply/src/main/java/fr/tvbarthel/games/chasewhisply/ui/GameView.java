@@ -29,6 +29,7 @@ public class GameView extends View {
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
+	private int mFontSize;
 	private int mScreenWidth;
 	private int mScreenHeight;
 
@@ -48,6 +49,7 @@ public class GameView extends View {
 		mFragString = res.getString(R.string.in_game_kill_counter);
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
+
 	}
 
 	@Override
@@ -60,6 +62,8 @@ public class GameView extends View {
 		//initialize ratio degree / screen px
 		mWidthRatioDegreeToPx = mScreenWidth / mModel.getSceneWidth();
 		mHeightRatioDegreeToPx = mScreenHeight / mModel.getSceneHeight();
+
+		mFontSize = mScreenWidth / 30;
 
 		drawDisplayableItems(canvas);
 		drawCrossHair(canvas);
@@ -103,7 +107,7 @@ public class GameView extends View {
 		kill.setStyle(Paint.Style.FILL_AND_STROKE);
 		kill.setColor(Color.WHITE);
 		kill.setStrokeWidth(4);
-		kill.setTextSize(mScreenWidth / 20);
+		kill.setTextSize(mFontSize);
 		canvas.drawText(String.format(mFragString, mModel.getFragNumber())
 				, 10
 				, 10 + mScreenWidth / 20
@@ -122,7 +126,7 @@ public class GameView extends View {
 			combo.setStyle(Paint.Style.FILL_AND_STROKE);
 			combo.setColor(Color.WHITE);
 			combo.setStrokeWidth(4);
-			combo.setTextSize(mScreenWidth / 30);
+			combo.setTextSize(mFontSize);
 			canvas.drawText(String.format(mComboString, mModel.getCurrentCombo())
 					, mScreenWidth / 2 + mCrossHairs.getWidth() / 2
 					, mScreenHeight / 2 + mCrossHairs.getHeight() / 2
@@ -140,7 +144,7 @@ public class GameView extends View {
 		score.setStyle(Paint.Style.FILL_AND_STROKE);
 		score.setColor(Color.WHITE);
 		score.setStrokeWidth(4);
-		score.setTextSize(mScreenWidth / 30);
+		score.setTextSize(mFontSize);
 		canvas.drawText(String.format(mScoreString, mModel.getCurrentScore())
 				, 10
 				, mScreenHeight - score.getTextSize()
