@@ -5,14 +5,21 @@ public class DisplayableItemFactory {
 	public final static int TYPE_EASY_GHOST = 0x00000001;
 	public final static int TYPE_BULLET_HOLE = 0x00000002;
 
+	private static final int DEFAULT_X_MIN_IN_DEGREE = -170;
+	private static final int DEFAULT_X_MAX_IN_DEGREE = 170;
+	private static final int DEFAULT_Y_MIN_IN_DEGREE = -80;
+	private static final int DEFAULT_Y_MAX_IN_DEGREE = -50;
+
 	//Health
 	public final static int HEALTH_EASY_GHOST = 1;
 
 	public static TargetableItem createEasyGhost() {
 		TargetableItem easyGhost = new TargetableItem();
 		easyGhost.setType(TYPE_EASY_GHOST);
-		easyGhost.setX(-140);
-		easyGhost.setY(-70);
+		final int randomX = randomize(DEFAULT_X_MIN_IN_DEGREE, DEFAULT_X_MAX_IN_DEGREE);
+		final int randomY = randomize(DEFAULT_Y_MIN_IN_DEGREE, DEFAULT_Y_MAX_IN_DEGREE);
+		easyGhost.setX(randomX);
+		easyGhost.setY(randomY);
 		easyGhost.setHealth(HEALTH_EASY_GHOST);
 		return easyGhost;
 	}
@@ -21,5 +28,9 @@ public class DisplayableItemFactory {
 		DisplayableItem hole = new DisplayableItem();
 		hole.setType(TYPE_BULLET_HOLE);
 		return hole;
+	}
+
+	private static int randomize(int min, int max) {
+		return min + (int) (Math.random() * ((max - min) + 1));
 	}
 }
