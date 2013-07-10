@@ -5,13 +5,19 @@ import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
+	public static final int STATE_STOP = 0x00000001;
+	public static final int STATE_RUNNING = 0x00000002;
+	public static final int STATE_PAUSED = 0x00000003;
+
 	protected GameInformation mGameInformation;
 	protected ReloadingRoutine mReloadingRoutine;
+	protected int mCurrentState;
 
 
 	public GameEngine(GameInformation gameInformation) {
 		mGameInformation = gameInformation;
 		mReloadingRoutine = new ReloadingRoutine(mGameInformation.getWeapon().getReloadingTime(), this);
+		mCurrentState = STATE_STOP;
 	}
 
 	/**
@@ -19,6 +25,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	 */
 	public void startGame() {
 		mReloadingRoutine.startRoutine();
+		mCurrentState = STATE_RUNNING;
 		//TODO
 	}
 
@@ -27,6 +34,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	 */
 	public void pauseGame() {
 		mReloadingRoutine.stopRoutine();
+		mCurrentState = STATE_PAUSED;
 		//TODO
 	}
 
@@ -35,6 +43,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	 */
 	public void resumeGame() {
 		mReloadingRoutine.startRoutine();
+		mCurrentState = STATE_RUNNING;
 		//TODO
 	}
 
@@ -43,6 +52,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 	 */
 	public void stopGame() {
 		mReloadingRoutine.stopRoutine();
+		mCurrentState = STATE_STOP;
 		//TODO
 	}
 
@@ -94,6 +104,10 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine {
 
 	public GameInformation getGameInformation() {
 		return mGameInformation;
+	}
+
+	public int getCurrentState() {
+		return mCurrentState;
 	}
 
 }
