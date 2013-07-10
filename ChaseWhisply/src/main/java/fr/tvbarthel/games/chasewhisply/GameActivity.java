@@ -33,7 +33,6 @@ public class GameActivity extends Activity implements SensorEventListener {
 	private float[] magVals = new float[3];
 	private float[] accelVals = new float[3];
 	private float[] orientationVals = new float[3];
-	private float[] mLastOrientationVals = null;
 	private float[] rotationMatrix = new float[9];
 	private static final float NOISE = 0.03f;
 	private static final int TEMP_SIZE = 20;
@@ -65,7 +64,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 			finish();
 		}
 
-		if(mGameInformation == null) {
+		if (mGameInformation == null) {
 			//Angle view
 			final Camera.Parameters params = mCamera.getParameters();
 			mHorizontalViewAngle = params.getHorizontalViewAngle();
@@ -192,8 +191,7 @@ public class GameActivity extends Activity implements SensorEventListener {
 		float[] smoothCoordinate = new float[2];
 		int coordinateSize = mCoordinateTemp.size();
 
-		for (int j = 0; j < coordinateSize; j++) {
-			float[] temp = mCoordinateTemp.get(j);
+		for (float[] temp : mCoordinateTemp) {
 			smoothCoordinate[0] += temp[0];
 			smoothCoordinate[1] += temp[1];
 		}
