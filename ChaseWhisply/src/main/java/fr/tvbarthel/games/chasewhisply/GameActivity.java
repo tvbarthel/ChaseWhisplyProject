@@ -102,9 +102,6 @@ public class GameActivity extends Activity implements SensorEventListener {
 		//instantiate game engine
 		mGameEngine = new TimeLimitedGameEngine(mGameInformation);
 		//TODO mGameEngine.startGame();
-
-		//TODO delete
-		mGameView.setCoordinate(mCoordinate);
 	}
 
 

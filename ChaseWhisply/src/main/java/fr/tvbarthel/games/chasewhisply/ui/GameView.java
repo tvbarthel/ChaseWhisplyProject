@@ -20,8 +20,6 @@ import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 public class GameView extends View {
 
 	private GameInformation mModel;
-	//TODO remove coordinate
-	private float[] mCoordinate;
 	private final Bitmap mCrossHairs;
 	private final Bitmap mGhostBitmap;
 	private final Bitmap mGhostTargetedBitmap;
@@ -48,9 +46,6 @@ public class GameView extends View {
 		final Resources res = getResources();
 		mFragString = res.getString(R.string.in_game_kill_counter);
 		mComboString = res.getString(R.string.in_game_combo_counter);
-
-		//TODO remove coordinate
-		mCoordinate = new float[2];
 	}
 
 	@Override
@@ -71,12 +66,6 @@ public class GameView extends View {
 	private void drawCrossHair(Canvas canvas) {
 		canvas.drawBitmap(mCrossHairs, (float) (getWidth() - mCrossHairs.getWidth()) / 2,
 				(float) (getHeight() - mCrossHairs.getHeight()) / 2, new Paint());
-		//TODO remove coordinate information
-		Paint coordinatePaint = new Paint();
-		coordinatePaint.setStyle(Paint.Style.FILL);
-		coordinatePaint.setColor(Color.BLACK);
-		coordinatePaint.setTextSize(30);
-		canvas.drawText(new DecimalFormat("##.##").format(mCoordinate[0]) + " ; " + new DecimalFormat("##.##").format(mCoordinate[1]), 30, 30, coordinatePaint);
 	}
 
 	/**
@@ -229,10 +218,5 @@ public class GameView extends View {
 		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
 			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, new Paint());
 		}
-	}
-
-	//TODO remove coordinate
-	public void setCoordinate(float[] coordinate) {
-		mCoordinate = coordinate;
 	}
 }
