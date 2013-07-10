@@ -9,8 +9,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
-import java.text.DecimalFormat;
-
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
@@ -110,15 +108,18 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawCombo(Canvas canvas) {
-		Paint combo = new Paint();
-		combo.setStyle(Paint.Style.FILL_AND_STROKE);
-		combo.setColor(Color.WHITE);
-		combo.setStrokeWidth(4);
-		combo.setTextSize(getWidth() / 20);
-		canvas.drawText(String.format(mComboString, mModel.getCurrentCombo())
-				, 10
-				, 10 + (getWidth() / 20) * 2
-				, combo);
+		final int comboNumber = mModel.getCurrentCombo();
+		if (comboNumber > 0) {
+			Paint combo = new Paint();
+			combo.setStyle(Paint.Style.FILL_AND_STROKE);
+			combo.setColor(Color.WHITE);
+			combo.setStrokeWidth(4);
+			combo.setTextSize(getWidth() / 30);
+			canvas.drawText(String.format(mComboString, mModel.getCurrentCombo())
+					, getWidth() / 2 + mCrossHairs.getWidth() / 2
+					, getHeight() / 2 + mCrossHairs.getHeight() / 2
+					, combo);
+		}
 	}
 
 	/**
