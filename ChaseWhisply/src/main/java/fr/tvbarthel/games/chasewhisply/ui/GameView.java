@@ -26,6 +26,7 @@ public class GameView extends View {
 	private final String mFragString;
 	private final String mComboString;
 	private final String mScoreString;
+	private final String mTimeString;
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
@@ -49,6 +50,7 @@ public class GameView extends View {
 		mFragString = res.getString(R.string.in_game_kill_counter);
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
+		mTimeString = res.getString(R.string.in_game_time);
 
 	}
 
@@ -68,7 +70,7 @@ public class GameView extends View {
 		drawDisplayableItems(canvas);
 		drawCrossHair(canvas);
 		drawAmmo(canvas);
-		drawKill(canvas);
+		drawRemainingTime(canvas);
 		drawCombo(canvas);
 		drawScore(canvas);
 	}
@@ -95,6 +97,24 @@ public class GameView extends View {
 				, mScreenWidth - mAmmoBitmap.getWidth() - ammos.getTextSize()
 				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
 				, ammos);
+	}
+
+	private void drawRemainingTime(Canvas canvas) {
+		final long millis = mModel.getRemainingTime();
+		final int ss = (int) (millis / 1000);
+		Paint time = new Paint();
+		time.setStyle(Paint.Style.FILL_AND_STROKE);
+		if (ss > 10) {
+			time.setColor(Color.WHITE);
+		} else {
+			time.setColor(Color.RED);
+		}
+		time.setStrokeWidth(4);
+		time.setTextSize(mFontSize);
+		canvas.drawText(String.format(mTimeString, ss)
+				, 10
+				, 10 + mScreenWidth / 20
+				, time);
 	}
 
 	/**

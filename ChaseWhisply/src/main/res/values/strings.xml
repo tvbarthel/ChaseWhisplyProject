@@ -16,5 +16,6 @@
     <string name="in_game_kill_counter">Frag : %1$d</string>
     <string name="in_game_combo_counter">x %1$d</string>
     <string name="in_game_score">Score : %1$d</string>
+    <string name="in_game_time">Time : %1$d s</string>
 
 </resources>
