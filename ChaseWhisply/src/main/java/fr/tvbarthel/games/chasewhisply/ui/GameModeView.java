@@ -34,6 +34,8 @@ public class GameModeView extends LinearLayout {
 
 	}
 
+	//TODO remove when model used
+
 	/**
 	 * set rules for game mode
 	 *
@@ -42,6 +44,8 @@ public class GameModeView extends LinearLayout {
 	public void setGameModeRules(String rules) {
 		mGameModeRules.setText(rules);
 	}
+
+	//TODO remove when model used
 
 	/**
 	 * set image for game mode image button

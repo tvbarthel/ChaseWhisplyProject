@@ -26,6 +26,7 @@ public class GameModeChooserActivity extends Activity {
 		};
 
 
+		//TODO use model for GameModeView
 		mGameMode1 = (GameModeView) findViewById(R.id.mode1);
 		mGameMode1.setGameModeRules("Kill most ghost as you can in given time");
 		mGameMode1.setGameModeImage(R.drawable.ghost);
