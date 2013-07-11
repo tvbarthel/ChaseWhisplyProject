@@ -3,9 +3,12 @@ package fr.tvbarthel.games.chasewhisply.ui;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import fr.tvbarthel.games.chasewhisply.R;
 
 public class GameModeView extends LinearLayout {
 
@@ -21,6 +24,10 @@ public class GameModeView extends LinearLayout {
 
 		setOrientation(LinearLayout.VERTICAL);
 		setGravity(Gravity.CENTER_HORIZONTAL);
+
+		LayoutInflater inflater = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater.inflate(R.layout.view_game_mode, this, true);
 
 		mGameModeImage = (ImageButton) getChildAt(0);
 		mGameModeRules = (TextView) getChildAt(1);
