@@ -39,7 +39,7 @@ public class GameView extends View {
 		mModel = model;
 
 		//initialize bitmap drawn after
-		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_black);
+		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_white);
 		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost);
 		mGhostTargetedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost_targeted);
 		mAmmoBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo);
