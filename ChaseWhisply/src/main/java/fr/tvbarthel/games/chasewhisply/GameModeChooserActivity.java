@@ -35,5 +35,6 @@ public class GameModeChooserActivity extends Activity {
 		mGameMode2 = (GameModeView) findViewById(R.id.mode2);
 		mGameMode2.setGameModeRules("Kill 10 ghost as fast as you can !");
 		mGameMode2.setGameModeImage(R.drawable.ghost_targeted);
+		mGameMode2.setGameModeEnabled(false);
 	}
 }

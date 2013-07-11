@@ -64,4 +64,8 @@ public class GameModeView extends LinearLayout {
 	public void setGameModeSelectedListener(OnClickListener listener) {
 		mGameModeImage.setOnClickListener(listener);
 	}
+
+	public void setGameModeEnabled(boolean isAllowed) {
+		mGameModeImage.setEnabled(isAllowed);
+	}
 }
