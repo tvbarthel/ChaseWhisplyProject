@@ -7,12 +7,14 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="16dp"
-        android:textSize="18sp" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textView"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#888888" />
+
 
 </merge>
