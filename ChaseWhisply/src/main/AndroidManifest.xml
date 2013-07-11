@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LevelChooserActivity"
+            android:name=".GameModeChooserActivity"
             android:parentActivityName=".HomeActivity"></activity>
         <activity
             android:name=".GameActivity"
