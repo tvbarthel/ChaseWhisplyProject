@@ -51,4 +51,13 @@ public class GameModeView extends LinearLayout {
 	public void setGameModeImage(int resId) {
 		mGameModeImage.setImageResource(resId);
 	}
+
+	/**
+	 * set a listener for game mode selection
+	 *
+	 * @param listener
+	 */
+	public void setGameModeSelectedListener(OnClickListener listener) {
+		mGameModeImage.setOnClickListener(listener);
+	}
 }

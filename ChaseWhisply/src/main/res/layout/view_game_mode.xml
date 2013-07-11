@@ -15,6 +15,4 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#888888" />
-
-
 </merge>
