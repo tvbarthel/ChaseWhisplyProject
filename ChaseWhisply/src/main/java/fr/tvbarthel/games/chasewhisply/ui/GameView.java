@@ -23,7 +23,6 @@ public class GameView extends View {
 	private final Bitmap mGhostTargetedBitmap;
 	private final Bitmap mAmmoBitmap;
 	private final Bitmap mBulletHoleBitmap;
-	private final String mFragString;
 	private final String mComboString;
 	private final String mScoreString;
 	private final String mTimeString;
@@ -47,7 +46,6 @@ public class GameView extends View {
 		mBulletHoleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullethole);
 
 		final Resources res = getResources();
-		mFragString = res.getString(R.string.in_game_kill_counter);
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
 		mTimeString = res.getString(R.string.in_game_time);
@@ -99,6 +97,11 @@ public class GameView extends View {
 				, ammos);
 	}
 
+	/**
+	 * draw remaining time
+	 *
+	 * @param canvas canvas from View.onDraw method
+	 */
 	private void drawRemainingTime(Canvas canvas) {
 		final long millis = mModel.getRemainingTime();
 		final int ss = (int) (millis / 1000);
@@ -115,23 +118,6 @@ public class GameView extends View {
 				, 10
 				, 10 + mScreenWidth / 20
 				, time);
-	}
-
-	/**
-	 * draw kill counter
-	 *
-	 * @param canvas canvas from View.onDraw method
-	 */
-	private void drawKill(Canvas canvas) {
-		Paint kill = new Paint();
-		kill.setStyle(Paint.Style.FILL_AND_STROKE);
-		kill.setColor(Color.WHITE);
-		kill.setStrokeWidth(4);
-		kill.setTextSize(mFontSize);
-		canvas.drawText(String.format(mFragString, mModel.getFragNumber())
-				, 10
-				, 10 + mScreenWidth / 20
-				, kill);
 	}
 
 	/**
