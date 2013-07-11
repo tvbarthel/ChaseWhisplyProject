@@ -11,13 +11,15 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 	public static final int STATE_RUNNING = 0x00000002;
 	public static final int STATE_PAUSED = 0x00000003;
 
+	protected IGameEngine mInterface;
 	protected GameInformation mGameInformation;
 	protected ReloadingRoutine mReloadingRoutine;
 	protected SpawningRoutine mSpawningRoutine;
 	protected int mCurrentState;
 
 
-	public GameEngine(GameInformation gameInformation) {
+	public GameEngine(IGameEngine iGameEngine, GameInformation gameInformation) {
+		mInterface = iGameEngine;
 		mGameInformation = gameInformation;
 		mReloadingRoutine = new ReloadingRoutine(mGameInformation.getWeapon().getReloadingTime(), this);
 		mSpawningRoutine = new SpawningRoutine(mGameInformation.getSpawningTime(), this);
@@ -127,6 +129,10 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 
 	public int getCurrentState() {
 		return mCurrentState;
+	}
+
+	public interface IGameEngine {
+		abstract void onGameEngineStop();
 	}
 
 }

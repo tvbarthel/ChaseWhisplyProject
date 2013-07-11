@@ -1,6 +1,7 @@
 package fr.tvbarthel.games.chasewhisply;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -19,7 +20,7 @@ import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
-public class GameActivity extends Activity implements SensorEventListener {
+public class GameActivity extends Activity implements SensorEventListener, GameEngine.IGameEngine {
 	private Camera mCamera;
 	private CameraPreview mCameraPreview;
 	private GameInformation mGameInformation;
@@ -95,8 +96,8 @@ public class GameActivity extends Activity implements SensorEventListener {
 		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
 
 		//instantiate game engine
-		mGameEngine = new TimeLimitedGameEngine(mGameInformation);
-		//TODO mGameEngine.startGame();
+		mGameEngine = new TimeLimitedGameEngine(this, mGameInformation);
+		mGameEngine.startGame();
 	}
 
 
@@ -107,6 +108,8 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 		//Sensor
 		mSensorManager.unregisterListener(this);
+
+		mGameEngine.pauseGame();
 	}
 
 	/**
@@ -206,5 +209,9 @@ public class GameActivity extends Activity implements SensorEventListener {
 
 	}
 
-
+	@Override
+	public void onGameEngineStop() {
+		startActivity(new Intent(this, ScoreActivity.class));
+		finish();
+	}
 }

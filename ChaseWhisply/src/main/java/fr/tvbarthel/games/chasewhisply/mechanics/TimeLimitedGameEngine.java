@@ -3,8 +3,8 @@ package fr.tvbarthel.games.chasewhisply.mechanics;
 public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameTimer{
 	private GameTimer mGameTimer;
 
-	public TimeLimitedGameEngine(GameInformation gameInformation) {
-		super(gameInformation);
+	public TimeLimitedGameEngine(IGameEngine iGameEngine, GameInformation gameInformation) {
+		super(iGameEngine, gameInformation);
 		mGameTimer = new GameTimer(gameInformation.getRemainingTime(), this);
 	}
 
@@ -30,6 +30,7 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 	public void stopGame() {
 		super.stopGame();
 		mGameInformation.setRemainingTime(0);
+		mInterface.onGameEngineStop();
 	}
 
 	@Override
