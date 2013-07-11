@@ -28,7 +28,7 @@ public class HomeActivity extends Activity {
 		findViewById(R.id.home_play).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(HomeActivity.this, GameActivity.class));
+				startActivity(new Intent(HomeActivity.this, LevelChooserActivity.class));
 			}
 		});
 	}
