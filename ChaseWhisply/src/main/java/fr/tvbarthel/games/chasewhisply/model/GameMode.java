@@ -5,6 +5,26 @@ import android.os.Parcelable;
 
 public class GameMode implements Parcelable {
 
+	public String getmRules() {
+		return mRules;
+	}
+
+	public void setmRules(String mRules) {
+		this.mRules = mRules;
+	}
+
+	private int mType;
+	private int mLevel;
+	private int mImage;
+	private String mRules;
+
+	public GameMode() {
+		mType = -1;
+		mLevel = -1;
+		mImage = -1;
+		mRules = new String();
+	}
+
 	protected GameMode(Parcel in) {
 		readFromParcel(in);
 	}
@@ -37,4 +57,30 @@ public class GameMode implements Parcelable {
 			return new GameMode[size];
 		}
 	};
+
+	public int getType() {
+		return mType;
+	}
+
+	public void setType(int mType) {
+		this.mType = mType;
+	}
+
+	public int getLevel() {
+		return mLevel;
+	}
+
+	public void setLevel(int mLevel) {
+		this.mLevel = mLevel;
+	}
+
+	public int getImage() {
+		return mImage;
+	}
+
+	public void setImage(int mImage) {
+		this.mImage = mImage;
+	}
+
+
 }
