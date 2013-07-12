@@ -67,7 +67,9 @@ public class GameInformation implements Parcelable {
 		mSpawningTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
 		mCurrentTarget = in.readParcelable(TargetableItem.class.getClassLoader());
+		mTargetableItems = new ArrayList<TargetableItem>();
 		in.readTypedList(mTargetableItems, TargetableItem.CREATOR);
+		mDisplayableItems = new ArrayList<DisplayableItem>();
 		in.readTypedList(mDisplayableItems, DisplayableItem.CREATOR);
 	}
 
