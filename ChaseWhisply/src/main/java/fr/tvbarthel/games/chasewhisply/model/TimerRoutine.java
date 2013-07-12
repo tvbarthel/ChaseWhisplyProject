@@ -44,5 +44,9 @@ abstract public class TimerRoutine extends Handler {
 		removeCallbacks(mRunnable);
 	}
 
+	/**
+	 * If the TimerRoutine is running
+	 * doOnTick is called every mTickingTime milliseconds
+	 */
 	abstract protected void doOnTick();
 }
