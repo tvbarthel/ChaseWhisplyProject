@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="8"
-                    android:id="@+id/textView6"
+                    android:id="@+id/killedTargets"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_gravity="right"
                     android:layout_marginBottom="@dimen/half_padding"/>
@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10"
-                    android:id="@+id/textView5"
+                    android:id="@+id/firedBullets"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_gravity="right"
                     android:layout_marginBottom="@dimen/half_padding"/>
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4"
-                    android:id="@+id/textView7"
+                    android:id="@+id/maxCombo"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_gravity="right"
                     android:layout_marginBottom="@dimen/half_padding"/>
@@ -113,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20000"
-                    android:id="@+id/textView9"
+                    android:id="@+id/finalScore"
                     android:textAppearance="@android:style/TextAppearance.Holo.Large"
                     android:layout_marginTop="@dimen/default_padding"
                     android:layout_gravity="right"/>
