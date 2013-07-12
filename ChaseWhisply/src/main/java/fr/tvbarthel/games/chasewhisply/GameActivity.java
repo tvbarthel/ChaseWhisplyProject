@@ -211,7 +211,9 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 
 	@Override
 	public void onGameEngineStop() {
-		startActivity(new Intent(this, ScoreActivity.class));
+		Intent scoreIntent = new Intent(this, ScoreActivity.class);
+		scoreIntent.putExtra(ScoreActivity.EXTRA_GAME_INFORMATION, mGameInformation);
+		startActivity(scoreIntent);
 		finish();
 	}
 }
