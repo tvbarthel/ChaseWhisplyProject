@@ -131,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/score_skip_button"
-                android:id="@+id/button"
+                android:id="@+id/score_button_skip"
                 android:background="@drawable/button_play"
                 android:textColor="#FFFFFF"
                 />
@@ -140,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/score_replay_button"
-                android:id="@+id/button3"
+                android:id="@+id/score_button_replay"
                 android:background="@drawable/button_play"
                 android:textColor="#FFFFFF"
                 />
@@ -149,7 +149,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/score_home_button"
-                android:id="@+id/button2"
+                android:id="@+id/score_button_home"
                 android:background="@drawable/button_play"
                 android:textColor="#FFFFFF"
                 />

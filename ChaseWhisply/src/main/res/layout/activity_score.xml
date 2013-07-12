@@ -122,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/score_skip_button"
-            android:id="@+id/score_retry"
+            android:id="@+id/score_button_skip"
             android:background="@drawable/button_play"
             android:textColor="#FFFFFF"
             android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -132,7 +132,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/score_replay_button"
-            android:id="@+id/score_replay"
+            android:id="@+id/score_button_replay"
             android:background="@drawable/button_play"
             android:textColor="#FFFFFF"
             android:layout_marginTop="@dimen/half_padding"/>
@@ -141,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/score_home_button"
-            android:id="@+id/score_home"
+            android:id="@+id/score_button_home"
             android:background="@drawable/button_play"
             android:textColor="#FFFFFF"
             android:layout_marginTop="@dimen/half_padding"/>

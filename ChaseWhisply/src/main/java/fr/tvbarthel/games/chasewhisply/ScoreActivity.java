@@ -1,7 +1,9 @@
 package fr.tvbarthel.games.chasewhisply;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
@@ -35,6 +37,22 @@ public class ScoreActivity extends Activity {
 			mNumberOfBulletsFiredTextView.setText(String.valueOf(mGameInformation.getBulletFired()));
 			mFinalScore.setText(String.valueOf(mGameInformation.getCurrentScore()));
 		}
+
+		findViewById(R.id.score_button_replay).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(ScoreActivity.this, GameActivity.class));
+				finish();
+			}
+		});
+
+		findViewById(R.id.score_button_home).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(ScoreActivity.this, HomeActivity.class));
+				finish();
+			}
+		});
 
 	}
 }
