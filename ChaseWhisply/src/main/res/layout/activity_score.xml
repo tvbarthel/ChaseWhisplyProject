@@ -2,14 +2,151 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="@dimen/default_padding">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Fin !"
-        android:id="@+id/textView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/app_name"
+        android:id="@+id/textView2"
+        android:textColor="#888888"
+        android:textSize="28sp"
+        android:textIsSelectable="false"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignLeft="@+id/linearLayout"
+        android:layout_alignRight="@+id/linearLayout"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/half_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Killed Targets"
+                    android:id="@+id/textView"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Medium"
+                    android:layout_marginBottom="@dimen/half_padding"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fired bullets"
+                    android:id="@+id/textView3"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Medium"
+                    android:layout_marginBottom="@dimen/half_padding"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Max Combo"
+                    android:id="@+id/textView4"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Medium"
+                    android:layout_marginBottom="@dimen/half_padding"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Final Score"
+                    android:id="@+id/textView8"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                    android:layout_marginTop="@dimen/default_padding"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="@dimen/half_padding"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:id="@+id/textView6"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Medium"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/half_padding"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:id="@+id/textView5"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Medium"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/half_padding"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:id="@+id/textView7"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Medium"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/half_padding"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20000"
+                    android:id="@+id/textView9"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:layout_gravity="right"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:id="@+id/button"
+            android:background="@drawable/button_play"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Replay"
+            android:id="@+id/button2"
+            android:background="@drawable/button_play"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="@dimen/half_padding"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:id="@+id/button3"
+            android:background="@drawable/button_play"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="@dimen/half_padding"/>
+    </LinearLayout>
+
 </RelativeLayout>
