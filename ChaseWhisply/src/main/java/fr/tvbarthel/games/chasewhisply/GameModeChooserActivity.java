@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 
 public class GameModeChooserActivity extends Activity {
@@ -26,16 +27,12 @@ public class GameModeChooserActivity extends Activity {
 			}
 		};
 
-
-		//TODO use model for GameModeView
 		mGameMode1 = (GameModeView) findViewById(R.id.mode1);
-		mGameMode1.setGameModeRules("Kill most ghost as you can in given time");
-		mGameMode1.setGameModeImage(R.drawable.ghost);
+		mGameMode1.setModel(GameModeFactory.createRemainingTimeGame(1));
 		mGameMode1.setGameModeSelectedListener(mGameModeSelected);
 
 		mGameMode2 = (GameModeView) findViewById(R.id.mode2);
-		mGameMode2.setGameModeRules("Kill 10 ghost as fast as you can !");
-		mGameMode2.setGameModeImage(R.drawable.ghost_targeted);
+		mGameMode2.setModel(GameModeFactory.createLimitedTargetsGame(1));
 		mGameMode2.setGameModeEnabled(false);
 	}
 }

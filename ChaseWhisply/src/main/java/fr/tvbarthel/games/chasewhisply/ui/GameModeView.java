@@ -9,11 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
+import fr.tvbarthel.games.chasewhisply.model.GameMode;
 
 public class GameModeView extends LinearLayout {
 
 	private TextView mGameModeRules;
 	private ImageButton mGameModeImage;
+	private GameMode mModel;
 
 	public GameModeView(Context context) {
 		super(context, null);
@@ -34,26 +36,15 @@ public class GameModeView extends LinearLayout {
 
 	}
 
-	//TODO remove when model used
-
 	/**
-	 * set rules for game mode
+	 * set model to the view to configure rules and image
 	 *
-	 * @param rules
+	 * @param model GameMode
 	 */
-	public void setGameModeRules(String rules) {
-		mGameModeRules.setText(rules);
-	}
-
-	//TODO remove when model used
-
-	/**
-	 * set image for game mode image button
-	 *
-	 * @param resId id from drawable
-	 */
-	public void setGameModeImage(int resId) {
-		mGameModeImage.setImageResource(resId);
+	public void setModel(GameMode model) {
+		mModel = model;
+		mGameModeImage.setImageResource(mModel.getImage());
+		mGameModeRules.setText(mModel.getRules());
 	}
 
 	/**
