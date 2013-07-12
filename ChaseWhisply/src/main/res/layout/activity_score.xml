@@ -31,8 +31,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/activity_vertical_margin">
 
             <LinearLayout
@@ -44,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Killed Targets"
+                    android:text="@string/score_number_of_targets_killed"
                     android:id="@+id/textView"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_marginBottom="@dimen/half_padding"/>
@@ -52,7 +50,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fired bullets"
+                    android:text="@string/score_number_of_bullets_fired"
                     android:id="@+id/textView3"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_marginBottom="@dimen/half_padding"/>
@@ -60,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Max Combo"
+                    android:text="@string/score_max_combo"
                     android:id="@+id/textView4"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_marginBottom="@dimen/half_padding"/>
@@ -68,7 +66,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Final Score"
+                    android:text="@string/score_final_score"
                     android:id="@+id/textView8"
                     android:textAppearance="@android:style/TextAppearance.Holo.Large"
                     android:layout_marginTop="@dimen/default_padding"/>
@@ -85,34 +83,34 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8"
-                    android:id="@+id/killedTargets"
+                    android:id="@+id/numberOfTargetsKilled"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_gravity="right"
-                    android:layout_marginBottom="@dimen/half_padding"/>
+                    android:layout_marginBottom="@dimen/half_padding"
+                    android:text="@string/integer_zero"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
-                    android:id="@+id/firedBullets"
+                    android:id="@+id/numberOfBulletsFired"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_gravity="right"
-                    android:layout_marginBottom="@dimen/half_padding"/>
+                    android:layout_marginBottom="@dimen/half_padding"
+                    android:text="@string/integer_zero"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4"
                     android:id="@+id/maxCombo"
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:layout_gravity="right"
-                    android:layout_marginBottom="@dimen/half_padding"/>
+                    android:layout_marginBottom="@dimen/half_padding"
+                    android:text="@string/integer_zero"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20000"
+                    android:text="@string/integer_zero"
                     android:id="@+id/finalScore"
                     android:textAppearance="@android:style/TextAppearance.Holo.Large"
                     android:layout_marginTop="@dimen/default_padding"
@@ -123,7 +121,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Skip"
+            android:text="@string/score_skip_button"
             android:id="@+id/button"
             android:background="@drawable/button_play"
             android:textColor="#FFFFFF"
@@ -133,7 +131,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Replay"
+            android:text="@string/score_replay_button"
             android:id="@+id/button2"
             android:background="@drawable/button_play"
             android:textColor="#FFFFFF"
@@ -142,7 +140,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Home"
+            android:text="@string/score_home_button"
             android:id="@+id/button3"
             android:background="@drawable/button_play"
             android:textColor="#FFFFFF"

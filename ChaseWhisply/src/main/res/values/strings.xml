@@ -4,6 +4,8 @@
     <string name="app_name">Chase Whisply</string>
     <string name="action_settings">Settings</string>
 
+    <string name="integer_zero">0</string>
+
     <!-- Home Activity !-->
     <string name="home_play">Play</string>
     <string name="home_leaderboard">Leaderboard</string>
@@ -20,5 +22,14 @@
 
     <!-- Level Chooser Activity !-->
     <string name="level_chooser">Select game mode</string>
+
+    <!-- Score Activity !-->
+    <string name="score_number_of_bullets_fired">Bullets Fired</string>
+    <string name="score_number_of_targets_killed">Targets Killed</string>
+    <string name="score_max_combo">Max Combo</string>
+    <string name="score_final_score">Final Score</string>
+    <string name="score_skip_button">Skip</string>
+    <string name="score_replay_button">Replay</string>
+    <string name="score_home_button">Home</string>
 
 </resources>

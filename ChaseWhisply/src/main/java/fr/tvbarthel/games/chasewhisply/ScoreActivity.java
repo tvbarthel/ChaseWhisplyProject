@@ -12,8 +12,8 @@ public class ScoreActivity extends Activity {
 	private GameInformation mGameInformation;
 
 	//UI
-	private TextView mFiredBulletTextView;
-	private TextView mKilledTargetTextView;
+	private TextView mNumberOfBulletsFiredTextView;
+	private TextView mNumberOfTargetsKilledTextView;
 	private TextView mMaxComboTextView;
 	private TextView mFinalScore;
 
@@ -22,17 +22,17 @@ public class ScoreActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_score);
 
-		mKilledTargetTextView = (TextView) findViewById(R.id.killedTargets);
-		mFiredBulletTextView = (TextView) findViewById(R.id.firedBullets);
+		mNumberOfTargetsKilledTextView = (TextView) findViewById(R.id.numberOfTargetsKilled);
+		mNumberOfBulletsFiredTextView = (TextView) findViewById(R.id.numberOfBulletsFired);
 		mMaxComboTextView = (TextView) findViewById(R.id.maxCombo);
 		mFinalScore = (TextView) findViewById(R.id.finalScore);
 
 		mGameInformation = (GameInformation) getIntent().getParcelableExtra(EXTRA_GAME_INFORMATION);
 
 		if (mGameInformation != null) {
-			mKilledTargetTextView.setText(String.valueOf(mGameInformation.getFragNumber()));
+			mNumberOfTargetsKilledTextView.setText(String.valueOf(mGameInformation.getFragNumber()));
 			mMaxComboTextView.setText(String.valueOf(mGameInformation.getMaxCombo()));
-			mFiredBulletTextView.setText(String.valueOf(mGameInformation.getBulletFired()));
+			mNumberOfBulletsFiredTextView.setText(String.valueOf(mGameInformation.getBulletFired()));
 			mFinalScore.setText(String.valueOf(mGameInformation.getCurrentScore()));
 		}
 
