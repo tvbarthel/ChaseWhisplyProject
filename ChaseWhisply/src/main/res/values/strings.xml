@@ -23,6 +23,10 @@
     <!-- Level Chooser Activity !-->
     <string name="level_chooser">Select game mode</string>
 
+    <!-- Game Mode rules !-->
+    <string name="game_mode_remaining_time">Kill most ghosts as you can in given time</string>
+    <string name="game_mode_target_limited">Kill all ghosts as fast as you can !</string>
+
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>
     <string name="score_number_of_targets_killed">Targets Killed</string>
