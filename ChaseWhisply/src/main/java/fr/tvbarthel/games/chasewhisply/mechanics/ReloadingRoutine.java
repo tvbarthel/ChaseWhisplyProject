@@ -1,12 +1,9 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
 
-import android.os.Handler;
+import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
 
-public class ReloadingRoutine extends Handler {
-	private final long mReloadingTime;
-	private final Runnable mRunnable;
-	private boolean mIsRunning;
+public class ReloadingRoutine extends TimerRoutine {
 	private final IReloadingRoutine mInterface;
 
 	/**
@@ -16,30 +13,13 @@ public class ReloadingRoutine extends Handler {
 	 * @param iTimeBasedRoutine interface
 	 */
 	public ReloadingRoutine(long reloadingTime, IReloadingRoutine iTimeBasedRoutine) {
-		mReloadingTime = reloadingTime;
-		mIsRunning = false;
+		super(reloadingTime);
 		mInterface = iTimeBasedRoutine;
-		mRunnable = new Runnable() {
-			@Override
-			public void run() {
-				mInterface.reload();
-				if (mIsRunning) {
-					postDelayed(this, mReloadingTime);
-				}
-			}
-		};
 	}
 
-	public void startRoutine() {
-		if (!mIsRunning) {
-			mIsRunning = true;
-			postDelayed(mRunnable, mReloadingTime);
-		}
-	}
-
-	public void stopRoutine() {
-		mIsRunning = false;
-		removeCallbacks(mRunnable);
+	@Override
+	protected void doOnTick() {
+		mInterface.reload();
 	}
 
 	public interface IReloadingRoutine {
