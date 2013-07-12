@@ -266,4 +266,8 @@ public class GameInformation implements Parcelable {
 		return mScore;
 	}
 
+	public int getBulletFired() {
+		return mBulletFired;
+	}
+
 }
