@@ -1,11 +1,8 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
-import android.os.Handler;
+import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
 
-public class SpawningRoutine extends Handler {
-	private final long mSpawningTime;
-	private final Runnable mRunnable;
-	private boolean mIsRunning;
+public class SpawningRoutine extends TimerRoutine {
 	private final ISpawningRoutine mInterface;
 
 	/**
@@ -15,30 +12,13 @@ public class SpawningRoutine extends Handler {
 	 * @param iSpawningRoutine interface
 	 */
 	public SpawningRoutine(long spawningTime, ISpawningRoutine iSpawningRoutine) {
-		mSpawningTime = spawningTime;
-		mIsRunning = false;
+		super(spawningTime);
 		mInterface = iSpawningRoutine;
-		mRunnable = new Runnable() {
-			@Override
-			public void run() {
-				mInterface.spawn();
-				if (mIsRunning) {
-					postDelayed(this, mSpawningTime);
-				}
-			}
-		};
 	}
 
-	public void startRoutine() {
-		if (!mIsRunning) {
-			mIsRunning = true;
-			postDelayed(mRunnable, mSpawningTime);
-		}
-	}
-
-	public void stopRoutine() {
-		mIsRunning = false;
-		removeCallbacks(mRunnable);
+	@Override
+	protected void doOnTick() {
+		mInterface.spawn();
 	}
 
 	public interface ISpawningRoutine {
