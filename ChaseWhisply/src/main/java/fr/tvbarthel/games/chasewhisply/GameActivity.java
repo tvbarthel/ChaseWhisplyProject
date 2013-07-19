@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformationFactory;
+import fr.tvbarthel.games.chasewhisply.mechanics.SurvivalGameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
@@ -96,7 +97,7 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
 
 		//instantiate game engine
-		mGameEngine = new TimeLimitedGameEngine(this, mGameInformation);
+		mGameEngine = new SurvivalGameEngine(this, mGameInformation, 1000);
 		mGameEngine.startGame();
 	}
 
