@@ -17,6 +17,8 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 	protected SpawningRoutine mSpawningRoutine;
 	protected int mCurrentState;
 
+	protected abstract void onKill();
+
 
 	public GameEngine(IGameEngine iGameEngine, GameInformation gameInformation) {
 		mInterface = iGameEngine;
@@ -103,6 +105,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 					//add score
 					mGameInformation.increaseScore(10 + 10 * mGameInformation.getCurrentCombo());
 					Log.d("Debug", "score : " + mGameInformation.getCurrentScore());
+					onKill();
 				}
 			}
 		}

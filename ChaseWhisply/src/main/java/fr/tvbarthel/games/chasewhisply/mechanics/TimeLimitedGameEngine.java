@@ -1,7 +1,12 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
-public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameTimer{
-	private GameTimer mGameTimer;
+public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameTimer {
+	protected GameTimer mGameTimer;
+
+	@Override
+	protected void onKill() {
+
+	}
 
 	public TimeLimitedGameEngine(IGameEngine iGameEngine, GameInformation gameInformation) {
 		super(iGameEngine, gameInformation);
@@ -42,4 +47,5 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 	public void timerTick(long remainingTime) {
 		mGameInformation.setRemainingTime(remainingTime);
 	}
+
 }
