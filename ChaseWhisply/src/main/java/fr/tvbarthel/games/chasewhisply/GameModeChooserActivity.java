@@ -22,6 +22,7 @@ public class GameModeChooserActivity extends Activity {
 		mGameModeSelected = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				//TODO add GameMode to intent extra
 				startActivity(new Intent(GameModeChooserActivity.this, GameActivity.class));
 				finish();
 			}
