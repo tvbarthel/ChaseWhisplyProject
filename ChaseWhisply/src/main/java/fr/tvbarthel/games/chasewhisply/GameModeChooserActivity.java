@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
@@ -33,7 +34,7 @@ public class GameModeChooserActivity extends Activity {
 		mGameMode1.setGameModeSelectedListener(mGameModeSelected);
 
 		mGameMode2 = (GameModeView) findViewById(R.id.mode2);
-		mGameMode2.setModel(GameModeFactory.createLimitedTargetsGame(1));
-		mGameMode2.setGameModeEnabled(false);
+		mGameMode2.setModel(GameModeFactory.createSurvivalGame(1));
+		mGameMode2.setGameModeSelectedListener(mGameModeSelected);
 	}
 }
