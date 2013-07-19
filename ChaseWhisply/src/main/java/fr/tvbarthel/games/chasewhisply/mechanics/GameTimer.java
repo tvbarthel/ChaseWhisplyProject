@@ -47,6 +47,17 @@ public class GameTimer extends Handler {
 		return mRemainingTime;
 	}
 
+	/**
+	 * add additional time
+	 *
+	 * @param t time in millisecond
+	 */
+	public void addTime(long t) {
+		if (mIsRunning && t > 0) {
+			mRemainingTime += t;
+		}
+	}
+
 
 	public interface IGameTimer {
 		abstract void timerEnd();
