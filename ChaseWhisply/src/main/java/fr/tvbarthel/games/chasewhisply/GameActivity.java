@@ -18,15 +18,21 @@ import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformationFactory;
 import fr.tvbarthel.games.chasewhisply.mechanics.SurvivalGameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
+import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
 public class GameActivity extends Activity implements SensorEventListener, GameEngine.IGameEngine {
+
+	public static final String EXTRA_GAME_MODE = "ExtraGameModeFromChooser";
+
 	private Camera mCamera;
 	private CameraPreview mCameraPreview;
 	private GameInformation mGameInformation;
 	private GameEngine mGameEngine;
 	private GameView mGameView;
+	private GameMode mGameMode;
 
 	//Sensor
 	private SensorManager mSensorManager;
@@ -50,6 +56,12 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		if (getIntent() == null || !getIntent().hasExtra(EXTRA_GAME_MODE)) {
+			finish();
+		} else {
+			mGameMode = (GameMode) getIntent().getParcelableExtra(EXTRA_GAME_MODE);
+		}
 
 		//Sensor
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -97,8 +109,19 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
 
 		//instantiate game engine
-		mGameEngine = new SurvivalGameEngine(this, mGameInformation, 1000);
-		mGameEngine.startGame();
+		switch (mGameMode.getType()) {
+			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+				mGameEngine = new TimeLimitedGameEngine(this, mGameInformation);
+				mGameEngine.startGame();
+				break;
+			case GameModeFactory.GAME_TYPE_SURVIVAL:
+				mGameEngine = new SurvivalGameEngine(this, mGameInformation, 1000);
+				mGameEngine.startGame();
+				break;
+			default:
+				finish();
+				break;
+		}
 	}
 
 

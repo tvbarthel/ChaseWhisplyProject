@@ -48,6 +48,15 @@ public class GameModeView extends LinearLayout {
 	}
 
 	/**
+	 * get GameMode
+	 *
+	 * @return mModel
+	 */
+	public GameMode getModel() {
+		return mModel;
+	}
+
+	/**
 	 * set a listener for game mode selection
 	 *
 	 * @param listener

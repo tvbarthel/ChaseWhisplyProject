@@ -27,8 +27,11 @@ public class GameMode implements Parcelable {
 	}
 
 	@Override
-	public void writeToParcel(Parcel parcel, int i) {
-
+	public void writeToParcel(Parcel out, int i) {
+		out.writeInt(mType);
+		out.writeInt(mLevel);
+		out.writeInt(mImage);
+		out.writeInt(mRules);
 	}
 
 	/**
@@ -37,6 +40,10 @@ public class GameMode implements Parcelable {
 	 * @param in input Parcel to read from
 	 */
 	public void readFromParcel(Parcel in) {
+		mType = in.readInt();
+		mLevel = in.readInt();
+		mImage = in.readInt();
+		mRules = in.readInt();
 
 	}
 

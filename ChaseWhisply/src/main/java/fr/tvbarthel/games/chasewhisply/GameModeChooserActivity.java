@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
@@ -23,8 +22,10 @@ public class GameModeChooserActivity extends Activity {
 		mGameModeSelected = new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				//TODO add GameMode to intent extra
-				startActivity(new Intent(GameModeChooserActivity.this, GameActivity.class));
+				final Intent i = new Intent(GameModeChooserActivity.this, GameActivity.class);
+				final GameModeView modeView = (GameModeView) view.getParent();
+				i.putExtra(GameActivity.EXTRA_GAME_MODE, modeView.getModel());
+				startActivity(i);
 				finish();
 			}
 		};
