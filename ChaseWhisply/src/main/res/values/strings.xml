@@ -26,6 +26,7 @@
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Kill most ghosts as you can in given time</string>
     <string name="game_mode_target_limited">Kill all ghosts as fast as you can !</string>
+    <string name="game_mode_survival">Survival : each kill gives additional time</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>

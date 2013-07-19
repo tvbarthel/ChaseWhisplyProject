@@ -7,6 +7,7 @@ public class GameModeFactory {
 
 	public static final int GAME_TYPE_REMAINING_TIME = 0x00000001;
 	public static final int GAME_TYPE_LIMITED_TARGETS = 0x00000002;
+	public static final int GAME_TYPE_SURVIVAL = 0x00000003;
 
 	public static GameMode createRemainingTimeGame(int level) {
 		final GameMode g = new GameMode();
@@ -23,6 +24,15 @@ public class GameModeFactory {
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_target_limited);
 		g.setImage(R.drawable.ghost_targeted);
+		return g;
+	}
+
+	public static GameMode createSurvivalGame(int level) {
+		final GameMode g = new GameMode();
+		g.setType(GAME_TYPE_SURVIVAL);
+		g.setLevel(level);
+		g.setRules(R.string.game_mode_survival);
+		g.setImage(R.drawable.ghost);
 		return g;
 	}
 }
