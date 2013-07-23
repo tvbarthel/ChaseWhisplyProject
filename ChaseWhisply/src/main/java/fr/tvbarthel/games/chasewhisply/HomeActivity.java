@@ -1,6 +1,5 @@
 package fr.tvbarthel.games.chasewhisply;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +7,9 @@ import android.view.View;
 
 import com.google.android.gms.games.GamesClient;
 
-public class HomeActivity extends Activity {
+import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
+
+public class HomeActivity extends BaseGameActivity {
 
 	private GamesClient mGamesClient;
 
@@ -41,4 +42,13 @@ public class HomeActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public void onSignInFailed() {
+
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+
+	}
 }
