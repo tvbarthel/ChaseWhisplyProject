@@ -1,1 +1,1 @@
-include ':ChaseWhisply'
+include ':ChaseWhisply', ':gms'
