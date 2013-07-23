@@ -75,7 +75,6 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 
 	@Override
 	public void spawn() {
-		//TODO
 	}
 
 	/**

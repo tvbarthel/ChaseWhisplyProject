@@ -1,11 +1,29 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+
 public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameTimer {
 	protected GameTimer mGameTimer;
+
+	private int mXRange;
+	private int mYRange;
 
 	@Override
 	protected void onKill() {
 
+	}
+
+	@Override
+	public void spawn() {
+		super.spawn();
+		if (mGameInformation.getCurrentTargetsNumber() < mGameInformation.getMaxTargetOnTheField()) {
+			final float[] pos = mGameInformation.getCurrentPosition();
+			mGameInformation.addTargetableItem(DisplayableItemFactory.createEasyGhost(
+					(int) pos[0] - mXRange,
+					(int) pos[0] + mXRange,
+					(int) pos[1] - mYRange,
+					(int) pos[1] + mYRange));
+		}
 	}
 
 	public TimeLimitedGameEngine(IGameEngine iGameEngine, GameInformation gameInformation) {
@@ -17,6 +35,8 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 	public void startGame() {
 		super.startGame();
 		mGameTimer.startTimer();
+		mXRange = mGameInformation.getSceneWidth() / 2 + mGameInformation.getSceneWidth() / 10;
+		mYRange = mGameInformation.getSceneHeight() / 2 + mGameInformation.getSceneHeight() / 10;
 	}
 
 	@Override
