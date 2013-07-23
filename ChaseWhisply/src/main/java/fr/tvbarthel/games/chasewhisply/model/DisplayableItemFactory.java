@@ -24,6 +24,17 @@ public class DisplayableItemFactory {
 		return easyGhost;
 	}
 
+	public static TargetableItem createEasyGhost(int xmin, int xmax, int ymin, int ymax) {
+		TargetableItem easyGhost = new TargetableItem();
+		easyGhost.setType(TYPE_EASY_GHOST);
+		final int randomX = randomize(xmin, xmax);
+		final int randomY = randomize(ymin, ymax);
+		easyGhost.setX(randomX);
+		easyGhost.setY(randomY);
+		easyGhost.setHealth(HEALTH_EASY_GHOST);
+		return easyGhost;
+	}
+
 	public static DisplayableItem createBulletHole() {
 		DisplayableItem hole = new DisplayableItem();
 		hole.setType(TYPE_BULLET_HOLE);
