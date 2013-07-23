@@ -15,6 +15,7 @@ public class GameInformation implements Parcelable {
 	protected long mRemainingTime;
 	protected long mSpawningTime;
 	protected Weapon mWeapon;
+	protected int mMaxTargetOnTheField;
 	protected TargetableItem mCurrentTarget;
 	protected List<TargetableItem> mTargetableItems;
 	protected List<DisplayableItem> mDisplayableItems;
@@ -43,6 +44,7 @@ public class GameInformation implements Parcelable {
 		mRemainingTime = remainingTime;
 		mSpawningTime = spawningTime;
 		mWeapon = weapon;
+		mMaxTargetOnTheField = 0;
 		mCurrentTarget = null;
 		mTargetableItems = new ArrayList<TargetableItem>();
 		mDisplayableItems = new ArrayList<DisplayableItem>();
@@ -66,6 +68,7 @@ public class GameInformation implements Parcelable {
 		mRemainingTime = in.readLong();
 		mSpawningTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
+		mMaxTargetOnTheField = in.readInt();
 		mCurrentTarget = in.readParcelable(TargetableItem.class.getClassLoader());
 		mTargetableItems = new ArrayList<TargetableItem>();
 		in.readTypedList(mTargetableItems, TargetableItem.CREATOR);
@@ -83,6 +86,7 @@ public class GameInformation implements Parcelable {
 		out.writeLong(mRemainingTime);
 		out.writeLong(mSpawningTime);
 		out.writeParcelable(mWeapon, i);
+		out.writeInt(mMaxTargetOnTheField);
 		out.writeParcelable(mCurrentTarget, i);
 		out.writeTypedList(mTargetableItems);
 		out.writeTypedList(mDisplayableItems);
@@ -190,6 +194,7 @@ public class GameInformation implements Parcelable {
 	 * increase targets killed number
 	 */
 	public void targetKilled() {
+		mTargetableItems.remove(mCurrentTarget);
 		mCurrentTarget = null;
 		mTargetKilled++;
 	}
@@ -268,6 +273,18 @@ public class GameInformation implements Parcelable {
 
 	public int getBulletFired() {
 		return mBulletFired;
+	}
+
+	public int getMaxTargetOnTheField() {
+		return mMaxTargetOnTheField;
+	}
+
+	public void setMaxTargetOnTheField(int maxTargetOnTheField) {
+		mMaxTargetOnTheField = maxTargetOnTheField;
+	}
+
+	public int getCurrentTargetsNumber() {
+		return mTargetableItems.size();
 	}
 
 }
