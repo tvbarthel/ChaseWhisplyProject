@@ -70,13 +70,10 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onSignInFailed() {
-		Log.i("DEBUG", "sign in faileded");
-
 	}
 
 	@Override
 	public void onSignInSucceeded() {
-		Log.i("DEBUG", "sign in succeeded");
 	}
 
 	@Override
