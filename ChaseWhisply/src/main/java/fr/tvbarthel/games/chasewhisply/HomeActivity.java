@@ -7,18 +7,16 @@ import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
+import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
 
-public class HomeActivity extends BaseGameActivity {
+public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener {
 
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
 
-	private Button mButtonSignIn;
-	private Button mLeaderBoard;
 	private ImageView mWhisplyPicture;
 	private boolean mIsWhisplyAnimationRunning;
 
@@ -27,45 +25,6 @@ public class HomeActivity extends BaseGameActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		//sign in
-		mButtonSignIn = (Button) findViewById(R.id.home_sign_in);
-		mButtonSignIn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				beginUserInitiatedSignIn();
-			}
-		});
-
-		//leaderboard
-		mLeaderBoard = (Button) findViewById(R.id.home_leaderboard);
-		mLeaderBoard.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (getGamesClient().isConnected()) {
-					startActivityForResult(getGamesClient().getLeaderboardIntent(
-							getResources().getString(R.string.leaderboard_easy)), REQUEST_LEADERBOARD);
-				} else {
-				}
-			}
-		});
-
-		//achievement
-		findViewById(R.id.home_achievement).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (getGamesClient().isConnected()) {
-					startActivityForResult(getGamesClient().getAchievementsIntent(), REQUEST_ACHIEVEMENT);
-				}
-			}
-		});
-
-
-		findViewById(R.id.home_play).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				startActivity(new Intent(HomeActivity.this, GameModeChooserActivity.class));
-			}
-		});
 
 		initWhisplyPicture();
 	}
@@ -118,6 +77,45 @@ public class HomeActivity extends BaseGameActivity {
 	@Override
 	public void onSignInSucceeded() {
 		Log.i("DEBUG", "sign in succeeded");
-		mButtonSignIn.setBackgroundResource(R.drawable.signin_disabled);
+	}
+
+	@Override
+	public void onStartGameRequested() {
+		startActivity(new Intent(HomeActivity.this, GameModeChooserActivity.class));
+	}
+
+	@Override
+	public void onShowAchievementsRequested() {
+		if (getGamesClient().isConnected()) {
+			startActivityForResult(getGamesClient().getAchievementsIntent(), REQUEST_ACHIEVEMENT);
+		}
+	}
+
+	@Override
+	public void onShowLeaderboardsRequested() {
+		if (getGamesClient().isConnected()) {
+			startActivityForResult(getGamesClient().getLeaderboardIntent(
+					getResources().getString(R.string.leaderboard_easy)), REQUEST_LEADERBOARD);
+		}
+	}
+
+	@Override
+	public void onShowAboutRequested() {
+
+	}
+
+	@Override
+	public void onSignInButtonClicked() {
+		beginUserInitiatedSignIn();
+	}
+
+	@Override
+	public void onSignOutButtonClicked() {
+
+	}
+
+	@Override
+	public void onWhisplyPictureClicked() {
+
 	}
 }
