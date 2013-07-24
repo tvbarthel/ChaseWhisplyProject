@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 
@@ -16,6 +19,8 @@ public class HomeActivity extends BaseGameActivity {
 
 	private Button mButtonSignIn;
 	private Button mLeaderBoard;
+	private ImageView mWhisplyPicture;
+	private boolean mIsWhisplyAnimationRunning;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,39 @@ public class HomeActivity extends BaseGameActivity {
 			@Override
 			public void onClick(View view) {
 				startActivity(new Intent(HomeActivity.this, GameModeChooserActivity.class));
+			}
+		});
+
+		initWhisplyPicture();
+	}
+
+	public void initWhisplyPicture() {
+		mWhisplyPicture = (ImageView) findViewById(R.id.home_whisply_picture);
+		mIsWhisplyAnimationRunning = false;
+		final Animation whisplyAnimation = AnimationUtils.loadAnimation(HomeActivity.this, R.anim.whisply_picture_animation);
+		if (whisplyAnimation == null) return;
+		whisplyAnimation.setAnimationListener(new Animation.AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {
+				mIsWhisplyAnimationRunning = true;
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				mIsWhisplyAnimationRunning = false;
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+		});
+
+		mWhisplyPicture.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!mIsWhisplyAnimationRunning) {
+					mWhisplyPicture.startAnimation(whisplyAnimation);
+				}
 			}
 		});
 	}
