@@ -31,7 +31,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.activity_home, container, false);
+		View v = inflater.inflate(R.layout.fragment_home, container, false);
 		final int[] clickable = new int[]{
 				R.id.home_play,
 				R.id.home_leaderboard,

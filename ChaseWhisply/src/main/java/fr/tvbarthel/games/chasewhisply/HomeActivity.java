@@ -2,7 +2,6 @@ package fr.tvbarthel.games.chasewhisply;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,19 +13,28 @@ import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener {
 
+	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
 
 	private ImageView mWhisplyPicture;
 	private boolean mIsWhisplyAnimationRunning;
 
+	//Fragments
+	private GameHomeFragment mGameHomeFragment;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
+		setContentView(R.layout.activity_game_home);
 
+		mGameHomeFragment = new GameHomeFragment();
+		mGameHomeFragment.setListener(this);
 
-		initWhisplyPicture();
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				mGameHomeFragment).commit();
+
+//		initWhisplyPicture();
 	}
 
 	public void initWhisplyPicture() {
