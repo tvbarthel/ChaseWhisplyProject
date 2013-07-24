@@ -23,6 +23,8 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		public void onSignInButtonClicked();
 
 		public void onSignOutButtonClicked();
+
+		public void onWhisplyPictureClicked();
 	}
 
 	private Listener mListener = null;
@@ -30,14 +32,15 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.activity_home, container, false);
-		final int[] BUTTONS = new int[]{
+		final int[] clickable = new int[]{
 				R.id.home_play,
 				R.id.home_leaderboard,
 				R.id.home_achievement,
 				R.id.home_about,
-				R.id.home_sign_in
+				R.id.home_sign_in,
+				R.id.home_whisply_picture
 		};
-		for (int i : BUTTONS) {
+		for (int i : clickable) {
 			v.findViewById(i).setOnClickListener(this);
 		}
 		return v;
@@ -71,6 +74,9 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 				break;
 			case R.id.home_sign_in:
 				mListener.onSignInButtonClicked();
+				break;
+			case R.id.home_whisply_picture:
+				mListener.onWhisplyPictureClicked();
 				break;
 			default:
 				break;
