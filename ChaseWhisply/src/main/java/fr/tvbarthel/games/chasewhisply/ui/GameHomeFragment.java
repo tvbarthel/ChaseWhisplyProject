@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import fr.tvbarthel.games.chasewhisply.R;
 
@@ -29,6 +32,10 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 
 	private Listener mListener = null;
 
+	//animation
+	private ImageView mWhisplyPicture;
+	private boolean mIsWhisplyAnimationRunning;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_home, container, false);
@@ -43,6 +50,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		for (int i : clickable) {
 			v.findViewById(i).setOnClickListener(this);
 		}
+		initWhisplyPicture(v);
 		return v;
 	}
 
@@ -53,6 +61,37 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 	 */
 	public void setListener(Listener l) {
 		mListener = l;
+	}
+
+	private void initWhisplyPicture(View v) {
+		mWhisplyPicture = (ImageView) v.findViewById(R.id.home_whisply_picture);
+		mIsWhisplyAnimationRunning = false;
+		final Animation whisplyAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.whisply_picture_animation);
+		if (whisplyAnimation == null) return;
+		whisplyAnimation.setAnimationListener(new Animation.AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {
+				mIsWhisplyAnimationRunning = true;
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				mIsWhisplyAnimationRunning = false;
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+		});
+
+		mWhisplyPicture.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!mIsWhisplyAnimationRunning) {
+					mWhisplyPicture.startAnimation(whisplyAnimation);
+				}
+			}
+		});
 	}
 
 	@Override

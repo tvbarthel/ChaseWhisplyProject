@@ -3,10 +3,6 @@ package fr.tvbarthel.games.chasewhisply;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
@@ -16,9 +12,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
-
-	private ImageView mWhisplyPicture;
-	private boolean mIsWhisplyAnimationRunning;
 
 	//Fragments
 	private GameHomeFragment mGameHomeFragment;
@@ -36,38 +29,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 //		initWhisplyPicture();
 	}
-
-	public void initWhisplyPicture() {
-		mWhisplyPicture = (ImageView) findViewById(R.id.home_whisply_picture);
-		mIsWhisplyAnimationRunning = false;
-		final Animation whisplyAnimation = AnimationUtils.loadAnimation(HomeActivity.this, R.anim.whisply_picture_animation);
-		if (whisplyAnimation == null) return;
-		whisplyAnimation.setAnimationListener(new Animation.AnimationListener() {
-			@Override
-			public void onAnimationStart(Animation animation) {
-				mIsWhisplyAnimationRunning = true;
-			}
-
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				mIsWhisplyAnimationRunning = false;
-			}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {
-			}
-		});
-
-		mWhisplyPicture.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (!mIsWhisplyAnimationRunning) {
-					mWhisplyPicture.startAnimation(whisplyAnimation);
-				}
-			}
-		});
-	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
