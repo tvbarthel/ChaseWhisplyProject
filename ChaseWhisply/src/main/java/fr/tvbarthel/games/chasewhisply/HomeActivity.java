@@ -13,7 +13,6 @@ import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 
 public class HomeActivity extends BaseGameActivity {
 
-	private GamesClient mGamesClient;
 	private Button mButtonSignIn;
 	private Button mLeaderBoard;
 
@@ -26,7 +25,6 @@ public class HomeActivity extends BaseGameActivity {
 		mButtonSignIn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Log.d("DEBUG", "beginUserInitiatedSignIn");
 				beginUserInitiatedSignIn();
 			}
 		});
@@ -36,10 +34,8 @@ public class HomeActivity extends BaseGameActivity {
 			@Override
 			public void onClick(View view) {
 				if (getGamesClient().isConnected()) {
-					Log.i("DEBUG", "sign in isConnected");
-					startActivityForResult(mGamesClient.getLeaderboardIntent(getResources().getString(R.string.leaderboard_easy)), 0);
+					startActivityForResult(getGamesClient().getLeaderboardIntent(getResources().getString(R.string.leaderboard_easy)), 0);
 				} else {
-					Log.i("DEBUG", "sign in !isConnected");
 				}
 			}
 		});
