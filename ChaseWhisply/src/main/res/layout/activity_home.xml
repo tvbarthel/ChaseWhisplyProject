@@ -93,7 +93,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/whisplyPicture"
+        android:id="@+id/home_whisply_picture"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:src="@drawable/ghost"
