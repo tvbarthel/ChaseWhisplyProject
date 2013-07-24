@@ -2,10 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -15,7 +11,8 @@
         android:id="@+id/menu"
         android:gravity="center"
         android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:padding="@dimen/default_padding">
 
         <LinearLayout
             android:orientation="vertical"
@@ -94,5 +91,15 @@
         android:textColor="#888888"
         android:textSize="28sp"
         android:textIsSelectable="false" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ghost"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="-60dp"/>
 
 </RelativeLayout>
