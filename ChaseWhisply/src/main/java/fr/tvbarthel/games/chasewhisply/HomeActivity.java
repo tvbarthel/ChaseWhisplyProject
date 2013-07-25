@@ -35,8 +35,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
 					mGameHomeFragment).commit();
 		}
-
-//		initWhisplyPicture();
 	}
 
 	@Override
