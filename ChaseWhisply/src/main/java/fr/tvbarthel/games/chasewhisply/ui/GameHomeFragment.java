@@ -65,6 +65,12 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		}
 	}
 
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
+
 	private void initWhisplyPicture(View v) {
 		mIsWhisplyAnimationRunning = false;
 		mWhisplyAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.whisply_picture_animation);
