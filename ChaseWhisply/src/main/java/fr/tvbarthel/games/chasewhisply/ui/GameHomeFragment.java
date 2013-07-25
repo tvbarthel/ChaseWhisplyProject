@@ -1,5 +1,6 @@
 package fr.tvbarthel.games.chasewhisply.ui;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import fr.tvbarthel.games.chasewhisply.R;
 
@@ -54,13 +54,15 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		return v;
 	}
 
-	/**
-	 * set a listener for action callback
-	 *
-	 * @param l GameHomeFragment.Listener
-	 */
-	public void setListener(Listener l) {
-		mListener = l;
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		if (activity instanceof GameHomeFragment.Listener) {
+			mListener = (GameHomeFragment.Listener) activity;
+		} else {
+			throw new ClassCastException(activity.toString()
+					+ " must implemenet GameHomeFragment.Listener");
+		}
 	}
 
 	private void initWhisplyPicture(View v) {

@@ -21,11 +21,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_home);
 
-		mGameHomeFragment = new GameHomeFragment();
-		mGameHomeFragment.setListener(this);
-
-		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-				mGameHomeFragment).commit();
+		if (savedInstanceState == null) {
+			mGameHomeFragment = new GameHomeFragment();
+			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+					mGameHomeFragment).commit();
+		}
 
 //		initWhisplyPicture();
 	}
@@ -85,4 +85,5 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			getGamesClient().unlockAchievement(getResources().getString(R.string.achievement_curiosity));
 		}
 	}
+
 }
