@@ -13,7 +13,8 @@
     <string name="home_about">About</string>
     <string name="home_sign_in">Sign in</string>
     <string name="home_sign_info">Sign in with Google to share your scores and achievements with your friends.</string>
-    <string name="home_not_sign_in">Sign in with Google to use this feature.</string>
+    <string name="home_not_sign_in_leaderboard">Sign in with Google to see the leaderboard.</string>
+    <string name="home_not_sign_in_achievement">Sign in with Google to unlock achievement.</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag : %1$d</string>

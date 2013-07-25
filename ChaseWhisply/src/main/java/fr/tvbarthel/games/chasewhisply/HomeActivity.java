@@ -59,7 +59,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		if (getGamesClient().isConnected()) {
 			startActivityForResult(getGamesClient().getAchievementsIntent(), REQUEST_ACHIEVEMENT);
 		} else {
-			makeToast(getResources().getString(R.string.home_not_sign_in));
+			makeToast(getResources().getString(R.string.home_not_sign_in_achievement));
 		}
 	}
 
@@ -69,7 +69,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			startActivityForResult(getGamesClient().getLeaderboardIntent(
 					getResources().getString(R.string.leaderboard_easy)), REQUEST_LEADERBOARD);
 		} else {
-			makeToast(getResources().getString(R.string.home_not_sign_in));
+			makeToast(getResources().getString(R.string.home_not_sign_in_leaderboard));
 		}
 	}
 
