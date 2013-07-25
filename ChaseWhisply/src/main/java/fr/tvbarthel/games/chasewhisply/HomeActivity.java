@@ -2,9 +2,11 @@ package fr.tvbarthel.games.chasewhisply;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
+import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener {
@@ -15,6 +17,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	//Fragments
 	private GameHomeFragment mGameHomeFragment;
+	private AboutFragment mAboutFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowAboutRequested() {
+		if (mAboutFragment == null) {
+			mAboutFragment = new AboutFragment();
+		}
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				mAboutFragment).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	@Override
