@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
+import android.widget.Toast;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;
@@ -92,6 +93,15 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		if (getGamesClient().isConnected()) {
 			getGamesClient().unlockAchievement(getResources().getString(R.string.achievement_curiosity));
 		}
+	}
+
+	/**
+	 * use to inform user
+	 *
+	 * @param message display on screen
+	 */
+	private void makeToast(String message) {
+		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 	}
 
 }
