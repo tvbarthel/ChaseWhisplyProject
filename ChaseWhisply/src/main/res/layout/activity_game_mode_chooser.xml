@@ -2,7 +2,9 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/card_grey"
+    android:padding="@dimen/default_padding">
 
 
     <LinearLayout
@@ -18,7 +20,8 @@
             android:id="@+id/mode1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/half_padding"/>
 
         <fr.tvbarthel.games.chasewhisply.ui.GameModeView
             android:id="@+id/mode2"
