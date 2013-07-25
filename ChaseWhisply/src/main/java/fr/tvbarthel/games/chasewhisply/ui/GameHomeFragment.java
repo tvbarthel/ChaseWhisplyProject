@@ -33,7 +33,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 	private Listener mListener = null;
 
 	//animation
-	private ImageView mWhisplyPicture;
+	private Animation mWhisplyAnimation;
 	private boolean mIsWhisplyAnimationRunning;
 
 	@Override
@@ -64,11 +64,10 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 	}
 
 	private void initWhisplyPicture(View v) {
-		mWhisplyPicture = (ImageView) v.findViewById(R.id.home_whisply_picture);
 		mIsWhisplyAnimationRunning = false;
-		final Animation whisplyAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.whisply_picture_animation);
-		if (whisplyAnimation == null) return;
-		whisplyAnimation.setAnimationListener(new Animation.AnimationListener() {
+		mWhisplyAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.whisply_picture_animation);
+		if (mWhisplyAnimation == null) return;
+		mWhisplyAnimation.setAnimationListener(new Animation.AnimationListener() {
 			@Override
 			public void onAnimationStart(Animation animation) {
 				mIsWhisplyAnimationRunning = true;
@@ -81,15 +80,6 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 
 			@Override
 			public void onAnimationRepeat(Animation animation) {
-			}
-		});
-
-		mWhisplyPicture.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (!mIsWhisplyAnimationRunning) {
-					mWhisplyPicture.startAnimation(whisplyAnimation);
-				}
 			}
 		});
 	}
@@ -115,6 +105,9 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 				mListener.onSignInButtonClicked();
 				break;
 			case R.id.home_whisply_picture:
+				if (!mIsWhisplyAnimationRunning) {
+					view.startAnimation(mWhisplyAnimation);
+				}
 				mListener.onWhisplyPictureClicked();
 				break;
 			default:
