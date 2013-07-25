@@ -3,7 +3,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/default_padding">
+                android:padding="@dimen/default_padding"
+                android:background="@color/background_grey">
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +32,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin">
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="@drawable/card_shadow_base"
+            android:padding="@dimen/default_padding">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -124,8 +127,10 @@
             android:text="@string/score_skip_button"
             android:id="@+id/score_button_skip"
             android:background="@drawable/button_play"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/default_padding"
+            android:layout_marginLeft="@dimen/default_padding"
             />
 
         <Button
@@ -134,8 +139,9 @@
             android:text="@string/score_replay_button"
             android:id="@+id/score_button_replay"
             android:background="@drawable/button_play"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="@dimen/half_padding"/>
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/default_padding"
+            android:layout_marginLeft="@dimen/default_padding"/>
 
         <Button
             android:layout_width="match_parent"
@@ -143,8 +149,9 @@
             android:text="@string/score_home_button"
             android:id="@+id/score_button_home"
             android:background="@drawable/button_play"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="@dimen/half_padding"/>
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/default_padding"
+            android:layout_marginLeft="@dimen/default_padding"/>
     </LinearLayout>
 
 </RelativeLayout>
