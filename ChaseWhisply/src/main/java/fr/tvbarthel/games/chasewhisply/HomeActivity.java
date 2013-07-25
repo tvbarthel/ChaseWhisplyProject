@@ -20,10 +20,15 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	private GameHomeFragment mGameHomeFragment;
 	private AboutFragment mAboutFragment;
 
+	//sign in
+	private boolean mSignedIn;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_home);
+
+		mSignedIn = false;
 
 		if (savedInstanceState == null) {
 			mGameHomeFragment = new GameHomeFragment();
@@ -47,6 +52,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onSignInSucceeded() {
+		mSignedIn = true;
 	}
 
 	@Override
@@ -56,7 +62,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowAchievementsRequested() {
-		if (getGamesClient().isConnected()) {
+		if (mSignedIn) {
 			startActivityForResult(getGamesClient().getAchievementsIntent(), REQUEST_ACHIEVEMENT);
 		} else {
 			makeToast(getResources().getString(R.string.home_not_sign_in_achievement));
@@ -65,7 +71,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowLeaderboardsRequested() {
-		if (getGamesClient().isConnected()) {
+		if (mSignedIn) {
 			startActivityForResult(getGamesClient().getLeaderboardIntent(
 					getResources().getString(R.string.leaderboard_easy)), REQUEST_LEADERBOARD);
 		} else {
@@ -94,7 +100,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onWhisplyPictureClicked() {
-		if (getGamesClient().isConnected()) {
+		if (mSignedIn) {
 			getGamesClient().unlockAchievement(getResources().getString(R.string.achievement_curiosity));
 		}
 	}
