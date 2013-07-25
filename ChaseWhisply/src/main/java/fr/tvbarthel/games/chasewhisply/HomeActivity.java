@@ -67,7 +67,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowAboutRequested() {
-
 	}
 
 	@Override
@@ -82,6 +81,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onWhisplyPictureClicked() {
-
+		if (getGamesClient().isConnected()) {
+			getGamesClient().unlockAchievement(getResources().getString(R.string.achievement_curiosity));
+		}
 	}
 }
