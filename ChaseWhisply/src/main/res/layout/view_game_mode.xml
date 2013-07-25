@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageButton
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:padding="4dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,5 +15,6 @@
         android:id="@+id/textView"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="#888888" />
+        android:textColor="#888888"
+        android:padding="@dimen/half_padding"/>
 </merge>

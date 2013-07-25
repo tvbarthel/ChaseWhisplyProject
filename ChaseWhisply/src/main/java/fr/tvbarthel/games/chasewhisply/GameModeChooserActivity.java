@@ -23,7 +23,7 @@ public class GameModeChooserActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				final Intent i = new Intent(GameModeChooserActivity.this, GameActivity.class);
-				final GameModeView modeView = (GameModeView) view.getParent();
+				final GameModeView modeView = (GameModeView) view;
 				i.putExtra(GameActivity.EXTRA_GAME_MODE, modeView.getModel());
 				startActivity(i);
 				finish();

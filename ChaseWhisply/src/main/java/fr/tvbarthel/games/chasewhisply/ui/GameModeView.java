@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,7 +14,7 @@ import fr.tvbarthel.games.chasewhisply.model.GameMode;
 public class GameModeView extends LinearLayout {
 
 	private TextView mGameModeRules;
-	private ImageButton mGameModeImage;
+	private ImageView mGameModeImage;
 	private GameMode mModel;
 
 	public GameModeView(Context context) {
@@ -24,14 +24,16 @@ public class GameModeView extends LinearLayout {
 	public GameModeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		setOrientation(LinearLayout.VERTICAL);
+		setOrientation(LinearLayout.HORIZONTAL);
 		setGravity(Gravity.CENTER_HORIZONTAL);
+		setBackgroundResource(R.drawable.card_shadow);
+		setClickable(true);
 
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.view_game_mode, this, true);
 
-		mGameModeImage = (ImageButton) getChildAt(0);
+		mGameModeImage = (ImageView) getChildAt(0);
 		mGameModeRules = (TextView) getChildAt(1);
 
 	}
@@ -62,7 +64,7 @@ public class GameModeView extends LinearLayout {
 	 * @param listener
 	 */
 	public void setGameModeSelectedListener(OnClickListener listener) {
-		mGameModeImage.setOnClickListener(listener);
+		this.setOnClickListener(listener);
 	}
 
 	public void setGameModeEnabled(boolean isAllowed) {
