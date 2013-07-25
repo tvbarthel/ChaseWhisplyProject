@@ -28,7 +28,7 @@
                 android:text="@string/home_play"
                 android:id="@+id/home_play"
                 android:background="@drawable/button_play"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
 
             <Button
                 android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                 android:text="@string/home_leaderboard"
                 android:id="@+id/home_leaderboard"
                 android:background="@drawable/button_leaderboard"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
 
 
         </LinearLayout>
@@ -56,7 +56,7 @@
                 android:text="@string/home_achievement"
                 android:id="@+id/home_achievement"
                 android:background="@drawable/button_achievement"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
 
             <Button
                 android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 android:id="@+id/home_about"
                 android:layout_gravity="center"
                 android:background="@drawable/about"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>
@@ -78,7 +78,7 @@
         android:background="@drawable/button_signin"
         android:gravity="center"
         android:layout_gravity="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:layout_below="@+id/menu"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_vertical_margin" />
@@ -91,7 +91,7 @@
         android:id="@+id/textView"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="#888888"
+        android:textColor="@color/text_view_grey"
         android:layout_below="@+id/home_sign_in"
         android:layout_alignRight="@+id/menu"
         android:layout_alignLeft="@+id/menu" />
@@ -104,7 +104,7 @@
         android:id="@+id/textView2"
         android:layout_above="@+id/menu"
         android:layout_centerHorizontal="true"
-        android:textColor="#888888"
+        android:textColor="@color/text_view_grey"
         android:textSize="28sp"
         android:textIsSelectable="false"
         android:layout_marginBottom="@dimen/activity_vertical_margin" />

@@ -43,5 +43,5 @@
         android:layout_above="@+id/linearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:textColor="#888888" />
+        android:textColor="@color/text_view_grey" />
 </RelativeLayout>
