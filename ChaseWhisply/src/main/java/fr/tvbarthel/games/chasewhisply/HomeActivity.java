@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.google.android.gms.games.GamesClient;
+
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
@@ -143,8 +145,15 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
     @Override
     public void onPushScoreRequested(int score) {
-        if (getGamesClient().isConnected()) {
-            getGamesClient().submitScore(getResources().getString(R.string.leaderboard_easy), score);
+        final GamesClient gamesClient = getGamesClient();
+        if (gamesClient.isConnected()) {
+            gamesClient.submitScore(getResources().getString(R.string.leaderboard_easy), score);
+            gamesClient.incrementAchievement(getResources().getString(R.string.achievement_bored), 1);
+            gamesClient.incrementAchievement(getResources().getString(R.string.achievement_realy_bored), 1);
+            if (score == 0) {
+                gamesClient.unlockAchievement(getResources().getString(R.string.achievement_humble));
+            }
+
         }
 
     }
