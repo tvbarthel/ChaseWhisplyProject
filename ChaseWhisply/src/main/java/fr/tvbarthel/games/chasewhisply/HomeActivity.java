@@ -45,7 +45,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		} else if (savedInstanceState == null) {
 			mGameHomeFragment = new GameHomeFragment();
 			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-					mGameHomeFragment).commit();
+					mGameHomeFragment, GameHomeFragment.FRAGMENT_TAG).commit();
 		}
 
 	}
@@ -65,7 +65,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	public void onSignInSucceeded() {
 		mSignedIn = true;
 		final Fragment gameHomeFragment = getSupportFragmentManager()
-				.findFragmentById(R.id.game_home_fragment_container);
+				.findFragmentByTag(GameHomeFragment.FRAGMENT_TAG);
 		if (gameHomeFragment != null) {
 			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(true);
 		}
@@ -76,7 +76,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		mSignedIn = false;
 		makeToast(getString(R.string.home_sign_out_success));
 		final Fragment gameHomeFragment = getSupportFragmentManager()
-				.findFragmentById(R.id.game_home_fragment_container);
+				.findFragmentByTag(GameHomeFragment.FRAGMENT_TAG);
 		if (gameHomeFragment != null) {
 			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(false);
 		}

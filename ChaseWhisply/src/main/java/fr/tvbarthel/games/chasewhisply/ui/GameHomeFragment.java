@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import fr.tvbarthel.games.chasewhisply.R;
 
 public class GameHomeFragment extends Fragment implements View.OnClickListener {
+	public static final String FRAGMENT_TAG = "GameHomeFragment_TAG";
 
 	private Listener mListener = null;
 	//animation
