@@ -13,25 +13,7 @@ import fr.tvbarthel.games.chasewhisply.R;
 
 public class GameHomeFragment extends Fragment implements View.OnClickListener {
 
-	//interface
-	public interface Listener {
-		public void onStartGameRequested();
-
-		public void onShowAchievementsRequested();
-
-		public void onShowLeaderboardsRequested();
-
-		public void onShowAboutRequested();
-
-		public void onSignInButtonClicked();
-
-		public void onSignOutButtonClicked();
-
-		public void onWhisplyPictureClicked();
-	}
-
 	private Listener mListener = null;
-
 	//animation
 	private Animation mWhisplyAnimation;
 	private boolean mIsWhisplyAnimationRunning;
@@ -45,6 +27,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 				R.id.home_achievement,
 				R.id.home_about,
 				R.id.home_sign_in,
+				R.id.home_sign_out,
 				R.id.home_whisply_picture
 		};
 		for (int i : clickable) {
@@ -109,6 +92,9 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 			case R.id.home_about:
 				mListener.onShowAboutRequested();
 				break;
+			case R.id.home_sign_out:
+				mListener.onSignOutButtonClicked();
+				break;
 			case R.id.home_sign_in:
 				mListener.onSignInButtonClicked();
 				break;
@@ -121,5 +107,34 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 			default:
 				break;
 		}
+	}
+
+	public void notifySignedStateChanged(boolean signedIn) {
+		final Activity activity = getActivity();
+		if (signedIn) {
+			activity.findViewById(R.id.home_sign_in).setVisibility(View.GONE);
+			activity.findViewById(R.id.home_sign_out).setVisibility(View.VISIBLE);
+		} else {
+			activity.findViewById(R.id.home_sign_out).setVisibility(View.GONE);
+			activity.findViewById(R.id.home_sign_in).setVisibility(View.VISIBLE);
+		}
+
+	}
+
+	//interface
+	public interface Listener {
+		public void onStartGameRequested();
+
+		public void onShowAchievementsRequested();
+
+		public void onShowLeaderboardsRequested();
+
+		public void onShowAboutRequested();
+
+		public void onSignInButtonClicked();
+
+		public void onSignOutButtonClicked();
+
+		public void onWhisplyPictureClicked();
 	}
 }

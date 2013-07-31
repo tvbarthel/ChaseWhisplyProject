@@ -64,6 +64,18 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp" />
 
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_sign_out"
+                    android:id="@+id/home_sign_out"
+                    android:background="@drawable/button_signin"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone" />
+
 
         </LinearLayout>
 
