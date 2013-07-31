@@ -124,6 +124,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.score_button_home:
                 mListener.onHomeRequested();
+                mListener.onPushScoreRequested(mGameInformation.getCurrentScore());
                 break;
             case R.id.score_button_skip:
                 mListener.onSkipRequested();
@@ -185,9 +186,6 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         mMaxComboTextView.setText(String.valueOf(mGameInformation.getMaxCombo()));
         mFinalScoreTextView.setText(String.valueOf(mGameInformation.getCurrentScore()));
         mIsDisplayDone = true;
-
-        //TODO protect from multi push on rotation
-        mListener.onPushScoreRequested(mGameInformation.getCurrentScore());
     }
 
     private void incrementCurrentScoreDisplayed() {
