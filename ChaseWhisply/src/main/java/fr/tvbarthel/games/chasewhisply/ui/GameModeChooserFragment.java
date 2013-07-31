@@ -18,7 +18,7 @@ public class GameModeChooserFragment extends Fragment implements View.OnClickLis
     private Listener mListener;
 
     public interface Listener {
-        public void onLevelChoosen(GameModeView g
+        public void onLevelChosen(GameModeView g
         );
     }
 
@@ -55,7 +55,7 @@ public class GameModeChooserFragment extends Fragment implements View.OnClickLis
         switch (view.getId()) {
             case R.id.mode1:
             case R.id.mode2:
-                mListener.onLevelChoosen((GameModeView) view);
+                mListener.onLevelChosen((GameModeView) view);
                 break;
         }
 

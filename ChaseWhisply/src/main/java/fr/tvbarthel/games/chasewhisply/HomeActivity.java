@@ -11,9 +11,11 @@ import com.google.android.gms.games.GamesClient;
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
+import fr.tvbarthel.games.chasewhisply.ui.GameModeChooserFragment;
+import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.GameScoreFragment;
 
-public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener {
+public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener, GameModeChooserFragment.Listener {
 
     //Request code
     private static final int REQUEST_ACHIEVEMENT = 0x00000000;
@@ -22,6 +24,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
     //Fragments
     private GameHomeFragment mGameHomeFragment;
     private GameScoreFragment mGameScoreFragment;
+    private GameModeChooserFragment mGameModeChooserFragment;
+
     private AboutFragment mAboutFragment;
 
     //sign in
@@ -41,7 +45,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
             mGameScoreFragment.setArguments(b);
             getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
                     mGameScoreFragment).commit();
-			getIntent().removeExtra(GameScoreFragment.EXTRA_GAME_INFORMATION);
+            getIntent().removeExtra(GameScoreFragment.EXTRA_GAME_INFORMATION);
         } else if (savedInstanceState == null) {
             mGameHomeFragment = new GameHomeFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
@@ -68,7 +72,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
     @Override
     public void onStartGameRequested() {
-        startActivity(new Intent(HomeActivity.this, GameModeChooserActivity.class));
+        if (mGameModeChooserFragment == null) {
+            mGameModeChooserFragment = new GameModeChooserFragment();
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+                mGameModeChooserFragment).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
     }
 
     @Override
@@ -157,5 +165,12 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
         }
 
+    }
+
+    @Override
+    public void onLevelChosen(GameModeView g) {
+        final Intent i = new Intent(this, GameActivity.class);
+        i.putExtra(GameActivity.EXTRA_GAME_MODE, g.getModel());
+        startActivity(i);
     }
 }
