@@ -1,7 +1,10 @@
 package fr.tvbarthel.games.chasewhisply.ui;
 
 
-public class GameScoreFragment {
+import android.app.Activity;
+import android.support.v4.app.Fragment;
+
+public class GameScoreFragment extends Fragment {
 
     //interface
     public interface Listener {
@@ -15,4 +18,15 @@ public class GameScoreFragment {
     }
 
     private Listener mListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof GameScoreFragment.Listener) {
+            mListener = (GameScoreFragment.Listener) activity;
+        } else {
+            throw new ClassCastException(activity.toString()
+                    + " must implemenet GameScoreFragment.Listener");
+        }
+    }
 }
