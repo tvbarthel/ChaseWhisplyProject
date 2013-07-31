@@ -16,18 +16,6 @@ import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
 public class GameScoreFragment extends Fragment implements View.OnClickListener {
 
 
-    //interface
-    public interface Listener {
-        public void onReplayRequested();
-
-        public void onSkipRequested();
-
-        public void onHomeRequested();
-
-        public void onPushScoreRequested(int score);
-    }
-
-    private Listener mListener = null;
     public static final String EXTRA_GAME_INFORMATION = "GameScoreFragment.Extra.GameInformation";
     private static final String BUNDLE_IS_DISPLAY_DONE = GameScoreFragment.class.getName() + ".Bundle.isDisplayDone";
     private static final String BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED =
@@ -40,9 +28,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
             GameScoreFragment.class.getName() + ".Bundle.currentFinalScore";
     private static final long TICK_INTERVAL = 100;
     private static final int NUMBER_OF_TICK = 30;
-
+    private Listener mListener = null;
     private GameInformation mGameInformation;
-
     private TimerRoutine mTimerRoutine;
     private float mNumberOfBulletsFiredByTick;
     private float mCurrentNumberOfBulletsFired;
@@ -54,12 +41,20 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
     private float mCurrentFinalScore;
     private float mCurrentTickNumber;
     private boolean mIsDisplayDone = false;
-
     //UI
     private TextView mNumberOfBulletsFiredTextView;
     private TextView mNumberOfTargetsKilledTextView;
     private TextView mMaxComboTextView;
     private TextView mFinalScoreTextView;
+
+    public static GameScoreFragment newInstance(GameInformation gameInformation) {
+        final GameScoreFragment fragment = new GameScoreFragment();
+        final Bundle arguments = new Bundle();
+        arguments.putParcelable(GameScoreFragment.EXTRA_GAME_INFORMATION,
+                gameInformation);
+        fragment.setArguments(arguments);
+        return fragment;
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -118,7 +113,6 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         return v;
     }
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -135,7 +129,6 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         }
 
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -199,6 +192,17 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         mNumberOfTargetsKilledTextView.setText(String.valueOf((int) mCurrentNumberOfTargetsKilled));
         mMaxComboTextView.setText(String.valueOf((int) mCurrentMaxCombo));
         mFinalScoreTextView.setText(String.valueOf((int) mCurrentFinalScore));
+    }
+
+    //interface
+    public interface Listener {
+        public void onReplayRequested();
+
+        public void onSkipRequested();
+
+        public void onHomeRequested();
+
+        public void onPushScoreRequested(int score);
     }
 
 

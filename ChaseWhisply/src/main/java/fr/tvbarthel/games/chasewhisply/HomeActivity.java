@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.google.android.gms.games.GamesClient;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
+import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeChooserFragment;
@@ -20,14 +21,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
     //Request code
     private static final int REQUEST_ACHIEVEMENT = 0x00000000;
     private static final int REQUEST_LEADERBOARD = 0x00000001;
-
     //Fragments
     private GameHomeFragment mGameHomeFragment;
     private GameScoreFragment mGameScoreFragment;
     private GameModeChooserFragment mGameModeChooserFragment;
-
     private AboutFragment mAboutFragment;
-
     //sign in
     private boolean mSignedIn;
 
@@ -39,10 +37,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
         mSignedIn = false;
 
         if (getIntent().hasExtra(GameScoreFragment.EXTRA_GAME_INFORMATION)) {
-            mGameScoreFragment = new GameScoreFragment();
-            Bundle b = new Bundle();
-            b.putParcelable(GameScoreFragment.EXTRA_GAME_INFORMATION, getIntent().getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION));
-            mGameScoreFragment.setArguments(b);
+            mGameScoreFragment = GameScoreFragment.newInstance((GameInformation)
+                    getIntent().getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION));
             getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
                     mGameScoreFragment).commit();
             getIntent().removeExtra(GameScoreFragment.EXTRA_GAME_INFORMATION);
