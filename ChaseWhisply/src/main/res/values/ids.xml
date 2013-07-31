@@ -2,13 +2,12 @@
 
 <resources>
     <string name="app_id">144497579336</string>
-    <string name="achievement_prime">CgkIyKropZoEEAIQAQ</string>
-    <string name="achievement_humble">CgkIyKropZoEEAIQAg</string>
-    <string name="achievement_arrogant">CgkIyKropZoEEAIQAw</string>
-    <string name="achievement_leet">CgkIyKropZoEEAIQBA</string>
-    <string name="achievement_bored">CgkIyKropZoEEAIQBQ</string>
-    <string name="achievement_realy_bored">CgkIyKropZoEEAIQBg</string>
+    <string name="achievement_pacifist">CgkIyKropZoEEAIQAg</string>
     <string name="achievement_curiosity">CgkIyKropZoEEAIQCQ</string>
+    <string name="achievement_soldier">CgkIyKropZoEEAIQCg</string>
+    <string name="achievement_corporal">CgkIyKropZoEEAIQCw</string>
+    <string name="achievement_sergeant">CgkIyKropZoEEAIQDA</string>
+
     <string name="leaderboard_easy">CgkIyKropZoEEAIQBw</string>
     <string name="leaderboard_hard">CgkIyKropZoEEAIQCA</string>
 </resources>

@@ -18,7 +18,6 @@ import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.GameScoreFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener, GameModeChooserFragment.Listener {
-
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
@@ -166,18 +165,18 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	}
 
 	@Override
-	public void onPushScoreRequested(int score) {
+	public void onUpdateAchievements(final GameInformation gameInformation) {
 		final GamesClient gamesClient = getGamesClient();
 		if (gamesClient.isConnected()) {
+			final int score = gameInformation.getCurrentScore();
 			gamesClient.submitScore(getResources().getString(R.string.leaderboard_easy), score);
-			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_bored), 1);
-			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_realy_bored), 1);
+			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_soldier), 1);
+			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_corporal), 1);
+			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_sergeant), 1);
 			if (score == 0) {
-				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_humble));
+				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_pacifist));
 			}
-
 		}
-
 	}
 
 	@Override

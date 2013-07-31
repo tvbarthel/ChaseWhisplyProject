@@ -14,196 +14,195 @@ import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
 
 public class GameScoreFragment extends Fragment implements View.OnClickListener {
+	public static final String EXTRA_GAME_INFORMATION = "GameScoreFragment.Extra.GameInformation";
+	private static final String BUNDLE_IS_DISPLAY_DONE = GameScoreFragment.class.getName() + ".Bundle.isDisplayDone";
+	private static final String BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED =
+			GameScoreFragment.class.getName() + ".Bundle.currentNumberOfBulletsFired";
+	private static final String BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED =
+			GameScoreFragment.class.getName() + ".Bundle.currentNumberOfTargetsKilled";
+	private static final String BUNDLE_CURRENT_MAX_COMBO =
+			GameScoreFragment.class.getName() + ".Bundle.currentMaxCombo";
+	private static final String BUNDLE_CURRENT_FINAL_SCORE =
+			GameScoreFragment.class.getName() + ".Bundle.currentFinalScore";
+	private static final long TICK_INTERVAL = 100;
+	private static final int NUMBER_OF_TICK = 30;
+	private Listener mListener = null;
+	private GameInformation mGameInformation;
+	private TimerRoutine mTimerRoutine;
+	private float mNumberOfBulletsFiredByTick;
+	private float mCurrentNumberOfBulletsFired;
+	private float mNumberOfTargetsKilledByTick;
+	private float mCurrentNumberOfTargetsKilled;
+	private float mComboByTick;
+	private float mCurrentMaxCombo;
+	private float mFinalScoreByTick;
+	private float mCurrentFinalScore;
+	private float mCurrentTickNumber;
+	private boolean mIsDisplayDone = false;
+	//UI
+	private TextView mNumberOfBulletsFiredTextView;
+	private TextView mNumberOfTargetsKilledTextView;
+	private TextView mMaxComboTextView;
+	private TextView mFinalScoreTextView;
 
+	public static GameScoreFragment newInstance(GameInformation gameInformation) {
+		final GameScoreFragment fragment = new GameScoreFragment();
+		final Bundle arguments = new Bundle();
+		arguments.putParcelable(GameScoreFragment.EXTRA_GAME_INFORMATION,
+				gameInformation);
+		fragment.setArguments(arguments);
+		return fragment;
+	}
 
-    public static final String EXTRA_GAME_INFORMATION = "GameScoreFragment.Extra.GameInformation";
-    private static final String BUNDLE_IS_DISPLAY_DONE = GameScoreFragment.class.getName() + ".Bundle.isDisplayDone";
-    private static final String BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED =
-            GameScoreFragment.class.getName() + ".Bundle.currentNumberOfBulletsFired";
-    private static final String BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED =
-            GameScoreFragment.class.getName() + ".Bundle.currentNumberOfTargetsKilled";
-    private static final String BUNDLE_CURRENT_MAX_COMBO =
-            GameScoreFragment.class.getName() + ".Bundle.currentMaxCombo";
-    private static final String BUNDLE_CURRENT_FINAL_SCORE =
-            GameScoreFragment.class.getName() + ".Bundle.currentFinalScore";
-    private static final long TICK_INTERVAL = 100;
-    private static final int NUMBER_OF_TICK = 30;
-    private Listener mListener = null;
-    private GameInformation mGameInformation;
-    private TimerRoutine mTimerRoutine;
-    private float mNumberOfBulletsFiredByTick;
-    private float mCurrentNumberOfBulletsFired;
-    private float mNumberOfTargetsKilledByTick;
-    private float mCurrentNumberOfTargetsKilled;
-    private float mComboByTick;
-    private float mCurrentMaxCombo;
-    private float mFinalScoreByTick;
-    private float mCurrentFinalScore;
-    private float mCurrentTickNumber;
-    private boolean mIsDisplayDone = false;
-    //UI
-    private TextView mNumberOfBulletsFiredTextView;
-    private TextView mNumberOfTargetsKilledTextView;
-    private TextView mMaxComboTextView;
-    private TextView mFinalScoreTextView;
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		if (activity instanceof GameScoreFragment.Listener) {
+			mListener = (GameScoreFragment.Listener) activity;
+		} else {
+			throw new ClassCastException(activity.toString()
+					+ " must implemenet GameScoreFragment.Listener");
+		}
+	}
 
-    public static GameScoreFragment newInstance(GameInformation gameInformation) {
-        final GameScoreFragment fragment = new GameScoreFragment();
-        final Bundle arguments = new Bundle();
-        arguments.putParcelable(GameScoreFragment.EXTRA_GAME_INFORMATION,
-                gameInformation);
-        fragment.setArguments(arguments);
-        return fragment;
-    }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.activity_score, container, false);
+		final int[] clickable = new int[]{
+				R.id.score_button_replay,
+				R.id.score_button_home,
+				R.id.score_button_skip
+		};
+		for (int i : clickable) {
+			v.findViewById(i).setOnClickListener(this);
+		}
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof GameScoreFragment.Listener) {
-            mListener = (GameScoreFragment.Listener) activity;
-        } else {
-            throw new ClassCastException(activity.toString()
-                    + " must implemenet GameScoreFragment.Listener");
-        }
-    }
+		if (savedInstanceState != null) {
+			mIsDisplayDone = savedInstanceState.getBoolean(BUNDLE_IS_DISPLAY_DONE, false);
+		}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_score, container, false);
-        final int[] clickable = new int[]{
-                R.id.score_button_replay,
-                R.id.score_button_home,
-                R.id.score_button_skip
-        };
-        for (int i : clickable) {
-            v.findViewById(i).setOnClickListener(this);
-        }
+		if (getArguments().containsKey(EXTRA_GAME_INFORMATION)) {
+			mGameInformation = (GameInformation) getArguments().getParcelable(EXTRA_GAME_INFORMATION);
+		}
 
-        if (savedInstanceState != null) {
-            mIsDisplayDone = savedInstanceState.getBoolean(BUNDLE_IS_DISPLAY_DONE, false);
-        }
+		mNumberOfTargetsKilledTextView = (TextView) v.findViewById(R.id.numberOfTargetsKilled);
+		mNumberOfBulletsFiredTextView = (TextView) v.findViewById(R.id.numberOfBulletsFired);
+		mMaxComboTextView = (TextView) v.findViewById(R.id.maxCombo);
+		mFinalScoreTextView = (TextView) v.findViewById(R.id.finalScore);
 
-        if (getArguments().containsKey(EXTRA_GAME_INFORMATION)) {
-            mGameInformation = (GameInformation) getArguments().getParcelable(EXTRA_GAME_INFORMATION);
-        }
+		mTimerRoutine = new TimerRoutine(TICK_INTERVAL) {
+			@Override
+			protected void doOnTick() {
+				if (mCurrentTickNumber >= NUMBER_OF_TICK) {
+					finalizeScoreDisplayed();
+				} else {
+					incrementCurrentScoreDisplayed();
+				}
+			}
+		};
 
-        mNumberOfTargetsKilledTextView = (TextView) v.findViewById(R.id.numberOfTargetsKilled);
-        mNumberOfBulletsFiredTextView = (TextView) v.findViewById(R.id.numberOfBulletsFired);
-        mMaxComboTextView = (TextView) v.findViewById(R.id.maxCombo);
-        mFinalScoreTextView = (TextView) v.findViewById(R.id.finalScore);
+		if (mIsDisplayDone) {
+			finalizeScoreDisplayed();
+		} else {
+			initScoreDisplay(savedInstanceState);
+			mTimerRoutine.startRoutine();
+		}
 
-        mTimerRoutine = new TimerRoutine(TICK_INTERVAL) {
-            @Override
-            protected void doOnTick() {
-                if (mCurrentTickNumber >= NUMBER_OF_TICK) {
-                    finalizeScoreDisplayed();
-                } else {
-                    incrementCurrentScoreDisplayed();
-                }
-            }
-        };
+		return v;
+	}
 
-        if (mIsDisplayDone) {
-            finalizeScoreDisplayed();
-        } else {
-            initScoreDisplay(savedInstanceState);
-            mTimerRoutine.startRoutine();
-        }
+	@Override
+	public void onClick(View view) {
+		switch (view.getId()) {
+			case R.id.score_button_home:
+				mListener.onHomeRequested();
+				mListener.onUpdateAchievements(mGameInformation);
+				break;
+			case R.id.score_button_skip:
+				mListener.onSkipRequested();
+				break;
+			case R.id.score_button_replay:
+				mListener.onUpdateAchievements(mGameInformation);
+				mListener.onReplayRequested();
+				break;
+		}
 
-        return v;
-    }
+	}
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.score_button_home:
-                mListener.onHomeRequested();
-                mListener.onPushScoreRequested(mGameInformation.getCurrentScore());
-                break;
-            case R.id.score_button_skip:
-                mListener.onSkipRequested();
-                break;
-            case R.id.score_button_replay:
-                mListener.onReplayRequested();
-                break;
-        }
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putBoolean(BUNDLE_IS_DISPLAY_DONE, mIsDisplayDone);
+		outState.putFloat(BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED, mCurrentNumberOfBulletsFired);
+		outState.putFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED, mCurrentNumberOfTargetsKilled);
+		outState.putFloat(BUNDLE_CURRENT_MAX_COMBO, mCurrentMaxCombo);
+		outState.putFloat(BUNDLE_CURRENT_FINAL_SCORE, mCurrentFinalScore);
 
-    }
+	}
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(BUNDLE_IS_DISPLAY_DONE, mIsDisplayDone);
-        outState.putFloat(BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED, mCurrentNumberOfBulletsFired);
-        outState.putFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED, mCurrentNumberOfTargetsKilled);
-        outState.putFloat(BUNDLE_CURRENT_MAX_COMBO, mCurrentMaxCombo);
-        outState.putFloat(BUNDLE_CURRENT_FINAL_SCORE, mCurrentFinalScore);
+	private void initCurrentScoreDisplayed(Bundle savedBundle) {
+		if (savedBundle != null) {
+			mCurrentNumberOfBulletsFired = savedBundle.getFloat(BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED);
+			mCurrentNumberOfTargetsKilled = savedBundle.getFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED);
+			mCurrentMaxCombo = savedBundle.getFloat(BUNDLE_CURRENT_MAX_COMBO);
+			mCurrentFinalScore = savedBundle.getFloat(BUNDLE_CURRENT_FINAL_SCORE);
+		} else {
+			mCurrentNumberOfBulletsFired = 0;
+			mCurrentNumberOfTargetsKilled = 0;
+			mCurrentMaxCombo = 0;
+			mCurrentFinalScore = 0;
+		}
+	}
 
-    }
+	private void initScoreByTick() {
+		if (mGameInformation != null) {
+			mNumberOfBulletsFiredByTick =
+					(float) (mGameInformation.getBulletFired() - mCurrentNumberOfBulletsFired) / NUMBER_OF_TICK;
+			mNumberOfTargetsKilledByTick =
+					(float) (mGameInformation.getFragNumber() - mCurrentNumberOfTargetsKilled) / NUMBER_OF_TICK;
+			mComboByTick = (float) (mGameInformation.getMaxCombo() - mCurrentMaxCombo) / NUMBER_OF_TICK;
+			mFinalScoreByTick = (float) (mGameInformation.getCurrentScore() - mCurrentFinalScore) / NUMBER_OF_TICK;
+		}
+	}
 
-    private void initCurrentScoreDisplayed(Bundle savedBundle) {
-        if (savedBundle != null) {
-            mCurrentNumberOfBulletsFired = savedBundle.getFloat(BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED);
-            mCurrentNumberOfTargetsKilled = savedBundle.getFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED);
-            mCurrentMaxCombo = savedBundle.getFloat(BUNDLE_CURRENT_MAX_COMBO);
-            mCurrentFinalScore = savedBundle.getFloat(BUNDLE_CURRENT_FINAL_SCORE);
-        } else {
-            mCurrentNumberOfBulletsFired = 0;
-            mCurrentNumberOfTargetsKilled = 0;
-            mCurrentMaxCombo = 0;
-            mCurrentFinalScore = 0;
-        }
-    }
+	private void initScoreDisplay(Bundle savedBundle) {
+		mCurrentTickNumber = 0;
+		initCurrentScoreDisplayed(savedBundle);
+		initScoreByTick();
+	}
 
-    private void initScoreByTick() {
-        if (mGameInformation != null) {
-            mNumberOfBulletsFiredByTick =
-                    (float) (mGameInformation.getBulletFired() - mCurrentNumberOfBulletsFired) / NUMBER_OF_TICK;
-            mNumberOfTargetsKilledByTick =
-                    (float) (mGameInformation.getFragNumber() - mCurrentNumberOfTargetsKilled) / NUMBER_OF_TICK;
-            mComboByTick = (float) (mGameInformation.getMaxCombo() - mCurrentMaxCombo) / NUMBER_OF_TICK;
-            mFinalScoreByTick = (float) (mGameInformation.getCurrentScore() - mCurrentFinalScore) / NUMBER_OF_TICK;
-        }
-    }
+	private void finalizeScoreDisplayed() {
+		mTimerRoutine.stopRoutine();
+		mNumberOfBulletsFiredTextView.setText(String.valueOf(mGameInformation.getBulletFired()));
+		mNumberOfTargetsKilledTextView.setText(String.valueOf(mGameInformation.getFragNumber()));
+		mMaxComboTextView.setText(String.valueOf(mGameInformation.getMaxCombo()));
+		mFinalScoreTextView.setText(String.valueOf(mGameInformation.getCurrentScore()));
+		mIsDisplayDone = true;
+	}
 
-    private void initScoreDisplay(Bundle savedBundle) {
-        mCurrentTickNumber = 0;
-        initCurrentScoreDisplayed(savedBundle);
-        initScoreByTick();
-    }
+	private void incrementCurrentScoreDisplayed() {
+		mCurrentTickNumber++;
+		mCurrentNumberOfBulletsFired += mNumberOfBulletsFiredByTick;
+		mCurrentNumberOfTargetsKilled += mNumberOfTargetsKilledByTick;
+		mCurrentMaxCombo += mComboByTick;
+		mCurrentFinalScore += mFinalScoreByTick;
 
-    private void finalizeScoreDisplayed() {
-        mTimerRoutine.stopRoutine();
-        mNumberOfBulletsFiredTextView.setText(String.valueOf(mGameInformation.getBulletFired()));
-        mNumberOfTargetsKilledTextView.setText(String.valueOf(mGameInformation.getFragNumber()));
-        mMaxComboTextView.setText(String.valueOf(mGameInformation.getMaxCombo()));
-        mFinalScoreTextView.setText(String.valueOf(mGameInformation.getCurrentScore()));
-        mIsDisplayDone = true;
-    }
+		mNumberOfBulletsFiredTextView.setText(String.valueOf((int) mCurrentNumberOfBulletsFired));
+		mNumberOfTargetsKilledTextView.setText(String.valueOf((int) mCurrentNumberOfTargetsKilled));
+		mMaxComboTextView.setText(String.valueOf((int) mCurrentMaxCombo));
+		mFinalScoreTextView.setText(String.valueOf((int) mCurrentFinalScore));
+	}
 
-    private void incrementCurrentScoreDisplayed() {
-        mCurrentTickNumber++;
-        mCurrentNumberOfBulletsFired += mNumberOfBulletsFiredByTick;
-        mCurrentNumberOfTargetsKilled += mNumberOfTargetsKilledByTick;
-        mCurrentMaxCombo += mComboByTick;
-        mCurrentFinalScore += mFinalScoreByTick;
+	//interface
+	public interface Listener {
+		public void onReplayRequested();
 
-        mNumberOfBulletsFiredTextView.setText(String.valueOf((int) mCurrentNumberOfBulletsFired));
-        mNumberOfTargetsKilledTextView.setText(String.valueOf((int) mCurrentNumberOfTargetsKilled));
-        mMaxComboTextView.setText(String.valueOf((int) mCurrentMaxCombo));
-        mFinalScoreTextView.setText(String.valueOf((int) mCurrentFinalScore));
-    }
+		public void onSkipRequested();
 
-    //interface
-    public interface Listener {
-        public void onReplayRequested();
+		public void onHomeRequested();
 
-        public void onSkipRequested();
-
-        public void onHomeRequested();
-
-        public void onPushScoreRequested(int score);
-    }
+		public void onUpdateAchievements(final GameInformation gameInformation);
+	}
 
 
 }
