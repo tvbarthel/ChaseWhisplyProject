@@ -36,8 +36,7 @@
             android:gravity="right"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding"
@@ -52,7 +51,9 @@
             android:text="@string/about_developer_card_title"
             android:id="@+id/textView3"
             android:textColor="@color/text_view_grey"
-            android:layout_marginBottom="@dimen/half_padding"/>
+            android:layout_marginBottom="@dimen/half_padding"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
 
         <TextView
             android:layout_width="fill_parent"
@@ -61,7 +62,7 @@
             android:text="@string/about_tbarthel_name"
             android:id="@+id/textView4"
             android:gravity="right"
-            />
+            android:layout_below="@+id/textView3"/>
 
         <TextView
             android:layout_width="fill_parent"
@@ -70,8 +71,17 @@
             android:text="@string/about_vbarthel_name"
             android:id="@+id/textView5"
             android:gravity="right"
-            />
+            android:layout_below="@+id/textView4"/>
 
-    </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/tvbarthel_logo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="false"
+            android:layout_alignBottom="@+id/textView5"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
