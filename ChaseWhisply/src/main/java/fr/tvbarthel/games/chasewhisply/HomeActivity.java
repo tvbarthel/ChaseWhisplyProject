@@ -41,6 +41,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
             mGameScoreFragment.setArguments(b);
             getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
                     mGameScoreFragment).commit();
+			getIntent().removeExtra(GameScoreFragment.EXTRA_GAME_INFORMATION);
         } else if (savedInstanceState == null) {
             mGameHomeFragment = new GameHomeFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
