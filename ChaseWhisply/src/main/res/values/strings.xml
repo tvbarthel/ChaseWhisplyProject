@@ -45,5 +45,7 @@
     <string name="about_developer_card_title">Developers</string>
     <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
     <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
+    <string name="about_thanks_section">Special Thanks to ...</string>
+    <string name="about_tkeunebr_name">Thomas Keunebroek</string>
 
 </resources>

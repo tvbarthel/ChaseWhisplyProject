@@ -42,7 +42,8 @@
         android:padding="@dimen/default_padding"
         android:background="@drawable/card_shadow_base"
         android:layout_centerInParent="true"
-        android:id="@+id/linearLayout2">
+        android:id="@+id/linearLayout2"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,5 +84,32 @@
             android:layout_alignBottom="@+id/textView5"/>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/default_padding"
+        android:background="@drawable/card_shadow_base">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/about_thanks_section"
+            android:id="@+id/textView6"
+            android:textColor="@color/text_view_grey"
+            android:layout_marginBottom="@dimen/half_padding"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/about_tkeunebr_name"
+            android:id="@+id/textView7"
+            android:gravity="right"/>
+    </LinearLayout>
 
 </RelativeLayout>
