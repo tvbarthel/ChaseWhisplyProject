@@ -107,7 +107,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/about_tkeunebr_name"
+            android:text="@string/about_thanks_tkeunebr"
             android:id="@+id/textView7"
             android:gravity="right"/>
     </LinearLayout>
