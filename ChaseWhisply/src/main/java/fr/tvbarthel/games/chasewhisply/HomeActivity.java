@@ -1,7 +1,11 @@
 package fr.tvbarthel.games.chasewhisply;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
@@ -123,7 +127,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onSignOutButtonClicked() {
-		signOut();
+		SignOutConfirmDialogFragment.newInstance().show(getSupportFragmentManager(), "dialog");
 	}
 
 	@Override
@@ -180,5 +184,34 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		final Intent i = new Intent(this, GameActivity.class);
 		i.putExtra(GameActivity.EXTRA_GAME_MODE, g.getModel());
 		startActivityForResult(i, REQUEST_GAME_ACTIVITY);
+	}
+
+	public static class SignOutConfirmDialogFragment extends DialogFragment {
+		public static SignOutConfirmDialogFragment newInstance() {
+			return new SignOutConfirmDialogFragment();
+		}
+
+		public SignOutConfirmDialogFragment() {
+		}
+
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			return new AlertDialog.Builder(getActivity())
+					.setTitle(R.string.app_name)
+					.setMessage(R.string.home_sign_out_confirm_dialog_message)
+					.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialogInterface, int which) {
+							((HomeActivity) getActivity()).signOut();
+						}
+					})
+					.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialogInterface, int which) {
+							dialogInterface.dismiss();
+						}
+					})
+					.create();
+		}
 	}
 }
