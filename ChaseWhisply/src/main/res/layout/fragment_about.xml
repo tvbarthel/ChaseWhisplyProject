@@ -1,115 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/background_grey"
-                android:padding="@dimen/default_padding">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/card_shadow_base"
-        android:padding="@dimen/default_padding"
-        android:id="@+id/linearLayout"
-        android:layout_above="@+id/linearLayout2"
-        android:layout_alignLeft="@+id/linearLayout2"
-        android:layout_alignRight="@+id/linearLayout2"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/about_title"
-            android:id="@+id/textView"
-            android:textColor="@color/text_view_grey"
-            />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/about_version_detail"
-            android:id="@+id/textView2"
-            android:gravity="right"/>
-    </LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
-        android:background="@drawable/card_shadow_base"
-        android:layout_centerInParent="true"
-        android:id="@+id/linearLayout2"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
+        android:background="@color/background_grey"
+        android:padding="@dimen/default_padding">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/about_developer_card_title"
-            android:id="@+id/textView3"
-            android:textColor="@color/text_view_grey"
-            android:layout_marginBottom="@dimen/half_padding"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
+            android:layout_above="@+id/linearLayout2"
+            android:layout_alignLeft="@+id/linearLayout2"
+            android:layout_alignRight="@+id/linearLayout2"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="@drawable/card_shadow_base"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding">
 
-        <TextView
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_title"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text_view_grey" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/about_version_detail"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/about_tbarthel_name"
-            android:id="@+id/textView4"
-            android:gravity="right"
-            android:layout_below="@+id/textView3"/>
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="@drawable/card_shadow_base"
+            android:padding="@dimen/default_padding">
 
-        <TextView
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/half_padding"
+                android:text="@string/about_developer_card_title"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text_view_grey" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView3"
+                android:gravity="right"
+                android:text="@string/about_tbarthel_name"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView4"
+                android:gravity="right"
+                android:text="@string/about_vbarthel_name"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView5"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/tvbarthel_logo" />
+
+        </RelativeLayout>
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/about_vbarthel_name"
-            android:id="@+id/textView5"
-            android:gravity="right"
-            android:layout_below="@+id/textView4"/>
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/card_shadow_base"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@drawable/tvbarthel_logo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="false"
-            android:layout_alignBottom="@+id/textView5"/>
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/half_padding"
+                android:text="@string/about_thanks_section"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text_view_grey" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/about_thanks_tkeunebr"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_centerHorizontal="true"
-        android:padding="@dimen/default_padding"
-        android:background="@drawable/card_shadow_base">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/about_thanks_section"
-            android:id="@+id/textView6"
-            android:textColor="@color/text_view_grey"
-            android:layout_marginBottom="@dimen/half_padding"/>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/about_thanks_tkeunebr"
-            android:id="@+id/textView7"
-            android:gravity="right"/>
-    </LinearLayout>
-
-</RelativeLayout>
+</ScrollView>
