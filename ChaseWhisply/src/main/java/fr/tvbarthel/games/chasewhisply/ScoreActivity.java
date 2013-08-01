@@ -47,7 +47,7 @@ public class ScoreActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_score);
+		setContentView(R.layout.fragment_score);
 
 		if (savedInstanceState != null) {
 			mIsDisplayDone = savedInstanceState.getBoolean(BUNDLE_IS_DISPLAY_DONE, false);

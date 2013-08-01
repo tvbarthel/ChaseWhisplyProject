@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_grey"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignLeft="@+id/linearLayout"
+            android:layout_alignRight="@+id/linearLayout"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey"
+            android:textIsSelectable="false"
+            android:textSize="28sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/card_shadow_base"
+                android:padding="@dimen/default_padding">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/half_padding"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/half_padding"
+                        android:text="@string/score_number_of_targets_killed"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/half_padding"
+                        android:text="@string/score_number_of_bullets_fired"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/half_padding"
+                        android:text="@string/score_max_combo"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding"
+                        android:text="@string/score_final_score"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Large" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/half_padding"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/numberOfTargetsKilled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="@dimen/half_padding"
+                        android:singleLine="false"
+                        android:text="@string/integer_zero"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                    <TextView
+                        android:id="@+id/numberOfBulletsFired"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="@dimen/half_padding"
+                        android:text="@string/integer_zero"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                    <TextView
+                        android:id="@+id/maxCombo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="@dimen/half_padding"
+                        android:text="@string/integer_zero"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                    <TextView
+                        android:id="@+id/finalScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="@dimen/default_padding"
+                        android:text="@string/integer_zero"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Large" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/score_button_skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_play"
+                    android:text="@string/score_skip_button"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/score_button_replay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_play"
+                    android:text="@string/score_replay_button"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/score_button_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_play"
+                    android:text="@string/score_home_button"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

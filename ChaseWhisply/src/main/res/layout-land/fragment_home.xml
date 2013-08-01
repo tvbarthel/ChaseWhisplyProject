@@ -1,138 +1,144 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/menu"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:padding="@dimen/default_padding"
-        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:gravity="center"
-            android:layout_marginRight="@dimen/activity_horizontal_margin">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/home_play"
-                android:id="@+id/home_play"
-                android:background="@drawable/button_play"
-                android:textColor="@color/white" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/home_leaderboard"
-                android:id="@+id/home_leaderboard"
-                android:background="@drawable/button_leaderboard"
-                android:textColor="@color/white" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:gravity="center"
-            android:id="@+id/linearLayout"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/home_achievement"
-                android:id="@+id/home_achievement"
-                android:background="@drawable/button_achievement"
-                android:textColor="@color/white" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/home_about"
-                android:id="@+id/home_about"
-                android:layout_gravity="center"
-                android:background="@drawable/about"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/menu"
+            android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:gravity="center"
-            android:layout_alignLeft="@+id/menu"
-            android:layout_alignRight="@+id/menu"
-            android:layout_gravity="center">
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_sign_in"
-            android:id="@+id/home_sign_in"
-            android:background="@drawable/button_signin"
-            android:textColor="@color/white"
-            android:gravity="center" />
-
-        <Button
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home_sign_out"
-                android:id="@+id/home_sign_out"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/home_play"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_play"
+                    android:text="@string/home_play"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/home_leaderboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_leaderboard"
+                    android:text="@string/home_leaderboard"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/home_achievement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_achievement"
+                    android:text="@string/home_achievement"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/home_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/about"
+                    android:text="@string/home_about"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/menu"
+            android:layout_alignRight="@+id/menu"
+            android:layout_below="@+id/menu"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/home_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/button_signin"
                 android:gravity="center"
+                android:text="@string/home_sign_in"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/home_sign_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_signin"
+                android:gravity="center"
+                android:text="@string/home_sign_out"
                 android:textColor="@color/white"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/home_sign_info"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text_view_grey" />
+
+        </LinearLayout>
+
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/home_sign_info"
-            android:id="@+id/textView"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/text_view_grey" />
+            android:layout_above="@+id/menu"
+            android:layout_centerHorizontal="true"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey"
+            android:textIsSelectable="false"
+            android:textSize="28sp" />
 
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/app_name"
-        android:id="@+id/textView2"
-        android:textColor="@color/text_view_grey"
-        android:textSize="28sp"
-        android:textIsSelectable="false"
-        android:layout_above="@+id/menu"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
             android:id="@+id/home_whisply_picture"
-            android:src="@drawable/ghost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
+            android:layout_marginBottom="-40dp"
             android:layout_marginLeft="-10dp"
-            android:layout_marginBottom="-40dp"/>
+            android:src="@drawable/ghost" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>
