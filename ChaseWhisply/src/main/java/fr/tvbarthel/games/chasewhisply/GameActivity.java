@@ -26,219 +26,219 @@ import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
 public class GameActivity extends Activity implements SensorEventListener, GameEngine.IGameEngine {
 
-    public static final String EXTRA_GAME_MODE = "ExtraGameModeFromChooser";
+	public static final String EXTRA_GAME_MODE = "ExtraGameModeFromChooser";
 
-    private Camera mCamera;
-    private CameraPreview mCameraPreview;
-    private GameInformation mGameInformation;
-    private GameEngine mGameEngine;
-    private GameView mGameView;
-    private GameMode mGameMode;
+	private Camera mCamera;
+	private CameraPreview mCameraPreview;
+	private GameInformation mGameInformation;
+	private GameEngine mGameEngine;
+	private GameView mGameView;
+	private GameMode mGameMode;
 
-    //Sensor
-    private SensorManager mSensorManager;
-    private Sensor mAccelerometer;
-    private Sensor mMagneticField;
-    private float[] magVals = new float[3];
-    private float[] accelVals = new float[3];
-    private float[] orientationVals = new float[3];
-    private float[] rotationMatrix = new float[9];
-    private static final float NOISE = 0.03f;
-    private static final int TEMP_SIZE = 20;
-    private final float[] mCoordinate = new float[2];
+	//Sensor
+	private SensorManager mSensorManager;
+	private Sensor mAccelerometer;
+	private Sensor mMagneticField;
+	private float[] magVals = new float[3];
+	private float[] accelVals = new float[3];
+	private float[] orientationVals = new float[3];
+	private float[] rotationMatrix = new float[9];
+	private static final float NOISE = 0.03f;
+	private static final int TEMP_SIZE = 20;
+	private final float[] mCoordinate = new float[2];
 
-    private ArrayList<float[]> mCoordinateTemp = new ArrayList<float[]>();
-    private int mCoordinateTempCursor = 0;
+	private ArrayList<float[]> mCoordinateTemp = new ArrayList<float[]>();
+	private int mCoordinateTempCursor = 0;
 
-    //View Angle
-    private float mHorizontalViewAngle;
-    private float mVerticalViewAngle;
+	//View Angle
+	private float mHorizontalViewAngle;
+	private float mVerticalViewAngle;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        if (getIntent() == null || !getIntent().hasExtra(EXTRA_GAME_MODE)) {
-            finish();
-        } else {
-            mGameMode = (GameMode) getIntent().getParcelableExtra(EXTRA_GAME_MODE);
-        }
+		if (getIntent() == null || !getIntent().hasExtra(EXTRA_GAME_MODE)) {
+			finish();
+		} else {
+			mGameMode = (GameMode) getIntent().getParcelableExtra(EXTRA_GAME_MODE);
+		}
 
-        //Sensor
-        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-    }
+		//Sensor
+		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		mMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+	}
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mCamera = getCameraInstance();
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mCamera = getCameraInstance();
 
-        if (mCamera == null) {
-            finish();
-        }
+		if (mCamera == null) {
+			finish();
+		}
 
-        if (mGameInformation == null) {
-            //Angle view
-            final Camera.Parameters params = mCamera.getParameters();
-            mHorizontalViewAngle = params.getHorizontalViewAngle();
-            mVerticalViewAngle = params.getVerticalViewAngle();
+		if (mGameInformation == null) {
+			//Angle view
+			final Camera.Parameters params = mCamera.getParameters();
+			mHorizontalViewAngle = params.getHorizontalViewAngle();
+			mVerticalViewAngle = params.getVerticalViewAngle();
 
-            mGameInformation =
-                    GameInformationFactory.createEmptyDemoWorld(mHorizontalViewAngle, mVerticalViewAngle);
-        }
+			mGameInformation =
+					GameInformationFactory.createEmptyDemoWorld(mHorizontalViewAngle, mVerticalViewAngle);
+		}
 
-        mCameraPreview = new CameraPreview(this, mCamera);
-        setContentView(mCameraPreview);
-
-
-        //instantiate GameView with GameModel
-        mGameView = new GameView(this, mGameInformation);
-        mGameView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mGameEngine.fire();
-                mGameView.invalidate();
-            }
-        });
-        addContentView(mGameView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
-                , ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        //Sensor
-        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
-        mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
-
-        //instantiate game engine
-        switch (mGameMode.getType()) {
-            case GameModeFactory.GAME_TYPE_REMAINING_TIME:
-                mGameEngine = new TimeLimitedGameEngine(this, mGameInformation);
-                mGameEngine.startGame();
-                break;
-            case GameModeFactory.GAME_TYPE_SURVIVAL:
-                mGameEngine = new SurvivalGameEngine(this, mGameInformation, 1000);
-                mGameEngine.startGame();
-                break;
-            default:
-                finish();
-                break;
-        }
-    }
+		mCameraPreview = new CameraPreview(this, mCamera);
+		setContentView(mCameraPreview);
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        releaseCamera();
+		//instantiate GameView with GameModel
+		mGameView = new GameView(this, mGameInformation);
+		mGameView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				mGameEngine.fire();
+				mGameView.invalidate();
+			}
+		});
+		addContentView(mGameView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
+				, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        //Sensor
-        mSensorManager.unregisterListener(this);
+		//Sensor
+		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
 
-        mGameEngine.pauseGame();
-    }
+		//instantiate game engine
+		switch (mGameMode.getType()) {
+			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+				mGameEngine = new TimeLimitedGameEngine(this, mGameInformation);
+				mGameEngine.startGame();
+				break;
+			case GameModeFactory.GAME_TYPE_SURVIVAL:
+				mGameEngine = new SurvivalGameEngine(this, mGameInformation, 1000);
+				mGameEngine.startGame();
+				break;
+			default:
+				finish();
+				break;
+		}
+	}
 
-    /**
-     * A safe way to get an instance of the Camera object.
-     */
-    public static Camera getCameraInstance() {
-        Camera c = null;
-        try {
-            c = Camera.open(); // attempt to get a Camera instance
-        } catch (Exception e) {
-            // Camera is not available (in use or does not exist)
-        }
-        return c; // returns null if camera is unavailable
-    }
 
-    /**
-     * release camera properly
-     */
-    private void releaseCamera() {
-        if (mCamera != null) {
-            mCamera.release();        // release the camera for other applications
-            mCamera = null;
-        }
-    }
+	@Override
+	protected void onPause() {
+		super.onPause();
+		releaseCamera();
 
-    @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
+		//Sensor
+		mSensorManager.unregisterListener(this);
 
-        if (sensorEvent.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_LOW) return;
+		mGameEngine.pauseGame();
+	}
 
-        switch (sensorEvent.sensor.getType()) {
-            case Sensor.TYPE_MAGNETIC_FIELD:
-                magVals = sensorEvent.values.clone();
-                break;
-            case Sensor.TYPE_ACCELEROMETER:
-                accelVals = sensorEvent.values.clone();
-                break;
-        }
+	/**
+	 * A safe way to get an instance of the Camera object.
+	 */
+	public static Camera getCameraInstance() {
+		Camera c = null;
+		try {
+			c = Camera.open(); // attempt to get a Camera instance
+		} catch (Exception e) {
+			// Camera is not available (in use or does not exist)
+		}
+		return c; // returns null if camera is unavailable
+	}
 
-        mSensorManager.getRotationMatrix(rotationMatrix, null, accelVals, magVals);
-        mSensorManager.getOrientation(rotationMatrix, orientationVals);
-        boolean storeCoordinate = false;
-        mCoordinate[0] = orientationVals[0];
-        mCoordinate[1] = orientationVals[2];
+	/**
+	 * release camera properly
+	 */
+	private void releaseCamera() {
+		if (mCamera != null) {
+			mCamera.release();        // release the camera for other applications
+			mCamera = null;
+		}
+	}
 
-        float[] smoothCoordinate = getSmoothCoordinate();
+	@Override
+	public void onSensorChanged(SensorEvent sensorEvent) {
 
-        if (mCoordinateTemp.size() != 0) {
+		if (sensorEvent.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_LOW) return;
 
-            if (Math.abs(smoothCoordinate[0] - mCoordinate[0]) > NOISE)
-                storeCoordinate = true;
-            if (Math.abs(smoothCoordinate[1] - mCoordinate[1]) > NOISE)
-                storeCoordinate = true;
-        } else {
-            storeCoordinate = true;
-        }
+		switch (sensorEvent.sensor.getType()) {
+			case Sensor.TYPE_MAGNETIC_FIELD:
+				magVals = sensorEvent.values.clone();
+				break;
+			case Sensor.TYPE_ACCELEROMETER:
+				accelVals = sensorEvent.values.clone();
+				break;
+		}
 
-        //store current coordinate
-        if (storeCoordinate) {
+		mSensorManager.getRotationMatrix(rotationMatrix, null, accelVals, magVals);
+		mSensorManager.getOrientation(rotationMatrix, orientationVals);
+		boolean storeCoordinate = false;
+		mCoordinate[0] = orientationVals[0];
+		mCoordinate[1] = orientationVals[2];
 
-            if (mCoordinateTemp.size() != 0
-                    && (smoothCoordinate[0] * mCoordinate[0] < 0 || smoothCoordinate[1] * mCoordinate[1] < 0)) {
-                mCoordinateTemp.clear();
-                mCoordinateTempCursor = 0;
-            }
+		float[] smoothCoordinate = getSmoothCoordinate();
 
-            if (mCoordinateTemp.size() < TEMP_SIZE) {
-                mCoordinateTemp.add(mCoordinateTempCursor, mCoordinate.clone());
-            } else {
-                mCoordinateTemp.set(mCoordinateTempCursor, mCoordinate.clone());
-            }
-            mCoordinateTempCursor = (mCoordinateTempCursor + 1) % TEMP_SIZE;
-            //TODO update DisplayableItemsList
-            smoothCoordinate = getSmoothCoordinate();
-            mGameEngine.changePosition((float) Math.toDegrees(smoothCoordinate[0]), (float) Math.toDegrees(smoothCoordinate[1]));
-            mGameView.invalidate();
-        }
+		if (mCoordinateTemp.size() != 0) {
 
-    }
+			if (Math.abs(smoothCoordinate[0] - mCoordinate[0]) > NOISE)
+				storeCoordinate = true;
+			if (Math.abs(smoothCoordinate[1] - mCoordinate[1]) > NOISE)
+				storeCoordinate = true;
+		} else {
+			storeCoordinate = true;
+		}
 
-    public float[] getSmoothCoordinate() {
-        float[] smoothCoordinate = new float[2];
-        int coordinateSize = mCoordinateTemp.size();
+		//store current coordinate
+		if (storeCoordinate) {
 
-        for (float[] temp : mCoordinateTemp) {
-            smoothCoordinate[0] += temp[0];
-            smoothCoordinate[1] += temp[1];
-        }
+			if (mCoordinateTemp.size() != 0
+					&& (smoothCoordinate[0] * mCoordinate[0] < 0 || smoothCoordinate[1] * mCoordinate[1] < 0)) {
+				mCoordinateTemp.clear();
+				mCoordinateTempCursor = 0;
+			}
 
-        smoothCoordinate[0] /= coordinateSize;
-        smoothCoordinate[1] /= coordinateSize;
-        return smoothCoordinate;
-    }
+			if (mCoordinateTemp.size() < TEMP_SIZE) {
+				mCoordinateTemp.add(mCoordinateTempCursor, mCoordinate.clone());
+			} else {
+				mCoordinateTemp.set(mCoordinateTempCursor, mCoordinate.clone());
+			}
+			mCoordinateTempCursor = (mCoordinateTempCursor + 1) % TEMP_SIZE;
+			//TODO update DisplayableItemsList
+			smoothCoordinate = getSmoothCoordinate();
+			mGameEngine.changePosition((float) Math.toDegrees(smoothCoordinate[0]), (float) Math.toDegrees(smoothCoordinate[1]));
+			mGameView.invalidate();
+		}
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
+	}
 
-    }
+	public float[] getSmoothCoordinate() {
+		float[] smoothCoordinate = new float[2];
+		int coordinateSize = mCoordinateTemp.size();
 
-    @Override
-    public void onGameEngineStop() {
-        Intent scoreIntent = new Intent(this, HomeActivity.class);
-        scoreIntent.putExtra(GameScoreFragment.EXTRA_GAME_INFORMATION, mGameInformation);
-        startActivity(scoreIntent);
-        finish();
-    }
+		for (float[] temp : mCoordinateTemp) {
+			smoothCoordinate[0] += temp[0];
+			smoothCoordinate[1] += temp[1];
+		}
+
+		smoothCoordinate[0] /= coordinateSize;
+		smoothCoordinate[1] /= coordinateSize;
+		return smoothCoordinate;
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int i) {
+
+	}
+
+	@Override
+	public void onGameEngineStop() {
+		Intent scoreIntent = new Intent(this, HomeActivity.class);
+		scoreIntent.putExtra(GameScoreFragment.EXTRA_GAME_INFORMATION, mGameInformation);
+		setResult(RESULT_OK, scoreIntent);
+		finish();
+	}
 }

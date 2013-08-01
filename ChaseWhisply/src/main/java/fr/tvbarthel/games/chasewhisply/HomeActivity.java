@@ -21,6 +21,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
+	private static final int REQUEST_GAME_ACTIVITY = 0x00000002;
 	//Fragments
 	private GameHomeFragment mGameHomeFragment;
 	private GameScoreFragment mGameScoreFragment;
@@ -36,13 +37,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 		mSignedIn = false;
 
-		if (getIntent().hasExtra(GameScoreFragment.EXTRA_GAME_INFORMATION)) {
-			mGameScoreFragment = GameScoreFragment.newInstance((GameInformation)
-					getIntent().getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION));
-			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-					mGameScoreFragment).commit();
-			getIntent().removeExtra(GameScoreFragment.EXTRA_GAME_INFORMATION);
-		} else if (savedInstanceState == null) {
+		if (savedInstanceState == null) {
 			mGameHomeFragment = new GameHomeFragment();
 			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
 					mGameHomeFragment, GameHomeFragment.FRAGMENT_TAG).commit();
@@ -55,6 +50,22 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int request, int response, Intent data) {
+		super.onActivityResult(request, response, data);
+		if (REQUEST_GAME_ACTIVITY == request && RESULT_OK == response) {
+			if (mGameScoreFragment == null) {
+				mGameScoreFragment = new GameScoreFragment();
+			}
+			Bundle b = new Bundle();
+			b.putParcelable(GameScoreFragment.EXTRA_GAME_INFORMATION, data.getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION));
+			mGameScoreFragment.setArguments(b);
+			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+					mGameScoreFragment).addToBackStack(null).commitAllowingStateLoss();
+		}
+
 	}
 
 	@Override
@@ -157,11 +168,10 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onHomeRequested() {
-		if (mGameHomeFragment == null) {
-			mGameHomeFragment = new GameHomeFragment();
-		}
-		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-				mGameHomeFragment).commit();
+		Intent i = new Intent(this, HomeActivity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(i);
+		finish();
 	}
 
 	@Override
@@ -183,6 +193,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	public void onLevelChosen(GameModeView g) {
 		final Intent i = new Intent(this, GameActivity.class);
 		i.putExtra(GameActivity.EXTRA_GAME_MODE, g.getModel());
-		startActivity(i);
+		startActivityForResult(i, REQUEST_GAME_ACTIVITY);
 	}
 }
