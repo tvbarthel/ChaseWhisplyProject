@@ -129,10 +129,14 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 	}
 
 	public void notifySignedStateChanged(boolean signedIn) {
-		notifySignedStateChanged(signedIn, false, null);
+		notifySignedStateChanged(signedIn, false);
 	}
 
-	public void notifySignedStateChanged(boolean signedIn, boolean forceRefreshState, View rootView) {
+	private void notifySignedStateChanged(boolean signedIn, boolean forceRefreshState) {
+		notifySignedStateChanged(signedIn, forceRefreshState, null);
+	}
+
+	private void notifySignedStateChanged(boolean signedIn, boolean forceRefreshState, View rootView) {
 		if (forceRefreshState || signedIn != mSignedIn) {
 			final View signIn;
 			final View signOut;
