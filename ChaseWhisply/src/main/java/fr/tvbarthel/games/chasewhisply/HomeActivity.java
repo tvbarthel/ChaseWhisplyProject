@@ -22,11 +22,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
 	private static final int REQUEST_GAME_ACTIVITY = 0x00000002;
-	//Fragments
-	private GameHomeFragment mGameHomeFragment;
-	private GameScoreFragment mGameScoreFragment;
-	private GameModeChooserFragment mGameModeChooserFragment;
-	private AboutFragment mAboutFragment;
 	//sign in
 	private boolean mSignedIn;
 
@@ -38,9 +33,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		mSignedIn = false;
 
 		if (savedInstanceState == null) {
-			mGameHomeFragment = new GameHomeFragment();
 			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-					mGameHomeFragment, GameHomeFragment.FRAGMENT_TAG).commit();
+					new GameHomeFragment(), GameHomeFragment.FRAGMENT_TAG).commit();
 		}
 
 	}
@@ -56,14 +50,12 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	protected void onActivityResult(int request, int response, Intent data) {
 		super.onActivityResult(request, response, data);
 		if (REQUEST_GAME_ACTIVITY == request && RESULT_OK == response) {
-			if (mGameScoreFragment == null) {
-				mGameScoreFragment = new GameScoreFragment();
-			}
-			Bundle b = new Bundle();
-			b.putParcelable(GameScoreFragment.EXTRA_GAME_INFORMATION, data.getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION));
-			mGameScoreFragment.setArguments(b);
-			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-					mGameScoreFragment).addToBackStack(null).commitAllowingStateLoss();
+			getSupportFragmentManager()
+					.beginTransaction()
+					.replace(R.id.game_home_fragment_container,
+							GameScoreFragment.newInstance(
+									(GameInformation) data.getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION)))
+					.addToBackStack(null).commitAllowingStateLoss();
 		}
 
 	}
@@ -78,7 +70,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		final Fragment gameHomeFragment = getSupportFragmentManager()
 				.findFragmentByTag(GameHomeFragment.FRAGMENT_TAG);
 		if (gameHomeFragment != null) {
-			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(true);
+			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(mSignedIn);
 		}
 	}
 
@@ -89,17 +81,14 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		final Fragment gameHomeFragment = getSupportFragmentManager()
 				.findFragmentByTag(GameHomeFragment.FRAGMENT_TAG);
 		if (gameHomeFragment != null) {
-			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(false);
+			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(mSignedIn);
 		}
 	}
 
 	@Override
 	public void onStartGameRequested() {
-		if (mGameModeChooserFragment == null) {
-			mGameModeChooserFragment = new GameModeChooserFragment();
-		}
 		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-				mGameModeChooserFragment).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+				new GameModeChooserFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	@Override
@@ -123,11 +112,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowAboutRequested() {
-		if (mAboutFragment == null) {
-			mAboutFragment = new AboutFragment();
-		}
 		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-				mAboutFragment).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+				new AboutFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	@Override

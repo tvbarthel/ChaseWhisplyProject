@@ -13,11 +13,21 @@ import fr.tvbarthel.games.chasewhisply.R;
 
 public class GameHomeFragment extends Fragment implements View.OnClickListener {
 	public static final String FRAGMENT_TAG = "GameHomeFragment_TAG";
-
+	private static final String STATE_SIGNED_IN = "State_signed";
+	private boolean mSignedIn;
 	private Listener mListener = null;
 	//animation
 	private Animation mWhisplyAnimation;
 	private boolean mIsWhisplyAnimationRunning;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		if (savedInstanceState != null && savedInstanceState.containsKey(STATE_SIGNED_IN)) {
+			mSignedIn = savedInstanceState.getBoolean(STATE_SIGNED_IN);
+		}
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +45,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 			v.findViewById(i).setOnClickListener(this);
 		}
 		initWhisplyPicture(v);
+		notifySignedStateChanged(mSignedIn, true, v);
 		return v;
 	}
 
@@ -110,16 +121,38 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		}
 	}
 
-	public void notifySignedStateChanged(boolean signedIn) {
-		final Activity activity = getActivity();
-		if (signedIn) {
-			activity.findViewById(R.id.home_sign_in).setVisibility(View.GONE);
-			activity.findViewById(R.id.home_sign_out).setVisibility(View.VISIBLE);
-		} else {
-			activity.findViewById(R.id.home_sign_out).setVisibility(View.GONE);
-			activity.findViewById(R.id.home_sign_in).setVisibility(View.VISIBLE);
-		}
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
 
+		outState.putBoolean(STATE_SIGNED_IN, mSignedIn);
+	}
+
+	public void notifySignedStateChanged(boolean signedIn) {
+		notifySignedStateChanged(signedIn, false, null);
+	}
+
+	public void notifySignedStateChanged(boolean signedIn, boolean forceRefreshState, View rootView) {
+		if (forceRefreshState || signedIn != mSignedIn) {
+			final View signIn;
+			final View signOut;
+			if (rootView == null) {
+				final Activity activity = getActivity();
+				signIn = activity.findViewById(R.id.home_sign_in);
+				signOut = activity.findViewById(R.id.home_sign_out);
+			} else {
+				signIn = rootView.findViewById(R.id.home_sign_in);
+				signOut = rootView.findViewById(R.id.home_sign_out);
+			}
+			if (signedIn) {
+				signIn.setVisibility(View.GONE);
+				signOut.setVisibility(View.VISIBLE);
+			} else {
+				signOut.setVisibility(View.GONE);
+				signIn.findViewById(R.id.home_sign_in).setVisibility(View.VISIBLE);
+			}
+			mSignedIn = signedIn;
+		}
 	}
 
 	//interface
