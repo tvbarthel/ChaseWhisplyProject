@@ -86,7 +86,7 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 			mVerticalViewAngle = params.getVerticalViewAngle();
 
 			mGameInformation =
-					GameInformationFactory.createEmptyDemoWorld(mHorizontalViewAngle, mVerticalViewAngle);
+					GameInformationFactory.createEmptyWorld(mHorizontalViewAngle, mVerticalViewAngle, mGameMode);
 		}
 
 		mCameraPreview = new CameraPreview(this, mCamera);
