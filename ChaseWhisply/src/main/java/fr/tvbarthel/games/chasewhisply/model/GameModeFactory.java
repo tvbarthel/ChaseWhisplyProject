@@ -13,8 +13,26 @@ public class GameModeFactory {
 		final GameMode g = new GameMode();
 		g.setType(GAME_TYPE_REMAINING_TIME);
 		g.setLevel(level);
-		g.setRules(R.string.game_mode_remaining_time);
-		g.setImage(R.drawable.ghost);
+		switch (level) {
+			case 1:
+				g.setRules(R.string.game_mode_time_limited_level_1);
+				g.setImage(R.drawable.ic_icon_time_based_game_30_s);
+				break;
+
+			case 2:
+				g.setRules(R.string.game_mode_time_limited_level_2);
+				g.setImage(R.drawable.ic_icon_time_based_game_60_s);
+				break;
+
+			case 3:
+				g.setRules(R.string.game_mode_time_limited_level_3);
+				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
+				break;
+
+			default:
+				g.setRules(R.string.game_mode_remaining_time);
+				g.setImage(R.drawable.ghost);
+		}
 		return g;
 	}
 
@@ -32,7 +50,7 @@ public class GameModeFactory {
 		g.setType(GAME_TYPE_SURVIVAL);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_survival);
-		g.setImage(R.drawable.ghost);
+		g.setImage(R.drawable.ic_icon_time_based_game_inf);
 		return g;
 	}
 }

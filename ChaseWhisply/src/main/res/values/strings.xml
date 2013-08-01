@@ -28,6 +28,9 @@
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Kill most ghosts as you can in given time</string>
+    <string name="game_mode_time_limited_level_1">Kill as many ghosts as you can in 30 seconds.</string>
+    <string name="game_mode_time_limited_level_2">Kill as many ghosts as you can in 60 seconds.</string>
+    <string name="game_mode_time_limited_level_3">Kill as many ghosts as you can in 90 seconds.</string>
     <string name="game_mode_target_limited">Kill all ghosts as fast as you can !</string>
     <string name="game_mode_survival">Survival : each kill gives additional time</string>
 
