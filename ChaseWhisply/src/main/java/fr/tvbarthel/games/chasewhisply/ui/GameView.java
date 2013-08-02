@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.View;
 
 import fr.tvbarthel.games.chasewhisply.R;
@@ -84,6 +85,7 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawAmmo(Canvas canvas) {
+		final int currentAmmunition = mModel.getWeapon().getCurrentAmmunition();
 		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - 10),
 				(float) (getHeight() - mAmmoBitmap.getHeight()), new Paint());
 		Paint ammos = new Paint();
@@ -91,10 +93,21 @@ public class GameView extends View {
 		ammos.setColor(Color.WHITE);
 		ammos.setStrokeWidth(4);
 		ammos.setTextSize(mAmmoBitmap.getHeight() / 2);
-		canvas.drawText(String.valueOf(mModel.getWeapon().getCurrentAmmunition())
+		canvas.drawText(String.valueOf(currentAmmunition)
 				, mScreenWidth - mAmmoBitmap.getWidth() - ammos.getTextSize()
 				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
 				, ammos);
+
+		if (currentAmmunition == 0) {
+			final Rect bounds = new Rect();
+			final String noAmmoMessage = getResources().getString(R.string.in_game_no_ammo_message);
+			ammos.setTextSize(mFontSize);
+			ammos.getTextBounds(noAmmoMessage, 0, noAmmoMessage.length(), bounds);
+			canvas.drawText(noAmmoMessage,
+					(mScreenWidth - bounds.width()) / 2,
+					(mScreenHeight - mCrossHairs.getHeight()) / 2 - 10,
+					ammos);
+		}
 	}
 
 	/**
