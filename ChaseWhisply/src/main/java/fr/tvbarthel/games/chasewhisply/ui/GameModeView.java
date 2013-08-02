@@ -13,12 +13,12 @@ import fr.tvbarthel.games.chasewhisply.model.GameMode;
 
 public class GameModeView extends LinearLayout {
 
-	private TextView mGameModeRules;
-	private ImageView mGameModeImage;
+	private final TextView mGameModeRules;
+	private final ImageView mGameModeImage;
 	private GameMode mModel;
 
 	public GameModeView(Context context) {
-		super(context, null);
+		this(context, null);
 	}
 
 	public GameModeView(Context context, AttributeSet attrs) {
@@ -29,13 +29,20 @@ public class GameModeView extends LinearLayout {
 		setBackgroundResource(R.drawable.card_shadow);
 		setClickable(true);
 
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		final LayoutInflater inflater = LayoutInflater.from(context);
 		inflater.inflate(R.layout.view_game_mode, this, true);
 
 		mGameModeImage = (ImageView) getChildAt(0);
 		mGameModeRules = (TextView) getChildAt(1);
+	}
 
+	/**
+	 * get GameMode
+	 *
+	 * @return mModel
+	 */
+	public GameMode getModel() {
+		return mModel;
 	}
 
 	/**
@@ -47,15 +54,6 @@ public class GameModeView extends LinearLayout {
 		mModel = model;
 		mGameModeImage.setImageResource(mModel.getImage());
 		mGameModeRules.setText(mModel.getRules());
-	}
-
-	/**
-	 * get GameMode
-	 *
-	 * @return mModel
-	 */
-	public GameMode getModel() {
-		return mModel;
 	}
 
 	/**

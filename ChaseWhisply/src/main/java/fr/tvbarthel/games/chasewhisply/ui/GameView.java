@@ -18,7 +18,6 @@ import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
 public class GameView extends View {
 
-	private GameInformation mModel;
 	private final Bitmap mCrossHairs;
 	private final Bitmap mGhostBitmap;
 	private final Bitmap mGhostTargetedBitmap;
@@ -27,6 +26,9 @@ public class GameView extends View {
 	private final String mComboString;
 	private final String mScoreString;
 	private final String mTimeString;
+	private final Paint mPaint = new Paint();
+	private final Rect mBounds = new Rect();
+	private GameInformation mModel;
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
@@ -39,26 +41,26 @@ public class GameView extends View {
 		super(context);
 		mModel = model;
 
-		//initialize bitmap drawn after
-		mCrossHairs = BitmapFactory.decodeResource(getResources(), R.drawable.crosshair_white);
-		mGhostBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost);
-		mGhostTargetedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghost_targeted);
-		mAmmoBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ammo);
-		mBulletHoleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullethole);
-
 		final Resources res = getResources();
+
+		//initialize bitmap drawn after
+		mCrossHairs = BitmapFactory.decodeResource(res, R.drawable.crosshair_white);
+		mGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.ghost);
+		mGhostTargetedBitmap = BitmapFactory.decodeResource(res, R.drawable.ghost_targeted);
+		mAmmoBitmap = BitmapFactory.decodeResource(res, R.drawable.ammo);
+		mBulletHoleBitmap = BitmapFactory.decodeResource(res, R.drawable.bullethole);
+
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
 		mTimeString = res.getString(R.string.in_game_time);
-
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 
-		mScreenWidth = this.getWidth();
-		mScreenHeight = this.getHeight();
+		mScreenWidth = getWidth();
+		mScreenHeight = getHeight();
 
 		//initialize ratio degree / screen px
 		mWidthRatioDegreeToPx = mScreenWidth / mModel.getSceneWidth();
@@ -76,7 +78,7 @@ public class GameView extends View {
 
 	private void drawCrossHair(Canvas canvas) {
 		canvas.drawBitmap(mCrossHairs, (float) (mScreenWidth - mCrossHairs.getWidth()) / 2,
-				(float) (mScreenHeight - mCrossHairs.getHeight()) / 2, new Paint());
+				(float) (mScreenHeight - mCrossHairs.getHeight()) / 2, mPaint);
 	}
 
 	/**
@@ -87,26 +89,24 @@ public class GameView extends View {
 	private void drawAmmo(Canvas canvas) {
 		final int currentAmmunition = mModel.getWeapon().getCurrentAmmunition();
 		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - 10),
-				(float) (getHeight() - mAmmoBitmap.getHeight()), new Paint());
-		Paint ammos = new Paint();
-		ammos.setStyle(Paint.Style.FILL_AND_STROKE);
-		ammos.setColor(Color.WHITE);
-		ammos.setStrokeWidth(4);
-		ammos.setTextSize(mAmmoBitmap.getHeight() / 2);
+				(float) (getHeight() - mAmmoBitmap.getHeight()), mPaint);
+		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+		mPaint.setColor(Color.WHITE);
+		mPaint.setStrokeWidth(4);
+		mPaint.setTextSize(mAmmoBitmap.getHeight() / 2);
 		canvas.drawText(String.valueOf(currentAmmunition)
-				, mScreenWidth - mAmmoBitmap.getWidth() - ammos.getTextSize()
+				, mScreenWidth - mAmmoBitmap.getWidth() - mPaint.getTextSize()
 				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
-				, ammos);
+				, mPaint);
 
 		if (currentAmmunition == 0) {
-			final Rect bounds = new Rect();
 			final String noAmmoMessage = getResources().getString(R.string.in_game_no_ammo_message);
-			ammos.setTextSize(mFontSize);
-			ammos.getTextBounds(noAmmoMessage, 0, noAmmoMessage.length(), bounds);
+			mPaint.setTextSize(mFontSize);
+			mPaint.getTextBounds(noAmmoMessage, 0, noAmmoMessage.length(), mBounds);
 			canvas.drawText(noAmmoMessage,
-					(mScreenWidth - bounds.width()) / 2,
+					(mScreenWidth - mBounds.width()) / 2,
 					(mScreenHeight - mCrossHairs.getHeight()) / 2 - 10,
-					ammos);
+					mPaint);
 		}
 	}
 
@@ -118,19 +118,18 @@ public class GameView extends View {
 	private void drawRemainingTime(Canvas canvas) {
 		final long millis = mModel.getRemainingTime();
 		final int ss = (int) (millis / 1000);
-		Paint time = new Paint();
-		time.setStyle(Paint.Style.FILL_AND_STROKE);
+		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 		if (ss > 10) {
-			time.setColor(Color.WHITE);
+			mPaint.setColor(Color.WHITE);
 		} else {
-			time.setColor(Color.RED);
+			mPaint.setColor(Color.RED);
 		}
-		time.setStrokeWidth(4);
-		time.setTextSize(mFontSize);
+		mPaint.setStrokeWidth(4);
+		mPaint.setTextSize(mFontSize);
 		canvas.drawText(String.format(mTimeString, ss)
 				, 10
 				, 10 + mScreenWidth / 20
-				, time);
+				, mPaint);
 	}
 
 	/**
@@ -141,15 +140,14 @@ public class GameView extends View {
 	private void drawCombo(Canvas canvas) {
 		final int comboNumber = mModel.getCurrentCombo();
 		if (comboNumber > 1) {
-			Paint combo = new Paint();
-			combo.setStyle(Paint.Style.FILL_AND_STROKE);
-			combo.setColor(Color.WHITE);
-			combo.setStrokeWidth(4);
-			combo.setTextSize(mFontSize);
+			mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+			mPaint.setColor(Color.WHITE);
+			mPaint.setStrokeWidth(4);
+			mPaint.setTextSize(mFontSize);
 			canvas.drawText(String.format(mComboString, mModel.getCurrentCombo())
 					, mScreenWidth / 2 + mCrossHairs.getWidth() / 2
 					, mScreenHeight / 2 + mCrossHairs.getHeight() / 2
-					, combo);
+					, mPaint);
 		}
 	}
 
@@ -159,15 +157,14 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawScore(Canvas canvas) {
-		Paint score = new Paint();
-		score.setStyle(Paint.Style.FILL_AND_STROKE);
-		score.setColor(Color.WHITE);
-		score.setStrokeWidth(4);
-		score.setTextSize(mFontSize);
+		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+		mPaint.setColor(Color.WHITE);
+		mPaint.setStrokeWidth(4);
+		mPaint.setTextSize(mFontSize);
 		canvas.drawText(String.format(mScoreString, mModel.getCurrentScore())
 				, 10
-				, mScreenHeight - score.getTextSize()
-				, score);
+				, mScreenHeight - mPaint.getTextSize()
+				, mPaint);
 
 	}
 
@@ -263,7 +260,7 @@ public class GameView extends View {
 		final float borderBottom = borderTop + mScreenHeight + mHeight;
 
 		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
-			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, new Paint());
+			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, mPaint);
 		}
 	}
 }
