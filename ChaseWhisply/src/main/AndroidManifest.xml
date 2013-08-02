@@ -34,7 +34,6 @@
             android:name=".GameActivity"
             android:parentActivityName=".HomeActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".ScoreActivity" />
     </application>
 
 </manifest>
