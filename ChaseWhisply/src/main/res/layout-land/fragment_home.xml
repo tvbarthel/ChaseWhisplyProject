@@ -45,9 +45,9 @@
                     android:background="@drawable/button_leaderboard"
                     android:paddingBottom="12dp"
                     android:paddingTop="12dp"
+                    android:textSize="22sp"
                     android:text="@string/home_leaderboard"
-                    android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:textColor="@color/white" />
 
 
             </LinearLayout>

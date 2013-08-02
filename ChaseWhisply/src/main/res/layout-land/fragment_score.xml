@@ -141,7 +141,10 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_skip"
                     android:text="@string/score_skip_button"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/score_button_replay"
@@ -149,7 +152,10 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_replay"
                     android:text="@string/score_replay_button"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/score_button_share"
@@ -157,7 +163,10 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_share"
                     android:text="@string/score_share_button"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/score_button_home"
@@ -165,7 +174,10 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_home"
                     android:text="@string/score_home_button"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:textSize="22sp" />
             </LinearLayout>
 
         </LinearLayout>
