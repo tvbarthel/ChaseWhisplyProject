@@ -103,6 +103,8 @@ public class GameView extends View {
 			final String noAmmoMessage = getResources().getString(R.string.in_game_no_ammo_message);
 			mPaint.setTextSize(mFontSize);
 			mPaint.getTextBounds(noAmmoMessage, 0, noAmmoMessage.length(), mBounds);
+			mPaint.setColor(Color.RED);
+			mPaint.setStrokeWidth(2);
 			canvas.drawText(noAmmoMessage,
 					(mScreenWidth - mBounds.width()) / 2,
 					(mScreenHeight - mCrossHairs.getHeight()) / 2 - 10,
