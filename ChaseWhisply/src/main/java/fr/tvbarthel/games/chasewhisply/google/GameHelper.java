@@ -476,7 +476,9 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
 			// Nope.
 			debugLog("Google Play services not available. Show error dialog.");
 			Dialog errorDialog = getErrorDialog(result);
-			errorDialog.show();
+			if (errorDialog != null) {
+				errorDialog.show();
+			}
 			if (mListener != null)
 				mListener.onSignInFailed();
 			return;
@@ -737,7 +739,9 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
 		if (mConnectionResult != null) {
 			// get error dialog for that specific problem
 			errorDialog = getErrorDialog(mConnectionResult.getErrorCode());
-			errorDialog.show();
+			if (errorDialog != null) {
+				errorDialog.show();
+			}
 			if (mListener != null) {
 				mListener.onSignInFailed();
 			}
@@ -769,15 +773,8 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
 	 */
 	Dialog getErrorDialog(int errorCode) {
 		debugLog("Making error dialog for error: " + errorCode);
-		Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(errorCode, mActivity,
+		return GooglePlayServicesUtil.getErrorDialog(errorCode, mActivity,
 				RC_UNUSED, null);
-
-		if (errorDialog != null)
-			return errorDialog;
-
-		// as a last-resort, make a sad "unknown error" dialog.
-		return (new AlertDialog.Builder(getContext())).setMessage(mUnknownErrorMessage)
-				.setNeutralButton(android.R.string.ok, null).create();
 	}
 
 	void debugLog(String message) {
