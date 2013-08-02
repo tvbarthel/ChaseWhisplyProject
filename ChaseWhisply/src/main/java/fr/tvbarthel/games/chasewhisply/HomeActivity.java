@@ -2,8 +2,11 @@ package fr.tvbarthel.games.chasewhisply;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -122,7 +125,12 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onSignInButtonClicked() {
-		beginUserInitiatedSignIn();
+		if (isNetworkAvailable()) {
+			beginUserInitiatedSignIn();
+		} else {
+			makeToast(getResources().getString(R.string.home_internet_unavailable));
+		}
+
 	}
 
 	@Override
@@ -213,5 +221,18 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 					})
 					.create();
 		}
+	}
+
+
+	/**
+	 * check if an internet connection is available
+	 *
+	 * @return
+	 */
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager
+				= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 }
