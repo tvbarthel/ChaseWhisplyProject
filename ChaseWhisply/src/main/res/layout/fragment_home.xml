@@ -76,6 +76,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/button_signout"
+                    android:alpha="0.5"
                     android:gravity="center"
                     android:text="@string/home_sign_out"
                     android:textColor="@color/white"
