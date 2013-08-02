@@ -18,18 +18,21 @@ public class GameModeFactory {
 				g.setRules(R.string.game_mode_time_limited_level_1);
 				g.setImage(R.drawable.ic_icon_time_based_game_30_s);
 				g.setLeaderboardStringId(R.string.leaderboard_30_seconds);
+				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_1_description);
 				break;
 
 			case 2:
 				g.setRules(R.string.game_mode_time_limited_level_2);
 				g.setImage(R.drawable.ic_icon_time_based_game_60_s);
 				g.setLeaderboardStringId(R.string.leaderboard_60_seconds);
+				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_2_description);
 				break;
 
 			case 3:
 				g.setRules(R.string.game_mode_time_limited_level_3);
 				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
 				g.setLeaderboardStringId(R.string.leaderboard_90_seconds);
+				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_3_description);
 				break;
 
 			default:
@@ -55,6 +58,7 @@ public class GameModeFactory {
 		g.setRules(R.string.game_mode_survival);
 		g.setImage(R.drawable.ic_icon_time_based_game_inf);
 		g.setLeaderboardStringId(R.string.leaderboard_survival);
+		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_survival_description);
 		return g;
 	}
 }
