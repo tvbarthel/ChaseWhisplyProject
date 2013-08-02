@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.View;
@@ -84,64 +85,29 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mCamera = getCameraInstance();
 
-		if (mCamera == null) {
-			finish();
-		}
-
-		if (mGameInformation == null) {
-			//Angle view
-			final Camera.Parameters params = mCamera.getParameters();
-			final float horizontalViewAngle = params.getHorizontalViewAngle();
-			final float verticalViewAngle = params.getVerticalViewAngle();
-
-			mGameInformation = GameInformationFactory.createEmptyWorld(
-					horizontalViewAngle, verticalViewAngle, mGameMode);
-		}
-
-		mCameraPreview = new CameraPreview(this, mCamera);
-		setContentView(mCameraPreview);
-
-		//instantiate GameView with GameModel
-		mGameView = new GameView(this, mGameInformation);
-		mGameView.setOnClickListener(this);
-		addContentView(mGameView, mLayoutParams);
-
-		//Sensor
-		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
-		mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
-
-		//instantiate game engine
-		switch (mGameMode.getType()) {
-			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
-				mGameEngine = new TimeLimitedGameEngine(this, mGameInformation);
-				mGameEngine.startGame();
-				break;
-			case GameModeFactory.GAME_TYPE_SURVIVAL:
-				mGameEngine = new SurvivalGameEngine(this, mGameInformation, 1000);
-				mGameEngine.startGame();
-				break;
-			default:
-				finish();
-				break;
-		}
+		new CameraAsyncTask().execute();
 	}
 
 	@Override
 	protected void onPause() {
-		super.onPause();
 		releaseCamera();
 
-		final SurfaceHolder holder = mCameraPreview.getHolder();
-		if (holder != null) {
-			holder.removeCallback(mCameraPreview);
+		if (mCameraPreview != null) {
+			final SurfaceHolder holder = mCameraPreview.getHolder();
+			if (holder != null) {
+				holder.removeCallback(mCameraPreview);
+			}
 		}
 
 		//Sensor
 		mSensorManager.unregisterListener(this);
 
-		mGameEngine.pauseGame();
+		if (mGameEngine != null) {
+			mGameEngine.pauseGame();
+		}
+
+		super.onPause();
 	}
 
 	/**
@@ -156,7 +122,6 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
-
 		if (sensorEvent.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_LOW) return;
 
 		switch (sensorEvent.sensor.getType()) {
@@ -237,5 +202,60 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 	public void onClick(View view) {
 		mGameEngine.fire();
 		mGameView.invalidate();
+	}
+
+	private class CameraAsyncTask extends AsyncTask<Void, Void, Camera> {
+		@Override
+		protected Camera doInBackground(Void... voids) {
+			return getCameraInstance();
+		}
+
+		@Override
+		protected void onPostExecute(Camera result) {
+			super.onPostExecute(result);
+
+			mCamera = result;
+
+			if (mCamera == null) {
+				finish();
+			}
+
+			if (mGameInformation == null) {
+				//Angle view
+				final Camera.Parameters params = mCamera.getParameters();
+				final float horizontalViewAngle = params.getHorizontalViewAngle();
+				final float verticalViewAngle = params.getVerticalViewAngle();
+
+				mGameInformation = GameInformationFactory.createEmptyWorld(
+						horizontalViewAngle, verticalViewAngle, mGameMode);
+			}
+
+			mCameraPreview = new CameraPreview(GameActivity.this, mCamera);
+			setContentView(mCameraPreview);
+
+			//instantiate GameView with GameModel
+			mGameView = new GameView(GameActivity.this, mGameInformation);
+			mGameView.setOnClickListener(GameActivity.this);
+			addContentView(mGameView, mLayoutParams);
+
+			//Sensor
+			mSensorManager.registerListener(GameActivity.this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+			mSensorManager.registerListener(GameActivity.this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
+
+			//instantiate game engine
+			switch (mGameMode.getType()) {
+				case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+					mGameEngine = new TimeLimitedGameEngine(GameActivity.this, mGameInformation);
+					mGameEngine.startGame();
+					break;
+				case GameModeFactory.GAME_TYPE_SURVIVAL:
+					mGameEngine = new SurvivalGameEngine(GameActivity.this, mGameInformation, 1000);
+					mGameEngine.startGame();
+					break;
+				default:
+					finish();
+					break;
+			}
+		}
 	}
 }
