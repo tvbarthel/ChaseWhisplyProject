@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Chase Whisply</string>
+    <string name="action_settings">Paramètres</string>
+
+    <string name="integer_zero">0</string>
+
+    <!-- Home Activity !-->
+    <string name="home_play">Jouer</string>
+    <string name="home_leaderboard">Classements</string>
+    <string name="home_achievement">Réussites</string>
+    <string name="home_about">À Propos</string>
+    <string name="home_sign_in">Connexion</string>
+    <string name="home_sign_info">Connectez vous à Google + pour partager vos scores et vos réussites avec vos amis.
+    </string>
+    <string name="home_not_sign_in_leaderboard">Connectez vous à Google + pour voir votre classement</string>
+    <string name="home_not_sign_in_achievement">Connectez vous à Google + pour débloquer vos réussites</string>
+    <string name="home_sign_out">Déconnexion</string>
+    <string name="home_sign_out_confirm_dialog_message">Êtes vous sûr de vouloir vous déconnecter ?</string>
+    <string name="home_sign_out_success">Vous vous êtes bien déconnecter.</string>
+
+    <!-- in game !-->
+    <string name="in_game_kill_counter">Frag : %1$d</string>
+    <string name="in_game_combo_counter">x %1$d</string>
+    <string name="in_game_score">Score : %1$d</string>
+    <string name="in_game_time">Temps : %1$d s</string>
+
+    <!-- Level Chooser Activity !-->
+    <string name="level_chooser">Selectionnez un mode de jeu</string>
+
+    <!-- Game Mode rules !-->
+    <string name="game_mode_remaining_time">Tuez le plus de fantomes possibles dans le temps imparti.</string>
+    <string name="game_mode_time_limited_level_1">Tuez le plus de fantomes possibles en 30 secondes.
+    </string>
+    <string name="game_mode_time_limited_level_2">Tuez le plus de fantomes possibles en 60 secondes.
+    </string>
+    <string name="game_mode_time_limited_level_3">Tuez le plus de fantomes possibles en 90 secondes.
+    </string>
+    <string name="game_mode_target_limited">Tuez tous les fantomes le plus vite possible.</string>
+    <string name="game_mode_survival">Survie : chaque fantome tué vous rapporte du temps supplémentaire</string>
+
+    <!-- Score Activity !-->
+    <string name="score_number_of_bullets_fired">Balles tirées</string>
+    <string name="score_number_of_targets_killed">Cibles abattues</string>
+    <string name="score_max_combo">Combo Max</string>
+    <string name="score_final_score">Score Final</string>
+    <string name="score_skip_button">Passer</string>
+    <string name="score_replay_button">Rejouer</string>
+    <string name="score_home_button">Accueil</string>
+
+    <!-- About Fragment -->
+    <string name="about_title">Chase Whisply</string>
+    <string name="about_version_detail">version Alpha.0.3</string>
+    <string name="about_developer_card_title">Développeurs</string>
+    <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
+    <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
+    <string name="about_thanks_section">Remerciements à …</string>
+    <string name="about_thanks_tkeunebr">Thomas Keunebroek, pour son support dès la première heure et ses précieux
+        conseils.
+    </string>
+    <string name="about_license_section">Licence</string>
+    <string name="about_license_content">You can do whatever you want with this stuff.
+        If we meet some day, and you think this stuff is worth it, you can buy us a beer (or
+        basically anything else) in return.
+    </string>
+    <string name="about_license_content_link">Code source disponible à
+        https://github.com/tvbarthel/ChaseWhisplyProject.
+    </string>
+
+</resources>
