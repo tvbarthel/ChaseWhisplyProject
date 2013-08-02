@@ -54,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/about"
+                    android:background="@drawable/button_about"
                     android:text="@string/home_about"
                     android:textColor="@color/white" />
 

@@ -1,143 +1,143 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".MainActivity">
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            tools:context=".MainActivity">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal"
-            android:padding="@dimen/default_padding">
-
-            <LinearLayout
+                android:id="@+id/menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal"
+                android:padding="@dimen/default_padding">
 
-                android:gravity="center"
-                android:orientation="vertical">
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/home_play"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_play"
-                    android:text="@string/home_play"
-                    android:textColor="@color/white" />
+                        android:id="@+id/home_play"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_play"
+                        android:text="@string/home_play"
+                        android:textColor="@color/white"/>
 
                 <Button
-                    android:id="@+id/home_leaderboard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_leaderboard"
-                    android:text="@string/home_leaderboard"
-                    android:textColor="@color/white" />
+                        android:id="@+id/home_leaderboard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_leaderboard"
+                        android:text="@string/home_leaderboard"
+                        android:textColor="@color/white"/>
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:gravity="center"
-                android:orientation="vertical">
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/home_achievement"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_achievement"
-                    android:text="@string/home_achievement"
-                    android:textColor="@color/white" />
+                        android:id="@+id/home_achievement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_achievement"
+                        android:text="@string/home_achievement"
+                        android:textColor="@color/white"/>
 
                 <Button
-                    android:id="@+id/home_about"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/about"
-                    android:text="@string/home_about"
-                    android:textColor="@color/white" />
+                        android:id="@+id/home_about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_about"
+                        android:text="@string/home_about"
+                        android:textColor="@color/white"/>
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/menu"
-            android:layout_alignRight="@+id/menu"
-            android:layout_below="@+id/menu"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/home_sign_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_signin"
+                android:layout_alignLeft="@+id/menu"
+                android:layout_alignRight="@+id/menu"
+                android:layout_below="@+id/menu"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:gravity="center"
-                android:text="@string/home_sign_in"
-                android:textColor="@color/white" />
+                android:orientation="vertical">
 
             <Button
-                android:id="@+id/home_sign_out"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_signin"
-                android:gravity="center"
-                android:text="@string/home_sign_out"
-                android:textColor="@color/white"
-                android:visibility="gone" />
+                    android:id="@+id/home_sign_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_signin"
+                    android:gravity="center"
+                    android:text="@string/home_sign_in"
+                    android:textColor="@color/white"/>
+
+            <Button
+                    android:id="@+id/home_sign_out"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_signin"
+                    android:gravity="center"
+                    android:text="@string/home_sign_out"
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/home_sign_info"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text_view_grey" />
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/home_sign_info"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/text_view_grey"/>
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/menu"
-            android:layout_centerHorizontal="true"
-            android:text="@string/app_name"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/text_view_grey"
-            android:textIsSelectable="false"
-            android:textSize="28sp" />
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/menu"
+                android:layout_centerHorizontal="true"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text_view_grey"
+                android:textIsSelectable="false"
+                android:textSize="28sp"/>
 
         <ImageView
-            android:id="@+id/home_whisply_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="-40dp"
-            android:layout_marginLeft="-10dp"
-            android:src="@drawable/ghost" />
+                android:id="@+id/home_whisply_picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="-40dp"
+                android:layout_marginLeft="-10dp"
+                android:src="@drawable/ghost"/>
 
     </RelativeLayout>
 
