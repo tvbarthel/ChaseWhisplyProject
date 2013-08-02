@@ -32,6 +32,9 @@
     <!-- Level Chooser Activity !-->
     <string name="level_chooser">Select game mode</string>
 
+    <!-- Leaderboard Chooser Fragment !-->
+    <string name="leaderboard_chooser_title">Select leaderboard</string>
+
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Kill most ghosts as you can in given time.</string>
     <string name="game_mode_time_limited_level_1">Kill as many ghosts as you can in 30 seconds.

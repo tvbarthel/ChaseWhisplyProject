@@ -23,8 +23,9 @@ import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeChooserFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.GameScoreFragment;
+import fr.tvbarthel.games.chasewhisply.ui.LeaderboardChooserFragment;
 
-public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener, GameModeChooserFragment.Listener {
+public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener, GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener {
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
@@ -110,8 +111,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	@Override
 	public void onShowLeaderboardsRequested() {
 		if (mSignedIn) {
-			startActivityForResult(getGamesClient().getLeaderboardIntent(
-					getResources().getString(R.string.leaderboard_easy)), REQUEST_LEADERBOARD);
+			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+					new LeaderboardChooserFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 		} else {
 			makeToast(getResources().getString(R.string.home_not_sign_in_leaderboard));
 		}
@@ -192,6 +193,16 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		final Intent i = new Intent(this, GameActivity.class);
 		i.putExtra(GameActivity.EXTRA_GAME_MODE, gameMode);
 		startActivityForResult(i, requestCode);
+	}
+
+	@Override
+	public void onLeaderboardChosen(int leaderboardStringId) {
+		if (mSignedIn) {
+			startActivityForResult(getGamesClient().getLeaderboardIntent(
+					getResources().getString(leaderboardStringId)), REQUEST_LEADERBOARD);
+		} else {
+			makeToast(getResources().getString(R.string.home_not_sign_in_leaderboard));
+		}
 	}
 
 	public static class SignOutConfirmDialogFragment extends DialogFragment {
