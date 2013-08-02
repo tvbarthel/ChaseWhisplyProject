@@ -18,6 +18,7 @@ import com.google.android.gms.games.GamesClient;
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeChooserFragment;
@@ -188,12 +189,15 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		if (gamesClient.isConnected()) {
 			final int score = gameInformation.getCurrentScore();
 			final GameMode gameMode = gameInformation.getGameMode();
+			final Weapon weapon = gameInformation.getWeapon();
 			gamesClient.submitScore(getResources().getString(gameMode.getLeaderboardStringId()), score);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_soldier), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_corporal), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_sergeant), 1);
 			if (score == 0) {
 				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_pacifist));
+			} else if (!weapon.hasRunOutOfAmmo()) {
+				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_thrifty));
 			}
 		}
 	}

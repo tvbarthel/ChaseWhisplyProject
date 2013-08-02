@@ -8,12 +8,14 @@ public class Weapon implements Parcelable {
 	private int mCurrentAmmunition;
 	private int mAmmunitionLimit;
 	private long mReloadingTime;
+	private boolean mHasRunOutOfAmmo;
 
 	public Weapon() {
 		mDamage = 0;
 		mCurrentAmmunition = 0;
 		mAmmunitionLimit = 1;
 		mReloadingTime = 1;
+		mHasRunOutOfAmmo = false;
 	}
 
 	public Weapon(Parcel in) {
@@ -37,6 +39,7 @@ public class Weapon implements Parcelable {
 			mCurrentAmmunition -= 1;
 			return mDamage;
 		}
+		mHasRunOutOfAmmo = true;
 		return 0;
 	}
 
@@ -50,12 +53,14 @@ public class Weapon implements Parcelable {
 		out.writeInt(mDamage);
 		out.writeInt(mCurrentAmmunition);
 		out.writeInt(mAmmunitionLimit);
+		out.writeByte((byte) (mHasRunOutOfAmmo ? 1 : 0));
 	}
 
 	public void readFromParcel(Parcel in) {
 		mDamage = in.readInt();
 		mCurrentAmmunition = in.readInt();
 		mAmmunitionLimit = in.readInt();
+		mHasRunOutOfAmmo = in.readByte() == 1;
 	}
 
 	public static final Parcelable.Creator<Weapon> CREATOR = new Parcelable.Creator<Weapon>() {
@@ -97,6 +102,10 @@ public class Weapon implements Parcelable {
 
 	public long getReloadingTime() {
 		return mReloadingTime;
+	}
+
+	public boolean hasRunOutOfAmmo() {
+		return mHasRunOutOfAmmo;
 	}
 
 }
