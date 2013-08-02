@@ -1,12 +1,15 @@
 package fr.tvbarthel.games.chasewhisply.ui;
 
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
@@ -44,6 +47,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private TextView mNumberOfTargetsKilledTextView;
 	private TextView mMaxComboTextView;
 	private TextView mFinalScoreTextView;
+	private Button mSkipButton;
 
 	public static GameScoreFragment newInstance(GameInformation gameInformation) {
 		final GameScoreFragment fragment = new GameScoreFragment();
@@ -89,6 +93,14 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mNumberOfBulletsFiredTextView = (TextView) v.findViewById(R.id.numberOfBulletsFired);
 		mMaxComboTextView = (TextView) v.findViewById(R.id.maxCombo);
 		mFinalScoreTextView = (TextView) v.findViewById(R.id.finalScore);
+		mSkipButton = (Button) v.findViewById(R.id.score_button_skip);
+
+		return v;
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 
 		mTimerRoutine = new TimerRoutine(TICK_INTERVAL) {
 			@Override
@@ -107,8 +119,6 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			initScoreDisplay(savedInstanceState);
 			mTimerRoutine.startRoutine();
 		}
-
-		return v;
 	}
 
 	@Override
@@ -119,6 +129,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 				mListener.onUpdateAchievements(mGameInformation);
 				break;
 			case R.id.score_button_skip:
+				finalizeScoreDisplayed();
 				mListener.onSkipRequested();
 				break;
 			case R.id.score_button_replay:
@@ -177,7 +188,39 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mNumberOfTargetsKilledTextView.setText(String.valueOf(mGameInformation.getFragNumber()));
 		mMaxComboTextView.setText(String.valueOf(mGameInformation.getMaxCombo()));
 		mFinalScoreTextView.setText(String.valueOf(mGameInformation.getCurrentScore()));
-		mIsDisplayDone = true;
+		if (mIsDisplayDone) {
+			mSkipButton.setVisibility(View.GONE);
+		} else {
+			fadeOut(mSkipButton);
+			mIsDisplayDone = true;
+		}
+
+	}
+
+	private void fadeOut(final View view) {
+		final ObjectAnimator fadeOutAnimation = ObjectAnimator.ofFloat(view, "alpha", 1f, 0f).setDuration(500);
+		fadeOutAnimation.addListener(new Animator.AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animation) {
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				view.setVisibility(View.GONE);
+				fadeOutAnimation.removeAllListeners();
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animation) {
+				fadeOutAnimation.removeAllListeners();
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animation) {
+
+			}
+		});
+		fadeOutAnimation.start();
 	}
 
 	private void incrementCurrentScoreDisplayed() {
