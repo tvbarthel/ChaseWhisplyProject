@@ -164,7 +164,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		final GamesClient gamesClient = getGamesClient();
 		if (gamesClient.isConnected()) {
 			final int score = gameInformation.getCurrentScore();
-			gamesClient.submitScore(getResources().getString(R.string.leaderboard_easy), score);
+			final GameMode gameMode = gameInformation.getGameMode();
+			gamesClient.submitScore(getResources().getString(gameMode.getLeaderboardStringId()), score);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_soldier), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_corporal), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_sergeant), 1);
