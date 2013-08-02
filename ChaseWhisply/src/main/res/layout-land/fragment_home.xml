@@ -7,7 +7,8 @@
 
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/background_grey">
 
         <LinearLayout
                 android:id="@+id/menu"
@@ -32,6 +33,9 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/button_play"
                         android:text="@string/home_play"
+                        android:textSize="22sp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
                         android:textColor="@color/white"/>
 
                 <Button
@@ -40,6 +44,9 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/button_leaderboard"
                         android:text="@string/home_leaderboard"
+                        android:textSize="22sp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
                         android:textColor="@color/white"/>
 
 
@@ -60,6 +67,9 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/button_achievement"
                         android:text="@string/home_achievement"
+                        android:textSize="22sp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
                         android:textColor="@color/white"/>
 
                 <Button
@@ -69,6 +79,9 @@
                         android:layout_gravity="center"
                         android:background="@drawable/button_about"
                         android:text="@string/home_about"
+                        android:textSize="22sp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
                         android:textColor="@color/white"/>
             </LinearLayout>
 
@@ -128,7 +141,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/text_view_grey"
                 android:textIsSelectable="false"
-                android:textSize="28sp"/>
+                android:textSize="36sp"/>
 
         <ImageView
                 android:id="@+id/home_whisply_picture"
