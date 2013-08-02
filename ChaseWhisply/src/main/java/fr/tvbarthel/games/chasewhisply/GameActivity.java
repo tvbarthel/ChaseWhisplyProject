@@ -161,10 +161,10 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 
 		switch (sensorEvent.sensor.getType()) {
 			case Sensor.TYPE_MAGNETIC_FIELD:
-				magVals = sensorEvent.values;
+				magVals = sensorEvent.values.clone();
 				break;
 			case Sensor.TYPE_ACCELEROMETER:
-				accelVals = sensorEvent.values;
+				accelVals = sensorEvent.values.clone();
 				break;
 		}
 
