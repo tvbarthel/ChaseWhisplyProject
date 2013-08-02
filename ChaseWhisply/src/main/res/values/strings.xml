@@ -12,7 +12,9 @@
     <string name="home_achievement">Achievement</string>
     <string name="home_about">About</string>
     <string name="home_sign_in">Sign in</string>
-    <string name="home_sign_info">Sign in with Google to share your scores and achievements with your friends.</string>
+    <string name="home_sign_info">Sign in with Google to share your scores and achievements with
+        your friends.
+    </string>
     <string name="home_not_sign_in_leaderboard">Sign in with Google to see the leaderboard.</string>
     <string name="home_not_sign_in_achievement">Sign in with Google to unlock achievement.</string>
     <string name="home_sign_out">Sign out</string>
@@ -30,9 +32,12 @@
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Kill most ghosts as you can in given time</string>
-    <string name="game_mode_time_limited_level_1">Kill as many ghosts as you can in 30 seconds.</string>
-    <string name="game_mode_time_limited_level_2">Kill as many ghosts as you can in 60 seconds.</string>
-    <string name="game_mode_time_limited_level_3">Kill as many ghosts as you can in 90 seconds.</string>
+    <string name="game_mode_time_limited_level_1">Kill as many ghosts as you can in 30 seconds.
+    </string>
+    <string name="game_mode_time_limited_level_2">Kill as many ghosts as you can in 60 seconds.
+    </string>
+    <string name="game_mode_time_limited_level_3">Kill as many ghosts as you can in 90 seconds.
+    </string>
     <string name="game_mode_target_limited">Kill all ghosts as fast as you can !</string>
     <string name="game_mode_survival">Survival : each kill gives additional time</string>
 
@@ -52,6 +57,16 @@
     <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
     <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
     <string name="about_thanks_section">Special Thanks to ...</string>
-    <string name="about_thanks_tkeunebr">Thomas Keunebroek, for his early day support and precious advice.</string>
+    <string name="about_thanks_tkeunebr">Thomas Keunebroek, for his early day support and precious
+        advice.
+    </string>
+    <string name="about_license_section">License</string>
+    <string name="about_license_content">You can do whatever you want with this stuff.
+        If we meet some day, and you think this stuff is worth it, you can buy us a beer (or
+        basically anything else) in return.
+    </string>
+    <string name="about_license_content_link">Source code available at
+        https://github.com/tvbarthel/ChaseWhisplyProject.
+    </string>
 
 </resources>
