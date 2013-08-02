@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Menu;
 import android.widget.Toast;
 
 import com.google.android.gms.games.GamesClient;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeChooserFragment;
@@ -25,7 +25,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
-	private static final int REQUEST_GAME_ACTIVITY = 0x00000002;
+	private static final int REQUEST_GAME_ACTIVITY_FRESH_START = 0x00000002;
+	private static final int REQUEST_GAME_ACTIVITY_REPLAY = 0x00000003;
 	//sign in
 	private boolean mSignedIn;
 
@@ -46,15 +47,21 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	@Override
 	protected void onActivityResult(int request, int response, Intent data) {
 		super.onActivityResult(request, response, data);
-		if (REQUEST_GAME_ACTIVITY == request && RESULT_OK == response) {
-			getSupportFragmentManager()
-					.beginTransaction()
-					.replace(R.id.game_home_fragment_container,
-							GameScoreFragment.newInstance(
-									(GameInformation) data.getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION)))
-					.addToBackStack(null).commitAllowingStateLoss();
+
+		if (REQUEST_GAME_ACTIVITY_REPLAY == request) {
+			getSupportFragmentManager().popBackStackImmediate();
 		}
 
+		if (RESULT_OK == response) {
+			if (REQUEST_GAME_ACTIVITY_REPLAY == request || REQUEST_GAME_ACTIVITY_FRESH_START == request) {
+				getSupportFragmentManager()
+						.beginTransaction()
+						.replace(R.id.game_home_fragment_container,
+								GameScoreFragment.newInstance(
+										(GameInformation) data.getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION)))
+						.addToBackStack(null).commitAllowingStateLoss();
+			}
+		}
 	}
 
 	@Override
@@ -140,13 +147,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	}
 
 	@Override
-	public void onReplayRequested() {
-
-	}
-
-	@Override
-	public void onSkipRequested() {
-
+	public void onReplayRequested(GameInformation gameInformation) {
+		startNewGame(gameInformation.getGameMode(), REQUEST_GAME_ACTIVITY_REPLAY);
 	}
 
 	@Override
@@ -174,9 +176,13 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onLevelChosen(GameModeView g) {
+		startNewGame(g.getModel(), REQUEST_GAME_ACTIVITY_FRESH_START);
+	}
+
+	public void startNewGame(GameMode gameMode, int requestCode) {
 		final Intent i = new Intent(this, GameActivity.class);
-		i.putExtra(GameActivity.EXTRA_GAME_MODE, g.getModel());
-		startActivityForResult(i, REQUEST_GAME_ACTIVITY);
+		i.putExtra(GameActivity.EXTRA_GAME_MODE, gameMode);
+		startActivityForResult(i, requestCode);
 	}
 
 	public static class SignOutConfirmDialogFragment extends DialogFragment {

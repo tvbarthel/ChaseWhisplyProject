@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
+import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
 
@@ -27,6 +29,7 @@ public class GameInformation implements Parcelable {
 	protected int mSceneHeight;
 	protected float mCurrentX;
 	protected float mCurrentY;
+	protected GameMode mGameMode;
 
 	/**
 	 * Create a new GameInformation
@@ -74,6 +77,7 @@ public class GameInformation implements Parcelable {
 		in.readTypedList(mTargetableItems, TargetableItem.CREATOR);
 		mDisplayableItems = new ArrayList<DisplayableItem>();
 		in.readTypedList(mDisplayableItems, DisplayableItem.CREATOR);
+		mGameMode = in.readParcelable(GameMode.class.getClassLoader());
 	}
 
 	@Override
@@ -90,6 +94,7 @@ public class GameInformation implements Parcelable {
 		out.writeParcelable(mCurrentTarget, i);
 		out.writeTypedList(mTargetableItems);
 		out.writeTypedList(mDisplayableItems);
+		out.writeParcelable(mGameMode,i);
 	}
 
 	public static final Parcelable.Creator<GameInformation> CREATOR = new Parcelable.Creator<GameInformation>() {
@@ -271,6 +276,10 @@ public class GameInformation implements Parcelable {
 		return mScore;
 	}
 
+	public void setCurrentScore(int score) {
+		mScore = score;
+	}
+
 	public int getBulletFired() {
 		return mBulletFired;
 	}
@@ -285,6 +294,33 @@ public class GameInformation implements Parcelable {
 
 	public int getCurrentTargetsNumber() {
 		return mTargetableItems.size();
+	}
+
+	public GameMode getGameMode() {
+		return mGameMode;
+	}
+
+	public void setGameMode(GameMode gameMode) {
+		final int gameType = gameMode.getType();
+		final int gameLevel = gameMode.getLevel();
+
+		if (gameType == GameModeFactory.GAME_TYPE_REMAINING_TIME) {
+			switch (gameLevel) {
+				case 1:
+					this.setRemainingTime(30000);
+					break;
+
+				case 2:
+					this.setRemainingTime(60000);
+					break;
+
+				case 3:
+					this.setRemainingTime(90000);
+					break;
+
+			}
+		}
+		mGameMode = gameMode;
 	}
 
 }

@@ -130,11 +130,10 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 				break;
 			case R.id.score_button_skip:
 				finalizeScoreDisplayed();
-				mListener.onSkipRequested();
 				break;
 			case R.id.score_button_replay:
 				mListener.onUpdateAchievements(mGameInformation);
-				mListener.onReplayRequested();
+				mListener.onReplayRequested(mGameInformation);
 				break;
 		}
 
@@ -238,9 +237,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 	//interface
 	public interface Listener {
-		public void onReplayRequested();
-
-		public void onSkipRequested();
+		public void onReplayRequested(GameInformation gameInformation);
 
 		public void onHomeRequested();
 
