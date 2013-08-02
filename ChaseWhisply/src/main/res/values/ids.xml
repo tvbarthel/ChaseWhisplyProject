@@ -10,4 +10,8 @@
 
     <string name="leaderboard_easy">CgkIyKropZoEEAIQBw</string>
     <string name="leaderboard_hard">CgkIyKropZoEEAIQCA</string>
+    <string name="leaderboard_30_seconds">CgkIyKropZoEEAIQDQ</string>
+    <string name="leaderboard_60_seconds">CgkIyKropZoEEAIQDg</string>
+    <string name="leaderboard_90_seconds">CgkIyKropZoEEAIQDw</string>
+    <string name="leaderboard_survival">CgkIyKropZoEEAIQEA</string>
 </resources>
