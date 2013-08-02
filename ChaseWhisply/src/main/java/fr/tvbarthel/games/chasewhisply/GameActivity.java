@@ -130,6 +130,7 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 	protected void onPause() {
 		super.onPause();
 		releaseCamera();
+		mCameraPreview.getHolder().removeCallback(mCameraPreview);
 
 		//Sensor
 		mSensorManager.unregisterListener(this);
