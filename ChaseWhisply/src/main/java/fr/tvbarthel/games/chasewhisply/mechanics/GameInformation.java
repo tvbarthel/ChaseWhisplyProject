@@ -307,7 +307,7 @@ public class GameInformation implements Parcelable {
 		if (gameType == GameModeFactory.GAME_TYPE_REMAINING_TIME) {
 			switch (gameLevel) {
 				case 1:
-					this.setRemainingTime(30000);
+					this.setRemainingTime(1000);
 					break;
 
 				case 2:

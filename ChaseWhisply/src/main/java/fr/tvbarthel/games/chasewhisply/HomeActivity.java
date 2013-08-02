@@ -45,7 +45,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
 					new GameHomeFragment(), GameHomeFragment.FRAGMENT_TAG).commit();
 		}
-
 	}
 
 	@Override
@@ -62,7 +61,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 						.beginTransaction()
 						.replace(R.id.game_home_fragment_container,
 								GameScoreFragment.newInstance(
-										(GameInformation) data.getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION)))
+										(GameInformation) data.getParcelableExtra(GameScoreFragment.EXTRA_GAME_INFORMATION)),
+								GameScoreFragment.FRAGMENT_TAG)
 						.addToBackStack(null).commitAllowingStateLoss();
 			}
 		}
@@ -70,6 +70,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onSignInFailed() {
+		final Fragment gameScoreFragment = getSupportFragmentManager()
+				.findFragmentByTag(GameScoreFragment.FRAGMENT_TAG);
+		if (gameScoreFragment != null) {
+			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(mSignedIn);
+		}
 	}
 
 	@Override
@@ -79,6 +84,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 				.findFragmentByTag(GameHomeFragment.FRAGMENT_TAG);
 		if (gameHomeFragment != null) {
 			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(mSignedIn);
+		}
+		final Fragment gameScoreFragment = getSupportFragmentManager()
+				.findFragmentByTag(GameScoreFragment.FRAGMENT_TAG);
+		if (gameScoreFragment != null) {
+			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(mSignedIn);
 		}
 	}
 
@@ -90,6 +100,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 				.findFragmentByTag(GameHomeFragment.FRAGMENT_TAG);
 		if (gameHomeFragment != null) {
 			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(mSignedIn);
+		}
+		final Fragment gameScoreFragment = getSupportFragmentManager()
+				.findFragmentByTag(GameScoreFragment.FRAGMENT_TAG);
+		if (gameScoreFragment != null) {
+			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(mSignedIn);
 		}
 	}
 
@@ -131,7 +146,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		} else {
 			makeToast(getResources().getString(R.string.home_internet_unavailable));
 		}
-
 	}
 
 	@Override
@@ -219,12 +233,24 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		}
 	}
 
+	/**
+	 * check if an internet connection is available
+	 *
+	 * @return
+	 */
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager
+				= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+
 	public static class SignOutConfirmDialogFragment extends DialogFragment {
-		public static SignOutConfirmDialogFragment newInstance() {
-			return new SignOutConfirmDialogFragment();
+		public SignOutConfirmDialogFragment() {
 		}
 
-		public SignOutConfirmDialogFragment() {
+		public static SignOutConfirmDialogFragment newInstance() {
+			return new SignOutConfirmDialogFragment();
 		}
 
 		@Override
@@ -246,18 +272,5 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 					})
 					.create();
 		}
-	}
-
-
-	/**
-	 * check if an internet connection is available
-	 *
-	 * @return
-	 */
-	private boolean isNetworkAvailable() {
-		ConnectivityManager connectivityManager
-				= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 }

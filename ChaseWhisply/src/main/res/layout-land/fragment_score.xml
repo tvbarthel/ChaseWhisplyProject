@@ -179,9 +179,24 @@
                     android:paddingBottom="12dp"
                     android:paddingTop="12dp"
                     android:textSize="22sp" />
+
             </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/sign_in_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/sign_in_message"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textIsSelectable="false"
+            android:textColor="#888888"
+            android:layout_below="@+id/linearLayout"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

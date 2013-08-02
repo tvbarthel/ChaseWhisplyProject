@@ -105,5 +105,8 @@
     <string name="about_license_content_link">Code source disponible à
         https://github.com/tvbarthel/ChaseWhisplyProject
     </string>
+    <string name="sign_in_message">La prochaine fois, sauvegardez, partagez et comparez vos scores avec
+        les autres joueurs en vous connectant via Google Plus !
+    </string>
 
 </resources>

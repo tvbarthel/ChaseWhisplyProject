@@ -17,6 +17,7 @@ import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
 
 public class GameScoreFragment extends Fragment implements View.OnClickListener {
+	public static final String FRAGMENT_TAG = "GameScoreFragment_TAG";
 	public static final String EXTRA_GAME_INFORMATION = "GameScoreFragment.Extra.GameInformation";
 	private static final String BUNDLE_IS_DISPLAY_DONE = GameScoreFragment.class.getName() + ".Bundle.isDisplayDone";
 	private static final String BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED =
@@ -48,6 +49,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private TextView mMaxComboTextView;
 	private TextView mFinalScoreTextView;
 	private Button mSkipButton;
+	private View mSignInView;
 
 	public static GameScoreFragment newInstance(GameInformation gameInformation) {
 		final GameScoreFragment fragment = new GameScoreFragment();
@@ -87,7 +89,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		}
 
 		if (getArguments().containsKey(EXTRA_GAME_INFORMATION)) {
-			mGameInformation = (GameInformation) getArguments().getParcelable(EXTRA_GAME_INFORMATION);
+			mGameInformation = getArguments().getParcelable(EXTRA_GAME_INFORMATION);
 		}
 
 		mNumberOfTargetsKilledTextView = (TextView) v.findViewById(R.id.numberOfTargetsKilled);
@@ -95,6 +97,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mMaxComboTextView = (TextView) v.findViewById(R.id.maxCombo);
 		mFinalScoreTextView = (TextView) v.findViewById(R.id.finalScore);
 		mSkipButton = (Button) v.findViewById(R.id.score_button_skip);
+		mSignInView = v.findViewById(R.id.sign_in_message);
 
 		return v;
 	}
@@ -151,7 +154,14 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		outState.putFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED, mCurrentNumberOfTargetsKilled);
 		outState.putFloat(BUNDLE_CURRENT_MAX_COMBO, mCurrentMaxCombo);
 		outState.putFloat(BUNDLE_CURRENT_FINAL_SCORE, mCurrentFinalScore);
+	}
 
+	public void notifySignedStateChanged(boolean signedIn) {
+		if (signedIn) {
+			mSignInView.setVisibility(View.GONE);
+		} else {
+			mSignInView.setVisibility(View.VISIBLE);
+		}
 	}
 
 	private void initCurrentScoreDisplayed(Bundle savedBundle) {
