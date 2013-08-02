@@ -38,7 +38,7 @@ public class GameModeChooserFragment extends Fragment implements View.OnClickLis
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View v = inflater.inflate(R.layout.activity_game_mode_chooser, container, false);
+		View v = inflater.inflate(R.layout.fragment_game_mode_chooser, container, false);
 
 		//First mode: Kill as many Ghosts as you can in 30 seconds. (level 1)
 		mGameMode1 = (GameModeView) v.findViewById(R.id.mode1);
