@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/default_padding"
                 android:layout_marginRight="@dimen/default_padding"
-                android:background="@drawable/button_home"
+                android:background="@drawable/button_share"
                 android:text="@string/score_share_button"
                 android:textColor="@color/white" />
 
