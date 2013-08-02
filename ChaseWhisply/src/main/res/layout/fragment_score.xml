@@ -131,7 +131,7 @@
                 android:layout_marginLeft="@dimen/default_padding"
                 android:layout_marginRight="@dimen/default_padding"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@drawable/button_play"
+                android:background="@drawable/button_skip"
                 android:text="@string/score_skip_button"
                 android:textColor="@color/white" />
 
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/default_padding"
                 android:layout_marginRight="@dimen/default_padding"
-                android:background="@drawable/button_play"
+                android:background="@drawable/button_replay"
                 android:text="@string/score_replay_button"
                 android:textColor="@color/white" />
 
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/default_padding"
                 android:layout_marginRight="@dimen/default_padding"
-                android:background="@drawable/button_play"
+                android:background="@drawable/button_home"
                 android:text="@string/score_home_button"
                 android:textColor="@color/white" />
         </LinearLayout>
