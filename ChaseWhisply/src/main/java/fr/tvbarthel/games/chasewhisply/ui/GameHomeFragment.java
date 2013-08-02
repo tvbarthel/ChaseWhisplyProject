@@ -140,20 +140,25 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		if (forceRefreshState || signedIn != mSignedIn) {
 			final View signIn;
 			final View signOut;
+			final View signInInfo;
 			if (rootView == null) {
 				final Activity activity = getActivity();
 				signIn = activity.findViewById(R.id.home_sign_in);
 				signOut = activity.findViewById(R.id.home_sign_out);
+				signInInfo = activity.findViewById(R.id.google_signin_info);
 			} else {
 				signIn = rootView.findViewById(R.id.home_sign_in);
 				signOut = rootView.findViewById(R.id.home_sign_out);
+				signInInfo = rootView.findViewById(R.id.google_signin_info);
 			}
 			if (signedIn) {
 				signIn.setVisibility(View.GONE);
+				signInInfo.setVisibility(View.GONE);
 				signOut.setVisibility(View.VISIBLE);
 			} else {
 				signOut.setVisibility(View.GONE);
 				signIn.findViewById(R.id.home_sign_in).setVisibility(View.VISIBLE);
+				signInInfo.setVisibility(View.VISIBLE);
 			}
 			mSignedIn = signedIn;
 		}

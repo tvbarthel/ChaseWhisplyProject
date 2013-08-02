@@ -30,35 +30,35 @@
                     android:id="@+id/home_play"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_play"
-                    android:text="@string/home_play"
-                    android:textSize="22sp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="@color/white" />
+                    android:background="@drawable/button_play"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:text="@string/home_play"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/home_leaderboard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_leaderboard"
-                    android:text="@string/home_leaderboard"
-                    android:textSize="22sp"
-                    android:paddingTop="12dp"
                     android:paddingBottom="12dp"
-                    android:textColor="@color/white" />
+                    android:paddingTop="12dp"
+                    android:text="@string/home_leaderboard"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/home_achievement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_achievement"
-                    android:text="@string/home_achievement"
-                    android:textSize="22sp"
-                    android:paddingTop="12dp"
                     android:paddingBottom="12dp"
-                    android:textColor="@color/white" />
+                    android:paddingTop="12dp"
+                    android:text="@string/home_achievement"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/home_about"
@@ -66,20 +66,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/button_about"
-                    android:text="@string/home_about"
-                    android:textSize="22sp"
-                    android:textColor="@color/white"
+                    android:paddingBottom="12dp"
                     android:paddingTop="12dp"
-                    android:paddingBottom="12dp"/>
+                    android:text="@string/home_about"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/home_sign_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/button_signin"
                     android:gravity="center"
                     android:text="@string/home_sign_in"
@@ -91,18 +91,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/button_signout"
                     android:alpha="0.5"
+                    android:background="@drawable/button_signout"
                     android:gravity="center"
                     android:text="@string/home_sign_out"
                     android:textColor="@color/white"
                     android:visibility="gone" />
 
-
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/google_signin_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -110,6 +109,7 @@
                 android:text="@string/home_sign_info"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/text_view_grey" />
+
         </LinearLayout>
 
         <TextView
