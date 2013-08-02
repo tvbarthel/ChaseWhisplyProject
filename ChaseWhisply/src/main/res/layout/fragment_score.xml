@@ -146,6 +146,16 @@
                 android:textColor="@color/white" />
 
             <Button
+                android:id="@+id/score_button_share"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_padding"
+                android:layout_marginRight="@dimen/default_padding"
+                android:background="@drawable/button_home"
+                android:text="@string/score_share_button"
+                android:textColor="@color/white" />
+
+            <Button
                 android:id="@+id/score_button_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

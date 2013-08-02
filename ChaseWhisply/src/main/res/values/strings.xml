@@ -54,6 +54,7 @@
     <string name="score_skip_button">Skip</string>
     <string name="score_replay_button">Replay</string>
     <string name="score_home_button">Home</string>
+    <string name="score_share_button">Share</string>
     <string name="score_share_subject">Chase Whisply</string>
     <string name="score_share_content">I play Chase Whisply. Can you beat my score : %1$s
         ? \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply

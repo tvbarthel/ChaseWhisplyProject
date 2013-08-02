@@ -185,6 +185,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	}
 
 	@Override
+	public void onShareRequested() {
+
+	}
+
+	@Override
 	public void onLevelChosen(GameModeView g) {
 		startNewGame(g.getModel(), REQUEST_GAME_ACTIVITY_FRESH_START);
 	}

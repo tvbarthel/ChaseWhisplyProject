@@ -75,7 +75,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		final int[] clickable = new int[]{
 				R.id.score_button_replay,
 				R.id.score_button_home,
-				R.id.score_button_skip
+				R.id.score_button_skip,
+				R.id.score_button_share
 		};
 		for (int i : clickable) {
 			v.findViewById(i).setOnClickListener(this);
@@ -134,6 +135,9 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			case R.id.score_button_replay:
 				mListener.onUpdateAchievements(mGameInformation);
 				mListener.onReplayRequested(mGameInformation);
+				break;
+			case R.id.score_button_share:
+				mListener.onShareRequested();
 				break;
 		}
 
@@ -242,6 +246,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		public void onHomeRequested();
 
 		public void onUpdateAchievements(final GameInformation gameInformation);
+
+		public void onShareRequested();
 	}
 
 
