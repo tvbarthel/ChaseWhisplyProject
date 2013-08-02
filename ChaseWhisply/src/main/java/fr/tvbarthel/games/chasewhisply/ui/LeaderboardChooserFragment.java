@@ -40,22 +40,22 @@ public class LeaderboardChooserFragment extends Fragment implements View.OnClick
 
 		//First mode: Kill as many Ghosts as you can in 30 seconds. (level 1)
 		mGameMode1 = (GameModeView) v.findViewById(R.id.leaderboard_chooser_mode1);
-		mGameMode1.setModel(GameModeFactory.createRemainingTimeGame(1));
+		mGameMode1.setModelForLeaderboard(GameModeFactory.createRemainingTimeGame(1));
 		mGameMode1.setGameModeSelectedListener(this);
 
 		//Second mode: Kill as many Ghosts as you can in 60 seconds. (level 2)
 		mGameMode2 = (GameModeView) v.findViewById(R.id.leaderboard_chooser_mode2);
-		mGameMode2.setModel(GameModeFactory.createRemainingTimeGame(2));
+		mGameMode2.setModelForLeaderboard(GameModeFactory.createRemainingTimeGame(2));
 		mGameMode2.setGameModeSelectedListener(this);
 
 		//Third mode: Kill as many Ghosts as you can in 30 seconds. (level 3)
 		mGameMode3 = (GameModeView) v.findViewById(R.id.leaderboard_chooser_mode3);
-		mGameMode3.setModel(GameModeFactory.createRemainingTimeGame(3));
+		mGameMode3.setModelForLeaderboard(GameModeFactory.createRemainingTimeGame(3));
 		mGameMode3.setGameModeSelectedListener(this);
 
 		//Fourth mode: survival
 		mGameMode4 = (GameModeView) v.findViewById(R.id.leaderboard_chooser_mode4);
-		mGameMode4.setModel(GameModeFactory.createSurvivalGame(1));
+		mGameMode4.setModelForLeaderboard(GameModeFactory.createSurvivalGame(1));
 		mGameMode4.setGameModeSelectedListener(this);
 
 		return v;

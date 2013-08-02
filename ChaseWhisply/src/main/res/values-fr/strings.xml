@@ -37,16 +37,18 @@
     <!-- Level Chooser Activity !-->
     <string name="level_chooser">Sélectionnez un mode de jeu</string>
 
+    <!-- Leaderboard Chooser Fragment !-->
+    <string name="leaderboard_chooser_title">Sélectionnez un classement</string>
+    <string name="leaderboard_chooser_time_limited_level_1_description">Meilleurs scores, mode de jeu: 30 secondes.</string>
+    <string name="leaderboard_chooser_time_limited_level_2_description">Meilleurs scores, mode de jeu: 60 secondes.</string>
+    <string name="leaderboard_chooser_time_limited_level_3_description">Meilleurs scores, mode de jeu: 90 secondes.</string>
+    <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu: survie.</string>
+
     <!-- Game Mode rules !-->
-    <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps
-        imparti.
-    </string>
-    <string name="game_mode_time_limited_level_1">Tuez le plus de fantômes possibles en 30 secondes.
-    </string>
-    <string name="game_mode_time_limited_level_2">Tuez le plus de fantômes possibles en 60 secondes.
-    </string>
-    <string name="game_mode_time_limited_level_3">Tuez le plus de fantômes possibles en 90 secondes.
-    </string>
+    <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps imparti.</string>
+    <string name="game_mode_time_limited_level_1">Tuez le plus de fantômes possibles en 30 secondes.</string>
+    <string name="game_mode_time_limited_level_2">Tuez le plus de fantômes possibles en 60 secondes.</string>
+    <string name="game_mode_time_limited_level_3">Tuez le plus de fantômes possibles en 90 secondes.</string>
     <string name="game_mode_target_limited">Tuez tous les fantômes le plus vite possible.</string>
     <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps
         supplémentaire.
