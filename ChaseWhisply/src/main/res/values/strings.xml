@@ -61,6 +61,7 @@
         advice.
     </string>
     <string name="about_license_section">License</string>
+    <string name="about_license_title">Licensed under the Beerware License</string>
     <string name="about_license_content">You can do whatever you want with this stuff.
         If we meet some day, and you think this stuff is worth it, you can buy us a beer (or
         basically anything else) in return.
