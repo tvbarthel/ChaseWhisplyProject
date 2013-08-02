@@ -14,31 +14,32 @@
     <string name="home_sign_info">Sign in with Google to share your scores and achievements with
         your friends.
     </string>
-    <string name="home_not_sign_in_leaderboard">Sign in with Google to see the leaderboard.</string>
-    <string name="home_not_sign_in_achievement">Sign in with Google to unlock achievement.</string>
+    <string name="home_not_sign_in_leaderboard">Sign in with Google to see the leaderboards.
+    </string>
+    <string name="home_not_sign_in_achievement">Sign in with Google to unlock achievements.</string>
     <string name="home_sign_out">Sign out</string>
     <string name="home_sign_out_confirm_dialog_message">Are you sure you wish to sign out?</string>
     <string name="home_sign_out_success">You\'ve successfully signed out.</string>
 
     <!-- in game !-->
-    <string name="in_game_kill_counter">Frag : %1$d</string>
+    <string name="in_game_kill_counter">Frag: %1$d</string>
     <string name="in_game_combo_counter">x %1$d</string>
-    <string name="in_game_score">Score : %1$d</string>
-    <string name="in_game_time">Time : %1$d s</string>
+    <string name="in_game_score">Score: %1$d</string>
+    <string name="in_game_time">Time: %1$d s</string>
 
     <!-- Level Chooser Activity !-->
     <string name="level_chooser">Select game mode</string>
 
     <!-- Game Mode rules !-->
-    <string name="game_mode_remaining_time">Kill most ghosts as you can in given time</string>
+    <string name="game_mode_remaining_time">Kill most ghosts as you can in given time.</string>
     <string name="game_mode_time_limited_level_1">Kill as many ghosts as you can in 30 seconds.
     </string>
     <string name="game_mode_time_limited_level_2">Kill as many ghosts as you can in 60 seconds.
     </string>
     <string name="game_mode_time_limited_level_3">Kill as many ghosts as you can in 90 seconds.
     </string>
-    <string name="game_mode_target_limited">Kill all ghosts as fast as you can !</string>
-    <string name="game_mode_survival">Survival : each kill gives additional time.</string>
+    <string name="game_mode_target_limited">Kill all ghosts as fast as you can!</string>
+    <string name="game_mode_survival">Survival: each kill gives additional time.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>
@@ -55,7 +56,7 @@
     <string name="about_developer_card_title">Developers</string>
     <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
     <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
-    <string name="about_thanks_section">Special Thanks to ...</string>
+    <string name="about_thanks_section">Special thanks to ...</string>
     <string name="about_thanks_tkeunebr">Thomas Keunebroek, for his early day support and precious
         advice.
     </string>
