@@ -34,16 +34,22 @@
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Select leaderboard</string>
-    <string name="leaderboard_chooser_time_limited_level_1_description">30 seconds High Scores.</string>
-    <string name="leaderboard_chooser_time_limited_level_2_description">60 seconds High Scores.</string>
-    <string name="leaderboard_chooser_time_limited_level_3_description">90 seconds High Scores.</string>
+    <string name="leaderboard_chooser_time_limited_level_1_description">30 seconds High Scores.
+    </string>
+    <string name="leaderboard_chooser_time_limited_level_2_description">60 seconds High Scores.
+    </string>
+    <string name="leaderboard_chooser_time_limited_level_3_description">90 seconds High Scores.
+    </string>
     <string name="leaderboard_chooser_survival_description">Survival High Scores.</string>
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Kill most ghosts as you can in given time.</string>
-    <string name="game_mode_time_limited_level_1">Kill as many ghosts as you can in 30 seconds.</string>
-    <string name="game_mode_time_limited_level_2">Kill as many ghosts as you can in 60 seconds.</string>
-    <string name="game_mode_time_limited_level_3">Kill as many ghosts as you can in 90 seconds.</string>
+    <string name="game_mode_time_limited_level_1">Kill as many ghosts as you can in 30 seconds.
+    </string>
+    <string name="game_mode_time_limited_level_2">Kill as many ghosts as you can in 60 seconds.
+    </string>
+    <string name="game_mode_time_limited_level_3">Kill as many ghosts as you can in 90 seconds.
+    </string>
     <string name="game_mode_target_limited">Kill all ghosts as fast as you can!</string>
     <string name="game_mode_survival">Survival: each kill gives additional time.</string>
 
@@ -56,9 +62,10 @@
     <string name="score_replay_button">Replay</string>
     <string name="score_home_button">Home</string>
     <string name="score_share_button">Share</string>
+    <string name="score_share_dialog">How do you want to share?</string>
     <string name="score_share_subject">Chase Whisply</string>
-    <string name="score_share_content">I play Chase Whisply. Can you beat my score : %1$s
-        ? \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
+    <string name="score_share_content">I play Chase Whisply. Can you beat my score : %1$d
+        ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
     </string>
 
     <!-- About Fragment -->

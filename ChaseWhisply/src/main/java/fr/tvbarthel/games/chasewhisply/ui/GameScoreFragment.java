@@ -137,7 +137,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 				mListener.onReplayRequested(mGameInformation);
 				break;
 			case R.id.score_button_share:
-				mListener.onShareRequested();
+				mListener.onShareScoreRequested(mGameInformation.getCurrentScore());
 				break;
 		}
 
@@ -247,7 +247,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 		public void onUpdateAchievements(final GameInformation gameInformation);
 
-		public void onShareRequested();
+		public void onShareScoreRequested(int score);
 	}
 
 

@@ -39,16 +39,31 @@
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Sélectionnez un classement</string>
-    <string name="leaderboard_chooser_time_limited_level_1_description">Meilleurs scores, mode de jeu: 30 secondes.</string>
-    <string name="leaderboard_chooser_time_limited_level_2_description">Meilleurs scores, mode de jeu: 60 secondes.</string>
-    <string name="leaderboard_chooser_time_limited_level_3_description">Meilleurs scores, mode de jeu: 90 secondes.</string>
-    <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu: survie.</string>
+    <string name="leaderboard_chooser_time_limited_level_1_description">Meilleurs scores, mode de
+        jeu: 30 secondes.
+    </string>
+    <string name="leaderboard_chooser_time_limited_level_2_description">Meilleurs scores, mode de
+        jeu: 60 secondes.
+    </string>
+    <string name="leaderboard_chooser_time_limited_level_3_description">Meilleurs scores, mode de
+        jeu: 90 secondes.
+    </string>
+    <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu: survie.
+    </string>
 
     <!-- Game Mode rules !-->
-    <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps imparti.</string>
-    <string name="game_mode_time_limited_level_1">Tuez le plus de fantômes possibles en 30 secondes.</string>
-    <string name="game_mode_time_limited_level_2">Tuez le plus de fantômes possibles en 60 secondes.</string>
-    <string name="game_mode_time_limited_level_3">Tuez le plus de fantômes possibles en 90 secondes.</string>
+    <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps
+        imparti.
+    </string>
+    <string name="game_mode_time_limited_level_1">Tuez le plus de fantômes possibles en 30
+        secondes.
+    </string>
+    <string name="game_mode_time_limited_level_2">Tuez le plus de fantômes possibles en 60
+        secondes.
+    </string>
+    <string name="game_mode_time_limited_level_3">Tuez le plus de fantômes possibles en 90
+        secondes.
+    </string>
     <string name="game_mode_target_limited">Tuez tous les fantômes le plus vite possible.</string>
     <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps
         supplémentaire.
@@ -63,9 +78,11 @@
     <string name="score_replay_button">Rejouer</string>
     <string name="score_home_button">Accueil</string>
     <string name="score_share_button">Partager</string>
+    <string name="score_share_dialog">Partagez votre score avec l\'application de votre choix
+    </string>
     <string name="score_share_subject">Chase Whisply</string>
-    <string name="score_share_content">Je Joue à Chase Whisply. Pouvez vous battre mon score : %1$s
-        ? \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
+    <string name="score_share_content">Je joue à Chase Whisply. Pouvez vous battre mon score : %1$d
+        ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
     </string>
 
     <!-- About Fragment -->
