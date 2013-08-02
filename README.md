@@ -3,6 +3,8 @@ ChaseWhisplyProject
 
 An augmented reality attempt.
 
+![Chase Whisply screenshot](static/chase_whisply_screenshot.png)
+
 Credits and License
 ========
 Credits go to Thomas Barthélémy [https://github.com/tbarthel-fr](https://github.com/tbarthel-fr) and Vincent Barthélémy [https://github.com/vbarthel-fr](https://github.com/vbarthel-fr).
