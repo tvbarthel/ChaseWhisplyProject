@@ -69,7 +69,7 @@ public class TutoActivity extends FragmentActivity {
 					drawableResId = R.drawable.tuto_1;
 					break;
 				case 1:
-					drawableResId = R.drawable.ic_launcher;
+					drawableResId = R.drawable.tuto_2;
 					break;
 				case 2:
 					drawableResId = R.drawable.tvbarthel_logo;
