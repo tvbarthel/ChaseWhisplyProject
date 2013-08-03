@@ -119,9 +119,12 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 		if (mIsDisplayDone) {
 			finalizeScoreDisplayed();
-		} else {
+		} else if(hasSomethingToDisplay()){
 			initScoreDisplay(savedInstanceState);
 			mTimerRoutine.startRoutine();
+		} else {
+			mSkipButton.setVisibility(View.GONE);
+			mIsDisplayDone = true;
 		}
 	}
 
@@ -207,6 +210,14 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			fadeOut(mSkipButton);
 			mIsDisplayDone = true;
 		}
+
+	}
+
+	private boolean hasSomethingToDisplay() {
+		return  mGameInformation.getCurrentScore() != 0 ||
+				mGameInformation.getMaxCombo() != 0 ||
+				mGameInformation.getFragNumber() != 0 ||
+				mGameInformation.getBulletFired() != 0;
 
 	}
 
