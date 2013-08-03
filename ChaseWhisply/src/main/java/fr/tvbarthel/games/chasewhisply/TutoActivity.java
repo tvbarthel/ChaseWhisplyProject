@@ -9,10 +9,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.Button;
 
 import fr.tvbarthel.games.chasewhisply.ui.TutoFragment;
 
-public class TutoActivity extends FragmentActivity implements TutoFragment.Callbacks {
+public class TutoActivity extends FragmentActivity {
 	public static final int NB_PAGES = 4;
 	private static final String FIRST_LAUNCH_KEY = "First_launch_KEY";
 	private SharedPreferences mPrefs;
@@ -35,15 +37,24 @@ public class TutoActivity extends FragmentActivity implements TutoFragment.Callb
 		final TutoPagerAdapter adapter = new TutoPagerAdapter(getSupportFragmentManager());
 		pager.setAdapter(adapter);
 		pager.setOffscreenPageLimit(adapter.getCount());
+		pager.setPageMargin((int) getResources().getDimensionPixelSize(R.dimen.default_padding));
+
+		Button closeButton = (Button) findViewById(R.id.closeButton);
+		closeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				closeTutorial();
+			}
+		});
 	}
 
-	@Override
-	public void onCloseRequested() {
+	private void closeTutorial() {
 		final Intent intent = new Intent(this, HomeActivity.class);
 		startActivity(intent);
 		mPrefs.edit().putBoolean(FIRST_LAUNCH_KEY, false).apply();
 		finish();
 	}
+
 
 	private static class TutoPagerAdapter extends FragmentPagerAdapter {
 		public TutoPagerAdapter(FragmentManager fm) {
