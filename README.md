@@ -1,4 +1,4 @@
-![Chase Whisply banner](static/banner_chase_whisply.png)
+![Chase Whisply banner](static/banner_chase_whisply.jpg)
 ChaseWhisplyProject
 ========
 
