@@ -10,33 +10,32 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_grey"
         android:padding="@dimen/default_padding">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:gravity="center"
             android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/text_view_grey"
             android:textIsSelectable="false"
-            android:textSize="36sp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+            android:textSize="36sp" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/textView2"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:baselineAligned="false"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_below="@id/textView2"
-            android:layout_centerHorizontal="true">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -141,10 +140,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_skip"
-                    android:text="@string/score_skip_button"
-                    android:textColor="@color/white"
                     android:paddingBottom="12dp"
                     android:paddingTop="12dp"
+                    android:text="@string/score_skip_button"
+                    android:textColor="@color/white"
                     android:textSize="22sp" />
 
                 <Button
@@ -152,10 +151,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_replay"
-                    android:text="@string/score_replay_button"
-                    android:textColor="@color/white"
                     android:paddingBottom="12dp"
                     android:paddingTop="12dp"
+                    android:text="@string/score_replay_button"
+                    android:textColor="@color/white"
                     android:textSize="22sp" />
 
                 <Button
@@ -163,10 +162,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_share"
-                    android:text="@string/score_share_button"
-                    android:textColor="@color/white"
                     android:paddingBottom="12dp"
                     android:paddingTop="12dp"
+                    android:text="@string/score_share_button"
+                    android:textColor="@color/white"
                     android:textSize="22sp" />
 
                 <Button
@@ -174,10 +173,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_home"
-                    android:text="@string/score_home_button"
-                    android:textColor="@color/white"
                     android:paddingBottom="12dp"
                     android:paddingTop="12dp"
+                    android:text="@string/score_home_button"
+                    android:textColor="@color/white"
                     android:textSize="22sp" />
 
             </LinearLayout>
@@ -188,15 +187,15 @@
             android:id="@+id/sign_in_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@string/sign_in_message"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textIsSelectable="false"
             android:textColor="#888888"
-            android:layout_below="@+id/linearLayout"
-            android:layout_centerHorizontal="true" />
+            android:textIsSelectable="false" />
 
     </RelativeLayout>
 
