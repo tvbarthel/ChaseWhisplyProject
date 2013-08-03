@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
-import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
-import fr.tvbarthel.games.chasewhisply.mechanics.GameInformationFactory;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.GameInformationFactory;
 import fr.tvbarthel.games.chasewhisply.mechanics.SurvivalGameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;

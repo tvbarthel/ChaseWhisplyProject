@@ -1,5 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+
 public class SurvivalGameEngine extends TimeLimitedGameEngine {
 
 	protected long mAdditionalTimeOnKill = 0;

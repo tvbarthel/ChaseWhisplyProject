@@ -11,7 +11,7 @@ import android.graphics.Rect;
 import android.view.View;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;

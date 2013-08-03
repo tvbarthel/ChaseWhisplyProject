@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
 
 public class GameScoreFragment extends Fragment implements View.OnClickListener {

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.google.android.gms.games.GamesClient;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
-import fr.tvbarthel.games.chasewhisply.mechanics.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;

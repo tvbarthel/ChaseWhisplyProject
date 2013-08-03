@@ -1,16 +1,10 @@
-package fr.tvbarthel.games.chasewhisply.mechanics;
+package fr.tvbarthel.games.chasewhisply.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
-import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
-import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
-import fr.tvbarthel.games.chasewhisply.model.Weapon;
 
 public class GameInformation implements Parcelable {
 	protected int mScore;

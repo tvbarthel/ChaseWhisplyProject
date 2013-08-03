@@ -1,7 +1,8 @@
-package fr.tvbarthel.games.chasewhisply.mechanics;
+package fr.tvbarthel.games.chasewhisply.model;
 
 
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.WeaponFactory;
 

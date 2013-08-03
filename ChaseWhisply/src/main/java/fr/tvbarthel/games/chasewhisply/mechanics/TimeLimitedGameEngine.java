@@ -1,6 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 
 public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameTimer {
 	protected GameTimer mGameTimer;

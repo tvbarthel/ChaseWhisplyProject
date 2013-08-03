@@ -4,6 +4,7 @@ import android.util.Log;
 
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
 abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningRoutine.ISpawningRoutine {
