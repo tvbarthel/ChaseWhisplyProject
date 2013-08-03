@@ -28,6 +28,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			GameScoreFragment.class.getName() + ".Bundle.currentMaxCombo";
 	private static final String BUNDLE_CURRENT_FINAL_SCORE =
 			GameScoreFragment.class.getName() + ".Bundle.currentFinalScore";
+	private static final String BUNDLE_CURRENT_ACHIEVEMENT_CHECKED =
+			GameScoreFragment.class.getName() + ".Bundle.achievementChecked";
 	private static final long TICK_INTERVAL = 100;
 	private static final int NUMBER_OF_TICK = 30;
 	private Listener mListener = null;
@@ -43,6 +45,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private float mCurrentFinalScore;
 	private float mCurrentTickNumber;
 	private boolean mIsDisplayDone = false;
+	private boolean mAchievementChecked = false;
 	//UI
 	private TextView mNumberOfBulletsFiredTextView;
 	private TextView mNumberOfTargetsKilledTextView;
@@ -86,6 +89,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 		if (savedInstanceState != null) {
 			mIsDisplayDone = savedInstanceState.getBoolean(BUNDLE_IS_DISPLAY_DONE, false);
+			mAchievementChecked = savedInstanceState.getBoolean(BUNDLE_CURRENT_ACHIEVEMENT_CHECKED, false);
 		}
 
 		if (getArguments().containsKey(EXTRA_GAME_INFORMATION)) {
@@ -119,7 +123,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 		if (mIsDisplayDone) {
 			finalizeScoreDisplayed();
-		} else if(hasSomethingToDisplay()){
+		} else if (hasSomethingToDisplay()) {
 			initScoreDisplay(savedInstanceState);
 			mTimerRoutine.startRoutine();
 		} else {
@@ -133,13 +137,11 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		switch (view.getId()) {
 			case R.id.score_button_home:
 				mListener.onHomeRequested();
-				mListener.onUpdateAchievements(mGameInformation);
 				break;
 			case R.id.score_button_skip:
 				finalizeScoreDisplayed();
 				break;
 			case R.id.score_button_replay:
-				mListener.onUpdateAchievements(mGameInformation);
 				mListener.onReplayRequested(mGameInformation);
 				break;
 			case R.id.score_button_share:
@@ -157,11 +159,16 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		outState.putFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED, mCurrentNumberOfTargetsKilled);
 		outState.putFloat(BUNDLE_CURRENT_MAX_COMBO, mCurrentMaxCombo);
 		outState.putFloat(BUNDLE_CURRENT_FINAL_SCORE, mCurrentFinalScore);
+		outState.putBoolean(BUNDLE_CURRENT_ACHIEVEMENT_CHECKED, mAchievementChecked);
 	}
 
 	public void notifySignedStateChanged(boolean signedIn) {
 		if (signedIn) {
 			mSignInView.setVisibility(View.GONE);
+			if (!mAchievementChecked) {
+				mListener.onUpdateAchievements(mGameInformation);
+				mAchievementChecked = true;
+			}
 		} else {
 			mSignInView.setVisibility(View.VISIBLE);
 		}
@@ -214,7 +221,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	}
 
 	private boolean hasSomethingToDisplay() {
-		return  mGameInformation.getCurrentScore() != 0 ||
+		return mGameInformation.getCurrentScore() != 0 ||
 				mGameInformation.getMaxCombo() != 0 ||
 				mGameInformation.getFragNumber() != 0 ||
 				mGameInformation.getBulletFired() != 0;
