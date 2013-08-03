@@ -3,8 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/card_shadow_with_inset"
-    android:padding="@dimen/default_padding"
+    android:background="@drawable/card_shadow_tuto"
+    android:padding="@dimen/tuto_fragment_padding"
     android:orientation="vertical">
 
     <ImageView

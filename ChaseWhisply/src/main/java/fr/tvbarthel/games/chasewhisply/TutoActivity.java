@@ -37,7 +37,7 @@ public class TutoActivity extends FragmentActivity {
 		final TutoPagerAdapter adapter = new TutoPagerAdapter(getSupportFragmentManager());
 		pager.setAdapter(adapter);
 		pager.setOffscreenPageLimit(adapter.getCount());
-		pager.setPageMargin((int) getResources().getDimensionPixelSize(R.dimen.default_padding));
+		pager.setPageMargin((int) getResources().getDimensionPixelSize(R.dimen.tuto_page_margin));
 
 		Button closeButton = (Button) findViewById(R.id.closeButton);
 		closeButton.setOnClickListener(new View.OnClickListener() {

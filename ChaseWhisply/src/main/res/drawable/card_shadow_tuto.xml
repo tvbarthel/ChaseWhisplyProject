@@ -4,5 +4,5 @@
     android:drawable="@drawable/card_shadow_base"
     android:insetBottom="@dimen/default_padding"
     android:insetTop="@dimen/default_padding"
-    android:insetLeft="@dimen/default_padding"
-    android:insetRight="@dimen/default_padding" />
+    android:insetLeft="@dimen/tuto_fragment_padding"
+    android:insetRight="@dimen/tuto_fragment_padding" />
