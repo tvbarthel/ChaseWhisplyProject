@@ -16,3 +16,7 @@ Licensed under the Beerware License:
 You can do whatever you want with this stuff.
 If we meet some day, and you think this stuff is worth it, you can buy us a beer (or basically anything else) in return.
 </pre>
+
+Special Thanks to ...
+========
+Thomas Keunebroek [https://github.com/tkeunebr](https://github.com/tkeunebr) , for his early day support and precious advice.
