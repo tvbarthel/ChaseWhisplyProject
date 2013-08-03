@@ -2,7 +2,7 @@
 ChaseWhisplyProject
 ========
 
-An augmented reality attempt.
+[Beta Test] Chase Whisply is an "augmented reality" FPS. You have to seek, find and kill the ghosts living around you.
 
 ![Chase Whisply screenshot](static/chase_whisply_screenshot.png)
 
