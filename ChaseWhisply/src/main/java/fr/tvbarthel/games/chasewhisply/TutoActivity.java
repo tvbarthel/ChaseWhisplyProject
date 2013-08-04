@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
@@ -61,7 +62,7 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 				getResources().getString(R.string.tuto_title_slide_3)};
 
 		//initialize title text switcher
-		mTitleSwitcher = (TextSwitcher) findViewById(R.id.testTextSwitcher);
+		mTitleSwitcher = (TextSwitcher) findViewById(R.id.tuto_text_switcher);
 		mTitleSwitcher.setFactory(this);
 		mTitleSwitcher.setCurrentText(getResources().getString(R.string.tuto_default_title));
 
@@ -104,7 +105,7 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 
 	private void closeTutorial() {
 		final boolean helpRequested = getIntent().getBooleanExtra(EXTRA_HELP_REQUESTED, false);
-		if(!helpRequested){
+		if (!helpRequested) {
 			final Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
 			mPrefs.edit().putBoolean(FIRST_LAUNCH_KEY, false).apply();
@@ -118,9 +119,11 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 		textView.setTextAppearance(this, android.R.style.TextAppearance_Holo_Large);
 		textView.setTextColor(getResources().getColor(R.color.holo_dark_green));
 		textView.setGravity(Gravity.CENTER);
+		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+				FrameLayout.LayoutParams.MATCH_PARENT);
+		textView.setLayoutParams(layoutParams);
 		return textView;
 	}
-
 
 
 	private class TutoPagerAdapter extends FragmentPagerAdapter {
