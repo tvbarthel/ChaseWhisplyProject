@@ -58,9 +58,12 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 	public static Camera getCameraInstance() {
 		Camera c = null;
 		try {
-			c = Camera.open(); // attempt to get a Camera instance
+			c = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK); // attempt to get a Camera instance
 		} catch (Exception e) {
-			// Camera is not available (in use or does not exist)
+			try {
+				c = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
+			} catch (Exception ignored) {
+			}
 		}
 		return c; // returns null if camera is unavailable
 	}
@@ -204,7 +207,7 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 		mGameView.invalidate();
 	}
 
-	private class CameraAsyncTask extends AsyncTask<Void, Void, Camera> {
+	private final class CameraAsyncTask extends AsyncTask<Void, Void, Camera> {
 		@Override
 		protected Camera doInBackground(Void... voids) {
 			return getCameraInstance();
