@@ -44,7 +44,8 @@ public class TutoActivity extends FragmentActivity {
 		final TutoPagerAdapter adapter = new TutoPagerAdapter(getSupportFragmentManager());
 		pager.setAdapter(adapter);
 		pager.setOffscreenPageLimit(adapter.getCount());
-		pager.setPageMargin((int) getResources().getDimensionPixelSize(R.dimen.tuto_page_margin));
+		pager.setPageMargin(getResources().getDimensionPixelSize(R.dimen.tuto_page_margin));
+		final TextView tutoTitle = (TextView) findViewById(R.id.tuto_title);
 		pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			@Override
 			public void onPageScrolled(int i, float v, int i2) {
@@ -52,7 +53,7 @@ public class TutoActivity extends FragmentActivity {
 
 			@Override
 			public void onPageSelected(int i) {
-				((TextView) (findViewById(R.id.tuto_title))).setText(adapter.getPageTitle(i));
+				tutoTitle.setText(adapter.getPageTitle(i));
 			}
 
 			@Override
@@ -60,7 +61,7 @@ public class TutoActivity extends FragmentActivity {
 			}
 		});
 
-		Button closeButton = (Button) findViewById(R.id.closeButton);
+		final Button closeButton = (Button) findViewById(R.id.closeButton);
 		closeButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -76,7 +77,6 @@ public class TutoActivity extends FragmentActivity {
 		finish();
 	}
 
-
 	private class TutoPagerAdapter extends FragmentPagerAdapter {
 		public TutoPagerAdapter(FragmentManager fm) {
 			super(fm);
@@ -85,7 +85,6 @@ public class TutoActivity extends FragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 			final int drawableResId;
-			final String tutoTitle;
 			switch (position) {
 				case 0:
 					drawableResId = R.drawable.tuto_1_bis;
