@@ -4,12 +4,41 @@
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/default_padding">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="right"
+        android:background="@drawable/card_shadow_base"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="2dp"
+        android:id="@+id/tuto_title_card">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Chase Whisply"
+            android:textColor="@color/holo_dark_green"
+            android:id="@+id/textView"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/ic_tuto_logo" />
+    </LinearLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/default_padding"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/tuto_title_card"
         android:layout_above="@+id/closeButton" />
 
     <Button

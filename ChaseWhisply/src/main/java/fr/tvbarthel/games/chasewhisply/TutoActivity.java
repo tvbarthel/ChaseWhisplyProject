@@ -66,10 +66,10 @@ public class TutoActivity extends FragmentActivity {
 			final int drawableResId;
 			switch (position) {
 				case 0:
-					drawableResId = R.drawable.tuto_1;
+					drawableResId = R.drawable.tuto_1_bis;
 					break;
 				case 1:
-					drawableResId = R.drawable.tuto_2;
+					drawableResId = R.drawable.tuto_2_bis;
 					break;
 				case 2:
 					drawableResId = R.drawable.tvbarthel_logo;
