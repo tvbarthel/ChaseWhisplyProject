@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
+import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
@@ -31,9 +32,10 @@ public class GameView extends View {
 	//ratio for displaying items
 	private float mWidthRatioDegreeToPx;
 	private float mHeightRatioDegreeToPx;
-	private int mFontSize;
+	private float mFontSize;
 	private int mScreenWidth;
 	private int mScreenHeight;
+	private float mPadding;
 
 
 	public GameView(Context context, GameInformation model) {
@@ -53,6 +55,8 @@ public class GameView extends View {
 		mScoreString = res.getString(R.string.in_game_score);
 		mTimeString = res.getString(R.string.in_game_time);
 
+		mFontSize = getTextSizeFromStyle(context, android.R.style.TextAppearance_Holo_Large);
+		mPadding = getResources().getDimensionPixelSize(R.dimen.half_padding);
 	}
 
 	@Override
@@ -66,7 +70,6 @@ public class GameView extends View {
 		mWidthRatioDegreeToPx = mScreenWidth / mModel.getSceneWidth();
 		mHeightRatioDegreeToPx = mScreenHeight / mModel.getSceneHeight();
 
-		mFontSize = mScreenWidth / 30;
 
 		drawDisplayableItems(canvas);
 		drawCrossHair(canvas);
@@ -102,12 +105,12 @@ public class GameView extends View {
 			useGreenPainter();
 		}
 
-		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - 10),
-				(float) (getHeight() - mAmmoBitmap.getHeight()), mPaint);
+		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - mPadding),
+				(float) (getHeight() - mAmmoBitmap.getHeight() - mPadding), mPaint);
 
 		mPaint.setTextSize(mAmmoBitmap.getHeight() / 2);
 		canvas.drawText(String.valueOf(currentAmmunition)
-				, mScreenWidth - mAmmoBitmap.getWidth() - mPaint.getTextSize() / 2
+				, mScreenWidth - mAmmoBitmap.getWidth() - mPaint.getTextSize() / 2 - mPadding
 				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
 				, mPaint);
 	}
@@ -130,8 +133,8 @@ public class GameView extends View {
 
 		mPaint.getTextBounds(remainingTime, 0, remainingTime.length(), mBounds);
 		canvas.drawText(remainingTime
-				, 10 + mBounds.width() / 2
-				, 10 + mScreenWidth / 20
+				, mPadding + mBounds.width() / 2
+				, mPadding + mPaint.getTextSize()
 				, mPaint);
 	}
 
@@ -166,7 +169,7 @@ public class GameView extends View {
 
 		mPaint.getTextBounds(score, 0, score.length(), mBounds);
 		canvas.drawText(score
-				, 10 + mBounds.width() / 2
+				, mBounds.width() / 2 + mPadding
 				, mScreenHeight - mPaint.getTextSize()
 				, mPaint);
 
@@ -270,7 +273,7 @@ public class GameView extends View {
 
 	private void resetPainter() {
 		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-		mPaint.setStrokeWidth(4);
+		mPaint.setStrokeWidth(3);
 		mPaint.setTextSize(mFontSize);
 		mPaint.setTextAlign(Paint.Align.CENTER);
 	}
@@ -283,5 +286,11 @@ public class GameView extends View {
 	private void useRedPainter() {
 		mPaint.setColor(getResources().getColor(R.color.holo_red));
 		mPaint.setShadowLayer(5, 5, 5, R.color.holo_dark_red);
+	}
+
+	private float getTextSizeFromStyle(Context context, int styleId) {
+		final TextView textView = new TextView(context);
+		textView.setTextAppearance(context, styleId);
+		return textView.getTextSize();
 	}
 }
