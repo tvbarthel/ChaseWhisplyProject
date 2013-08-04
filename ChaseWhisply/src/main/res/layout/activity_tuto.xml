@@ -16,19 +16,6 @@
         android:paddingBottom="2dp"
         android:id="@+id/tuto_title_card">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/tuto_default_title"
-            android:textColor="@color/holo_dark_green"
-            android:id="@+id/tuto_title"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/imageView" />
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +24,18 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="false"
             android:layout_alignParentTop="true" />
+
+        <TextSwitcher
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/testTextSwitcher"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/imageView">
+
+        </TextSwitcher>
+
+
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

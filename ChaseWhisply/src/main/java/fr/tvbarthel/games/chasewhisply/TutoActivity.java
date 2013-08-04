@@ -9,23 +9,41 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import fr.tvbarthel.games.chasewhisply.ui.TutoFragment;
 
-public class TutoActivity extends FragmentActivity {
+public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewFactory {
 	public static final int NB_PAGES = 4;
 	private static final String FIRST_LAUNCH_KEY = "First_launch_KEY";
 	private SharedPreferences mPrefs;
 	private String[] mPageTitles;
+	private TextSwitcher mTitleSwitcher;
+	private int mLastPosition;
+	private Animation mSlideLeftInAnimation;
+	private Animation mSlideLeftOutAnimation;
+	private Animation mSlideRightInAnimation;
+	private Animation mSlideRightOutAnimation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_tuto);
+		mLastPosition = 0;
+
+		//load animation
+		mSlideLeftInAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_left_in);
+		mSlideLeftOutAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_left_out);
+		mSlideRightInAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_right_in);
+		mSlideRightOutAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_right_out);
 
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		final boolean firstLaunch = mPrefs.getBoolean(FIRST_LAUNCH_KEY, true);
@@ -40,20 +58,32 @@ public class TutoActivity extends FragmentActivity {
 				getResources().getString(R.string.tuto_title_slide_2),
 				getResources().getString(R.string.tuto_title_slide_3)};
 
+		//initialize title text switcher
+		mTitleSwitcher = (TextSwitcher) findViewById(R.id.testTextSwitcher);
+		mTitleSwitcher.setFactory(this);
+		mTitleSwitcher.setCurrentText(getResources().getString(R.string.tuto_default_title));
+
 		final ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		final TutoPagerAdapter adapter = new TutoPagerAdapter(getSupportFragmentManager());
 		pager.setAdapter(adapter);
 		pager.setOffscreenPageLimit(adapter.getCount());
 		pager.setPageMargin(getResources().getDimensionPixelSize(R.dimen.tuto_page_margin));
-		final TextView tutoTitle = (TextView) findViewById(R.id.tuto_title);
 		pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			@Override
 			public void onPageScrolled(int i, float v, int i2) {
 			}
 
 			@Override
-			public void onPageSelected(int i) {
-				tutoTitle.setText(adapter.getPageTitle(i));
+			public void onPageSelected(int newPosition) {
+				if (newPosition > mLastPosition) {
+					mTitleSwitcher.setInAnimation(mSlideLeftInAnimation);
+					mTitleSwitcher.setOutAnimation(mSlideLeftOutAnimation);
+				} else {
+					mTitleSwitcher.setInAnimation(mSlideRightInAnimation);
+					mTitleSwitcher.setOutAnimation(mSlideRightOutAnimation);
+				}
+				mTitleSwitcher.setText(adapter.getPageTitle(newPosition));
+				mLastPosition = newPosition;
 			}
 
 			@Override
@@ -76,6 +106,17 @@ public class TutoActivity extends FragmentActivity {
 		mPrefs.edit().putBoolean(FIRST_LAUNCH_KEY, false).apply();
 		finish();
 	}
+
+	@Override
+	public View makeView() {
+		TextView textView = new TextView(this);
+		textView.setTextAppearance(this, android.R.style.TextAppearance_Holo_Large);
+		textView.setTextColor(getResources().getColor(R.color.holo_dark_green));
+		textView.setGravity(Gravity.CENTER);
+		return textView;
+	}
+
+
 
 	private class TutoPagerAdapter extends FragmentPagerAdapter {
 		public TutoPagerAdapter(FragmentManager fm) {
