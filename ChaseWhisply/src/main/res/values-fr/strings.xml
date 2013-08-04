@@ -109,4 +109,10 @@
         les autres joueurs en vous connectant via Google Plus !
     </string>
 
+    <!-- Tuto Activity -->
+    <string name="tuto_default_title">Chase Whisply</string>
+    <string name="tuto_title_slide_1">Menu</string>
+    <string name="tuto_title_slide_2">Bientôt (1)</string>
+    <string name="tuto_title_slide_3">Bientôt (2)</string>
+
 </resources>

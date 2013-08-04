@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.ui.TutoFragment;
 
@@ -18,6 +19,7 @@ public class TutoActivity extends FragmentActivity {
 	public static final int NB_PAGES = 4;
 	private static final String FIRST_LAUNCH_KEY = "First_launch_KEY";
 	private SharedPreferences mPrefs;
+	private String[] mPageTitles;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +35,30 @@ public class TutoActivity extends FragmentActivity {
 			finish();
 		}
 
+		mPageTitles = new String[]{getResources().getString(R.string.tuto_default_title),
+				getResources().getString(R.string.tuto_title_slide_1),
+				getResources().getString(R.string.tuto_title_slide_2),
+				getResources().getString(R.string.tuto_title_slide_3)};
+
 		final ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		final TutoPagerAdapter adapter = new TutoPagerAdapter(getSupportFragmentManager());
 		pager.setAdapter(adapter);
 		pager.setOffscreenPageLimit(adapter.getCount());
 		pager.setPageMargin((int) getResources().getDimensionPixelSize(R.dimen.tuto_page_margin));
+		pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			@Override
+			public void onPageScrolled(int i, float v, int i2) {
+			}
+
+			@Override
+			public void onPageSelected(int i) {
+				((TextView) (findViewById(R.id.tuto_title))).setText(adapter.getPageTitle(i));
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int i) {
+			}
+		});
 
 		Button closeButton = (Button) findViewById(R.id.closeButton);
 		closeButton.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +77,7 @@ public class TutoActivity extends FragmentActivity {
 	}
 
 
-	private static class TutoPagerAdapter extends FragmentPagerAdapter {
+	private class TutoPagerAdapter extends FragmentPagerAdapter {
 		public TutoPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -64,6 +85,7 @@ public class TutoActivity extends FragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 			final int drawableResId;
+			final String tutoTitle;
 			switch (position) {
 				case 0:
 					drawableResId = R.drawable.tuto_1_bis;
@@ -79,6 +101,11 @@ public class TutoActivity extends FragmentActivity {
 					break;
 			}
 			return TutoFragment.newInstance(drawableResId, position + 1);
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return mPageTitles[position];
 		}
 
 		@Override
