@@ -4,17 +4,19 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:padding="4dp"/>
+        android:layout_alignParentLeft="true"
+        android:padding="4dp"
+        android:id="@+id/game_mode_image" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/textView"
-        android:layout_gravity="center"
         android:gravity="center"
+        android:layout_centerVertical="true"
         android:textColor="@drawable/button_text_color"
-        android:padding="@dimen/half_padding"/>
+        android:padding="@dimen/half_padding"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/game_mode_image" />
 </merge>

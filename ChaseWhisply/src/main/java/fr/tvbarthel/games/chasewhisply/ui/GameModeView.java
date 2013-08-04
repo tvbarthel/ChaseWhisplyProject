@@ -2,16 +2,15 @@ package fr.tvbarthel.games.chasewhisply.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 
-public class GameModeView extends LinearLayout {
+public class GameModeView extends RelativeLayout {
 
 	private final TextView mGameModeDescription;
 	private final ImageView mGameModeImage;
@@ -24,8 +23,6 @@ public class GameModeView extends LinearLayout {
 	public GameModeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		setOrientation(LinearLayout.HORIZONTAL);
-		setGravity(Gravity.CENTER_HORIZONTAL);
 		setBackgroundResource(R.drawable.card_shadow);
 		setClickable(true);
 
