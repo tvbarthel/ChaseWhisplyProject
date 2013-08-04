@@ -133,6 +133,16 @@
             android:layout_marginLeft="-10dp"
             android:src="@drawable/ghost" />
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/home_help_tuto"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:src="@drawable/button_help_tuto"
+            android:padding="@dimen/half_padding" />
+
     </RelativeLayout>
 
 </ScrollView>

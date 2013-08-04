@@ -161,6 +161,13 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		}
 	}
 
+	@Override
+	public void onHelpRequested() {
+		final Intent intent = new Intent(this, TutoActivity.class);
+		intent.putExtra(TutoActivity.EXTRA_HELP_REQUESTED, true);
+		startActivity(intent);
+	}
+
 	/**
 	 * use to inform user
 	 *

@@ -21,6 +21,7 @@ import android.widget.ViewSwitcher;
 import fr.tvbarthel.games.chasewhisply.ui.TutoFragment;
 
 public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewFactory {
+	public static final String EXTRA_HELP_REQUESTED = "ExtraHelpRequested";
 	public static final int NB_PAGES = 4;
 	private static final String FIRST_LAUNCH_KEY = "First_launch_KEY";
 	private SharedPreferences mPrefs;
@@ -47,7 +48,8 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		final boolean firstLaunch = mPrefs.getBoolean(FIRST_LAUNCH_KEY, true);
-		if (!firstLaunch) {
+		final boolean helpRequested = getIntent().getBooleanExtra(EXTRA_HELP_REQUESTED, false);
+		if (!firstLaunch && !helpRequested) {
 			Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
 			finish();
@@ -101,9 +103,12 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 	}
 
 	private void closeTutorial() {
-		final Intent intent = new Intent(this, HomeActivity.class);
-		startActivity(intent);
-		mPrefs.edit().putBoolean(FIRST_LAUNCH_KEY, false).apply();
+		final boolean helpRequested = getIntent().getBooleanExtra(EXTRA_HELP_REQUESTED, false);
+		if(!helpRequested){
+			final Intent intent = new Intent(this, HomeActivity.class);
+			startActivity(intent);
+			mPrefs.edit().putBoolean(FIRST_LAUNCH_KEY, false).apply();
+		}
 		finish();
 	}
 
