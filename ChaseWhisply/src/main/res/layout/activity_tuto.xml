@@ -48,7 +48,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Close"
+        android:text="@string/tuto_button_close"
         android:textColor="@color/white"
         android:paddingBottom="12dp"
         android:paddingTop="12dp"

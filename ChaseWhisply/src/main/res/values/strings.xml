@@ -96,5 +96,6 @@
     <string name="tuto_title_slide_1">Menu</string>
     <string name="tuto_title_slide_2">Soon (1)</string>
     <string name="tuto_title_slide_3">Soon (2)</string>
+    <string name="tuto_button_close">Close</string>
 
 </resources>
