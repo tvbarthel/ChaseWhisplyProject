@@ -16,10 +16,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
-import fr.tvbarthel.games.chasewhisply.model.GameInformationFactory;
 import fr.tvbarthel.games.chasewhisply.mechanics.SurvivalGameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.GameInformationFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
@@ -218,6 +218,7 @@ public class GameActivity extends Activity implements SensorEventListener, GameE
 
 			if (mCamera == null) {
 				finish();
+				return;
 			}
 
 			if (mGameInformation == null) {
