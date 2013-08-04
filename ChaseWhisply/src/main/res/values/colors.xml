@@ -7,6 +7,8 @@
     <color name="holo_blue">#33b5e5</color>
     <color name="holo_green">#b3c833</color>
     <color name="holo_dark_green">#8a9d20</color>
+    <color name="holo_red">#FF4444</color>
+    <color name="holo_dark_red">#CC0000</color>
     <color name="background_grey">#e5e5e5</color>
     <color name="text_view_grey">#888888</color>
 </resources>

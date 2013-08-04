@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
@@ -53,6 +52,7 @@ public class GameView extends View {
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
 		mTimeString = res.getString(R.string.in_game_time);
+
 	}
 
 	@Override
@@ -88,28 +88,28 @@ public class GameView extends View {
 	 */
 	private void drawAmmo(Canvas canvas) {
 		final int currentAmmunition = mModel.getWeapon().getCurrentAmmunition();
-		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - 10),
-				(float) (getHeight() - mAmmoBitmap.getHeight()), mPaint);
-		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-		mPaint.setColor(Color.WHITE);
-		mPaint.setStrokeWidth(4);
-		mPaint.setTextSize(mAmmoBitmap.getHeight() / 2);
-		canvas.drawText(String.valueOf(currentAmmunition)
-				, mScreenWidth - mAmmoBitmap.getWidth() - mPaint.getTextSize()
-				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
-				, mPaint);
+		resetPainter();
 
 		if (currentAmmunition == 0) {
+			useRedPainter();
 			final String noAmmoMessage = getResources().getString(R.string.in_game_no_ammo_message);
-			mPaint.setTextSize(mFontSize);
-			mPaint.getTextBounds(noAmmoMessage, 0, noAmmoMessage.length(), mBounds);
-			mPaint.setColor(Color.RED);
-			mPaint.setStrokeWidth(2);
+
 			canvas.drawText(noAmmoMessage,
-					(mScreenWidth - mBounds.width()) / 2,
+					mScreenWidth / 2,
 					(mScreenHeight - mCrossHairs.getHeight()) / 2 - 10,
 					mPaint);
+		} else {
+			useGreenPainter();
 		}
+
+		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - 10),
+				(float) (getHeight() - mAmmoBitmap.getHeight()), mPaint);
+
+		mPaint.setTextSize(mAmmoBitmap.getHeight() / 2);
+		canvas.drawText(String.valueOf(currentAmmunition)
+				, mScreenWidth - mAmmoBitmap.getWidth() - mPaint.getTextSize() / 2
+				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
+				, mPaint);
 	}
 
 	/**
@@ -120,16 +120,17 @@ public class GameView extends View {
 	private void drawRemainingTime(Canvas canvas) {
 		final long millis = mModel.getRemainingTime();
 		final int ss = (int) (millis / 1000);
-		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+		final String remainingTime = String.format(mTimeString, ss);
+		resetPainter();
 		if (ss > 10) {
-			mPaint.setColor(Color.WHITE);
+			useGreenPainter();
 		} else {
-			mPaint.setColor(Color.RED);
+			useRedPainter();
 		}
-		mPaint.setStrokeWidth(4);
-		mPaint.setTextSize(mFontSize);
-		canvas.drawText(String.format(mTimeString, ss)
-				, 10
+
+		mPaint.getTextBounds(remainingTime, 0, remainingTime.length(), mBounds);
+		canvas.drawText(remainingTime
+				, 10 + mBounds.width() / 2
 				, 10 + mScreenWidth / 20
 				, mPaint);
 	}
@@ -141,13 +142,13 @@ public class GameView extends View {
 	 */
 	private void drawCombo(Canvas canvas) {
 		final int comboNumber = mModel.getCurrentCombo();
+		resetPainter();
+		useGreenPainter();
 		if (comboNumber > 1) {
-			mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-			mPaint.setColor(Color.WHITE);
-			mPaint.setStrokeWidth(4);
-			mPaint.setTextSize(mFontSize);
-			canvas.drawText(String.format(mComboString, mModel.getCurrentCombo())
-					, mScreenWidth / 2 + mCrossHairs.getWidth() / 2
+			final String currentCombo = String.format(mComboString, mModel.getCurrentCombo());
+			mPaint.getTextBounds(currentCombo, 0, currentCombo.length(), mBounds);
+			canvas.drawText(currentCombo
+					, mScreenWidth / 2 + mCrossHairs.getWidth() / 2 + mBounds.width() / 2
 					, mScreenHeight / 2 + mCrossHairs.getHeight() / 2
 					, mPaint);
 		}
@@ -159,12 +160,13 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawScore(Canvas canvas) {
-		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-		mPaint.setColor(Color.WHITE);
-		mPaint.setStrokeWidth(4);
-		mPaint.setTextSize(mFontSize);
-		canvas.drawText(String.format(mScoreString, mModel.getCurrentScore())
-				, 10
+		resetPainter();
+		useGreenPainter();
+		final String score = String.format(mScoreString, mModel.getCurrentScore());
+
+		mPaint.getTextBounds(score, 0, score.length(), mBounds);
+		canvas.drawText(score
+				, 10 + mBounds.width() / 2
 				, mScreenHeight - mPaint.getTextSize()
 				, mPaint);
 
@@ -264,5 +266,22 @@ public class GameView extends View {
 		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
 			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, mPaint);
 		}
+	}
+
+	private void resetPainter() {
+		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+		mPaint.setStrokeWidth(4);
+		mPaint.setTextSize(mFontSize);
+		mPaint.setTextAlign(Paint.Align.CENTER);
+	}
+
+	private void useGreenPainter() {
+		mPaint.setColor(getResources().getColor(R.color.holo_green));
+		mPaint.setShadowLayer(5, 5, 5, R.color.holo_dark_green);
+	}
+
+	private void useRedPainter() {
+		mPaint.setColor(getResources().getColor(R.color.holo_red));
+		mPaint.setShadowLayer(5, 5, 5, R.color.holo_dark_red);
 	}
 }
