@@ -157,7 +157,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	@Override
 	public void onWhisplyPictureClicked() {
 		if (mSignedIn) {
-			getGamesClient().unlockAchievement(getResources().getString(R.string.achievement_curiosity));
+			getGamesClient().unlockAchievementImmediate(null,getResources().getString(R.string.achievement_curiosity));
 		}
 	}
 
