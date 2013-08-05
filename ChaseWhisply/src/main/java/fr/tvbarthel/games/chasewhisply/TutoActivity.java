@@ -141,19 +141,19 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 					layoutResId = R.layout.fragment_tuto_welcome;
 					break;
 				case 1:
-					layoutResId = R.layout.fragment_tuto_play_button;
+					layoutResId = R.layout.fragment_tuto_target;
 					break;
 				case 2:
-					layoutResId = R.layout.fragment_tuto_leaderboard_button;
-					break;
-				case 3:
-					layoutResId = R.layout.fragment_tuto_achievement_button;
-					break;
-				case 4:
 					layoutResId = R.layout.fragment_tuto_aim_tips;
 					break;
+				case 3:
+					layoutResId = R.layout.fragment_tuto_play_button;
+					break;
+				case 4:
+					layoutResId = R.layout.fragment_tuto_leaderboard_button;
+					break;
 				case 5:
-					layoutResId = R.layout.fragment_tuto_target;
+					layoutResId = R.layout.fragment_tuto_achievement_button;
 					break;
 				default:
 					layoutResId = R.layout.fragment_tuto_default_page;
