@@ -113,6 +113,8 @@
     <string name="tuto_page_2_content">Select your favourite mode and hunt ghosts around you.</string>
 
     <!-- Tuto Fragment Page 3 -->
-    <string name="tuto_page_3_content">Compare your score with your friends and try to be the best hunter in the World.</string>
+    <string name="tuto_page_3_content">Compare your score with your friends and try to be the best hunter in the
+        World.
+    </string>
 
 </resources>
