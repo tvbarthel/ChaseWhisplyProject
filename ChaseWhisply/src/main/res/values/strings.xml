@@ -97,6 +97,7 @@
     <string name="tuto_title_page_2">Menu\nPlay</string>
     <string name="tuto_title_page_3">Menu\nLeaderboards</string>
     <string name="tuto_title_page_4">Menu\nAchievements</string>
+    <string name="tuto_title_page_5">In Game\nMoving</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
@@ -120,5 +121,10 @@
 
     <!-- Tuto Fragment Page 4 -->
     <string name="tuto_page_4_content">Improve yourself as a ghost hunter and keep track of your progression.</string>
+
+    <!-- Tuto Fragment Page 5 -->
+    <string name="tuto_page_5_content">In order to aim a ghost with ease, try to imagine your phone as a gun sights.
+        Move your arms, not only your hands.
+    </string>
 
 </resources>
