@@ -92,10 +92,11 @@
     </string>
 
     <!-- Tuto Activity -->
-    <string name="tuto_default_title">Chase Whisply</string>
-    <string name="tuto_title_page_1">Menu\nPlay</string>
-    <string name="tuto_title_page_2">Menu\nLeaderboards</string>
-    <string name="tuto_title_page_3">Soon (2)</string>
+    <string name="tuto_default_title">Soon ...</string>
+    <string name="tuto_title_page_1">Chase Whisply</string>
+    <string name="tuto_title_page_2">Menu\nPlay</string>
+    <string name="tuto_title_page_3">Menu\nLeaderboards</string>
+    <string name="tuto_title_page_4">Menu\nAchievements</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
@@ -116,5 +117,8 @@
     <string name="tuto_page_3_content">Compare your score with your friends and try to be the best hunter in the
         World.
     </string>
+
+    <!-- Tuto Fragment Page 4 -->
+    <string name="tuto_page_4_content">Improve yourself as a ghost hunter and keep track of your progression.</string>
 
 </resources>

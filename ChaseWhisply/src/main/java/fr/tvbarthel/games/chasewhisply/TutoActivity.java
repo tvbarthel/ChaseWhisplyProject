@@ -56,10 +56,10 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 			finish();
 		}
 
-		mPageTitles = new String[]{getResources().getString(R.string.tuto_default_title),
-				getResources().getString(R.string.tuto_title_page_1),
+		mPageTitles = new String[]{getResources().getString(R.string.tuto_title_page_1),
 				getResources().getString(R.string.tuto_title_page_2),
-				getResources().getString(R.string.tuto_title_page_3)};
+				getResources().getString(R.string.tuto_title_page_3),
+				getResources().getString(R.string.tuto_title_page_4)};
 
 		//initialize title text switcher
 		mTitleSwitcher = (TextSwitcher) findViewById(R.id.tuto_text_switcher);
@@ -143,6 +143,9 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 					break;
 				case 2:
 					layoutResId = R.layout.fragment_tuto_page_3;
+					break;
+				case 3:
+					layoutResId = R.layout.fragment_tuto_page_4;
 					break;
 				default:
 					layoutResId = R.layout.fragment_tuto_default_page;
