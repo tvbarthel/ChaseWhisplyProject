@@ -51,6 +51,8 @@
         android:textColor="@color/white"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:textSize="22sp"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
         android:background="@drawable/button_close"
         android:id="@+id/closeButton"
         android:layout_alignParentBottom="true"
