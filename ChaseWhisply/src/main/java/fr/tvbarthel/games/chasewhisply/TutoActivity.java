@@ -23,7 +23,7 @@ import fr.tvbarthel.games.chasewhisply.ui.TutoFragment;
 
 public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewFactory {
 	public static final String EXTRA_HELP_REQUESTED = "ExtraHelpRequested";
-	public static final int NB_PAGES = 6;
+	public static final int NB_PAGES = 7;
 	private static final String FIRST_LAUNCH_KEY = "First_launch_KEY";
 	private SharedPreferences mPrefs;
 	private String[] mPageTitles;
@@ -61,7 +61,8 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 				getResources().getString(R.string.tuto_title_page_2),
 				getResources().getString(R.string.tuto_title_page_3),
 				getResources().getString(R.string.tuto_title_page_4),
-				getResources().getString(R.string.tuto_title_page_5)};
+				getResources().getString(R.string.tuto_title_page_5),
+				getResources().getString(R.string.tuto_title_page_6)};
 
 		//initialize title text switcher
 		mTitleSwitcher = (TextSwitcher) findViewById(R.id.tuto_text_switcher);
@@ -147,12 +148,15 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 					layoutResId = R.layout.fragment_tuto_aim_tips;
 					break;
 				case 3:
-					layoutResId = R.layout.fragment_tuto_play_button;
+					layoutResId = R.layout.fragment_tuto_ammo;
 					break;
 				case 4:
-					layoutResId = R.layout.fragment_tuto_leaderboard_button;
+					layoutResId = R.layout.fragment_tuto_play_button;
 					break;
 				case 5:
+					layoutResId = R.layout.fragment_tuto_leaderboard_button;
+					break;
+				case 6:
 					layoutResId = R.layout.fragment_tuto_achievement_button;
 					break;
 				default:

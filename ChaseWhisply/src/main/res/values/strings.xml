@@ -4,6 +4,7 @@
     <string name="app_name">Chase Whisply</string>
 
     <string name="integer_zero">0</string>
+    <string name="integer_four">4</string>
 
     <!-- Home Activity !-->
     <string name="home_play">Play</string>
@@ -96,9 +97,10 @@
     <string name="tuto_title_page_0">Chase Whisply</string>
     <string name="tuto_title_page_1">In Game\nTargets</string>
     <string name="tuto_title_page_2">In Game\nMoving</string>
-    <string name="tuto_title_page_3">Menu\nPlay</string>
-    <string name="tuto_title_page_4">Menu\nLeaderboards</string>
-    <string name="tuto_title_page_5">Menu\nAchievements</string>
+    <string name="tuto_title_page_3">In Game\nAmmunition</string>
+    <string name="tuto_title_page_4">Menu\nPlay</string>
+    <string name="tuto_title_page_5">Menu\nLeaderboards</string>
+    <string name="tuto_title_page_6">Menu\nAchievements</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
@@ -130,5 +132,8 @@
 
     <!-- Tuto Fragment Target -->
     <string name="tuto_page_target_content">Your targets are Whisply and his twin brothers. Line up one of them in your gun sights and shoot.</string>
+
+    <!-- Tuto Fragment Ammo -->
+    <string name="tuto_page_ammo_content">Watch out your ammunitions on the bottom right of your screen, or you will run out of ammunition. You gain ammunitions over time.</string>
 
 </resources>
