@@ -98,6 +98,7 @@
     <string name="tuto_title_page_2">Menu\nLeaderboards</string>
     <string name="tuto_title_page_3">Menu\nAchievements</string>
     <string name="tuto_title_page_4">In Game\nMoving</string>
+    <string name="tuto_title_page_5">In Game\nTargets</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
@@ -126,5 +127,8 @@
     <string name="tuto_page_4_content">In order to aim a ghost with ease, try to imagine your phone as a gun sights.
         Move your arms, not only your hands.
     </string>
+
+    <!-- Tuto Fragment Target -->
+    <string name="tuto_page_target_content">Your targets are Whisply and his twin brothers. Line up one of them in your gun sights and shoot.</string>
 
 </resources>
