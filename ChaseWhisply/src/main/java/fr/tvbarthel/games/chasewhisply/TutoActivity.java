@@ -139,7 +139,7 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 					layoutResId = R.layout.fragment_tuto_page_1;
 					break;
 				case 1:
-					layoutResId = R.layout.fragment_tuto_default_page;
+					layoutResId = R.layout.fragment_tuto_page_2;
 					break;
 				case 2:
 					layoutResId = R.layout.fragment_tuto_default_page;
