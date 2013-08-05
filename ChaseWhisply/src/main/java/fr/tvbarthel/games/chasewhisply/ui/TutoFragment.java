@@ -10,16 +10,13 @@ import android.widget.ImageView;
 import fr.tvbarthel.games.chasewhisply.R;
 
 public class TutoFragment extends Fragment {
-	public static final String ARG_DRAWABLE = "Tuto_Picture_ARG";
-	public static final String ARG_POSITION = "Tuto_Position_ARG";
-	private int mDrawableResId;
-	private int mPosition;
+	public static final String ARG_LAYOUT_ID = "Tuto_Layout_Id_ARG";
+	private int mLayoutResId;
 
-	public static TutoFragment newInstance(int drawableResId, int position) {
+	public static TutoFragment newInstance(int layoutResId) {
 		final TutoFragment f = new TutoFragment();
 		final Bundle arguments = new Bundle();
-		arguments.putInt(ARG_DRAWABLE, drawableResId);
-		arguments.putInt(ARG_POSITION, position);
+		arguments.putInt(ARG_LAYOUT_ID, layoutResId);
 		f.setArguments(arguments);
 		return f;
 	}
@@ -29,16 +26,12 @@ public class TutoFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 
 		final Bundle arguments = getArguments();
-		mDrawableResId = arguments.getInt(ARG_DRAWABLE);
-		mPosition = arguments.getInt(ARG_POSITION);
+		mLayoutResId = arguments.getInt(ARG_LAYOUT_ID);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		final View rootView = inflater.inflate(R.layout.fragment_tuto_page, container, false);
-
-		((ImageView) rootView.findViewById(R.id.tuto_image)).setImageResource(mDrawableResId);
-
+		final View rootView = inflater.inflate(mLayoutResId, container, false);
 		return rootView;
 	}
 

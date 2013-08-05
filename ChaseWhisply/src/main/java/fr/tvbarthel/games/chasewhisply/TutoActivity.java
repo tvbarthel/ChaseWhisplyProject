@@ -133,22 +133,22 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 
 		@Override
 		public Fragment getItem(int position) {
-			final int drawableResId;
+			final int layoutResId;
 			switch (position) {
 				case 0:
-					drawableResId = R.drawable.tuto_1_bis;
+					layoutResId = R.layout.fragment_tuto_page_1;
 					break;
 				case 1:
-					drawableResId = R.drawable.tuto_2_bis;
+					layoutResId = R.layout.fragment_tuto_default_page;
 					break;
 				case 2:
-					drawableResId = R.drawable.tvbarthel_logo;
+					layoutResId = R.layout.fragment_tuto_default_page;
 					break;
 				default:
-					drawableResId = R.drawable.ic_launcher;
+					layoutResId = R.layout.fragment_tuto_default_page;
 					break;
 			}
-			return TutoFragment.newInstance(drawableResId, position + 1);
+			return TutoFragment.newInstance(layoutResId);
 		}
 
 		@Override

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_shadow_tuto"
+    android:textAlignment="gravity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:padding="@dimen/default_padding"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/tuto_page_1_title"
+            android:id="@+id/textView"
+            android:textStyle="bold"
+            android:textColor="@color/text_view_grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/tuto_page_1_subtitle"
+            android:id="@+id/textView2"
+            android:textColor="@color/text_view_grey" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/text_view_grey"
+        android:text="@string/tuto_page_1_content"
+        android:id="@+id/textView3"
+        android:gravity="center_vertical|right"
+        android:layout_below="@+id/linearLayout"
+        android:layout_above="@+id/textView5"
+        android:padding="@dimen/default_padding"
+        android:layout_marginRight="@dimen/activity_double_horizontal_margin"
+        android:layout_alignRight="@+id/linearLayout" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/text_view_grey"
+        android:text="@string/tuto_page_1_additional_text"
+        android:id="@+id/textView5"
+        android:gravity="center_vertical|right"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/default_padding" />
+
+
+</RelativeLayout>
