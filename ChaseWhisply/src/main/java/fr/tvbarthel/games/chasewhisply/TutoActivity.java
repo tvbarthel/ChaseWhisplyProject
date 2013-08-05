@@ -65,7 +65,7 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 		//initialize title text switcher
 		mTitleSwitcher = (TextSwitcher) findViewById(R.id.tuto_text_switcher);
 		mTitleSwitcher.setFactory(this);
-		mTitleSwitcher.setCurrentText(getResources().getString(R.string.tuto_default_title));
+		mTitleSwitcher.setCurrentText(getResources().getString(R.string.tuto_title_page_1));
 
 		final ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		final TutoPagerAdapter adapter = new TutoPagerAdapter(getSupportFragmentManager());
