@@ -57,9 +57,9 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 		}
 
 		mPageTitles = new String[]{getResources().getString(R.string.tuto_default_title),
-				getResources().getString(R.string.tuto_title_slide_1),
-				getResources().getString(R.string.tuto_title_slide_2),
-				getResources().getString(R.string.tuto_title_slide_3)};
+				getResources().getString(R.string.tuto_title_page_1),
+				getResources().getString(R.string.tuto_title_page_2),
+				getResources().getString(R.string.tuto_title_page_3)};
 
 		//initialize title text switcher
 		mTitleSwitcher = (TextSwitcher) findViewById(R.id.tuto_text_switcher);

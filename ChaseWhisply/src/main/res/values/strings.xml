@@ -93,9 +93,9 @@
 
     <!-- Tuto Activity -->
     <string name="tuto_default_title">Chase Whisply</string>
-    <string name="tuto_title_slide_1">Menu\nPlay</string>
-    <string name="tuto_title_slide_2">Menu\nLeaderboards</string>
-    <string name="tuto_title_slide_3">Soon (2)</string>
+    <string name="tuto_title_page_1">Menu\nPlay</string>
+    <string name="tuto_title_page_2">Menu\nLeaderboards</string>
+    <string name="tuto_title_page_3">Soon (2)</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
