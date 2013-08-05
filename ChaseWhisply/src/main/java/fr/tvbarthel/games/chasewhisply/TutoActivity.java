@@ -56,16 +56,16 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 			finish();
 		}
 
-		mPageTitles = new String[]{getResources().getString(R.string.tuto_title_page_1),
+		mPageTitles = new String[]{getResources().getString(R.string.tuto_title_page_0),
+				getResources().getString(R.string.tuto_title_page_1),
 				getResources().getString(R.string.tuto_title_page_2),
 				getResources().getString(R.string.tuto_title_page_3),
-				getResources().getString(R.string.tuto_title_page_4),
-				getResources().getString(R.string.tuto_title_page_5)};
+				getResources().getString(R.string.tuto_title_page_4)};
 
 		//initialize title text switcher
 		mTitleSwitcher = (TextSwitcher) findViewById(R.id.tuto_text_switcher);
 		mTitleSwitcher.setFactory(this);
-		mTitleSwitcher.setCurrentText(getResources().getString(R.string.tuto_title_page_1));
+		mTitleSwitcher.setCurrentText(getResources().getString(R.string.tuto_title_page_0));
 
 		final ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		final TutoPagerAdapter adapter = new TutoPagerAdapter(getSupportFragmentManager());
@@ -137,19 +137,19 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 			final int layoutResId;
 			switch (position) {
 				case 0:
-					layoutResId = R.layout.fragment_tuto_page_1;
+					layoutResId = R.layout.fragment_tuto_page_0;
 					break;
 				case 1:
-					layoutResId = R.layout.fragment_tuto_page_2;
+					layoutResId = R.layout.fragment_tuto_page_1;
 					break;
 				case 2:
-					layoutResId = R.layout.fragment_tuto_page_3;
+					layoutResId = R.layout.fragment_tuto_page_2;
 					break;
 				case 3:
-					layoutResId = R.layout.fragment_tuto_page_4;
+					layoutResId = R.layout.fragment_tuto_page_3;
 					break;
 				case 4:
-					layoutResId = R.layout.fragment_tuto_page_5;
+					layoutResId = R.layout.fragment_tuto_page_4;
 					break;
 				default:
 					layoutResId = R.layout.fragment_tuto_default_page;

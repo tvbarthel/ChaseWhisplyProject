@@ -11,10 +11,10 @@
         android:id="@+id/home_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_play"
+        android:background="@drawable/button_leaderboard"
         android:paddingBottom="12dp"
         android:paddingTop="12dp"
-        android:text="@string/home_play"
+        android:text="@string/home_leaderboard"
         android:textColor="@color/white"
         android:textSize="22sp"
         />
