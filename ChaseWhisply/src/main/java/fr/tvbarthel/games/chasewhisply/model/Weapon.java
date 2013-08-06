@@ -3,10 +3,20 @@ package fr.tvbarthel.games.chasewhisply.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * A model for all the Weapon used in this game.
+ * A Weapon has a cartridge clip capacity <code>mAmmunitionLimit</code>.
+ * A Weapon deal <code>mDamage</code> on each shot.
+ * A Weapon should regain one ammunition every <code>mReloadingTime</code> millisecond.
+ */
 public class Weapon implements Parcelable {
+	//the damage done when firing
 	private int mDamage;
+	//the current number of ammunition in the cartridge clip
 	private int mCurrentAmmunition;
+	//the cartridge clip capacity
 	private int mAmmunitionLimit;
+	//the reloading interval in millisecond
 	private long mReloadingTime;
 	private boolean mHasRunOutOfAmmo;
 
@@ -22,18 +32,31 @@ public class Weapon implements Parcelable {
 		readFromParcel(in);
 	}
 
+	/**
+	 * Try to add one ammunition to the cartridge clip.
+	 */
 	public void reload() {
 		if (mCurrentAmmunition < mAmmunitionLimit) {
 			mCurrentAmmunition += 1;
 		}
 	}
 
+	/**
+	 * Try to add <code>ammoAmount</code> ammunition to the cartridge clip
+	 *
+	 * @param ammoAmount the number of ammunition added to the cartridge clip
+	 */
 	public void reload(int ammoAmount) {
 		if (ammoAmount <= mAmmunitionLimit) {
 			mCurrentAmmunition = ammoAmount;
 		}
 	}
 
+	/**
+	 * Fire a bullet.
+	 *
+	 * @return the damage done during the shot or 0 if there is no ammunition
+	 */
 	public int fire() {
 		if (mCurrentAmmunition > 0) {
 			mCurrentAmmunition -= 1;
