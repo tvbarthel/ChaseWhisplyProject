@@ -18,7 +18,7 @@
     <string name="home_sign_out">Sign out</string>
     <string name="home_sign_out_confirm_dialog_message">Are you sure you wish to sign out?</string>
     <string name="home_sign_out_success">You\'ve successfully signed out.</string>
-    <string name="home_internet_unavailable">Please connect to the internet.</string>
+    <string name="home_internet_unavailable">Please connect to the Internet.</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag: %1$d</string>
@@ -82,7 +82,7 @@
     </string>
 
     <!-- Tuto Activity -->
-    <string name="tuto_default_title">Soon ...</string>
+    <string name="tuto_default_title">Soon…</string>
     <string name="tuto_title_page_0">Chase Whisply</string>
     <string name="tuto_title_page_1">In Game\nTargets</string>
     <string name="tuto_title_page_2">In Game\nCombos</string>
@@ -119,7 +119,7 @@
     </string>
 
     <!-- Tuto Fragment Page Aim Tip -->
-    <string name="tuto_page_aim_tip_content">In order to aim a ghost with ease, try to imagine your phone as a gun
+    <string name="tuto_page_aim_tip_content">In order to aim a ghost with ease, try to picture your phone as a gun
         sights. Move your arms, not only your hands.
     </string>
 
@@ -130,12 +130,12 @@
 
     <!-- Tuto Fragment Page Ammo -->
     <string name="tuto_page_ammo_content">Watch out your ammunitions on the bottom right of your screen, or you will run
-        out of ammunition. You gain ammunitions over time.
+        out of them. You gain ammunitions over time.
     </string>
 
     <!-- Tuto Fragment Page Ready To Fight -->
-    <string name="tuto_page_ready_to_fight_congratulation">Congratulation, you are ready to play.</string>
-    <string name="tuto_page_ready_to_fight_reaccess_tutorial">You can reaccess this tutorial at anytime from the main
+    <string name="tuto_page_ready_to_fight_congratulation">Congratulations, you are ready to play.</string>
+    <string name="tuto_page_ready_to_fight_reaccess_tutorial">You can go through this tutorial at anytime from the main
         menu.
     </string>
     <string name="tuto_page_ready_to_fight_gl_hf">Good Luck &amp; Have Fun.</string>
