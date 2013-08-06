@@ -14,16 +14,10 @@
     <string name="home_sign_info">Connectez-vous à Google Plus pour partager vos scores et vos
         réussites avec vos amis.
     </string>
-    <string name="home_not_sign_in_leaderboard">Connectez-vous à Google Plus pour voir votre
-        classement.
-    </string>
-    <string name="home_not_sign_in_achievement">Connectez-vous à Google Plus pour débloquer vos
-        réussites.
-    </string>
+    <string name="home_not_sign_in_leaderboard">Connectez-vous à Google Plus pour voir votre classement.</string>
+    <string name="home_not_sign_in_achievement">Connectez-vous à Google Plus pour débloquer vos réussites.</string>
     <string name="home_sign_out">Déconnexion</string>
-    <string name="home_sign_out_confirm_dialog_message">Êtes-vous sûr(e) de vouloir vous déconnecter
-        ?
-    </string>
+    <string name="home_sign_out_confirm_dialog_message">Êtes-vous sûr(e) de vouloir vous déconnecter ?</string>
     <string name="home_sign_out_success">Vous avez été déconnecté(e) avec succès.</string>
     <string name="home_internet_unavailable">Veuillez vous connecter à internet.</string>
 
@@ -48,26 +42,15 @@
     <string name="leaderboard_chooser_time_limited_level_3_description">Meilleurs scores, mode de
         jeu: 90 secondes.
     </string>
-    <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu: survie.
-    </string>
+    <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu: survie.</string>
 
     <!-- Game Mode rules !-->
-    <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps
-        imparti.
-    </string>
-    <string name="game_mode_time_limited_level_1">Tuez le plus de fantômes possibles en 30
-        secondes.
-    </string>
-    <string name="game_mode_time_limited_level_2">Tuez le plus de fantômes possibles en 60
-        secondes.
-    </string>
-    <string name="game_mode_time_limited_level_3">Tuez le plus de fantômes possibles en 90
-        secondes.
-    </string>
+    <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps imparti.</string>
+    <string name="game_mode_time_limited_level_1">Tuez le plus de fantômes possibles en 30 secondes.</string>
+    <string name="game_mode_time_limited_level_2">Tuez le plus de fantômes possibles en 60 secondes.</string>
+    <string name="game_mode_time_limited_level_3">Tuez le plus de fantômes possibles en 90 secondes.</string>
     <string name="game_mode_target_limited">Tuez tous les fantômes le plus vite possible.</string>
-    <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps
-        supplémentaire.
-    </string>
+    <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps supplémentaire.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Balles tirées</string>
@@ -78,8 +61,7 @@
     <string name="score_replay_button">Rejouer</string>
     <string name="score_home_button">Accueil</string>
     <string name="score_share_button">Partager</string>
-    <string name="score_share_dialog">Partagez votre score avec l\'application de votre choix
-    </string>
+    <string name="score_share_dialog">Partagez votre score avec l\'application de votre choix</string>
     <string name="score_share_subject">Chase Whisply</string>
     <string name="score_share_content">Je joue à Chase Whisply. Pouvez vous battre mon score : %1$d
         ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
@@ -93,8 +75,7 @@
     <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
     <string name="about_thanks_section">Remerciements à…</string>
     <string name="about_thanks_tkeunebr">Thomas Keunebroek, pour son support de la première heure et
-        ses précieux
-        conseils.
+        ses précieux conseils.
     </string>
     <string name="about_license_section">Licence</string>
     <string name="about_license_title">Licence utilisée : Beerware License</string>
@@ -106,8 +87,7 @@
         https://github.com/tvbarthel/ChaseWhisplyProject
     </string>
     <string name="sign_in_message">La prochaine fois, sauvegardez, partagez et comparez vos scores
-        avec
-        les autres joueurs en vous connectant via Google Plus !
+        avec les autres joueurs en vous connectant via Google Plus !
     </string>
 
     <!-- Tuto Activity -->
