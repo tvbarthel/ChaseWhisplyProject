@@ -132,18 +132,18 @@
     </string>
 
     <!-- Tuto Fragment Target -->
-    <string name="tuto_page_target_content">Vos cibles sont Whisply et ses frères jumeaux. Mettez en un en joue et
+    <string name="tuto_page_target_content">Vos cibles sont Whisply et ses frères jumeaux. Mettez-en un en joue et
         tirez en touchant l\'écran.
     </string>
 
     <!-- Tuto Fragment Ammo -->
-    <string name="tuto_page_ammo_content">Surveillez vos munitions en bas à droite de votre écran, où vous serez vite à
-        court de balle. Vous regagnez des munitions avec le temps.
+    <string name="tuto_page_ammo_content">Surveillez vos munitions en bas à droite de votre écran ou vous serez vite à
+        court de balles. Vous regagnez des munitions avec le temps.
     </string>
 
     <!-- Tuto Fragment Page Ready To Fight -->
     <string name="tuto_page_ready_to_fight_congratulation">Félicitation, vous êtes prêt à jouer.</string>
-    <string name="tuto_page_ready_to_fight_reaccess_tutorial">Vous pouvez réaccédez à ce tutorial à tout moment depuis
+    <string name="tuto_page_ready_to_fight_reaccess_tutorial">Vous pouvez accéder de nouveau à ce tutorial à tout moment depuis
         le menu principal.
     </string>
     <string name="tuto_page_ready_to_fight_gl_hf">Good Luck &amp; Have Fun.</string>
