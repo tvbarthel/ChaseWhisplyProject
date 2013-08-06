@@ -106,7 +106,7 @@
     <string name="tuto_page_welcome_additional_text">Swipe left to learn more.</string>
 
     <!-- Tuto Fragment Page Play Button -->
-    <string name="tuto_page_play_button_content">Select your favourite mode and hunt ghosts around you.</string>
+    <string name="tuto_page_play_button_content">Select your favorite mode and hunt ghosts around you.</string>
 
     <!-- Tuto Fragment Page Leaderboard Button -->
     <string name="tuto_page_leaderboard_button_content">Compare your score with your friends and try to be the best
