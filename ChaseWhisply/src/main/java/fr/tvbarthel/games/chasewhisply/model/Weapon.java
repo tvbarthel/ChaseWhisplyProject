@@ -4,10 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * A model for all the Weapon used in this game.
- * A Weapon has a cartridge clip capacity <code>mAmmunitionLimit</code>.
- * A Weapon deal <code>mDamage</code> on each shot.
- * A Weapon should regain one ammunition every <code>mReloadingTime</code> millisecond.
+ * A model for all the weapons used in this game.
+ * A Weapon has a cartridge clip capacity {@code mAmmunitionLimit}
+ * A Weapon deals {@code mDamage} on each shot.
+ * A Weapon should regain one ammunition every {@code mReloadingTime} millisecond.
  */
 public class Weapon implements Parcelable {
 	//the damage done when firing
@@ -42,7 +42,7 @@ public class Weapon implements Parcelable {
 	}
 
 	/**
-	 * Try to add <code>ammoAmount</code> ammunition to the cartridge clip
+	 * Try to add {@code ammoAmount} ammunition to the cartridge clip
 	 *
 	 * @param ammoAmount the number of ammunition added to the cartridge clip
 	 */
