@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/text_view_grey"
-        android:text="@string/tuto_page_2_content"
+        android:text="@string/tuto_page_leaderboard_button_content"
         android:id="@+id/textView"
         android:paddingTop="@dimen/default_padding"
         android:paddingRight="@dimen/tuto_fragment_padding"

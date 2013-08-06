@@ -106,34 +106,42 @@
     <!-- Tuto Default Fragment -->
     <string name="tuto_default_fragment_content">Default Tuto Fragment</string>
 
-    <!-- Tuto Fragment Page 0 -->
-    <string name="tuto_page_0_title">Welcome,</string>
-    <string name="tuto_page_0_subtitle">padawan.</string>
-    <string name="tuto_page_0_content">Chase Whisply is an augmented reality FPS. You have to seek, find and kill
+    <!-- Tuto Fragment Page Welcome -->
+    <string name="tuto_page_welcome_title">Welcome,</string>
+    <string name="tuto_page_welcome_subtitle">padawan.</string>
+    <string name="tuto_page_welcome_content">Chase Whisply is an augmented reality FPS. You have to seek, find and kill
         ghosts living around you.
     </string>
-    <string name="tuto_page_0_additional_text">Swipe left to learn more.</string>
+    <string name="tuto_page_welcome_additional_text">Swipe left to learn more.</string>
 
-    <!-- Tuto Fragment Page 1 -->
-    <string name="tuto_page_1_content">Select your favourite mode and hunt ghosts around you.</string>
+    <!-- Tuto Fragment Page Play Button -->
+    <string name="tuto_page_play_button_content">Select your favourite mode and hunt ghosts around you.</string>
 
-    <!-- Tuto Fragment Page 2 -->
-    <string name="tuto_page_2_content">Compare your score with your friends and try to be the best hunter in the
+    <!-- Tuto Fragment Page Leaderboard Button -->
+    <string name="tuto_page_leaderboard_button_content">Compare your score with your friends and try to be the best
+        hunter in the
         World.
     </string>
 
-    <!-- Tuto Fragment Page 3 -->
-    <string name="tuto_page_3_content">Improve yourself as a ghost hunter and keep track of your progression.</string>
+    <!-- Tuto Fragment Page Achievement Button -->
+    <string name="tuto_page_achievement_button_content">Improve yourself as a ghost hunter and keep track of your
+        progression.
+    </string>
 
-    <!-- Tuto Fragment Page 4 -->
-    <string name="tuto_page_4_content">In order to aim a ghost with ease, try to imagine your phone as a gun sights.
+    <!-- Tuto Fragment Page Aim Tip -->
+    <string name="tuto_page_aim_tip_content">In order to aim a ghost with ease, try to imagine your phone as a gun
+        sights.
         Move your arms, not only your hands.
     </string>
 
     <!-- Tuto Fragment Target -->
-    <string name="tuto_page_target_content">Your targets are Whisply and his twin brothers. Line up one of them in your gun sights and shoot.</string>
+    <string name="tuto_page_target_content">Your targets are Whisply and his twin brothers. Line up one of them in your
+        gun sights and shoot.
+    </string>
 
     <!-- Tuto Fragment Ammo -->
-    <string name="tuto_page_ammo_content">Watch out your ammunitions on the bottom right of your screen, or you will run out of ammunition. You gain ammunitions over time.</string>
+    <string name="tuto_page_ammo_content">Watch out your ammunitions on the bottom right of your screen, or you will run
+        out of ammunition. You gain ammunitions over time.
+    </string>
 
 </resources>
