@@ -4,7 +4,11 @@ ChaseWhisplyProject
 
 [Beta Test] Chase Whisply is an "augmented reality" FPS. You have to seek, find and kill the ghosts living around you.
 
-![Chase Whisply screenshot](static/chase_whisply_screenshot.png)
+![Chase Whisply screenshot](static/screenshot_menu.png)
+
+In Game
+========
+![Chase Whisply screenshot](static/screenshot_ingame.png)
 
 Credits and License
 ========
