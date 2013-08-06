@@ -99,6 +99,7 @@
     <string name="tuto_title_page_4">Menu\nJouer</string>
     <string name="tuto_title_page_5">Menu\nClassements</string>
     <string name="tuto_title_page_6">Menu\nRéussites</string>
+    <string name="tuto_title_page_7">Prêt pour\nle Combat</string>
     <string name="tuto_button_close">Fermer</string>
 
     <!-- Tuto Fragment Page Welcome -->
@@ -139,4 +140,10 @@
         cours de balles. Vous regagnez des munitions avec le temps.
     </string>
 
+    <!-- Tuto Fragment Page Ready To Fight -->
+    <string name="tuto_page_ready_to_fight_congratulation">Félicitation, vous êtes prêt à jouer.</string>
+    <string name="tuto_page_ready_to_fight_reaccess_tutorial">Vous pouvez réaccédez à ce tutorial à tout moment depuis
+        le menu principal.
+    </string>
+    <string name="tuto_page_ready_to_fight_gl_hf">Good Luck &amp; Have Fun.</string>
 </resources>

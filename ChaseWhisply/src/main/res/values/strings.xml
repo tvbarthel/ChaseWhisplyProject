@@ -90,6 +90,7 @@
     <string name="tuto_title_page_4">Menu\nPlay</string>
     <string name="tuto_title_page_5">Menu\nLeaderboards</string>
     <string name="tuto_title_page_6">Menu\nAchievements</string>
+    <string name="tuto_title_page_7">Ready To\nFight</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
@@ -121,14 +122,21 @@
         sights. Move your arms, not only your hands.
     </string>
 
-    <!-- Tuto Fragment Target -->
+    <!-- Tuto Fragment Page Target -->
     <string name="tuto_page_target_content">Your targets are Whisply and his twin brothers. Line up one of them in your
         gun sights and shoot by touching the screen.
     </string>
 
-    <!-- Tuto Fragment Ammo -->
+    <!-- Tuto Fragment Page Ammo -->
     <string name="tuto_page_ammo_content">Watch out your ammunitions on the bottom right of your screen, or you will run
         out of ammunition. You gain ammunitions over time.
     </string>
+
+    <!-- Tuto Fragment Page Ready To Fight -->
+    <string name="tuto_page_ready_to_fight_congratulation">Congratulation, you are ready to play.</string>
+    <string name="tuto_page_ready_to_fight_reaccess_tutorial">You can reaccess this tutorial at anytime from the main
+        menu.
+    </string>
+    <string name="tuto_page_ready_to_fight_gl_hf">Good Luck &amp; Have Fun.</string>
 
 </resources>
