@@ -32,6 +32,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
 	private static final int REQUEST_GAME_ACTIVITY_FRESH_START = 0x00000002;
 	private static final int REQUEST_GAME_ACTIVITY_REPLAY = 0x00000003;
+	private Toast mTextToast;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	@Override
 	protected void onPause() {
 		getGamesClient().disconnect();
+		hideToast();
 
 		super.onPause();
 	}
@@ -204,7 +206,18 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	 * @param message display on screen
 	 */
 	private void makeToast(String message) {
-		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+		if(mTextToast != null) {
+			mTextToast.cancel();
+		}
+		mTextToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+		mTextToast.show();
+	}
+
+
+	private void hideToast() {
+		if(mTextToast != null) {
+			mTextToast.cancel();
+		}
 	}
 
 	@Override
