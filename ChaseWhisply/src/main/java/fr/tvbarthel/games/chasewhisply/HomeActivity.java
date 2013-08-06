@@ -32,15 +32,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
 	private static final int REQUEST_GAME_ACTIVITY_FRESH_START = 0x00000002;
 	private static final int REQUEST_GAME_ACTIVITY_REPLAY = 0x00000003;
-	//sign in
-	private boolean mSignedIn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_home);
-
-		mSignedIn = false;
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
@@ -80,38 +76,36 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		final Fragment gameScoreFragment = getSupportFragmentManager()
 				.findFragmentByTag(GameScoreFragment.FRAGMENT_TAG);
 		if (gameScoreFragment != null) {
-			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(mSignedIn);
+			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(false);
 		}
 	}
 
 	@Override
 	public void onSignInSucceeded() {
-		mSignedIn = true;
 		final Fragment gameHomeFragment = getSupportFragmentManager()
 				.findFragmentByTag(GameHomeFragment.FRAGMENT_TAG);
 		if (gameHomeFragment != null) {
-			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(mSignedIn);
+			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(true);
 		}
 		final Fragment gameScoreFragment = getSupportFragmentManager()
 				.findFragmentByTag(GameScoreFragment.FRAGMENT_TAG);
 		if (gameScoreFragment != null) {
-			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(mSignedIn);
+			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(true);
 		}
 	}
 
 	@Override
 	public void onSignOutSucceeded() {
-		mSignedIn = false;
 		makeToast(getString(R.string.home_sign_out_success));
 		final Fragment gameHomeFragment = getSupportFragmentManager()
 				.findFragmentByTag(GameHomeFragment.FRAGMENT_TAG);
 		if (gameHomeFragment != null) {
-			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(mSignedIn);
+			((GameHomeFragment) gameHomeFragment).notifySignedStateChanged(false);
 		}
 		final Fragment gameScoreFragment = getSupportFragmentManager()
 				.findFragmentByTag(GameScoreFragment.FRAGMENT_TAG);
 		if (gameScoreFragment != null) {
-			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(mSignedIn);
+			((GameScoreFragment) gameScoreFragment).notifySignedStateChanged(false);
 		}
 	}
 
@@ -131,8 +125,9 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowAchievementsRequested() {
-		if (mSignedIn) {
-			startActivityForResult(getGamesClient().getAchievementsIntent(), REQUEST_ACHIEVEMENT);
+		final GamesClient gamesClient = getGamesClient();
+		if (gamesClient.isConnected()) {
+			startActivityForResult(gamesClient.getAchievementsIntent(), REQUEST_ACHIEVEMENT);
 		} else {
 			makeToast(getResources().getString(R.string.home_not_sign_in_achievement));
 		}
@@ -140,9 +135,13 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowLeaderboardsRequested() {
-		if (mSignedIn) {
-			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-					new LeaderboardChooserFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+		if (getGamesClient().isConnected()) {
+			getSupportFragmentManager()
+					.beginTransaction()
+					.replace(R.id.game_home_fragment_container, new LeaderboardChooserFragment())
+					.addToBackStack(null)
+					.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+					.commit();
 		} else {
 			makeToast(getResources().getString(R.string.home_not_sign_in_leaderboard));
 		}
@@ -178,8 +177,9 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onWhisplyPictureClicked() {
-		if (mSignedIn) {
-			getGamesClient().unlockAchievementImmediate(null, getResources().getString(R.string.achievement_curiosity));
+		final GamesClient gamesClient = getGamesClient();
+		if (gamesClient.isConnected()) {
+			gamesClient.unlockAchievementImmediate(null, getResources().getString(R.string.achievement_curiosity));
 		}
 	}
 
@@ -258,8 +258,9 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onLeaderboardChosen(int leaderboardStringId) {
-		if (mSignedIn) {
-			startActivityForResult(getGamesClient().getLeaderboardIntent(
+		final GamesClient gamesClient = getGamesClient();
+		if (gamesClient.isConnected()) {
+			startActivityForResult(gamesClient.getLeaderboardIntent(
 					getResources().getString(leaderboardStringId)), REQUEST_LEADERBOARD);
 		} else {
 			makeToast(getResources().getString(R.string.home_not_sign_in_leaderboard));
