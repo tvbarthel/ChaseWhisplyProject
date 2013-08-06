@@ -206,17 +206,17 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	 * @param message display on screen
 	 */
 	private void makeToast(String message) {
-		if(mTextToast != null) {
+		if (mTextToast != null) {
 			mTextToast.cancel();
 		}
 		mTextToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
 		mTextToast.show();
 	}
 
-
 	private void hideToast() {
-		if(mTextToast != null) {
+		if (mTextToast != null) {
 			mTextToast.cancel();
+			mTextToast = null;
 		}
 	}
 
