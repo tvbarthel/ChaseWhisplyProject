@@ -109,7 +109,7 @@
     <string name="tuto_page_welcome_content">Chase Whisply est un FPS en réalité augmentée. Votre mission est de
         traquer, trouver et tuer les fantômes vivants autour de vous.
     </string>
-    <string name="tuto_page_welcome_additional_text">Swipez à gauche pour en apprendre plus.</string>
+    <string name="tuto_page_welcome_additional_text">Glissez vers la gauche pour en apprendre plus.</string>
 
     <!-- Tuto Fragment Page Play Button -->
     <string name="tuto_page_play_button_content">Sélectionnez votre mode favori et chassez les fantômes autour de
@@ -127,7 +127,7 @@
     </string>
 
     <!-- Tuto Fragment Page Aim Tip -->
-    <string name="tuto_page_aim_tip_content">Dans le but de viser avec facilité, imaginez votre téléphone comme un
+    <string name="tuto_page_aim_tip_content">Pour viser avec facilité, imaginez votre téléphone comme un
         viseur. Bougez vos bras et non seulement vos mains.
     </string>
 
@@ -138,7 +138,7 @@
 
     <!-- Tuto Fragment Ammo -->
     <string name="tuto_page_ammo_content">Surveillez vos munitions en bas à droite de votre écran, où vous serez vite à
-        cours de balles. Vous regagnez des munitions avec le temps.
+        court de balle. Vous regagnez des munitions avec le temps.
     </string>
 
     <!-- Tuto Fragment Page Ready To Fight -->
