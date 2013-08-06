@@ -112,16 +112,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onStartGameRequested() {
-		getSupportFragmentManager()
-				.beginTransaction()
-				.setCustomAnimations(
-						R.anim.slide_top_in,
-						R.anim.fade_out,
-						R.anim.fade_in,
-						R.anim.slide_top_out)
-				.replace(R.id.game_home_fragment_container, new GameModeChooserFragment())
-				.addToBackStack(null)
-				.commit();
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				new GameModeChooserFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	@Override
@@ -150,16 +142,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowAboutRequested() {
-		getSupportFragmentManager()
-				.beginTransaction()
-				.setCustomAnimations(
-						R.anim.slide_bottom_in,
-						R.anim.fade_out,
-						R.anim.fade_in,
-						R.anim.slide_bottom_out)
-				.replace(R.id.game_home_fragment_container, new AboutFragment())
-				.addToBackStack(null)
-				.commit();
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				new AboutFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	@Override
