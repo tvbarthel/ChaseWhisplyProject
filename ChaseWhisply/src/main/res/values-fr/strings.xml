@@ -19,7 +19,7 @@
     <string name="home_sign_out">Déconnexion</string>
     <string name="home_sign_out_confirm_dialog_message">Êtes-vous sûr(e) de vouloir vous déconnecter ?</string>
     <string name="home_sign_out_success">Vous avez été déconnecté(e) avec succès.</string>
-    <string name="home_internet_unavailable">Veuillez vous connecter à internet.</string>
+    <string name="home_internet_unavailable">Veuillez vous connecter à Internet.</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag : %1$d</string>
@@ -34,15 +34,15 @@
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Sélectionnez un classement</string>
     <string name="leaderboard_chooser_time_limited_level_1_description">Meilleurs scores, mode de
-        jeu: 30 secondes.
+        jeu : 30 secondes.
     </string>
     <string name="leaderboard_chooser_time_limited_level_2_description">Meilleurs scores, mode de
-        jeu: 60 secondes.
+        jeu : 60 secondes.
     </string>
     <string name="leaderboard_chooser_time_limited_level_3_description">Meilleurs scores, mode de
-        jeu: 90 secondes.
+        jeu : 90 secondes.
     </string>
-    <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu: survie.</string>
+    <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu : survie.</string>
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps imparti.</string>
@@ -63,7 +63,7 @@
     <string name="score_share_button">Partager</string>
     <string name="score_share_dialog">Partagez votre score avec l\'application de votre choix</string>
     <string name="score_share_subject">Chase Whisply</string>
-    <string name="score_share_content">Je joue à Chase Whisply. Pouvez vous battre mon score : %1$d
+    <string name="score_share_content">Je joue à Chase Whisply. Pouvez-vous battre mon score : %1$d
         ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
     </string>
 
@@ -91,7 +91,7 @@
     </string>
 
     <!-- Tuto Activity -->
-    <string name="tuto_default_title">Soon ...</string>
+    <string name="tuto_default_title">Bientôt…</string>
     <string name="tuto_title_page_0">Chase Whisply</string>
     <string name="tuto_title_page_1">En jeu\nCibles</string>
     <string name="tuto_title_page_2">En jeu\nCombos</string>
@@ -142,11 +142,11 @@
     </string>
 
     <!-- Tuto Fragment Page Ready To Fight -->
-    <string name="tuto_page_ready_to_fight_congratulation">Félicitation, vous êtes prêt à jouer.</string>
+    <string name="tuto_page_ready_to_fight_congratulation">Félicitations, vous êtes prêt à jouer.</string>
     <string name="tuto_page_ready_to_fight_reaccess_tutorial">Vous pouvez accéder de nouveau à ce tutorial à tout moment depuis
         le menu principal.
     </string>
-    <string name="tuto_page_ready_to_fight_gl_hf">Good Luck &amp; Have Fun.</string>
+    <string name="tuto_page_ready_to_fight_gl_hf">Bonne chance &amp; Amusez-vous bien !.</string>
 
     <!-- Tuto Fragment Page Combos -->
     <string name="tuto_page_combo_content">Ne manquez pas votre cible et cumulez des combos pour augmenter votre score
