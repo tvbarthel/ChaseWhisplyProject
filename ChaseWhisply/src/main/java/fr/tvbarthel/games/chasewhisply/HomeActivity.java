@@ -66,9 +66,17 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	}
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+
+		getGamesClient().connect();
+	}
+
+	@Override
 	protected void onPause() {
-		super.onPause();
 		getGamesClient().disconnect();
+
+		super.onPause();
 	}
 
 	@Override
