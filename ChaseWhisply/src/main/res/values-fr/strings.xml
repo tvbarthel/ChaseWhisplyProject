@@ -146,7 +146,7 @@
     <string name="tuto_page_ready_to_fight_reaccess_tutorial">Vous pouvez accéder de nouveau à ce tutorial à tout moment depuis
         le menu principal.
     </string>
-    <string name="tuto_page_ready_to_fight_gl_hf">Bonne chance &amp; Amusez-vous bien !.</string>
+    <string name="tuto_page_ready_to_fight_gl_hf">Bonne chance &amp; Amusez-vous bien !</string>
 
     <!-- Tuto Fragment Page Combos -->
     <string name="tuto_page_combo_content">Ne manquez pas votre cible et cumulez des combos pour augmenter votre score
