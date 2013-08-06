@@ -94,12 +94,13 @@
     <string name="tuto_default_title">Soon ...</string>
     <string name="tuto_title_page_0">Chase Whisply</string>
     <string name="tuto_title_page_1">En jeu\nCibles</string>
-    <string name="tuto_title_page_2">En jeu\nMouvement</string>
-    <string name="tuto_title_page_3">En jeu\nMunitions</string>
-    <string name="tuto_title_page_4">Menu\nJouer</string>
-    <string name="tuto_title_page_5">Menu\nClassements</string>
-    <string name="tuto_title_page_6">Menu\nRéussites</string>
-    <string name="tuto_title_page_7">Prêt pour\nle Combat</string>
+    <string name="tuto_title_page_2">En jeu\nCombos</string>
+    <string name="tuto_title_page_3">En jeu\nMouvement</string>
+    <string name="tuto_title_page_4">En jeu\nMunitions</string>
+    <string name="tuto_title_page_5">Menu\nJouer</string>
+    <string name="tuto_title_page_6">Menu\nClassements</string>
+    <string name="tuto_title_page_7">Menu\nRéussites</string>
+    <string name="tuto_title_page_8">Prêt pour\nle Combat</string>
     <string name="tuto_button_close">Fermer</string>
 
     <!-- Tuto Fragment Page Welcome -->
@@ -146,4 +147,10 @@
         le menu principal.
     </string>
     <string name="tuto_page_ready_to_fight_gl_hf">Good Luck &amp; Have Fun.</string>
+
+    <!-- Tuto Fragment Page Combos -->
+    <string name="tuto_page_combo_content">Ne manquez pas votre cible et cumulez des combos pour augmenter votre score
+        plus rapidement.
+    </string>
+    <string name="tuto_page_combo_example">x4</string>
 </resources>

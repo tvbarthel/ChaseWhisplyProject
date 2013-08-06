@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_shadow_tuto"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/crosshair_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/holo_dark_green"
+            android:text="@string/tuto_page_combo_example"
+            android:id="@+id/textView"
+            android:layout_gravity="bottom"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_view_grey"
+        android:text="@string/tuto_page_combo_content"
+        android:id="@+id/textView"
+        android:paddingTop="@dimen/default_padding"
+        android:paddingRight="@dimen/tuto_fragment_padding"
+        android:paddingLeft="@dimen/half_padding"
+        android:gravity="right"/>
+</LinearLayout>

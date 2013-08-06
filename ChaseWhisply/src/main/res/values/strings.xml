@@ -85,12 +85,13 @@
     <string name="tuto_default_title">Soon ...</string>
     <string name="tuto_title_page_0">Chase Whisply</string>
     <string name="tuto_title_page_1">In Game\nTargets</string>
-    <string name="tuto_title_page_2">In Game\nMoving</string>
-    <string name="tuto_title_page_3">In Game\nAmmunition</string>
-    <string name="tuto_title_page_4">Menu\nPlay</string>
-    <string name="tuto_title_page_5">Menu\nLeaderboards</string>
-    <string name="tuto_title_page_6">Menu\nAchievements</string>
-    <string name="tuto_title_page_7">Ready To\nFight</string>
+    <string name="tuto_title_page_2">In Game\nCombos</string>
+    <string name="tuto_title_page_3">In Game\nMoving</string>
+    <string name="tuto_title_page_4">In Game\nAmmunition</string>
+    <string name="tuto_title_page_5">Menu\nPlay</string>
+    <string name="tuto_title_page_6">Menu\nLeaderboards</string>
+    <string name="tuto_title_page_7">Menu\nAchievements</string>
+    <string name="tuto_title_page_8">Ready To\nFight</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
@@ -139,4 +140,8 @@
     </string>
     <string name="tuto_page_ready_to_fight_gl_hf">Good Luck &amp; Have Fun.</string>
 
+    <!-- Tuto Fragment Page Combos -->
+    <string name="tuto_page_combo_content">Don\'t miss your target, and add up combos to increase your score faster.
+    </string>
+    <string name="tuto_page_combo_example">x4</string>
 </resources>
