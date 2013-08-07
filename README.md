@@ -1,8 +1,11 @@
+Beta Test V1.0
+========
+The first beta version is out! Join the the [Community](https://plus.google.com/communities/104127077976914732043) and download the application! 
+
 ![Chase Whisply banner](static/banner_chase_whisply.jpg)
 ChaseWhisplyProject
 ========
-
-[Beta Test] Chase Whisply is an "augmented reality" FPS. You have to seek, find and kill the ghosts living around you.
+Chase Whisply is an "augmented reality" FPS. You have to seek, find and kill the ghosts living around you.
 
 ![Chase Whisply screenshot](static/screenshot_menu.png)
 
