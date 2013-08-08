@@ -12,30 +12,34 @@ import android.view.SurfaceHolder;
 
 import java.util.ArrayList;
 
+import fr.tvbarthel.games.chasewhisply.model.WeightedCoordinate;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 
 public abstract class ARActivity extends Activity implements SensorEventListener {
-	private static final float NOISE = 0.03f;
-	private static final int TEMP_SIZE = 20;
-	private final float[] orientationVals = new float[3];
-	private final float[] rotationMatrix = new float[9];
-	private final float[] mCoordinate = new float[2];
-	private final ArrayList<float[]> mCoordinateTemp = new ArrayList<float[]>();
-	private float[] magVals = new float[3];
-	private float[] accelVals = new float[3];
+	protected static final float NOISE = 0.03f;
+	protected static final int TEMP_SIZE = 20;
+	protected final float[] orientationVals = new float[3];
+	protected final float[] rotationMatrix = new float[9];
+	protected ArrayList<WeightedCoordinate> mXTempCoordinates;
+	protected ArrayList<WeightedCoordinate> mYTempCoordinates;
+	protected int mXTempCoordinateCursor = 0;
+	protected int mYTempCoordinateCursor = 0;
+	protected float[] magVals = new float[3];
+	protected float[] accelVals = new float[3];
+
 	//Camera
-	private Camera mCamera;
-	private CameraPreview mCameraPreview;
+	protected Camera mCamera;
+	protected CameraPreview mCameraPreview;
+
 	//Sensor
-	private SensorManager mSensorManager;
-	private Sensor mAccelerometer;
-	private Sensor mMagneticField;
-	private int mCoordinateTempCursor = 0;
+	protected SensorManager mSensorManager;
+	protected Sensor mAccelerometer;
+	protected Sensor mMagneticField;
 
 	/**
 	 * A safe way to get an instance of the Camera object.
 	 */
-	public static Camera getCameraInstance() {
+	protected static Camera getCameraInstance() {
 		Camera c = null;
 		try {
 			c = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK); // attempt to get a Camera instance
@@ -51,6 +55,9 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		mXTempCoordinates = new ArrayList<WeightedCoordinate>();
+		mYTempCoordinates = new ArrayList<WeightedCoordinate>();
 
 		//Sensor
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -107,54 +114,102 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 
 		SensorManager.getRotationMatrix(rotationMatrix, null, accelVals, magVals);
 		SensorManager.getOrientation(rotationMatrix, orientationVals);
-		boolean storeCoordinate = false;
-		mCoordinate[0] = orientationVals[0];
-		mCoordinate[1] = orientationVals[2];
 
-		float[] smoothCoordinate = getSmoothCoordinate();
+		final float[] oldSmoothCoordinates = getSmoothCoordinates();
+		final float[] newCoordinates = new float[]{orientationVals[0], orientationVals[2]};
+		final boolean shouldWeChangeXCoordinate = shouldWeChangeXCoordinate(oldSmoothCoordinates[0], newCoordinates[0]);
+		final boolean shouldWeChangeYCoordinate = shouldWeChangeYCoordinate(oldSmoothCoordinates[1], newCoordinates[1]);
 
-		if (mCoordinateTemp.size() != 0) {
-			if (Math.abs(smoothCoordinate[0] - mCoordinate[0]) > NOISE)
-				storeCoordinate = true;
-			if (Math.abs(smoothCoordinate[1] - mCoordinate[1]) > NOISE)
-				storeCoordinate = true;
-		} else {
-			storeCoordinate = true;
+		if (shouldWeChangeXCoordinate) {
+			changeXCoordinate(oldSmoothCoordinates[0], newCoordinates[0]);
 		}
 
-		//store current coordinate
-		if (storeCoordinate) {
-			if (mCoordinateTemp.size() != 0
-					&& (smoothCoordinate[0] * mCoordinate[0] < 0 || smoothCoordinate[1] * mCoordinate[1] < 0)) {
-				mCoordinateTemp.clear();
-				mCoordinateTempCursor = 0;
-			}
-
-			if (mCoordinateTemp.size() < TEMP_SIZE) {
-				mCoordinateTemp.add(mCoordinateTempCursor, mCoordinate.clone());
-			} else {
-				mCoordinateTemp.set(mCoordinateTempCursor, mCoordinate.clone());
-			}
-			mCoordinateTempCursor = (mCoordinateTempCursor + 1) % TEMP_SIZE;
-
-			smoothCoordinate = getSmoothCoordinate();
-
-			onSmoothCoordinateChanged(smoothCoordinate);
+		if (shouldWeChangeYCoordinate) {
+			changeYCoordinate(oldSmoothCoordinates[1], newCoordinates[1]);
 		}
+
+		onSmoothCoordinateChanged(getSmoothCoordinates());
 	}
 
-	public float[] getSmoothCoordinate() {
-		final float[] smoothCoordinate = new float[2];
-		final int coordinateSize = mCoordinateTemp.size();
+	protected void changeYCoordinate(float oldCoordinate, float newCoordinate) {
+		mYTempCoordinateCursor = changeCoordinate(mYTempCoordinates, mYTempCoordinateCursor, oldCoordinate, newCoordinate);
+	}
 
-		for (float[] temp : mCoordinateTemp) {
-			smoothCoordinate[0] += temp[0];
-			smoothCoordinate[1] += temp[1];
+	protected void changeXCoordinate(float oldCoordinate, float newCoordinate) {
+		mXTempCoordinateCursor = changeCoordinate(mXTempCoordinates, mXTempCoordinateCursor, oldCoordinate, newCoordinate);
+	}
+
+	protected int changeCoordinate(ArrayList<WeightedCoordinate> tempWeightedCoordinates, int tempCoordinateCursor, float oldCoordinate, float newCoordinate) {
+		if (tempWeightedCoordinates.size() != 0
+				&& !isEqualSign(oldCoordinate, newCoordinate)) {
+			tempWeightedCoordinates.clear();
+			tempCoordinateCursor = 0;
 		}
 
-		smoothCoordinate[0] /= coordinateSize;
-		smoothCoordinate[1] /= coordinateSize;
-		return smoothCoordinate;
+		if (tempWeightedCoordinates.size() < TEMP_SIZE) {
+			tempWeightedCoordinates.add(tempCoordinateCursor, new WeightedCoordinate(newCoordinate, 1));
+		} else {
+			tempWeightedCoordinates.set(tempCoordinateCursor, new WeightedCoordinate(newCoordinate, 1));
+		}
+		return (tempCoordinateCursor + 1) % TEMP_SIZE;
+	}
+
+	protected boolean shouldWeChangeXCoordinate(float oldCoordinate, float newCoordinate) {
+		return shouldWeChangeCoordinate(mXTempCoordinates, oldCoordinate, newCoordinate);
+	}
+
+	protected boolean shouldWeChangeYCoordinate(float oldCoordinate, float newCoordinate) {
+		return shouldWeChangeCoordinate(mYTempCoordinates, oldCoordinate, newCoordinate);
+	}
+
+	protected boolean shouldWeChangeCoordinate(ArrayList<WeightedCoordinate> tempWeightedCoordinates, float oldCoordinate, float newCoordinate) {
+		boolean shouldWeChangeCoordinate = false;
+		if (tempWeightedCoordinates.size() != 0) {
+			if (isAbsDiffGreaterThanNoise(oldCoordinate, newCoordinate, NOISE)) {
+				shouldWeChangeCoordinate = true;
+			}
+		} else {
+			shouldWeChangeCoordinate = true;
+		}
+		return shouldWeChangeCoordinate;
+	}
+
+	protected boolean isEqualSign(float a, float b) {
+		return a * b > 0;
+	}
+
+	protected boolean isAbsDiffGreaterThanNoise(float a, float b, float noise) {
+		return Math.abs(a - b) > noise;
+	}
+
+	/**
+	 * Compute the average value of all the {@link WeightedCoordinate} in {@code weightedCoordinates}
+	 *
+	 * @param weightedCoordinates
+	 * @return the coordinate average value
+	 */
+	protected float getSmoothCoordinate(ArrayList<WeightedCoordinate> weightedCoordinates) {
+		float smoothXCoordinate = 0;
+		float totalWeight = 0;
+
+		for (WeightedCoordinate weightedCoordinate : weightedCoordinates) {
+			smoothXCoordinate += weightedCoordinate.getWeightedValue();
+			totalWeight += weightedCoordinate.getWeight();
+		}
+
+		return smoothXCoordinate / totalWeight;
+	}
+
+	protected float getSmoothXCoordinate() {
+		return getSmoothCoordinate(mXTempCoordinates);
+	}
+
+	protected float getSmoothYCoordinate() {
+		return getSmoothCoordinate(mYTempCoordinates);
+	}
+
+	protected float[] getSmoothCoordinates() {
+		return new float[]{getSmoothXCoordinate(), getSmoothYCoordinate()};
 	}
 
 	@Override
