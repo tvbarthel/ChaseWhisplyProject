@@ -47,6 +47,14 @@ public class WeightedCoordinate implements Parcelable {
 		}
 	};
 
+	public void lowerWeight(float i) {
+		mWeight = Math.max(0, mWeight - i);
+	}
+
+	public void lowerWeight() {
+		lowerWeight(1f);
+	}
+
 	/**
 	 * Setters and Getters
 	 */

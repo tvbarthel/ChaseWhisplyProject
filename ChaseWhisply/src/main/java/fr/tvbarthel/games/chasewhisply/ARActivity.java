@@ -16,8 +16,10 @@ import fr.tvbarthel.games.chasewhisply.model.WeightedCoordinate;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 
 public abstract class ARActivity extends Activity implements SensorEventListener {
-	protected static final float NOISE = 0.03f;
+	protected static final float NOISE = 0.030f;
 	protected static final int TEMP_SIZE = 20;
+	protected static final float INITIAL_COORDINATE_WEIGHT = TEMP_SIZE / 4;
+	protected static final float BASE_LOWER_WEIGHT = 0;
 	protected final float[] orientationVals = new float[3];
 	protected final float[] rotationMatrix = new float[9];
 	protected ArrayList<WeightedCoordinate> mXTempCoordinates;
@@ -121,14 +123,58 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		final boolean shouldWeChangeYCoordinate = shouldWeChangeYCoordinate(oldSmoothCoordinates[1], newCoordinates[1]);
 
 		if (shouldWeChangeXCoordinate) {
+			float lowerWeight = getLowerWeightRatio(oldSmoothCoordinates[0], newCoordinates[0]);
+			lowerXCoordinateWeight(lowerWeight);
 			changeXCoordinate(oldSmoothCoordinates[0], newCoordinates[0]);
 		}
 
 		if (shouldWeChangeYCoordinate) {
+			float lowerWeight = getLowerWeightRatio(oldSmoothCoordinates[1], newCoordinates[1]);
+			lowerYCoordinateWeight(lowerWeight);
 			changeYCoordinate(oldSmoothCoordinates[1], newCoordinates[1]);
 		}
 
 		onSmoothCoordinateChanged(getSmoothCoordinates());
+	}
+
+	protected float getLowerWeightRatio(float oldCoordinate, float newCoordinate) {
+		final float delta = Math.abs(oldCoordinate - newCoordinate);
+		float lowerWeight = BASE_LOWER_WEIGHT;
+		if (delta >= 0.14) {
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 2;
+		} else if (delta >= 0.13) {
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 3;
+		} else if (delta >= 0.12) {
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 4;
+		} else if (delta >= 0.11) {
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 7;
+		} else if (delta >= 0.10) {
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 10;
+		}
+		return lowerWeight;
+	}
+
+
+	protected void lowerYCoordinateWeight() {
+		lowerYCoordinateWeight(1f);
+	}
+
+	protected void lowerYCoordinateWeight(float i) {
+		lowerCoordinateWeight(mYTempCoordinates, i);
+	}
+
+	protected void lowerXCoordinateWeight() {
+		lowerXCoordinateWeight(1f);
+	}
+
+	protected void lowerXCoordinateWeight(float i) {
+		lowerCoordinateWeight(mXTempCoordinates, i);
+	}
+
+	protected void lowerCoordinateWeight(ArrayList<WeightedCoordinate> weightedCoordinates, float i) {
+		for (WeightedCoordinate weightedCoordinate : weightedCoordinates) {
+			weightedCoordinate.lowerWeight(i);
+		}
 	}
 
 	protected void changeYCoordinate(float oldCoordinate, float newCoordinate) {
@@ -147,9 +193,9 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		}
 
 		if (tempWeightedCoordinates.size() < TEMP_SIZE) {
-			tempWeightedCoordinates.add(tempCoordinateCursor, new WeightedCoordinate(newCoordinate, 1));
+			tempWeightedCoordinates.add(tempCoordinateCursor, new WeightedCoordinate(newCoordinate, INITIAL_COORDINATE_WEIGHT));
 		} else {
-			tempWeightedCoordinates.set(tempCoordinateCursor, new WeightedCoordinate(newCoordinate, 1));
+			tempWeightedCoordinates.set(tempCoordinateCursor, new WeightedCoordinate(newCoordinate, INITIAL_COORDINATE_WEIGHT));
 		}
 		return (tempCoordinateCursor + 1) % TEMP_SIZE;
 	}
