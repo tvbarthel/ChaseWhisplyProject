@@ -141,14 +141,19 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		final float delta = Math.abs(oldCoordinate - newCoordinate);
 		float lowerWeight = BASE_LOWER_WEIGHT;
 		if (delta >= 0.14) {
+			//"huge" movement
 			lowerWeight = INITIAL_COORDINATE_WEIGHT / 2;
 		} else if (delta >= 0.13) {
+			//big movement
 			lowerWeight = INITIAL_COORDINATE_WEIGHT / 3;
 		} else if (delta >= 0.12) {
+			//average movement
 			lowerWeight = INITIAL_COORDINATE_WEIGHT / 5;
 		} else if (delta >= 0.11) {
+			//small movement
 			lowerWeight = INITIAL_COORDINATE_WEIGHT / 8;
 		} else if (delta >= 0.10) {
+			//tiny movement
 			lowerWeight = INITIAL_COORDINATE_WEIGHT / 10;
 		}
 		return lowerWeight;
