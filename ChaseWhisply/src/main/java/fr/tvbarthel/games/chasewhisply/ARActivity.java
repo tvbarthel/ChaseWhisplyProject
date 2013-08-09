@@ -145,9 +145,9 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		} else if (delta >= 0.13) {
 			lowerWeight = INITIAL_COORDINATE_WEIGHT / 3;
 		} else if (delta >= 0.12) {
-			lowerWeight = INITIAL_COORDINATE_WEIGHT / 4;
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 5;
 		} else if (delta >= 0.11) {
-			lowerWeight = INITIAL_COORDINATE_WEIGHT / 7;
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 8;
 		} else if (delta >= 0.10) {
 			lowerWeight = INITIAL_COORDINATE_WEIGHT / 10;
 		}
