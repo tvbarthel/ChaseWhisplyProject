@@ -34,8 +34,6 @@
             android:layout_alignRight="@id/imageView"
             android:layout_above="@id/imageView"/>
 
-
-
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager
@@ -52,6 +50,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@id/tuto_title_card"
         android:id="@+id/tuto_frame_layout_close">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,9 +64,7 @@
             android:background="@drawable/button_close"
             android:id="@+id/closeButton"
             android:layout_gravity="center"/>
+
     </FrameLayout>
-
-
-
 
 </RelativeLayout>

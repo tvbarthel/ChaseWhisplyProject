@@ -1,8 +1,6 @@
 package fr.tvbarthel.games.chasewhisply.ui;
 
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.ObjectAnimator;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
@@ -232,23 +233,22 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		final ObjectAnimator fadeOutAnimation = ObjectAnimator.ofFloat(view, "alpha", 1f, 0f).setDuration(500);
 		fadeOutAnimation.addListener(new Animator.AnimatorListener() {
 			@Override
-			public void onAnimationStart(Animator animation) {
+			public void onAnimationStart(Animator animator) {
 			}
 
 			@Override
-			public void onAnimationEnd(Animator animation) {
+			public void onAnimationEnd(Animator animator) {
 				view.setVisibility(View.GONE);
-				fadeOutAnimation.removeAllListeners();
+				fadeOutAnimation.removeListener(this);
 			}
 
 			@Override
-			public void onAnimationCancel(Animator animation) {
-				fadeOutAnimation.removeAllListeners();
+			public void onAnimationCancel(Animator animator) {
+				fadeOutAnimation.removeListener(this);
 			}
 
 			@Override
-			public void onAnimationRepeat(Animator animation) {
-
+			public void onAnimationRepeat(Animator animator) {
 			}
 		});
 		fadeOutAnimation.start();
@@ -277,6 +277,4 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 		public void onShareScoreRequested(int score);
 	}
-
-
 }

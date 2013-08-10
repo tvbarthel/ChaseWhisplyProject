@@ -16,8 +16,7 @@
         android:paddingTop="12dp"
         android:text="@string/home_play"
         android:textColor="@color/white"
-        android:textSize="22sp"
-        />
+        android:textSize="22sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -29,6 +28,6 @@
         android:paddingTop="@dimen/default_padding"
         android:paddingRight="@dimen/tuto_fragment_padding"
         android:paddingLeft="@dimen/half_padding"
-        android:gravity="right"/>
+        android:gravity="right" />
 
 </LinearLayout>

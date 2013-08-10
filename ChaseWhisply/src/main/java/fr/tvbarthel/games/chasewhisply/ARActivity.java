@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.SurfaceHolder;
 
@@ -43,12 +44,19 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	 */
 	protected static Camera getCameraInstance() {
 		Camera c = null;
-		try {
-			c = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK); // attempt to get a Camera instance
-		} catch (Exception e) {
+		if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.FROYO) {
 			try {
-				c = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
+				c = Camera.open();
 			} catch (Exception ignored) {
+			}
+		} else {
+			try {
+				c = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK); // attempt to get a Camera instance
+			} catch (Exception e) {
+				try {
+					c = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
+				} catch (Exception e2) {
+				}
 			}
 		}
 		return c; // returns null if camera is unavailable

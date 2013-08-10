@@ -75,6 +75,7 @@
             android:text="@string/leaderboard_chooser_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/text_view_grey" />
+
     </RelativeLayout>
 
 </ScrollView>

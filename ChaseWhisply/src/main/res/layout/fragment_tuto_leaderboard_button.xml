@@ -16,8 +16,7 @@
         android:paddingTop="12dp"
         android:text="@string/home_leaderboard"
         android:textColor="@color/white"
-        android:textSize="22sp"
-        />
+        android:textSize="22sp" />
 
     <TextView
         android:layout_width="match_parent"

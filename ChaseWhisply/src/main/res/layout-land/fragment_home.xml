@@ -28,7 +28,7 @@
             android:orientation="horizontal"
             android:padding="@dimen/default_padding">
 
-            <Space
+            <android.support.v7.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.10" />
@@ -63,7 +63,6 @@
                     android:text="@string/home_leaderboard"
                     android:textColor="@color/white"
                     android:textSize="22sp" />
-
 
             </LinearLayout>
 
@@ -100,7 +99,7 @@
                     android:textSize="22sp" />
             </LinearLayout>
 
-            <Space
+            <android.support.v7.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.10" />

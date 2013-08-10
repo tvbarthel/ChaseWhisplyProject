@@ -6,7 +6,6 @@
     android:background="@drawable/card_shadow_tuto"
     android:textAlignment="gravity">
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,6 +60,5 @@
         android:gravity="center_vertical|right"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/default_padding" />
-
 
 </RelativeLayout>

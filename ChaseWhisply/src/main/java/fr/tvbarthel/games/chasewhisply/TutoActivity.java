@@ -2,6 +2,7 @@ package fr.tvbarthel.games.chasewhisply;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -114,7 +115,13 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 		if (!helpRequested) {
 			final Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
-			mPrefs.edit().putBoolean(FIRST_LAUNCH_KEY, false).apply();
+			final SharedPreferences.Editor editor = mPrefs.edit();
+			editor.putBoolean(FIRST_LAUNCH_KEY, false);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+				editor.apply();
+			} else {
+				editor.commit();
+			}
 		}
 		finish();
 	}
