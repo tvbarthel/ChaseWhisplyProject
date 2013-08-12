@@ -1,6 +1,11 @@
 Beta Test V1.1
 ========
-The first beta version is out! Join the [Community](https://plus.google.com/communities/104127077976914732043) and download the application! 
+The second beta version is out! Join the [Community](https://plus.google.com/communities/104127077976914732043) and download the application! 
+
+- Min SDK is now 8
+- 3445 supported devices
+- In game movements have been changed. 
+- ...
 
 ![Chase Whisply banner](static/banner_chase_whisply.jpg)
 ChaseWhisplyProject
