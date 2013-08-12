@@ -24,7 +24,7 @@ import fr.tvbarthel.games.chasewhisply.ui.TutoFragment;
 
 public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewFactory {
 	public static final String EXTRA_HELP_REQUESTED = "ExtraHelpRequested";
-	public static final int NB_PAGES = 9;
+	public static final int NB_PAGES = 11;
 	private static final String FIRST_LAUNCH_KEY = "First_launch_KEY";
 	private SharedPreferences mPrefs;
 	private String[] mPageTitles;
@@ -66,7 +66,9 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 				getResources().getString(R.string.tuto_title_page_5),
 				getResources().getString(R.string.tuto_title_page_6),
 				getResources().getString(R.string.tuto_title_page_7),
-				getResources().getString(R.string.tuto_title_page_8)};
+				getResources().getString(R.string.tuto_title_page_8),
+				getResources().getString(R.string.tuto_title_page_9),
+				getResources().getString(R.string.tuto_title_page_10)};
 
 		//initialize title text switcher
 		mTitleSwitcher = (TextSwitcher) findViewById(R.id.tuto_text_switcher);
@@ -155,24 +157,30 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 					layoutResId = R.layout.fragment_tuto_target;
 					break;
 				case 2:
-					layoutResId = R.layout.fragment_tuto_combo;
+					layoutResId = R.layout.fragment_tuto_target_bis;
 					break;
 				case 3:
-					layoutResId = R.layout.fragment_tuto_aim_tips;
+					layoutResId = R.layout.fragment_tuto_combo;
 					break;
 				case 4:
-					layoutResId = R.layout.fragment_tuto_ammo;
+					layoutResId = R.layout.fragment_tuto_aim_tips;
 					break;
 				case 5:
-					layoutResId = R.layout.fragment_tuto_play_button;
+					layoutResId = R.layout.fragment_tuto_ammo;
 					break;
 				case 6:
-					layoutResId = R.layout.fragment_tuto_leaderboard_button;
+					layoutResId = R.layout.fragment_tuto_ammo_bis;
 					break;
 				case 7:
-					layoutResId = R.layout.fragment_tuto_achievement_button;
+					layoutResId = R.layout.fragment_tuto_play_button;
 					break;
 				case 8:
+					layoutResId = R.layout.fragment_tuto_leaderboard_button;
+					break;
+				case 9:
+					layoutResId = R.layout.fragment_tuto_achievement_button;
+					break;
+				case 10:
 					layoutResId = R.layout.fragment_tuto_ready_to_fight;
 					break;
 				default:

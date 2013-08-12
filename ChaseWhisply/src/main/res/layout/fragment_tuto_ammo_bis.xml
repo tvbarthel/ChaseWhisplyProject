@@ -8,28 +8,26 @@
     android:gravity="center">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/half_padding">
+        android:id="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/integer_four"
-            android:textColor="@color/holo_dark_green"
-            android:id="@+id/textView2"
-            android:gravity="center"
-            android:layout_gravity="center_vertical" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/holo_dark_red"
+            android:text="@string/in_game_no_ammo_message"
+            android:id="@+id/textView" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:src="@drawable/ammo" />
-
+            android:id="@+id/imageView"
+            android:src="@drawable/crosshair_black" />
     </LinearLayout>
 
     <TextView
@@ -37,7 +35,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/text_view_grey"
-        android:text="@string/tuto_page_ammo_content"
+        android:text="@string/tuto_page_ammo_bis_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:id="@+id/textView3"
         android:paddingRight="@dimen/tuto_fragment_padding"

@@ -16,7 +16,7 @@
         android:paddingTop="12dp"
         android:text="@string/home_play"
         android:textColor="@color/white"
-        android:textSize="22sp" />
+        android:textSize="@dimen/home_text_size" />
 
     <TextView
         android:layout_width="match_parent"

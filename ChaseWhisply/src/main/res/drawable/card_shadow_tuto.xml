@@ -2,7 +2,7 @@
 
 <inset xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/card_shadow_base"
-    android:insetBottom="@dimen/default_padding"
-    android:insetTop="@dimen/default_padding"
+    android:insetBottom="@dimen/half_padding"
+    android:insetTop="@dimen/half_padding"
     android:insetLeft="@dimen/tuto_fragment_padding"
     android:insetRight="@dimen/tuto_fragment_padding" />

@@ -85,13 +85,15 @@
     <string name="tuto_default_title">Soon…</string>
     <string name="tuto_title_page_0">Chase Whisply</string>
     <string name="tuto_title_page_1">In Game\nTargets</string>
-    <string name="tuto_title_page_2">In Game\nCombos</string>
-    <string name="tuto_title_page_3">In Game\nMoving</string>
-    <string name="tuto_title_page_4">In Game\nAmmunition</string>
-    <string name="tuto_title_page_5">Menu\nPlay</string>
-    <string name="tuto_title_page_6">Menu\nLeaderboards</string>
-    <string name="tuto_title_page_7">Menu\nAchievements</string>
-    <string name="tuto_title_page_8">Ready To\nFight</string>
+    <string name="tuto_title_page_2">In Game\nTargets</string>
+    <string name="tuto_title_page_3">In Game\nCombos</string>
+    <string name="tuto_title_page_4">In Game\nMoving</string>
+    <string name="tuto_title_page_5">In Game\nAmmunition</string>
+    <string name="tuto_title_page_6">In Game\nAmmunition</string>
+    <string name="tuto_title_page_7">Menu\nPlay</string>
+    <string name="tuto_title_page_8">Menu\nLeaderboards</string>
+    <string name="tuto_title_page_9">Menu\nAchievements</string>
+    <string name="tuto_title_page_10">Ready To\nFight</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
@@ -100,7 +102,7 @@
     <!-- Tuto Fragment Page Welcome -->
     <string name="tuto_page_welcome_title">Welcome,</string>
     <string name="tuto_page_welcome_subtitle">padawan.</string>
-    <string name="tuto_page_welcome_content">Chase Whisply is an augmented reality FPS. You have to seek, find and kill
+    <string name="tuto_page_welcome_content">Your mission is to seek, find and kill
         ghosts living around you.
     </string>
     <string name="tuto_page_welcome_additional_text">Swipe left to learn more.</string>
@@ -124,14 +126,16 @@
     </string>
 
     <!-- Tuto Fragment Page Target -->
-    <string name="tuto_page_target_content">Your targets are Whisply and his twin brothers. Line up one of them in your
-        gun sights and shoot by touching the screen.
+    <string name="tuto_page_target_content">Your targets are Whisply and his twin brothers.</string>
+    <string name="tuto_page_target_bis_content">Line up one of them in your gun sights and shoot by touching the
+        screen.
     </string>
 
     <!-- Tuto Fragment Page Ammo -->
     <string name="tuto_page_ammo_content">Watch out your ammunitions on the bottom right of your screen, or you will run
-        out of them. You gain ammunitions over time.
+        out of them.
     </string>
+    <string name="tuto_page_ammo_bis_content">You gain ammunitions over time.</string>
 
     <!-- Tuto Fragment Page Ready To Fight -->
     <string name="tuto_page_ready_to_fight_congratulation">Congratulations, you are ready to play.</string>

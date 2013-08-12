@@ -94,19 +94,21 @@
     <string name="tuto_default_title">Bientôt…</string>
     <string name="tuto_title_page_0">Chase Whisply</string>
     <string name="tuto_title_page_1">En jeu\nCibles</string>
-    <string name="tuto_title_page_2">En jeu\nCombos</string>
-    <string name="tuto_title_page_3">En jeu\nMouvement</string>
-    <string name="tuto_title_page_4">En jeu\nMunitions</string>
-    <string name="tuto_title_page_5">Menu\nJouer</string>
-    <string name="tuto_title_page_6">Menu\nClassements</string>
-    <string name="tuto_title_page_7">Menu\nRéussites</string>
-    <string name="tuto_title_page_8">Prêt pour\nle Combat</string>
+    <string name="tuto_title_page_2">En jeu\nCibles</string>
+    <string name="tuto_title_page_3">En jeu\nCombos</string>
+    <string name="tuto_title_page_4">En jeu\nMouvement</string>
+    <string name="tuto_title_page_5">En jeu\nMunitions</string>
+    <string name="tuto_title_page_6">En jeu\nMunitions</string>
+    <string name="tuto_title_page_7">Menu\nJouer</string>
+    <string name="tuto_title_page_8">Menu\nClassements</string>
+    <string name="tuto_title_page_9">Menu\nRéussites</string>
+    <string name="tuto_title_page_10">Prêt pour\nle Combat</string>
     <string name="tuto_button_close">Fermer</string>
 
     <!-- Tuto Fragment Page Welcome -->
     <string name="tuto_page_welcome_title">Bienvenue,</string>
     <string name="tuto_page_welcome_subtitle">padawan.</string>
-    <string name="tuto_page_welcome_content">Chase Whisply est un FPS en réalité augmentée. Votre mission est de
+    <string name="tuto_page_welcome_content">Votre mission est de
         traquer, trouver et tuer les fantômes vivants autour de vous.
     </string>
     <string name="tuto_page_welcome_additional_text">Glissez vers la gauche pour en apprendre plus.</string>
@@ -132,18 +134,19 @@
     </string>
 
     <!-- Tuto Fragment Target -->
-    <string name="tuto_page_target_content">Vos cibles sont Whisply et ses frères jumeaux. Mettez-en un en joue et
-        tirez en touchant l\'écran.
-    </string>
+    <string name="tuto_page_target_content">Vos cibles sont Whisply et ses frères jumeaux.</string>
+    <string name="tuto_page_target_bis_content">Mettez-en un en joue et tirez en touchant l\'écran.</string>
 
     <!-- Tuto Fragment Ammo -->
     <string name="tuto_page_ammo_content">Surveillez vos munitions en bas à droite de votre écran ou vous serez vite à
-        court de balles. Vous regagnez des munitions avec le temps.
+        court de balles.
     </string>
+    <string name="tuto_page_ammo_bis_content">Vous regagnez des munitions avec le temps.</string>
 
     <!-- Tuto Fragment Page Ready To Fight -->
     <string name="tuto_page_ready_to_fight_congratulation">Félicitations, vous êtes prêt à jouer.</string>
-    <string name="tuto_page_ready_to_fight_reaccess_tutorial">Vous pouvez accéder de nouveau à ce tutorial à tout moment depuis
+    <string name="tuto_page_ready_to_fight_reaccess_tutorial">Vous pouvez accéder de nouveau à ce tutorial à tout moment
+        depuis
         le menu principal.
     </string>
     <string name="tuto_page_ready_to_fight_gl_hf">Bonne chance &amp; Amusez-vous bien !</string>
