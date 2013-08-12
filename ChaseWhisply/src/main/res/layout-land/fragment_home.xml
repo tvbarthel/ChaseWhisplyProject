@@ -31,14 +31,14 @@
             <android.support.v7.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.10" />
+                android:layout_weight="0.08" />
 
             <LinearLayout
                 android:id="@+id/leftLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_weight="0.35"
+                android:layout_weight="0.37"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -51,7 +51,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_play"
                     android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:textSize="@dimen/home_text_size" />
 
                 <Button
                     android:id="@+id/home_leaderboard"
@@ -62,7 +62,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_leaderboard"
                     android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:textSize="@dimen/home_text_size" />
 
             </LinearLayout>
 
@@ -71,7 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_weight="0.35"
+                android:layout_weight="0.37"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -84,7 +84,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_achievement"
                     android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:textSize="@dimen/home_text_size" />
 
                 <Button
                     android:id="@+id/home_about"
@@ -96,13 +96,13 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_about"
                     android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:textSize="@dimen/home_text_size" />
             </LinearLayout>
 
             <android.support.v7.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.10" />
+                android:layout_weight="0.08" />
 
         </LinearLayout>
 
