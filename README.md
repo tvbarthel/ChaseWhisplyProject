@@ -1,4 +1,4 @@
-Beta Test V1.0
+Beta Test V1.1
 ========
 The first beta version is out! Join the [Community](https://plus.google.com/communities/104127077976914732043) and download the application! 
 
