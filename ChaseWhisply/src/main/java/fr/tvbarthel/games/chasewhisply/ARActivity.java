@@ -150,19 +150,19 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		float lowerWeight = BASE_LOWER_WEIGHT;
 		if (delta >= 0.14) {
 			//"huge" movement
-			lowerWeight = INITIAL_COORDINATE_WEIGHT / 2;
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 5;
 		} else if (delta >= 0.13) {
 			//big movement
-			lowerWeight = INITIAL_COORDINATE_WEIGHT / 3;
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 6;
 		} else if (delta >= 0.12) {
 			//average movement
-			lowerWeight = INITIAL_COORDINATE_WEIGHT / 5;
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 8;
 		} else if (delta >= 0.11) {
 			//small movement
-			lowerWeight = INITIAL_COORDINATE_WEIGHT / 8;
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 12;
 		} else if (delta >= 0.10) {
 			//tiny movement
-			lowerWeight = INITIAL_COORDINATE_WEIGHT / 10;
+			lowerWeight = INITIAL_COORDINATE_WEIGHT / 14;
 		}
 		return lowerWeight;
 	}
@@ -301,8 +301,8 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 			setContentView(mCameraPreview);
 
 			//Sensor
-			mSensorManager.registerListener(ARActivity.this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
-			mSensorManager.registerListener(ARActivity.this, mMagneticField, SensorManager.SENSOR_DELAY_GAME);
+			mSensorManager.registerListener(ARActivity.this, mAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+			mSensorManager.registerListener(ARActivity.this, mMagneticField, SensorManager.SENSOR_DELAY_FASTEST);
 
 			onCameraReady(horizontalViewAngle, verticalViewAngle);
 
