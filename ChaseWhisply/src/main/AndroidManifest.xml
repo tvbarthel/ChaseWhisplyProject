@@ -17,6 +17,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true"/>
 
     <application
         android:allowBackup="true"
