@@ -3,21 +3,21 @@ package fr.tvbarthel.games.chasewhisply.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class WeightedCoordinate implements Parcelable {
+public class WeightedValue implements Parcelable {
 	private float mValue;
 	private float mWeight;
 
-	public WeightedCoordinate(float value, float weight) {
+	public WeightedValue(float value, float weight) {
 		mValue = value;
 		mWeight = weight;
 	}
 
-	public WeightedCoordinate() {
+	public WeightedValue() {
 		mValue = 0;
 		mWeight = 0;
 	}
 
-	public WeightedCoordinate(Parcel in) {
+	public WeightedValue(Parcel in) {
 		readFromParcel(in);
 	}
 
@@ -37,13 +37,13 @@ public class WeightedCoordinate implements Parcelable {
 		mWeight = in.readFloat();
 	}
 
-	public static final Parcelable.Creator<WeightedCoordinate> CREATOR = new Parcelable.Creator<WeightedCoordinate>() {
-		public WeightedCoordinate createFromParcel(Parcel in) {
-			return new WeightedCoordinate(in);
+	public static final Parcelable.Creator<WeightedValue> CREATOR = new Parcelable.Creator<WeightedValue>() {
+		public WeightedValue createFromParcel(Parcel in) {
+			return new WeightedValue(in);
 		}
 
-		public WeightedCoordinate[] newArray(int size) {
-			return new WeightedCoordinate[size];
+		public WeightedValue[] newArray(int size) {
+			return new WeightedValue[size];
 		}
 	};
 
