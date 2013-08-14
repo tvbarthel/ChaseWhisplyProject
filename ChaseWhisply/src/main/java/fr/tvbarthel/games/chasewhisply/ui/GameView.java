@@ -236,7 +236,10 @@ public class GameView extends View {
 				mModel.setCurrentTarget(easyGhost);
 			} else {
 				//Ghost alive and not targeted
+				final int oldAlpha = mPaint.getAlpha();
+				mPaint.setAlpha(210);
 				renderItem(canvas, mGhostBitmap, easyGhost);
+				mPaint.setAlpha(oldAlpha);
 				if (easyGhost == mModel.getCurrentTarget()) {
 					mModel.removeTarget();
 				}
