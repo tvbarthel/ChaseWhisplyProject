@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
 public class GameView extends View {
@@ -57,19 +57,29 @@ public class GameView extends View {
 
 		mFontSize = getTextSizeFromStyle(context, android.R.style.TextAppearance_Holo_Large);
 		mPadding = getResources().getDimensionPixelSize(R.dimen.half_padding);
+
+		mScreenWidth = 0;
+		mScreenHeight = 0;
+		mWidthRatioDegreeToPx = 0;
+		mHeightRatioDegreeToPx = 0;
+	}
+
+	private void initializeScreenDimension(int width, int height) {
+		mScreenWidth = width;
+		mScreenHeight = height;
+		mWidthRatioDegreeToPx = mScreenWidth / mModel.getSceneWidth();
+		mHeightRatioDegreeToPx = mScreenHeight / mModel.getSceneHeight();
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+		initializeScreenDimension(w, h);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-
-		mScreenWidth = getWidth();
-		mScreenHeight = getHeight();
-
-		//initialize ratio degree / screen px
-		mWidthRatioDegreeToPx = mScreenWidth / mModel.getSceneWidth();
-		mHeightRatioDegreeToPx = mScreenHeight / mModel.getSceneHeight();
-
 
 		drawDisplayableItems(canvas);
 		drawCrossHair(canvas);
