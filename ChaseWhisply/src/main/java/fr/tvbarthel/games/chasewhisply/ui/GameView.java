@@ -197,25 +197,10 @@ public class GameView extends View {
 		for (DisplayableItem i : mModel.getItemsForDisplay()) {
 			switch (i.getType()) {
 				case DisplayableItemFactory.TYPE_EASY_GHOST:
-					if (!((TargetableItem) i).isAlive()) {
-						//Ghost dead
-					} else {
-						//Ghost alive
-						if (isTargeted(currentPos, i, mGhostBitmap)) {
-							//Ghost alive and targeted
-							renderItem(canvas, mGhostTargetedBitmap, i, mGhostTargetedBitmap.getWidth(), mGhostTargetedBitmap.getHeight());
-							mModel.setCurrentTarget((TargetableItem) i);
-						} else {
-							//Ghost alive and not targeted
-							renderItem(canvas, mGhostBitmap, i, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
-							if (i == mModel.getCurrentTarget()) {
-								mModel.removeTarget();
-							}
-						}
-					}
+					renderEasyGhost(canvas, (TargetableItem)i, currentPos);
 					break;
 				case DisplayableItemFactory.TYPE_BULLET_HOLE:
-					renderItem(canvas, mBulletHoleBitmap, i, mBulletHoleBitmap.getWidth(), mBulletHoleBitmap.getHeight());
+					renderBulletHole(canvas, i);
 					break;
 			}
 		}
@@ -238,6 +223,29 @@ public class GameView extends View {
 		} else {
 			return false;
 		}
+	}
+
+	private void renderEasyGhost(Canvas canvas, TargetableItem easyGhost, float[] currentPos) {
+		if (!easyGhost.isAlive()) {
+			//Ghost dead
+		} else {
+			//Ghost alive
+			if (isTargeted(currentPos, easyGhost, mGhostBitmap)) {
+				//Ghost alive and targeted
+				renderItem(canvas, mGhostTargetedBitmap, easyGhost, mGhostTargetedBitmap.getWidth(), mGhostTargetedBitmap.getHeight());
+				mModel.setCurrentTarget(easyGhost);
+			} else {
+				//Ghost alive and not targeted
+				renderItem(canvas, mGhostBitmap, easyGhost, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
+				if (easyGhost == mModel.getCurrentTarget()) {
+					mModel.removeTarget();
+				}
+			}
+		}
+	}
+
+	private void renderBulletHole(Canvas canvas, DisplayableItem bulletHole) {
+		renderItem(canvas, mBulletHoleBitmap, bulletHole, mBulletHoleBitmap.getWidth(), mBulletHoleBitmap.getHeight());
 	}
 
 	public void renderItem(final Canvas canvas, final Bitmap bitmap, final DisplayableItem item, final int mWidth, final int mHeight) {
