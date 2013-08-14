@@ -232,11 +232,11 @@ public class GameView extends View {
 			//Ghost alive
 			if (isTargeted(currentPos, easyGhost, mGhostBitmap)) {
 				//Ghost alive and targeted
-				renderItem(canvas, mGhostTargetedBitmap, easyGhost, mGhostTargetedBitmap.getWidth(), mGhostTargetedBitmap.getHeight());
+				renderItem(canvas, mGhostTargetedBitmap, easyGhost);
 				mModel.setCurrentTarget(easyGhost);
 			} else {
 				//Ghost alive and not targeted
-				renderItem(canvas, mGhostBitmap, easyGhost, mGhostBitmap.getWidth(), mGhostBitmap.getHeight());
+				renderItem(canvas, mGhostBitmap, easyGhost);
 				if (easyGhost == mModel.getCurrentTarget()) {
 					mModel.removeTarget();
 				}
@@ -245,11 +245,13 @@ public class GameView extends View {
 	}
 
 	private void renderBulletHole(Canvas canvas, DisplayableItem bulletHole) {
-		renderItem(canvas, mBulletHoleBitmap, bulletHole, mBulletHoleBitmap.getWidth(), mBulletHoleBitmap.getHeight());
+		renderItem(canvas, mBulletHoleBitmap, bulletHole);
 	}
 
-	public void renderItem(final Canvas canvas, final Bitmap bitmap, final DisplayableItem item, final int mWidth, final int mHeight) {
+	public void renderItem(final Canvas canvas, final Bitmap bitmap, final DisplayableItem item) {
 		final float[] currentPosInDegree = mModel.getCurrentPosition();
+		final int bitmapWidth = bitmap.getWidth();
+		final int bitmapHeight = bitmap.getHeight();
 		//normalization, avoid negative value.
 		currentPosInDegree[0] += 180;
 		currentPosInDegree[1] += 180;
@@ -276,13 +278,13 @@ public class GameView extends View {
 			itemYInPx = currentPosInDegree[1] - diffY + Math.signum(diffY) * 360;
 		}
 
-		itemXInPx = itemXInPx * mWidthRatioDegreeToPx - mWidth / 2;
-		itemYInPx = itemYInPx * mHeightRatioDegreeToPx - mHeight / 2;
+		itemXInPx = itemXInPx * mWidthRatioDegreeToPx - bitmapWidth / 2;
+		itemYInPx = itemYInPx * mHeightRatioDegreeToPx - bitmapHeight / 2;
 
-		final float borderLeft = windowXInPx - mWidth;
-		final float borderTop = windowYInPx - mHeight;
-		final float borderRight = borderLeft + mScreenWidth + mWidth;
-		final float borderBottom = borderTop + mScreenHeight + mHeight;
+		final float borderLeft = windowXInPx - bitmapWidth;
+		final float borderTop = windowYInPx - bitmapHeight;
+		final float borderRight = borderLeft + mScreenWidth + bitmapWidth;
+		final float borderBottom = borderTop + mScreenHeight + bitmapHeight;
 
 		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
 			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, mPaint);
