@@ -23,6 +23,8 @@ public class GameView extends View {
 	private final Bitmap mGhostTargetedBitmap;
 	private final Bitmap mAmmoBitmap;
 	private final Bitmap mBulletHoleBitmap;
+	private final Bitmap mBabyGhostBitmap;
+	private final Bitmap mTargetedBabyGhostBitmap;
 	private final String mComboString;
 	private final String mScoreString;
 	private final String mTimeString;
@@ -50,6 +52,8 @@ public class GameView extends View {
 		mGhostTargetedBitmap = BitmapFactory.decodeResource(res, R.drawable.ghost_targeted);
 		mAmmoBitmap = BitmapFactory.decodeResource(res, R.drawable.ammo);
 		mBulletHoleBitmap = BitmapFactory.decodeResource(res, R.drawable.bullethole);
+		mBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost);
+		mTargetedBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost_targeted);
 
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
@@ -199,6 +203,9 @@ public class GameView extends View {
 				case DisplayableItemFactory.TYPE_EASY_GHOST:
 					renderEasyGhost(canvas, (TargetableItem)i, currentPos);
 					break;
+				case DisplayableItemFactory.TYPE_BABY_GHOST:
+					renderBabyGhost(canvas, (TargetableItem)i, currentPos);
+					break;
 				case DisplayableItemFactory.TYPE_BULLET_HOLE:
 					renderBulletHole(canvas, i);
 					break;
@@ -226,21 +233,29 @@ public class GameView extends View {
 	}
 
 	private void renderEasyGhost(Canvas canvas, TargetableItem easyGhost, float[] currentPos) {
-		if (!easyGhost.isAlive()) {
+		renderGhost(canvas, easyGhost, currentPos, mGhostBitmap, mGhostTargetedBitmap);
+	}
+
+	private void renderBabyGhost(Canvas canvas, TargetableItem babyGhost, float[] currentPos) {
+		renderGhost(canvas, babyGhost, currentPos, mBabyGhostBitmap, mTargetedBabyGhostBitmap);
+	}
+
+	private void renderGhost(Canvas canvas, TargetableItem ghost, float[] currentPos, Bitmap ghostBitmap, Bitmap targetedGhostBitmap) {
+		if (!ghost.isAlive()) {
 			//Ghost dead
 		} else {
 			//Ghost alive
-			if (isTargeted(currentPos, easyGhost, mGhostBitmap)) {
+			if (isTargeted(currentPos, ghost, ghostBitmap)) {
 				//Ghost alive and targeted
-				renderItem(canvas, mGhostTargetedBitmap, easyGhost);
-				mModel.setCurrentTarget(easyGhost);
+				renderItem(canvas, targetedGhostBitmap, ghost);
+				mModel.setCurrentTarget(ghost);
 			} else {
 				//Ghost alive and not targeted
 				final int oldAlpha = mPaint.getAlpha();
 				mPaint.setAlpha(210);
-				renderItem(canvas, mGhostBitmap, easyGhost);
+				renderItem(canvas, ghostBitmap, ghost);
 				mPaint.setAlpha(oldAlpha);
-				if (easyGhost == mModel.getCurrentTarget()) {
+				if (ghost == mModel.getCurrentTarget()) {
 					mModel.removeTarget();
 				}
 			}

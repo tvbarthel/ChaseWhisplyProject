@@ -6,13 +6,16 @@ import android.os.Parcelable;
 public class TargetableItem extends DisplayableItem {
 	//health of the item
 	protected int mHealth;
+	protected int mBasePoint;
 
 	public TargetableItem() {
 		super();
+		mBasePoint = 1;
 	}
 
 	public TargetableItem(int x, int y, int type) {
 		super(x, y, type);
+		mBasePoint = 1;
 	}
 
 	protected TargetableItem(Parcel in) {
@@ -32,12 +35,14 @@ public class TargetableItem extends DisplayableItem {
 	public void writeToParcel(Parcel out, int i) {
 		super.writeToParcel(out, i);
 		out.writeInt(mHealth);
+		out.writeInt(mBasePoint);
 	}
 
 	@Override
 	public void readFromParcel(Parcel in) {
 		super.readFromParcel(in);
 		mHealth = in.readInt();
+		mBasePoint = in.readInt();
 	}
 
 	public static final Parcelable.Creator<TargetableItem> CREATOR = new Parcelable.Creator<TargetableItem>() {
@@ -69,5 +74,13 @@ public class TargetableItem extends DisplayableItem {
 
 	public void setHealth(int health) {
 		mHealth = health;
+	}
+
+	public int getBasePoint() {
+		return mBasePoint;
+	}
+
+	public void setBasePoint(int basePoint) {
+		mBasePoint = basePoint;
 	}
 }

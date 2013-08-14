@@ -1,7 +1,5 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
-import android.util.Log;
-
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
@@ -103,8 +101,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 					//increase combo
 					mGameInformation.stackCombo();
 					//add score
-					mGameInformation.increaseScore(10 + 10 * mGameInformation.getCurrentCombo());
-					Log.d("Debug", "score : " + mGameInformation.getCurrentScore());
+					mGameInformation.increaseScore(10 * currentTarget.getBasePoint() + 10 * mGameInformation.getCurrentCombo());
 					onKill();
 				}
 			}

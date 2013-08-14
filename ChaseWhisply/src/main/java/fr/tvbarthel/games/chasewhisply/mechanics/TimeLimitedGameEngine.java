@@ -2,6 +2,7 @@ package fr.tvbarthel.games.chasewhisply.mechanics;
 
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.MathUtils;
 
 public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameTimer {
 	protected GameTimer mGameTimer;
@@ -18,12 +19,21 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 	public void spawn() {
 		super.spawn();
 		if (mGameInformation.getCurrentTargetsNumber() < mGameInformation.getMaxTargetOnTheField()) {
+			final int randomDraw = MathUtils.randomize(0,100);
 			final float[] pos = mGameInformation.getCurrentPosition();
-			mGameInformation.addTargetableItem(DisplayableItemFactory.createEasyGhost(
-					(int) pos[0] - mXRange,
-					(int) pos[0] + mXRange,
-					(int) pos[1] - mYRange,
-					(int) pos[1] + mYRange));
+			if(randomDraw < 80) {
+				mGameInformation.addTargetableItem(DisplayableItemFactory.createEasyGhost(
+						(int) pos[0] - mXRange,
+						(int) pos[0] + mXRange,
+						(int) pos[1] - mYRange,
+						(int) pos[1] + mYRange));
+			}else {
+				mGameInformation.addTargetableItem(DisplayableItemFactory.createBabyGhost(
+						(int) pos[0] - mXRange,
+						(int) pos[0] + mXRange,
+						(int) pos[1] - mYRange,
+						(int) pos[1] + mYRange));
+			}
 		}
 	}
 
