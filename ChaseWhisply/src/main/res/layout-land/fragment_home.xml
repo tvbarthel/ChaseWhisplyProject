@@ -19,6 +19,16 @@
             android:src="@drawable/button_help_tuto"
             android:padding="@dimen/half_padding" />
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:layout_above="@+id/home_help_tuto"
+            android:src="@drawable/button_help_about"
+            android:background="@null"
+            android:padding="@dimen/half_padding"
+            android:layout_alignParentRight="true" />
+
         <LinearLayout
             android:id="@+id/menu"
             android:layout_width="fill_parent"

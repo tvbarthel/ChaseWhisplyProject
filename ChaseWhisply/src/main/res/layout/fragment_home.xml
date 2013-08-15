@@ -143,6 +143,16 @@
             android:src="@drawable/button_help_tuto"
             android:padding="@dimen/half_padding" />
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:layout_toLeftOf="@+id/home_help_tuto"
+            android:src="@drawable/button_help_about"
+            android:background="@null"
+            android:padding="@dimen/half_padding"
+            android:layout_alignParentBottom="true" />
+
     </RelativeLayout>
 
 </ScrollView>
