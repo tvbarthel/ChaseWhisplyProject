@@ -6,6 +6,8 @@
     <string name="integer_zero">0</string>
     <string name="integer_four">4</string>
 
+    <string name="soon_tm">Soon ...</string>
+
     <!-- Home Activity !-->
     <string name="home_play">Play</string>
     <string name="home_leaderboard">Leaderboards</string>
@@ -19,6 +21,7 @@
     <string name="home_sign_out_confirm_dialog_message">Are you sure you wish to sign out?</string>
     <string name="home_sign_out_success">You\'ve successfully signed out.</string>
     <string name="home_internet_unavailable">Please connect to the Internet.</string>
+    <string name="home_profile">Profile</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag: %1$d</string>

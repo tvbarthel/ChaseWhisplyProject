@@ -175,6 +175,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		startActivity(intent);
 	}
 
+	@Override
+	public void onShowProfileRequested() {
+		makeToast(getResources().getString(R.string.soon_tm));
+	}
+
 	/**
 	 * use to inform user
 	 *

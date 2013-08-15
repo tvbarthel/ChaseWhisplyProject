@@ -3,7 +3,7 @@
 
     <string name="app_name">Chase Whisply</string>
 
-    <string name="integer_zero">0</string>
+    <string name="soon_tm">Bientôt ...</string>
 
     <!-- Home Activity !-->
     <string name="home_play">Jouer</string>
@@ -20,6 +20,7 @@
     <string name="home_sign_out_confirm_dialog_message">Êtes-vous sûr(e) de vouloir vous déconnecter ?</string>
     <string name="home_sign_out_success">Vous avez été déconnecté(e) avec succès.</string>
     <string name="home_internet_unavailable">Veuillez vous connecter à Internet.</string>
+    <string name="home_profile">Profil</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag : %1$d</string>

@@ -40,7 +40,8 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 				R.id.home_sign_in,
 				R.id.home_sign_out,
 				R.id.home_whisply_picture,
-				R.id.home_help_tuto
+				R.id.home_help_tuto,
+				R.id.home_profile
 		};
 		for (int i : clickable) {
 			v.findViewById(i).setOnClickListener(this);
@@ -120,6 +121,9 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 			case R.id.home_help_tuto:
 				mListener.onHelpRequested();
 				break;
+			case R.id.home_profile:
+				mListener.onShowProfileRequested();
+				break;
 			default:
 				break;
 		}
@@ -185,5 +189,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		public void onWhisplyPictureClicked();
 
 		public void onHelpRequested();
+
+		public void onShowProfileRequested();
 	}
 }
