@@ -21,19 +21,26 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 		if (mGameInformation.getCurrentTargetsNumber() < mGameInformation.getMaxTargetOnTheField()) {
 			final int randomDraw = MathUtils.randomize(0,100);
 			final float[] pos = mGameInformation.getCurrentPosition();
-			if(randomDraw < 80) {
+			if(randomDraw < 60) {
 				mGameInformation.addTargetableItem(DisplayableItemFactory.createEasyGhost(
 						(int) pos[0] - mXRange,
 						(int) pos[0] + mXRange,
 						(int) pos[1] - mYRange,
 						(int) pos[1] + mYRange));
-			}else {
+			}else if (randomDraw < 85){
 				mGameInformation.addTargetableItem(DisplayableItemFactory.createBabyGhost(
 						(int) pos[0] - mXRange,
 						(int) pos[0] + mXRange,
 						(int) pos[1] - mYRange,
 						(int) pos[1] + mYRange));
+			} else {
+				mGameInformation.addTargetableItem(DisplayableItemFactory.createGhostWithHelmet(
+						(int) pos[0] - mXRange,
+						(int) pos[0] + mXRange,
+						(int) pos[1] - mYRange,
+						(int) pos[1] + mYRange));
 			}
+
 		}
 	}
 

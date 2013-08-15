@@ -25,6 +25,8 @@ public class GameView extends View {
 	private final Bitmap mBulletHoleBitmap;
 	private final Bitmap mBabyGhostBitmap;
 	private final Bitmap mTargetedBabyGhostBitmap;
+	private final Bitmap[] mGhostWithHelmetBitmaps;
+	private final Bitmap[] mGhostWithHelmetTargetedBitmaps;
 	private final String mComboString;
 	private final String mScoreString;
 	private final String mTimeString;
@@ -54,6 +56,21 @@ public class GameView extends View {
 		mBulletHoleBitmap = BitmapFactory.decodeResource(res, R.drawable.bullethole);
 		mBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost);
 		mTargetedBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost_targeted);
+		mGhostWithHelmetBitmaps = new Bitmap[]{
+			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_5),
+			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_4),
+			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_3),
+			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_2),
+			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet),
+		};
+
+		mGhostWithHelmetTargetedBitmaps = new Bitmap[]{
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_5_targeted),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_4_targeted),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_3_targeted),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_2_targeted),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_targeted),
+		};
 
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
@@ -206,6 +223,9 @@ public class GameView extends View {
 				case DisplayableItemFactory.TYPE_BABY_GHOST:
 					renderBabyGhost(canvas, (TargetableItem)i, currentPos);
 					break;
+				case DisplayableItemFactory.TYPE_GHOST_WITH_HELMET:
+					renderGhostWithHelmet(canvas, (TargetableItem)i, currentPos);
+					break;
 				case DisplayableItemFactory.TYPE_BULLET_HOLE:
 					renderBulletHole(canvas, i);
 					break;
@@ -230,6 +250,11 @@ public class GameView extends View {
 		} else {
 			return false;
 		}
+	}
+
+	private void renderGhostWithHelmet(Canvas canvas, TargetableItem ghostWithHelmet, float[] currentPos) {
+		int bitmapIndex = ghostWithHelmet.getHealth() - 1;
+		renderGhost(canvas, ghostWithHelmet, currentPos, mGhostWithHelmetBitmaps[bitmapIndex], mGhostWithHelmetTargetedBitmaps[bitmapIndex]);
 	}
 
 	private void renderEasyGhost(Canvas canvas, TargetableItem easyGhost, float[] currentPos) {
