@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameInformation implements Parcelable {
-	protected int mScore;
 	protected long mRemainingTime;
 	protected long mSpawningTime;
 	protected Weapon mWeapon;
@@ -15,15 +14,12 @@ public class GameInformation implements Parcelable {
 	protected TargetableItem mCurrentTarget;
 	protected List<TargetableItem> mTargetableItems;
 	protected List<DisplayableItem> mDisplayableItems;
-	protected int mTargetKilled;
-	protected int mBulletFired;
-	protected int mCurrentCombo;
-	protected int mMaxCombo;
 	protected int mSceneWidth;
 	protected int mSceneHeight;
 	protected float mCurrentX;
 	protected float mCurrentY;
 	protected GameMode mGameMode;
+	protected ScoreInformation mScoreInformation;
 
 	/**
 	 * Create a new GameInformation
@@ -33,11 +29,7 @@ public class GameInformation implements Parcelable {
 	 * @param weapon        weapon used for this game
 	 */
 	public GameInformation(long remainingTime, long spawningTime, Weapon weapon) {
-		mScore = 0;
-		mTargetKilled = 0;
-		mBulletFired = 0;
-		mCurrentCombo = 0;
-		mMaxCombo = 0;
+		mScoreInformation = new ScoreInformation();
 		mRemainingTime = remainingTime;
 		mSpawningTime = spawningTime;
 		mWeapon = weapon;
@@ -57,11 +49,7 @@ public class GameInformation implements Parcelable {
 	}
 
 	public void readFromParcel(Parcel in) {
-		mScore = in.readInt();
-		mTargetKilled = in.readInt();
-		mBulletFired = in.readInt();
-		mCurrentCombo = in.readInt();
-		mMaxCombo = in.readInt();
+		mScoreInformation = in.readParcelable(ScoreInformation.class.getClassLoader());
 		mRemainingTime = in.readLong();
 		mSpawningTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
@@ -76,11 +64,7 @@ public class GameInformation implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel out, int i) {
-		out.writeInt(mScore);
-		out.writeInt(mTargetKilled);
-		out.writeInt(mBulletFired);
-		out.writeInt(mCurrentCombo);
-		out.writeInt(mMaxCombo);
+		out.writeParcelable(mScoreInformation, i);
 		out.writeLong(mRemainingTime);
 		out.writeLong(mSpawningTime);
 		out.writeParcelable(mWeapon, i);
@@ -195,7 +179,7 @@ public class GameInformation implements Parcelable {
 	public void targetKilled() {
 		mTargetableItems.remove(mCurrentTarget);
 		mCurrentTarget = null;
-		mTargetKilled++;
+		mScoreInformation.increaseNumberOfTargetsKilled();
 	}
 
 	/**
@@ -204,14 +188,14 @@ public class GameInformation implements Parcelable {
 	 * @return number of frag
 	 */
 	public int getFragNumber() {
-		return mTargetKilled;
+		return mScoreInformation.getNumberOfTargetsKilled();
 	}
 
 	/**
 	 * increase bullets fired number
 	 */
 	public void bulletFired() {
-		mBulletFired++;
+		mScoreInformation.increaseNumberOfBulletsFired();
 	}
 
 	/**
@@ -220,7 +204,7 @@ public class GameInformation implements Parcelable {
 	 * @return current combo
 	 */
 	public int getCurrentCombo() {
-		return mCurrentCombo;
+		return mScoreInformation.getCurrentCombo();
 	}
 
 	/**
@@ -229,36 +213,30 @@ public class GameInformation implements Parcelable {
 	 * @return max combo number
 	 */
 	public int getMaxCombo() {
-		if (mCurrentCombo > mMaxCombo) mMaxCombo = mCurrentCombo;
-		return mMaxCombo;
+		return mScoreInformation.getMaxCombo();
 	}
 
 	/**
 	 * increase combo if conditions are filled
 	 */
 	public void stackCombo() {
-		if (mTargetKilled > mCurrentCombo * mCurrentCombo) {
-			mCurrentCombo++;
-		}
+		mScoreInformation.increaseCurrentCombo();
 	}
 
 	/**
 	 * reset current combo counter
 	 */
 	public void resetCombo() {
-		if (mCurrentCombo > mMaxCombo) mMaxCombo = mCurrentCombo;
-		mCurrentCombo = 0;
+		mScoreInformation.resetCurrentCombo();
 	}
 
 	/**
 	 * increase score
 	 *
-	 * @param ammount score you want to add to the current one
+	 * @param amount score you want to add to the current one
 	 */
-	public void increaseScore(int ammount) {
-		if (ammount > 0) {
-			mScore += ammount;
-		}
+	public void increaseScore(int amount) {
+		mScoreInformation.increaseScore(amount);
 	}
 
 	/**
@@ -267,15 +245,12 @@ public class GameInformation implements Parcelable {
 	 * @return current score
 	 */
 	public int getCurrentScore() {
-		return mScore;
+		return mScoreInformation.getScore();
 	}
 
-	public void setCurrentScore(int score) {
-		mScore = score;
-	}
 
 	public int getBulletFired() {
-		return mBulletFired;
+		return mScoreInformation.getmNumberOfBulletsFired();
 	}
 
 	public int getMaxTargetOnTheField() {
@@ -288,6 +263,10 @@ public class GameInformation implements Parcelable {
 
 	public int getCurrentTargetsNumber() {
 		return mTargetableItems.size();
+	}
+
+	public ScoreInformation getScoreInformation() {
+		return mScoreInformation;
 	}
 
 	public GameMode getGameMode() {
