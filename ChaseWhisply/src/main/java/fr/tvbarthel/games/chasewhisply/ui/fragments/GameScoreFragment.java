@@ -15,7 +15,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
-import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
+import fr.tvbarthel.games.chasewhisply.mechanics.routine.TimerRoutine;
 
 public class GameScoreFragment extends Fragment implements View.OnClickListener {
 	public static final String FRAGMENT_TAG = "GameScoreFragment_TAG";

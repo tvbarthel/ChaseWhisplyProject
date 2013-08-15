@@ -1,6 +1,6 @@
-package fr.tvbarthel.games.chasewhisply.mechanics;
+package fr.tvbarthel.games.chasewhisply.mechanics.routine;
 
-import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
+import fr.tvbarthel.games.chasewhisply.mechanics.routine.TimerRoutine;
 
 public class SpawningRoutine extends TimerRoutine {
 	private final ISpawningRoutine mInterface;

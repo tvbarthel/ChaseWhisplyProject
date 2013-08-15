@@ -1,5 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
+import fr.tvbarthel.games.chasewhisply.mechanics.routine.ReloadingRoutine;
+import fr.tvbarthel.games.chasewhisply.mechanics.routine.SpawningRoutine;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;

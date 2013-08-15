@@ -1,7 +1,5 @@
-package fr.tvbarthel.games.chasewhisply.mechanics;
+package fr.tvbarthel.games.chasewhisply.mechanics.routine;
 
-
-import fr.tvbarthel.games.chasewhisply.model.TimerRoutine;
 
 public class ReloadingRoutine extends TimerRoutine {
 	private final IReloadingRoutine mInterface;
