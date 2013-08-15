@@ -1,13 +1,10 @@
-package fr.tvbarthel.games.chasewhisply.ui;
+package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import fr.tvbarthel.games.chasewhisply.R;
 
 public class TutoFragment extends Fragment {
 	public static final String ARG_LAYOUT_ID = "Tuto_Layout_Id_ARG";

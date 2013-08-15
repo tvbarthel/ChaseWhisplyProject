@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.ui;
+package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
 
 import android.app.Activity;

@@ -19,12 +19,12 @@ import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
-import fr.tvbarthel.games.chasewhisply.ui.AboutFragment;
-import fr.tvbarthel.games.chasewhisply.ui.GameHomeFragment;
-import fr.tvbarthel.games.chasewhisply.ui.GameModeChooserFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
-import fr.tvbarthel.games.chasewhisply.ui.GameScoreFragment;
-import fr.tvbarthel.games.chasewhisply.ui.LeaderboardChooserFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener, GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener {
 	//Request code

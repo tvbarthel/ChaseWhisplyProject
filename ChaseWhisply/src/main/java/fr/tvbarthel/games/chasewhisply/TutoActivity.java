@@ -20,7 +20,7 @@ import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import fr.tvbarthel.games.chasewhisply.ui.TutoFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.TutoFragment;
 
 public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewFactory {
 	public static final String EXTRA_HELP_REQUESTED = "ExtraHelpRequested";

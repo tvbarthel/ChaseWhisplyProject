@@ -12,7 +12,7 @@ import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameInformationFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
-import fr.tvbarthel.games.chasewhisply.ui.GameScoreFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
 public class GameActivity extends ARActivity implements GameEngine.IGameEngine,
