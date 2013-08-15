@@ -18,7 +18,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/activity_half_vertical_margin">
 
             <fr.tvbarthel.games.chasewhisply.ui.GameModeView
                 android:id="@+id/mode1"
@@ -70,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/level_chooser"
             android:textAppearance="?android:attr/textAppearanceLarge"
