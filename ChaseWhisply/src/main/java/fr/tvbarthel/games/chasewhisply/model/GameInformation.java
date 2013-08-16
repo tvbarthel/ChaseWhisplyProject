@@ -72,7 +72,7 @@ public class GameInformation implements Parcelable {
 		out.writeParcelable(mCurrentTarget, i);
 		out.writeTypedList(mTargetableItems);
 		out.writeTypedList(mDisplayableItems);
-		out.writeParcelable(mGameMode,i);
+		out.writeParcelable(mGameMode, i);
 	}
 
 	public static final Parcelable.Creator<GameInformation> CREATOR = new Parcelable.Creator<GameInformation>() {
@@ -180,6 +180,7 @@ public class GameInformation implements Parcelable {
 		mTargetableItems.remove(mCurrentTarget);
 		mCurrentTarget = null;
 		mScoreInformation.increaseNumberOfTargetsKilled();
+
 	}
 
 	/**
@@ -196,6 +197,15 @@ public class GameInformation implements Parcelable {
 	 */
 	public void bulletFired() {
 		mScoreInformation.increaseNumberOfBulletsFired();
+	}
+
+	public void bulletMissed() {
+		resetCombo();
+		mScoreInformation.increaseNumberOfBulletsMissed();
+	}
+
+	public void earnExp(int expEarned) {
+		mScoreInformation.increaseExpEarned(expEarned);
 	}
 
 	/**
@@ -249,8 +259,16 @@ public class GameInformation implements Parcelable {
 	}
 
 
-	public int getBulletFired() {
+	public int getBulletsFired() {
 		return mScoreInformation.getmNumberOfBulletsFired();
+	}
+
+	public int getBulletsMissed() {
+		return mScoreInformation.getNumberOfBulletsMissed();
+	}
+
+	public int getExpEarned() {
+		return mScoreInformation.getExpEarned();
 	}
 
 	public int getMaxTargetOnTheField() {

@@ -4,6 +4,7 @@
     <dimen name="activity_double_horizontal_margin">32dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_half_vertical_margin">8dp</dimen>
+    <dimen name="activity_half_horizontal_margin">8dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="tuto_page_margin">-50dp</dimen>
     <dimen name="tuto_fragment_padding">30dp</dimen>

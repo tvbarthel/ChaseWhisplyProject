@@ -19,14 +19,16 @@ import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
+import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
-import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.ProfileFragment;
 
-public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener, GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener {
+public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener,
+		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener, ProfileFragment.Listener {
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
@@ -177,7 +179,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onShowProfileRequested() {
-		makeToast(getResources().getString(R.string.soon_tm));
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				new ProfileFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	/**
@@ -278,6 +281,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 				= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+
+	@Override
+	public void onNotAvailableFeatureRequested() {
+		makeToast(getResources().getString(R.string.soon_tm));
 	}
 
 	public static class SignOutConfirmDialogFragment extends DialogFragment {

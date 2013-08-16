@@ -16,8 +16,10 @@ public class ScoreInformation implements Parcelable {
 	private int mScore;
 	private int mNumberOfTargetsKilled;
 	private int mNumberOfBulletsFired;
+	private int mNumberOfBulletsMissed;
 	private int mCurrentCombo;
 	private int mMaxCombo;
+	private int mExpEarned;
 
 	public ScoreInformation() {
 		mScore = 0;
@@ -25,10 +27,16 @@ public class ScoreInformation implements Parcelable {
 		mNumberOfTargetsKilled = 0;
 		mCurrentCombo = 0;
 		mMaxCombo = 0;
+		mNumberOfBulletsMissed = 0;
+		mExpEarned = 0;
 	}
 
 	public ScoreInformation(Parcel in) {
 		readFromParcel(in);
+	}
+
+	public void increaseExpEarned(int amount) {
+		mExpEarned += amount;
 	}
 
 	/**
@@ -61,15 +69,19 @@ public class ScoreInformation implements Parcelable {
 		mNumberOfBulletsFired += 1;
 	}
 
+	public void increaseNumberOfBulletsMissed() {
+		mNumberOfBulletsMissed += 1;
+	}
+
 	/**
 	 * If the number of targets killed is greater than
 	 * the current Combo squared, increase the current combo by one.
-	 *
+	 * <p/>
 	 * If the new current combo is higher than the max combo
 	 * the max combo is set to the current combo.
 	 */
 	public void increaseCurrentCombo() {
-		if(mNumberOfTargetsKilled > mCurrentCombo * mCurrentCombo) {
+		if (mNumberOfTargetsKilled > mCurrentCombo * mCurrentCombo) {
 			mCurrentCombo += 1;
 			mMaxCombo = Math.max(mMaxCombo, mCurrentCombo);
 		}
@@ -98,6 +110,8 @@ public class ScoreInformation implements Parcelable {
 		out.writeInt(mNumberOfTargetsKilled);
 		out.writeInt(mCurrentCombo);
 		out.writeInt(mMaxCombo);
+		out.writeInt(mNumberOfBulletsMissed);
+		out.writeInt(mExpEarned);
 	}
 
 	private void readFromParcel(Parcel in) {
@@ -106,6 +120,8 @@ public class ScoreInformation implements Parcelable {
 		mNumberOfTargetsKilled = in.readInt();
 		mCurrentCombo = in.readInt();
 		mMaxCombo = in.readInt();
+		mNumberOfBulletsMissed = in.readInt();
+		mExpEarned = in.readInt();
 	}
 
 	public static final Parcelable.Creator<ScoreInformation> CREATOR = new Parcelable.Creator<ScoreInformation>() {
@@ -140,6 +156,14 @@ public class ScoreInformation implements Parcelable {
 
 	public int getMaxCombo() {
 		return mMaxCombo;
+	}
+
+	public int getNumberOfBulletsMissed() {
+		return mNumberOfBulletsMissed;
+	}
+
+	public int getExpEarned() {
+		return mExpEarned;
 	}
 
 }

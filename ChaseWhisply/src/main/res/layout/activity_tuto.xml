@@ -41,7 +41,7 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tuto_title_card"
+        android:layout_below="@+id/tuto_title_card"
         android:layout_above="@+id/closeButton" />
 
     <Button

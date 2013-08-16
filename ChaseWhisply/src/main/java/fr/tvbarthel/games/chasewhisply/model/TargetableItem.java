@@ -7,15 +7,20 @@ public class TargetableItem extends DisplayableItem {
 	//health of the item
 	protected int mHealth;
 	protected int mBasePoint;
+	protected int mExpPoint;
 
 	public TargetableItem() {
 		super();
 		mBasePoint = 1;
+		mHealth = 1;
+		mExpPoint = 0;
 	}
 
 	public TargetableItem(int x, int y, int type) {
 		super(x, y, type);
 		mBasePoint = 1;
+		mHealth = 1;
+		mExpPoint = 0;
 	}
 
 	protected TargetableItem(Parcel in) {
@@ -36,6 +41,7 @@ public class TargetableItem extends DisplayableItem {
 		super.writeToParcel(out, i);
 		out.writeInt(mHealth);
 		out.writeInt(mBasePoint);
+		out.writeInt(mExpPoint);
 	}
 
 	@Override
@@ -43,6 +49,7 @@ public class TargetableItem extends DisplayableItem {
 		super.readFromParcel(in);
 		mHealth = in.readInt();
 		mBasePoint = in.readInt();
+		mExpPoint = in.readInt();
 	}
 
 	public static final Parcelable.Creator<TargetableItem> CREATOR = new Parcelable.Creator<TargetableItem>() {
@@ -82,5 +89,13 @@ public class TargetableItem extends DisplayableItem {
 
 	public void setBasePoint(int basePoint) {
 		mBasePoint = basePoint;
+	}
+
+	public void setExpPoint(int expPoint) {
+		mExpPoint = expPoint;
+	}
+
+	public int getExpPoint() {
+		return mExpPoint;
 	}
 }

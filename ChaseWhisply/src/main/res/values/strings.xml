@@ -151,4 +151,23 @@
     <string name="tuto_page_combo_content">Don\'t miss your target, and add up combos to increase your score faster.
     </string>
     <string name="tuto_page_combo_example">x4</string>
+
+    <!-- Profile Fragment -->
+    <string name="profile_title">Your Profile</string>
+    <string name="profile_level">Level %1$d</string>
+    <string name="profile_exp">Exp %1$d/%2$d</string>
+    <string name="profile_general_information">General Information</string>
+    <string name="profile_games_played">Games Played</string>
+    <string name="profile_targets_killed">Targets Killed</string>
+    <string name="profile_bullets_fired">Bullets Fired</string>
+    <string name="profile_accuracy">Accuracy</string>
+    <string name="profile_bestiary_title">Bestiary</string>
+    <string name="profile_bestiary_description">Find information about the ghosts you have to track and kill.</string>
+    <string name="profile_weapons_title">Weapons</string>
+    <string name="profile_weapons_description">Chose your weapons wisely before starting your hunting.</string>
+    <string name="profile_equipment_title">Equipment</string>
+    <string name="profile_equipment_description">Manage your inventory and craft some useful bonus.</string>
+    <string name="profile_missions_title">Missions</string>
+    <string name="profile_missions_description">Find new challenges and complete risky missions.</string>
+
 </resources>

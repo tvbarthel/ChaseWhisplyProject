@@ -89,7 +89,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 			mGameInformation.bulletFired();
 			if (currentTarget == null) {
 				//player miss
-				mGameInformation.resetCombo();
+				mGameInformation.bulletMissed();
 				DisplayableItem hole = DisplayableItemFactory.createBulletHole();
 				final float[] currentPosition = mGameInformation.getCurrentPosition();
 				hole.setX((int) currentPosition[0]);
@@ -104,6 +104,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 					mGameInformation.stackCombo();
 					//add score
 					mGameInformation.increaseScore(10 * currentTarget.getBasePoint() + 10 * mGameInformation.getCurrentCombo());
+					mGameInformation.earnExp(currentTarget.getExpPoint());
 					onKill();
 				}
 			}

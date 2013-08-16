@@ -22,6 +22,11 @@ public class DisplayableItemFactory {
 	public final static int BASE_POINT_BABY_GHOST = 2;
 	public final static int BASE_POINT_GHOST_WITH_HELMET = 10;
 
+	//Exp Point
+	public final static int EXP_POINT_EASY_GHOST = 1;
+	public final static int EXP_POINT_BABY_GHOST = 2;
+	public final static int EXP_POINT_GHOST_WITH_HELMET = 5;
+
 	public static TargetableItem createEasyGhost() {
 		TargetableItem easyGhost = new TargetableItem();
 		easyGhost.setType(TYPE_EASY_GHOST);
@@ -34,21 +39,30 @@ public class DisplayableItemFactory {
 	}
 
 	public static TargetableItem createGhostWithHelmet(int xmin, int xmax, int ymin, int ymax) {
-		return createTargetableItem(TYPE_GHOST_WITH_HELMET, HEALTH_GHOST_WITH_HELMET, BASE_POINT_GHOST_WITH_HELMET
-				, xmin, xmax, ymin, ymax);
+		return createTargetableItem(TYPE_GHOST_WITH_HELMET,
+				HEALTH_GHOST_WITH_HELMET,
+				BASE_POINT_GHOST_WITH_HELMET,
+				EXP_POINT_GHOST_WITH_HELMET,
+				xmin, xmax, ymin, ymax);
 	}
 
 	public static TargetableItem createEasyGhost(int xmin, int xmax, int ymin, int ymax) {
-		return createTargetableItem(TYPE_EASY_GHOST, HEALTH_EASY_GHOST, BASE_POINT_EAST_GHOST,
+		return createTargetableItem(TYPE_EASY_GHOST,
+				HEALTH_EASY_GHOST,
+				BASE_POINT_EAST_GHOST,
+				EXP_POINT_EASY_GHOST,
 				xmin, xmax, ymin, ymax);
 	}
 
 	public static TargetableItem createBabyGhost(int xmin, int xmax, int ymin, int ymax) {
-		return createTargetableItem(TYPE_BABY_GHOST, HEALTH_BABY_GHOST, BASE_POINT_BABY_GHOST,
+		return createTargetableItem(TYPE_BABY_GHOST,
+				HEALTH_BABY_GHOST,
+				BASE_POINT_BABY_GHOST,
+				EXP_POINT_BABY_GHOST,
 				xmin, xmax, ymin, ymax);
 	}
 
-	private static TargetableItem createTargetableItem(int type, int health, int basePoint, int xmin, int xmax, int ymin, int ymax) {
+	private static TargetableItem createTargetableItem(int type, int health, int basePoint, int expPoint, int xmin, int xmax, int ymin, int ymax) {
 		TargetableItem targetableItem = new TargetableItem();
 		targetableItem.setType(type);
 		final int randomX = MathUtils.randomize(xmin, xmax);
@@ -57,6 +71,7 @@ public class DisplayableItemFactory {
 		targetableItem.setY(randomY);
 		targetableItem.setHealth(health);
 		targetableItem.setBasePoint(basePoint);
+		targetableItem.setExpPoint(expPoint);
 		return targetableItem;
 	}
 

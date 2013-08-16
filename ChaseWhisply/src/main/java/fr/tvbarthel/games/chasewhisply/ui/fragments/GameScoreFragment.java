@@ -2,6 +2,7 @@ package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,8 +15,9 @@ import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.TimerRoutine;
+import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 
 public class GameScoreFragment extends Fragment implements View.OnClickListener {
 	public static final String FRAGMENT_TAG = "GameScoreFragment_TAG";
@@ -31,6 +33,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			GameScoreFragment.class.getName() + ".Bundle.currentFinalScore";
 	private static final String BUNDLE_CURRENT_ACHIEVEMENT_CHECKED =
 			GameScoreFragment.class.getName() + ".Bundle.achievementChecked";
+	private static final String BUNDLE_CURRENT_PLAYER_PROFILE_SAVED =
+			GameScoreFragment.class.getName() + ".Bundle.playerProfileSaved";
 	private static final long TICK_INTERVAL = 100;
 	private static final int NUMBER_OF_TICK = 30;
 	private Listener mListener = null;
@@ -47,6 +51,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private float mCurrentTickNumber;
 	private boolean mIsDisplayDone = false;
 	private boolean mAchievementChecked = false;
+	private PlayerProfile mPlayerProfile;
+	private boolean mPlayerProfileSaved = false;
 	//UI
 	private TextView mNumberOfBulletsFiredTextView;
 	private TextView mNumberOfTargetsKilledTextView;
@@ -69,6 +75,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		super.onAttach(activity);
 		if (activity instanceof GameScoreFragment.Listener) {
 			mListener = (GameScoreFragment.Listener) activity;
+			mPlayerProfile = new PlayerProfile(activity.getSharedPreferences(
+					PlayerProfile.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE));
 		} else {
 			throw new ClassCastException(activity.toString()
 					+ " must implemenet GameScoreFragment.Listener");
@@ -91,6 +99,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		if (savedInstanceState != null) {
 			mIsDisplayDone = savedInstanceState.getBoolean(BUNDLE_IS_DISPLAY_DONE, false);
 			mAchievementChecked = savedInstanceState.getBoolean(BUNDLE_CURRENT_ACHIEVEMENT_CHECKED, false);
+			mPlayerProfileSaved = savedInstanceState.getBoolean(BUNDLE_CURRENT_PLAYER_PROFILE_SAVED, false);
 		}
 
 		if (getArguments().containsKey(EXTRA_GAME_INFORMATION)) {
@@ -103,6 +112,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mFinalScoreTextView = (TextView) v.findViewById(R.id.finalScore);
 		mSkipButton = (Button) v.findViewById(R.id.score_button_skip);
 		mSignInView = v.findViewById(R.id.sign_in_message);
+
+		updatePlayerProfile();
 
 		return v;
 	}
@@ -161,6 +172,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		outState.putFloat(BUNDLE_CURRENT_MAX_COMBO, mCurrentMaxCombo);
 		outState.putFloat(BUNDLE_CURRENT_FINAL_SCORE, mCurrentFinalScore);
 		outState.putBoolean(BUNDLE_CURRENT_ACHIEVEMENT_CHECKED, mAchievementChecked);
+		outState.putBoolean(BUNDLE_CURRENT_PLAYER_PROFILE_SAVED, mPlayerProfileSaved);
 	}
 
 	public void notifySignedStateChanged(boolean signedIn) {
@@ -192,7 +204,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private void initScoreByTick() {
 		if (mGameInformation != null) {
 			mNumberOfBulletsFiredByTick =
-					(float) (mGameInformation.getBulletFired() - mCurrentNumberOfBulletsFired) / NUMBER_OF_TICK;
+					(float) (mGameInformation.getBulletsFired() - mCurrentNumberOfBulletsFired) / NUMBER_OF_TICK;
 			mNumberOfTargetsKilledByTick =
 					(float) (mGameInformation.getFragNumber() - mCurrentNumberOfTargetsKilled) / NUMBER_OF_TICK;
 			mComboByTick = (float) (mGameInformation.getMaxCombo() - mCurrentMaxCombo) / NUMBER_OF_TICK;
@@ -208,7 +220,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 	private void finalizeScoreDisplayed() {
 		mTimerRoutine.stopRoutine();
-		mNumberOfBulletsFiredTextView.setText(String.valueOf(mGameInformation.getBulletFired()));
+		mNumberOfBulletsFiredTextView.setText(String.valueOf(mGameInformation.getBulletsFired()));
 		mNumberOfTargetsKilledTextView.setText(String.valueOf(mGameInformation.getFragNumber()));
 		mMaxComboTextView.setText(String.valueOf(mGameInformation.getMaxCombo()));
 		mFinalScoreTextView.setText(String.valueOf(mGameInformation.getCurrentScore()));
@@ -225,7 +237,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		return mGameInformation.getCurrentScore() != 0 ||
 				mGameInformation.getMaxCombo() != 0 ||
 				mGameInformation.getFragNumber() != 0 ||
-				mGameInformation.getBulletFired() != 0;
+				mGameInformation.getBulletsFired() != 0;
 
 	}
 
@@ -265,6 +277,17 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mNumberOfTargetsKilledTextView.setText(String.valueOf((int) mCurrentNumberOfTargetsKilled));
 		mMaxComboTextView.setText(String.valueOf((int) mCurrentMaxCombo));
 		mFinalScoreTextView.setText(String.valueOf((int) mCurrentFinalScore));
+	}
+
+	private void updatePlayerProfile() {
+		if (mGameInformation != null && !mPlayerProfileSaved) {
+			mPlayerProfile.increaseBulletsFired(mGameInformation.getBulletsFired());
+			mPlayerProfile.increaseGamesPlayed(1);
+			mPlayerProfile.increaseTargetsKilled(mGameInformation.getFragNumber());
+			mPlayerProfile.increaseBulletsMissed(mGameInformation.getBulletsMissed());
+			mPlayerProfile.increaseExperienceEarned(mGameInformation.getExpEarned());
+			mPlayerProfileSaved = mPlayerProfile.saveChanges();
+		}
 	}
 
 	//interface
