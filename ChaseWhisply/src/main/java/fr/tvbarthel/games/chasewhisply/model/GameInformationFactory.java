@@ -28,7 +28,7 @@ public class GameInformationFactory {
 
 		//place ghost
 		for (int i = 0; i < DEMO_WORLD_ENEMY_NUMBER; i++) {
-			demoWorld.addTargetableItem(DisplayableItemFactory.createEasyGhost());
+			demoWorld.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(DisplayableItemFactory.TYPE_EASY_GHOST));
 		}
 
 		return demoWorld;

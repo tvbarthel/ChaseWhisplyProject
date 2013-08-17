@@ -17,7 +17,7 @@ public class DisplayableItem implements Parcelable {
 	// type
 	protected int mType;
 
-	public DisplayableItem(){
+	public DisplayableItem() {
 		mX = 0;
 		mY = 0;
 		mType = 0;
@@ -101,4 +101,8 @@ public class DisplayableItem implements Parcelable {
 		return mType;
 	}
 
+	public void setRandomCoordinates(int xMin, int xMax, int yMin, int yMax) {
+		setX(MathUtils.randomize(xMin, xMax));
+		setY(MathUtils.randomize(yMin, yMax));
+	}
 }

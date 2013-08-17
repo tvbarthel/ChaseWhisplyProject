@@ -21,26 +21,21 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 		if (mGameInformation.getCurrentTargetsNumber() < mGameInformation.getMaxTargetOnTheField()) {
 			final int randomDraw = MathUtils.randomize(0,100);
 			final float[] pos = mGameInformation.getCurrentPosition();
+			int ghostType;
 			if(randomDraw < 60) {
-				mGameInformation.addTargetableItem(DisplayableItemFactory.createEasyGhost(
-						(int) pos[0] - mXRange,
-						(int) pos[0] + mXRange,
-						(int) pos[1] - mYRange,
-						(int) pos[1] + mYRange));
+				ghostType = DisplayableItemFactory.TYPE_EASY_GHOST;
 			}else if (randomDraw < 85){
-				mGameInformation.addTargetableItem(DisplayableItemFactory.createBabyGhost(
-						(int) pos[0] - mXRange,
-						(int) pos[0] + mXRange,
-						(int) pos[1] - mYRange,
-						(int) pos[1] + mYRange));
+				ghostType = DisplayableItemFactory.TYPE_BABY_GHOST;
 			} else {
-				mGameInformation.addTargetableItem(DisplayableItemFactory.createGhostWithHelmet(
-						(int) pos[0] - mXRange,
-						(int) pos[0] + mXRange,
-						(int) pos[1] - mYRange,
-						(int) pos[1] + mYRange));
+				ghostType = DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
 			}
-
+			mGameInformation.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(
+					ghostType,
+					(int) pos[0] - mXRange,
+					(int) pos[0] + mXRange,
+					(int) pos[1] - mYRange,
+					(int) pos[1] + mYRange
+			));
 		}
 	}
 
