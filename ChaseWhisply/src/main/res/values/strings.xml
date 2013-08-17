@@ -52,6 +52,7 @@
     <string name="score_number_of_bullets_fired">Bullets Fired</string>
     <string name="score_number_of_targets_killed">Targets Killed</string>
     <string name="score_max_combo">Max Combo</string>
+    <string name="score_exp_earned">Exp Earned</string>
     <string name="score_final_score">Final Score</string>
     <string name="score_skip_button">Skip</string>
     <string name="score_replay_button">Replay</string>

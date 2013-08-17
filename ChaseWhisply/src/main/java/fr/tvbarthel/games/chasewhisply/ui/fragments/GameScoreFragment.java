@@ -35,6 +35,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			GameScoreFragment.class.getName() + ".Bundle.achievementChecked";
 	private static final String BUNDLE_CURRENT_PLAYER_PROFILE_SAVED =
 			GameScoreFragment.class.getName() + ".Bundle.playerProfileSaved";
+	private static final String BUNDLE_CURRENT_EXP_EARNED =
+			GameScoreFragment.class.getName() + ".Bundle.expEarned";
 	private static final long TICK_INTERVAL = 100;
 	private static final int NUMBER_OF_TICK = 30;
 	private Listener mListener = null;
@@ -44,6 +46,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private float mCurrentNumberOfBulletsFired;
 	private float mNumberOfTargetsKilledByTick;
 	private float mCurrentNumberOfTargetsKilled;
+	private float mCurrentExpEarned;
+	private float mExpEarnedByTick;
 	private float mComboByTick;
 	private float mCurrentMaxCombo;
 	private float mFinalScoreByTick;
@@ -58,6 +62,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private TextView mNumberOfTargetsKilledTextView;
 	private TextView mMaxComboTextView;
 	private TextView mFinalScoreTextView;
+	private TextView mExpEarnedTextView;
 	private Button mSkipButton;
 	private View mSignInView;
 
@@ -112,6 +117,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mFinalScoreTextView = (TextView) v.findViewById(R.id.finalScore);
 		mSkipButton = (Button) v.findViewById(R.id.score_button_skip);
 		mSignInView = v.findViewById(R.id.sign_in_message);
+		mExpEarnedTextView = (TextView) v.findViewById(R.id.expEarned);
 
 		updatePlayerProfile();
 
@@ -173,6 +179,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		outState.putFloat(BUNDLE_CURRENT_FINAL_SCORE, mCurrentFinalScore);
 		outState.putBoolean(BUNDLE_CURRENT_ACHIEVEMENT_CHECKED, mAchievementChecked);
 		outState.putBoolean(BUNDLE_CURRENT_PLAYER_PROFILE_SAVED, mPlayerProfileSaved);
+		outState.putFloat(BUNDLE_CURRENT_EXP_EARNED, mCurrentExpEarned);
 	}
 
 	public void notifySignedStateChanged(boolean signedIn) {
@@ -193,11 +200,13 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			mCurrentNumberOfTargetsKilled = savedBundle.getFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED);
 			mCurrentMaxCombo = savedBundle.getFloat(BUNDLE_CURRENT_MAX_COMBO);
 			mCurrentFinalScore = savedBundle.getFloat(BUNDLE_CURRENT_FINAL_SCORE);
+			mCurrentExpEarned = savedBundle.getFloat(BUNDLE_CURRENT_EXP_EARNED);
 		} else {
 			mCurrentNumberOfBulletsFired = 0;
 			mCurrentNumberOfTargetsKilled = 0;
 			mCurrentMaxCombo = 0;
 			mCurrentFinalScore = 0;
+			mCurrentExpEarned = 0;
 		}
 	}
 
@@ -209,6 +218,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 					(float) (mGameInformation.getFragNumber() - mCurrentNumberOfTargetsKilled) / NUMBER_OF_TICK;
 			mComboByTick = (float) (mGameInformation.getMaxCombo() - mCurrentMaxCombo) / NUMBER_OF_TICK;
 			mFinalScoreByTick = (float) (mGameInformation.getCurrentScore() - mCurrentFinalScore) / NUMBER_OF_TICK;
+			mExpEarnedByTick = (float) (mGameInformation.getExpEarned() - mCurrentExpEarned) / NUMBER_OF_TICK;
 		}
 	}
 
@@ -224,6 +234,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mNumberOfTargetsKilledTextView.setText(String.valueOf(mGameInformation.getFragNumber()));
 		mMaxComboTextView.setText(String.valueOf(mGameInformation.getMaxCombo()));
 		mFinalScoreTextView.setText(String.valueOf(mGameInformation.getCurrentScore()));
+		mExpEarnedTextView.setText(String.valueOf(mGameInformation.getExpEarned()));
 		if (mIsDisplayDone) {
 			mSkipButton.setVisibility(View.GONE);
 		} else {
@@ -237,7 +248,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		return mGameInformation.getCurrentScore() != 0 ||
 				mGameInformation.getMaxCombo() != 0 ||
 				mGameInformation.getFragNumber() != 0 ||
-				mGameInformation.getBulletsFired() != 0;
+				mGameInformation.getBulletsFired() != 0 ||
+				mGameInformation.getExpEarned() != 0;
 
 	}
 
@@ -272,11 +284,13 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mCurrentNumberOfTargetsKilled += mNumberOfTargetsKilledByTick;
 		mCurrentMaxCombo += mComboByTick;
 		mCurrentFinalScore += mFinalScoreByTick;
+		mCurrentExpEarned += mExpEarnedByTick;
 
 		mNumberOfBulletsFiredTextView.setText(String.valueOf((int) mCurrentNumberOfBulletsFired));
 		mNumberOfTargetsKilledTextView.setText(String.valueOf((int) mCurrentNumberOfTargetsKilled));
 		mMaxComboTextView.setText(String.valueOf((int) mCurrentMaxCombo));
 		mFinalScoreTextView.setText(String.valueOf((int) mCurrentFinalScore));
+		mExpEarnedTextView.setText(String.valueOf((int) mCurrentExpEarned));
 	}
 
 	private void updatePlayerProfile() {

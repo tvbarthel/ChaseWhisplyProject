@@ -75,6 +75,14 @@
                         android:textAppearance="@android:style/TextAppearance.Medium" />
 
                     <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/half_padding"
+                        android:text="@string/score_exp_earned"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <TextView
                         android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -111,6 +119,15 @@
 
                     <TextView
                         android:id="@+id/maxCombo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="@dimen/half_padding"
+                        android:text="@string/integer_zero"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <TextView
+                        android:id="@+id/expEarned"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"

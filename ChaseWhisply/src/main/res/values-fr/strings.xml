@@ -57,6 +57,7 @@
     <string name="score_number_of_bullets_fired">Balles tirées</string>
     <string name="score_number_of_targets_killed">Cibles abattues</string>
     <string name="score_max_combo">Combo Max</string>
+    <string name="score_exp_earned">Exp Gagnée</string>
     <string name="score_final_score">Score Final</string>
     <string name="score_skip_button">Passer</string>
     <string name="score_replay_button">Rejouer</string>
