@@ -118,8 +118,8 @@ public class GameInformation implements Parcelable {
 
 	public List<DisplayableItem> getItemsForDisplay() {
 		final ArrayList<DisplayableItem> displayAll = new ArrayList<DisplayableItem>();
-		displayAll.addAll(mTargetableItems);
 		displayAll.addAll(mDisplayableItems);
+		displayAll.addAll(mTargetableItems);
 		return displayAll;
 	}
 
