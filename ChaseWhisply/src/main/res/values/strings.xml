@@ -171,4 +171,13 @@
     <string name="profile_missions_title">Missions</string>
     <string name="profile_missions_description">Find new challenges and complete risky missions.</string>
 
+    <!-- Bestiary Fragment -->
+    <string name="bestiary_title">Bestiary</string>
+    <string name="bestiary_health">Health</string>
+    <string name="bestiary_point_value">Point</string>
+    <string name="bestiary_exp_value">Exp</string>
+    <string name="bestiary_easy_ghost_title">Simple Ghost</string>
+    <string name="bestiary_ghost_with_helmet_title">Reinforced Ghost</string>
+    <string name="bestiary_baby_ghost_title">Baby Ghost</string>
+
 </resources>

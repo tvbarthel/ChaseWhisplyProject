@@ -21,6 +21,7 @@ import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.BestiaryFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
@@ -286,6 +287,12 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	@Override
 	public void onNotAvailableFeatureRequested() {
 		makeToast(getResources().getString(R.string.soon_tm));
+	}
+
+	@Override
+	public void onBestiaryRequested() {
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				new BestiaryFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	public static class SignOutConfirmDialogFragment extends DialogFragment {

@@ -70,6 +70,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 			return;
 		switch (v.getId()) {
 			case R.id.profile_bestiary:
+				mListener.onBestiaryRequested();
+				break;
 			case R.id.profile_weapons:
 			case R.id.profile_equipment:
 			case R.id.profile_missions:
@@ -80,5 +82,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 	public interface Listener {
 		public void onNotAvailableFeatureRequested();
+
+		public void onBestiaryRequested();
 	}
 }

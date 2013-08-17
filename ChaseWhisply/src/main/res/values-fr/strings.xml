@@ -176,4 +176,13 @@
     <string name="profile_equipment_description">Gérez votre inventaire et craftez d\'utiles bonus.</string>
     <string name="profile_missions_title">Missions</string>
     <string name="profile_missions_description">Trouvez de nouveaux défis et completez de risquées missions.</string>
+
+    <!-- Bestiary Fragment -->
+    <string name="bestiary_title">Bestiare</string>
+    <string name="bestiary_health">Point de vie</string>
+    <string name="bestiary_point_value">Score</string>
+    <string name="bestiary_exp_value">Exp</string>
+    <string name="bestiary_easy_ghost_title">Simple Fantôme</string>
+    <string name="bestiary_ghost_with_helmet_title">Fantôme renforcé</string>
+    <string name="bestiary_baby_ghost_title">Bébé fantôme</string>
 </resources>

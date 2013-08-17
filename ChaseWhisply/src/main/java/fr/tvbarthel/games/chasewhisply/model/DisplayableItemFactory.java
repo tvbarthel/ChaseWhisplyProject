@@ -51,21 +51,21 @@ public class DisplayableItemFactory {
 	}
 
 
-	private static TargetableItem createGhostWithHelmet() {
+	public static TargetableItem createGhostWithHelmet() {
 		return createTargetableItem(TYPE_GHOST_WITH_HELMET,
 				HEALTH_GHOST_WITH_HELMET,
 				BASE_POINT_GHOST_WITH_HELMET,
 				EXP_POINT_GHOST_WITH_HELMET);
 	}
 
-	private static TargetableItem createEasyGhost() {
+	public static TargetableItem createEasyGhost() {
 		return createTargetableItem(TYPE_EASY_GHOST,
 				HEALTH_EASY_GHOST,
 				BASE_POINT_EAST_GHOST,
 				EXP_POINT_EASY_GHOST);
 	}
 
-	private static TargetableItem createBabyGhost() {
+	public static TargetableItem createBabyGhost() {
 		return createTargetableItem(TYPE_BABY_GHOST,
 				HEALTH_BABY_GHOST,
 				BASE_POINT_BABY_GHOST,
