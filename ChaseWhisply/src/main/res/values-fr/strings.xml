@@ -157,4 +157,22 @@
         plus rapidement.
     </string>
     <string name="tuto_page_combo_example">x4</string>
+
+    <!-- Profile Fragment -->
+    <string name="profile_title">Votre Profil</string>
+    <string name="profile_level">Niveau %1$d</string>
+    <string name="profile_exp">Exp %1$d/%2$d</string>
+    <string name="profile_general_information">Information Générale</string>
+    <string name="profile_games_played">Parties jouées</string>
+    <string name="profile_targets_killed">Cibles abatues</string>
+    <string name="profile_bullets_fired">Balles tirées</string>
+    <string name="profile_accuracy">Précision</string>
+    <string name="profile_bestiary_title">Bestiaire</string>
+    <string name="profile_bestiary_description">Trouvez des informations sur les fantômes que vous devez tuer.</string>
+    <string name="profile_weapons_title">Armes</string>
+    <string name="profile_weapons_description">Choisissez judicieusement vos armes avant de commencer à chasser.</string>
+    <string name="profile_equipment_title">Equipment</string>
+    <string name="profile_equipment_description">Gérez votre inventaire et craftez d\'utiles bonus.</string>
+    <string name="profile_missions_title">Missions</string>
+    <string name="profile_missions_description">Trouvez de nouveaux défis et completez de risquées missions.</string>
 </resources>
