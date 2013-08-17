@@ -178,7 +178,7 @@
     <string name="profile_missions_description">Trouvez de nouveaux défis et completez de risquées missions.</string>
 
     <!-- Bestiary Fragment -->
-    <string name="bestiary_title">Bestiare</string>
+    <string name="bestiary_title">Bestiaire</string>
     <string name="bestiary_health">Point de vie</string>
     <string name="bestiary_point_value">Score</string>
     <string name="bestiary_exp_value">Exp</string>
