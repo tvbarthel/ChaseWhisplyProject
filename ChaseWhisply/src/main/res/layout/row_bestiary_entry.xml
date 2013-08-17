@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/card_shadow_base"
-    android:padding="@dimen/half_padding"
-    android:layout_marginBottom="@dimen/activity_vertical_margin">
+    android:padding="@dimen/half_padding">
 
     <TextView
         android:layout_width="match_parent"
