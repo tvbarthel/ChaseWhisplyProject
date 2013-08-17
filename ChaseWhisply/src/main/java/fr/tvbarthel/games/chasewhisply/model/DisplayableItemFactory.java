@@ -23,9 +23,9 @@ public class DisplayableItemFactory {
 	public final static int BASE_POINT_GHOST_WITH_HELMET = 10;
 
 	//Exp Point
-	public final static int EXP_POINT_EASY_GHOST = 1;
-	public final static int EXP_POINT_BABY_GHOST = 2;
-	public final static int EXP_POINT_GHOST_WITH_HELMET = 5;
+	public final static int EXP_POINT_EASY_GHOST = 2;
+	public final static int EXP_POINT_BABY_GHOST = 4;
+	public final static int EXP_POINT_GHOST_WITH_HELMET = 10;
 
 	public static TargetableItem createEasyGhost() {
 		TargetableItem easyGhost = new TargetableItem();
