@@ -75,11 +75,11 @@ public class PlayerProfile {
 		return (int) (100 * level + Math.pow(level, 2.75));
 	}
 
-	public int[] getLevelInformation() {
+	public LevelInformation getLevelInformation() {
 		long experienceEarned = getSharedLongInteger(KEY_EXPERIENCE_EARNED);
 		int level = -1;
-		int currentStep = 0;
-		int nextStep = 0;
+		long currentStep = 0;
+		long nextStep = 0;
 
 		do {
 			level++;
@@ -87,7 +87,7 @@ public class PlayerProfile {
 			nextStep = getLevelStep(level + 1);
 		} while (experienceEarned > nextStep);
 
-		return new int[]{level, (int) (experienceEarned - currentStep), nextStep - currentStep};
+		return new LevelInformation(level, experienceEarned, currentStep, nextStep);
 	}
 
 }

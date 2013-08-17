@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
+import fr.tvbarthel.games.chasewhisply.model.LevelInformation;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -26,10 +27,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 		((TextView) v.findViewById(R.id.profile_targets_killed_integer)).setText(String.valueOf(mPlayerProfile.getTargetsKilled()));
 		((TextView) v.findViewById(R.id.profile_bullets_fired_integer)).setText(String.valueOf(mPlayerProfile.getBulletsFired()));
 		((TextView) v.findViewById(R.id.profile_accuracy_integer)).setText(String.valueOf(mPlayerProfile.getAccuracy()) + "%");
-		final int[] levelInformation = mPlayerProfile.getLevelInformation();
-		((TextView) v.findViewById(R.id.profile_level)).setText(String.format(getString(R.string.profile_level), levelInformation[0]));
-		((TextView) v.findViewById(R.id.profile_exp)).setText(String.format(getString(R.string.profile_exp), levelInformation[1], levelInformation[2]));
-		((ProgressBar) v.findViewById(R.id.profile_level_progess_bar)).setProgress(levelInformation[1] * 100 / levelInformation[2]);
+		final LevelInformation levelInformation = mPlayerProfile.getLevelInformation();
+		((TextView) v.findViewById(R.id.profile_level)).setText(String.format(getString(R.string.profile_level), levelInformation.getLevel()));
+		((TextView) v.findViewById(R.id.profile_exp)).setText(String.format(getString(R.string.profile_exp), levelInformation.getExpProgress(), levelInformation.getExpNeededToLevelUp()));
+		((ProgressBar) v.findViewById(R.id.profile_level_progess_bar)).setProgress(levelInformation.getProgressInPercent());
 
 
 		final int[] clickable = new int[]{
