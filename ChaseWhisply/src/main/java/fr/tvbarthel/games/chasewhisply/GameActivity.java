@@ -12,6 +12,8 @@ import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameInformationFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
+import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
+import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 
@@ -69,6 +71,12 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine,
 		mGameView.setOnClickListener(GameActivity.this);
 		addContentView(mGameView, mLayoutParams);
 
+		AnimationLayer animationLayer = new AnimationLayer(GameActivity.this);
+		addContentView(animationLayer, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+				, ViewGroup.LayoutParams.MATCH_PARENT));
+
+		mGameView.setAnimationLayer(animationLayer);
+
 		//instantiate game engine
 		switch (mGameMode.getType()) {
 			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
@@ -92,6 +100,11 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine,
 		scoreIntent.putExtra(GameScoreFragment.EXTRA_GAME_INFORMATION, mGameInformation);
 		setResult(RESULT_OK, scoreIntent);
 		finish();
+	}
+
+	@Override
+	public void onTargetKilled(TargetableItem targetKilled) {
+		mGameView.animateDyingGhost(targetKilled);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class GameView extends View {
 	private int mScreenWidth;
 	private int mScreenHeight;
 	private float mPadding;
+	private AnimationLayer mAnimationLayer;
 
 
 	public GameView(Context context, GameInformation model) {
@@ -292,6 +294,14 @@ public class GameView extends View {
 	}
 
 	public void renderItem(final Canvas canvas, final Bitmap bitmap, final DisplayableItem item) {
+		final RenderInformation renderInformation = getRenderInformation(item, bitmap);
+		if (renderInformation.isOnScreen) {
+			canvas.drawBitmap(bitmap, renderInformation.mPositionX, renderInformation.mPositionY, mPaint);
+		}
+	}
+
+	public RenderInformation getRenderInformation(DisplayableItem item, Bitmap bitmap) {
+		RenderInformation renderInformation = new RenderInformation();
 		final float[] currentPosInDegree = mModel.getCurrentPosition();
 		final int bitmapWidth = bitmap.getWidth();
 		final int bitmapHeight = bitmap.getHeight();
@@ -329,8 +339,34 @@ public class GameView extends View {
 		final float borderRight = borderLeft + mScreenWidth + bitmapWidth;
 		final float borderBottom = borderTop + mScreenHeight + bitmapHeight;
 
+		renderInformation.mPositionX = itemXInPx - windowXInPx;
+		renderInformation.mPositionY = itemYInPx - windowYInPx;
+
 		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
-			canvas.drawBitmap(bitmap, itemXInPx - windowXInPx, itemYInPx - windowYInPx, mPaint);
+			renderInformation.isOnScreen = true;
+		}
+		return renderInformation;
+	}
+
+	public void animateDyingGhost(TargetableItem ghost) {
+		if(mAnimationLayer != null) {
+			Bitmap bitmap;
+
+			switch (ghost.getType()) {
+				case DisplayableItemFactory.TYPE_BABY_GHOST:
+					bitmap = mTargetedBabyGhostBitmap;
+					break;
+				case DisplayableItemFactory.TYPE_GHOST_WITH_HELMET:
+					bitmap = mGhostWithHelmetTargetedBitmaps[4];
+					break;
+				default:
+					bitmap = mGhostTargetedBitmap;
+					break;
+			}
+
+			final RenderInformation renderInformation = getRenderInformation(ghost, bitmap);
+			mAnimationLayer.drawDyingGhost(new BitmapDrawable(getResources(), bitmap),
+					(int)(renderInformation.mPositionX), (int)(renderInformation.mPositionY));
 		}
 	}
 
@@ -355,5 +391,9 @@ public class GameView extends View {
 		final TextView textView = new TextView(context);
 		textView.setTextAppearance(context, styleId);
 		return textView.getTextSize();
+	}
+
+	public void setAnimationLayer(AnimationLayer animationLayer) {
+		mAnimationLayer = animationLayer;
 	}
 }

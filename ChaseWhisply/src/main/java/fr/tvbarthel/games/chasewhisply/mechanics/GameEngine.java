@@ -105,6 +105,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 					//add score
 					mGameInformation.increaseScore(10 * currentTarget.getBasePoint() + 10 * mGameInformation.getCurrentCombo());
 					mGameInformation.earnExp(currentTarget.getExpPoint());
+					mInterface.onTargetKilled(currentTarget);
 					onKill();
 				}
 			}
@@ -135,7 +136,8 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 	}
 
 	public interface IGameEngine {
-		abstract void onGameEngineStop();
+		abstract public void onGameEngineStop();
+		abstract public void onTargetKilled(TargetableItem targetKilled);
 	}
 
 }
