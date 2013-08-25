@@ -9,9 +9,9 @@ import android.widget.ListView;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.BestiaryEntry;
-import fr.tvbarthel.games.chasewhisply.ui.BestiaryEntryAdapter;
 import fr.tvbarthel.games.chasewhisply.model.BestiaryEntryFactory;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+import fr.tvbarthel.games.chasewhisply.ui.BestiaryEntryAdapter;
 
 public class BestiaryFragment extends Fragment {
 	private ListView mBestiaryListView;
@@ -30,7 +30,8 @@ public class BestiaryFragment extends Fragment {
 				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_EASY_GHOST),
 				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_BABY_GHOST),
 				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_GHOST_WITH_HELMET),
-				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_HIDDEN_GHOST)
+				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_HIDDEN_GHOST),
+				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_KING_GHOST)
 		}));
 	}
 }

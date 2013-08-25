@@ -28,6 +28,8 @@ public class GameView extends View {
 	private final Bitmap mTargetedBabyGhostBitmap;
 	private final Bitmap[] mGhostWithHelmetBitmaps;
 	private final Bitmap[] mGhostWithHelmetTargetedBitmaps;
+	private final Bitmap mKingGhost;
+	private final Bitmap mTargetedKingGhost;
 	private final Bitmap mHiddenGhost;
 	private final String mComboString;
 	private final String mScoreString;
@@ -76,6 +78,8 @@ public class GameView extends View {
 		};
 
 		mHiddenGhost = BitmapFactory.decodeResource(res, R.drawable.hidden_ghost);
+		mKingGhost = BitmapFactory.decodeResource(res, R.drawable.king_ghost);
+		mTargetedKingGhost = BitmapFactory.decodeResource(res, R.drawable.targeted_king_ghost);
 
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
@@ -234,6 +238,9 @@ public class GameView extends View {
 				case DisplayableItemFactory.TYPE_HIDDEN_GHOST:
 					renderHiddenGhost(canvas, (TargetableItem) i, currentPos);
 					break;
+				case DisplayableItemFactory.TYPE_KING_GHOST:
+					renderKingGhost(canvas, (TargetableItem) i, currentPos);
+					break;
 				case DisplayableItemFactory.TYPE_BULLET_HOLE:
 					renderBulletHole(canvas, i);
 					break;
@@ -275,6 +282,10 @@ public class GameView extends View {
 
 	private void renderHiddenGhost(Canvas canvas, TargetableItem hiddenGhost, float[] currentPos) {
 		renderGhost(canvas, hiddenGhost, currentPos, mHiddenGhost, mGhostTargetedBitmap);
+	}
+
+	private void renderKingGhost(Canvas canvas, TargetableItem kingGhost, float[] currentPos) {
+		renderGhost(canvas, kingGhost, currentPos, mKingGhost, mTargetedKingGhost);
 	}
 
 	private void renderGhost(Canvas canvas, TargetableItem ghost, float[] currentPos, Bitmap ghostBitmap, Bitmap targetedGhostBitmap) {
@@ -368,6 +379,9 @@ public class GameView extends View {
 					break;
 				case DisplayableItemFactory.TYPE_GHOST_WITH_HELMET:
 					bitmap = mGhostWithHelmetTargetedBitmaps[4];
+					break;
+				case DisplayableItemFactory.TYPE_KING_GHOST:
+					bitmap = mTargetedKingGhost;
 					break;
 				default:
 					bitmap = mGhostTargetedBitmap;

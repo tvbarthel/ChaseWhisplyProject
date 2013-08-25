@@ -19,10 +19,16 @@ public class BestiaryEntryFactory {
 				bestiaryEntry.setTitleResourceId(R.string.bestiary_baby_ghost_title);
 				break;
 
-			case  DisplayableItemFactory.TYPE_HIDDEN_GHOST:
+			case DisplayableItemFactory.TYPE_HIDDEN_GHOST:
 				bestiaryEntry.setTargetableItem(DisplayableItemFactory.createHiddenGhost());
 				bestiaryEntry.setImageResourceId(R.drawable.hidden_ghost);
 				bestiaryEntry.setTitleResourceId(R.string.bestiary_hidden_ghost_title);
+				break;
+
+			case DisplayableItemFactory.TYPE_KING_GHOST:
+				bestiaryEntry.setTargetableItem(DisplayableItemFactory.createKingGhost());
+				bestiaryEntry.setImageResourceId(R.drawable.king_ghost);
+				bestiaryEntry.setTitleResourceId(R.string.bestiary_king_ghost_title);
 				break;
 
 			default:
