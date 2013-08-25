@@ -24,7 +24,9 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 			int ghostType;
 			if(randomDraw < 60) {
 				ghostType = DisplayableItemFactory.TYPE_EASY_GHOST;
-			}else if (randomDraw < 85){
+			}else if (randomDraw < 75){
+				ghostType = DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+			}else if (randomDraw < 90){
 				ghostType = DisplayableItemFactory.TYPE_BABY_GHOST;
 			} else {
 				ghostType = DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;

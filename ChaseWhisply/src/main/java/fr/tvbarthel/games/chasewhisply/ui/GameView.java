@@ -28,6 +28,7 @@ public class GameView extends View {
 	private final Bitmap mTargetedBabyGhostBitmap;
 	private final Bitmap[] mGhostWithHelmetBitmaps;
 	private final Bitmap[] mGhostWithHelmetTargetedBitmaps;
+	private final Bitmap mHiddenGhost;
 	private final String mComboString;
 	private final String mScoreString;
 	private final String mTimeString;
@@ -59,11 +60,11 @@ public class GameView extends View {
 		mBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost);
 		mTargetedBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost_targeted);
 		mGhostWithHelmetBitmaps = new Bitmap[]{
-			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_5),
-			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_4),
-			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_3),
-			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_2),
-			BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_5),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_4),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_3),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_2),
+				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet),
 		};
 
 		mGhostWithHelmetTargetedBitmaps = new Bitmap[]{
@@ -73,6 +74,8 @@ public class GameView extends View {
 				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_2_targeted),
 				BitmapFactory.decodeResource(res, R.drawable.ghost_with_helmet_targeted),
 		};
+
+		mHiddenGhost = BitmapFactory.decodeResource(res, R.drawable.hidden_ghost);
 
 		mComboString = res.getString(R.string.in_game_combo_counter);
 		mScoreString = res.getString(R.string.in_game_score);
@@ -220,13 +223,16 @@ public class GameView extends View {
 		for (DisplayableItem i : mModel.getItemsForDisplay()) {
 			switch (i.getType()) {
 				case DisplayableItemFactory.TYPE_EASY_GHOST:
-					renderEasyGhost(canvas, (TargetableItem)i, currentPos);
+					renderEasyGhost(canvas, (TargetableItem) i, currentPos);
 					break;
 				case DisplayableItemFactory.TYPE_BABY_GHOST:
-					renderBabyGhost(canvas, (TargetableItem)i, currentPos);
+					renderBabyGhost(canvas, (TargetableItem) i, currentPos);
 					break;
 				case DisplayableItemFactory.TYPE_GHOST_WITH_HELMET:
-					renderGhostWithHelmet(canvas, (TargetableItem)i, currentPos);
+					renderGhostWithHelmet(canvas, (TargetableItem) i, currentPos);
+					break;
+				case DisplayableItemFactory.TYPE_HIDDEN_GHOST:
+					renderHiddenGhost(canvas, (TargetableItem) i, currentPos);
 					break;
 				case DisplayableItemFactory.TYPE_BULLET_HOLE:
 					renderBulletHole(canvas, i);
@@ -265,6 +271,10 @@ public class GameView extends View {
 
 	private void renderBabyGhost(Canvas canvas, TargetableItem babyGhost, float[] currentPos) {
 		renderGhost(canvas, babyGhost, currentPos, mBabyGhostBitmap, mTargetedBabyGhostBitmap);
+	}
+
+	private void renderHiddenGhost(Canvas canvas, TargetableItem hiddenGhost, float[] currentPos) {
+		renderGhost(canvas, hiddenGhost, currentPos, mHiddenGhost, mGhostTargetedBitmap);
 	}
 
 	private void renderGhost(Canvas canvas, TargetableItem ghost, float[] currentPos, Bitmap ghostBitmap, Bitmap targetedGhostBitmap) {
@@ -349,7 +359,7 @@ public class GameView extends View {
 	}
 
 	public void animateDyingGhost(TargetableItem ghost) {
-		if(mAnimationLayer != null) {
+		if (mAnimationLayer != null) {
 			Bitmap bitmap;
 
 			switch (ghost.getType()) {
@@ -366,7 +376,7 @@ public class GameView extends View {
 
 			final RenderInformation renderInformation = getRenderInformation(ghost, bitmap);
 			mAnimationLayer.drawDyingGhost(new BitmapDrawable(getResources(), bitmap),
-					(int)(renderInformation.mPositionX), (int)(renderInformation.mPositionY));
+					(int) (renderInformation.mPositionX), (int) (renderInformation.mPositionY));
 		}
 	}
 

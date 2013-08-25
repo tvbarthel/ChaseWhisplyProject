@@ -29,7 +29,8 @@ public class BestiaryFragment extends Fragment {
 		mBestiaryListView.setAdapter(new BestiaryEntryAdapter(getActivity(), new BestiaryEntry[]{
 				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_EASY_GHOST),
 				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_BABY_GHOST),
-				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_GHOST_WITH_HELMET)
+				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_GHOST_WITH_HELMET),
+				BestiaryEntryFactory.createBestiaryEntry(DisplayableItemFactory.TYPE_HIDDEN_GHOST)
 		}));
 	}
 }

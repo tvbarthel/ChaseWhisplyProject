@@ -179,5 +179,6 @@
     <string name="bestiary_easy_ghost_title">Simple Ghost</string>
     <string name="bestiary_ghost_with_helmet_title">Reinforced Ghost</string>
     <string name="bestiary_baby_ghost_title">Baby Ghost</string>
+    <string name="bestiary_hidden_ghost_title">Hidden Ghost</string>
 
 </resources>
