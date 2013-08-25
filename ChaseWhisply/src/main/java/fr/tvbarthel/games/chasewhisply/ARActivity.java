@@ -21,7 +21,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	protected SensorManager mSensorManager;
 	private Sensor mRotationVectorSensor;
 	private final float[] mRotationMatrix = new float[16];
-	protected final float[] orientationVals = new float[3];
+	protected final float[] mOrientationVals = new float[3];
 
 	/**
 	 * A safe way to get an instance of the Camera object.
@@ -46,6 +46,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
+		//initialize to the identity matrix
 		mRotationMatrix[0] = 1;
 		mRotationMatrix[4] = 1;
 		mRotationMatrix[8] = 1;
@@ -88,13 +89,10 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
-		switch (sensorEvent.sensor.getType()) {
-			case Sensor.TYPE_ROTATION_VECTOR:
-				SensorManager.getRotationMatrixFromVector(
-						mRotationMatrix, sensorEvent.values);
-				SensorManager.getOrientation(mRotationMatrix, orientationVals);
-				onSmoothCoordinateChanged(new float[]{orientationVals[0], orientationVals[2]});
-				break;
+		if (sensorEvent.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+			SensorManager.getRotationMatrixFromVector(mRotationMatrix, sensorEvent.values);
+			SensorManager.getOrientation(mRotationMatrix, mOrientationVals);
+			onSmoothCoordinateChanged(new float[]{mOrientationVals[0], mOrientationVals[2]});
 		}
 	}
 

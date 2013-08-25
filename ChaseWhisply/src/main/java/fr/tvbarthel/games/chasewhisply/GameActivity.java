@@ -14,8 +14,8 @@ import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
-import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 
 public class GameActivity extends ARActivity implements GameEngine.IGameEngine,
 		View.OnClickListener {
@@ -41,7 +41,6 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine,
 		}
 	}
 
-
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -50,7 +49,6 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine,
 			mGameEngine.pauseGame();
 		}
 	}
-
 
 	@Override
 	void onSmoothCoordinateChanged(float[] smoothCoordinate) {
