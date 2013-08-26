@@ -1,13 +1,11 @@
-Beta Test V2.0
+Beta Test V2.2
 ========
-The beta 2.0 is out! Join the [Community](https://plus.google.com/communities/104127077976914732043) and download the application! 
+The beta 2.2 is out! Join the [Community](https://plus.google.com/communities/104127077976914732043) and download the application! 
 
-+ The about fragment is now accessible from the "i" button at the bottom right of the screen;
-+ A new button has reached the home fragment: Profile;
-+ The Profile fragment displays information about the player and give access to other features;
-+ The player earns some XP on each kill;
-+ Arrival of a bestiary that presents all ghosts;
-+ Prepare the application for future features: weapons, equipment, and missions;
++ A brand new movement detection system;
++ Two new types of ghost;
++ An animation when a ghost dies;
++ And some internal changes.
 
 ![Chase Whisply banner](static/banner_chase_whisply.jpg)
 ChaseWhisplyProject
