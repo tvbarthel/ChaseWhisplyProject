@@ -79,6 +79,9 @@
     <string name="about_thanks_tkeunebr">Thomas Keunebroek, pour son support de la première heure et
         ses précieux conseils.
     </string>
+    <string name="about_thanks_beta_testers">Tous les beta testers, tout spécialement J. Morgan, M. Nasato, T. Lin Aung, M. Coulon, C.
+        Cuadra, A. Peng, et J. Bastien.
+    </string>
     <string name="about_license_section">Licence</string>
     <string name="about_license_title">Licence utilisée : Beerware License</string>
     <string name="about_license_content">\"You can do whatever you want with this stuff.

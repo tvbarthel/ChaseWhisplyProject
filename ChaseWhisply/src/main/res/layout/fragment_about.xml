@@ -117,6 +117,15 @@
                 android:text="@string/about_thanks_tkeunebr"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_half_vertical_margin"
+                android:gravity="right"
+                android:text="@string/about_thanks_beta_testers"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </LinearLayout>
 
         <LinearLayout
