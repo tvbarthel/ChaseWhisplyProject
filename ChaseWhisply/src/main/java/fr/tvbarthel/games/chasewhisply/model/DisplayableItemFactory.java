@@ -9,6 +9,12 @@ public class DisplayableItemFactory {
 	public final static int TYPE_HIDDEN_GHOST = 0x00000005;
 	public final static int TYPE_KING_GHOST = 0x00000006;
 
+	//World Boundaries
+	private static final int MAX_X_IN_DEGREE = 175;
+	private static final int MIN_X_IN_DEGREE = -175;
+	private static final int MAX_Y_IN_DEGREE = 175;
+	private static final int MIN_Y_IN_DEGREE = -175;
+
 	private static final int DEFAULT_X_MIN_IN_DEGREE = -170;
 	private static final int DEFAULT_X_MAX_IN_DEGREE = 170;
 	private static final int DEFAULT_Y_MIN_IN_DEGREE = -80;
@@ -61,7 +67,11 @@ public class DisplayableItemFactory {
 				targetableItem = createKingGhost();
 				break;
 		}
-		targetableItem.setRandomCoordinates(xMin, xMax, yMin, yMax);
+		targetableItem.setRandomCoordinates(
+				Math.max(MIN_X_IN_DEGREE, xMin),
+				Math.min(MAX_X_IN_DEGREE, xMax),
+				Math.max(MIN_Y_IN_DEGREE, yMin),
+				Math.min(MAX_Y_IN_DEGREE, yMax));
 		return targetableItem;
 	}
 
