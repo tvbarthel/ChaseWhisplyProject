@@ -14,10 +14,15 @@ import android.widget.TextView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.TimerRoutine;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
+import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
+import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntryFactory;
 
 public class GameScoreFragment extends Fragment implements View.OnClickListener {
 	public static final String FRAGMENT_TAG = "GameScoreFragment_TAG";
@@ -118,6 +123,17 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mSkipButton = (Button) v.findViewById(R.id.score_button_skip);
 		mSignInView = v.findViewById(R.id.sign_in_message);
 		mExpEarnedTextView = (TextView) v.findViewById(R.id.expEarned);
+
+		HashMap<Integer, Integer> loots = mGameInformation.getLoot();
+		if (loots.size() != 0) {
+			String stringLoot = "";
+			for (Map.Entry<Integer, Integer> entry : loots.entrySet()) {
+				InventoryItemEntry inventoryItemEntry = InventoryItemEntryFactory.createInventoryEntry(entry.getKey(), entry.getValue());
+				stringLoot += String.valueOf(inventoryItemEntry.getQuantityAvailable()) + "x " + getString(inventoryItemEntry.getTitleResourceId()) + "\n";
+			}
+			stringLoot = stringLoot.substring(0, stringLoot.length() - 1);
+			((TextView) v.findViewById(R.id.score_loot_list)).setText(stringLoot);
+		}
 
 		updatePlayerProfile();
 
@@ -300,7 +316,14 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			mPlayerProfile.increaseTargetsKilled(mGameInformation.getFragNumber());
 			mPlayerProfile.increaseBulletsMissed(mGameInformation.getBulletsMissed());
 			mPlayerProfile.increaseExperienceEarned(mGameInformation.getExpEarned());
+			updateInventoryEntryQuantity();
 			mPlayerProfileSaved = mPlayerProfile.saveChanges();
+		}
+	}
+
+	private void updateInventoryEntryQuantity() {
+		for (Map.Entry<Integer, Integer> entry : mGameInformation.getLoot().entrySet()) {
+			mPlayerProfile.increaseInventoryItemQuantity(entry.getKey(), entry.getValue());
 		}
 	}
 

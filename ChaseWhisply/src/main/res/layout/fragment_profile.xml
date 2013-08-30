@@ -274,7 +274,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/profile_equipment"
+            android:id="@+id/profile_inventory"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/card_shadow"
@@ -296,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@drawable/button_text_color"
-                android:text="@string/profile_equipment_title"
+                android:text="@string/profile_inventory_title"
                 android:id="@+id/textView15"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/imageView4"
@@ -307,7 +307,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@drawable/button_text_color"
-                android:text="@string/profile_equipment_description"
+                android:text="@string/profile_inventory_description"
                 android:id="@+id/textView16"
                 android:layout_below="@+id/textView15"
                 android:layout_toRightOf="@+id/imageView4"

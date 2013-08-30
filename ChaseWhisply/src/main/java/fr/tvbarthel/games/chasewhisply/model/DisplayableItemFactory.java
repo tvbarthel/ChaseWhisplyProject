@@ -1,5 +1,9 @@
 package fr.tvbarthel.games.chasewhisply.model;
 
+import java.util.ArrayList;
+
+import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
+
 public class DisplayableItemFactory {
 	// Type
 	public final static int TYPE_EASY_GHOST = 0x00000001;
@@ -77,38 +81,95 @@ public class DisplayableItemFactory {
 
 
 	public static TargetableItem createGhostWithHelmet() {
-		return createTargetableItem(TYPE_GHOST_WITH_HELMET,
+		final int dropDraft = MathUtils.randomize(0, 100);
+		final ArrayList<Integer> drops = new ArrayList<Integer>();
+		final TargetableItem ghostWithHelmet = createTargetableItem(TYPE_GHOST_WITH_HELMET,
 				HEALTH_GHOST_WITH_HELMET,
 				BASE_POINT_GHOST_WITH_HELMET,
 				EXP_POINT_GHOST_WITH_HELMET);
+
+		if (dropDraft < InventoryItemEntry.DROP_RATE_BROKEN_HELMET_HORN) {
+			drops.add(InventoryItemEntry.TYPE_BROKEN_HELMET_HORN);
+		}
+
+		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN * 4) {
+			drops.add(InventoryItemEntry.TYPE_COIN);
+		}
+
+		ghostWithHelmet.setDrop(drops);
+		return ghostWithHelmet;
 	}
 
 	public static TargetableItem createEasyGhost() {
-		return createTargetableItem(TYPE_EASY_GHOST,
+		final int dropDraft = MathUtils.randomize(0, 100);
+		final ArrayList<Integer> drops = new ArrayList<Integer>();
+		final TargetableItem easyGhost = createTargetableItem(TYPE_EASY_GHOST,
 				HEALTH_EASY_GHOST,
 				BASE_POINT_EAST_GHOST,
 				EXP_POINT_EASY_GHOST);
+
+		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN) {
+			drops.add(InventoryItemEntry.TYPE_COIN);
+		}
+
+		easyGhost.setDrop(drops);
+		return easyGhost;
 	}
 
 	public static TargetableItem createBabyGhost() {
-		return createTargetableItem(TYPE_BABY_GHOST,
+		final int dropDraft = MathUtils.randomize(0, 100);
+		final ArrayList<Integer> drops = new ArrayList<Integer>();
+		final TargetableItem babyGhost = createTargetableItem(TYPE_BABY_GHOST,
 				HEALTH_BABY_GHOST,
 				BASE_POINT_BABY_GHOST,
 				EXP_POINT_BABY_GHOST);
+
+		if (dropDraft < InventoryItemEntry.DROP_RATE_BABY_DROOL) {
+			drops.add(InventoryItemEntry.TYPE_BABY_DROOL);
+		}
+
+		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN * 2) {
+			drops.add(InventoryItemEntry.TYPE_COIN);
+		}
+
+		babyGhost.setDrop(drops);
+		return babyGhost;
 	}
 
 	public static TargetableItem createHiddenGhost() {
-		return createTargetableItem(TYPE_HIDDEN_GHOST,
+		final int dropDraft = MathUtils.randomize(0, 100);
+		final ArrayList<Integer> drops = new ArrayList<Integer>();
+		final TargetableItem hiddenGhost = createTargetableItem(TYPE_HIDDEN_GHOST,
 				HEALTH_HIDDEN_GHOST,
 				BASE_POINT_HIDDEN_GHOST,
 				EXP_POINT_HIDDEN_GHOST);
+
+		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN) {
+			drops.add(InventoryItemEntry.TYPE_COIN);
+		}
+
+		hiddenGhost.setDrop(drops);
+		return hiddenGhost;
 	}
 
 	public static TargetableItem createKingGhost() {
-		return createTargetableItem(TYPE_KING_GHOST,
+		final int dropDraft = MathUtils.randomize(0, 100);
+		final ArrayList<Integer> drops = new ArrayList<Integer>();
+		final TargetableItem kingGhost = createTargetableItem(TYPE_KING_GHOST,
 				HEALTH_KING_GHOST,
 				BASE_POINT_KING_GHOST,
 				EXP_POINT_KING_GHOST);
+
+		if (dropDraft < InventoryItemEntry.DROP_RATE_KING_CROWN) {
+			drops.add(InventoryItemEntry.TYPE_KING_CROWN);
+		}
+
+		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN * 25) {
+			drops.add(InventoryItemEntry.TYPE_COIN);
+		}
+
+		kingGhost.setDrop(drops);
+		return kingGhost;
 	}
 
 

@@ -3,17 +3,22 @@ package fr.tvbarthel.games.chasewhisply.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class TargetableItem extends DisplayableItem {
 	//health of the item
 	protected int mHealth;
 	protected int mBasePoint;
 	protected int mExpPoint;
+	protected ArrayList<Integer> mDrop;
+
 
 	public TargetableItem() {
 		super();
 		mBasePoint = 1;
 		mHealth = 1;
 		mExpPoint = 0;
+		mDrop = new ArrayList<Integer>();
 	}
 
 	public TargetableItem(int x, int y, int type) {
@@ -21,6 +26,7 @@ public class TargetableItem extends DisplayableItem {
 		mBasePoint = 1;
 		mHealth = 1;
 		mExpPoint = 0;
+		mDrop = new ArrayList<Integer>();
 	}
 
 	protected TargetableItem(Parcel in) {
@@ -42,6 +48,7 @@ public class TargetableItem extends DisplayableItem {
 		out.writeInt(mHealth);
 		out.writeInt(mBasePoint);
 		out.writeInt(mExpPoint);
+		out.writeList(mDrop);
 	}
 
 	@Override
@@ -50,6 +57,8 @@ public class TargetableItem extends DisplayableItem {
 		mHealth = in.readInt();
 		mBasePoint = in.readInt();
 		mExpPoint = in.readInt();
+		mDrop = new ArrayList<Integer>();
+		in.readList(mDrop, Integer.class.getClassLoader());
 	}
 
 	public static final Parcelable.Creator<TargetableItem> CREATOR = new Parcelable.Creator<TargetableItem>() {
@@ -97,5 +106,13 @@ public class TargetableItem extends DisplayableItem {
 
 	public int getExpPoint() {
 		return mExpPoint;
+	}
+
+	public ArrayList<Integer> getDrop() {
+		return mDrop;
+	}
+
+	public void setDrop(ArrayList<Integer> drop) {
+		mDrop = drop;
 	}
 }

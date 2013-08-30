@@ -36,7 +36,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 		final int[] clickable = new int[]{
 				R.id.profile_bestiary,
 				R.id.profile_weapons,
-				R.id.profile_equipment,
+				R.id.profile_inventory,
 				R.id.profile_missions
 		};
 		for (int i : clickable) {
@@ -72,8 +72,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 			case R.id.profile_bestiary:
 				mListener.onBestiaryRequested();
 				break;
+			case R.id.profile_inventory:
+				mListener.onInventoryRequested();
+				break;
 			case R.id.profile_weapons:
-			case R.id.profile_equipment:
 			case R.id.profile_missions:
 				mListener.onNotAvailableFeatureRequested();
 				break;
@@ -84,5 +86,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 		public void onNotAvailableFeatureRequested();
 
 		public void onBestiaryRequested();
+
+		public void onInventoryRequested();
 	}
 }

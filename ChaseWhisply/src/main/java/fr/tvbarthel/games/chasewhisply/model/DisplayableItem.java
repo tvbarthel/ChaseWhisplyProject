@@ -2,7 +2,6 @@ package fr.tvbarthel.games.chasewhisply.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 /**
  *

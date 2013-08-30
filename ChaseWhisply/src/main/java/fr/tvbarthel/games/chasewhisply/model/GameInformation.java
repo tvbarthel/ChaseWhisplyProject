@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GameInformation implements Parcelable {
@@ -178,9 +179,9 @@ public class GameInformation implements Parcelable {
 	 */
 	public void targetKilled() {
 		mTargetableItems.remove(mCurrentTarget);
-		mCurrentTarget = null;
 		mScoreInformation.increaseNumberOfTargetsKilled();
-
+		mScoreInformation.addLoot(mCurrentTarget.getDrop());
+		mCurrentTarget = null;
 	}
 
 	/**
@@ -285,6 +286,18 @@ public class GameInformation implements Parcelable {
 
 	public ScoreInformation getScoreInformation() {
 		return mScoreInformation;
+	}
+
+	public HashMap<Integer, Integer> getLoot() {
+		final HashMap<Integer, Integer> lootQuantities = new HashMap<Integer, Integer>();
+		for (Integer inventoryItemType : mScoreInformation.getLoot()) {
+			int oldValue = 0;
+			if (lootQuantities.containsKey(inventoryItemType)) {
+				oldValue = lootQuantities.get(inventoryItemType);
+			}
+			lootQuantities.put(inventoryItemType, oldValue + 1);
+		}
+		return lootQuantities;
 	}
 
 	public GameMode getGameMode() {

@@ -68,6 +68,8 @@
     <string name="score_share_content">Je joue à Chase Whisply. Pouvez-vous battre mon score : %1$d
         ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
     </string>
+    <string name="score_loot_title">Durant la chasse vous avez trouvé</string>
+    <string name="score_loot_default">rien du tout.</string>
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>
@@ -79,8 +81,8 @@
     <string name="about_thanks_tkeunebr">Thomas Keunebroek, pour son support de la première heure et
         ses précieux conseils.
     </string>
-    <string name="about_thanks_beta_testers">Tous les beta testers, tout spécialement J. Morgan, M. Nasato, T. Lin Aung, M. Coulon, C.
-        Cuadra, A. Peng, et J. Bastien.
+    <string name="about_thanks_beta_testers">Tous les beta testers, tout spécialement J. Morgan, M. Nasato, T. Lin Aung,
+        M. Coulon, C. Cuadra, A. Peng, J. Bastien, and DARKSULLI.
     </string>
     <string name="about_license_section">Licence</string>
     <string name="about_license_title">Licence utilisée : Beerware License</string>
@@ -174,9 +176,10 @@
     <string name="profile_bestiary_title">Bestiaire</string>
     <string name="profile_bestiary_description">Trouvez des informations sur les fantômes que vous devez tuer.</string>
     <string name="profile_weapons_title">Armes</string>
-    <string name="profile_weapons_description">Choisissez judicieusement vos armes avant de commencer à chasser.</string>
-    <string name="profile_equipment_title">Equipment</string>
-    <string name="profile_equipment_description">Gérez votre inventaire et craftez d\'utiles bonus.</string>
+    <string name="profile_weapons_description">Choisissez judicieusement vos armes avant de commencer à chasser.
+    </string>
+    <string name="profile_inventory_title">Inventaire</string>
+    <string name="profile_inventory_description">Gérez votre inventaire et craftez d\'utiles bonus.</string>
     <string name="profile_missions_title">Missions</string>
     <string name="profile_missions_description">Trouvez de nouveaux défis et completez de risquées missions.</string>
 
@@ -190,4 +193,41 @@
     <string name="bestiary_baby_ghost_title">Bébé Fantôme</string>
     <string name="bestiary_hidden_ghost_title">Fantôme Caché</string>
     <string name="bestiary_king_ghost_title">Roi des Fantômes</string>
+
+    <!-- Inventory Fragment -->
+    <string name="inventory_title">Inventaire</string>
+    <string name="inventory_item_default_title">Titre de l\'item</string>
+    <string name="inventory_item_default_description">Description de l\'item</string>
+    <string name="inventory_item_coin_title">Vieille Pièce</string>
+    <string name="inventory_item_coin_description">Cette pièce est tellement vieille que vous avez beaucoup de mal
+        à savoir si elle est faite d\'or ou non. Elle n\'est pas très lourde, vous décidez donc de la garder dans votre
+        sac.
+    </string>
+    <string name="inventory_item_broken_helmet_horn_title">Corne de Casque Cassée</string>
+    <string name="inventory_item_broken_helmet_horn_description">Une petite pièce d\'acier qui provient du casque d\'un
+        fantôme.
+        Elle peut être utilisée pour forger d\'utiles objets en acier.
+    </string>
+    <string name="inventory_item_baby_drool_title">Bave de bébé</string>
+    <string name="inventory_item_baby_drool_description">Pour quelle absurde raison devriez vous gardez de la bave de
+        bébé dans un FPS ?!?
+    </string>
+    <string name="inventory_item_king_crown_title">Couronne du roi</string>
+    <string name="inventory_item_king_crown_description">Un magnifique et recherché bijoux. Vous pouvez sûrement la
+        faire fondre
+        pour en extraire une grande quantité d\'or !
+    </string>
+    <string name="inventory_item_steel_bullet_title">Balle en acier</string>
+    <string name="inventory_item_steel_bullet_description">Quand vous tenez cette balle dans votre main, vous pouvez sentir
+        la force de ce lourd projectile. Utiliser des balles en acier vous donne un bonnus de +1 en dégats.
+    </string>
+    <string name="inventory_item_gold_bullet_title">Balle en or</string>
+    <string name="inventory_item_gold_bullet_description">Une balle en or est extrèmement meurtrière pour les fantômes.
+        Utiliser des balles en or vous donne un bonus de +3 en dégats.
+    </string>
+    <string name="inventory_item_can_t_be_dropped">Ne peut-être ramassé</string>
+    <string name="inventory_item_can_t_be_crafted">Ne peut-être construit</string>
+    <string name="inventory_item_quantity">Quantité</string>
+    <string name="inventory_item_dropped_by">Trouvé Sur</string>
+    <string name="inventory_item_recipe">Recette</string>
 </resources>

@@ -25,6 +25,7 @@ import fr.tvbarthel.games.chasewhisply.ui.fragments.BestiaryFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.InventoryFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.ProfileFragment;
 
@@ -293,6 +294,12 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	public void onBestiaryRequested() {
 		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
 				new BestiaryFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+	}
+
+	@Override
+	public void onInventoryRequested() {
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				new InventoryFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	public static class SignOutConfirmDialogFragment extends DialogFragment {

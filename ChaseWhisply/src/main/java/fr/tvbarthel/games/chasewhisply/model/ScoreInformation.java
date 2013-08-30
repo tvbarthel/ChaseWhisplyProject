@@ -4,6 +4,8 @@ package fr.tvbarthel.games.chasewhisply.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * ScoreInformation stores :
  * the player score
@@ -20,6 +22,7 @@ public class ScoreInformation implements Parcelable {
 	private int mCurrentCombo;
 	private int mMaxCombo;
 	private int mExpEarned;
+	private ArrayList<Integer> mLoot;
 
 	public ScoreInformation() {
 		mScore = 0;
@@ -29,6 +32,7 @@ public class ScoreInformation implements Parcelable {
 		mMaxCombo = 0;
 		mNumberOfBulletsMissed = 0;
 		mExpEarned = 0;
+		mLoot = new ArrayList<Integer>();
 	}
 
 	public ScoreInformation(Parcel in) {
@@ -94,6 +98,10 @@ public class ScoreInformation implements Parcelable {
 		mCurrentCombo = 0;
 	}
 
+	public void addLoot(ArrayList<Integer> loot) {
+		mLoot.addAll(loot);
+	}
+
 	/*
 		Parcelable stuff
 	 */
@@ -112,6 +120,7 @@ public class ScoreInformation implements Parcelable {
 		out.writeInt(mMaxCombo);
 		out.writeInt(mNumberOfBulletsMissed);
 		out.writeInt(mExpEarned);
+		out.writeList(mLoot);
 	}
 
 	private void readFromParcel(Parcel in) {
@@ -122,6 +131,8 @@ public class ScoreInformation implements Parcelable {
 		mMaxCombo = in.readInt();
 		mNumberOfBulletsMissed = in.readInt();
 		mExpEarned = in.readInt();
+		mLoot = new ArrayList<Integer>();
+		in.readList(mLoot, Integer.class.getClassLoader());
 	}
 
 	public static final Parcelable.Creator<ScoreInformation> CREATOR = new Parcelable.Creator<ScoreInformation>() {
@@ -164,6 +175,10 @@ public class ScoreInformation implements Parcelable {
 
 	public int getExpEarned() {
 		return mExpEarned;
+	}
+
+	public ArrayList<Integer> getLoot() {
+		return mLoot;
 	}
 
 }

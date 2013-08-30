@@ -66,6 +66,8 @@
     <string name="sign_in_message">If you sign in with Google Plus, you will be able to share your
         score and achievements with all the other players !
     </string>
+    <string name="score_loot_title">During the hunt you found</string>
+    <string name="score_loot_default">nothing.</string>
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>
@@ -75,8 +77,8 @@
     <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
     <string name="about_thanks_section">Special thanks to…</string>
     <string name="about_thanks_tkeunebr">Thomas Keunebroek, for his early day support and precious advice.</string>
-    <string name="about_thanks_beta_testers">All the beta testers, especially J. Morgan, M. Nasato, T. Lin Aung, M. Coulon, C.
-        Cuadra, A. Peng, and J. Bastien.
+    <string name="about_thanks_beta_testers">All the beta testers, especially J. Morgan, M. Nasato, T. Lin Aung, M.
+        Coulon, C. Cuadra, A. Peng, J. Bastien, and DARKSULLI.
     </string>
     <string name="about_license_section">License</string>
     <string name="about_license_title">Licensed under the Beerware License</string>
@@ -169,8 +171,8 @@
     <string name="profile_bestiary_description">Find information about the ghosts you have to track and kill.</string>
     <string name="profile_weapons_title">Weapons</string>
     <string name="profile_weapons_description">Chose your weapons wisely before starting your hunting.</string>
-    <string name="profile_equipment_title">Equipment</string>
-    <string name="profile_equipment_description">Manage your inventory and craft some useful bonus.</string>
+    <string name="profile_inventory_title">Inventory</string>
+    <string name="profile_inventory_description">Manage your inventory and craft some useful bonus.</string>
     <string name="profile_missions_title">Missions</string>
     <string name="profile_missions_description">Find new challenges and complete risky missions.</string>
 
@@ -184,5 +186,39 @@
     <string name="bestiary_baby_ghost_title">Baby Ghost</string>
     <string name="bestiary_hidden_ghost_title">Hidden Ghost</string>
     <string name="bestiary_king_ghost_title">King of Ghosts</string>
+
+    <!-- Inventory Fragment -->
+    <string name="inventory_title">Inventory</string>
+    <string name="inventory_item_default_title">Item\'s Title</string>
+    <string name="inventory_item_default_description">Item\'s Description</string>
+    <string name="inventory_item_coin_title">Old Coin</string>
+    <string name="inventory_item_coin_description">This coin is so old that you have a terrible time knowing
+        if it is made of gold or not. It\'s not very heavy so you keep it in your bag anyway.
+    </string>
+    <string name="inventory_item_broken_helmet_horn_title">Broken Helmet Horn</string>
+    <string name="inventory_item_broken_helmet_horn_description">A small piece of steel that comes from the helmet of a
+        ghost. It could be used to forge useful items made of steel.
+    </string>
+    <string name="inventory_item_baby_drool_title">Baby Drool</string>
+    <string name="inventory_item_baby_drool_description">Why on the earth should you keep a baby drool in an FPS
+        inventory?!?
+    </string>
+    <string name="inventory_item_king_crown_title">King\'s Crown</string>
+    <string name="inventory_item_king_crown_description">A beautiful and sought-after jewelry. You could definitely melt
+        it to extract a huge amount of gold.
+    </string>
+    <string name="inventory_item_steel_bullet_title">Steel Bullet</string>
+    <string name="inventory_item_steel_bullet_description">When you held a steel bullet in your hand, you can feel the
+        strength of this heavy bullet. Using steel bullets grants you a +1 bonus damage.
+    </string>
+    <string name="inventory_item_gold_bullet_title">Gold Bullet</string>
+    <string name="inventory_item_gold_bullet_description">A bullet made of gold is incredibly deadly against ghosts.
+        Using steel bullets grants you a +3 bonus damage.
+    </string>
+    <string name="inventory_item_can_t_be_dropped">Can\'t be dropped</string>
+    <string name="inventory_item_can_t_be_crafted">Can\'t be crafted</string>
+    <string name="inventory_item_quantity">Quantity</string>
+    <string name="inventory_item_dropped_by">Dropped By</string>
+    <string name="inventory_item_recipe">Recipe</string>
 
 </resources>
