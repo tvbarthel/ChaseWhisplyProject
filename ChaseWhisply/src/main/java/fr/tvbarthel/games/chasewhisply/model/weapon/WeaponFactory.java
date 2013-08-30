@@ -1,7 +1,9 @@
-package fr.tvbarthel.games.chasewhisply.model;
+package fr.tvbarthel.games.chasewhisply.model.weapon;
+
+import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 
 /**
- * Every {@link Weapon} should be instantiated from this factory
+ * Every {@link fr.tvbarthel.games.chasewhisply.model.weapon.Weapon} should be instantiated from this factory
  */
 public class WeaponFactory {
 	private static final int BASIC_WEAPON_DAMAGE = 1;
@@ -9,9 +11,9 @@ public class WeaponFactory {
 	private static final long BASIC_WEAPON_RELOADING_TIME = 1500;
 
 	/**
-	 * Create a very basic {@link Weapon}
+	 * Create a very basic {@link fr.tvbarthel.games.chasewhisply.model.weapon.Weapon}
 	 *
-	 * @return a basic {@link Weapon}
+	 * @return a basic {@link fr.tvbarthel.games.chasewhisply.model.weapon.Weapon}
 	 */
 	public static Weapon createBasicWeapon() {
 		Weapon basicWeapon = new Weapon();

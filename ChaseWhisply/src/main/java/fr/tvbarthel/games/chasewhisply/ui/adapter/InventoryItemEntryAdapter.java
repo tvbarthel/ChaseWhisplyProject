@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.ui;
+package fr.tvbarthel.games.chasewhisply.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

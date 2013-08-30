@@ -1,7 +1,8 @@
-package fr.tvbarthel.games.chasewhisply.model;
+package fr.tvbarthel.games.chasewhisply.model.bestiary;
 
 
 import fr.tvbarthel.games.chasewhisply.R;
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 
 public class BestiaryEntryFactory {
 

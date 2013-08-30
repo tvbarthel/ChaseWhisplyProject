@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.model;
+package fr.tvbarthel.games.chasewhisply.model.weapon;
 
 import android.os.Parcel;
 import android.os.Parcelable;

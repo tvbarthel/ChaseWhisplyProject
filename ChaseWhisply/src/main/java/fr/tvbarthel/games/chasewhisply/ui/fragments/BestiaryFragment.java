@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.BestiaryEntry;
-import fr.tvbarthel.games.chasewhisply.model.BestiaryEntryFactory;
+import fr.tvbarthel.games.chasewhisply.model.bestiary.BestiaryEntry;
+import fr.tvbarthel.games.chasewhisply.model.bestiary.BestiaryEntryFactory;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
-import fr.tvbarthel.games.chasewhisply.ui.BestiaryEntryAdapter;
+import fr.tvbarthel.games.chasewhisply.ui.adapter.BestiaryEntryAdapter;
 
 public class BestiaryFragment extends Fragment {
 	private ListView mBestiaryListView;

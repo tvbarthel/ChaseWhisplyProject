@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.ui;
+package fr.tvbarthel.games.chasewhisply.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.BestiaryEntry;
+import fr.tvbarthel.games.chasewhisply.model.bestiary.BestiaryEntry;
 
 public class BestiaryEntryAdapter extends ArrayAdapter<BestiaryEntry> {
 	private Context mContext;

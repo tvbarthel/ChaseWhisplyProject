@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
+
 public class GameInformation implements Parcelable {
 	protected long mRemainingTime;
 	protected long mSpawningTime;

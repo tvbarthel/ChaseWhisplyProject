@@ -12,7 +12,7 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntryFactory;
-import fr.tvbarthel.games.chasewhisply.ui.InventoryItemEntryAdapter;
+import fr.tvbarthel.games.chasewhisply.ui.adapter.InventoryItemEntryAdapter;
 
 public class InventoryFragment extends Fragment {
 

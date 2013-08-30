@@ -1,4 +1,6 @@
-package fr.tvbarthel.games.chasewhisply.model;
+package fr.tvbarthel.games.chasewhisply.model.bestiary;
+
+import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
 public class BestiaryEntry {
 	private int mTitleResourceId;
