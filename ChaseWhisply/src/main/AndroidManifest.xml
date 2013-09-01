@@ -31,6 +31,9 @@
         <activity
             android:label="@string/app_name"
             android:name=".HomeActivity" />
+
+        <activity android:name=".ProfileActivity" />
+
         <activity
             android:configChanges="orientation|keyboardHidden|screenSize|locale"
             android:name=".GameActivity"
