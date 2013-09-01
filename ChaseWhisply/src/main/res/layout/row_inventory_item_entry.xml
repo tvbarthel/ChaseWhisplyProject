@@ -7,13 +7,34 @@
     android:background="@drawable/card_shadow_base"
     android:padding="@dimen/half_padding">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/text_view_grey"
-        android:id="@+id/row_inventory_item_entry_title"
-        android:layout_marginBottom="@dimen/activity_half_vertical_margin" />
+        android:layout_marginBottom="@dimen/activity_half_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey"
+            android:id="@+id/row_inventory_item_entry_title"
+            android:layout_toLeftOf="@+id/row_inventory_item_entry_craft_action"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/row_inventory_item_entry_craft_action"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:clickable="true"
+            android:src="@drawable/button_craft" />
+
+    </RelativeLayout>
+
+
 
     <TextView
         android:layout_width="match_parent"

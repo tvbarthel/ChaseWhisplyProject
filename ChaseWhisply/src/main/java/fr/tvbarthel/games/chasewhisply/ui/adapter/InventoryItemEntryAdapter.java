@@ -51,8 +51,11 @@ public class InventoryItemEntryAdapter extends ArrayAdapter<InventoryItemEntry> 
 				stringRecipe += String.valueOf(entry.getValue()) + " x " + mContext.getString(entry.getKey()) + ", ";
 			}
 			stringRecipe = stringRecipe.substring(0, stringRecipe.length() - 2);
+		} else {
+			(rowView.findViewById(R.id.row_inventory_item_entry_craft_action)).setEnabled(false);
 		}
 		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_recipe)).setText(stringRecipe);
+
 		return rowView;
 	}
 }
