@@ -3,7 +3,7 @@ package fr.tvbarthel.games.chasewhisply.model;
 
 import android.content.SharedPreferences;
 
-import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
+import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
 
 public class PlayerProfile {
 	public static final String SHARED_PREFERENCES_NAME = "PlayerProfile";
@@ -40,32 +40,66 @@ public class PlayerProfile {
 		increaseInventoryItemQuantity(inventoryItemType, 1);
 	}
 
+	public void decreaseInventoryItemQuantity(int inventoryItemType, int amount) {
+		increaseInventoryItemQuantity(inventoryItemType, -amount);
+	}
+
 	public void increaseInventoryItemQuantity(int inventoryItemType, int amount) {
 		switch (inventoryItemType) {
-			case InventoryItemEntry.TYPE_COIN:
+			case InventoryItemInformation.TYPE_COIN:
 				increaseOldCoinQuantity(amount);
 				break;
 
-			case InventoryItemEntry.TYPE_BABY_DROOL:
+			case InventoryItemInformation.TYPE_BABY_DROOL:
 				increaseBabyDroolQuantity(amount);
 				break;
 
-			case InventoryItemEntry.TYPE_BROKEN_HELMET_HORN:
+			case InventoryItemInformation.TYPE_BROKEN_HELMET_HORN:
 				increaseBrokenHelmetHornQuantity(amount);
 				break;
 
-			case InventoryItemEntry.TYPE_KING_CROWN:
+			case InventoryItemInformation.TYPE_KING_CROWN:
 				increaseKingCrownQuantity(amount);
 				break;
 
-			case InventoryItemEntry.TYPE_STEEL_BULLET:
+			case InventoryItemInformation.TYPE_STEEL_BULLET:
 				increaseSteelBulletQuantity(amount);
 				break;
 
-			case InventoryItemEntry.TYPE_GOLD_BULLET:
+			case InventoryItemInformation.TYPE_GOLD_BULLET:
 				increaseGoldBulletQuantity(amount);
 				break;
 		}
+	}
+
+	public long getInventoryItemQuantity(int inventoryItemEntryType) {
+		long quantity = 0;
+		switch (inventoryItemEntryType) {
+			case InventoryItemInformation.TYPE_COIN:
+				quantity = getOldCoinQuantity();
+				break;
+
+			case InventoryItemInformation.TYPE_BROKEN_HELMET_HORN:
+				quantity = getBrokenHelmetHornQuantity();
+				break;
+
+			case InventoryItemInformation.TYPE_BABY_DROOL:
+				quantity = getBabyDroolQuantity();
+				break;
+
+			case InventoryItemInformation.TYPE_KING_CROWN:
+				quantity = getKingCrownQuantity();
+				break;
+
+			case InventoryItemInformation.TYPE_STEEL_BULLET:
+				quantity = getSteelBulletQuantity();
+				break;
+
+			case InventoryItemInformation.TYPE_GOLD_BULLET:
+				quantity = getGoldBulletQuantity();
+				break;
+		}
+		return quantity;
 	}
 
 	public long getOldCoinQuantity() {

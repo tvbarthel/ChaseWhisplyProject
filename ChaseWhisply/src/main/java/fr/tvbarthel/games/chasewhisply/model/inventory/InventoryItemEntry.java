@@ -1,32 +1,22 @@
 package fr.tvbarthel.games.chasewhisply.model.inventory;
 
-public class InventoryItemEntry {
-	public static final int TYPE_KING_CROWN = 0x00000001;
-	public static final int TYPE_BROKEN_HELMET_HORN = 0x00000002;
-	public static final int TYPE_BABY_DROOL = 0x00000003;
-	public static final int TYPE_COIN = 0x00000004;
-	public static final int TYPE_STEEL_BULLET = 0x00000005;
-	public static final int TYPE_GOLD_BULLET = 0x00000006;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-	//Drop rate
-	public static final int DROP_RATE_BABY_DROOL = 5;
-	public static final int DROP_RATE_BROKEN_HELMET_HORN = 3;
-	public static final int DROP_RATE_COIN = 2;
-	public static final int DROP_RATE_KING_CROWN = 50;
-
-
-	private int mTitleResourceId;
-	private int mDescriptionResourceId;
+public class InventoryItemEntry implements Parcelable {
+	private InventoryItemInformation mInventoryItemInformation;
 	private DroppedByList mDroppedBy;
 	private Recipe mRecipe;
 	private long mQuantityAvailable;
 
 	public InventoryItemEntry() {
-		mTitleResourceId = 0;
-		mDescriptionResourceId = 0;
 		mDroppedBy = null;
 		mRecipe = null;
 		mQuantityAvailable = 0;
+	}
+
+	public InventoryItemEntry(Parcel in) {
+		readFromParcel(in);
 	}
 
 	/*
@@ -34,19 +24,19 @@ public class InventoryItemEntry {
 	 */
 
 	public void setTitleResourceId(int titleResourceId) {
-		mTitleResourceId = titleResourceId;
+		mInventoryItemInformation.setTitleResourceId(titleResourceId);
 	}
 
 	public int getTitleResourceId() {
-		return mTitleResourceId;
+		return mInventoryItemInformation.getTitleResourceId();
 	}
 
 	public void setDescriptionResourceId(int descriptionResourceId) {
-		mDescriptionResourceId = descriptionResourceId;
+		mInventoryItemInformation.setDescriptionResourceId(descriptionResourceId);
 	}
 
 	public int getDescriptionResourceId() {
-		return mDescriptionResourceId;
+		return mInventoryItemInformation.getDescriptionResourceId();
 	}
 
 	public void setDroppedBy(DroppedByList lootlist) {
@@ -72,4 +62,42 @@ public class InventoryItemEntry {
 	public long getQuantityAvailable() {
 		return mQuantityAvailable;
 	}
+
+	public int getType() {
+		return mInventoryItemInformation.getType();
+	}
+
+	public void setInventoryItemInformation(InventoryItemInformation inventoryItemInformation) {
+		mInventoryItemInformation = inventoryItemInformation;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(mInventoryItemInformation, flags);
+		dest.writeParcelable(mDroppedBy, flags);
+		dest.writeParcelable(mRecipe, flags);
+		dest.writeLong(mQuantityAvailable);
+	}
+
+	public void readFromParcel(Parcel in) {
+		mInventoryItemInformation = in.readParcelable(InventoryItemInformation.class.getClassLoader());
+		mDroppedBy = in.readParcelable(DroppedByList.class.getClassLoader());
+		mRecipe = in.readParcelable(Recipe.class.getClassLoader());
+		mQuantityAvailable = in.readLong();
+	}
+
+	public static final Parcelable.Creator<InventoryItemEntry> CREATOR = new Parcelable.Creator<InventoryItemEntry>() {
+		public InventoryItemEntry createFromParcel(Parcel in) {
+			return new InventoryItemEntry(in);
+		}
+
+		public InventoryItemEntry[] newArray(int size) {
+			return new InventoryItemEntry[size];
+		}
+	};
 }

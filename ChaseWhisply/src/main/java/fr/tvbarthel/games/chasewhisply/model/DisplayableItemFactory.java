@@ -2,7 +2,8 @@ package fr.tvbarthel.games.chasewhisply.model;
 
 import java.util.ArrayList;
 
-import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
+import fr.tvbarthel.games.chasewhisply.model.inventory.DroppedByList;
+import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
 
 public class DisplayableItemFactory {
 	// Type
@@ -88,12 +89,12 @@ public class DisplayableItemFactory {
 				BASE_POINT_GHOST_WITH_HELMET,
 				EXP_POINT_GHOST_WITH_HELMET);
 
-		if (dropDraft < InventoryItemEntry.DROP_RATE_BROKEN_HELMET_HORN) {
-			drops.add(InventoryItemEntry.TYPE_BROKEN_HELMET_HORN);
+		if (dropDraft < DroppedByList.DROP_RATE_BROKEN_HELMET_HORN) {
+			drops.add(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN);
 		}
 
-		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN * 4) {
-			drops.add(InventoryItemEntry.TYPE_COIN);
+		if (dropDraft < DroppedByList.DROP_RATE_COIN * 4) {
+			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
 		ghostWithHelmet.setDrop(drops);
@@ -108,8 +109,8 @@ public class DisplayableItemFactory {
 				BASE_POINT_EAST_GHOST,
 				EXP_POINT_EASY_GHOST);
 
-		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN) {
-			drops.add(InventoryItemEntry.TYPE_COIN);
+		if (dropDraft < DroppedByList.DROP_RATE_COIN) {
+			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
 		easyGhost.setDrop(drops);
@@ -124,12 +125,12 @@ public class DisplayableItemFactory {
 				BASE_POINT_BABY_GHOST,
 				EXP_POINT_BABY_GHOST);
 
-		if (dropDraft < InventoryItemEntry.DROP_RATE_BABY_DROOL) {
-			drops.add(InventoryItemEntry.TYPE_BABY_DROOL);
+		if (dropDraft < DroppedByList.DROP_RATE_BABY_DROOL) {
+			drops.add(InventoryItemInformation.TYPE_BABY_DROOL);
 		}
 
-		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN * 2) {
-			drops.add(InventoryItemEntry.TYPE_COIN);
+		if (dropDraft < DroppedByList.DROP_RATE_COIN * 2) {
+			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
 		babyGhost.setDrop(drops);
@@ -144,8 +145,8 @@ public class DisplayableItemFactory {
 				BASE_POINT_HIDDEN_GHOST,
 				EXP_POINT_HIDDEN_GHOST);
 
-		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN) {
-			drops.add(InventoryItemEntry.TYPE_COIN);
+		if (dropDraft < DroppedByList.DROP_RATE_COIN) {
+			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
 		hiddenGhost.setDrop(drops);
@@ -160,12 +161,12 @@ public class DisplayableItemFactory {
 				BASE_POINT_KING_GHOST,
 				EXP_POINT_KING_GHOST);
 
-		if (dropDraft < InventoryItemEntry.DROP_RATE_KING_CROWN) {
-			drops.add(InventoryItemEntry.TYPE_KING_CROWN);
+		if (dropDraft < DroppedByList.DROP_RATE_KING_CROWN) {
+			drops.add(InventoryItemInformation.TYPE_KING_CROWN);
 		}
 
-		if (dropDraft < InventoryItemEntry.DROP_RATE_COIN * 25) {
-			drops.add(InventoryItemEntry.TYPE_COIN);
+		if (dropDraft < DroppedByList.DROP_RATE_COIN * 25) {
+			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
 		kingGhost.setDrop(drops);

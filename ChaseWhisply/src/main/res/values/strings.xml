@@ -221,4 +221,11 @@
     <string name="inventory_item_dropped_by">Dropped By</string>
     <string name="inventory_item_recipe">Recipe</string>
 
+    <!-- Craft Dialog Fragment -->
+    <string name="craft_dialog_fragment_not_enough_resources">Not enough resources, you need %1$s.</string>
+    <string name="craft_dialog_fragment_request">Use %1$s to craft %2$s?</string>
+    <string name="craft_dialog_fragment_ok_response">Ok</string>
+    <string name="craft_dialog_fragment_yes_response">Yes</string>
+    <string name="craft_dialog_fragment_no_response">No</string>
+
 </resources>

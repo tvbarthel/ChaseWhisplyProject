@@ -5,27 +5,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
+import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
 
 public class InventoryItemEntryAdapter extends ArrayAdapter<InventoryItemEntry> {
 	private Context mContext;
-	private InventoryItemEntry[] mInventoryItemyEntries;
+	private ArrayList<InventoryItemEntry> mInventoryItemyEntries;
+	private Listener mListener;
 
-	public InventoryItemEntryAdapter(Context context, InventoryItemEntry[] inventoryItemyEntries) {
+	public InventoryItemEntryAdapter(Context context, ArrayList<InventoryItemEntry> inventoryItemyEntries, Listener listener) {
 		super(context, R.layout.row_inventory_item_entry, inventoryItemyEntries);
 		mContext = context;
 		mInventoryItemyEntries = inventoryItemyEntries;
+		mListener = listener;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final InventoryItemEntry currentInventoryItemEntry = mInventoryItemyEntries[position];
+		final InventoryItemEntry currentInventoryItemEntry = mInventoryItemyEntries.get(position);
 		final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.row_inventory_item_entry, parent, false);
 		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_title)).setText(currentInventoryItemEntry.getTitleResourceId());
@@ -43,19 +48,23 @@ public class InventoryItemEntryAdapter extends ArrayAdapter<InventoryItemEntry> 
 		}
 		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_dropped_by)).setText(stringDroppedBy);
 
-		String stringRecipe = mContext.getString(R.string.inventory_item_can_t_be_crafted);
-		final HashMap<Integer, Integer> ingredientsAndQuantites = currentInventoryItemEntry.getRecipe().getIngredientsAndQuantities();
-		if (ingredientsAndQuantites.size() != 0) {
-			stringRecipe = "";
-			for (Map.Entry<Integer, Integer> entry : ingredientsAndQuantites.entrySet()) {
-				stringRecipe += String.valueOf(entry.getValue()) + " x " + mContext.getString(entry.getKey()) + ", ";
-			}
-			stringRecipe = stringRecipe.substring(0, stringRecipe.length() - 2);
-		} else {
+		final HashMap<InventoryItemInformation, Integer> ingredientsAndQuantites = currentInventoryItemEntry.getRecipe().getIngredientsAndQuantities();
+		if (ingredientsAndQuantites.size() == 0) {
 			(rowView.findViewById(R.id.row_inventory_item_entry_craft_action)).setEnabled(false);
 		}
-		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_recipe)).setText(stringRecipe);
+		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_recipe)).setText(currentInventoryItemEntry.getRecipe().toString(getContext()));
+
+		((ImageButton) rowView.findViewById(R.id.row_inventory_item_entry_craft_action)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mListener.onCraftRequested(currentInventoryItemEntry);
+			}
+		});
 
 		return rowView;
+	}
+
+	public interface Listener {
+		public void onCraftRequested(InventoryItemEntry inventoryItemEntry);
 	}
 }
