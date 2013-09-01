@@ -3,39 +3,75 @@ package fr.tvbarthel.games.chasewhisply.mechanics;
 import android.os.Handler;
 
 public class GameTimer extends Handler {
+
+	private static final long CHRONOMETER_STEP_IN_MILLI = 100;
+	private long mTimerStep = 1000;
 	private final Runnable mRunnable;
-	private long mRemainingTime;
+	private long mCurrentTime;
 	private final IGameTimer mIGameTimer;
 	private boolean mIsRunning;
 	private long mStartTime;
 
-	public GameTimer(long remainingLimit, IGameTimer iGameTimer) {
-		mRemainingTime = remainingLimit;
+	/**
+	 * timer type chronometer
+	 *
+	 * @param iGameTimer
+	 */
+	public GameTimer(IGameTimer iGameTimer) {
+		mIGameTimer = iGameTimer;
+		mIsRunning = false;
+		mStartTime = -1;
+		mRunnable = new Runnable() {
+			@Override
+			public void run() {
+				if (mStartTime == -1) mStartTime = System.currentTimeMillis();
+				if (mIsRunning) {
+					mCurrentTime = System.currentTimeMillis() - mStartTime;
+					mIGameTimer.timerTick(mCurrentTime);
+					postDelayed(this, CHRONOMETER_STEP_IN_MILLI);
+				}
+
+			}
+		};
+	}
+
+	/**
+	 * time type egg timer
+	 *
+	 * @param remainingLimit
+	 * @param iGameTimer
+	 */
+	public GameTimer(long remainingLimit, IGameEggTimer iGameTimer) {
+		mCurrentTime = remainingLimit;
 		mIGameTimer = iGameTimer;
 		mIsRunning = false;
 		mRunnable = new Runnable() {
 			@Override
 			public void run() {
-				mRemainingTime -= 1000;
-				mRemainingTime = Math.max(mRemainingTime, 0);
-				if (mIsRunning && mRemainingTime > 0) {
-					mIGameTimer.timerTick(mRemainingTime);
-					postDelayed(this, 1000);
-				} else if (mRemainingTime == 0) {
+				mCurrentTime -= mTimerStep;
+				mCurrentTime = Math.max(mCurrentTime, 0);
+				if (mIsRunning && mCurrentTime > 0) {
+					mIGameTimer.timerTick(mCurrentTime);
+					postDelayed(this, mTimerStep);
+				} else if (mCurrentTime == 0) {
 					stopTimer();
-					mIGameTimer.timerEnd();
+					((IGameEggTimer) mIGameTimer).timerEnd();
 				}
 			}
 		};
+	}
+
+	public GameTimer(long remainingLimit, IGameEggTimer iGameTimer, long timerStepInMilli) {
+		this(remainingLimit, iGameTimer);
+		mTimerStep = timerStepInMilli;
 	}
 
 	public boolean startTimer() {
 		if (mIsRunning) {
 			return false;
 		}
-		postDelayed(mRunnable, 1000);
+		postDelayed(mRunnable, mTimerStep);
 		mIsRunning = true;
-		mStartTime = System.currentTimeMillis();
 		return true;
 	}
 
@@ -44,7 +80,7 @@ public class GameTimer extends Handler {
 			removeCallbacks(mRunnable);
 			mIsRunning = false;
 		}
-		return mRemainingTime;
+		return mCurrentTime;
 	}
 
 	/**
@@ -54,14 +90,16 @@ public class GameTimer extends Handler {
 	 */
 	public void addTime(long t) {
 		if (mIsRunning && t > 0) {
-			mRemainingTime += t;
+			mCurrentTime += t;
 		}
 	}
 
 
 	public interface IGameTimer {
-		abstract void timerEnd();
+		abstract void timerTick(long currentTime);
+	}
 
-		abstract void timerTick(long remainingTime);
+	public interface IGameEggTimer extends IGameTimer {
+		abstract void timerEnd();
 	}
 }

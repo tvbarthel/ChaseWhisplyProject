@@ -4,7 +4,7 @@ import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.MathUtils;
 
-public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameTimer {
+public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameEggTimer {
 	protected GameTimer mGameTimer;
 
 	private int mXRange;
