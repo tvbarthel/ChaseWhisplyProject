@@ -1,11 +1,13 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
+import fr.tvbarthel.games.chasewhisply.mechanics.timer.BaseTimer;
+import fr.tvbarthel.games.chasewhisply.mechanics.timer.EggTimer;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.MathUtils;
 
-public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGameEggTimer {
-	protected GameTimer mGameTimer;
+public class TimeLimitedGameEngine extends GameEngine implements EggTimer.IEggTimer {
+	protected BaseTimer mBaseTimer;
 
 	private int mXRange;
 	private int mYRange;
@@ -45,13 +47,13 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 
 	public TimeLimitedGameEngine(IGameEngine iGameEngine, GameInformation gameInformation) {
 		super(iGameEngine, gameInformation);
-		mGameTimer = new GameTimer(gameInformation.getRemainingTime(), this);
+		mBaseTimer = new EggTimer(gameInformation.getRemainingTime(), this);
 	}
 
 	@Override
 	public void startGame() {
 		super.startGame();
-		mGameTimer.startTimer();
+		mBaseTimer.startTimer();
 		mXRange = mGameInformation.getSceneWidth() / 2 + mGameInformation.getSceneWidth() / 10;
 		mYRange = mGameInformation.getSceneHeight() / 2 + mGameInformation.getSceneHeight() / 10;
 	}
@@ -59,13 +61,13 @@ public class TimeLimitedGameEngine extends GameEngine implements GameTimer.IGame
 	@Override
 	public void pauseGame() {
 		super.pauseGame();
-		mGameInformation.setRemainingTime(mGameTimer.stopTimer());
+		mGameInformation.setRemainingTime(mBaseTimer.stopTimer());
 	}
 
 	@Override
 	public void resumeGame() {
 		super.resumeGame();
-		mGameTimer.startTimer();
+		mBaseTimer.startTimer();
 	}
 
 	@Override
