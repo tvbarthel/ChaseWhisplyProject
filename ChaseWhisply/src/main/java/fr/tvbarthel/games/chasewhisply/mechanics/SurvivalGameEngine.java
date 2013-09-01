@@ -23,6 +23,6 @@ public class SurvivalGameEngine extends TimeLimitedGameEngine {
 	@Override
 	protected void onKill() {
 		super.onKill();
-		mBaseTimer.addTime(mAdditionalTimeOnKill);
+		mEggTimer.addTime(mAdditionalTimeOnKill);
 	}
 }
