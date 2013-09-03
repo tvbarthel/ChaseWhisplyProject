@@ -1,18 +1,18 @@
 package fr.tvbarthel.games.chasewhisply;
 
 import android.app.Activity;
-import android.hardware.Camera;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
+import android.hardware.*;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.SurfaceHolder;
 
+import fr.tvbarthel.games.chasewhisply.beta.BetaUtils;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 
 public abstract class ARActivity extends Activity implements SensorEventListener {
+
+	public static final int RESULT_SENSOR_NOT_SUPPORTED = 111;
+
 	//Camera
 	protected Camera mCamera;
 	protected CameraPreview mCameraPreview;
@@ -22,6 +22,9 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	private Sensor mRotationVectorSensor;
 	private final float[] mRotationMatrix = new float[16];
 	protected final float[] mOrientationVals = new float[3];
+
+	//Beta-Only
+	private int mSensorDelay;
 
 	/**
 	 * A safe way to get an instance of the Camera object.
@@ -42,9 +45,17 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		//Beta-Only
+		mSensorDelay = getSharedPreferences(BetaUtils.KEY_SHARED_PREFERENCES, MODE_PRIVATE).getInt(BetaUtils.KEY_SENSOR_DELAY, SensorManager.SENSOR_DELAY_GAME);
+
 		//Sensor
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+		if (mRotationVectorSensor == null) {
+			setResult(RESULT_SENSOR_NOT_SUPPORTED, null);
+			finish();
+		}
 
 		//initialize to the identity matrix
 		mRotationMatrix[0] = 1;
@@ -127,7 +138,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 			setContentView(mCameraPreview);
 
 			//Sensor
-			mSensorManager.registerListener(ARActivity.this, mRotationVectorSensor, SensorManager.SENSOR_DELAY_GAME);
+			mSensorManager.registerListener(ARActivity.this, mRotationVectorSensor, mSensorDelay);
 			onCameraReady(horizontalViewAngle, verticalViewAngle);
 
 		}

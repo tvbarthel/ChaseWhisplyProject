@@ -22,6 +22,7 @@
     <string name="home_sign_out_success">You\'ve successfully signed out.</string>
     <string name="home_internet_unavailable">Please connect to the Internet.</string>
     <string name="home_profile">Profile</string>
+    <string name="home_device_not_compatible">Sorry, you device seems to be not compatible.</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag: %1$d</string>

@@ -20,11 +20,7 @@ import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
-import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
-import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
-import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
-import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
-import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.*;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener,
 		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener {
@@ -64,6 +60,10 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 								GameScoreFragment.FRAGMENT_TAG)
 						.addToBackStack(null).commitAllowingStateLoss();
 			}
+		}
+
+		if (ARActivity.RESULT_SENSOR_NOT_SUPPORTED == response) {
+			makeToast(getString(R.string.home_device_not_compatible) + " (rotation sensor)");
 		}
 	}
 

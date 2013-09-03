@@ -21,6 +21,7 @@
     <string name="home_sign_out_success">Vous avez été déconnecté(e) avec succès.</string>
     <string name="home_internet_unavailable">Veuillez vous connecter à Internet.</string>
     <string name="home_profile">Profil</string>
+    <string name="home_device_not_compatible">Désolé, mais votre terminal ne semble pas compatible.</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag : %1$d</string>
@@ -218,7 +219,8 @@
         pour en extraire une grande quantité d\'or !
     </string>
     <string name="inventory_item_steel_bullet_title">Balle en acier</string>
-    <string name="inventory_item_steel_bullet_description">Quand vous tenez cette balle dans votre main, vous pouvez sentir
+    <string name="inventory_item_steel_bullet_description">Quand vous tenez cette balle dans votre main, vous pouvez
+        sentir
         la force de ce lourd projectile. Utiliser des balles en acier vous donne un bonnus de +1 en dégats.
     </string>
     <string name="inventory_item_gold_bullet_title">Balle en or</string>
@@ -232,7 +234,8 @@
     <string name="inventory_item_recipe">Recette</string>
 
     <!-- Craft Dialog Fragment -->
-    <string name="craft_dialog_fragment_not_enough_resources">Pas assez de ressources, vous avez besoin de %1$s.</string>
+    <string name="craft_dialog_fragment_not_enough_resources">Pas assez de ressources, vous avez besoin de %1$s.
+    </string>
     <string name="craft_dialog_fragment_request">Utiliser %1$s pour fabriquer %2$s?</string>
     <string name="craft_dialog_fragment_ok_response">Ok</string>
     <string name="craft_dialog_fragment_yes_response">Oui</string>
