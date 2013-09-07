@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class DroppedByList implements Parcelable {
 	public static final int DROP_RATE_BABY_DROOL = 30;
-	public static final int DROP_RATE_BROKEN_HELMET_HORN = 9;
+	public static final int DROP_RATE_BROKEN_HELMET_HORN = 50;
 	public static final int DROP_RATE_COIN = 6;
 	public static final int DROP_RATE_KING_CROWN = 50;
 
