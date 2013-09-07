@@ -20,7 +20,11 @@ import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
-import fr.tvbarthel.games.chasewhisply.ui.fragments.*;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener,
 		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener {
@@ -221,6 +225,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			final int score = gameInformation.getCurrentScore();
 			final GameMode gameMode = gameInformation.getGameMode();
 			final Weapon weapon = gameInformation.getWeapon();
+			final int numberOfLoots = gameInformation.getNumberOfLoots();
 			gamesClient.submitScore(getResources().getString(gameMode.getLeaderboardStringId()), score);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_soldier), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_corporal), 1);
@@ -229,6 +234,17 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_pacifist));
 			} else if (!weapon.hasRunOutOfAmmo()) {
 				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_thrifty));
+			}
+			if (numberOfLoots >= 5) {
+				gamesClient.unlockAchievement(getString(R.string.achievement_novice_looter));
+			}
+
+			if (numberOfLoots >= 10) {
+				gamesClient.unlockAchievement(getString(R.string.achievement_trained_looter));
+			}
+
+			if (numberOfLoots >= 15) {
+				gamesClient.unlockAchievement(getString(R.string.achievement_expert_looter));
 			}
 		}
 	}

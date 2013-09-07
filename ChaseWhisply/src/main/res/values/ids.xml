@@ -8,6 +8,10 @@
     <string name="achievement_corporal">CgkIyKropZoEEAIQCw</string>
     <string name="achievement_sergeant">CgkIyKropZoEEAIQDA</string>
     <string name="achievement_thrifty">CgkIyKropZoEEAIQEQ</string>
+    <string name="achievement_novice_looter">CgkIyKropZoEEAIQEg</string>
+    <string name="achievement_trained_looter">CgkIyKropZoEEAIQEw</string>
+    <string name="achievement_expert_looter">CgkIyKropZoEEAIQFA</string>
+
 
     <string name="leaderboard_30_seconds">CgkIyKropZoEEAIQDQ</string>
     <string name="leaderboard_60_seconds">CgkIyKropZoEEAIQDg</string>

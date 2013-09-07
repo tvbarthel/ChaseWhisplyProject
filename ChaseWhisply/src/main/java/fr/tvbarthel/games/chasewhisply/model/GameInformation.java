@@ -302,6 +302,10 @@ public class GameInformation implements Parcelable {
 		return lootQuantities;
 	}
 
+	public int getNumberOfLoots() {
+		return mScoreInformation.getLoot().size();
+	}
+
 	public GameMode getGameMode() {
 		return mGameMode;
 	}
