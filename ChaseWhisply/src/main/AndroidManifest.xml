@@ -12,6 +12,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.compass"
+        android:required="true" />
+
+    <uses-feature
         android:name="android.hardware.camera.front"
         android:required="false" />
     <uses-feature
