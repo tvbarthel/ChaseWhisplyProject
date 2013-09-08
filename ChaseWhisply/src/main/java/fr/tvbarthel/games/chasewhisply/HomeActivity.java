@@ -21,13 +21,14 @@ import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.BonusFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener,
-		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener {
+		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener, BonusFragment.Listener {
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
@@ -265,7 +266,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onLevelChosen(GameModeView g) {
-		startNewGame(g.getModel(), REQUEST_GAME_ACTIVITY_FRESH_START);
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				BonusFragment.newInstance(g.getModel())).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	public void startNewGame(GameMode gameMode, int requestCode) {
@@ -297,6 +299,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
+	@Override
+	public void onGameStartRequest(GameMode gameMode) {
+		startNewGame(gameMode, REQUEST_GAME_ACTIVITY_FRESH_START);
+	}
+
 	public static class SignOutConfirmDialogFragment extends DialogFragment {
 		public SignOutConfirmDialogFragment() {
 		}
@@ -325,4 +332,5 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 					.create();
 		}
 	}
+
 }

@@ -3,6 +3,8 @@ package fr.tvbarthel.games.chasewhisply.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
+
 public class GameMode implements Parcelable {
 
 	private int mType;
@@ -11,6 +13,7 @@ public class GameMode implements Parcelable {
 	private int mRules;
 	private int mLeaderboardStringId;
 	private int mLeaderboardDescriptionStringId;
+	private Bonus mBonus;
 
 	public GameMode() {
 		mType = -1;
@@ -19,6 +22,7 @@ public class GameMode implements Parcelable {
 		mRules = -1;
 		mLeaderboardStringId = -1;
 		mLeaderboardDescriptionStringId = -1;
+		mBonus = null;
 	}
 
 	protected GameMode(Parcel in) {
@@ -38,6 +42,7 @@ public class GameMode implements Parcelable {
 		out.writeInt(mRules);
 		out.writeInt(mLeaderboardStringId);
 		out.writeInt(mLeaderboardDescriptionStringId);
+		out.writeParcelable(mBonus, i);
 	}
 
 	/**
@@ -52,6 +57,7 @@ public class GameMode implements Parcelable {
 		mRules = in.readInt();
 		mLeaderboardStringId = in.readInt();
 		mLeaderboardDescriptionStringId = in.readInt();
+		mBonus = in.readParcelable(Bonus.class.getClassLoader());
 	}
 
 	public static final Parcelable.Creator<GameMode> CREATOR = new Parcelable.Creator<GameMode>() {
@@ -110,6 +116,14 @@ public class GameMode implements Parcelable {
 
 	public int getLeaderboardDescriptionStringId() {
 		return mLeaderboardDescriptionStringId;
+	}
+
+	public void setBonus(Bonus bonus) {
+		mBonus = bonus;
+	}
+
+	public Bonus getBonus() {
+		return mBonus;
 	}
 
 

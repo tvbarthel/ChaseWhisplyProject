@@ -8,7 +8,7 @@ public class RecipeFactory {
 
 			case InventoryItemInformation.TYPE_STEEL_BULLET:
 				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 25);
-				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN), 10);
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN), 5);
 				break;
 
 			case InventoryItemInformation.TYPE_GOLD_BULLET:

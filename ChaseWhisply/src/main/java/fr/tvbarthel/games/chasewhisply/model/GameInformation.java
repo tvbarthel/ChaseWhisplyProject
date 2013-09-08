@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 
 public class GameInformation implements Parcelable {
@@ -313,6 +314,7 @@ public class GameInformation implements Parcelable {
 	public void setGameMode(GameMode gameMode) {
 		final int gameType = gameMode.getType();
 		final int gameLevel = gameMode.getLevel();
+		gameMode.getBonus().apply(this);
 
 		if (gameType == GameModeFactory.GAME_TYPE_REMAINING_TIME) {
 			switch (gameLevel) {
@@ -331,6 +333,10 @@ public class GameInformation implements Parcelable {
 			}
 		}
 		mGameMode = gameMode;
+	}
+
+	public Bonus getBonus() {
+		return mGameMode.getBonus();
 	}
 
 }

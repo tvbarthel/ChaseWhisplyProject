@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DroppedByList implements Parcelable {
-	public static final int DROP_RATE_BABY_DROOL = 30;
-	public static final int DROP_RATE_BROKEN_HELMET_HORN = 50;
-	public static final int DROP_RATE_COIN = 6;
+	public static final int DROP_RATE_BABY_DROOL = 50;
+	public static final int DROP_RATE_BROKEN_HELMET_HORN = 100;
+	public static final int DROP_RATE_COIN = 50;
 	public static final int DROP_RATE_KING_CROWN = 50;
 
 	private final HashMap<Integer, Integer> mMonstersAndPercents;
