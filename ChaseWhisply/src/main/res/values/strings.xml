@@ -232,7 +232,7 @@
     <!-- Bonus -->
     <string name="bonus_title">Equip a bonus</string>
     <string name="bonus_effect">Effect</string>
-    <string name="bonus_quantity">Quantity</string>
+    <string name="bonus_quantity">Quantity Available</string>
     <string name="bonus_damage_effect">Damage +%1$s</string>
 
 </resources>

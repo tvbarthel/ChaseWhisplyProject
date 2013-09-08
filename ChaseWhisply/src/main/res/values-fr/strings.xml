@@ -244,6 +244,6 @@
     <!-- Bonus -->
     <string name="bonus_title">Equipez un bonus</string>
     <string name="bonus_effect">Effet</string>
-    <string name="bonus_quantity">Quantité</string>
+    <string name="bonus_quantity">Quantité Disponible</string>
     <string name="bonus_damage_effect">Dégat +%1$s</string>
 </resources>
