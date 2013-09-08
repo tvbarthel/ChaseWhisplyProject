@@ -8,7 +8,7 @@ import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 public class WeaponFactory {
 	private static final int BASIC_WEAPON_DAMAGE = 1;
 	private static final int BASIC_WEAPON_AMMUNITION_LIMIT = 8;
-	private static final long BASIC_WEAPON_RELOADING_TIME = 1500;
+	private static final long BASIC_WEAPON_RELOADING_TIME = 1000;
 
 	/**
 	 * Create a very basic {@link fr.tvbarthel.games.chasewhisply.model.weapon.Weapon}
