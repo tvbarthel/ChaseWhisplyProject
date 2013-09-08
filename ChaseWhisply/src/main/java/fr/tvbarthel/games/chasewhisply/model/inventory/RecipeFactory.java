@@ -12,7 +12,7 @@ public class RecipeFactory {
 				break;
 
 			case InventoryItemInformation.TYPE_GOLD_BULLET:
-				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 100);
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 50);
 				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_KING_CROWN), 1);
 				break;
 		}
