@@ -10,7 +10,7 @@ import java.util.List;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 
 public class GameInformation implements Parcelable {
-	protected long mRemainingTime;
+	protected long mTime;
 	protected long mSpawningTime;
 	protected Weapon mWeapon;
 	protected int mMaxTargetOnTheField;
@@ -27,13 +27,29 @@ public class GameInformation implements Parcelable {
 	/**
 	 * Create a new GameInformation
 	 *
-	 * @param remainingTime remaining time in millisecond
-	 * @param spawningTime  spawning time in millisecond
-	 * @param weapon        weapon used for this game
+	 * @param time         remaining time in millisecond
+	 * @param spawningTime spawning time in millisecond
+	 * @param weapon       weapon used for this game
 	 */
-	public GameInformation(long remainingTime, long spawningTime, Weapon weapon) {
+	public GameInformation(long time, long spawningTime, Weapon weapon) {
 		mScoreInformation = new ScoreInformation();
-		mRemainingTime = remainingTime;
+		mTime = time;
+		mSpawningTime = spawningTime;
+		mWeapon = weapon;
+		mMaxTargetOnTheField = 0;
+		mCurrentTarget = null;
+		mTargetableItems = new ArrayList<TargetableItem>();
+		mDisplayableItems = new ArrayList<DisplayableItem>();
+	}
+
+	/**
+	 * Create a new GameInformation
+	 *
+	 * @param spawningTime spawning time in millisecond
+	 * @param weapon       weapon used for this game
+	 */
+	public GameInformation(long spawningTime, Weapon weapon) {
+		mScoreInformation = new ScoreInformation();
 		mSpawningTime = spawningTime;
 		mWeapon = weapon;
 		mMaxTargetOnTheField = 0;
@@ -53,7 +69,7 @@ public class GameInformation implements Parcelable {
 
 	public void readFromParcel(Parcel in) {
 		mScoreInformation = in.readParcelable(ScoreInformation.class.getClassLoader());
-		mRemainingTime = in.readLong();
+		mTime = in.readLong();
 		mSpawningTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
 		mMaxTargetOnTheField = in.readInt();
@@ -68,7 +84,7 @@ public class GameInformation implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel out, int i) {
 		out.writeParcelable(mScoreInformation, i);
-		out.writeLong(mRemainingTime);
+		out.writeLong(mTime);
 		out.writeLong(mSpawningTime);
 		out.writeParcelable(mWeapon, i);
 		out.writeInt(mMaxTargetOnTheField);
@@ -95,12 +111,12 @@ public class GameInformation implements Parcelable {
 		return mWeapon;
 	}
 
-	public long getRemainingTime() {
-		return mRemainingTime;
+	public long getTime() {
+		return mTime;
 	}
 
-	public void setRemainingTime(long time) {
-		mRemainingTime = time;
+	public void setTime(long time) {
+		mTime = time;
 	}
 
 	public long getSpawningTime() {
@@ -309,22 +325,38 @@ public class GameInformation implements Parcelable {
 	public void setGameMode(GameMode gameMode) {
 		final int gameType = gameMode.getType();
 		final int gameLevel = gameMode.getLevel();
+		switch (gameType) {
+			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+				switch (gameLevel) {
+					case 1:
+						this.setTime(30000);
+						break;
 
-		if (gameType == GameModeFactory.GAME_TYPE_REMAINING_TIME) {
-			switch (gameLevel) {
-				case 1:
-					this.setRemainingTime(30000);
-					break;
+					case 2:
+						this.setTime(60000);
+						break;
 
-				case 2:
-					this.setRemainingTime(60000);
-					break;
+					case 3:
+						this.setTime(90000);
+						break;
 
-				case 3:
-					this.setRemainingTime(90000);
-					break;
+				}
+				break;
+			case GameModeFactory.GAME_TYPE_SURVIVAL:
+				switch (gameLevel) {
+					case 1:
+						this.setTime(30000);
+						break;
+				}
+				break;
+			case GameModeFactory.GAME_TYPE_MISSION:
+				switch (gameLevel) {
+					case 1:
+						this.setTime(0);
+						break;
+				}
+				break;
 
-			}
 		}
 		mGameMode = gameMode;
 	}

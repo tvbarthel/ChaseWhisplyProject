@@ -46,7 +46,7 @@ public class TimeLimitedGameEngine extends GameEngine implements EggTimer.IEggTi
 
 	public TimeLimitedGameEngine(IGameEngine iGameEngine, GameInformation gameInformation) {
 		super(iGameEngine, gameInformation);
-		mEggTimer = new EggTimer(gameInformation.getRemainingTime(), this);
+		mEggTimer = new EggTimer(gameInformation.getTime(), this);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class TimeLimitedGameEngine extends GameEngine implements EggTimer.IEggTi
 	@Override
 	public void pauseGame() {
 		super.pauseGame();
-		mGameInformation.setRemainingTime(mEggTimer.stopTimer());
+		mGameInformation.setTime(mEggTimer.stopTimer());
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class TimeLimitedGameEngine extends GameEngine implements EggTimer.IEggTi
 	@Override
 	public void stopGame() {
 		super.stopGame();
-		mGameInformation.setRemainingTime(0);
+		mGameInformation.setTime(0);
 		mInterface.onGameEngineStop();
 	}
 
@@ -83,7 +83,7 @@ public class TimeLimitedGameEngine extends GameEngine implements EggTimer.IEggTi
 
 	@Override
 	public void timerTick(long remainingTime) {
-		mGameInformation.setRemainingTime(remainingTime);
+		mGameInformation.setTime(remainingTime);
 	}
 
 }

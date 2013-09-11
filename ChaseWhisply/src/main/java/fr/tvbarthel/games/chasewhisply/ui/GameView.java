@@ -161,7 +161,7 @@ public class GameView extends View {
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawRemainingTime(Canvas canvas) {
-		final long millis = mModel.getRemainingTime();
+		final long millis = mModel.getTime();
 		final int ss = (int) (millis / 1000);
 		final String remainingTime = String.format(mTimeString, ss);
 		resetPainter();

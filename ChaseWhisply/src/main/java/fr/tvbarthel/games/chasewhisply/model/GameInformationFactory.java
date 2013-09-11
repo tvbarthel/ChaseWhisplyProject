@@ -49,12 +49,11 @@ public class GameInformationFactory {
 	}
 
 	public static GameInformation createEmptyWorld(float cameraHorizontalViewAngle, float cameraVerticalViewAngle, GameMode gameMode) {
-		GameInformation world = new GameInformation(DEFAULT_REMAINING_TIME, DEFAULT_SPAWNING_TIME, WeaponFactory.createBasicWeapon());
+		GameInformation world = new GameInformation(DEFAULT_SPAWNING_TIME, WeaponFactory.createBasicWeapon());
 		world.setSceneWidth((int) Math.floor(cameraHorizontalViewAngle));
 		world.setSceneHeight((int) Math.floor(cameraVerticalViewAngle));
 		world.setMaxTargetOnTheField(10);
 		world.setGameMode(gameMode);
-
 		return world;
 	}
 
