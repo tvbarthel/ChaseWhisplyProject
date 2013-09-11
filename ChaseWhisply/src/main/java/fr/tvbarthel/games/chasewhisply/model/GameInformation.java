@@ -64,6 +64,10 @@ public class GameInformation implements Parcelable {
 		mDisplayableItems = new ArrayList<DisplayableItem>();
 		in.readTypedList(mDisplayableItems, DisplayableItem.CREATOR);
 		mGameMode = in.readParcelable(GameMode.class.getClassLoader());
+		mSceneWidth = in.readInt();
+		mSceneHeight = in.readInt();
+		mCurrentX = in.readFloat();
+		mCurrentY = in.readFloat();
 	}
 
 	@Override
@@ -77,6 +81,10 @@ public class GameInformation implements Parcelable {
 		out.writeTypedList(mTargetableItems);
 		out.writeTypedList(mDisplayableItems);
 		out.writeParcelable(mGameMode, i);
+		out.writeInt(mSceneWidth);
+		out.writeInt(mSceneHeight);
+		out.writeFloat(mCurrentX);
+		out.writeFloat(mCurrentY);
 	}
 
 	public static final Parcelable.Creator<GameInformation> CREATOR = new Parcelable.Creator<GameInformation>() {
