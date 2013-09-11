@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 
 public class GameInformation implements Parcelable {
@@ -79,6 +80,10 @@ public class GameInformation implements Parcelable {
 		mDisplayableItems = new ArrayList<DisplayableItem>();
 		in.readTypedList(mDisplayableItems, DisplayableItem.CREATOR);
 		mGameMode = in.readParcelable(GameMode.class.getClassLoader());
+		mSceneWidth = in.readInt();
+		mSceneHeight = in.readInt();
+		mCurrentX = in.readFloat();
+		mCurrentY = in.readFloat();
 	}
 
 	@Override
@@ -92,6 +97,10 @@ public class GameInformation implements Parcelable {
 		out.writeTypedList(mTargetableItems);
 		out.writeTypedList(mDisplayableItems);
 		out.writeParcelable(mGameMode, i);
+		out.writeInt(mSceneWidth);
+		out.writeInt(mSceneHeight);
+		out.writeFloat(mCurrentX);
+		out.writeFloat(mCurrentY);
 	}
 
 	public static final Parcelable.Creator<GameInformation> CREATOR = new Parcelable.Creator<GameInformation>() {
@@ -318,6 +327,10 @@ public class GameInformation implements Parcelable {
 		return lootQuantities;
 	}
 
+	public int getNumberOfLoots() {
+		return mScoreInformation.getLoot().size();
+	}
+
 	public GameMode getGameMode() {
 		return mGameMode;
 	}
@@ -349,16 +362,13 @@ public class GameInformation implements Parcelable {
 						break;
 				}
 				break;
-			case GameModeFactory.GAME_TYPE_MISSION:
-				switch (gameLevel) {
-					case 1:
-						this.setTime(0);
-						break;
-				}
-				break;
-
 		}
+		gameMode.getBonus().apply(this);
 		mGameMode = gameMode;
+	}
+
+	public Bonus getBonus() {
+		return mGameMode.getBonus();
 	}
 
 }

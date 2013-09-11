@@ -21,6 +21,8 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.TimerRoutine;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
+import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
+import fr.tvbarthel.games.chasewhisply.model.bonus.BonusInventoryItemConsumer;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntryFactory;
 
@@ -128,7 +130,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		if (loots.size() != 0) {
 			String stringLoot = "";
 			for (Map.Entry<Integer, Integer> entry : loots.entrySet()) {
-				InventoryItemEntry inventoryItemEntry = InventoryItemEntryFactory.createInventoryEntry(entry.getKey(), entry.getValue());
+				InventoryItemEntry inventoryItemEntry = InventoryItemEntryFactory.create(entry.getKey(), entry.getValue());
 				stringLoot += String.valueOf(inventoryItemEntry.getQuantityAvailable()) + "x " + getString(inventoryItemEntry.getTitleResourceId()) + "\n";
 			}
 			stringLoot = stringLoot.substring(0, stringLoot.length() - 1);
@@ -317,6 +319,10 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			mPlayerProfile.increaseBulletsMissed(mGameInformation.getBulletsMissed());
 			mPlayerProfile.increaseExperienceEarned(mGameInformation.getExpEarned());
 			updateInventoryEntryQuantity();
+			Bonus bonus = mGameInformation.getBonus();
+			if (bonus instanceof BonusInventoryItemConsumer) {
+				((BonusInventoryItemConsumer) bonus).consume(mPlayerProfile);
+			}
 			mPlayerProfileSaved = mPlayerProfile.saveChanges();
 		}
 	}

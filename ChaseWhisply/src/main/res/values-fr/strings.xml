@@ -21,6 +21,7 @@
     <string name="home_sign_out_success">Vous avez été déconnecté(e) avec succès.</string>
     <string name="home_internet_unavailable">Veuillez vous connecter à Internet.</string>
     <string name="home_profile">Profil</string>
+    <string name="home_device_not_compatible">Désolé, mais votre terminal ne semble pas compatible.</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag : %1$d</string>
@@ -73,7 +74,7 @@
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>
-    <string name="about_version_detail">version Beta.2.2</string>
+    <string name="about_version_detail">version Beta.2.3</string>
     <string name="about_developer_card_title">Développeurs</string>
     <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
     <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
@@ -82,7 +83,7 @@
         ses précieux conseils.
     </string>
     <string name="about_thanks_beta_testers">Tous les beta testers, tout spécialement J. Morgan, M. Nasato, T. Lin Aung,
-        M. Coulon, C. Cuadra, A. Peng, J. Bastien, DARKSULLI, and M. Bet.
+        M. Coulon, C. Morris, C. Cuadra, A. Peng, J. Bastien, DARKSULLI, M. Bet, BMX22C, J. Nye, et Y. Ritter.
     </string>
     <string name="about_license_section">Licence</string>
     <string name="about_license_title">Licence utilisée : Beerware License</string>
@@ -218,8 +219,9 @@
         pour en extraire une grande quantité d\'or !
     </string>
     <string name="inventory_item_steel_bullet_title">Balle en acier</string>
-    <string name="inventory_item_steel_bullet_description">Quand vous tenez cette balle dans votre main, vous pouvez sentir
-        la force de ce lourd projectile. Utiliser des balles en acier vous donne un bonnus de +1 en dégats.
+    <string name="inventory_item_steel_bullet_description">Quand vous tenez cette balle dans votre main, vous pouvez
+        sentir
+        la force de ce lourd projectile. Utiliser des balles en acier vous donne un bonus de +1 en dégats.
     </string>
     <string name="inventory_item_gold_bullet_title">Balle en or</string>
     <string name="inventory_item_gold_bullet_description">Une balle en or est extrèmement meurtrière pour les fantômes.
@@ -230,4 +232,18 @@
     <string name="inventory_item_quantity">Quantité</string>
     <string name="inventory_item_dropped_by">Trouvé Sur</string>
     <string name="inventory_item_recipe">Recette</string>
+
+    <!-- Craft Dialog Fragment -->
+    <string name="craft_dialog_fragment_not_enough_resources">Pas assez de ressources, vous avez besoin de %1$s.
+    </string>
+    <string name="craft_dialog_fragment_request">Utiliser %1$s pour fabriquer %2$s?</string>
+    <string name="craft_dialog_fragment_ok_response">Ok</string>
+    <string name="craft_dialog_fragment_yes_response">Oui</string>
+    <string name="craft_dialog_fragment_no_response">Non</string>
+
+    <!-- Bonus -->
+    <string name="bonus_title">Equipez un bonus</string>
+    <string name="bonus_effect">Effet</string>
+    <string name="bonus_quantity">Quantité Disponible</string>
+    <string name="bonus_damage_effect">Dégat +%1$s</string>
 </resources>

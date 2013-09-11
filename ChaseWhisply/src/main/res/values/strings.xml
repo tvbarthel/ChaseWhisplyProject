@@ -22,6 +22,7 @@
     <string name="home_sign_out_success">You\'ve successfully signed out.</string>
     <string name="home_internet_unavailable">Please connect to the Internet.</string>
     <string name="home_profile">Profile</string>
+    <string name="home_device_not_compatible">Sorry, you device seems to be not compatible.</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag: %1$d</string>
@@ -71,14 +72,14 @@
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>
-    <string name="about_version_detail">version Beta.2.2</string>
+    <string name="about_version_detail">version Beta.2.3</string>
     <string name="about_developer_card_title">Developers</string>
     <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
     <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
     <string name="about_thanks_section">Special thanks to…</string>
     <string name="about_thanks_tkeunebr">Thomas Keunebroek, for his early day support and precious advice.</string>
     <string name="about_thanks_beta_testers">All the beta testers, especially J. Morgan, M. Nasato, T. Lin Aung, M.
-        Coulon, C. Cuadra, A. Peng, J. Bastien, DARKSULLI, and M. Bet.
+        Coulon, C. Morris,  C. Cuadra, A. Peng, J. Bastien, DARKSULLI, M. Bet, BMX22C, J. Nye, and Y. Ritter.
     </string>
     <string name="about_license_section">License</string>
     <string name="about_license_title">Licensed under the Beerware License</string>
@@ -220,5 +221,18 @@
     <string name="inventory_item_quantity">Quantity</string>
     <string name="inventory_item_dropped_by">Dropped By</string>
     <string name="inventory_item_recipe">Recipe</string>
+
+    <!-- Craft Dialog Fragment -->
+    <string name="craft_dialog_fragment_not_enough_resources">Not enough resources, you need %1$s.</string>
+    <string name="craft_dialog_fragment_request">Use %1$s to craft %2$s?</string>
+    <string name="craft_dialog_fragment_ok_response">Ok</string>
+    <string name="craft_dialog_fragment_yes_response">Yes</string>
+    <string name="craft_dialog_fragment_no_response">No</string>
+
+    <!-- Bonus -->
+    <string name="bonus_title">Equip a bonus</string>
+    <string name="bonus_effect">Effect</string>
+    <string name="bonus_quantity">Quantity Available</string>
+    <string name="bonus_damage_effect">Damage +%1$s</string>
 
 </resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="@dimen/default_padding">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_view_grey"
+        android:text="@string/bonus_title"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_half_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bonus_list_view"
+        android:layout_gravity="center"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/textView"
+        android:layout_above="@+id/bonus_start"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+    <Button
+        android:id="@+id/bonus_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_play"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:text="@string/home_play"
+        android:textColor="@color/white"
+        android:textSize="@dimen/home_text_size"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+</RelativeLayout>

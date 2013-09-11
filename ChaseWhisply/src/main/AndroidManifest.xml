@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.tvbarthel.games.chasewhisply"
-    android:versionCode="12"
-    android:versionName="b.2.2">
+    android:versionCode="14"
+    android:versionName="b.2.3">
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -10,6 +10,14 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.compass"
+        android:required="true" />
 
     <uses-feature
         android:name="android.hardware.camera.front"
@@ -35,10 +43,8 @@
         <activity android:name=".ProfileActivity" />
 
         <activity
-            android:configChanges="orientation|keyboardHidden|screenSize|locale"
             android:name=".GameActivity"
-            android:parentActivityName=".HomeActivity"
-            android:screenOrientation="landscape" />
+            android:parentActivityName=".HomeActivity" />
         <activity android:name=".TutoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

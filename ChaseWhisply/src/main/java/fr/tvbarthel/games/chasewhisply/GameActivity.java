@@ -17,9 +17,9 @@ import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
 import fr.tvbarthel.games.chasewhisply.ui.GameView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 
-public class GameActivity extends ARActivity implements GameEngine.IGameEngine,
-		View.OnClickListener {
+public class GameActivity extends ARActivity implements GameEngine.IGameEngine, View.OnClickListener {
 
+	private static final String BUNDLE_GAME_INFORMATION = "GameActivity.Bundle.GameInformation";
 	public static final String EXTRA_GAME_MODE = "ExtraGameModeFromChooser";
 	private final ViewGroup.LayoutParams mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
 			, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -32,13 +32,21 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		final Intent intent = getIntent();
-		if (intent == null || !intent.hasExtra(EXTRA_GAME_MODE)) {
-			finish();
-		} else {
+		if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_GAME_INFORMATION)) {
+			mGameInformation = savedInstanceState.getParcelable(BUNDLE_GAME_INFORMATION);
+			mGameMode = mGameInformation.getGameMode();
+		} else if (intent != null && intent.hasExtra(EXTRA_GAME_MODE)) {
 			mGameMode = intent.getParcelableExtra(EXTRA_GAME_MODE);
+		} else {
+			finish();
 		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putParcelable(BUNDLE_GAME_INFORMATION, mGameInformation);
 	}
 
 	@Override

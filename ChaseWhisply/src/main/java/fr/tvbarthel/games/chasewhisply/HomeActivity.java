@@ -21,13 +21,14 @@ import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.BonusFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener,
-		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener {
+		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener, BonusFragment.Listener {
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
@@ -64,6 +65,10 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 								GameScoreFragment.FRAGMENT_TAG)
 						.addToBackStack(null).commitAllowingStateLoss();
 			}
+		}
+
+		if (ARActivity.RESULT_SENSOR_NOT_SUPPORTED == response) {
+			makeToast(getString(R.string.home_device_not_compatible) + " (rotation sensor)");
 		}
 	}
 
@@ -221,6 +226,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			final int score = gameInformation.getCurrentScore();
 			final GameMode gameMode = gameInformation.getGameMode();
 			final Weapon weapon = gameInformation.getWeapon();
+			final int numberOfLoots = gameInformation.getNumberOfLoots();
 			gamesClient.submitScore(getResources().getString(gameMode.getLeaderboardStringId()), score);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_soldier), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_corporal), 1);
@@ -229,6 +235,17 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_pacifist));
 			} else if (!weapon.hasRunOutOfAmmo()) {
 				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_thrifty));
+			}
+			if (numberOfLoots >= 5) {
+				gamesClient.unlockAchievement(getString(R.string.achievement_novice_looter));
+			}
+
+			if (numberOfLoots >= 10) {
+				gamesClient.unlockAchievement(getString(R.string.achievement_trained_looter));
+			}
+
+			if (numberOfLoots >= 15) {
+				gamesClient.unlockAchievement(getString(R.string.achievement_expert_looter));
 			}
 		}
 	}
@@ -249,7 +266,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onLevelChosen(GameModeView g) {
-		startNewGame(g.getModel(), REQUEST_GAME_ACTIVITY_FRESH_START);
+		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+				BonusFragment.newInstance(g.getModel())).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	public void startNewGame(GameMode gameMode, int requestCode) {
@@ -281,6 +299,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
+	@Override
+	public void onGameStartRequest(GameMode gameMode) {
+		startNewGame(gameMode, REQUEST_GAME_ACTIVITY_FRESH_START);
+	}
+
 	public static class SignOutConfirmDialogFragment extends DialogFragment {
 		public SignOutConfirmDialogFragment() {
 		}
@@ -309,4 +332,5 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 					.create();
 		}
 	}
+
 }
