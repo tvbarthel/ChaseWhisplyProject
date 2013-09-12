@@ -53,6 +53,7 @@
     <string name="game_mode_time_limited_level_3">Tuez le plus de fantômes possibles en 90 secondes.</string>
     <string name="game_mode_target_limited">Tuez tous les fantômes le plus vite possible.</string>
     <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps supplémentaire.</string>
+    <string name="game_mode_survival_required_message">Survie : Vous devez être level 2 pour accéder à ce mode de jeu.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Balles tirées</string>

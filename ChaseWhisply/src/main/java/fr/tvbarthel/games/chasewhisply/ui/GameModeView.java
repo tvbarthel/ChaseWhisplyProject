@@ -1,6 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.ui;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -69,6 +70,11 @@ public class GameModeView extends RelativeLayout {
 	}
 
 	public void setGameModeEnabled(boolean isAllowed) {
-		mGameModeImage.setEnabled(isAllowed);
+		this.setEnabled(isAllowed);
+		this.setClickable(isAllowed);
+		if (!isAllowed) {
+			mGameModeDescription.setText(mModel.getRequiredMessage());
+			this.setBackgroundResource(R.drawable.card_shadow_disable);
+		}
 	}
 }

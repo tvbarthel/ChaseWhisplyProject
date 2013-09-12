@@ -10,7 +10,13 @@ public class GameModeFactory {
 	public static final int GAME_TYPE_SURVIVAL = 0x00000003;
 
 	public static GameMode createRemainingTimeGame(int level) {
-		final GameMode g = new GameMode();
+		final GameMode g = new GameMode() {
+			@Override
+			public boolean isAvailable(PlayerProfile p) {
+				//always available
+				return true;
+			}
+		};
 		g.setType(GAME_TYPE_REMAINING_TIME);
 		g.setLevel(level);
 		switch (level) {
@@ -43,7 +49,13 @@ public class GameModeFactory {
 	}
 
 	public static GameMode createLimitedTargetsGame(int level) {
-		final GameMode g = new GameMode();
+		final GameMode g = new GameMode() {
+			@Override
+			public boolean isAvailable(PlayerProfile p) {
+				//always available
+				return true;
+			}
+		};
 		g.setType(GAME_TYPE_LIMITED_TARGETS);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_target_limited);
@@ -52,13 +64,21 @@ public class GameModeFactory {
 	}
 
 	public static GameMode createSurvivalGame(int level) {
-		final GameMode g = new GameMode();
+		final GameMode g = new GameMode() {
+			@Override
+			public boolean isAvailable(PlayerProfile p) {
+				//only available if player level > required level
+				return p.getLevelInformation().getLevel() >= this.getRequiredLevel();
+			}
+		};
 		g.setType(GAME_TYPE_SURVIVAL);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_survival);
 		g.setImage(R.drawable.ic_icon_time_based_game_inf);
 		g.setLeaderboardStringId(R.string.leaderboard_survival);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_survival_description);
+		g.setRequiredLevel(2);
+		g.setRequiredMessage(R.string.game_mode_survival_required_message);
 		return g;
 	}
 }

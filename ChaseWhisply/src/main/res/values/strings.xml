@@ -48,6 +48,7 @@
     <string name="game_mode_time_limited_level_3">Kill as many ghosts as you can in 90 seconds.</string>
     <string name="game_mode_target_limited">Kill all ghosts as fast as you can!</string>
     <string name="game_mode_survival">Survival: each kill gives additional time.</string>
+    <string name="game_mode_survival_required_message">Survival : Level 2 is required to access this game mode.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>

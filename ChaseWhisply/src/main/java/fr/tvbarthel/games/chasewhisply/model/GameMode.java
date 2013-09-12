@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
 
-public class GameMode implements Parcelable {
+public abstract class GameMode implements Parcelable {
 
 	private int mType;
 	private int mLevel;
@@ -14,6 +14,8 @@ public class GameMode implements Parcelable {
 	private int mLeaderboardStringId;
 	private int mLeaderboardDescriptionStringId;
 	private Bonus mBonus;
+	private int mRequiredLevel;
+	private int mRequiredMessage;
 
 	public GameMode() {
 		mType = -1;
@@ -23,6 +25,9 @@ public class GameMode implements Parcelable {
 		mLeaderboardStringId = -1;
 		mLeaderboardDescriptionStringId = -1;
 		mBonus = null;
+		mRequiredLevel = -1;
+		mRequiredMessage = -1;
+
 	}
 
 	protected GameMode(Parcel in) {
@@ -43,6 +48,8 @@ public class GameMode implements Parcelable {
 		out.writeInt(mLeaderboardStringId);
 		out.writeInt(mLeaderboardDescriptionStringId);
 		out.writeParcelable(mBonus, i);
+		out.writeInt(mRequiredLevel);
+		out.writeInt(mRequiredMessage);
 	}
 
 	/**
@@ -58,11 +65,18 @@ public class GameMode implements Parcelable {
 		mLeaderboardStringId = in.readInt();
 		mLeaderboardDescriptionStringId = in.readInt();
 		mBonus = in.readParcelable(Bonus.class.getClassLoader());
+		mRequiredLevel = in.readInt();
+		mRequiredMessage = in.readInt();
 	}
 
 	public static final Parcelable.Creator<GameMode> CREATOR = new Parcelable.Creator<GameMode>() {
 		public GameMode createFromParcel(Parcel in) {
-			return new GameMode(in);
+			return new GameMode(in) {
+				@Override
+				public boolean isAvailable(PlayerProfile p) {
+					return true;
+				}
+			};
 		}
 
 		public GameMode[] newArray(int size) {
@@ -125,6 +139,50 @@ public class GameMode implements Parcelable {
 	public Bonus getBonus() {
 		return mBonus;
 	}
+
+	/**
+	 * set the required level to play this game mode
+	 *
+	 * @param level
+	 */
+	public void setRequiredLevel(int level) {
+		mRequiredLevel = level;
+	}
+
+	/**
+	 * get the required level to play this game mode
+	 *
+	 * @return
+	 */
+	public int getRequiredLevel() {
+		return mRequiredLevel;
+	}
+
+	/**
+	 * set message displayed to the user when he can't access to this game mode
+	 *
+	 * @param message
+	 */
+	public void setRequiredMessage(int message) {
+		mRequiredMessage = message;
+	}
+
+	/**
+	 * get message displaed to the user when he can't access to this game mode
+	 *
+	 * @return
+	 */
+	public int getRequiredMessage() {
+		return mRequiredMessage;
+	}
+
+	/**
+	 * define own rules for availability
+	 *
+	 * @param p player profile
+	 * @return true if available
+	 */
+	abstract public boolean isAvailable(PlayerProfile p);
 
 
 }
