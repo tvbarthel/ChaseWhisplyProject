@@ -37,7 +37,11 @@ public class Recipe implements Parcelable {
 		if (mIngredientsAndQuantities.size() != 0) {
 			string = "";
 			for (Map.Entry<InventoryItemInformation, Integer> entry : mIngredientsAndQuantities.entrySet()) {
-				string += String.valueOf(entry.getValue()) + "x " + context.getString(entry.getKey().getTitleResourceId()) + ", ";
+				final int quantity = entry.getValue();
+				final int titleResourceId = entry.getKey().getTitleResourceId();
+				string += String.valueOf(quantity) + "x " + context.getResources().getQuantityString(titleResourceId, quantity
+				) + ", ";
+
 			}
 			string = string.substring(0, string.length() - 2);
 		}

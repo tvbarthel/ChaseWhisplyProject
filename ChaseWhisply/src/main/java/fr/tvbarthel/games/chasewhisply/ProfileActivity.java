@@ -103,7 +103,9 @@ public class ProfileActivity extends FragmentActivity implements ProfileFragment
 		} else {
 			String missingResourcesString = new String();
 			for (Map.Entry<Integer, Integer> entry : missingResources.entrySet()) {
-				missingResourcesString += String.valueOf(entry.getValue()) + "x " + getString(entry.getKey()) + ", ";
+				final int quantityMissing = entry.getValue();
+				final int nameResourceId = entry.getKey();
+				missingResourcesString += String.valueOf(quantityMissing) + "x " + getResources().getQuantityString(nameResourceId, quantityMissing) + ", ";
 			}
 			missingResourcesString = missingResourcesString.substring(0, missingResourcesString.length() - 2);
 			CraftNotEnoughResourcesDialogFragment.newInstance(missingResourcesString).show(getSupportFragmentManager(), null);

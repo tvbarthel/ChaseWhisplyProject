@@ -40,7 +40,7 @@ public class CraftRequestDialogFragment extends DialogFragment {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setMessage(String.format(getString(R.string.craft_dialog_fragment_request),
 				mInventoryItemEntry.getRecipe().toString(getActivity()),
-				getString(mInventoryItemEntry.getTitleResourceId())));
+				getResources().getQuantityString(mInventoryItemEntry.getTitleResourceId(), 1)));
 		builder.setPositiveButton(R.string.craft_dialog_fragment_yes_response, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

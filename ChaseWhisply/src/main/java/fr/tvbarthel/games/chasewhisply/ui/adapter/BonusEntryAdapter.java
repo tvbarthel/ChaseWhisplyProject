@@ -53,7 +53,7 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 			equippedCheckBox.setEnabled(false);
 		}
 
-		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(currentBonusEntry.getTitleResourceId());
+		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(mContext.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
 		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText(String.valueOf(currentBonusEntry.getQuantity()));
 
 		if (bonus instanceof BonusDamage) {

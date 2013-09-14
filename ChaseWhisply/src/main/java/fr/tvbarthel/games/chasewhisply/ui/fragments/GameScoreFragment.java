@@ -131,7 +131,9 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			String stringLoot = "";
 			for (Map.Entry<Integer, Integer> entry : loots.entrySet()) {
 				InventoryItemEntry inventoryItemEntry = InventoryItemEntryFactory.create(entry.getKey(), entry.getValue());
-				stringLoot += String.valueOf(inventoryItemEntry.getQuantityAvailable()) + "x " + getString(inventoryItemEntry.getTitleResourceId()) + "\n";
+				final long quantityDropped = inventoryItemEntry.getQuantityAvailable();
+				final int titleResourceId = inventoryItemEntry.getTitleResourceId();
+				stringLoot += String.valueOf(quantityDropped) + "x " + getResources().getQuantityString(titleResourceId, (int) quantityDropped) + "\n";
 			}
 			stringLoot = stringLoot.substring(0, stringLoot.length() - 1);
 			((TextView) v.findViewById(R.id.score_loot_list)).setText(stringLoot);

@@ -33,9 +33,13 @@ public class InventoryItemEntryAdapter extends ArrayAdapter<InventoryItemEntry> 
 		final InventoryItemEntry currentInventoryItemEntry = mInventoryItemyEntries.get(position);
 		final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.row_inventory_item_entry, parent, false);
-		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_title)).setText(currentInventoryItemEntry.getTitleResourceId());
-		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_description)).setText(currentInventoryItemEntry.getDescriptionResourceId());
-		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_quantity)).setText(String.valueOf(currentInventoryItemEntry.getQuantityAvailable()));
+
+		final long quantityAvailable = currentInventoryItemEntry.getQuantityAvailable();
+		final int titleResourceId = currentInventoryItemEntry.getTitleResourceId();
+		final int descriptionResourceId = currentInventoryItemEntry.getDescriptionResourceId();
+		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_title)).setText(mContext.getResources().getQuantityText(titleResourceId, 1));
+		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_description)).setText(descriptionResourceId);
+		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_quantity)).setText(String.valueOf(quantityAvailable));
 
 		String stringDroppedBy = mContext.getString(R.string.inventory_item_can_t_be_dropped);
 		final HashMap<Integer, Integer> lootsAndPercents = currentInventoryItemEntry.getDroppedBy().getMonstersAndPercents();
