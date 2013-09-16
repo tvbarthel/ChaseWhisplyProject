@@ -193,27 +193,45 @@
     <string name="inventory_title">Inventory</string>
     <string name="inventory_item_default_title">Item\'s Title</string>
     <string name="inventory_item_default_description">Item\'s Description</string>
-    <string name="inventory_item_coin_title">Old Coin</string>
+    <plurals name="inventory_item_coin_title">
+        <item quantity="one">Old Coin</item>
+        <item quantity="other">Old Coins</item>
+    </plurals>
     <string name="inventory_item_coin_description">This coin is so old that you have a terrible time knowing
         if it is made of gold or not. It\'s not very heavy so you keep it in your bag anyway.
     </string>
-    <string name="inventory_item_broken_helmet_horn_title">Broken Helmet Horn</string>
+    <plurals name="inventory_item_broken_helmet_horn_title">
+        <item quantity="one">Broken Helmet Horn</item>
+        <item quantity="other">Broken Helmet Horns</item>
+    </plurals>
     <string name="inventory_item_broken_helmet_horn_description">A small piece of steel that comes from the helmet of a
         ghost. It could be used to forge useful items made of steel.
     </string>
-    <string name="inventory_item_baby_drool_title">Baby Drool</string>
+    <plurals name="inventory_item_baby_drool_title">
+        <item quantity="one">Baby Drool</item>
+        <item quantity="other">Baby Drools</item>
+    </plurals>
     <string name="inventory_item_baby_drool_description">Why on the earth should you keep a baby drool in an FPS
         inventory?!?
     </string>
-    <string name="inventory_item_king_crown_title">King\'s Crown</string>
+    <plurals name="inventory_item_king_crown_title">
+        <item quantity="one">King\'s Crown</item>
+        <item quantity="other">King\'s Crowns</item>
+    </plurals>
     <string name="inventory_item_king_crown_description">A beautiful and sought-after jewelry. You could definitely melt
         it to extract a huge amount of gold.
     </string>
-    <string name="inventory_item_steel_bullet_title">Steel Bullet</string>
+    <plurals name="inventory_item_steel_bullet_title">
+        <item quantity="one">Steel Bullet</item>
+        <item quantity="other">Steel Bullets</item>
+    </plurals>
     <string name="inventory_item_steel_bullet_description">When you held a steel bullet in your hand, you can feel the
         strength of this heavy bullet. Using steel bullets grants you a +1 bonus damage.
     </string>
-    <string name="inventory_item_gold_bullet_title">Gold Bullet</string>
+    <plurals name="inventory_item_gold_bullet_title">
+        <item quantity="one">Gold Bullet</item>
+        <item quantity="other">Gold Bullets</item>
+    </plurals>
     <string name="inventory_item_gold_bullet_description">A bullet made of gold is incredibly deadly against ghosts.
         Using steel bullets grants you a +3 bonus damage.
     </string>

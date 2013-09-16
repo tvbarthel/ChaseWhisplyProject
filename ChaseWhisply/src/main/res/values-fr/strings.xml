@@ -200,31 +200,49 @@
     <string name="inventory_title">Inventaire</string>
     <string name="inventory_item_default_title">Titre de l\'item</string>
     <string name="inventory_item_default_description">Description de l\'item</string>
-    <string name="inventory_item_coin_title">Vieille Pièce</string>
+    <plurals name="inventory_item_coin_title">
+        <item quantity="one">Vieille Pièce</item>
+        <item quantity="other">Vieilles Pièces</item>
+    </plurals>
     <string name="inventory_item_coin_description">Cette pièce est tellement vieille que vous avez beaucoup de mal
         à savoir si elle est faite d\'or ou non. Elle n\'est pas très lourde, vous décidez donc de la garder dans votre
         sac.
     </string>
-    <string name="inventory_item_broken_helmet_horn_title">Corne de Casque Cassée</string>
+    <plurals name="inventory_item_broken_helmet_horn_title">
+        <item quantity="one">Corne de Casque Cassée</item>
+        <item quantity="other">Cornes de Casque Cassées</item>
+    </plurals>
     <string name="inventory_item_broken_helmet_horn_description">Une petite pièce d\'acier qui provient du casque d\'un
         fantôme.
         Elle peut être utilisée pour forger d\'utiles objets en acier.
     </string>
-    <string name="inventory_item_baby_drool_title">Bave de bébé</string>
+    <plurals name="inventory_item_baby_drool_title">
+        <item quantity="one">Bave de bébé</item>
+        <item quantity="other">Baves de bébé</item>
+    </plurals>
     <string name="inventory_item_baby_drool_description">Pour quelle absurde raison devriez vous gardez de la bave de
         bébé dans un FPS ?!?
     </string>
-    <string name="inventory_item_king_crown_title">Couronne du roi</string>
+    <plurals name="inventory_item_king_crown_title">
+        <item quantity="one">Couronne du roi</item>
+        <item quantity="other">Couronnes du roi</item>
+    </plurals>
     <string name="inventory_item_king_crown_description">Un magnifique et recherché bijoux. Vous pouvez sûrement la
         faire fondre
         pour en extraire une grande quantité d\'or !
     </string>
-    <string name="inventory_item_steel_bullet_title">Balle en acier</string>
+    <plurals name="inventory_item_steel_bullet_title">
+        <item quantity="one">Balle en acier</item>
+        <item quantity="other">Balles en acier</item>
+    </plurals>
     <string name="inventory_item_steel_bullet_description">Quand vous tenez cette balle dans votre main, vous pouvez
         sentir
         la force de ce lourd projectile. Utiliser des balles en acier vous donne un bonus de +1 en dégats.
     </string>
-    <string name="inventory_item_gold_bullet_title">Balle en or</string>
+    <plurals name="inventory_item_gold_bullet_title">
+        <item quantity="one">Balle en or</item>
+        <item quantity="other">Balles en or</item>
+    </plurals>
     <string name="inventory_item_gold_bullet_description">Une balle en or est extrèmement meurtrière pour les fantômes.
         Utiliser des balles en or vous donne un bonus de +3 en dégats.
     </string>
