@@ -13,6 +13,7 @@ import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 public class GameInformation implements Parcelable {
 	protected long mTime;
 	protected long mSpawningTime;
+	protected long mTickingTime;
 	protected Weapon mWeapon;
 	protected int mMaxTargetOnTheField;
 	protected TargetableItem mCurrentTarget;
@@ -72,6 +73,7 @@ public class GameInformation implements Parcelable {
 		mScoreInformation = in.readParcelable(ScoreInformation.class.getClassLoader());
 		mTime = in.readLong();
 		mSpawningTime = in.readLong();
+		mTickingTime = in.readLong();
 		mWeapon = in.readParcelable(Weapon.class.getClassLoader());
 		mMaxTargetOnTheField = in.readInt();
 		mCurrentTarget = in.readParcelable(TargetableItem.class.getClassLoader());
@@ -91,6 +93,7 @@ public class GameInformation implements Parcelable {
 		out.writeParcelable(mScoreInformation, i);
 		out.writeLong(mTime);
 		out.writeLong(mSpawningTime);
+		out.writeLong(mTickingTime);
 		out.writeParcelable(mWeapon, i);
 		out.writeInt(mMaxTargetOnTheField);
 		out.writeParcelable(mCurrentTarget, i);
@@ -134,6 +137,14 @@ public class GameInformation implements Parcelable {
 
 	public void setSpawningTime(long spawningTime) {
 		mSpawningTime = spawningTime;
+	}
+
+	public void setTickingTime(long tickingTime) {
+		mTickingTime = tickingTime;
+	}
+
+	public long getTickingTime() {
+		return mTickingTime;
 	}
 
 	public void addTargetableItem(TargetableItem item) {
@@ -336,33 +347,6 @@ public class GameInformation implements Parcelable {
 	}
 
 	public void setGameMode(GameMode gameMode) {
-		final int gameType = gameMode.getType();
-		final int gameLevel = gameMode.getLevel();
-		switch (gameType) {
-			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
-				switch (gameLevel) {
-					case 1:
-						this.setTime(30000);
-						break;
-
-					case 2:
-						this.setTime(60000);
-						break;
-
-					case 3:
-						this.setTime(90000);
-						break;
-
-				}
-				break;
-			case GameModeFactory.GAME_TYPE_SURVIVAL:
-				switch (gameLevel) {
-					case 1:
-						this.setTime(30000);
-						break;
-				}
-				break;
-		}
 		gameMode.getBonus().apply(this);
 		mGameMode = gameMode;
 	}

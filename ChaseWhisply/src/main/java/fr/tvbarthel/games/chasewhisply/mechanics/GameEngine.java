@@ -1,31 +1,38 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
+
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.ReloadingRoutine;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.SpawningRoutine;
+import fr.tvbarthel.games.chasewhisply.mechanics.routine.TickerRoutine;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+import fr.tvbarthel.games.chasewhisply.model.GameBehavior;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
-abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningRoutine.ISpawningRoutine {
+public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningRoutine.ISpawningRoutine, TickerRoutine.ITickerRoutine {
 	public static final int STATE_STOP = 0x00000001;
 	public static final int STATE_RUNNING = 0x00000002;
 	public static final int STATE_PAUSED = 0x00000003;
 
 	protected IGameEngine mInterface;
 	protected GameInformation mGameInformation;
+	protected GameBehavior mGameBehavior;
 	protected ReloadingRoutine mReloadingRoutine;
 	protected SpawningRoutine mSpawningRoutine;
+	protected TickerRoutine mTickerRoutine;
 	protected int mCurrentState;
+	private int mXRange;
+	private int mYRange;
 
-	protected abstract void onKill();
 
-
-	public GameEngine(IGameEngine iGameEngine, GameInformation gameInformation) {
+	public GameEngine(IGameEngine iGameEngine, GameBehavior gameBehavior) {
 		mInterface = iGameEngine;
-		mGameInformation = gameInformation;
+		mGameBehavior = gameBehavior;
+		mGameInformation = mGameBehavior.getGameInformation();
 		mReloadingRoutine = new ReloadingRoutine(mGameInformation.getWeapon().getReloadingTime(), this);
 		mSpawningRoutine = new SpawningRoutine(mGameInformation.getSpawningTime(), this);
+		mTickerRoutine = new TickerRoutine(mGameInformation.getTickingTime(), this);
 		mCurrentState = STATE_STOP;
 	}
 
@@ -33,10 +40,13 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 	 * start the game, should be called only at the beginning once.
 	 */
 	public void startGame() {
+		mGameBehavior.init();
 		mReloadingRoutine.startRoutine();
 		mSpawningRoutine.startRoutine();
+		mTickerRoutine.startRoutine();
 		mCurrentState = STATE_RUNNING;
-		//TODO
+		mXRange = mGameInformation.getSceneWidth() / 2 + mGameInformation.getSceneWidth() / 10;
+		mYRange = mGameInformation.getSceneHeight() / 2 + mGameInformation.getSceneHeight() / 10;
 	}
 
 	/**
@@ -45,8 +55,8 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 	public void pauseGame() {
 		mReloadingRoutine.stopRoutine();
 		mSpawningRoutine.stopRoutine();
+		mTickerRoutine.stopRoutine();
 		mCurrentState = STATE_PAUSED;
-		//TODO
 	}
 
 	/**
@@ -55,8 +65,8 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 	public void resumeGame() {
 		mReloadingRoutine.startRoutine();
 		mSpawningRoutine.startRoutine();
+		mTickerRoutine.startRoutine();
 		mCurrentState = STATE_RUNNING;
-		//TODO
 	}
 
 	/**
@@ -65,8 +75,9 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 	public void stopGame() {
 		mReloadingRoutine.stopRoutine();
 		mSpawningRoutine.stopRoutine();
+		mTickerRoutine.stopRoutine();
 		mCurrentState = STATE_STOP;
-		//TODO
+		mInterface.onGameEngineStop();
 	}
 
 	@Override
@@ -76,6 +87,15 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 
 	@Override
 	public void spawn() {
+		mGameBehavior.spawn(mXRange, mYRange);
+	}
+
+	@Override
+	public void onTick(long tickingTime) {
+		mGameBehavior.tick(tickingTime);
+		if (mGameBehavior.isCompleted()) {
+			stopGame();
+		}
 	}
 
 	/**
@@ -106,7 +126,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 					mGameInformation.increaseScore(10 * currentTarget.getBasePoint() + 10 * mGameInformation.getCurrentCombo());
 					mGameInformation.earnExp(currentTarget.getExpPoint());
 					mInterface.onTargetKilled(currentTarget);
-					onKill();
+					mGameBehavior.targetKilled();
 				}
 			}
 		}
@@ -137,6 +157,7 @@ abstract public class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 
 	public interface IGameEngine {
 		abstract public void onGameEngineStop();
+
 		abstract public void onTargetKilled(TargetableItem targetKilled);
 	}
 

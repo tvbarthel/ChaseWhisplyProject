@@ -6,10 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
-import fr.tvbarthel.games.chasewhisply.mechanics.SurvivalGameEngine;
-import fr.tvbarthel.games.chasewhisply.mechanics.TimeLimitedGameEngine;
+import fr.tvbarthel.games.chasewhisply.model.GameBehavior;
+import fr.tvbarthel.games.chasewhisply.model.GameBehaviorFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
-import fr.tvbarthel.games.chasewhisply.model.GameInformationFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
@@ -19,10 +18,11 @@ import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 
 public class GameActivity extends ARActivity implements GameEngine.IGameEngine, View.OnClickListener {
 
-	private static final String BUNDLE_GAME_INFORMATION = "GameActivity.Bundle.GameInformation";
+	private static final String BUNDLE_GAME_BEHAVIOR = "GameActivity.Bundle.GameBehavior";
 	public static final String EXTRA_GAME_MODE = "ExtraGameModeFromChooser";
 	private final ViewGroup.LayoutParams mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
 			, ViewGroup.LayoutParams.WRAP_CONTENT);
+	private GameBehavior mGameBehavior;
 	private GameInformation mGameInformation;
 	private GameEngine mGameEngine;
 	private GameView mGameView;
@@ -33,9 +33,10 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		final Intent intent = getIntent();
-		if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_GAME_INFORMATION)) {
-			mGameInformation = savedInstanceState.getParcelable(BUNDLE_GAME_INFORMATION);
-			mGameMode = mGameInformation.getGameMode();
+		if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_GAME_BEHAVIOR)) {
+			mGameBehavior = savedInstanceState.getParcelable(BUNDLE_GAME_BEHAVIOR);
+			mGameInformation = mGameBehavior.getGameInformation();
+			mGameMode = mGameBehavior.getGameInformation().getGameMode();
 		} else if (intent != null && intent.hasExtra(EXTRA_GAME_MODE)) {
 			mGameMode = intent.getParcelableExtra(EXTRA_GAME_MODE);
 		} else {
@@ -46,7 +47,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putParcelable(BUNDLE_GAME_INFORMATION, mGameInformation);
+		outState.putParcelable(BUNDLE_GAME_BEHAVIOR, mGameBehavior);
 	}
 
 	@Override
@@ -67,9 +68,22 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 
 	@Override
 	void onCameraReady(float horizontal, float vertical) {
-		if (mGameInformation == null) {
-			mGameInformation = GameInformationFactory.createEmptyWorld(
-					horizontal, vertical, mGameMode);
+		//if no gameBehavior choose the one corresponding to the right gameMode
+		if (mGameBehavior == null) {
+			switch (mGameMode.getType()) {
+				case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+					mGameBehavior = GameBehaviorFactory.createRemainingTimeAllMobsGame(
+							mGameMode.getLevel(), horizontal, vertical, mGameMode);
+					break;
+				case GameModeFactory.GAME_TYPE_SURVIVAL:
+					mGameBehavior = GameBehaviorFactory.createSurvivalGame(
+							horizontal, vertical, mGameMode);
+					break;
+				default:
+					finish();
+					break;
+			}
+			mGameInformation = mGameBehavior.getGameInformation();
 		}
 
 		//instantiate GameView with GameModel
@@ -84,26 +98,15 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 		mGameView.setAnimationLayer(animationLayer);
 
 		//instantiate game engine
-		switch (mGameMode.getType()) {
-			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
-				mGameEngine = new TimeLimitedGameEngine(GameActivity.this, mGameInformation);
-				mGameEngine.startGame();
-				break;
-			case GameModeFactory.GAME_TYPE_SURVIVAL:
-				mGameEngine = new SurvivalGameEngine(GameActivity.this, mGameInformation, 1000);
-				mGameEngine.startGame();
-				break;
-			default:
-				finish();
-				break;
-		}
+		mGameEngine = new GameEngine(GameActivity.this, mGameBehavior);
+		mGameEngine.startGame();
 
 	}
 
 	@Override
 	public void onGameEngineStop() {
 		final Intent scoreIntent = new Intent(this, HomeActivity.class);
-		scoreIntent.putExtra(GameScoreFragment.EXTRA_GAME_INFORMATION, mGameInformation);
+		scoreIntent.putExtra(GameScoreFragment.EXTRA_GAME_INFORMATION, mGameBehavior.getGameInformation());
 		setResult(RESULT_OK, scoreIntent);
 		finish();
 	}

@@ -77,7 +77,7 @@ public class GameModeFactory {
 		g.setImage(R.drawable.ic_icon_time_based_game_inf);
 		g.setLeaderboardStringId(R.string.leaderboard_survival);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_survival_description);
-		g.setRequiredLevel(2);
+		g.setRequiredLevel(0);
 		g.setRequiredMessage(R.string.game_mode_survival_required_message);
 		return g;
 	}
