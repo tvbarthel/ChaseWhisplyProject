@@ -25,12 +25,16 @@ public class BestiaryEntryAdapter extends ArrayAdapter<BestiaryEntry> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final BestiaryEntry currentBestiaryEntry = mBestiaryEntries[position];
 		final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(R.layout.row_bestiary_entry, parent, false);
-		((TextView) rowView.findViewById(R.id.row_bestiary_entry_title)).setText(currentBestiaryEntry.getTitleResourceId());
-		((ImageView) rowView.findViewById(R.id.row_bestiary_entry_image)).setImageResource(currentBestiaryEntry.getImageResourceId());
-		((TextView) rowView.findViewById(R.id.bestiary_health)).setText(currentBestiaryEntry.getHealth());
-		((TextView) rowView.findViewById(R.id.bestiary_point)).setText(currentBestiaryEntry.getPointValue());
-		((TextView) rowView.findViewById(R.id.bestiary_exp)).setText(currentBestiaryEntry.getExpValue());
+		View rowView = convertView;
+
+		if(rowView == null) {
+			rowView = inflater.inflate(R.layout.row_bestiary_entry, parent, false);
+			((TextView) rowView.findViewById(R.id.row_bestiary_entry_title)).setText(currentBestiaryEntry.getTitleResourceId());
+			((ImageView) rowView.findViewById(R.id.row_bestiary_entry_image)).setImageResource(currentBestiaryEntry.getImageResourceId());
+			((TextView) rowView.findViewById(R.id.bestiary_health)).setText(currentBestiaryEntry.getHealth());
+			((TextView) rowView.findViewById(R.id.bestiary_point)).setText(currentBestiaryEntry.getPointValue());
+			((TextView) rowView.findViewById(R.id.bestiary_exp)).setText(currentBestiaryEntry.getExpValue());
+		}
 
 		return rowView;
 

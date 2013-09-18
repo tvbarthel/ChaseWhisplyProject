@@ -16,11 +16,14 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bestiary_list_view"
-        android:layout_gravity="center"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/activity_vertical_margin" />
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/bestiary_grid_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:columnWidth="@dimen/bestiary_row_entry_width"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="@dimen/grid_view_spacing"
+        android:horizontalSpacing="@dimen/grid_view_spacing"
+        android:stretchMode="columnWidth"
+        android:gravity="center" />
 </LinearLayout>

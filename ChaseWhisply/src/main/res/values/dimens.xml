@@ -10,4 +10,7 @@
     <dimen name="tuto_fragment_padding">30dp</dimen>
     <dimen name="half_padding">8dp</dimen>
     <dimen name="home_text_size">21sp</dimen>
+    <dimen name="grid_view_spacing">16dp</dimen>
+    <dimen name="bestiary_row_entry_height">130dp</dimen>
+    <dimen name="bestiary_row_entry_width">260dp</dimen>
 </resources>
