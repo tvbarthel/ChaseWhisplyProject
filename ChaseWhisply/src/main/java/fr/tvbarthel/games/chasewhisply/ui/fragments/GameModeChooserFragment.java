@@ -75,6 +75,6 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
 
 	@Override
 	public void onGameModeSelected(GameModeView view) {
-		mListener.onLevelChosen((GameModeView) view);
+		mListener.onLevelChosen(view);
 	}
 }
