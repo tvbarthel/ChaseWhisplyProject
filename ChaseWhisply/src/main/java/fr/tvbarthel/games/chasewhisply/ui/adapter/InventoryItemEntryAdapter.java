@@ -46,7 +46,8 @@ public class InventoryItemEntryAdapter extends ArrayAdapter<InventoryItemEntry> 
 		if (lootsAndPercents.size() != 0) {
 			stringDroppedBy = "";
 			for (Map.Entry<Integer, Integer> entry : lootsAndPercents.entrySet()) {
-				stringDroppedBy += mContext.getString(entry.getKey()) + " (" + String.valueOf(entry.getValue()) + "%), ";
+				stringDroppedBy +=  mContext.getString(R.string.dropped_by_entry, mContext.getString(entry.getKey()), entry.getValue());
+				stringDroppedBy += " ";
 			}
 			stringDroppedBy = stringDroppedBy.substring(0, stringDroppedBy.length() - 2);
 		}

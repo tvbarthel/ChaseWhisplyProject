@@ -241,6 +241,7 @@
     <string name="inventory_item_dropped_by">Dropped By</string>
     <string name="inventory_item_recipe">Recipe</string>
     <string name="recipe_item_entry">%1$sx %2$s,</string>
+    <string name="dropped_by_entry">%1$s (%2$d%%),</string>
 
     <!-- Craft Dialog Fragment -->
     <string name="craft_dialog_fragment_not_enough_resources">Not enough resources, you need %1$s.</string>
