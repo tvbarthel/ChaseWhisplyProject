@@ -66,7 +66,12 @@ public class BonusDamage implements Bonus, BonusInventoryItemConsumer {
 	};
 
 	@Override
-	public void consume(PlayerProfile playerProfile) {
-		playerProfile.decreaseInventoryItemQuantity(mInventoryItemType, 1);
+	public Bonus consume(PlayerProfile playerProfile) {
+		final long remainingQuantity = playerProfile.decreaseInventoryItemQuantity(mInventoryItemType, 1);
+		if (remainingQuantity > 0)  {
+			return this;
+		}else {
+			return new Bonus.DummyBonus();
+		}
 	}
 }
