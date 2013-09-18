@@ -8,11 +8,13 @@ public class InventoryItemEntry implements Parcelable {
 	private DroppedByList mDroppedBy;
 	private Recipe mRecipe;
 	private long mQuantityAvailable;
+	private boolean mIsFrenchFeminineGender;
 
 	public InventoryItemEntry() {
 		mDroppedBy = null;
 		mRecipe = null;
 		mQuantityAvailable = 0;
+		mIsFrenchFeminineGender = false;
 	}
 
 	public InventoryItemEntry(Parcel in) {
@@ -22,6 +24,14 @@ public class InventoryItemEntry implements Parcelable {
 	/*
 		Setters and Getters
 	 */
+
+	public void setFrenchFeminineGender(boolean isFrenchFeminineGender) {
+		mIsFrenchFeminineGender = isFrenchFeminineGender;
+	}
+
+	public boolean isFrenchFeminineGender() {
+		return mIsFrenchFeminineGender;
+	}
 
 	public void setTitleResourceId(int titleResourceId) {
 		mInventoryItemInformation.setTitleResourceId(titleResourceId);

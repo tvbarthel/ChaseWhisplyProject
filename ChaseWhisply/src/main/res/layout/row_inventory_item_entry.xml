@@ -65,7 +65,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/text_view_grey"
         android:text="@string/inventory_item_dropped_by"
-        android:id="@+id/textView2" />
+        android:id="@+id/row_inventory_item_entry_dropped_by_label" />
 
     <TextView
         android:layout_width="match_parent"

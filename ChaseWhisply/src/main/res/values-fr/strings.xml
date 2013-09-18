@@ -250,6 +250,7 @@
     <string name="inventory_item_can_t_be_crafted">Ne peut-être construit</string>
     <string name="inventory_item_quantity">Quantité</string>
     <string name="inventory_item_dropped_by">Trouvé Sur</string>
+    <string name="inventory_item_dropped_by_feminine_gender">Trouvée Sur</string>
     <string name="inventory_item_recipe">Recette</string>
 
     <!-- Craft Dialog Fragment -->

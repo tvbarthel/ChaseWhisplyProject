@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import fr.tvbarthel.games.chasewhisply.R;
@@ -41,12 +42,16 @@ public class InventoryItemEntryAdapter extends ArrayAdapter<InventoryItemEntry> 
 		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_description)).setText(descriptionResourceId);
 		((TextView) rowView.findViewById(R.id.row_inventory_item_entry_quantity)).setText(String.valueOf(quantityAvailable));
 
+		if (Locale.getDefault().getLanguage().equals(Locale.FRENCH.getLanguage()) && currentInventoryItemEntry.isFrenchFeminineGender()) {
+			((TextView) rowView.findViewById(R.id.row_inventory_item_entry_dropped_by_label)).setText(R.string.inventory_item_dropped_by_feminine_gender);
+		}
+
 		String stringDroppedBy = mContext.getString(R.string.inventory_item_can_t_be_dropped);
 		final HashMap<Integer, Integer> lootsAndPercents = currentInventoryItemEntry.getDroppedBy().getMonstersAndPercents();
 		if (lootsAndPercents.size() != 0) {
 			stringDroppedBy = "";
 			for (Map.Entry<Integer, Integer> entry : lootsAndPercents.entrySet()) {
-				stringDroppedBy +=  mContext.getString(R.string.dropped_by_entry, mContext.getString(entry.getKey()), entry.getValue());
+				stringDroppedBy += mContext.getString(R.string.dropped_by_entry, mContext.getString(entry.getKey()), entry.getValue());
 				stringDroppedBy += " ";
 			}
 			stringDroppedBy = stringDroppedBy.substring(0, stringDroppedBy.length() - 2);
