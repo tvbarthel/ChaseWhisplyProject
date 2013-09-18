@@ -6,18 +6,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.R;
+import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
+import fr.tvbarthel.games.chasewhisply.ui.adapter.GameModeViewAdapter;
 
-public class LeaderboardChooserFragment extends Fragment implements View.OnClickListener {
+public class LeaderboardChooserFragment extends Fragment implements GameModeViewAdapter.Listener {
 
-	private GameModeView mGameMode1;
-	private GameModeView mGameMode2;
-	private GameModeView mGameMode3;
-	private GameModeView mGameMode4;
+
 	private Listener mListener;
+	private GameModeViewAdapter mGameModeViewAdapter;
 
 	public interface Listener {
 		public void onLeaderboardChosen(int leaderboardStringId);
@@ -38,42 +41,36 @@ public class LeaderboardChooserFragment extends Fragment implements View.OnClick
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View v = inflater.inflate(R.layout.fragment_leaderboard_chooser, container, false);
+		mGameModeViewAdapter = new GameModeViewAdapter(getActivity(), new ArrayList<GameMode>(), this);
+		((ListView) v.findViewById(R.id.leaderboard_list_view)).setAdapter(mGameModeViewAdapter);
 
-		//First mode: Kill as many Ghosts as you can in 30 seconds. (level 1)
-		mGameMode1 = (GameModeView) v.findViewById(R.id.leaderboard_chooser_mode1);
-		mGameMode1.setModelForLeaderboard(GameModeFactory.createRemainingTimeGame(1));
-		mGameMode1.setGameModeSelectedListener(this);
-
-		//Second mode: Kill as many Ghosts as you can in 60 seconds. (level 2)
-		mGameMode2 = (GameModeView) v.findViewById(R.id.leaderboard_chooser_mode2);
-		mGameMode2.setModelForLeaderboard(GameModeFactory.createRemainingTimeGame(2));
-		mGameMode2.setGameModeSelectedListener(this);
-
-		//Third mode: Kill as many Ghosts as you can in 30 seconds. (level 3)
-		mGameMode3 = (GameModeView) v.findViewById(R.id.leaderboard_chooser_mode3);
-		mGameMode3.setModelForLeaderboard(GameModeFactory.createRemainingTimeGame(3));
-		mGameMode3.setGameModeSelectedListener(this);
-
-		//Fourth mode: survival
-		mGameMode4 = (GameModeView) v.findViewById(R.id.leaderboard_chooser_mode4);
-		mGameMode4.setModelForLeaderboard(GameModeFactory.createSurvivalGame(1));
-		mGameMode4.setGameModeSelectedListener(this);
+		loadGameMode();
 
 		return v;
 	}
 
-	@Override
-	public void onClick(View view) {
 
-		switch (view.getId()) {
-			case R.id.leaderboard_chooser_mode1:
-			case R.id.leaderboard_chooser_mode2:
-			case R.id.leaderboard_chooser_mode3:
-			case R.id.leaderboard_chooser_mode4:
-				final int leaderboardStringId = ((GameModeView) view).getModel().getLeaderboardStringId();
-				mListener.onLeaderboardChosen(leaderboardStringId);
-				break;
-		}
+	private void loadGameMode() {
+		mGameModeViewAdapter.clear();
 
+		//First mode: Kill as many Ghosts as you can in 30 seconds.
+		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(1));
+
+		//Second mode: Kill as many Ghosts as you can in 60 seconds. (level 2)
+		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(2));
+
+		//Third mode: Kill as many Ghosts as you can in 30 seconds. (level 3)
+		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(3));
+
+		//Fourth mode: survival
+		mGameModeViewAdapter.add(GameModeFactory.createSurvivalGame(1));
+
+		mGameModeViewAdapter.notifyDataSetChanged();
 	}
+
+	@Override
+	public void onGameModeSelected(GameModeView view) {
+		mListener.onLeaderboardChosen(view.getModel().getLeaderboardStringId());
+	}
+
 }

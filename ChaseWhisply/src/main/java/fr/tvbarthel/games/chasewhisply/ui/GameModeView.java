@@ -4,12 +4,14 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.ui.adapter.GameModeViewAdapter;
 
 public class GameModeView extends RelativeLayout {
 
@@ -65,8 +67,13 @@ public class GameModeView extends RelativeLayout {
 	 *
 	 * @param listener
 	 */
-	public void setGameModeSelectedListener(OnClickListener listener) {
-		this.setOnClickListener(listener);
+	public void setGameModeSelectedListener(final GameModeViewAdapter.Listener listener) {
+		this.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				listener.onGameModeSelected(GameModeView.this);
+			}
+		});
 	}
 
 	public void setGameModeEnabled(boolean isAllowed) {

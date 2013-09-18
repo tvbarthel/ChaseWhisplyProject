@@ -5,57 +5,30 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="@dimen/default_padding">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
-
-            <fr.tvbarthel.games.chasewhisply.ui.GameModeView
-                android:id="@+id/mode1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/half_padding" />
-
-            <fr.tvbarthel.games.chasewhisply.ui.GameModeView
-                android:id="@+id/mode2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/half_padding" />
-
-            <fr.tvbarthel.games.chasewhisply.ui.GameModeView
-                android:id="@+id/mode3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/half_padding" />
-
-            <fr.tvbarthel.games.chasewhisply.ui.GameModeView
-                android:id="@+id/mode4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:text="@string/level_chooser"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#888888"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/activity_half_vertical_margin" />
+            android:textColor="@color/holo_dark_green"
+            android:text="@string/level_chooser"
+            android:id="@+id/textView"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
-    </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gamemode_list_view"
+            android:layout_gravity="center"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/activity_vertical_margin" />
+    </LinearLayout>
 
 </ScrollView>

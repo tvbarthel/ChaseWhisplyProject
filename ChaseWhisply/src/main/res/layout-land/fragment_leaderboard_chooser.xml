@@ -5,77 +5,30 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <RelativeLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="@dimen/default_padding">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <fr.tvbarthel.games.chasewhisply.ui.GameModeView
-                android:id="@+id/leaderboard_chooser_mode1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/half_padding"
-                android:layout_weight="1" />
-
-            <fr.tvbarthel.games.chasewhisply.ui.GameModeView
-                android:id="@+id/leaderboard_chooser_mode2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/half_padding"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <fr.tvbarthel.games.chasewhisply.ui.GameModeView
-                android:id="@+id/leaderboard_chooser_mode3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/half_padding"
-                android:layout_weight="1" />
-
-            <fr.tvbarthel.games.chasewhisply.ui.GameModeView
-                android:id="@+id/leaderboard_chooser_mode4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/half_padding"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/leaderboard_chooser_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/text_view_grey" />
+            android:textColor="@color/holo_dark_green"
+            android:text="@string/leaderboard_chooser_title"
+            android:id="@+id/textView"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
-    </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/leaderboard_list_view"
+            android:layout_gravity="center"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/activity_vertical_margin" />
+    </LinearLayout>
 
 </ScrollView>
