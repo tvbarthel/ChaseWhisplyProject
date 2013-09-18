@@ -251,7 +251,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	}
 
 	@Override
-	public void onShareScoreRequested(int score) {
+	public void onShareScoreRequested(long score) {
 		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
 		intent.setType("text/plain");
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
