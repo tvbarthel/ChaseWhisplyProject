@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
+import fr.tvbarthel.games.chasewhisply.model.bonus.BonusInventoryItemConsumer;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 
 public class GameInformation implements Parcelable {
@@ -353,6 +354,13 @@ public class GameInformation implements Parcelable {
 
 	public Bonus getBonus() {
 		return mGameMode.getBonus();
+	}
+
+	public void useBonus(PlayerProfile playerProfile) {
+		final Bonus currentBonus = mGameMode.getBonus();
+		if (currentBonus instanceof BonusInventoryItemConsumer) {
+			mGameMode.setBonus(((BonusInventoryItemConsumer) currentBonus).consume(playerProfile));
+		}
 	}
 
 }
