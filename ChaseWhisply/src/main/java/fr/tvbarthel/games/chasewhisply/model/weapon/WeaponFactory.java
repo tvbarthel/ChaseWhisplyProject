@@ -1,7 +1,5 @@
 package fr.tvbarthel.games.chasewhisply.model.weapon;
 
-import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
-
 /**
  * Every {@link fr.tvbarthel.games.chasewhisply.model.weapon.Weapon} should be instantiated from this factory
  */

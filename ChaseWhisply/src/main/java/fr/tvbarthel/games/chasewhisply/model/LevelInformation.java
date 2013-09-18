@@ -27,7 +27,7 @@ public class LevelInformation {
 	}
 
 	public int getProgressInPercent() {
-		return (int)(getExpProgress() * 100 / getExpNeededToLevelUp());
+		return (int) (getExpProgress() * 100 / getExpNeededToLevelUp());
 	}
 
 	public long getTotalExpEarned() {

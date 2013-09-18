@@ -149,7 +149,7 @@ public class PlayerProfile {
 		return getSharedLongInteger(KEY_ITEM_QUANTITY_GOLD_BULLET);
 	}
 
-	public long  increaseGoldBulletQuantity(long amount) {
+	public long increaseGoldBulletQuantity(long amount) {
 		return increaseSharedLongInteger(KEY_ITEM_QUANTITY_GOLD_BULLET, amount);
 	}
 
