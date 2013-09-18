@@ -26,10 +26,11 @@ public class PlayerProfile {
 		mEditor = mSharedPreferences.edit();
 	}
 
-	private void increaseSharedLongInteger(String key, long amount) {
+	private long increaseSharedLongInteger(String key, long amount) {
 		long value = mSharedPreferences.getLong(key, 0);
 		value += amount;
 		mEditor.putLong(key, value);
+		return value;
 	}
 
 	private long getSharedLongInteger(String key) {
@@ -40,36 +41,38 @@ public class PlayerProfile {
 		increaseInventoryItemQuantity(inventoryItemType, 1);
 	}
 
-	public void decreaseInventoryItemQuantity(int inventoryItemType, int amount) {
-		increaseInventoryItemQuantity(inventoryItemType, -amount);
+	public long decreaseInventoryItemQuantity(int inventoryItemType, int amount) {
+		return increaseInventoryItemQuantity(inventoryItemType, -amount);
 	}
 
-	public void increaseInventoryItemQuantity(int inventoryItemType, int amount) {
+	public long increaseInventoryItemQuantity(int inventoryItemType, int amount) {
+		long newQuantity = 0;
 		switch (inventoryItemType) {
 			case InventoryItemInformation.TYPE_COIN:
-				increaseOldCoinQuantity(amount);
+				newQuantity = increaseOldCoinQuantity(amount);
 				break;
 
 			case InventoryItemInformation.TYPE_BABY_DROOL:
-				increaseBabyDroolQuantity(amount);
+				newQuantity = increaseBabyDroolQuantity(amount);
 				break;
 
 			case InventoryItemInformation.TYPE_BROKEN_HELMET_HORN:
-				increaseBrokenHelmetHornQuantity(amount);
+				newQuantity = increaseBrokenHelmetHornQuantity(amount);
 				break;
 
 			case InventoryItemInformation.TYPE_KING_CROWN:
-				increaseKingCrownQuantity(amount);
+				newQuantity = increaseKingCrownQuantity(amount);
 				break;
 
 			case InventoryItemInformation.TYPE_STEEL_BULLET:
-				increaseSteelBulletQuantity(amount);
+				newQuantity = increaseSteelBulletQuantity(amount);
 				break;
 
 			case InventoryItemInformation.TYPE_GOLD_BULLET:
-				increaseGoldBulletQuantity(amount);
+				newQuantity = increaseGoldBulletQuantity(amount);
 				break;
 		}
+		return newQuantity;
 	}
 
 	public long getInventoryItemQuantity(int inventoryItemEntryType) {
@@ -106,68 +109,68 @@ public class PlayerProfile {
 		return getSharedLongInteger(KEY_ITEM_QUANTITY_OLD_COIN);
 	}
 
-	public void increaseOldCoinQuantity(long amount) {
-		increaseSharedLongInteger(KEY_ITEM_QUANTITY_OLD_COIN, amount);
+	public long increaseOldCoinQuantity(long amount) {
+		return increaseSharedLongInteger(KEY_ITEM_QUANTITY_OLD_COIN, amount);
 	}
 
 	public long getBrokenHelmetHornQuantity() {
 		return getSharedLongInteger(KEY_ITEM_QUANTITY_BROKEN_HELMET_HORN);
 	}
 
-	public void increaseBrokenHelmetHornQuantity(long amount) {
-		increaseSharedLongInteger(KEY_ITEM_QUANTITY_BROKEN_HELMET_HORN, amount);
+	public long increaseBrokenHelmetHornQuantity(long amount) {
+		return increaseSharedLongInteger(KEY_ITEM_QUANTITY_BROKEN_HELMET_HORN, amount);
 	}
 
 	public long getBabyDroolQuantity() {
 		return getSharedLongInteger(KEY_ITEM_QUANTITY_BABY_DROOL);
 	}
 
-	public void increaseBabyDroolQuantity(long amount) {
-		increaseSharedLongInteger(KEY_ITEM_QUANTITY_BABY_DROOL, amount);
+	public long increaseBabyDroolQuantity(long amount) {
+		return increaseSharedLongInteger(KEY_ITEM_QUANTITY_BABY_DROOL, amount);
 	}
 
 	public long getKingCrownQuantity() {
 		return getSharedLongInteger(KEY_ITEM_QUANTITY_KING_CROWN);
 	}
 
-	public void increaseKingCrownQuantity(long amount) {
-		increaseSharedLongInteger(KEY_ITEM_QUANTITY_KING_CROWN, amount);
+	public long increaseKingCrownQuantity(long amount) {
+		return increaseSharedLongInteger(KEY_ITEM_QUANTITY_KING_CROWN, amount);
 	}
 
 	public long getSteelBulletQuantity() {
 		return getSharedLongInteger(KEY_ITEM_QUANTITY_STEEL_BULLET);
 	}
 
-	public void increaseSteelBulletQuantity(long amount) {
-		increaseSharedLongInteger(KEY_ITEM_QUANTITY_STEEL_BULLET, amount);
+	public long increaseSteelBulletQuantity(long amount) {
+		return increaseSharedLongInteger(KEY_ITEM_QUANTITY_STEEL_BULLET, amount);
 	}
 
 	public long getGoldBulletQuantity() {
 		return getSharedLongInteger(KEY_ITEM_QUANTITY_GOLD_BULLET);
 	}
 
-	public void increaseGoldBulletQuantity(long amount) {
-		increaseSharedLongInteger(KEY_ITEM_QUANTITY_GOLD_BULLET, amount);
+	public long  increaseGoldBulletQuantity(long amount) {
+		return increaseSharedLongInteger(KEY_ITEM_QUANTITY_GOLD_BULLET, amount);
 	}
 
-	public void increaseTargetsKilled(long amount) {
-		increaseSharedLongInteger(KEY_TARGETS_KILLED, amount);
+	public long increaseTargetsKilled(long amount) {
+		return increaseSharedLongInteger(KEY_TARGETS_KILLED, amount);
 	}
 
 	public long getTargetsKilled() {
 		return getSharedLongInteger(KEY_TARGETS_KILLED);
 	}
 
-	public void increaseGamesPlayed(long amount) {
-		increaseSharedLongInteger(KEY_GAMES_PLAYED, amount);
+	public long increaseGamesPlayed(long amount) {
+		return increaseSharedLongInteger(KEY_GAMES_PLAYED, amount);
 	}
 
 	public long getGamesPlayed() {
 		return getSharedLongInteger(KEY_GAMES_PLAYED);
 	}
 
-	public void increaseBulletsFired(long amount) {
-		increaseSharedLongInteger(KEY_BULLETS_FIRED, amount);
+	public long increaseBulletsFired(long amount) {
+		return increaseSharedLongInteger(KEY_BULLETS_FIRED, amount);
 	}
 
 	public long getBulletsFired() {
@@ -178,8 +181,8 @@ public class PlayerProfile {
 		return mEditor.commit();
 	}
 
-	public void increaseBulletsMissed(long amount) {
-		increaseSharedLongInteger(KEY_BULLETS_MISSED, amount);
+	public long increaseBulletsMissed(long amount) {
+		return increaseSharedLongInteger(KEY_BULLETS_MISSED, amount);
 	}
 
 	public int getAccuracy() {
