@@ -10,9 +10,9 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-import fr.tvbarthel.games.chasewhisply.R;
-
 import java.util.ArrayList;
+
+import fr.tvbarthel.games.chasewhisply.R;
 
 public class SensorDelayDialogFragment extends DialogFragment {
 
