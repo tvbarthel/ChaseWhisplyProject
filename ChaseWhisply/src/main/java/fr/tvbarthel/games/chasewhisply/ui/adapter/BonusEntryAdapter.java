@@ -27,12 +27,16 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final BonusEntry currentBonusEntry = mBonusEntries[position];
-		final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(R.layout.row_bonus_entry, parent, false);
-		final CheckBox equippedCheckBox = ((CheckBox) rowView.findViewById(R.id.row_bonus_entry_equipped));
 		final long quantity = currentBonusEntry.getQuantity();
 		final Bonus bonus = currentBonusEntry.getBonus();
+		final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+		View rowView = convertView;
+		if(rowView == null) {
+			rowView = inflater.inflate(R.layout.row_bonus_entry, parent, false);
+		}
+
+		final CheckBox equippedCheckBox = ((CheckBox) rowView.findViewById(R.id.row_bonus_entry_equipped));
 		if (quantity > 0) {
 			equippedCheckBox.setChecked(currentBonusEntry.isEquipped());
 			equippedCheckBox.setOnClickListener(new View.OnClickListener() {
