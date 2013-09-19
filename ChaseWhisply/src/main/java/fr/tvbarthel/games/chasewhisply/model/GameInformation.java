@@ -298,6 +298,13 @@ public class GameInformation implements Parcelable {
 		return mScoreInformation.getScore();
 	}
 
+	/**
+	 * set  score
+	 */
+	public void setScore(int score) {
+		mScoreInformation.setScore(score);
+	}
+
 
 	public int getBulletsFired() {
 		return mScoreInformation.getmNumberOfBulletsFired();

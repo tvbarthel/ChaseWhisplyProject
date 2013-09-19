@@ -153,6 +153,10 @@ public class ScoreInformation implements Parcelable {
 		return mScore;
 	}
 
+	public void setScore(int score) {
+		mScore = score;
+	}
+
 	public int getNumberOfTargetsKilled() {
 		return mNumberOfTargetsKilled;
 	}
