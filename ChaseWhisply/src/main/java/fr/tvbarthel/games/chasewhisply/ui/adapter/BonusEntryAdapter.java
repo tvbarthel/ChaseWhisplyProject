@@ -14,22 +14,21 @@ import fr.tvbarthel.games.chasewhisply.model.bonus.BonusDamage;
 import fr.tvbarthel.games.chasewhisply.model.bonus.BonusEntry;
 
 public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
-	private Context mContext;
 	private BonusEntry[] mBonusEntries;
 	private BonusEntry mEquippedBonus;
 
 	public BonusEntryAdapter(Context context, BonusEntry[] bonusEntries) {
 		super(context, R.layout.row_bonus_entry, bonusEntries);
-		mContext = context;
 		this.mBonusEntries = bonusEntries;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		final Context context = getContext();
 		final BonusEntry currentBonusEntry = mBonusEntries[position];
 		final long quantity = currentBonusEntry.getQuantity();
 		final Bonus bonus = currentBonusEntry.getBonus();
-		final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		View rowView = convertView;
 		if(rowView == null) {
@@ -57,12 +56,12 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 			equippedCheckBox.setEnabled(false);
 		}
 
-		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(mContext.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
+		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(context.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
 		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText(String.valueOf(currentBonusEntry.getQuantity()));
 
 		if (bonus instanceof BonusDamage) {
 			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
-					mContext.getString(currentBonusEntry.getEffectResourceId()),
+					context.getString(currentBonusEntry.getEffectResourceId()),
 					String.valueOf(((BonusDamage) bonus).getBonusDamage())));
 		}
 
