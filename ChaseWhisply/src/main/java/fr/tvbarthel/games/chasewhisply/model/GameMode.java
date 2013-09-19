@@ -14,7 +14,7 @@ public abstract class GameMode implements Parcelable {
 	private int mLeaderboardStringId;
 	private int mLeaderboardDescriptionStringId;
 	private Bonus mBonus;
-	private int mRequiredLevel;
+	private int mRequiredCondition;
 	private int mRequiredMessage;
 
 	public GameMode() {
@@ -25,7 +25,7 @@ public abstract class GameMode implements Parcelable {
 		mLeaderboardStringId = -1;
 		mLeaderboardDescriptionStringId = -1;
 		mBonus = null;
-		mRequiredLevel = -1;
+		mRequiredCondition = -1;
 		mRequiredMessage = -1;
 
 	}
@@ -48,7 +48,7 @@ public abstract class GameMode implements Parcelable {
 		out.writeInt(mLeaderboardStringId);
 		out.writeInt(mLeaderboardDescriptionStringId);
 		out.writeParcelable(mBonus, i);
-		out.writeInt(mRequiredLevel);
+		out.writeInt(mRequiredCondition);
 		out.writeInt(mRequiredMessage);
 	}
 
@@ -65,7 +65,7 @@ public abstract class GameMode implements Parcelable {
 		mLeaderboardStringId = in.readInt();
 		mLeaderboardDescriptionStringId = in.readInt();
 		mBonus = in.readParcelable(Bonus.class.getClassLoader());
-		mRequiredLevel = in.readInt();
+		mRequiredCondition = in.readInt();
 		mRequiredMessage = in.readInt();
 	}
 
@@ -141,12 +141,12 @@ public abstract class GameMode implements Parcelable {
 	}
 
 	/**
-	 * set the required level to play this game mode
+	 * set the required condition to play this game mode
 	 *
-	 * @param level
+	 * @param condition int used to represent a condition
 	 */
-	public void setRequiredLevel(int level) {
-		mRequiredLevel = level;
+	public void setRequiredCondition(int condition) {
+		mRequiredCondition = condition;
 	}
 
 	/**
@@ -154,8 +154,8 @@ public abstract class GameMode implements Parcelable {
 	 *
 	 * @return
 	 */
-	public int getRequiredLevel() {
-		return mRequiredLevel;
+	public int getRequiredCondition() {
+		return mRequiredCondition;
 	}
 
 	/**
