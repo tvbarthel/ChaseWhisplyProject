@@ -79,9 +79,7 @@ public class GameModeView extends RelativeLayout {
 	public void setGameModeEnabled(boolean isAllowed) {
 		this.setEnabled(isAllowed);
 		this.setClickable(isAllowed);
-		if (!isAllowed) {
-			mGameModeDescription.setText(mModel.getRequiredMessage());
-			this.setBackgroundResource(R.drawable.card_shadow_disable);
-		}
+		this.setBackgroundResource(isAllowed ? R.drawable.card_shadow : R.drawable.card_shadow_disable);
+		mGameModeDescription.setText(isAllowed ? mModel.getRules() : mModel.getRequiredMessage());
 	}
 }

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -298,15 +300,28 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	}
 
 	private void displayDetails(long bulletFired, long fragNumber, long maxCombo, long score, long expEarned) {
+
+		mNumberOfBulletsFiredTextView.setText(String.valueOf(bulletFired));
+		mNumberOfTargetsKilledTextView.setText(String.valueOf(fragNumber));
+		mMaxComboTextView.setText(String.valueOf(maxCombo));
+		mExpEarnedTextView.setText(String.valueOf(expEarned));
+
+		//TODO create an abstract method displaysGamesDetails and implement a specific behavior for each mode
 		switch (mGameInformation.getGameMode().getType()) {
 
 			case GameModeFactory.GAME_TYPE_SURVIVAL:
 			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
-				mNumberOfBulletsFiredTextView.setText(String.valueOf(bulletFired));
-				mNumberOfTargetsKilledTextView.setText(String.valueOf(fragNumber));
-				mMaxComboTextView.setText(String.valueOf(maxCombo));
 				mFinalScoreTextView.setText(String.valueOf(score));
-				mExpEarnedTextView.setText(String.valueOf(expEarned));
+				break;
+			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
+				if (score > 0) {
+					final Calendar cl = Calendar.getInstance();
+					cl.setTimeInMillis(score);
+					mFinalScoreTextView.setText(cl.get(Calendar.SECOND) + "' " + cl.get(Calendar.MILLISECOND) + "''");
+				} else {
+					mFinalScoreTextView.setText(getResources().getString(R.string.score_lost));
+				}
+
 				break;
 		}
 	}

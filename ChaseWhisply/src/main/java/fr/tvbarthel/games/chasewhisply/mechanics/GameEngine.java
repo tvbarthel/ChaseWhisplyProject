@@ -36,6 +36,7 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 		mCurrentState = STATE_STOP;
 	}
 
+
 	/**
 	 * start the game, should be called only at the beginning once.
 	 */

@@ -13,6 +13,97 @@ public class GameBehaviorFactory {
 
 
 	/**
+	 * Create the death to the king mode
+	 * start time 0 sec
+	 * Basic Weapon
+	 * init the game with 100 mobs, and 1 king
+	 *
+	 * @param cameraHorizontalViewAngle horizontal view angle of the phone camera
+	 * @param cameraVerticalViewAngle   vertical view angle of the phone camera
+	 * @param gameMode                  gameMode from gameModeChooser fragment
+	 * @return Specific game behavior for this mode
+	 */
+	public static GameBehavior createKillTheKingGame(float cameraHorizontalViewAngle, float cameraVerticalViewAngle, GameMode gameMode) {
+
+		//we use default spawning time and basic weapon
+		final GameInformation gameInformation = new GameInformation(DEFAULT_SPAWNING_TIME, WeaponFactory.createBasicWeapon());
+
+		gameInformation.setSceneWidth((int) Math.floor(cameraHorizontalViewAngle));
+		gameInformation.setSceneHeight((int) Math.floor(cameraVerticalViewAngle));
+
+		//only 10 target are allowed in the AR world
+		gameInformation.setMaxTargetOnTheField(100);
+
+		//initialize time to 5 sec
+		gameInformation.setTime(5000);
+
+		//use default tickingTime
+		gameInformation.setTickingTime(DEFAULT_TICKING_TIME);
+
+		gameInformation.setGameMode(gameMode);
+
+		//implement survival behavior
+		final GameBehavior.IGameBehavior i = new GameBehavior.IGameBehavior() {
+
+			private boolean mIsKingDead = false;
+			private long mStartTime;
+
+			@Override
+			public void onInit(GameInformation g) {
+				//init world with 99 easy ghost and one king
+				mStartTime = System.currentTimeMillis();
+				for (int i = 0; i < 100; i++) {
+					g.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(
+							i == 50 ? DisplayableItemFactory.TYPE_KING_GHOST : DisplayableItemFactory.TYPE_EASY_GHOST));
+				}
+			}
+
+			@Override
+			public void onSpawn(int xRange, int yRange, GameInformation g) {
+				//no spawn behavior
+			}
+
+			@Override
+			public synchronized void onKill(GameInformation g) {
+				g.setScore(0);
+				//check if the king is killed
+				for (DisplayableItem d : g.getItemsForDisplay()) {
+					if (d.getType() == DisplayableItemFactory.TYPE_KING_GHOST) return;
+				}
+				//king dead
+				g.setScore((int) (System.currentTimeMillis() - mStartTime));
+				mIsKingDead = true;
+			}
+
+			@Override
+			public synchronized void onTick(long tickingTime, GameInformation g) {
+				//decrease time at each tick
+				if (g.getTime() > 0) {
+					g.setTime(g.getTime() - tickingTime);
+				}
+			}
+
+			@Override
+			public boolean isCompleted(GameInformation g) {
+				//stop game when king was killed or time is over
+				return mIsKingDead | g.getTime() <= 0;
+			}
+
+			@Override
+			public int describeContents() {
+				return 0;
+
+			}
+
+			@Override
+			public void writeToParcel(Parcel dest, int flags) {
+
+			}
+		};
+		return new GameBehavior(gameInformation, i);
+	}
+
+	/**
 	 * Create the survival mode
 	 * start time 30 sec
 	 * Each kill increase remaining time by 1 sec
@@ -180,20 +271,8 @@ public class GameBehaviorFactory {
 	 * @param gameInformation gameInformation
 	 */
 	private static void allSpawnBehavior(int xRange, int yRange, GameInformation gameInformation) {
-		final int randomDraw = MathUtils.randomize(0, 100);
 		final float[] pos = gameInformation.getCurrentPosition();
-		int ghostType;
-		if (randomDraw < 60) {
-			ghostType = DisplayableItemFactory.TYPE_EASY_GHOST;
-		} else if (randomDraw < 75) {
-			ghostType = DisplayableItemFactory.TYPE_HIDDEN_GHOST;
-		} else if (randomDraw < 90) {
-			ghostType = DisplayableItemFactory.TYPE_BABY_GHOST;
-		} else if (randomDraw < 99) {
-			ghostType = DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
-		} else {
-			ghostType = DisplayableItemFactory.TYPE_KING_GHOST;
-		}
+		int ghostType = randomGhostType();
 		gameInformation.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(
 				ghostType,
 				(int) pos[0] - xRange,
@@ -201,5 +280,26 @@ public class GameBehaviorFactory {
 				(int) pos[1] - yRange,
 				(int) pos[1] + yRange
 		));
+	}
+
+	/**
+	 * spawn rules for all mobs
+	 *
+	 * @return
+	 */
+	private static int randomGhostType() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 60) {
+			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 75) {
+			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+		} else if (randomDraw < 90) {
+			return DisplayableItemFactory.TYPE_BABY_GHOST;
+		} else if (randomDraw < 99) {
+			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
+		} else {
+			return DisplayableItemFactory.TYPE_KING_GHOST;
+		}
+
 	}
 }

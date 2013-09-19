@@ -40,6 +40,7 @@
     <string name="leaderboard_chooser_time_limited_level_2_description">60 seconds High Scores.</string>
     <string name="leaderboard_chooser_time_limited_level_3_description">90 seconds High Scores.</string>
     <string name="leaderboard_chooser_survival_description">Survival High Scores.</string>
+    <string name="leaderboard_death_to_the_king_description">Death To The King fastest time.</string>
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Kill most ghosts as you can in given time.</string>
@@ -49,6 +50,8 @@
     <string name="game_mode_target_limited">Kill all ghosts as fast as you can!</string>
     <string name="game_mode_survival">Survival: each kill gives additional time.</string>
     <string name="game_mode_survival_required_message">Survival : Level 2 is required to access this game mode.</string>
+    <string name="game_mode_kill_the_king">Death to the king ! : You have five second to kill the king.</string>
+    <string name="game_mode_kill_the_king_required_message">Death to the king  ! : Play 10 games to unlock this mode.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>
@@ -56,6 +59,7 @@
     <string name="score_max_combo">Max Combo</string>
     <string name="score_exp_earned">Exp Earned</string>
     <string name="score_final_score">Final Score</string>
+    <string name="score_lost">lost</string>
     <string name="score_skip_button">Skip</string>
     <string name="score_replay_button">Replay</string>
     <string name="score_home_button">Home</string>

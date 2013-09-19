@@ -69,7 +69,9 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 	@Override
 	void onCameraReady(float horizontal, float vertical) {
 		//if no gameBehavior choose the one corresponding to the right gameMode
+		boolean firstLaunch = false;
 		if (mGameBehavior == null) {
+			firstLaunch = true;
 			switch (mGameMode.getType()) {
 				case GameModeFactory.GAME_TYPE_REMAINING_TIME:
 					mGameBehavior = GameBehaviorFactory.createRemainingTimeAllMobsGame(
@@ -77,6 +79,10 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 					break;
 				case GameModeFactory.GAME_TYPE_SURVIVAL:
 					mGameBehavior = GameBehaviorFactory.createSurvivalGame(
+							horizontal, vertical, mGameMode);
+					break;
+				case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
+					mGameBehavior = GameBehaviorFactory.createKillTheKingGame(
 							horizontal, vertical, mGameMode);
 					break;
 				default:
@@ -99,7 +105,11 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 
 		//instantiate game engine
 		mGameEngine = new GameEngine(GameActivity.this, mGameBehavior);
-		mGameEngine.startGame();
+		if (firstLaunch) {
+			mGameEngine.startGame();
+		} else {
+			mGameEngine.resumeGame();
+		}
 
 	}
 

@@ -8,6 +8,7 @@ public class GameModeFactory {
 	public static final int GAME_TYPE_REMAINING_TIME = 0x00000001;
 	public static final int GAME_TYPE_LIMITED_TARGETS = 0x00000002;
 	public static final int GAME_TYPE_SURVIVAL = 0x00000003;
+	public static final int GAME_TYPE_DEATH_TO_THE_KING = 0x00000004;
 
 	public static GameMode createRemainingTimeGame(int level) {
 		final GameMode g = new GameMode() {
@@ -68,7 +69,7 @@ public class GameModeFactory {
 			@Override
 			public boolean isAvailable(PlayerProfile p) {
 				//only available if player level > required level
-				return p.getLevelInformation().getLevel() >= this.getRequiredLevel();
+				return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
 			}
 		};
 		g.setType(GAME_TYPE_SURVIVAL);
@@ -77,8 +78,27 @@ public class GameModeFactory {
 		g.setImage(R.drawable.ic_icon_time_based_game_inf);
 		g.setLeaderboardStringId(R.string.leaderboard_survival);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_survival_description);
-		g.setRequiredLevel(0);
+		g.setRequiredCondition(1);
 		g.setRequiredMessage(R.string.game_mode_survival_required_message);
+		return g;
+	}
+
+	public static GameMode createKillTheKingGame(int level) {
+		final GameMode g = new GameMode() {
+			@Override
+			public boolean isAvailable(PlayerProfile p) {
+				//only available if player as already played 10 games
+				return p.getGamesPlayed() >= this.getRequiredCondition();
+			}
+		};
+		g.setType(GAME_TYPE_DEATH_TO_THE_KING);
+		g.setLevel(level);
+		g.setRules(R.string.game_mode_kill_the_king);
+		g.setImage(R.drawable.ic_icon_death_to_the_king);
+		g.setLeaderboardStringId(R.string.leaderboard_death_to_the_king);
+		g.setLeaderboardDescriptionStringId(R.string.leaderboard_death_to_the_king_description);
+		g.setRequiredCondition(3);
+		g.setRequiredMessage(R.string.game_mode_kill_the_king_required_message);
 		return g;
 	}
 }

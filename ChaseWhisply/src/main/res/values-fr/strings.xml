@@ -45,6 +45,7 @@
         jeu : 90 secondes.
     </string>
     <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu : survie.</string>
+    <string name="leaderboard_death_to_the_king_description">Meilleurs temps en mode : Mort au rois.</string>
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps imparti.</string>
@@ -54,6 +55,8 @@
     <string name="game_mode_target_limited">Tuez tous les fantômes le plus vite possible.</string>
     <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps supplémentaire.</string>
     <string name="game_mode_survival_required_message">Survie : Vous devez être level 2 pour accéder à ce mode de jeu.</string>
+    <string name="game_mode_kill_the_king">Mort au roi ! : Vous avez 5 secondes pour trouver et tuer le roi.</string>
+    <string name="game_mode_kill_the_king_required_message">Mort au roi ! : Jouez 10 parties pour débloquer ce mode de jeu.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Balles tirées</string>
@@ -61,6 +64,7 @@
     <string name="score_max_combo">Combo Max</string>
     <string name="score_exp_earned">Exp Gagnée</string>
     <string name="score_final_score">Score Final</string>
+    <string name="score_lost">perdu</string>
     <string name="score_skip_button">Passer</string>
     <string name="score_replay_button">Rejouer</string>
     <string name="score_home_button">Accueil</string>

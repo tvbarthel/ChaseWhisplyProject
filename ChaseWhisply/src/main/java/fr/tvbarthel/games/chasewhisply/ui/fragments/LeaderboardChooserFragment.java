@@ -65,6 +65,9 @@ public class LeaderboardChooserFragment extends Fragment implements GameModeView
 		//Fourth mode: survival
 		mGameModeViewAdapter.add(GameModeFactory.createSurvivalGame(1));
 
+		//Fifth mode: Death to the king
+		mGameModeViewAdapter.add(GameModeFactory.createKillTheKingGame(1));
+
 		mGameModeViewAdapter.notifyDataSetChanged();
 	}
 

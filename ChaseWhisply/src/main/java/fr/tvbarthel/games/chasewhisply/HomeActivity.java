@@ -227,7 +227,9 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			final GameMode gameMode = gameInformation.getGameMode();
 			final Weapon weapon = gameInformation.getWeapon();
 			final int numberOfLoots = gameInformation.getNumberOfLoots();
-			gamesClient.submitScore(getResources().getString(gameMode.getLeaderboardStringId()), score);
+			if(score>0){
+				gamesClient.submitScore(getResources().getString(gameMode.getLeaderboardStringId()), score);
+			}
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_soldier), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_corporal), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_sergeant), 1);
