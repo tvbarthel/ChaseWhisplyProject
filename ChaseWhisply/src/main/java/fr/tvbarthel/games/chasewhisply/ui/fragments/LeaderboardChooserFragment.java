@@ -38,6 +38,12 @@ public class LeaderboardChooserFragment extends Fragment implements GameModeView
 	}
 
 	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View v = inflater.inflate(R.layout.fragment_leaderboard_chooser, container, false);

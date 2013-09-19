@@ -45,6 +45,12 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
 	}
 
 	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View v = inflater.inflate(R.layout.fragment_game_mode_chooser, container, false);

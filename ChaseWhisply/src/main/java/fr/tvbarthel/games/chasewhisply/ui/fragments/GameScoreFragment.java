@@ -103,6 +103,12 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	}
 
 	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_score, container, false);
 		final int[] clickable = new int[]{
