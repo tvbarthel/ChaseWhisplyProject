@@ -13,4 +13,5 @@
     <dimen name="grid_view_spacing">16dp</dimen>
     <dimen name="bestiary_row_entry_height">130dp</dimen>
     <dimen name="bestiary_row_entry_width">260dp</dimen>
+    <dimen name="bonus_row_entry_width">220dp</dimen>
 </resources>

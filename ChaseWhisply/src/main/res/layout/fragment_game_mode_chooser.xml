@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:padding="@dimen/default_padding">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/holo_dark_green"
+        android:text="@string/level_chooser"
+        android:id="@+id/textView"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/default_padding">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/holo_dark_green"
-            android:text="@string/level_chooser"
-            android:id="@+id/textView"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/activity_vertical_margin" />
-
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/gamemode_list_view"
-            android:layout_gravity="center"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="@dimen/activity_vertical_margin" />
-    </LinearLayout>
-
-</ScrollView>
+        android:layout_height="wrap_content"
+        android:id="@+id/gamemode_list_view"
+        android:layout_gravity="center"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/activity_vertical_margin" />
+</LinearLayout>

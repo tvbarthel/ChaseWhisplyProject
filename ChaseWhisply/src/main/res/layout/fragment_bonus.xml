@@ -11,25 +11,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/text_view_grey"
+        android:textColor="@color/holo_dark_green"
         android:text="@string/bonus_title"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/activity_half_vertical_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <ListView
-        android:layout_width="match_parent"
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/bonus_grid_view"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bonus_list_view"
-        android:layout_gravity="center"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/textView"
+        android:columnWidth="@dimen/bonus_row_entry_width"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="@dimen/grid_view_spacing"
+        android:horizontalSpacing="@dimen/grid_view_spacing"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
         android:layout_above="@+id/bonus_start"
-        android:layout_marginTop="@dimen/activity_vertical_margin" />
+        android:layout_below="@+id/textView" />
 
     <Button
         android:id="@+id/bonus_start"
@@ -44,6 +45,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin" />
+        android:layout_marginTop="@dimen/activity_half_vertical_margin"/>
 
 </RelativeLayout>

@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.GridView;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
@@ -21,7 +21,7 @@ import fr.tvbarthel.games.chasewhisply.ui.adapter.BonusEntryAdapter;
 public class BonusFragment extends Fragment {
 	public static final String EXTRA_GAME_MODE = "BonusFragment.Extra.GameMode";
 	private Listener mListener;
-	private ListView mBonusListView;
+	private GridView mBonusGridView;
 	private BonusEntryAdapter mBonusEntryAdapter;
 	private PlayerProfile mPlayerProfile;
 	private GameMode mGameMode;
@@ -47,7 +47,7 @@ public class BonusFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_bonus, container, false);
-		mBonusListView = ((ListView) v.findViewById(R.id.bonus_list_view));
+		mBonusGridView = ((GridView) v.findViewById(R.id.bonus_grid_view));
 
 		if (mBonusEntryAdapter == null) {
 			mBonusEntryAdapter = new BonusEntryAdapter(getActivity(), new BonusEntry[]{
@@ -55,7 +55,7 @@ public class BonusFragment extends Fragment {
 					BonusEntryFactory.create(InventoryItemInformation.TYPE_GOLD_BULLET, mPlayerProfile.getGoldBulletQuantity())});
 		}
 
-		mBonusListView.setAdapter(mBonusEntryAdapter);
+		mBonusGridView.setAdapter(mBonusEntryAdapter);
 
 		(v.findViewById(R.id.bonus_start)).setOnClickListener(new View.OnClickListener() {
 			@Override
