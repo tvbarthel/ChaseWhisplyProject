@@ -12,6 +12,7 @@ public class DroppedByList implements Parcelable {
 	public static final int DROP_RATE_COIN = 50;
 	public static final int DROP_RATE_KING_CROWN = 50;
 
+	//TODO Use a SparseIntArray instead of a HashMap<Integer, Integer>
 	private final HashMap<Integer, Integer> mMonstersAndPercents;
 
 	public DroppedByList() {
