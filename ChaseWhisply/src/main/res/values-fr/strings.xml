@@ -35,6 +35,7 @@
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Sélectionnez un classement</string>
+    <string name="leaderboard_overall_ranking_description">Classement général.</string>
     <string name="leaderboard_chooser_time_limited_level_1_description">Meilleurs scores, mode de
         jeu : 30 secondes.
     </string>

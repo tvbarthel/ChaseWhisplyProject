@@ -36,6 +36,7 @@
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Select leaderboard</string>
+    <string name="leaderboard_overall_ranking_description">Overall Ranking.</string>
     <string name="leaderboard_chooser_time_limited_level_1_description">30 seconds High Scores.</string>
     <string name="leaderboard_chooser_time_limited_level_2_description">60 seconds High Scores.</string>
     <string name="leaderboard_chooser_time_limited_level_3_description">90 seconds High Scores.</string>

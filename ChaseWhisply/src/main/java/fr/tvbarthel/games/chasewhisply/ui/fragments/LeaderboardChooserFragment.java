@@ -59,6 +59,9 @@ public class LeaderboardChooserFragment extends Fragment implements GameModeView
 	private void loadGameMode() {
 		mGameModeViewAdapter.clear();
 
+		//Overall Ranking
+		mGameModeViewAdapter.add(GameModeFactory.createOverallRanking());
+
 		//First mode: Kill as many Ghosts as you can in 30 seconds.
 		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(1));
 

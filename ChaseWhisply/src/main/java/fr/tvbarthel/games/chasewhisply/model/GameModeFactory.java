@@ -9,6 +9,7 @@ public class GameModeFactory {
 	public static final int GAME_TYPE_LIMITED_TARGETS = 0x00000002;
 	public static final int GAME_TYPE_SURVIVAL = 0x00000003;
 	public static final int GAME_TYPE_DEATH_TO_THE_KING = 0x00000004;
+	public static final int GAME_TYPE_OVERALL_RANKING = 0x00000005;
 
 	public static GameMode createRemainingTimeGame(int level) {
 		final GameMode g = new GameMode() {
@@ -99,6 +100,21 @@ public class GameModeFactory {
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_death_to_the_king_description);
 		g.setRequiredCondition(3);
 		g.setRequiredMessage(R.string.game_mode_kill_the_king_required_message);
+		return g;
+	}
+
+	public static GameMode createOverallRanking() {
+		final GameMode g = new GameMode() {
+			@Override
+			public boolean isAvailable(PlayerProfile p) {
+				//always available
+				return true;
+			}
+		};
+		g.setType(GAME_TYPE_OVERALL_RANKING);
+		g.setImage(R.drawable.ic_icon_overall_ranking);
+		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);
+		g.setLeaderboardDescriptionStringId(R.string.leaderboard_overall_ranking_description);
 		return g;
 	}
 }
