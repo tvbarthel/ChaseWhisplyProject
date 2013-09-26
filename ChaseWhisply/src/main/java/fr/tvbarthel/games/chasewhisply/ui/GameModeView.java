@@ -29,7 +29,7 @@ public class GameModeView extends RelativeLayout {
 		setBackgroundResource(R.drawable.card_shadow);
 		setClickable(true);
 
-		final LayoutInflater inflater = LayoutInflater.from(context);
+		final LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.view_game_mode, this, true);
 
 		mGameModeImage = (ImageView) getChildAt(0);

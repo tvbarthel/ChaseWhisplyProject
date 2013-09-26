@@ -16,24 +16,20 @@ import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 
 public class GameModeViewAdapter extends ArrayAdapter<GameMode> {
 
-
-	private Context mContext;
 	private ArrayList<GameMode> mGameModes;
 	private PlayerProfile mPlayerProfile;
 	public Listener mListener;
 
 
 	public GameModeViewAdapter(Context context, ArrayList<GameMode> gameModes, PlayerProfile p, Listener l) {
-		super(context, R.layout.row_gamemode_entry, gameModes);
-		mContext = context;
+		super(context, R.layout.view_game_mode, gameModes);
 		mGameModes = gameModes;
 		mPlayerProfile = p;
 		mListener = l;
 	}
 
 	public GameModeViewAdapter(Context context, ArrayList<GameMode> gameModes, Listener l) {
-		super(context, R.layout.row_gamemode_entry, gameModes);
-		mContext = context;
+		super(context, R.layout.view_game_mode, gameModes);
 		mGameModes = gameModes;
 		mPlayerProfile = null;
 		mListener = l;
@@ -42,21 +38,19 @@ public class GameModeViewAdapter extends ArrayAdapter<GameMode> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final GameMode currentGameMode = mGameModes.get(position);
-		final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = convertView;
+		GameModeView rowView = (GameModeView)convertView;
 
 		if (rowView == null) {
-			rowView = inflater.inflate(R.layout.row_gamemode_entry, parent, false);
+			rowView = new GameModeView(getContext());
 		}
 
-		GameModeView gameModeView = (GameModeView) rowView.findViewById(R.id.gamemodeview);
 		if (mPlayerProfile == null) {
-			gameModeView.setModelForLeaderboard(currentGameMode);
+			rowView.setModelForLeaderboard(currentGameMode);
 		} else {
-			gameModeView.setModel(currentGameMode);
-			gameModeView.setGameModeEnabled(currentGameMode.isAvailable(mPlayerProfile));
+			rowView.setModel(currentGameMode);
+			rowView.setGameModeEnabled(currentGameMode.isAvailable(mPlayerProfile));
 		}
-		gameModeView.setGameModeSelectedListener(mListener);
+		rowView.setGameModeSelectedListener(mListener);
 
 		return rowView;
 

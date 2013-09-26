@@ -12,19 +12,18 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.bestiary.BestiaryEntry;
 
 public class BestiaryEntryAdapter extends ArrayAdapter<BestiaryEntry> {
-	private Context mContext;
 	private BestiaryEntry[] mBestiaryEntries;
 
 	public BestiaryEntryAdapter(Context context, BestiaryEntry[] bestiaryEntries) {
 		super(context, R.layout.row_bestiary_entry, bestiaryEntries);
-		mContext = context;
 		mBestiaryEntries = bestiaryEntries;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		final Context context = getContext();
 		final BestiaryEntry currentBestiaryEntry = mBestiaryEntries[position];
-		final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = convertView;
 
 		if (rowView == null) {

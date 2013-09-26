@@ -50,6 +50,12 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryAda
 	}
 
 	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
+
+	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 	}
