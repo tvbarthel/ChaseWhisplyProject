@@ -54,7 +54,7 @@ public class GameBehaviorFactory {
 				mStartTime = System.currentTimeMillis();
 				for (int i = 0; i < 100; i++) {
 					g.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(
-							i == 50 ? DisplayableItemFactory.TYPE_KING_GHOST : DisplayableItemFactory.TYPE_EASY_GHOST));
+							i == 50 ? DisplayableItemFactory.TYPE_KING_GHOST : randomGhostTypeWithoutKing()));
 				}
 			}
 
@@ -299,6 +299,25 @@ public class GameBehaviorFactory {
 			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
 		} else {
 			return DisplayableItemFactory.TYPE_KING_GHOST;
+		}
+
+	}
+
+	/**
+	 * spawn rules for all mobs exept king
+	 *
+	 * @return
+	 */
+	private static int randomGhostTypeWithoutKing() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 60) {
+			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 75) {
+			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+		} else if (randomDraw < 90) {
+			return DisplayableItemFactory.TYPE_BABY_GHOST;
+		} else {
+			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
 		}
 
 	}
