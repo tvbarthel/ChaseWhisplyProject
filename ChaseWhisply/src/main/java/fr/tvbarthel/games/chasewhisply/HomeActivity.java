@@ -18,6 +18,7 @@ import com.google.android.gms.games.GamesClient;
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
@@ -220,16 +221,23 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	}
 
 	@Override
-	public void onUpdateAchievements(final GameInformation gameInformation) {
+	public void onUpdateAchievements(final GameInformation gameInformation, final PlayerProfile playerProfile) {
 		final GamesClient gamesClient = getGamesClient();
 		if (gamesClient.isConnected()) {
 			final int score = gameInformation.getCurrentScore();
+			final long exp = playerProfile.getLevelInformation().getTotalExpEarned();
 			final GameMode gameMode = gameInformation.getGameMode();
 			final Weapon weapon = gameInformation.getWeapon();
 			final int numberOfLoots = gameInformation.getNumberOfLoots();
-			if(score>0){
+
+			//Submit score for the played game mode
+			if (score > 0) {
 				gamesClient.submitScore(getResources().getString(gameMode.getLeaderboardStringId()), score);
 			}
+
+			//Submit exp for the overall ranking
+			gamesClient.submitScore(getResources().getString(R.string.leaderboard_overall_ranking), exp);
+
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_soldier), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_corporal), 1);
 			gamesClient.incrementAchievement(getResources().getString(R.string.achievement_sergeant), 1);

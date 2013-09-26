@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -220,7 +219,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		if (signedIn) {
 			mSignInView.setVisibility(View.GONE);
 			if (!mAchievementChecked) {
-				mListener.onUpdateAchievements(mGameInformation);
+				mListener.onUpdateAchievements(mGameInformation, mPlayerProfile);
 				mAchievementChecked = true;
 			}
 		} else {
@@ -391,7 +390,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 		public void onHomeRequested();
 
-		public void onUpdateAchievements(final GameInformation gameInformation);
+		public void onUpdateAchievements(final GameInformation gameInformation, final PlayerProfile playerProfile);
 
 		public void onShareScoreRequested(long score);
 	}
