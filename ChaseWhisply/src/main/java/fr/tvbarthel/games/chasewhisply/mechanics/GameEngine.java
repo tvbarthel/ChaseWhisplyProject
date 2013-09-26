@@ -68,6 +68,8 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 		mSpawningRoutine.startRoutine();
 		mTickerRoutine.startRoutine();
 		mCurrentState = STATE_RUNNING;
+		mXRange = mGameInformation.getSceneWidth() / 2 + mGameInformation.getSceneWidth() / 10;
+		mYRange = mGameInformation.getSceneHeight() / 2 + mGameInformation.getSceneHeight() / 10;
 	}
 
 	/**
