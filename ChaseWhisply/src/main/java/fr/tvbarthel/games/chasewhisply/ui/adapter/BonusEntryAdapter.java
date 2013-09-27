@@ -53,11 +53,12 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 				}
 			});
 		} else {
+			rowView.setBackgroundResource(R.drawable.card_shadow_disable);
 			equippedCheckBox.setEnabled(false);
 		}
 
 		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(context.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
-		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText(String.valueOf(currentBonusEntry.getQuantity()));
+		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText("x"+String.valueOf(currentBonusEntry.getQuantity()));
 
 		if (bonus instanceof BonusDamage) {
 			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
