@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,10 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryAda
 		mInventoryEntryAdapter = new InventoryItemEntryAdapter(getActivity(), new ArrayList<InventoryItemEntry>(), this);
 		mInventoryListView = ((ListView) v.findViewById(R.id.inventory_list_view));
 		mInventoryListView.setAdapter(mInventoryEntryAdapter);
+
+		final long numberOfCoins = mPlayerProfile.getOldCoinQuantity();
+		((TextView) v.findViewById(R.id.inventory_old_coins)).setText(getResources().getQuantityText(R.plurals.inventory_item_coin_title,
+				(int) numberOfCoins) + ": " + String.valueOf(numberOfCoins));
 		loadInformation();
 		return v;
 	}
@@ -67,7 +72,6 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryAda
 
 	public void loadInformation() {
 		mInventoryEntryAdapter.clear();
-		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_COIN, mPlayerProfile.getOldCoinQuantity()));
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN, mPlayerProfile.getBrokenHelmetHornQuantity()));
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_BABY_DROOL, mPlayerProfile.getBabyDroolQuantity()));
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_KING_CROWN, mPlayerProfile.getKingCrownQuantity()));

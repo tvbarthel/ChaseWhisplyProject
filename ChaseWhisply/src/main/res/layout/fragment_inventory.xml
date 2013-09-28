@@ -12,8 +12,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/holo_dark_green"
         android:text="@string/inventory_title"
-        android:id="@+id/textView"
-        android:layout_gravity="center"
+        android:id="@+id/inventory_old_coins"
+        android:layout_gravity="left"
         android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
     <ListView
