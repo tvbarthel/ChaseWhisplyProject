@@ -15,12 +15,15 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/default_vertical_margin" />
 
-
-    <ListView
+    <GridView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gamemode_list_view"
+        android:id="@+id/gamemode_grid_view"
         android:layout_gravity="center"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/default_vertical_margin" />
+        android:columnWidth="@dimen/game_mode_width"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="@dimen/grid_view_spacing"
+        android:horizontalSpacing="@dimen/grid_view_spacing"
+        android:stretchMode="columnWidth" />
+
 </LinearLayout>
