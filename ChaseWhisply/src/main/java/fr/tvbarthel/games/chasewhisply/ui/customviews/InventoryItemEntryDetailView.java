@@ -2,15 +2,14 @@ package fr.tvbarthel.games.chasewhisply.ui.customviews;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
@@ -70,11 +69,13 @@ public class InventoryItemEntryDetailView extends LinearLayout {
 		}
 
 		String stringDroppedBy = mContext.getString(R.string.inventory_item_can_t_be_dropped);
-		final HashMap<Integer, Integer> lootsAndPercents = mModel.getDroppedBy().getMonstersAndPercents();
-		if (lootsAndPercents.size() != 0) {
+		final SparseIntArray lootsAndPercents = mModel.getDroppedBy().getMonstersAndPercents();
+		final int lootsAndPercentsSize = lootsAndPercents.size();
+		if (lootsAndPercentsSize != 0) {
 			stringDroppedBy = "";
-			for (Map.Entry<Integer, Integer> entry : lootsAndPercents.entrySet()) {
-				stringDroppedBy += mContext.getString(R.string.dropped_by_entry, mContext.getString(entry.getKey()), entry.getValue());
+			for (int i = 0; i < lootsAndPercentsSize; i++) {
+				stringDroppedBy += mContext.getString(R.string.dropped_by_entry,
+						mContext.getString(lootsAndPercents.keyAt(i)), lootsAndPercents.valueAt(i));
 				stringDroppedBy += " ";
 			}
 			stringDroppedBy = stringDroppedBy.substring(0, stringDroppedBy.length() - 2);

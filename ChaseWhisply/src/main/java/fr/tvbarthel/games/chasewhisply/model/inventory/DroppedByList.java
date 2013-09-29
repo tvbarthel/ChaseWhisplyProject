@@ -2,9 +2,7 @@ package fr.tvbarthel.games.chasewhisply.model.inventory;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.util.HashMap;
-import java.util.Map;
+import android.util.SparseIntArray;
 
 public class DroppedByList implements Parcelable {
 	public static final int DROP_RATE_BABY_DROOL = 50;
@@ -12,26 +10,23 @@ public class DroppedByList implements Parcelable {
 	public static final int DROP_RATE_COIN = 50;
 	public static final int DROP_RATE_KING_CROWN = 50;
 
-	//TODO Use a SparseIntArray instead of a HashMap<Integer, Integer>
-	private final HashMap<Integer, Integer> mMonstersAndPercents;
+	private final SparseIntArray mMonstersAndPercents;
 
 	public DroppedByList() {
-		mMonstersAndPercents = new HashMap<Integer, Integer>();
+		mMonstersAndPercents = new SparseIntArray();
 	}
 
 	public DroppedByList(Parcel in) {
-		mMonstersAndPercents = new HashMap<Integer, Integer>();
+		mMonstersAndPercents = new SparseIntArray();
 		readFromParcel(in);
 	}
 
 	public void addMonster(Integer monsterNameResourceId, Integer percent) {
-		if (mMonstersAndPercents.containsKey(monsterNameResourceId)) {
-			percent += mMonstersAndPercents.get(monsterNameResourceId);
-		}
+		percent += mMonstersAndPercents.get(monsterNameResourceId);
 		mMonstersAndPercents.put(monsterNameResourceId, percent);
 	}
 
-	public HashMap<Integer, Integer> getMonstersAndPercents() {
+	public SparseIntArray getMonstersAndPercents() {
 		return mMonstersAndPercents;
 	}
 
@@ -44,9 +39,9 @@ public class DroppedByList implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 		final int size = mMonstersAndPercents.size();
 		dest.writeInt(size);
-		for (Map.Entry<Integer, Integer> entry : mMonstersAndPercents.entrySet()) {
-			dest.writeInt(entry.getKey());
-			dest.writeInt(entry.getValue());
+		for (int i = 0; i < size; i++) {
+			dest.writeInt(mMonstersAndPercents.keyAt(i));
+			dest.writeInt(mMonstersAndPercents.valueAt(i));
 		}
 	}
 
