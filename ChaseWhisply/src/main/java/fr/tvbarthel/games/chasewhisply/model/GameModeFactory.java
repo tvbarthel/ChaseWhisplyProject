@@ -88,8 +88,8 @@ public class GameModeFactory {
 		final GameMode g = new GameMode() {
 			@Override
 			public boolean isAvailable(PlayerProfile p) {
-				//only available if player as already played 10 games
-				return p.getGamesPlayed() >= this.getRequiredCondition();
+				//only available if player level > required level
+				return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
 			}
 		};
 		g.setType(GAME_TYPE_DEATH_TO_THE_KING);
@@ -98,7 +98,7 @@ public class GameModeFactory {
 		g.setImage(R.drawable.ic_icon_death_to_the_king);
 		g.setLeaderboardStringId(R.string.leaderboard_death_to_the_king);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_death_to_the_king_description);
-		g.setRequiredCondition(3);
+		g.setRequiredCondition(10);
 		g.setRequiredMessage(R.string.game_mode_kill_the_king_required_message);
 		return g;
 	}

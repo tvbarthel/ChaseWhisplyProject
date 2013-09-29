@@ -52,7 +52,7 @@
     <string name="game_mode_survival">Survival: each kill gives additional time.</string>
     <string name="game_mode_survival_required_message">Survival : Level 2 is required to access this game mode.</string>
     <string name="game_mode_kill_the_king">Death to the king ! : You have five second to kill the king.</string>
-    <string name="game_mode_kill_the_king_required_message">Death to the king  ! : Play 10 games to unlock this mode.</string>
+    <string name="game_mode_kill_the_king_required_message">Death to the king  ! : Level 10 is required to access this game mode.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>
