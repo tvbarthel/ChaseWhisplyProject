@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
-import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
+import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.adapter.GameModeViewAdapter;
 
 public class LeaderboardChooserFragment extends Fragment implements GameModeViewAdapter.Listener {

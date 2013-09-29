@@ -20,7 +20,7 @@ import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
-import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
+import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.BonusFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;

@@ -37,8 +37,8 @@ public class PlayerProfile {
 		return mSharedPreferences.getLong(key, 0);
 	}
 
-	public void increaseInventoryItemQuantity(int inventoryItemType) {
-		increaseInventoryItemQuantity(inventoryItemType, 1);
+	public long increaseInventoryItemQuantity(int inventoryItemType) {
+		return increaseInventoryItemQuantity(inventoryItemType, 1);
 	}
 
 	public long decreaseInventoryItemQuantity(int inventoryItemType, int amount) {

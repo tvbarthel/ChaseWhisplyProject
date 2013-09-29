@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,26 +17,28 @@ import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntryFactory;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
+import fr.tvbarthel.games.chasewhisply.ui.InventoryCraftListener;
+import fr.tvbarthel.games.chasewhisply.ui.customviews.InventoryItemEntryView;
 import fr.tvbarthel.games.chasewhisply.ui.adapter.InventoryItemEntryAdapter;
 
-public class InventoryFragment extends Fragment implements InventoryItemEntryAdapter.Listener {
+public class InventoryFragment extends Fragment implements InventoryItemEntryView.Listener, InventoryCraftListener {
 	public static final String TAG = "InventoryFragment_TAG";
 
-	private ListView mInventoryListView;
+	private TextView mTextViewCoins;
+	private GridView mInventoryGridView;
 	private PlayerProfile mPlayerProfile;
 	private Listener mListener;
+	private InventoryCraftListener mCraftListener;
 	private InventoryItemEntryAdapter mInventoryEntryAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_inventory, container, false);
-		mInventoryEntryAdapter = new InventoryItemEntryAdapter(getActivity(), new ArrayList<InventoryItemEntry>(), this);
-		mInventoryListView = ((ListView) v.findViewById(R.id.inventory_list_view));
-		mInventoryListView.setAdapter(mInventoryEntryAdapter);
-
-		final long numberOfCoins = mPlayerProfile.getOldCoinQuantity();
-		((TextView) v.findViewById(R.id.inventory_old_coins)).setText(getResources().getQuantityText(R.plurals.inventory_item_coin_title,
-				(int) numberOfCoins) + ": " + String.valueOf(numberOfCoins));
+		mInventoryEntryAdapter = new InventoryItemEntryAdapter(getActivity(), new ArrayList<InventoryItemEntry>(),
+				this, this, mPlayerProfile);
+		mInventoryGridView = ((GridView) v.findViewById(R.id.inventory_grid_view));
+		mInventoryGridView.setAdapter(mInventoryEntryAdapter);
+		mTextViewCoins = (TextView) v.findViewById(R.id.inventory_old_coins);
 		loadInformation();
 		return v;
 	}
@@ -50,14 +52,23 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryAda
 					PlayerProfile.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE));
 		} else {
 			throw new ClassCastException(activity.toString()
-					+ " must implemenet InventoryFragment.Listener");
+					+ " must implement InventoryFragment.Listener");
 		}
+
+		if (activity instanceof InventoryCraftListener) {
+			mCraftListener = (InventoryCraftListener) activity;
+		} else {
+			throw new ClassCastException(activity.toString()
+					+ " must implement InventoryCraftListener");
+		}
+
 	}
 
 	@Override
 	public void onDetach() {
 		super.onDetach();
 		mListener = null;
+		mCraftListener = null;
 	}
 
 	@Override
@@ -65,12 +76,16 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryAda
 		super.onActivityCreated(savedInstanceState);
 	}
 
+
 	@Override
-	public void onCraftRequested(InventoryItemEntry inventoryItemEntry) {
-		mListener.onCraftRequested(inventoryItemEntry);
+	public void onInventoryItemEntryDetailRequest(InventoryItemEntry inventoryItemEntry) {
+		mListener.onInventoryItemEntryDetailRequest(inventoryItemEntry);
 	}
 
 	public void loadInformation() {
+		final long numberOfCoins = mPlayerProfile.getOldCoinQuantity();
+		mTextViewCoins.setText(getResources().getQuantityText(R.plurals.inventory_item_coin_title,
+				(int) numberOfCoins) + ": " + String.valueOf(numberOfCoins));
 		mInventoryEntryAdapter.clear();
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN, mPlayerProfile.getBrokenHelmetHornQuantity()));
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_BABY_DROOL, mPlayerProfile.getBabyDroolQuantity()));
@@ -80,7 +95,12 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryAda
 		mInventoryEntryAdapter.notifyDataSetChanged();
 	}
 
+	@Override
+	public void onCraftRequested(InventoryItemEntry inventoryItemEntry) {
+		mCraftListener.onCraftRequested(inventoryItemEntry);
+	}
+
 	public interface Listener {
-		public void onCraftRequested(InventoryItemEntry inventoryItemEntry);
+		public void onInventoryItemEntryDetailRequest(InventoryItemEntry inventoryItemEntry);
 	}
 }

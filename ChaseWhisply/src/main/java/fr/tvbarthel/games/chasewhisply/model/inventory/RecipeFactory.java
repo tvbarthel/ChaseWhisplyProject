@@ -6,6 +6,18 @@ public class RecipeFactory {
 		Recipe recipe = new Recipe();
 		switch (inventoryItemType) {
 
+			case InventoryItemInformation.TYPE_BABY_DROOL:
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 5);
+				break;
+
+			case InventoryItemInformation.TYPE_BROKEN_HELMET_HORN:
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 10);
+				break;
+
+			case InventoryItemInformation.TYPE_KING_CROWN:
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 150);
+				break;
+
 			case InventoryItemInformation.TYPE_STEEL_BULLET:
 				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 25);
 				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN), 5);

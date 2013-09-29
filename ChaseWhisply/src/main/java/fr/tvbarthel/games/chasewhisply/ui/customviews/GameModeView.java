@@ -1,7 +1,6 @@
-package fr.tvbarthel.games.chasewhisply.ui;
+package fr.tvbarthel.games.chasewhisply.ui.customviews;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +28,7 @@ public class GameModeView extends RelativeLayout {
 		setBackgroundResource(R.drawable.card_shadow);
 		setClickable(true);
 
-		final LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.view_game_mode, this, true);
 
 		mGameModeImage = (ImageView) getChildAt(0);

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.tvbarthel.games.chasewhisply.R;
+import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 
 public class Recipe implements Parcelable {
 	private final HashMap<InventoryItemInformation, Integer> mIngredientsAndQuantities;
@@ -30,6 +31,20 @@ public class Recipe implements Parcelable {
 
 	public HashMap<InventoryItemInformation, Integer> getIngredientsAndQuantities() {
 		return mIngredientsAndQuantities;
+	}
+
+	public HashMap<Integer, Integer> getMissingResources(PlayerProfile playerProfile) {
+		final HashMap<Integer, Integer> missingResources = new HashMap<Integer, Integer>();
+
+		for (Map.Entry<InventoryItemInformation, Integer> entry : mIngredientsAndQuantities.entrySet()) {
+			int quantityRequested = entry.getValue();
+			long quantityAvailable = playerProfile.getInventoryItemQuantity(entry.getKey().getType());
+			if (quantityAvailable < quantityRequested) {
+				missingResources.put(entry.getKey().getTitleResourceId(), (int) (quantityRequested - quantityAvailable));
+			}
+		}
+
+		return missingResources;
 	}
 
 	public String toString(Context context) {

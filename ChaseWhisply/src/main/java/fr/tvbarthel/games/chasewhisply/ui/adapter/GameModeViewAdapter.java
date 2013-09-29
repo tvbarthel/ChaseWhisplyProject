@@ -1,7 +1,6 @@
 package fr.tvbarthel.games.chasewhisply.ui.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
-import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
+import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;
 
 
 public class GameModeViewAdapter extends ArrayAdapter<GameMode> {

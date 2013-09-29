@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@drawable/button_text_color"
+        android:id="@+id/view_inventory_item_entry_title"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toLeftOf="@+id/view_inventory_item_entry_craft_action"
+        android:layout_alignParentTop="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minLines="1" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_inventory_item_entry_craft_action"
+        android:background="@null"
+        android:clickable="true"
+        android:src="@drawable/button_craft"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/ic_bag"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="@dimen/activity_half_horizontal_margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/button_text_color"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/view_inventory_item_entry_quantity"
+        android:layout_toLeftOf="@+id/view_inventory_item_entry_craft_action"
+        android:layout_below="@+id/view_inventory_item_entry_title"
+        android:layout_toRightOf="@+id/imageView" />
+
+</merge>

@@ -12,14 +12,16 @@ import java.util.Map;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
-import fr.tvbarthel.games.chasewhisply.model.inventory.Recipe;
-import fr.tvbarthel.games.chasewhisply.ui.CraftNotEnoughResourcesDialogFragment;
-import fr.tvbarthel.games.chasewhisply.ui.CraftRequestDialogFragment;
+import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.CraftNotEnoughResourcesDialogFragment;
+import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.CraftRequestDialogFragment;
+import fr.tvbarthel.games.chasewhisply.ui.InventoryCraftListener;
+import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.InventoryItemEntryDetailDialogFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.BestiaryFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.InventoryFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.ProfileFragment;
 
-public class ProfileActivity extends FragmentActivity implements ProfileFragment.Listener, InventoryFragment.Listener, CraftRequestDialogFragment.Listener {
+public class ProfileActivity extends FragmentActivity implements ProfileFragment.Listener, InventoryFragment.Listener,
+		CraftRequestDialogFragment.Listener, InventoryCraftListener {
 
 	private Toast mTextToast;
 	private PlayerProfile mPlayerProfile;
@@ -80,28 +82,14 @@ public class ProfileActivity extends FragmentActivity implements ProfileFragment
 		}
 	}
 
-	public HashMap<Integer, Integer> getMissingResources(Recipe recipe) {
-		final HashMap<InventoryItemInformation, Integer> ingredientsAndQuantities = recipe.getIngredientsAndQuantities();
-		final HashMap<Integer, Integer> missingResources = new HashMap<Integer, Integer>();
-
-		for (Map.Entry<InventoryItemInformation, Integer> entry : ingredientsAndQuantities.entrySet()) {
-			int quantityRequested = entry.getValue();
-			long quantityAvailable = mPlayerProfile.getInventoryItemQuantity(entry.getKey().getType());
-			if (quantityAvailable < quantityRequested) {
-				missingResources.put(entry.getKey().getTitleResourceId(), (int) (quantityRequested - quantityAvailable));
-			}
-		}
-
-		return missingResources;
-	}
 
 	@Override
 	public void onCraftRequested(InventoryItemEntry inventoryItemEntry) {
-		final HashMap<Integer, Integer> missingResources = getMissingResources(inventoryItemEntry.getRecipe());
+		final HashMap<Integer, Integer> missingResources = inventoryItemEntry.getRecipe().getMissingResources(mPlayerProfile);
 		if (missingResources.size() == 0) {
 			CraftRequestDialogFragment.newInstance(inventoryItemEntry).show(getSupportFragmentManager(), null);
 		} else {
-			String missingResourcesString = new String();
+			String missingResourcesString = "";
 			for (Map.Entry<Integer, Integer> entry : missingResources.entrySet()) {
 				final int quantityMissing = entry.getValue();
 				final int nameResourceId = entry.getKey();
@@ -114,15 +102,25 @@ public class ProfileActivity extends FragmentActivity implements ProfileFragment
 	}
 
 	@Override
+	public void onInventoryItemEntryDetailRequest(InventoryItemEntry inventoryItemEntry) {
+		InventoryItemEntryDetailDialogFragment.newInstance(inventoryItemEntry).show(getSupportFragmentManager(),
+				InventoryItemEntryDetailDialogFragment.TAG);
+	}
+
+	@Override
 	public void onCraftValidated(InventoryItemEntry inventoryItemEntry) {
 		for (Map.Entry<InventoryItemInformation, Integer> entry : inventoryItemEntry.getRecipe().getIngredientsAndQuantities().entrySet()) {
 			mPlayerProfile.decreaseInventoryItemQuantity(entry.getKey().getType(), entry.getValue());
 		}
-		mPlayerProfile.increaseInventoryItemQuantity(inventoryItemEntry.getType());
+		long newQuantity = mPlayerProfile.increaseInventoryItemQuantity(inventoryItemEntry.getType());
 		boolean areChangesSaved = mPlayerProfile.saveChanges();
-		InventoryFragment inventoryFragment = (InventoryFragment) getSupportFragmentManager().findFragmentByTag(InventoryFragment.TAG);
-		if (areChangesSaved && inventoryFragment != null) {
-			inventoryFragment.loadInformation();
+		final InventoryFragment inventoryFragment = (InventoryFragment) getSupportFragmentManager().findFragmentByTag(InventoryFragment.TAG);
+		final InventoryItemEntryDetailDialogFragment inventoryDialogFragment = (InventoryItemEntryDetailDialogFragment)
+				getSupportFragmentManager().findFragmentByTag(InventoryItemEntryDetailDialogFragment.TAG);
+		if (areChangesSaved) {
+			inventoryItemEntry.setQuantityAvailable(newQuantity);
+			if (inventoryFragment != null) inventoryFragment.loadInformation();
+			if (inventoryDialogFragment != null) inventoryDialogFragment.udpateInventoryItemEntry(inventoryItemEntry);
 		}
 	}
 }

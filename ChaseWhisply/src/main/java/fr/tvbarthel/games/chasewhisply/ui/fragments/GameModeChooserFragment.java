@@ -15,7 +15,7 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
-import fr.tvbarthel.games.chasewhisply.ui.GameModeView;
+import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.adapter.GameModeViewAdapter;
 
 
