@@ -19,4 +19,5 @@
     <dimen name="bonus_row_entry_width">220dp</dimen>
     <dimen name="inventory_item_entry_width">250dp</dimen>
     <dimen name="game_mode_width">240dp</dimen>
+    <dimen name="leaderboard_mode_width">240dp</dimen>
 </resources>

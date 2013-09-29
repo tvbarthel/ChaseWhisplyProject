@@ -6,15 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.GridView;
 
 import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
-import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.adapter.GameModeViewAdapter;
+import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;
 
 public class LeaderboardChooserFragment extends Fragment implements GameModeViewAdapter.Listener {
 
@@ -48,7 +48,7 @@ public class LeaderboardChooserFragment extends Fragment implements GameModeView
 
 		View v = inflater.inflate(R.layout.fragment_leaderboard_chooser, container, false);
 		mGameModeViewAdapter = new GameModeViewAdapter(getActivity(), new ArrayList<GameMode>(), this);
-		((ListView) v.findViewById(R.id.leaderboard_list_view)).setAdapter(mGameModeViewAdapter);
+		((GridView) v.findViewById(R.id.leaderboard_grid_view)).setAdapter(mGameModeViewAdapter);
 
 		loadGameMode();
 
