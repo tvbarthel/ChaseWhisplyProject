@@ -25,6 +25,10 @@ public class DroppedByListFactory {
 			case InventoryItemInformation.TYPE_KING_CROWN:
 				droppedByList.addMonster(R.string.bestiary_king_ghost_title, DroppedByList.DROP_RATE_KING_CROWN);
 				break;
+
+			case InventoryItemInformation.TYPE_GHOST_TEAR:
+				droppedByList.addMonster(R.string.bestiary_blond_ghost_title, DroppedByList.DROP_RATE_GHOST_TEAR);
+				break;
 		}
 		return droppedByList;
 	}

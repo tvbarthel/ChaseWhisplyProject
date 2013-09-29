@@ -138,6 +138,10 @@ public class DisplayableItemFactory {
 			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
+		if (dropDraft < DroppedByList.DROP_RATE_GHOST_TEAR) {
+			drops.add(InventoryItemInformation.TYPE_GHOST_TEAR);
+		}
+
 		blondGhost.setDrop(drops);
 		return blondGhost;
 	}

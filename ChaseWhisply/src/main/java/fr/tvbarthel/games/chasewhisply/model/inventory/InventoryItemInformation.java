@@ -3,7 +3,7 @@ package fr.tvbarthel.games.chasewhisply.model.inventory;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class InventoryItemInformation implements Parcelable{
+public class InventoryItemInformation implements Parcelable {
 	public static final int TYPE_KING_CROWN = 0x00000001;
 	public static final int TYPE_BROKEN_HELMET_HORN = 0x00000002;
 	public static final int TYPE_BABY_DROOL = 0x00000003;
@@ -11,6 +11,7 @@ public class InventoryItemInformation implements Parcelable{
 	public static final int TYPE_STEEL_BULLET = 0x00000005;
 	public static final int TYPE_GOLD_BULLET = 0x00000006;
 	public static final int TYPE_ONE_SHOT_BULLET = 0x00000007;
+	public static final int TYPE_GHOST_TEAR = 0x00000008;
 
 	private int mType;
 	private int mTitleResourceId;
@@ -53,7 +54,6 @@ public class InventoryItemInformation implements Parcelable{
 			return new InventoryItemInformation[size];
 		}
 	};
-
 
 
 	/**

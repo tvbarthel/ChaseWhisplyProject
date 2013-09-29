@@ -260,6 +260,14 @@
         Une balle tellement puissante, qu\'elle peut tuer instantanément n\'importe quel fantôme. Cette balle
         est très chère, manipuler la avec précaution. Utiliser des balles \"One-Shot\" vous donne un bonus de +10 en dégats.
     </string>
+    <plurals name="inventory_item_ghost_tear_title">
+        <item quantity="one">Larme de Fantôme</item>
+        <item quantity="other">Larmes de Fantôme</item>
+    </plurals>
+    <string name="inventory_item_ghost_tear_description">
+        Une minuscule larme qui provient probablement d\'une mère fantôme morte en tentant de défendre ses enfants. Vous
+        pouvez sentir une étrange puissance émanant de cette petite goutte.
+    </string>
     <string name="inventory_item_can_t_be_dropped">Ne peut-être ramassé</string>
     <string name="inventory_item_can_t_be_crafted">Ne peut-être construit</string>
     <string name="inventory_item_quantity">Quantité</string>

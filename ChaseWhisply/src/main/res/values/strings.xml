@@ -249,6 +249,14 @@
         A bullet that is so strong that it can kill any ghosts instantaneously. This kind of bullets is very expensive,
         handle it with care. Using such a bullet grants you a +10 bonus damage.
     </string>
+    <plurals name="inventory_item_ghost_tear_title">
+        <item quantity="one">Ghost Tear</item>
+        <item quantity="other">Ghost Tears</item>
+    </plurals>
+    <string name="inventory_item_ghost_tear_description">
+        A tiny tear that probably comes from a ghost mom that died trying to save her children. You can feel a
+        strange power emanating from this small drop.
+    </string>
     <string name="inventory_item_can_t_be_dropped">Can\'t be dropped</string>
     <string name="inventory_item_can_t_be_crafted">Can\'t be crafted</string>
     <string name="inventory_item_quantity">Quantity</string>

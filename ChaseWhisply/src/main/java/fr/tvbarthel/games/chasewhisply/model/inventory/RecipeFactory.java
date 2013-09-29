@@ -10,6 +10,10 @@ public class RecipeFactory {
 				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 5);
 				break;
 
+			case InventoryItemInformation.TYPE_GHOST_TEAR:
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 10);
+				break;
+
 			case InventoryItemInformation.TYPE_BROKEN_HELMET_HORN:
 				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 10);
 				break;

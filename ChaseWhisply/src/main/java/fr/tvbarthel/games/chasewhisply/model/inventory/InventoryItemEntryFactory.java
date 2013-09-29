@@ -14,6 +14,7 @@ public class InventoryItemEntryFactory {
 		frenchFeminineGenderItemTypes.add(InventoryItemInformation.TYPE_BABY_DROOL);
 		frenchFeminineGenderItemTypes.add(InventoryItemInformation.TYPE_KING_CROWN);
 		frenchFeminineGenderItemTypes.add(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN);
+		frenchFeminineGenderItemTypes.add(InventoryItemInformation.TYPE_GHOST_TEAR);
 	}
 
 	public static InventoryItemEntry create(int inventoryItemType, long quantityAvailable) {
