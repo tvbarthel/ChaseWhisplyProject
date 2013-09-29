@@ -17,4 +17,5 @@
     <dimen name="bestiary_row_entry_height">130dp</dimen>
     <dimen name="bestiary_row_entry_width">260dp</dimen>
     <dimen name="bonus_row_entry_width">220dp</dimen>
+    <dimen name="inventory_item_entry_width">250dp</dimen>
 </resources>

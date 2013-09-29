@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/inventory_grid_view"
         android:layout_gravity="center"
-        android:columnWidth="200dp"
+        android:columnWidth="@dimen/inventory_item_entry_width"
         android:numColumns="auto_fit"
         android:verticalSpacing="@dimen/grid_view_spacing"
         android:horizontalSpacing="@dimen/grid_view_spacing"
