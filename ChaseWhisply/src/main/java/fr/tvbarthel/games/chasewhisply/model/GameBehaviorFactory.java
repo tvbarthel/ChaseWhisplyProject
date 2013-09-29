@@ -289,8 +289,10 @@ public class GameBehaviorFactory {
 	 */
 	private static int randomGhostType() {
 		final int randomDraw = MathUtils.randomize(0, 100);
-		if (randomDraw < 60) {
+		if (randomDraw < 40) {
 			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 60) {
+			return DisplayableItemFactory.TYPE_BLOND_GHOST;
 		} else if (randomDraw < 75) {
 			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
 		} else if (randomDraw < 90) {

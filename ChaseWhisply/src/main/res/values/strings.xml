@@ -193,6 +193,7 @@
     <string name="bestiary_baby_ghost_title">Baby Ghost</string>
     <string name="bestiary_hidden_ghost_title">Hidden Ghost</string>
     <string name="bestiary_king_ghost_title">King of Ghosts</string>
+    <string name="bestiary_blond_ghost_title">Blond Ghost</string>
 
     <!-- Inventory Fragment -->
     <string name="inventory_title">Inventory</string>

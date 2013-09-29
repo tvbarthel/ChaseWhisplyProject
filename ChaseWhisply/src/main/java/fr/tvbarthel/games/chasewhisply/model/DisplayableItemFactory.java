@@ -1,7 +1,5 @@
 package fr.tvbarthel.games.chasewhisply.model;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.model.inventory.DroppedByList;
@@ -15,6 +13,7 @@ public class DisplayableItemFactory {
 	public final static int TYPE_GHOST_WITH_HELMET = 0x00000004;
 	public final static int TYPE_HIDDEN_GHOST = 0x00000005;
 	public final static int TYPE_KING_GHOST = 0x00000006;
+	public final static int TYPE_BLOND_GHOST = 0x00000007;
 
 	//World Boundaries
 	private static final int MAX_X_IN_DEGREE = 175;
@@ -33,6 +32,7 @@ public class DisplayableItemFactory {
 	public final static int HEALTH_GHOST_WITH_HELMET = 5;
 	public final static int HEALTH_HIDDEN_GHOST = 1;
 	public final static int HEALTH_KING_GHOST = 1;
+	public final static int HEALTH_BLOND_GHOST = 2;
 
 	//Base Point
 	public final static int BASE_POINT_EAST_GHOST = 1;
@@ -40,6 +40,7 @@ public class DisplayableItemFactory {
 	public final static int BASE_POINT_GHOST_WITH_HELMET = 10;
 	public final static int BASE_POINT_HIDDEN_GHOST = 2;
 	public final static int BASE_POINT_KING_GHOST = 0;
+	public final static int BASE_POINT_BLOND_GHOST = 2;
 
 	//Exp Point
 	public final static int EXP_POINT_EASY_GHOST = 2;
@@ -47,6 +48,7 @@ public class DisplayableItemFactory {
 	public final static int EXP_POINT_GHOST_WITH_HELMET = 10;
 	public final static int EXP_POINT_HIDDEN_GHOST = 5;
 	public final static int EXP_POINT_KING_GHOST = 0;
+	public final static int EXP_POINT_BLOND_GHOST = 4;
 
 
 	public static TargetableItem createGhostWithRandomCoordinates(int ghostType) {
@@ -73,6 +75,11 @@ public class DisplayableItemFactory {
 			case TYPE_KING_GHOST:
 				targetableItem = createKingGhost();
 				break;
+
+			case TYPE_BLOND_GHOST:
+				targetableItem = createBlondGhost();
+				break;
+
 		}
 		targetableItem.setRandomCoordinates(
 				Math.max(MIN_X_IN_DEGREE, xMin),
@@ -117,6 +124,22 @@ public class DisplayableItemFactory {
 
 		easyGhost.setDrop(drops);
 		return easyGhost;
+	}
+
+	public static TargetableItem createBlondGhost() {
+		final int dropDraft = MathUtils.randomize(0, 100);
+		final ArrayList<Integer> drops = new ArrayList<Integer>();
+		final TargetableItem blondGhost = createTargetableItem(TYPE_BLOND_GHOST,
+				HEALTH_BLOND_GHOST,
+				BASE_POINT_BLOND_GHOST,
+				EXP_POINT_BLOND_GHOST);
+
+		if (dropDraft < DroppedByList.DROP_RATE_COIN) {
+			drops.add(InventoryItemInformation.TYPE_COIN);
+		}
+
+		blondGhost.setDrop(drops);
+		return blondGhost;
 	}
 
 	public static TargetableItem createBabyGhost() {

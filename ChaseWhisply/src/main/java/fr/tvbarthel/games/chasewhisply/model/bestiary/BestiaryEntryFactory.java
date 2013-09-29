@@ -32,6 +32,12 @@ public class BestiaryEntryFactory {
 				bestiaryEntry.setTitleResourceId(R.string.bestiary_king_ghost_title);
 				break;
 
+			case DisplayableItemFactory.TYPE_BLOND_GHOST:
+				bestiaryEntry.setTargetableItem(DisplayableItemFactory.createBlondGhost());
+				bestiaryEntry.setImageResourceId(R.drawable.blond_ghost_in_tears);
+				bestiaryEntry.setTitleResourceId(R.string.bestiary_blond_ghost_title);
+				break;
+
 			default:
 				bestiaryEntry.setTargetableItem(DisplayableItemFactory.createEasyGhost());
 				bestiaryEntry.setImageResourceId(R.drawable.ghost);

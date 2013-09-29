@@ -22,6 +22,8 @@ public class GameView extends View {
 	private final Bitmap mCrossHairs;
 	private final Bitmap mGhostBitmap;
 	private final Bitmap mGhostTargetedBitmap;
+	private final Bitmap[] mBlondGhostBitmap;
+	private final Bitmap[] mBlondTargetedBitmap;
 	private final Bitmap mAmmoBitmap;
 	private final Bitmap mBulletHoleBitmap;
 	private final Bitmap mBabyGhostBitmap;
@@ -57,6 +59,14 @@ public class GameView extends View {
 		mCrossHairs = BitmapFactory.decodeResource(res, R.drawable.crosshair_white);
 		mGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.ghost);
 		mGhostTargetedBitmap = BitmapFactory.decodeResource(res, R.drawable.ghost_targeted);
+		mBlondGhostBitmap = new Bitmap[]{
+				BitmapFactory.decodeResource(res, R.drawable.blond_ghost_in_tears),
+				BitmapFactory.decodeResource(res, R.drawable.blond_ghost),
+		};
+		mBlondTargetedBitmap = new Bitmap[]{
+				BitmapFactory.decodeResource(res, R.drawable.blond_ghost_in_tears_targeted),
+				BitmapFactory.decodeResource(res, R.drawable.blond_ghost_targeted),
+		};
 		mAmmoBitmap = BitmapFactory.decodeResource(res, R.drawable.ammo);
 		mBulletHoleBitmap = BitmapFactory.decodeResource(res, R.drawable.bullethole);
 		mBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost);
@@ -241,6 +251,9 @@ public class GameView extends View {
 				case DisplayableItemFactory.TYPE_KING_GHOST:
 					renderKingGhost(canvas, (TargetableItem) i, currentPos);
 					break;
+				case DisplayableItemFactory.TYPE_BLOND_GHOST:
+					renderBlondGhost(canvas, (TargetableItem) i, currentPos);
+					break;
 				case DisplayableItemFactory.TYPE_BULLET_HOLE:
 					renderBulletHole(canvas, i);
 					break;
@@ -268,7 +281,7 @@ public class GameView extends View {
 	}
 
 	private void renderGhostWithHelmet(Canvas canvas, TargetableItem ghostWithHelmet, float[] currentPos) {
-		int bitmapIndex = ghostWithHelmet.getHealth() - 1;
+		final int bitmapIndex = ghostWithHelmet.getHealth() - 1;
 		renderGhost(canvas, ghostWithHelmet, currentPos, mGhostWithHelmetBitmaps[bitmapIndex], mGhostWithHelmetTargetedBitmaps[bitmapIndex]);
 	}
 
@@ -286,6 +299,11 @@ public class GameView extends View {
 
 	private void renderKingGhost(Canvas canvas, TargetableItem kingGhost, float[] currentPos) {
 		renderGhost(canvas, kingGhost, currentPos, mKingGhost, mTargetedKingGhost);
+	}
+
+	private void renderBlondGhost(Canvas canvas, TargetableItem blondGhost, float[] currentPos) {
+		final int bitmapIndex = blondGhost.getHealth() - 1;
+		renderGhost(canvas, blondGhost, currentPos, mBlondGhostBitmap[bitmapIndex], mBlondTargetedBitmap[bitmapIndex]);
 	}
 
 	private void renderGhost(Canvas canvas, TargetableItem ghost, float[] currentPos, Bitmap ghostBitmap, Bitmap targetedGhostBitmap) {
@@ -382,6 +400,9 @@ public class GameView extends View {
 					break;
 				case DisplayableItemFactory.TYPE_KING_GHOST:
 					bitmap = mTargetedKingGhost;
+					break;
+				case DisplayableItemFactory.TYPE_BLOND_GHOST:
+					bitmap = mBlondGhostBitmap[0];
 					break;
 				default:
 					bitmap = mGhostTargetedBitmap;

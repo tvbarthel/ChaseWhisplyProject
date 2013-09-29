@@ -200,6 +200,7 @@
     <string name="bestiary_baby_ghost_title">Bébé Fantôme</string>
     <string name="bestiary_hidden_ghost_title">Fantôme Caché</string>
     <string name="bestiary_king_ghost_title">Roi des Fantômes</string>
+    <string name="bestiary_blond_ghost_title">Fantôme Blonde</string>
 
     <!-- Inventory Fragment -->
     <string name="inventory_title">Inventaire</string>
