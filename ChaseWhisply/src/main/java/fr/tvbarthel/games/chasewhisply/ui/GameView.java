@@ -396,7 +396,7 @@ public class GameView extends View {
 					bitmap = mTargetedBabyGhostBitmap;
 					break;
 				case DisplayableItemFactory.TYPE_GHOST_WITH_HELMET:
-					bitmap = mGhostWithHelmetTargetedBitmaps[4];
+					bitmap = mGhostWithHelmetTargetedBitmaps[0];
 					break;
 				case DisplayableItemFactory.TYPE_KING_GHOST:
 					bitmap = mTargetedKingGhost;
