@@ -1,5 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.model.inventory.DroppedByList;
@@ -17,8 +19,8 @@ public class DisplayableItemFactory {
 	//World Boundaries
 	private static final int MAX_X_IN_DEGREE = 175;
 	private static final int MIN_X_IN_DEGREE = -175;
-	private static final int MAX_Y_IN_DEGREE = 175;
-	private static final int MIN_Y_IN_DEGREE = -175;
+	private static final int MAX_Y_IN_DEGREE = -45;
+	private static final int MIN_Y_IN_DEGREE = -105;
 
 	private static final int DEFAULT_X_MIN_IN_DEGREE = -170;
 	private static final int DEFAULT_X_MAX_IN_DEGREE = 170;
