@@ -92,6 +92,7 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryVie
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_KING_CROWN, mPlayerProfile.getKingCrownQuantity()));
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_STEEL_BULLET, mPlayerProfile.getSteelBulletQuantity()));
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_GOLD_BULLET, mPlayerProfile.getGoldBulletQuantity()));
+		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_ONE_SHOT_BULLET, mPlayerProfile.getOneShotBulletQuantity()));
 		mInventoryEntryAdapter.notifyDataSetChanged();
 	}
 

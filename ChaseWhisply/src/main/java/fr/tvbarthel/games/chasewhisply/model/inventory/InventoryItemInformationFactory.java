@@ -38,6 +38,11 @@ public class InventoryItemInformationFactory {
 				titleResourceId = R.plurals.inventory_item_gold_bullet_title;
 				descriptionResourceId = R.string.inventory_item_gold_bullet_description;
 				break;
+
+			case InventoryItemInformation.TYPE_ONE_SHOT_BULLET:
+				titleResourceId = R.plurals.inventory_item_one_shot_bullet_title;
+				descriptionResourceId = R.string.inventory_item_one_shot_bullet_description;
+				break;
 		}
 		inventoryItemInformation.setType(inventoryItemType);
 		inventoryItemInformation.setTitleResourceId(titleResourceId);

@@ -52,7 +52,8 @@ public class BonusFragment extends Fragment {
 		if (mBonusEntryAdapter == null) {
 			mBonusEntryAdapter = new BonusEntryAdapter(getActivity(), new BonusEntry[]{
 					BonusEntryFactory.create(InventoryItemInformation.TYPE_STEEL_BULLET, mPlayerProfile.getSteelBulletQuantity()),
-					BonusEntryFactory.create(InventoryItemInformation.TYPE_GOLD_BULLET, mPlayerProfile.getGoldBulletQuantity())});
+					BonusEntryFactory.create(InventoryItemInformation.TYPE_GOLD_BULLET, mPlayerProfile.getGoldBulletQuantity()),
+					BonusEntryFactory.create(InventoryItemInformation.TYPE_ONE_SHOT_BULLET, mPlayerProfile.getOneShotBulletQuantity())});
 		}
 
 		mBonusGridView.setAdapter(mBonusEntryAdapter);

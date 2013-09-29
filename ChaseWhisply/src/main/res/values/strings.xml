@@ -240,6 +240,14 @@
     <string name="inventory_item_gold_bullet_description">A bullet made of gold is incredibly deadly against ghosts.
         Using steel bullets grants you a +3 bonus damage.
     </string>
+    <plurals name="inventory_item_one_shot_bullet_title">
+        <item quantity="one">\"One-Shot\" Bullet</item>
+        <item quantity="other">\"One-Shot\" Bullets</item>
+    </plurals>
+    <string name="inventory_item_one_shot_bullet_description">
+        A bullet that is so strong that it can kill any ghosts instantaneously. This kind of bullets is very expensive,
+        handle it with care. Using such a bullet grants you a +10 bonus damage.
+    </string>
     <string name="inventory_item_can_t_be_dropped">Can\'t be dropped</string>
     <string name="inventory_item_can_t_be_crafted">Can\'t be crafted</string>
     <string name="inventory_item_quantity">Quantity</string>

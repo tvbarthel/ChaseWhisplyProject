@@ -251,6 +251,14 @@
     <string name="inventory_item_gold_bullet_description">Une balle en or est extrèmement meurtrière pour les fantômes.
         Utiliser des balles en or vous donne un bonus de +3 en dégats.
     </string>
+    <plurals name="inventory_item_one_shot_bullet_title">
+        <item quantity="one">Balle \"One-Shot\"</item>
+        <item quantity="other">Balles \"One-Shot\"</item>
+    </plurals>
+    <string name="inventory_item_one_shot_bullet_description">
+        Une balle tellement puissante, qu\'elle peut tuer instantanément n\'importe quel fantôme. Cette balle
+        est très chère, manipuler la avec précaution. Utiliser des balles \"One-Shot\" vous donne un bonus de +10 en dégats.
+    </string>
     <string name="inventory_item_can_t_be_dropped">Ne peut-être ramassé</string>
     <string name="inventory_item_can_t_be_crafted">Ne peut-être construit</string>
     <string name="inventory_item_quantity">Quantité</string>

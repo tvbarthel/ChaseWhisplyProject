@@ -7,6 +7,7 @@ public class InventoryItemEntryFactory {
 	private static ArrayList<Integer> frenchFeminineGenderItemTypes = new ArrayList<Integer>();
 
 	static {
+		frenchFeminineGenderItemTypes.add(InventoryItemInformation.TYPE_ONE_SHOT_BULLET);
 		frenchFeminineGenderItemTypes.add(InventoryItemInformation.TYPE_STEEL_BULLET);
 		frenchFeminineGenderItemTypes.add(InventoryItemInformation.TYPE_GOLD_BULLET);
 		frenchFeminineGenderItemTypes.add(InventoryItemInformation.TYPE_COIN);

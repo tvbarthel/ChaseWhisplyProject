@@ -18,6 +18,7 @@ public class PlayerProfile {
 	private static final String KEY_ITEM_QUANTITY_KING_CROWN = "keyItemQuantityKingCrown";
 	private static final String KEY_ITEM_QUANTITY_STEEL_BULLET = "keyItemQuantitySteelBullet";
 	private static final String KEY_ITEM_QUANTITY_GOLD_BULLET = "keyItemQuantityGoldBullet";
+	private static final String KEY_ITEM_QUANTITY_ONE_SHOT_BULLET = "keyItemQuantityOneShotBullet";
 	private SharedPreferences mSharedPreferences;
 	private SharedPreferences.Editor mEditor;
 
@@ -71,6 +72,10 @@ public class PlayerProfile {
 			case InventoryItemInformation.TYPE_GOLD_BULLET:
 				newQuantity = increaseGoldBulletQuantity(amount);
 				break;
+
+			case InventoryItemInformation.TYPE_ONE_SHOT_BULLET:
+				newQuantity = increaseOneShotQuantity(amount);
+				break;
 		}
 		return newQuantity;
 	}
@@ -101,8 +106,20 @@ public class PlayerProfile {
 			case InventoryItemInformation.TYPE_GOLD_BULLET:
 				quantity = getGoldBulletQuantity();
 				break;
+
+			case InventoryItemInformation.TYPE_ONE_SHOT_BULLET:
+				quantity = getOneShotBulletQuantity();
+				break;
 		}
 		return quantity;
+	}
+
+	public long getOneShotBulletQuantity() {
+		return getSharedLongInteger(KEY_ITEM_QUANTITY_ONE_SHOT_BULLET);
+	}
+
+	public long increaseOneShotQuantity(long amount) {
+		return increaseSharedLongInteger(KEY_ITEM_QUANTITY_ONE_SHOT_BULLET, amount);
 	}
 
 	public long getOldCoinQuantity() {
