@@ -278,7 +278,7 @@
     <!-- Craft Dialog Fragment -->
     <string name="craft_dialog_fragment_not_enough_resources">Pas assez de ressources, vous avez besoin de %1$s.
     </string>
-    <string name="craft_dialog_fragment_request">Utiliser %1$s pour fabriquer %2$s?</string>
+    <string name="craft_dialog_fragment_request">Utiliser %1$s pour fabriquer 1x %2$s?</string>
     <string name="craft_dialog_fragment_ok_response">Ok</string>
     <string name="craft_dialog_fragment_yes_response">Oui</string>
     <string name="craft_dialog_fragment_no_response">Non</string>
