@@ -36,7 +36,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/text_view_grey"
         android:text="@string/tuto_page_ammo_bis_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/default_vertical_margin"
         android:id="@+id/textView3"
         android:paddingRight="@dimen/tuto_fragment_padding"
         android:paddingLeft="@dimen/half_padding"

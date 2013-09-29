@@ -15,7 +15,7 @@
         android:text="@string/bonus_title"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/default_vertical_margin"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -45,6 +45,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/activity_half_vertical_margin"/>
+        android:layout_marginTop="@dimen/default_half_vertical_margin"/>
 
 </RelativeLayout>

@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_half_vertical_margin">
+        android:layout_marginBottom="@dimen/default_half_vertical_margin">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/view_inventory_item_entry_description"
-        android:layout_marginBottom="@dimen/activity_half_vertical_margin" />
+        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
     <TextView
         android:layout_width="wrap_content"

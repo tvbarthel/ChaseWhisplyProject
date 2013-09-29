@@ -14,7 +14,7 @@
         android:text="@string/inventory_title"
         android:id="@+id/inventory_old_coins"
         android:layout_gravity="left"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+        android:layout_marginBottom="@dimen/default_vertical_margin" />
 
     <GridView
         android:layout_width="match_parent"

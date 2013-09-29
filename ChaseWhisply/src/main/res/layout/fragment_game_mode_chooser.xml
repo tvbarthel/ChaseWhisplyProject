@@ -13,7 +13,7 @@
         android:text="@string/level_chooser"
         android:id="@+id/textView"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+        android:layout_marginBottom="@dimen/default_vertical_margin" />
 
 
     <ListView
@@ -22,5 +22,5 @@
         android:id="@+id/gamemode_list_view"
         android:layout_gravity="center"
         android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/activity_vertical_margin" />
+        android:dividerHeight="@dimen/default_vertical_margin" />
 </LinearLayout>

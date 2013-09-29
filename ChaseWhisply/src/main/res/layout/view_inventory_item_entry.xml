@@ -33,7 +33,7 @@
         android:src="@drawable/ic_bag"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="@dimen/activity_half_horizontal_margin" />
+        android:layout_marginRight="@dimen/default_half_horizontal_margin" />
 
     <TextView
         android:layout_width="wrap_content"

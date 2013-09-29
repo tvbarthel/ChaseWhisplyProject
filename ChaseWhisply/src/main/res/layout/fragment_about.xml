@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/linearLayout2"
             android:layout_alignRight="@+id/linearLayout2"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
             android:background="@drawable/card_shadow_base"
             android:orientation="vertical"
             android:padding="@dimen/default_padding">
@@ -45,7 +45,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearLayout"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
             android:background="@drawable/card_shadow_base"
             android:padding="@dimen/default_padding">
 
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout2"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
             android:background="@drawable/card_shadow_base"
             android:orientation="vertical"
             android:padding="@dimen/default_padding">
@@ -121,7 +121,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_half_vertical_margin"
+                android:layout_marginTop="@dimen/default_half_vertical_margin"
                 android:gravity="right"
                 android:text="@string/about_thanks_beta_testers"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -181,7 +181,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/linearLayout4"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:layout_marginTop="@dimen/default_vertical_margin"/>
 
     </RelativeLayout>
 

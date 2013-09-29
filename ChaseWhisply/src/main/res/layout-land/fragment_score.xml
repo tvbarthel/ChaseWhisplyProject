@@ -17,8 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
+            android:layout_marginTop="@dimen/default_vertical_margin"
             android:gravity="center"
             android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textView2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/default_vertical_margin"
             android:baselineAligned="false"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -40,7 +40,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/default_horizontal_margin"
                 android:background="@drawable/card_shadow_base"
                 android:padding="@dimen/default_padding">
 
@@ -151,7 +151,7 @@
             <LinearLayout
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/default_horizontal_margin"
                 android:orientation="vertical">
 
                 <Button
@@ -209,11 +209,11 @@
             android:background="@drawable/card_shadow_base"
             android:padding="@dimen/default_padding"
             android:orientation="vertical"
-            android:layout_marginBottom="@dimen/activity_half_vertical_margin"
+            android:layout_marginBottom="@dimen/default_half_vertical_margin"
             android:layout_alignRight="@+id/linearLayout"
             android:layout_alignLeft="@+id/linearLayout"
             android:id="@+id/linearLayout2"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
+            android:layout_marginTop="@dimen/default_vertical_margin">
 
             <TextView
                 android:layout_width="wrap_content"
