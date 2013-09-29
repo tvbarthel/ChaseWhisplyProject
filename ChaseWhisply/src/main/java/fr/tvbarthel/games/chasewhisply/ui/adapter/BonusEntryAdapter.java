@@ -12,6 +12,7 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
 import fr.tvbarthel.games.chasewhisply.model.bonus.BonusDamage;
 import fr.tvbarthel.games.chasewhisply.model.bonus.BonusEntry;
+import fr.tvbarthel.games.chasewhisply.model.bonus.BonusSpeed;
 
 public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 	private BonusEntry[] mBonusEntries;
@@ -31,7 +32,7 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 		final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		View rowView = convertView;
-		if(rowView == null) {
+		if (rowView == null) {
 			rowView = inflater.inflate(R.layout.row_bonus_entry, parent, false);
 		}
 
@@ -58,12 +59,16 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 		}
 
 		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(context.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
-		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText("x"+String.valueOf(currentBonusEntry.getQuantity()));
+		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText("x" + String.valueOf(currentBonusEntry.getQuantity()));
 
 		if (bonus instanceof BonusDamage) {
 			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
 					context.getString(currentBonusEntry.getEffectResourceId()),
 					String.valueOf(((BonusDamage) bonus).getBonusDamage())));
+		} else if (bonus instanceof BonusSpeed) {
+			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
+					context.getString(currentBonusEntry.getEffectResourceId()),
+					String.valueOf(((BonusSpeed) bonus).getSpeedReduction())));
 		}
 
 		return rowView;

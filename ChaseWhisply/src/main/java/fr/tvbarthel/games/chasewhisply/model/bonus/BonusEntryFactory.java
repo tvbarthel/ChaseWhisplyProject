@@ -21,6 +21,10 @@ public class BonusEntryFactory {
 				bonus = new BonusDamage(inventoryItemType, 10);
 				effectResourceId = R.string.bonus_damage_effect;
 				break;
+			case InventoryItemInformation.TYPE_SPEED_POTION:
+				bonus = new BonusSpeed(inventoryItemType, 300);
+				effectResourceId = R.string.bonus_speed_effect;
+				break;
 		}
 
 		bonusEntry.setBonus(bonus);

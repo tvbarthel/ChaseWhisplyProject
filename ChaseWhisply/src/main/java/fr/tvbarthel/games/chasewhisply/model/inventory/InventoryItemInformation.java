@@ -12,6 +12,7 @@ public class InventoryItemInformation implements Parcelable {
 	public static final int TYPE_GOLD_BULLET = 0x00000006;
 	public static final int TYPE_ONE_SHOT_BULLET = 0x00000007;
 	public static final int TYPE_GHOST_TEAR = 0x00000008;
+	public static final int TYPE_SPEED_POTION = 0x00000009;
 
 	private int mType;
 	private int mTitleResourceId;
