@@ -257,6 +257,14 @@
         A tiny tear that probably comes from a ghost mom that died trying to save her children. You can feel a
         strange power emanating from this small drop.
     </string>
+    <plurals name="inventory_item_speed_potion_title">
+        <item quantity="one">Speed Potion</item>
+        <item quantity="other">Speed Potions</item>
+    </plurals>
+    <string name="inventory_item_speed_potion_description">
+        This potion does not smell good at all, but if you have the bravery to drink it, you will reload your weapon
+        faster than ever.
+    </string>
     <string name="inventory_item_can_t_be_dropped">Can\'t be dropped</string>
     <string name="inventory_item_can_t_be_crafted">Can\'t be crafted</string>
     <string name="inventory_item_quantity">Quantity</string>
@@ -277,5 +285,6 @@
     <string name="bonus_effect">Effect</string>
     <string name="bonus_quantity">Quantity Available</string>
     <string name="bonus_damage_effect">Damage +%1$s</string>
+    <string name="bonus_speed_effect">Reloading time -%1$s</string>
 
 </resources>

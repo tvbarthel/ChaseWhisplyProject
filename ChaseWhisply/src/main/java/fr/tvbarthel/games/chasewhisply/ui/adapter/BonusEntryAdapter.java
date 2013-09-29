@@ -12,6 +12,7 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
 import fr.tvbarthel.games.chasewhisply.model.bonus.BonusDamage;
 import fr.tvbarthel.games.chasewhisply.model.bonus.BonusEntry;
+import fr.tvbarthel.games.chasewhisply.model.bonus.BonusSpeed;
 
 public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 	private BonusEntry[] mBonusEntries;
@@ -74,6 +75,10 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
 					context.getString(currentBonusEntry.getEffectResourceId()),
 					String.valueOf(((BonusDamage) bonus).getBonusDamage())));
+		} else if (bonus instanceof BonusSpeed) {
+			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
+					context.getString(currentBonusEntry.getEffectResourceId()),
+					String.valueOf(((BonusSpeed) bonus).getSpeedReduction())));
 		}
 
 		return rowView;

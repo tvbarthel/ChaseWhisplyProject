@@ -14,6 +14,12 @@ public class RecipeFactory {
 				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 10);
 				break;
 
+			case InventoryItemInformation.TYPE_SPEED_POTION:
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 50);
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_GHOST_TEAR), 5);
+				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_BABY_DROOL), 5);
+				break;
+
 			case InventoryItemInformation.TYPE_BROKEN_HELMET_HORN:
 				recipe.addIngredient(InventoryItemInformationFactory.create(InventoryItemInformation.TYPE_COIN), 10);
 				break;

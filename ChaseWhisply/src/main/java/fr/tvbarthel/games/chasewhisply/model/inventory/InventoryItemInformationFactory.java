@@ -48,6 +48,11 @@ public class InventoryItemInformationFactory {
 				titleResourceId = R.plurals.inventory_item_ghost_tear_title;
 				descriptionResourceId = R.string.inventory_item_ghost_tear_description;
 				break;
+
+			case InventoryItemInformation.TYPE_SPEED_POTION:
+				titleResourceId = R.plurals.inventory_item_speed_potion_title;
+				descriptionResourceId = R.string.inventory_item_speed_potion_description;
+				break;
 		}
 		inventoryItemInformation.setType(inventoryItemType);
 		inventoryItemInformation.setTitleResourceId(titleResourceId);

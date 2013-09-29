@@ -268,6 +268,14 @@
         Une minuscule larme qui provient probablement d\'une mère fantôme morte en tentant de défendre ses enfants. Vous
         pouvez sentir une étrange puissance émanant de cette petite goutte.
     </string>
+    <plurals name="inventory_item_speed_potion_title">
+        <item quantity="one">Potion de vitesse</item>
+        <item quantity="other">Potions de vitesse</item>
+    </plurals>
+    <string name="inventory_item_speed_potion_description">
+        Cette potion ne sent pas bon du tout, mais si vous avez le courage de la boire, vous rechargerez votre arme
+        plus rapidement que jamais.
+    </string>
     <string name="inventory_item_can_t_be_dropped">Ne peut-être ramassé</string>
     <string name="inventory_item_can_t_be_crafted">Ne peut-être construit</string>
     <string name="inventory_item_quantity">Quantité</string>
@@ -288,4 +296,5 @@
     <string name="bonus_effect">Effet</string>
     <string name="bonus_quantity">Quantité Disponible</string>
     <string name="bonus_damage_effect">Dégat +%1$s</string>
+    <string name="bonus_speed_effect">Temps de rechargement -%1$s</string>
 </resources>
