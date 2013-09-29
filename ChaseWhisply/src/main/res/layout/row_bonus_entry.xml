@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/card_shadow_base">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/ic_bag"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:padding="@dimen/half_padding" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/half_padding">
+        android:padding="@dimen/half_padding"
+        android:layout_gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
