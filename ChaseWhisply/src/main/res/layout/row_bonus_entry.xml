@@ -28,7 +28,10 @@
             android:textColor="@color/text_view_grey"
             android:id="@+id/row_bonus_entry_title"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/row_bonus_entry_quantity" />
+            android:layout_toLeftOf="@+id/row_bonus_entry_quantity"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:minLines="1"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +59,11 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/row_bonus_entry_effect"
             android:gravity="left"
-            android:layout_below="@+id/row_bonus_entry_title" />
+            android:layout_below="@+id/row_bonus_entry_title"
+            android:layout_toLeftOf="@+id/row_bonus_entry_quantity"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:minLines="1"/>
 
     </RelativeLayout>
 
