@@ -46,7 +46,9 @@
             android:id="@+id/row_bonus_entry_equipped"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:checked="false" />
+            android:enabled="false"
+            android:checked="false"
+            android:layout_centerInParent="true" />
 
         <TextView
             android:layout_width="match_parent"

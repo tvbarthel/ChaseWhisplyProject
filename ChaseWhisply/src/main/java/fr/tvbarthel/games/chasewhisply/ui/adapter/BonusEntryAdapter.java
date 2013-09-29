@@ -23,32 +23,42 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		final Context context = getContext();
 		final BonusEntry currentBonusEntry = mBonusEntries[position];
 		final long quantity = currentBonusEntry.getQuantity();
 		final Bonus bonus = currentBonusEntry.getBonus();
 		final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		final boolean isEquipped = currentBonusEntry.isEquipped();
+
 
 		View rowView = convertView;
-		if(rowView == null) {
+		if (rowView == null) {
 			rowView = inflater.inflate(R.layout.row_bonus_entry, parent, false);
 		}
-
 		final CheckBox equippedCheckBox = ((CheckBox) rowView.findViewById(R.id.row_bonus_entry_equipped));
+		equippedCheckBox.setChecked(isEquipped);
+
+		//display card
+		if (isEquipped) {
+			rowView.setBackgroundResource(R.drawable.card_shadow_pressed);
+		} else {
+			rowView.setBackgroundResource(R.drawable.card_shadow_base);
+		}
+
+
 		if (quantity > 0) {
-			equippedCheckBox.setChecked(currentBonusEntry.isEquipped());
-			equippedCheckBox.setOnClickListener(new View.OnClickListener() {
+			rowView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					boolean isEquipped = ((CheckBox) v).isChecked();
+					final boolean afterClickState = !currentBonusEntry.isEquipped();
 					resetEquippedState();
-					currentBonusEntry.setIsEquipped(isEquipped);
-					if (isEquipped == true) {
+					if (afterClickState == true) {
 						mEquippedBonus = currentBonusEntry;
 					} else {
 						mEquippedBonus = null;
 					}
+					currentBonusEntry.setIsEquipped(afterClickState);
 					notifyDataSetChanged();
 				}
 			});
@@ -58,7 +68,7 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 		}
 
 		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(context.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
-		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText("x"+String.valueOf(currentBonusEntry.getQuantity()));
+		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText("x" + String.valueOf(currentBonusEntry.getQuantity()));
 
 		if (bonus instanceof BonusDamage) {
 			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
