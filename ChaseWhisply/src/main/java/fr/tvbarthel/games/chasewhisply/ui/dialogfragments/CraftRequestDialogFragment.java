@@ -35,6 +35,12 @@ public class CraftRequestDialogFragment extends DialogFragment {
 	}
 
 	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
+
+	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		mInventoryItemEntry = getArguments().getParcelable(EXTRA_INVENTORY_ITEM_ENTRY);
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
