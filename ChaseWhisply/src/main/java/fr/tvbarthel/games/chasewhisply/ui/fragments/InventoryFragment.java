@@ -85,7 +85,7 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryVie
 	public void loadInformation() {
 		final long numberOfCoins = mPlayerProfile.getOldCoinQuantity();
 		mTextViewCoins.setText(getResources().getQuantityText(R.plurals.inventory_item_coin_title,
-				(int) numberOfCoins) + ": " + String.valueOf(numberOfCoins));
+				(int) numberOfCoins) + " : " + String.valueOf(numberOfCoins));
 		mInventoryEntryAdapter.clear();
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN, mPlayerProfile.getBrokenHelmetHornQuantity()));
 		mInventoryEntryAdapter.add(InventoryItemEntryFactory.create(InventoryItemInformation.TYPE_BABY_DROOL, mPlayerProfile.getBabyDroolQuantity()));

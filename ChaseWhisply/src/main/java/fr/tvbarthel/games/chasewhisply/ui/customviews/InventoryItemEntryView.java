@@ -46,7 +46,7 @@ public class InventoryItemEntryView extends RelativeLayout {
 		final long quantityAvailable = mModel.getQuantityAvailable();
 		final int titleResourceId = mModel.getTitleResourceId();
 		mTitle.setText(mContext.getResources().getQuantityText(titleResourceId, 1));
-		mQuantity.setText(String.valueOf(quantityAvailable));
+		mQuantity.setText("x" + String.valueOf(quantityAvailable));
 		if (mModel.getRecipe().getIngredientsAndQuantities().size() == 0) {
 			mCraftButton.setEnabled(false);
 		}
