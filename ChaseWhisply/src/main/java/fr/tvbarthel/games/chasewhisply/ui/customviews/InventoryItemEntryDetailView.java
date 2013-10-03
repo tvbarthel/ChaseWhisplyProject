@@ -6,7 +6,8 @@ import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -15,7 +16,7 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.ui.InventoryCraftListener;
 
-public class InventoryItemEntryDetailView extends LinearLayout {
+public class InventoryItemEntryDetailView extends ScrollView {
 
 	private Context mContext;
 	private InventoryItemEntry mModel;
@@ -26,6 +27,7 @@ public class InventoryItemEntryDetailView extends LinearLayout {
 	private TextView mDroppedByLabel;
 	private TextView mDroppedBy;
 	private TextView mRecipe;
+	private ImageView mItemImage;
 
 	public InventoryItemEntryDetailView(Context context) {
 		this(context, null);
@@ -35,7 +37,6 @@ public class InventoryItemEntryDetailView extends LinearLayout {
 		super(context, attr);
 		mContext = context;
 
-		setOrientation(VERTICAL);
 		final int halfPadding = context.getResources().getDimensionPixelSize(R.dimen.half_padding);
 		setPadding(halfPadding, halfPadding, halfPadding, halfPadding);
 
@@ -49,6 +50,7 @@ public class InventoryItemEntryDetailView extends LinearLayout {
 		mDroppedByLabel = (TextView) findViewById(R.id.view_inventory_item_entry_dropped_by_label);
 		mDroppedBy = (TextView) findViewById(R.id.view_inventory_item_entry_dropped_by);
 		mRecipe = (TextView) findViewById(R.id.view_inventory_item_entry_recipe);
+		mItemImage = (ImageView) findViewById(R.id.view_inventory_item_entry_details_item_image);
 	}
 
 	public void setModel(final InventoryItemEntry model) {
@@ -56,10 +58,12 @@ public class InventoryItemEntryDetailView extends LinearLayout {
 		final long quantityAvailable = mModel.getQuantityAvailable();
 		final int descriptionResourceId = mModel.getDescriptionResourceId();
 		final int titleResourceId = mModel.getTitleResourceId();
+		final int itemImageResouceId = mModel.getImageResourceId();
 		mTitle.setText(mContext.getResources().getQuantityText(titleResourceId, 1));
 		mDescription.setText(descriptionResourceId);
 		mQuantity.setText(String.valueOf(quantityAvailable));
 		mRecipe.setText(mModel.getRecipe().toString(mContext));
+		mItemImage.setImageResource(itemImageResouceId);
 		if (mModel.getRecipe().getIngredientsAndQuantities().size() == 0) {
 			mCraftButton.setEnabled(false);
 		}

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
@@ -70,6 +71,7 @@ public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
 
 		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(context.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
 		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText("x" + String.valueOf(currentBonusEntry.getQuantity()));
+		((ImageView) rowView.findViewById(R.id.row_bonus_entry_image)).setImageResource(currentBonusEntry.getImageResourceId());
 
 		if (bonus instanceof BonusDamage) {
 			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(

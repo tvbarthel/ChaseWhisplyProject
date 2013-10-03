@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class InventoryItemEntryView extends RelativeLayout {
 	private TextView mTitle;
 	private TextView mQuantity;
 	private ImageButton mCraftButton;
+	private ImageView mItemImage;
 
 	public InventoryItemEntryView(Context context) {
 		this(context, null);
@@ -39,14 +41,17 @@ public class InventoryItemEntryView extends RelativeLayout {
 		mTitle = (TextView) findViewById(R.id.view_inventory_item_entry_title);
 		mQuantity = (TextView) findViewById(R.id.view_inventory_item_entry_quantity);
 		mCraftButton = (ImageButton) findViewById(R.id.view_inventory_item_entry_craft_action);
+		mItemImage = (ImageView) findViewById(R.id.view_inventory_item_entry_item_image);
 	}
 
 	public void setModel(final InventoryItemEntry model) {
 		mModel = model;
 		final long quantityAvailable = mModel.getQuantityAvailable();
 		final int titleResourceId = mModel.getTitleResourceId();
+		final int imageResourceId = mModel.getImageResourceId();
 		mTitle.setText(mContext.getResources().getQuantityText(titleResourceId, 1));
 		mQuantity.setText("x" + String.valueOf(quantityAvailable));
+		mItemImage.setImageResource(imageResourceId);
 		if (mModel.getRecipe().getIngredientsAndQuantities().size() == 0) {
 			mCraftButton.setEnabled(false);
 		}

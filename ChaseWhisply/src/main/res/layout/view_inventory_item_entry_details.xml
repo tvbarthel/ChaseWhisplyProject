@@ -2,85 +2,111 @@
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_half_vertical_margin">
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_half_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text_view_grey"
+                android:id="@+id/view_inventory_item_entry_title"
+                android:layout_toLeftOf="@+id/view_inventory_item_entry_craft_action"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_inventory_item_entry_craft_action"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:clickable="true"
+                android:src="@drawable/button_craft" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_inventory_item_entry_details_item_image"
+                android:src="@drawable/ic_bag"
+                android:layout_centerVertical="true"
+                android:paddingTop="@dimen/half_padding"
+                android:paddingRight="@dimen/half_padding"
+                android:paddingBottom="@dimen/half_padding" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/view_inventory_item_entry_description"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin"
+                android:layout_alignParentTop="false"
+                android:layout_toRightOf="@+id/view_inventory_item_entry_details_item_image"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/text_view_grey"
-            android:id="@+id/view_inventory_item_entry_title"
-            android:layout_toLeftOf="@+id/view_inventory_item_entry_craft_action"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            android:text="@string/inventory_item_quantity"
+            android:id="@+id/textView5" />
 
-        <ImageButton
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/view_inventory_item_entry_quantity"
+            android:gravity="right" />
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/view_inventory_item_entry_craft_action"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:background="@null"
-            android:clickable="true"
-            android:src="@drawable/button_craft" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/text_view_grey"
+            android:text="@string/inventory_item_dropped_by"
+            android:id="@+id/view_inventory_item_entry_dropped_by_label" />
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/view_inventory_item_entry_dropped_by"
+            android:gravity="right" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/text_view_grey"
+            android:text="@string/inventory_item_recipe"
+            android:id="@+id/textView7" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/view_inventory_item_entry_description"
-        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/view_inventory_item_entry_recipe"
+            android:gravity="right" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/text_view_grey"
-        android:text="@string/inventory_item_quantity"
-        android:id="@+id/textView5" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/view_inventory_item_entry_quantity"
-        android:gravity="right" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/text_view_grey"
-        android:text="@string/inventory_item_dropped_by"
-        android:id="@+id/view_inventory_item_entry_dropped_by_label" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/view_inventory_item_entry_dropped_by"
-        android:gravity="right" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/text_view_grey"
-        android:text="@string/inventory_item_recipe"
-        android:id="@+id/textView7" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/view_inventory_item_entry_recipe"
-        android:gravity="right" />
-
+    </LinearLayout>
 </merge>

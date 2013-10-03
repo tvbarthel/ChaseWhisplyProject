@@ -9,7 +9,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@drawable/button_text_color"
         android:id="@+id/view_inventory_item_entry_title"
-        android:layout_toRightOf="@+id/imageView"
+        android:layout_toRightOf="@+id/view_inventory_item_entry_item_image"
         android:layout_toLeftOf="@+id/view_inventory_item_entry_craft_action"
         android:layout_alignParentTop="true"
         android:ellipsize="end"
@@ -29,7 +29,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        android:id="@+id/view_inventory_item_entry_item_image"
         android:src="@drawable/ic_bag"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

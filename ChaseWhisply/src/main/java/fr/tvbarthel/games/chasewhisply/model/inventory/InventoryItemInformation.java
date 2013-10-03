@@ -17,11 +17,13 @@ public class InventoryItemInformation implements Parcelable {
 	private int mType;
 	private int mTitleResourceId;
 	private int mDescriptionResourceId;
+	private int mImageResourceId;
 
 	public InventoryItemInformation() {
 		mType = 0;
 		mTitleResourceId = 0;
 		mDescriptionResourceId = 0;
+		mImageResourceId = 0;
 	}
 
 	public InventoryItemInformation(Parcel in) {
@@ -34,16 +36,18 @@ public class InventoryItemInformation implements Parcelable {
 	}
 
 	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt(mType);
-		dest.writeInt(mTitleResourceId);
-		dest.writeInt(mDescriptionResourceId);
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeInt(mType);
+		out.writeInt(mTitleResourceId);
+		out.writeInt(mDescriptionResourceId);
+		out.writeInt(mImageResourceId);
 	}
 
 	public void readFromParcel(Parcel in) {
 		mType = in.readInt();
 		mTitleResourceId = in.readInt();
 		mDescriptionResourceId = in.readInt();
+		mImageResourceId = in.readInt();
 	}
 
 	public static final Parcelable.Creator<InventoryItemInformation> CREATOR = new Parcelable.Creator<InventoryItemInformation>() {
@@ -83,6 +87,14 @@ public class InventoryItemInformation implements Parcelable {
 
 	public void setDescriptionResourceId(int descriptionResourceId) {
 		mDescriptionResourceId = descriptionResourceId;
+	}
+
+	public void setImageResourceId(int imageResourceId) {
+		mImageResourceId = imageResourceId;
+	}
+
+	public int getImageResourceId() {
+		return mImageResourceId;
 	}
 
 

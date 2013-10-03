@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        android:id="@+id/row_bonus_entry_image"
         android:src="@drawable/ic_bag"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

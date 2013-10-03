@@ -49,6 +49,10 @@ public class InventoryItemEntry implements Parcelable {
 		return mInventoryItemInformation.getDescriptionResourceId();
 	}
 
+	public int getImageResourceId() {
+		return mInventoryItemInformation.getImageResourceId();
+	}
+
 	public void setDroppedBy(DroppedByList lootlist) {
 		mDroppedBy = lootlist;
 	}

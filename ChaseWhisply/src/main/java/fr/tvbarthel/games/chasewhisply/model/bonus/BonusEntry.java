@@ -54,4 +54,8 @@ public class BonusEntry {
 	public Bonus getBonus() {
 		return mBonus;
 	}
+
+	public int getImageResourceId() {
+		return mInventoryItemInformation.getImageResourceId();
+	}
 }
