@@ -13,7 +13,8 @@
         android:src="@drawable/ic_bag"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:padding="@dimen/half_padding" />
+        android:paddingLeft="@dimen/half_padding"
+        android:layout_gravity="center_vertical"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -62,8 +63,8 @@
             android:layout_below="@+id/row_bonus_entry_title"
             android:layout_toLeftOf="@+id/row_bonus_entry_quantity"
             android:ellipsize="end"
-            android:maxLines="1"
-            android:minLines="1" />
+            android:maxLines="2"
+            android:minLines="2" />
 
     </RelativeLayout>
 
