@@ -31,7 +31,7 @@ public class GameSoundManager {
 		mMediaPlayer.setLooping(true);
 		mMediaPlayer.start();
 
-		mSoundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+		mSoundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 		mSoundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
 			@Override
 			public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
