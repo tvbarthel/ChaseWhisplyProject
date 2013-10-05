@@ -1,6 +1,7 @@
 package fr.tvbarthel.games.chasewhisply;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		final Intent intent = getIntent();
 		if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_GAME_BEHAVIOR)) {
 			mGameBehavior = savedInstanceState.getParcelable(BUNDLE_GAME_BEHAVIOR);
@@ -43,6 +45,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 			finish();
 		}
 	}
+
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
@@ -104,7 +107,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 		mGameView.setAnimationLayer(animationLayer);
 
 		//instantiate game engine
-		mGameEngine = new GameEngine(GameActivity.this, mGameBehavior);
+		mGameEngine = new GameEngine(this, GameActivity.this, mGameBehavior);
 		if (firstLaunch) {
 			mGameEngine.startGame();
 		} else {

@@ -1,6 +1,8 @@
 package fr.tvbarthel.games.chasewhisply.mechanics;
 
 
+import android.content.Context;
+
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.ReloadingRoutine;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.SpawningRoutine;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.TickerRoutine;
@@ -9,6 +11,7 @@ import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameBehavior;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
+import fr.tvbarthel.games.chasewhisply.sound.GameSoundManager;
 
 public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningRoutine.ISpawningRoutine, TickerRoutine.ITickerRoutine {
 	public static final int STATE_STOP = 0x00000001;
@@ -24,9 +27,10 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 	protected int mCurrentState;
 	private int mXRange;
 	private int mYRange;
+	private GameSoundManager mGameSoundManager;
 
 
-	public GameEngine(IGameEngine iGameEngine, GameBehavior gameBehavior) {
+	public GameEngine(final Context context, IGameEngine iGameEngine, GameBehavior gameBehavior) {
 		mInterface = iGameEngine;
 		mGameBehavior = gameBehavior;
 		mGameInformation = mGameBehavior.getGameInformation();
@@ -34,6 +38,7 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 		mSpawningRoutine = new SpawningRoutine(mGameInformation.getSpawningTime(), this);
 		mTickerRoutine = new TickerRoutine(mGameInformation.getTickingTime(), this);
 		mCurrentState = STATE_STOP;
+		mGameSoundManager = new GameSoundManager(context);
 	}
 
 
@@ -54,6 +59,7 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 	 * pause the game.
 	 */
 	public void pauseGame() {
+		mGameSoundManager.stopAllSounds();
 		mReloadingRoutine.stopRoutine();
 		mSpawningRoutine.stopRoutine();
 		mTickerRoutine.stopRoutine();
@@ -76,6 +82,7 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 	 * stop the game, should be called only once at the end.
 	 */
 	public void stopGame() {
+		mGameSoundManager.stopAllSounds();
 		mReloadingRoutine.stopRoutine();
 		mSpawningRoutine.stopRoutine();
 		mTickerRoutine.stopRoutine();
@@ -91,6 +98,7 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 	@Override
 	public void spawn() {
 		mGameBehavior.spawn(mXRange, mYRange);
+		mGameSoundManager.playGhostLaugh();
 	}
 
 	@Override
@@ -110,6 +118,7 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 		final TargetableItem currentTarget = mGameInformation.getCurrentTarget();
 		if (dmg != 0) {
 			mGameInformation.bulletFired();
+			mGameSoundManager.playGunShot();
 			if (currentTarget == null) {
 				//player miss
 				mGameInformation.bulletMissed();
@@ -130,8 +139,11 @@ public class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningR
 					mGameInformation.earnExp(currentTarget.getExpPoint());
 					mInterface.onTargetKilled(currentTarget);
 					mGameBehavior.targetKilled();
+					mGameSoundManager.playGhostDeath();
 				}
 			}
+		} else {
+			mGameSoundManager.playDryGunShot();
 		}
 	}
 
