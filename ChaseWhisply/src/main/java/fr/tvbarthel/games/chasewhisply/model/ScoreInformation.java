@@ -22,6 +22,7 @@ public class ScoreInformation implements Parcelable {
 	private int mCurrentCombo;
 	private int mMaxCombo;
 	private int mExpEarned;
+	private int mLastScoreAdded;
 	private ArrayList<Integer> mLoot;
 
 	public ScoreInformation() {
@@ -32,6 +33,7 @@ public class ScoreInformation implements Parcelable {
 		mMaxCombo = 0;
 		mNumberOfBulletsMissed = 0;
 		mExpEarned = 0;
+		mLastScoreAdded = 0;
 		mLoot = new ArrayList<Integer>();
 	}
 
@@ -57,6 +59,7 @@ public class ScoreInformation implements Parcelable {
 	 */
 	public void increaseScore(int amount) {
 		mScore += amount;
+		mLastScoreAdded = amount;
 	}
 
 	/**
@@ -120,6 +123,7 @@ public class ScoreInformation implements Parcelable {
 		out.writeInt(mMaxCombo);
 		out.writeInt(mNumberOfBulletsMissed);
 		out.writeInt(mExpEarned);
+		out.writeInt(mLastScoreAdded);
 		out.writeList(mLoot);
 	}
 
@@ -131,6 +135,7 @@ public class ScoreInformation implements Parcelable {
 		mMaxCombo = in.readInt();
 		mNumberOfBulletsMissed = in.readInt();
 		mExpEarned = in.readInt();
+		mLastScoreAdded = in.readInt();
 		mLoot = new ArrayList<Integer>();
 		in.readList(mLoot, Integer.class.getClassLoader());
 	}
@@ -183,6 +188,10 @@ public class ScoreInformation implements Parcelable {
 
 	public ArrayList<Integer> getLoot() {
 		return mLoot;
+	}
+
+	public int getLastScoreAdded() {
+		return mLastScoreAdded;
 	}
 
 }

@@ -410,7 +410,10 @@ public class GameView extends View {
 			}
 
 			final RenderInformation renderInformation = getRenderInformation(ghost, bitmap);
-			mAnimationLayer.drawDyingGhost(new BitmapDrawable(getResources(), bitmap),
+			mAnimationLayer.drawDyingGhost(
+					new BitmapDrawable(getResources(), bitmap),
+					mModel.getScoreInformation().getLastScoreAdded(),
+					(int) mFontSize,
 					(int) (renderInformation.mPositionX), (int) (renderInformation.mPositionY));
 		}
 	}
