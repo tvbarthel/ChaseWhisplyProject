@@ -25,30 +25,16 @@ public class GameEngineFactory {
 		switch (gameMode) {
 			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
 			case GameModeFactory.GAME_TYPE_SURVIVAL:
+				gameEngine = new StandardGameEngine(context, iGameEngine, gameBehavior);
+				break;
 			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
+				gameEngine = new MissionGameEngine(context, iGameEngine, gameBehavior);
+				break;
 			case GameModeFactory.GAME_TYPE_TUTORIAL:
-				gameEngine = createBasicGameEngine(context, iGameEngine, gameBehavior);
+				gameEngine = new TutorialGameEngine(context, iGameEngine, gameBehavior);
 				break;
 		}
 
 		return gameEngine;
-	}
-
-
-	/**
-	 * Create Basic GameEngine
-	 * shoot on touch
-	 * works with timer
-	 *
-	 * @param context
-	 * @param iGameEngine
-	 * @param gameBehavior
-	 * @return
-	 */
-	public static GameEngine createBasicGameEngine(final Context context,
-												   GameEngine.IGameEngine iGameEngine,
-												   GameBehavior gameBehavior) {
-
-		return new GameEngine(context, iGameEngine, gameBehavior);
 	}
 }

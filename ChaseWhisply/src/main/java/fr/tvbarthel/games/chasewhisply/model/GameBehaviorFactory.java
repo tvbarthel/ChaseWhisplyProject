@@ -67,8 +67,7 @@ public class GameBehaviorFactory {
 
 			@Override
 			public boolean isCompleted(GameInformation g) {
-				return gameInformationTutorial.getCurrentStep() ==
-						GameInformationTutorial.STEP_END;
+				return false;
 			}
 
 			@Override

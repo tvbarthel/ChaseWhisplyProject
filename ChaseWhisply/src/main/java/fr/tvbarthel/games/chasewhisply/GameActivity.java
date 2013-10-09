@@ -137,7 +137,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 
 	@Override
 	public void onClick(View view) {
-		mGameEngine.fire();
+		mGameEngine.onScreenTouch();
 		mGameView.invalidate();
 	}
 
