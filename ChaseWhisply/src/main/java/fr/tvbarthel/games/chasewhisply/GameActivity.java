@@ -14,8 +14,9 @@ import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
-import fr.tvbarthel.games.chasewhisply.ui.GameView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
+import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameView;
+import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewFactory;
 
 public class GameActivity extends ARActivity implements GameEngine.IGameEngine, View.OnClickListener {
 
@@ -96,7 +97,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 		}
 
 		//instantiate GameView with GameModel
-		mGameView = new GameView(GameActivity.this, mGameInformation);
+		mGameView = GameViewFactory.createGameViewByGameMode(GameActivity.this, mGameInformation, mGameMode.getType());
 		mGameView.setOnClickListener(GameActivity.this);
 		addContentView(mGameView, mLayoutParams);
 

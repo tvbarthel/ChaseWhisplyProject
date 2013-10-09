@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.ui;
+package fr.tvbarthel.games.chasewhisply.ui.gameviews;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -16,37 +16,46 @@ import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
+import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
+import fr.tvbarthel.games.chasewhisply.ui.RenderInformation;
 
-public class GameView extends View {
+public abstract class GameView extends View {
 
-	private final Bitmap mCrossHairs;
-	private final Bitmap mGhostBitmap;
-	private final Bitmap mGhostTargetedBitmap;
-	private final Bitmap[] mBlondGhostBitmap;
-	private final Bitmap[] mBlondTargetedBitmap;
-	private final Bitmap mAmmoBitmap;
-	private final Bitmap mBulletHoleBitmap;
-	private final Bitmap mBabyGhostBitmap;
-	private final Bitmap mTargetedBabyGhostBitmap;
-	private final Bitmap[] mGhostWithHelmetBitmaps;
-	private final Bitmap[] mGhostWithHelmetTargetedBitmaps;
-	private final Bitmap mKingGhost;
-	private final Bitmap mTargetedKingGhost;
-	private final Bitmap mHiddenGhost;
-	private final String mComboString;
-	private final String mScoreString;
-	private final String mTimeString;
-	private final Paint mPaint = new Paint();
-	private final Rect mBounds = new Rect();
-	private GameInformation mModel;
+	protected final Bitmap mCrossHairs;
+	protected final Bitmap mGhostBitmap;
+	protected final Bitmap mGhostTargetedBitmap;
+	protected final Bitmap[] mBlondGhostBitmap;
+	protected final Bitmap[] mBlondTargetedBitmap;
+	protected final Bitmap mAmmoBitmap;
+	protected final Bitmap mBulletHoleBitmap;
+	protected final Bitmap mBabyGhostBitmap;
+	protected final Bitmap mTargetedBabyGhostBitmap;
+	protected final Bitmap[] mGhostWithHelmetBitmaps;
+	protected final Bitmap[] mGhostWithHelmetTargetedBitmaps;
+	protected final Bitmap mKingGhost;
+	protected final Bitmap mTargetedKingGhost;
+	protected final Bitmap mHiddenGhost;
+	protected final String mComboString;
+	protected final String mScoreString;
+	protected final String mTimeString;
+	protected final Paint mPaint = new Paint();
+	protected final Rect mBounds = new Rect();
+	protected GameInformation mModel;
 	//ratio for displaying items
-	private float mWidthRatioDegreeToPx;
-	private float mHeightRatioDegreeToPx;
-	private float mFontSize;
-	private int mScreenWidth;
-	private int mScreenHeight;
-	private float mPadding;
-	private AnimationLayer mAnimationLayer;
+	protected float mWidthRatioDegreeToPx;
+	protected float mHeightRatioDegreeToPx;
+	protected float mFontSize;
+	protected int mScreenWidth;
+	protected int mScreenHeight;
+	protected float mPadding;
+	protected AnimationLayer mAnimationLayer;
+
+	/**
+	 * called during View.onDraw
+	 *
+	 * @param c
+	 */
+	public abstract void onDrawing(Canvas c);
 
 
 	public GameView(Context context, GameInformation model) {
@@ -120,109 +129,8 @@ public class GameView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-
 		drawDisplayableItems(canvas);
-		drawCrossHair(canvas);
-		drawAmmo(canvas);
-		drawRemainingTime(canvas);
-		drawCombo(canvas);
-		drawScore(canvas);
-	}
-
-	private void drawCrossHair(Canvas canvas) {
-		canvas.drawBitmap(mCrossHairs, (float) (mScreenWidth - mCrossHairs.getWidth()) / 2,
-				(float) (mScreenHeight - mCrossHairs.getHeight()) / 2, mPaint);
-	}
-
-	/**
-	 * draw ammo on player screen
-	 *
-	 * @param canvas canvas from View.onDraw method
-	 */
-	private void drawAmmo(Canvas canvas) {
-		final int currentAmmunition = mModel.getWeapon().getCurrentAmmunition();
-		resetPainter();
-
-		if (currentAmmunition == 0) {
-			useRedPainter();
-			final String noAmmoMessage = getResources().getString(R.string.in_game_no_ammo_message);
-
-			canvas.drawText(noAmmoMessage,
-					mScreenWidth / 2,
-					(mScreenHeight - mCrossHairs.getHeight()) / 2 - 10,
-					mPaint);
-		} else {
-			useGreenPainter();
-		}
-
-		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - mPadding),
-				(float) (getHeight() - mAmmoBitmap.getHeight() - mPadding), mPaint);
-
-		mPaint.setTextSize(mAmmoBitmap.getHeight() / 2);
-		canvas.drawText(String.valueOf(currentAmmunition)
-				, mScreenWidth - mAmmoBitmap.getWidth() - mPaint.getTextSize() / 2 - mPadding
-				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
-				, mPaint);
-	}
-
-	/**
-	 * draw remaining time
-	 *
-	 * @param canvas canvas from View.onDraw method
-	 */
-	private void drawRemainingTime(Canvas canvas) {
-		final long millis = mModel.getTime();
-		final int ss = (int) (millis / 1000);
-		final String remainingTime = String.format(mTimeString, ss);
-		resetPainter();
-		if (ss > 10) {
-			useGreenPainter();
-		} else {
-			useRedPainter();
-		}
-
-		mPaint.getTextBounds(remainingTime, 0, remainingTime.length(), mBounds);
-		canvas.drawText(remainingTime
-				, mPadding + mBounds.width() / 2
-				, mPadding + mPaint.getTextSize()
-				, mPaint);
-	}
-
-	/**
-	 * draw combo counter
-	 *
-	 * @param canvas canvas from View.onDraw method
-	 */
-	private void drawCombo(Canvas canvas) {
-		final int comboNumber = mModel.getCurrentCombo();
-		resetPainter();
-		useGreenPainter();
-		if (comboNumber > 1) {
-			final String currentCombo = String.format(mComboString, mModel.getCurrentCombo());
-			mPaint.getTextBounds(currentCombo, 0, currentCombo.length(), mBounds);
-			canvas.drawText(currentCombo
-					, mScreenWidth / 2 + mCrossHairs.getWidth() / 2 + mBounds.width() / 2
-					, mScreenHeight / 2 + mCrossHairs.getHeight() / 2
-					, mPaint);
-		}
-	}
-
-	/**
-	 * draw score
-	 *
-	 * @param canvas canvas from View.onDraw method
-	 */
-	private void drawScore(Canvas canvas) {
-		resetPainter();
-		useGreenPainter();
-		final String score = String.format(mScoreString, mModel.getCurrentScore());
-
-		mPaint.getTextBounds(score, 0, score.length(), mBounds);
-		canvas.drawText(score
-				, mBounds.width() / 2 + mPadding
-				, mScreenHeight - mPaint.getTextSize()
-				, mPaint);
-
+		onDrawing(canvas);
 	}
 
 	/**
@@ -230,7 +138,7 @@ public class GameView extends View {
 	 *
 	 * @param canvas canvas from View.onDraw method
 	 */
-	private void drawDisplayableItems(Canvas canvas) {
+	protected void drawDisplayableItems(Canvas canvas) {
 		final float[] currentPos = mModel.getCurrentPosition();
 		currentPos[0] *= mWidthRatioDegreeToPx;
 		currentPos[1] *= mHeightRatioDegreeToPx;
@@ -269,7 +177,7 @@ public class GameView extends View {
 	 * @param targetableRes     bitmap used to draw this targetable
 	 * @return true if targeted
 	 */
-	private boolean isTargeted(float[] crosshairPosition, DisplayableItem t, Bitmap targetableRes) {
+	protected boolean isTargeted(float[] crosshairPosition, DisplayableItem t, Bitmap targetableRes) {
 		final int xInPx = (int) (t.getX() * mWidthRatioDegreeToPx);
 		final int yInPx = (int) (t.getY() * mHeightRatioDegreeToPx);
 		if (crosshairPosition[0] > xInPx - targetableRes.getWidth() / 2 & crosshairPosition[0] < xInPx + targetableRes.getWidth() / 2
@@ -280,33 +188,33 @@ public class GameView extends View {
 		}
 	}
 
-	private void renderGhostWithHelmet(Canvas canvas, TargetableItem ghostWithHelmet, float[] currentPos) {
+	protected void renderGhostWithHelmet(Canvas canvas, TargetableItem ghostWithHelmet, float[] currentPos) {
 		final int bitmapIndex = ghostWithHelmet.getHealth() - 1;
 		renderGhost(canvas, ghostWithHelmet, currentPos, mGhostWithHelmetBitmaps[bitmapIndex], mGhostWithHelmetTargetedBitmaps[bitmapIndex]);
 	}
 
-	private void renderEasyGhost(Canvas canvas, TargetableItem easyGhost, float[] currentPos) {
+	protected void renderEasyGhost(Canvas canvas, TargetableItem easyGhost, float[] currentPos) {
 		renderGhost(canvas, easyGhost, currentPos, mGhostBitmap, mGhostTargetedBitmap);
 	}
 
-	private void renderBabyGhost(Canvas canvas, TargetableItem babyGhost, float[] currentPos) {
+	protected void renderBabyGhost(Canvas canvas, TargetableItem babyGhost, float[] currentPos) {
 		renderGhost(canvas, babyGhost, currentPos, mBabyGhostBitmap, mTargetedBabyGhostBitmap);
 	}
 
-	private void renderHiddenGhost(Canvas canvas, TargetableItem hiddenGhost, float[] currentPos) {
+	protected void renderHiddenGhost(Canvas canvas, TargetableItem hiddenGhost, float[] currentPos) {
 		renderGhost(canvas, hiddenGhost, currentPos, mHiddenGhost, mGhostTargetedBitmap);
 	}
 
-	private void renderKingGhost(Canvas canvas, TargetableItem kingGhost, float[] currentPos) {
+	protected void renderKingGhost(Canvas canvas, TargetableItem kingGhost, float[] currentPos) {
 		renderGhost(canvas, kingGhost, currentPos, mKingGhost, mTargetedKingGhost);
 	}
 
-	private void renderBlondGhost(Canvas canvas, TargetableItem blondGhost, float[] currentPos) {
+	protected void renderBlondGhost(Canvas canvas, TargetableItem blondGhost, float[] currentPos) {
 		final int bitmapIndex = blondGhost.getHealth() - 1;
 		renderGhost(canvas, blondGhost, currentPos, mBlondGhostBitmap[bitmapIndex], mBlondTargetedBitmap[bitmapIndex]);
 	}
 
-	private void renderGhost(Canvas canvas, TargetableItem ghost, float[] currentPos, Bitmap ghostBitmap, Bitmap targetedGhostBitmap) {
+	protected void renderGhost(Canvas canvas, TargetableItem ghost, float[] currentPos, Bitmap ghostBitmap, Bitmap targetedGhostBitmap) {
 		if (!ghost.isAlive()) {
 			//Ghost dead
 		} else {
@@ -328,7 +236,7 @@ public class GameView extends View {
 		}
 	}
 
-	private void renderBulletHole(Canvas canvas, DisplayableItem bulletHole) {
+	protected void renderBulletHole(Canvas canvas, DisplayableItem bulletHole) {
 		renderItem(canvas, mBulletHoleBitmap, bulletHole);
 	}
 
@@ -418,24 +326,24 @@ public class GameView extends View {
 		}
 	}
 
-	private void resetPainter() {
+	protected void resetPainter() {
 		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 		mPaint.setStrokeWidth(3);
 		mPaint.setTextSize(mFontSize);
 		mPaint.setTextAlign(Paint.Align.CENTER);
 	}
 
-	private void useGreenPainter() {
+	protected void useGreenPainter() {
 		mPaint.setColor(getResources().getColor(R.color.holo_green));
 		mPaint.setShadowLayer(5, 5, 5, R.color.holo_dark_green);
 	}
 
-	private void useRedPainter() {
+	protected void useRedPainter() {
 		mPaint.setColor(getResources().getColor(R.color.holo_red));
 		mPaint.setShadowLayer(5, 5, 5, R.color.holo_dark_red);
 	}
 
-	private float getTextSizeFromStyle(Context context, int styleId) {
+	protected float getTextSizeFromStyle(Context context, int styleId) {
 		final TextView textView = new TextView(context);
 		textView.setTextAppearance(context, styleId);
 		return textView.getTextSize();
