@@ -118,6 +118,14 @@
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginTop="@dimen/default_half_vertical_margin"
+                android:text="@string/about_thanks_beat_the_dev_winners"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
                 android:id="@+id/textView8"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
