@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.mechanics;
+package fr.tvbarthel.games.chasewhisply.mechanics.engine;
 
 
 import android.content.Context;

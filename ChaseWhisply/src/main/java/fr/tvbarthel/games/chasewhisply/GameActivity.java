@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import fr.tvbarthel.games.chasewhisply.mechanics.GameEngine;
+import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngine;
+import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngineFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameBehavior;
 import fr.tvbarthel.games.chasewhisply.model.GameBehaviorFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
@@ -112,7 +113,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 		mGameView.setAnimationLayer(animationLayer);
 
 		//instantiate game engine
-		mGameEngine = new GameEngine(this, GameActivity.this, mGameBehavior);
+		mGameEngine = GameEngineFactory.createGameEngineByGameMode(this, GameActivity.this, mGameBehavior, mGameMode.getType());
 		if (firstLaunch) {
 			mGameEngine.startGame();
 		} else {
