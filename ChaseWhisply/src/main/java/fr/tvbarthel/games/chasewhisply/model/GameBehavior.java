@@ -55,6 +55,13 @@ public class GameBehavior implements Parcelable {
 		return mInterface.isCompleted(mGameInformation);
 	}
 
+	/**
+	 * specific behavior onTouchScreen
+	 */
+	public void onTouchScreen() {
+		mInterface.onTouchScreen();
+	}
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -118,6 +125,11 @@ public class GameBehavior implements Parcelable {
 		 * @param g
 		 */
 		abstract void onTick(long tickingTime, GameInformation g);
+
+		/**
+		 * specific behavior on touch screen
+		 */
+		abstract void onTouchScreen();
 
 		/**
 		 * specific feature to stop the game

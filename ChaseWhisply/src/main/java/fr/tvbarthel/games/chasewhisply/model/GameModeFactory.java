@@ -5,6 +5,7 @@ import fr.tvbarthel.games.chasewhisply.R;
 
 public class GameModeFactory {
 
+	public static final int GAME_TYPE_TUTORIAL = 0x00000000;
 	public static final int GAME_TYPE_REMAINING_TIME = 0x00000001;
 	public static final int GAME_TYPE_LIMITED_TARGETS = 0x00000002;
 	public static final int GAME_TYPE_SURVIVAL = 0x00000003;
@@ -12,6 +13,26 @@ public class GameModeFactory {
 	public static final int GAME_TYPE_OVERALL_RANKING = 0x00000005;
 	public static final int GAME_REQUIRED_LEVEL_SURVIVAL_MODE = 2;
 	public static final int GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING = 10;
+
+	/**
+	 * game mode for learn how to play.
+	 * Always available and no leaderboard.
+	 *
+	 * @return
+	 */
+	public static GameMode createTutorialGame() {
+		final GameMode g = new GameMode() {
+			@Override
+			public boolean isAvailable(PlayerProfile p) {
+				//always available
+				return true;
+			}
+		};
+		g.setType(GAME_TYPE_TUTORIAL);
+		g.setRules(R.string.game_mode_tutorial);
+		g.setImage(R.drawable.ic_icon_tutorial);
+		return g;
+	}
 
 	public static GameMode createRemainingTimeGame(int level) {
 		final GameMode g = new GameMode() {

@@ -64,6 +64,9 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
 	private void loadGameMode() {
 		mGameModeViewAdapter.clear();
 
+		//how to play : learn basics of the game play
+		mGameModeViewAdapter.add(GameModeFactory.createTutorialGame());
+
 		//First mode: Kill as many Ghosts as you can in 30 seconds.
 		//Sprint mode
 		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(1));

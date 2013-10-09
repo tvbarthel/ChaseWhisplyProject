@@ -89,6 +89,10 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 					mGameBehavior = GameBehaviorFactory.createKillTheKingGame(
 							horizontal, vertical, mGameMode);
 					break;
+				case GameModeFactory.GAME_TYPE_TUTORIAL:
+					mGameBehavior = GameBehaviorFactory.createTutorialGame(
+							horizontal, vertical, mGameMode);
+					break;
 				default:
 					finish();
 					break;

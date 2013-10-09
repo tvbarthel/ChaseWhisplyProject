@@ -13,6 +13,79 @@ public class GameBehaviorFactory {
 
 
 	/**
+	 * Create the tutorial
+	 *
+	 * @param cameraHorizontalViewAngle horizontal view angle of the phone camera
+	 * @param cameraVerticalViewAngle   vertical view angle of the phone camera
+	 * @param gameMode                  gameMode from gameModeChooser fragment
+	 * @return Specific game behavior for this mode
+	 */
+	public static GameBehavior createTutorialGame(float cameraHorizontalViewAngle, float cameraVerticalViewAngle, GameMode gameMode) {
+
+		//we use default spawning time and basic weapon
+		final GameInformationTutorial gameInformation = new GameInformationTutorial(DEFAULT_SPAWNING_TIME, WeaponFactory.createBasicWeapon());
+
+		gameInformation.setSceneWidth((int) Math.floor(cameraHorizontalViewAngle));
+		gameInformation.setSceneHeight((int) Math.floor(cameraVerticalViewAngle));
+
+		//only 1 target are allowed in the AR world
+		gameInformation.setMaxTargetOnTheField(1);
+
+		//use default tickingTime
+		gameInformation.setTickingTime(DEFAULT_TICKING_TIME);
+
+		gameInformation.setGameMode(gameMode);
+		//implement turorial behavior
+		final GameBehavior.IGameBehavior i = new GameBehavior.IGameBehavior() {
+
+			private GameInformationTutorial gameInformationTutorial;
+
+			@Override
+			public void onInit(GameInformation g) {
+				gameInformationTutorial = (GameInformationTutorial) g;
+			}
+
+			@Override
+			public void onSpawn(int xRange, int yRange, GameInformation g) {
+
+			}
+
+			@Override
+			public void onKill(GameInformation g) {
+
+			}
+
+			@Override
+			public void onTick(long tickingTime, GameInformation g) {
+
+			}
+
+			@Override
+			public void onTouchScreen() {
+
+			}
+
+			@Override
+			public boolean isCompleted(GameInformation g) {
+				return gameInformationTutorial.getCurrentStep() ==
+						GameInformationTutorial.STEP_END;
+			}
+
+			@Override
+			public int describeContents() {
+				return 0;
+			}
+
+			@Override
+			public void writeToParcel(Parcel dest, int flags) {
+
+			}
+		};
+		return new GameBehavior(gameInformation, i);
+	}
+
+
+	/**
 	 * Create the death to the king mode
 	 * start time 0 sec
 	 * Basic Weapon
@@ -31,7 +104,7 @@ public class GameBehaviorFactory {
 		gameInformation.setSceneWidth((int) Math.floor(cameraHorizontalViewAngle));
 		gameInformation.setSceneHeight((int) Math.floor(cameraVerticalViewAngle));
 
-		//only 10 target are allowed in the AR world
+		//100 target are allowed in the AR world
 		gameInformation.setMaxTargetOnTheField(100);
 
 		//initialize time to 5 sec
@@ -81,6 +154,11 @@ public class GameBehaviorFactory {
 				if (g.getTime() > 0) {
 					g.setTime(g.getTime() - tickingTime);
 				}
+			}
+
+			@Override
+			public void onTouchScreen() {
+
 			}
 
 			@Override
@@ -165,6 +243,11 @@ public class GameBehaviorFactory {
 			}
 
 			@Override
+			public void onTouchScreen() {
+
+			}
+
+			@Override
 			public boolean isCompleted(GameInformation g) {
 				//stop game when time is over
 				return g.getTime() <= 0;
@@ -241,6 +324,11 @@ public class GameBehaviorFactory {
 				if (g.getTime() > 0) {
 					g.setTime(g.getTime() - tickingTime);
 				}
+			}
+
+			@Override
+			public void onTouchScreen() {
+
 			}
 
 			@Override

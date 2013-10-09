@@ -23,6 +23,9 @@ public class GameViewFactory {
 			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
 				gameView = createStandardGameView(c, g);
 				break;
+			case GameModeFactory.GAME_TYPE_TUTORIAL:
+				gameView = createTutorialGameView(c, g);
+				break;
 			default:
 				gameView = createStandardGameView(c, g);
 				break;
@@ -47,6 +50,17 @@ public class GameViewFactory {
 	 */
 	public static GameView createStandardGameView(Context c, GameInformation g) {
 		return new StandardGameView(c, g);
+	}
+
+	/**
+	 * Create GameView for tutorial
+	 *
+	 * @param c context
+	 * @param g model of the view
+	 * @return game view
+	 */
+	public static GameView createTutorialGameView(Context c, GameInformation g) {
+		return new TutorialGameView(c, g);
 	}
 
 
