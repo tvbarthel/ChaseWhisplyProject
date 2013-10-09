@@ -65,12 +65,15 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
 		mGameModeViewAdapter.clear();
 
 		//First mode: Kill as many Ghosts as you can in 30 seconds.
+		//Sprint mode
 		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(1));
 
 		//Second mode: Kill as many Ghosts as you can in 60 seconds. (level 2)
-		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(2));
+		//intermediary mode - not used anymore ?
+		//mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(2));
 
 		//Third mode: Kill as many Ghosts as you can in 30 seconds. (level 3)
+		//Marathon mode
 		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(3));
 
 		//Fourth mode: survival
