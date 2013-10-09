@@ -27,7 +27,7 @@ public class GameModeFactory {
 			case 1:
 				g.setRules(R.string.game_mode_time_limited_level_1);
 				g.setImage(R.drawable.ic_icon_time_based_game_30_s);
-				g.setLeaderboardStringId(R.string.leaderboard_30_seconds);
+				g.setLeaderboardStringId(R.string.leaderboard_sprint);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_1_description);
 				break;
 
@@ -41,7 +41,7 @@ public class GameModeFactory {
 			case 3:
 				g.setRules(R.string.game_mode_time_limited_level_3);
 				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
-				g.setLeaderboardStringId(R.string.leaderboard_90_seconds);
+				g.setLeaderboardStringId(R.string.leaderboard_marathon);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_3_description);
 				break;
 
