@@ -53,8 +53,12 @@ public class GameBehaviorFactory {
 				//init world with 99 easy ghost and one king
 				mStartTime = System.currentTimeMillis();
 				for (int i = 0; i < 100; i++) {
-					g.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(
-							i == 50 ? DisplayableItemFactory.TYPE_KING_GHOST : randomGhostTypeWithoutKing()));
+					if (i != 50) {
+						g.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(randomGhostTypeWithoutKing()));
+					} else {
+						g.addTargetableItem(DisplayableItemFactory.createKingGhostForDeathToTheKing());
+					}
+
 				}
 			}
 

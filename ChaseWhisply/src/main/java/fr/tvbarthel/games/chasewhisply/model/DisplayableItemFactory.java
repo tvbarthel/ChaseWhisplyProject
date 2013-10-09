@@ -182,6 +182,18 @@ public class DisplayableItemFactory {
 		return hiddenGhost;
 	}
 
+	public static TargetableItem createKingGhostForDeathToTheKing() {
+		final TargetableItem kingGhost = createGhostWithRandomCoordinates(DisplayableItemFactory.TYPE_KING_GHOST);
+		final ArrayList<Integer> drops = new ArrayList<Integer>();
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		kingGhost.setDrop(drops);
+		return kingGhost;
+	}
+
 	public static TargetableItem createKingGhost() {
 		final int dropDraft = MathUtils.randomize(0, 100);
 		final ArrayList<Integer> drops = new ArrayList<Integer>();
