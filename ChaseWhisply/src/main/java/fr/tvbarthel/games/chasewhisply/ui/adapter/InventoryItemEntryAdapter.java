@@ -45,6 +45,8 @@ public class InventoryItemEntryAdapter extends ArrayAdapter<InventoryItemEntry> 
 		rowView.setCraftRequestListener(mCraftRequestListener);
 		if (currentInventoryItemEntry.getRecipe().getMissingResources(mPlayerProfile).size() != 0) {
 			rowView.setCraftEnable(false);
+		}else{
+			rowView.setCraftEnable(true);
 		}
 		return rowView;
 	}
