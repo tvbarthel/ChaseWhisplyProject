@@ -46,7 +46,7 @@
         jeu : Marathon.
     </string>
     <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu : survie.</string>
-    <string name="leaderboard_death_to_the_king_description">Meilleurs temps en mode : Mort au rois.</string>
+    <string name="leaderboard_death_to_the_king_description">Meilleurs temps en mode : Mort au roi.</string>
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps imparti.</string>
