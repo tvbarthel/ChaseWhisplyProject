@@ -7,9 +7,9 @@ import android.util.SparseIntArray;
 public class DroppedByList implements Parcelable {
 	public static final int DROP_RATE_BABY_DROOL = 50;
 	public static final int DROP_RATE_BROKEN_HELMET_HORN = 100;
-	public static final int DROP_RATE_COIN = 50;
-	public static final int DROP_RATE_KING_CROWN = 50;
-	public static final int DROP_RATE_GHOST_TEAR = 30;
+	public static final int DROP_RATE_COIN = 75;
+	public static final int DROP_RATE_KING_CROWN = 75;
+	public static final int DROP_RATE_GHOST_TEAR = 50;
 
 	private final SparseIntArray mMonstersAndPercents;
 
