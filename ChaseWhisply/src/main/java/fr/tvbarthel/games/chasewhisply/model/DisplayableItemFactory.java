@@ -39,7 +39,7 @@ public class DisplayableItemFactory {
 	public final static int BASE_POINT_BABY_GHOST = 2;
 	public final static int BASE_POINT_GHOST_WITH_HELMET = 10;
 	public final static int BASE_POINT_HIDDEN_GHOST = 2;
-	public final static int BASE_POINT_KING_GHOST = 0;
+	public final static int BASE_POINT_KING_GHOST = 1;
 	public final static int BASE_POINT_BLOND_GHOST = 2;
 
 	//Exp Point
@@ -47,7 +47,7 @@ public class DisplayableItemFactory {
 	public final static int EXP_POINT_BABY_GHOST = 4;
 	public final static int EXP_POINT_GHOST_WITH_HELMET = 10;
 	public final static int EXP_POINT_HIDDEN_GHOST = 5;
-	public final static int EXP_POINT_KING_GHOST = 0;
+	public final static int EXP_POINT_KING_GHOST = 20;
 	public final static int EXP_POINT_BLOND_GHOST = 4;
 
 
@@ -102,7 +102,7 @@ public class DisplayableItemFactory {
 			drops.add(InventoryItemInformation.TYPE_BROKEN_HELMET_HORN);
 		}
 
-		if (dropDraft < DroppedByList.DROP_RATE_COIN * 4) {
+		if (dropDraft < DroppedByList.DROP_RATE_COIN) {
 			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
@@ -158,7 +158,7 @@ public class DisplayableItemFactory {
 			drops.add(InventoryItemInformation.TYPE_BABY_DROOL);
 		}
 
-		if (dropDraft < DroppedByList.DROP_RATE_COIN * 2) {
+		if (dropDraft < DroppedByList.DROP_RATE_COIN) {
 			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
@@ -182,6 +182,18 @@ public class DisplayableItemFactory {
 		return hiddenGhost;
 	}
 
+	public static TargetableItem createKingGhostForDeathToTheKing() {
+		final TargetableItem kingGhost = createGhostWithRandomCoordinates(DisplayableItemFactory.TYPE_KING_GHOST);
+		final ArrayList<Integer> drops = new ArrayList<Integer>();
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		drops.add(InventoryItemInformation.TYPE_COIN);
+		kingGhost.setDrop(drops);
+		return kingGhost;
+	}
+
 	public static TargetableItem createKingGhost() {
 		final int dropDraft = MathUtils.randomize(0, 100);
 		final ArrayList<Integer> drops = new ArrayList<Integer>();
@@ -194,7 +206,7 @@ public class DisplayableItemFactory {
 			drops.add(InventoryItemInformation.TYPE_KING_CROWN);
 		}
 
-		if (dropDraft < DroppedByList.DROP_RATE_COIN * 25) {
+		if (dropDraft < DroppedByList.DROP_RATE_COIN) {
 			drops.add(InventoryItemInformation.TYPE_COIN);
 		}
 
