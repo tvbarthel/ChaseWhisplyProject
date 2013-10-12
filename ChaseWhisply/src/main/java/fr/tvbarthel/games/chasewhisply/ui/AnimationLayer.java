@@ -77,14 +77,15 @@ public class AnimationLayer extends RelativeLayout {
 	 * @param textSize
 	 * @param color
 	 * @param screenHeight
+	 * @param crossHaitHeight
 	 */
-	public void setTopText(String info, int textSize, int color, int screenHeight) {
+	public void setTopText(String info, int textSize, int color, int screenHeight, int crossHaitHeight) {
 		if (mTopTextView != null) {
 			if (!mTopTextView.getText().equals(info) && !isTextChanging) {
 				//TextView already displayed, replace text
 				Animation changeTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
 				AnimationTopTextChangeListener changeTextAnimationListener =
-						new AnimationTopTextChangeListener(info, textSize, color, screenHeight);
+						new AnimationTopTextChangeListener(info, textSize, color, screenHeight, crossHaitHeight);
 				changeTextAnimation.setAnimationListener(changeTextAnimationListener);
 				mTopTextView.startAnimation(changeTextAnimation);
 				isTextChanging = true;
@@ -102,7 +103,7 @@ public class AnimationLayer extends RelativeLayout {
 			addView(mTopTextView);
 			Animation createAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
 			AnimationSetTopTextListener createListener =
-					new AnimationSetTopTextListener(info, textSize, color, screenHeight);
+					new AnimationSetTopTextListener(info, textSize, color, screenHeight, crossHaitHeight);
 			createAnimation.setAnimationListener(createListener);
 		}
 
@@ -124,12 +125,14 @@ public class AnimationLayer extends RelativeLayout {
 	 * @param info
 	 * @param textSize
 	 * @param color
+	 * @param crossHairHeight
 	 */
-	private void showTopText(String info, int textSize, int color, int screenHeight) {
+	private void showTopText(String info, int textSize, int color, int screenHeight, int crossHairHeight) {
 		mTopTextView.setTextSize(textSize);
 		mTopTextView.setText(info);
 		mTopTextView.setTextColor(getResources().getColor(color));
-		mTopTextRelativeLayoutParams.setMargins(0, (int) (screenHeight / 2 - mTopTextView.getHeight() * 1.25), 0, 0);
+		mTopTextRelativeLayoutParams.setMargins(0,
+				(int) (screenHeight / 2 - mTopTextView.getHeight() - crossHairHeight), 0, 0);
 		Animation showTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
 		mTopTextView.startAnimation(showTextAnimation);
 	}
@@ -175,13 +178,15 @@ public class AnimationLayer extends RelativeLayout {
 		private int mTextSize;
 		private int mColor;
 		private int mScreenHeight;
+		private int mCrossHaitHeight;
 
 
-		public AnimationTopTextChangeListener(String text, int textSize, int color, int screenHeight) {
+		public AnimationTopTextChangeListener(String text, int textSize, int color, int screenHeight, int crossHairHeight) {
 			mText = text;
 			mTextSize = textSize;
 			mColor = color;
 			mScreenHeight = screenHeight;
+			mCrossHaitHeight = crossHairHeight;
 		}
 
 		@Override
@@ -193,7 +198,7 @@ public class AnimationLayer extends RelativeLayout {
 			post(new Runnable() {
 				@Override
 				public void run() {
-					showTopText(mText, mTextSize, mColor, mScreenHeight);
+					showTopText(mText, mTextSize, mColor, mScreenHeight, mCrossHaitHeight);
 					isTextChanging = false;
 				}
 			});
@@ -213,13 +218,15 @@ public class AnimationLayer extends RelativeLayout {
 		private int mTextSize;
 		private int mColor;
 		private int mScreenHeight;
+		private int mCrossHaitHeight;
 
 
-		public AnimationSetTopTextListener(String text, int textSize, int color, int screenHeight) {
+		public AnimationSetTopTextListener(String text, int textSize, int color, int screenHeight, int crossHairHeight) {
 			mText = text;
 			mTextSize = textSize;
 			mColor = color;
 			mScreenHeight = screenHeight;
+			mCrossHaitHeight = crossHairHeight;
 		}
 
 		@Override
@@ -230,7 +237,8 @@ public class AnimationLayer extends RelativeLayout {
 					mTopTextView.setTextSize(mTextSize);
 					mTopTextView.setText(mText);
 					mTopTextView.setTextColor(getResources().getColor(mColor));
-					mTopTextRelativeLayoutParams.setMargins(0, (int) (mScreenHeight / 2 - mTopTextView.getHeight() * 1.25), 0, 0);
+					mTopTextRelativeLayoutParams.setMargins(0,
+							(int) (mScreenHeight / 2 - mTopTextView.getHeight() - mCrossHaitHeight), 0, 0);
 				}
 			});
 		}

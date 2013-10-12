@@ -56,10 +56,10 @@ public class StandardGameView extends GameView {
 		if (currentAmmunition == 0) {
 			useRedPainter();
 			final String noAmmoMessage = getResources().getString(R.string.in_game_no_ammo_message);
-
+			mPaint.getTextBounds(noAmmoMessage, 0, noAmmoMessage.length(), mBounds);
 			canvas.drawText(noAmmoMessage,
 					mScreenWidth / 2,
-					(mScreenHeight - mCrossHairs.getHeight()) / 2 - 10,
+					(mScreenHeight + mCrossHairs.getHeight()) / 2 + mBounds.height(),
 					mPaint);
 		} else {
 			useGreenPainter();
@@ -131,7 +131,7 @@ public class StandardGameView extends GameView {
 					, mPaint);
 		} else if (seconds >= 0) {
 			mAnimationLayer.setTopText(new Integer(seconds).toString(), (int) (mFontSize * 1.25),
-					R.color.holo_dark_red, mScreenHeight);
+					R.color.holo_dark_red, mScreenHeight, mCrossHairs.getHeight() / 2);
 		} else {
 			mAnimationLayer.hideTopText();
 		}

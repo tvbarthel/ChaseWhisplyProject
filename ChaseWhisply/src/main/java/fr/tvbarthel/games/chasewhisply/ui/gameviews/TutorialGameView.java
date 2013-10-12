@@ -27,34 +27,34 @@ public class TutorialGameView extends GameView {
 		switch (step) {
 			case GameInformationTutorial.STEP_WELCOME:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_welcome),
-						(int) mFontSize, R.color.holo_dark_green, mScreenHeight);
+						(int) mFontSize, R.color.holo_dark_green, mScreenHeight, mCrossHairs.getHeight() / 2);
 				break;
 			case GameInformationTutorial.STEP_UI_WELCOME:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_ui_welcome),
-						(int) mFontSize, R.color.card_shadow_grey, mScreenHeight);
+						(int) mFontSize, R.color.card_shadow_grey, mScreenHeight, mCrossHairs.getHeight() / 2);
 				break;
 			case GameInformationTutorial.STEP_CROSSHAIR:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_crosshair),
-						(int) mFontSize, R.color.holo_dark_green, mScreenHeight);
+						(int) mFontSize, R.color.holo_dark_green, mScreenHeight, mCrossHairs.getHeight() / 2);
 				drawCrossHair(c);
 				break;
 			case GameInformationTutorial.STEP_AMMO:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_ammos),
-						(int) mFontSize, R.color.holo_dark_red, mScreenHeight);
+						(int) mFontSize, R.color.holo_dark_red, mScreenHeight, mCrossHairs.getHeight() / 2);
 				drawAmmo(c);
 				break;
 			case GameInformationTutorial.STEP_COMBO:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_combo),
-						(int) mFontSize, R.color.holo_dark_green, mScreenHeight);
+						(int) mFontSize, R.color.holo_dark_green, mScreenHeight, mCrossHairs.getHeight() / 2);
 				drawCombo(c);
 				break;
 			case GameInformationTutorial.STEP_SERIOUS_THINGS:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_serious_things),
-						(int) mFontSize, R.color.holo_dark_red, mScreenHeight);
+						(int) mFontSize, R.color.holo_dark_red, mScreenHeight, mCrossHairs.getHeight() / 2);
 				break;
 			case GameInformationTutorial.STEP_END:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_end),
-						(int) mFontSize, R.color.holo_dark_green, mScreenHeight);
+						(int) mFontSize, R.color.holo_dark_green, mScreenHeight, mCrossHairs.getHeight() / 2);
 				break;
 		}
 	}
