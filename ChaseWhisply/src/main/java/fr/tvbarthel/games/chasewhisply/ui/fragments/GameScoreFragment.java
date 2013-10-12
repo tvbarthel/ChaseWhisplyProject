@@ -105,6 +105,10 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	public void onDetach() {
 		super.onDetach();
 		mListener = null;
+		if(mTimerRoutine != null) {
+			mTimerRoutine.stopRoutine();
+			mTimerRoutine = null;
+		}
 	}
 
 	@Override
@@ -156,6 +160,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 		return v;
 	}
+
+
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
