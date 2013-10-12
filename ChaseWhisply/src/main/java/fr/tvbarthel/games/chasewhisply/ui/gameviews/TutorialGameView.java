@@ -17,8 +17,6 @@ public class TutorialGameView extends GameView {
 	 */
 	public TutorialGameView(Context context, GameInformation model) {
 		super(context, model);
-		mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_welcome),
-				(int) mFontSize, R.color.holo_dark_green, mScreenHeight);
 	}
 
 	@Override
