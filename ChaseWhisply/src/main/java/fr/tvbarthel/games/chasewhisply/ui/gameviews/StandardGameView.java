@@ -130,7 +130,8 @@ public class StandardGameView extends GameView {
 					, mPadding + mPaint.getTextSize()
 					, mPaint);
 		} else if (ss > 0) {
-			mAnimationLayer.setTopText(new Integer(ss - 1).toString(), (int) (mFontSize * 1.25), R.color.holo_dark_red);
+			mAnimationLayer.setTopText(new Integer(ss - 1).toString(), (int) (mFontSize * 1.25),
+					R.color.holo_dark_red, mScreenHeight);
 		} else {
 			mAnimationLayer.hideTopText();
 		}

@@ -299,4 +299,17 @@
     <string name="bonus_quantity">Quantité Disponible</string>
     <string name="bonus_damage_effect">Dégat +%1$s</string>
     <string name="bonus_speed_effect">Temps de rechargement -%1$s</string>
+
+
+    <!-- In Game Tutorial -->
+    <string name="tuto_step_welcome">Bienvenue dans le tutoriel</string>
+    <string name="tuto_step_ui_welcome">Découvrons ensemble l\'interface de jeu</string>
+    <string name="tuto_step_crosshair">Au centre vous trouverez votre viseur</string>
+    <string name="tuto_step_ammos">En bas à droite vous trouverez vos munitions</string>
+    <string name="tuto_step_combo">Ne manquez pas vos cibles pour obtenir un combo !</string>
+    <string name="tuto_step_serious_things">Passons aux choses serieuses</string>
+    <string name="tuto_step_end">Tutoriel terminé !</string>
+    <string name="tuto_touch_to_skip">Appuyez sur l\'écran pour continuer</string>
+    <string name="tuto_touch_to_end">Appuyez sur l\'écran pour continuer</string>
+
 </resources>

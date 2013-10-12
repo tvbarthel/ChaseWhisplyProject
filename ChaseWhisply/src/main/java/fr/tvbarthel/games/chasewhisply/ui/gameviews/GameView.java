@@ -8,6 +8,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -351,5 +353,11 @@ public abstract class GameView extends View {
 
 	public void setAnimationLayer(AnimationLayer animationLayer) {
 		mAnimationLayer = animationLayer;
+	}
+
+	@Override
+	protected void onDetachedFromWindow() {
+		mAnimationLayer.hideTopText();
+		super.onDetachedFromWindow();
 	}
 }

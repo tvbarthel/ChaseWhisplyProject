@@ -1,6 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.ui;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.View;
@@ -75,14 +76,15 @@ public class AnimationLayer extends RelativeLayout {
 	 * @param info
 	 * @param textSize
 	 * @param color
+	 * @param screenHeight
 	 */
-	public void setTopText(String info, int textSize, int color) {
+	public void setTopText(String info, int textSize, int color, int screenHeight) {
 		if (mTopTextView != null) {
 			if (!mTopTextView.getText().equals(info) && !isTextChanging) {
 				//TextView already displayed, replace text
 				Animation changeTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
 				AnimationTopTextChangeListener changeTextAnimationListener =
-						new AnimationTopTextChangeListener(info, textSize, color);
+						new AnimationTopTextChangeListener(info, textSize, color, screenHeight);
 				changeTextAnimation.setAnimationListener(changeTextAnimationListener);
 				mTopTextView.startAnimation(changeTextAnimation);
 				isTextChanging = true;
@@ -91,12 +93,17 @@ public class AnimationLayer extends RelativeLayout {
 			//TextView never shown, need to instantiate it
 			mTopTextView = new TextView(getContext());
 			mTopTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+			mTopTextView.setTypeface(null, Typeface.BOLD);
+			mTopTextView.setTextSize(textSize);
 			mTopTextRelativeLayoutParams = new RelativeLayout.LayoutParams(
 					ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 			mTopTextRelativeLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-			addView(mTopTextView, mTopTextRelativeLayoutParams);
-			Animation showTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
-			mTopTextView.startAnimation(showTextAnimation);
+			mTopTextView.setLayoutParams(mTopTextRelativeLayoutParams);
+			addView(mTopTextView);
+			Animation createAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+			AnimationSetTopTextListener createListener =
+					new AnimationSetTopTextListener(info, textSize, color, screenHeight);
+			createAnimation.setAnimationListener(createListener);
 		}
 
 	}
@@ -106,9 +113,8 @@ public class AnimationLayer extends RelativeLayout {
 	 */
 	public void hideTopText() {
 		if (mTopTextView != null) {
-			Animation hideTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
-			AnimationListenerWithDeleter hideTextAnimationListener = new AnimationListenerWithDeleter(mTopTextView);
-			hideTextAnimation.setAnimationListener(hideTextAnimationListener);
+			removeView(mTopTextView);
+			mTopTextView = null;
 		}
 	}
 
@@ -119,11 +125,11 @@ public class AnimationLayer extends RelativeLayout {
 	 * @param textSize
 	 * @param color
 	 */
-	private void showTopText(String info, int textSize, int color) {
+	private void showTopText(String info, int textSize, int color, int screenHeight) {
 		mTopTextView.setTextSize(textSize);
 		mTopTextView.setText(info);
 		mTopTextView.setTextColor(getResources().getColor(color));
-		mTopTextRelativeLayoutParams.setMargins(0, 50, 0, 0);
+		mTopTextRelativeLayoutParams.setMargins(0, (int) (screenHeight / 2 - mTopTextView.getHeight() * 1.25), 0, 0);
 		Animation showTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
 		mTopTextView.startAnimation(showTextAnimation);
 	}
@@ -168,12 +174,14 @@ public class AnimationLayer extends RelativeLayout {
 		private String mText;
 		private int mTextSize;
 		private int mColor;
+		private int mScreenHeight;
 
 
-		public AnimationTopTextChangeListener(String text, int textSize, int color) {
+		public AnimationTopTextChangeListener(String text, int textSize, int color, int screenHeight) {
 			mText = text;
 			mTextSize = textSize;
 			mColor = color;
+			mScreenHeight = screenHeight;
 		}
 
 		@Override
@@ -185,7 +193,7 @@ public class AnimationLayer extends RelativeLayout {
 			post(new Runnable() {
 				@Override
 				public void run() {
-					showTopText(mText, mTextSize, mColor);
+					showTopText(mText, mTextSize, mColor, mScreenHeight);
 					isTextChanging = false;
 				}
 			});
@@ -196,5 +204,50 @@ public class AnimationLayer extends RelativeLayout {
 		}
 	}
 
+	/**
+	 * Wait for the end of hiding animation and then call showTopText
+	 */
+	private class AnimationSetTopTextListener implements Animation.AnimationListener {
+
+		private String mText;
+		private int mTextSize;
+		private int mColor;
+		private int mScreenHeight;
+
+
+		public AnimationSetTopTextListener(String text, int textSize, int color, int screenHeight) {
+			mText = text;
+			mTextSize = textSize;
+			mColor = color;
+			mScreenHeight = screenHeight;
+		}
+
+		@Override
+		public void onAnimationStart(Animation animation) {
+			post(new Runnable() {
+				@Override
+				public void run() {
+					mTopTextView.setTextSize(mTextSize);
+					mTopTextView.setText(mText);
+					mTopTextView.setTextColor(getResources().getColor(mColor));
+					mTopTextRelativeLayoutParams.setMargins(0, (int) (mScreenHeight / 2 - mTopTextView.getHeight() * 1.25), 0, 0);
+				}
+			});
+		}
+
+		@Override
+		public void onAnimationEnd(Animation animation) {
+			post(new Runnable() {
+				@Override
+				public void run() {
+					isTextChanging = false;
+				}
+			});
+		}
+
+		@Override
+		public void onAnimationRepeat(Animation animation) {
+		}
+	}
 
 }
