@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_shadow_tuto"
+    android:gravity="center"
+    android:paddingTop="@dimen/default_padding">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_gravity="center"
+        android:src="@drawable/button_craft"
+        android:background="@null" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_view_grey"
+        android:text="@string/tuto_page_inventory_craft_content"
+        android:id="@+id/textView"
+        android:paddingTop="@dimen/default_padding"
+        android:paddingRight="@dimen/tuto_fragment_padding"
+        android:paddingLeft="@dimen/half_padding"
+        android:gravity="right" />
+
+</LinearLayout>

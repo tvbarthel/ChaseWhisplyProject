@@ -115,10 +115,12 @@
     <string name="tuto_title_page_4">En jeu\nMouvement</string>
     <string name="tuto_title_page_5">En jeu\nMunitions</string>
     <string name="tuto_title_page_6">En jeu\nMunitions</string>
-    <string name="tuto_title_page_7">Menu\nJouer</string>
-    <string name="tuto_title_page_8">Menu\nClassements</string>
-    <string name="tuto_title_page_9">Menu\nRéussites</string>
-    <string name="tuto_title_page_10">Prêt pour\nle Combat</string>
+    <string name="tuto_title_page_7">Inventaire\nCraft</string>
+    <string name="tuto_title_page_8">Menu\nJouer</string>
+    <string name="tuto_title_page_9">Menu\nProfil</string>
+    <string name="tuto_title_page_10">Menu\nClassements</string>
+    <string name="tuto_title_page_11">Menu\nRéussites</string>
+    <string name="tuto_title_page_12">Prêt pour\nle Combat</string>
     <string name="tuto_button_close">Fermer</string>
 
     <!-- Tuto Fragment Page Welcome -->
@@ -133,6 +135,9 @@
     <string name="tuto_page_play_button_content">Sélectionnez votre mode favori et chassez les fantômes autour de
         vous.
     </string>
+
+    <!--Tuto Fragment Page Profile Button -->
+    <string name="tuto_page_profile_button_content">Suivez votre progression et trouvez des informations sur vos ennemis.</string>
 
     <!-- Tuto Fragment Page Leaderboard Button -->
     <string name="tuto_page_leaderboard_button_content">Comparez votre score avec ceux de vos amis et devenez le
@@ -151,7 +156,7 @@
 
     <!-- Tuto Fragment Target -->
     <string name="tuto_page_target_content">Vos cibles sont Whisply et ses frères jumeaux.</string>
-    <string name="tuto_page_target_bis_content">Mettez-en un en joue et tirez en touchant l\'écran.</string>
+    <string name="tuto_page_target_bis_content">Alignez votre curseur en déplaçant votre téléphone et tirez en touchant l\'écran.</string>
 
     <!-- Tuto Fragment Ammo -->
     <string name="tuto_page_ammo_content">Surveillez vos munitions en bas à droite de votre écran ou vous serez vite à
@@ -172,6 +177,9 @@
         plus rapidement.
     </string>
     <string name="tuto_page_combo_example">x4</string>
+
+    <!-- Tuto Fragment Page Inventory -->
+    <string name="tuto_page_inventory_craft_content">Fabriquez de puissants bonus depuis votre inventaire.</string>
 
     <!-- Profile Fragment -->
     <string name="profile_title">Votre Profil</string>
