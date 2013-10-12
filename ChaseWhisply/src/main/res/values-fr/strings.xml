@@ -36,16 +36,12 @@
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Sélectionnez un classement</string>
     <string name="leaderboard_overall_ranking_description">Classement général.</string>
-    <string name="leaderboard_chooser_time_limited_level_1_description">Meilleurs scores, mode de
-        jeu : Sprint.
-    </string>
+    <string name="leaderboard_chooser_time_limited_level_1_description">Classement du Sprint</string>
     <string name="leaderboard_chooser_time_limited_level_2_description">Meilleurs scores, mode de
         jeu : 60 secondes.
     </string>
-    <string name="leaderboard_chooser_time_limited_level_3_description">Meilleurs scores, mode de
-        jeu : Marathon.
-    </string>
-    <string name="leaderboard_chooser_survival_description">Meilleurs scores, mode de jeu : survie.</string>
+    <string name="leaderboard_chooser_time_limited_level_3_description">Classement du Marathon</string>
+    <string name="leaderboard_chooser_survival_description">Classement survie</string>
     <string name="leaderboard_death_to_the_king_description">Meilleurs temps en mode : Mort au roi.</string>
 
     <!-- Game Mode rules !-->
