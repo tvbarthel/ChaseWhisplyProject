@@ -122,16 +122,18 @@ public class StandardGameView extends GameView {
 		final int ss = (int) (millis / 1000);
 		final String remainingTime = String.format(mTimeString, ss);
 		resetPainter();
-		if (ss > 10) {
+		if (ss > 6) {
 			useGreenPainter();
+			mPaint.getTextBounds(remainingTime, 0, remainingTime.length(), mBounds);
+			canvas.drawText(remainingTime
+					, mPadding + mBounds.width() / 2
+					, mPadding + mPaint.getTextSize()
+					, mPaint);
+		} else if (ss > 0) {
+			mAnimationLayer.setTopText(new Integer(ss - 1).toString(), (int) (mFontSize * 1.25), R.color.holo_dark_red);
 		} else {
-			useRedPainter();
+			mAnimationLayer.hideTopText();
 		}
 
-		mPaint.getTextBounds(remainingTime, 0, remainingTime.length(), mBounds);
-		canvas.drawText(remainingTime
-				, mPadding + mBounds.width() / 2
-				, mPadding + mPaint.getTextSize()
-				, mPaint);
 	}
 }

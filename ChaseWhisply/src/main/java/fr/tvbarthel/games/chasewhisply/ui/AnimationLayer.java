@@ -2,6 +2,7 @@ package fr.tvbarthel.games.chasewhisply.ui;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -15,10 +16,14 @@ import fr.tvbarthel.games.chasewhisply.R;
 
 public class AnimationLayer extends RelativeLayout {
 	private final Context mContext;
+	private TextView mTopTextView;
+	private RelativeLayout.LayoutParams mTopTextRelativeLayoutParams;
+	private boolean isTextChanging;
 
 	public AnimationLayer(Context context) {
 		super(context);
 		mContext = context;
+		isTextChanging = false;
 	}
 
 	public void drawDyingGhost(Drawable drawable, int score, int textSize, int posX, int posY) {
@@ -63,6 +68,69 @@ public class AnimationLayer extends RelativeLayout {
 		}
 	}
 
+
+	/**
+	 * use to display text information in top screen
+	 *
+	 * @param info
+	 * @param textSize
+	 * @param color
+	 */
+	public void setTopText(String info, int textSize, int color) {
+		if (mTopTextView != null) {
+			if (!mTopTextView.getText().equals(info) && !isTextChanging) {
+				//TextView already displayed, replace text
+				Animation changeTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
+				AnimationTopTextChangeListener changeTextAnimationListener =
+						new AnimationTopTextChangeListener(info, textSize, color);
+				changeTextAnimation.setAnimationListener(changeTextAnimationListener);
+				mTopTextView.startAnimation(changeTextAnimation);
+				isTextChanging = true;
+			}
+		} else {
+			//TextView never shown, need to instantiate it
+			mTopTextView = new TextView(getContext());
+			mTopTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+			mTopTextRelativeLayoutParams = new RelativeLayout.LayoutParams(
+					ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			mTopTextRelativeLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+			addView(mTopTextView, mTopTextRelativeLayoutParams);
+			Animation showTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+			mTopTextView.startAnimation(showTextAnimation);
+		}
+
+	}
+
+	/**
+	 * delete TextView shown at the top
+	 */
+	public void hideTopText() {
+		if (mTopTextView != null) {
+			Animation hideTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
+			AnimationListenerWithDeleter hideTextAnimationListener = new AnimationListenerWithDeleter(mTopTextView);
+			hideTextAnimation.setAnimationListener(hideTextAnimationListener);
+		}
+	}
+
+	/**
+	 * display new text in the TextView
+	 *
+	 * @param info
+	 * @param textSize
+	 * @param color
+	 */
+	private void showTopText(String info, int textSize, int color) {
+		mTopTextView.setTextSize(textSize);
+		mTopTextView.setText(info);
+		mTopTextView.setTextColor(getResources().getColor(color));
+		mTopTextRelativeLayoutParams.setMargins(0, 50, 0, 0);
+		Animation showTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+		mTopTextView.startAnimation(showTextAnimation);
+	}
+
+	/**
+	 * Delete the view once the animation ends
+	 */
 	private class AnimationListenerWithDeleter implements Animation.AnimationListener {
 
 		private View mViewToDelete;
@@ -83,6 +151,42 @@ public class AnimationLayer extends RelativeLayout {
 				public void run() {
 					container.removeView(mViewToDelete);
 					mViewToDelete = null;
+				}
+			});
+		}
+
+		@Override
+		public void onAnimationRepeat(Animation animation) {
+		}
+	}
+
+	/**
+	 * Wait for the end of hiding animation and then call showTopText
+	 */
+	private class AnimationTopTextChangeListener implements Animation.AnimationListener {
+
+		private String mText;
+		private int mTextSize;
+		private int mColor;
+
+
+		public AnimationTopTextChangeListener(String text, int textSize, int color) {
+			mText = text;
+			mTextSize = textSize;
+			mColor = color;
+		}
+
+		@Override
+		public void onAnimationStart(Animation animation) {
+		}
+
+		@Override
+		public void onAnimationEnd(Animation animation) {
+			post(new Runnable() {
+				@Override
+				public void run() {
+					showTopText(mText, mTextSize, mColor);
+					isTextChanging = false;
 				}
 			});
 		}
