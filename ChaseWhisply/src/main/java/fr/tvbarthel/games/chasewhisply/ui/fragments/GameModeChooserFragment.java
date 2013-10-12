@@ -83,7 +83,8 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
 		mGameModeViewAdapter.add(GameModeFactory.createSurvivalGame(1));
 
 		//Fifth mode: Death to the king
-		mGameModeViewAdapter.add(GameModeFactory.createKillTheKingGame(1));
+		//Not ready for a public release
+		//mGameModeViewAdapter.add(GameModeFactory.createKillTheKingGame(1));
 
 		mGameModeViewAdapter.notifyDataSetChanged();
 	}

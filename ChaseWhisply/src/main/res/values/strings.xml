@@ -108,10 +108,12 @@
     <string name="tuto_title_page_4">In Game\nMoving</string>
     <string name="tuto_title_page_5">In Game\nAmmunition</string>
     <string name="tuto_title_page_6">In Game\nAmmunition</string>
-    <string name="tuto_title_page_7">Menu\nPlay</string>
-    <string name="tuto_title_page_8">Menu\nLeaderboards</string>
-    <string name="tuto_title_page_9">Menu\nAchievements</string>
-    <string name="tuto_title_page_10">Ready To\nFight</string>
+    <string name="tuto_title_page_7">Inventory\nCraft</string>
+    <string name="tuto_title_page_8">Menu\nPlay</string>
+    <string name="tuto_title_page_9">Menu\nProfile</string>
+    <string name="tuto_title_page_10">Menu\nLeaderboards</string>
+    <string name="tuto_title_page_11">Menu\nAchievements</string>
+    <string name="tuto_title_page_12">Ready To\nFight</string>
     <string name="tuto_button_close">Close</string>
 
     <!-- Tuto Default Fragment -->
@@ -127,6 +129,9 @@
 
     <!-- Tuto Fragment Page Play Button -->
     <string name="tuto_page_play_button_content">Select your favorite mode and hunt ghosts around you.</string>
+
+    <!--Tuto Fragment Page Profile Button -->
+    <string name="tuto_page_profile_button_content">Follow your progression and find information about your ennemies.</string>
 
     <!-- Tuto Fragment Page Leaderboard Button -->
     <string name="tuto_page_leaderboard_button_content">Compare your score with your friends and try to be the best
@@ -145,7 +150,7 @@
 
     <!-- Tuto Fragment Page Target -->
     <string name="tuto_page_target_content">Your targets are Whisply and his twin brothers.</string>
-    <string name="tuto_page_target_bis_content">Line up one of them in your gun sights and shoot by touching the
+    <string name="tuto_page_target_bis_content">Line up one of them in your gun sights by moving your phone and shoot by touching the
         screen.
     </string>
 
@@ -166,6 +171,9 @@
     <string name="tuto_page_combo_content">Don\'t miss your target, and add up combos to increase your score faster.
     </string>
     <string name="tuto_page_combo_example">x4</string>
+
+    <!-- Tuto Fragment Page Inventory -->
+    <string name="tuto_page_inventory_craft_content">Craft powerful bonuses from your inventory.</string>
 
     <!-- Profile Fragment -->
     <string name="profile_title">Your Profile</string>
