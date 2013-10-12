@@ -113,24 +113,24 @@ public class StandardGameView extends GameView {
 	}
 
 	/**
-	 * draw remaining time, in red if remainingTime < 10 sec else in green
+	 * draw time, in red if time < 10 sec else in green
 	 *
 	 * @param canvas canvas from View.onDraw method
 	 */
 	private void drawTimer(Canvas canvas) {
 		final long millis = mModel.getTime();
-		final int ss = (int) (millis / 1000);
-		final String remainingTime = String.format(mTimeString, ss);
+		final int seconds = (int) (millis / 1000) - 1;
+		final String remainingTime = String.format(mTimeString, seconds);
 		resetPainter();
-		if (ss > 6) {
+		if (seconds > 5) {
 			useGreenPainter();
 			mPaint.getTextBounds(remainingTime, 0, remainingTime.length(), mBounds);
 			canvas.drawText(remainingTime
 					, mPadding + mBounds.width() / 2
 					, mPadding + mPaint.getTextSize()
 					, mPaint);
-		} else if (ss > 0) {
-			mAnimationLayer.setTopText(new Integer(ss - 1).toString(), (int) (mFontSize * 1.25),
+		} else if (seconds >= 0) {
+			mAnimationLayer.setTopText(new Integer(seconds).toString(), (int) (mFontSize * 1.25),
 					R.color.holo_dark_red, mScreenHeight);
 		} else {
 			mAnimationLayer.hideTopText();
