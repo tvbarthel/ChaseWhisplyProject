@@ -35,6 +35,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
 	private static final int REQUEST_GAME_ACTIVITY_FRESH_START = 0x00000002;
 	private static final int REQUEST_GAME_ACTIVITY_REPLAY = 0x00000003;
+	//Achievement
+	private static final int ACHIEVEMENT_NOVICE_LOOTER_LIMIT = 20;
+	private static final int ACHIEVEMENT_TRAINED_LOOTER_LIMIT = 65;
+	private static final int ACHIEVEMENT_EXPERT_LOOTER_LIMIT = 90;
+
 	private Toast mTextToast;
 
 	@Override
@@ -246,15 +251,15 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			} else if (!weapon.hasRunOutOfAmmo()) {
 				gamesClient.unlockAchievement(getResources().getString(R.string.achievement_thrifty));
 			}
-			if (numberOfLoots >= 5) {
+			if (numberOfLoots >= ACHIEVEMENT_NOVICE_LOOTER_LIMIT) {
 				gamesClient.unlockAchievement(getString(R.string.achievement_novice_looter));
 			}
 
-			if (numberOfLoots >= 10) {
+			if (numberOfLoots >= ACHIEVEMENT_TRAINED_LOOTER_LIMIT) {
 				gamesClient.unlockAchievement(getString(R.string.achievement_trained_looter));
 			}
 
-			if (numberOfLoots >= 15) {
+			if (numberOfLoots >= ACHIEVEMENT_EXPERT_LOOTER_LIMIT) {
 				gamesClient.unlockAchievement(getString(R.string.achievement_expert_looter));
 			}
 		}
