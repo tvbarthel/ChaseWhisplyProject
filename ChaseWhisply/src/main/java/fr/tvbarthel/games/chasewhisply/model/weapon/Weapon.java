@@ -115,6 +115,10 @@ public class Weapon implements Parcelable {
 		mAmmunitionLimit = ammunitionLimit;
 	}
 
+	public void setCurrentAmmunition(int currentAmmunition) {
+		mCurrentAmmunition = currentAmmunition;
+	}
+
 	public int getAmmunitionLimit() {
 		return mAmmunitionLimit;
 	}

@@ -6,13 +6,15 @@ import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 
 public class GameInformationTutorial extends GameInformation {
 
-	public static final int STEP_WELCOME = 0x00000000;
-	public static final int STEP_UI_WELCOME = 0x0000001;
-	public static final int STEP_CROSSHAIR = 0x0000002;
-	public static final int STEP_AMMO = 0x0000003;
-	public static final int STEP_COMBO = 0x0000004;
-	public static final int STEP_SERIOUS_THINGS = 0x0000005;
-	public static final int STEP_END = 0x00000006;
+	public static final int STEP_WELCOME = 0;
+	public static final int STEP_UI_WELCOME = 1;
+	public static final int STEP_CROSSHAIR = 2;
+	public static final int STEP_COMBO = 3;
+	public static final int STEP_AMMO = 4;
+	public static final int STEP_AMMO_2 = 5;
+	public static final int STEP_SCORE = 6;
+	public static final int STEP_SERIOUS_THINGS = 7;
+	public static final int STEP_END = 8;
 
 	private int mCurrentStep;
 
@@ -31,6 +33,11 @@ public class GameInformationTutorial extends GameInformation {
 	public void readFromParcel(Parcel in) {
 		super.readFromParcel(in);
 		mCurrentStep = in.readInt();
+	}
+
+	public int nextStep() {
+		mScoreInformation.increaseScore(10);
+		return ++mCurrentStep;
 	}
 
 	public void setCurrentStep(int step) {

@@ -306,14 +306,16 @@
 
 
     <!-- In Game Tutorial -->
-    <string name="tuto_step_welcome">Bienvenue dans le tutoriel</string>
-    <string name="tuto_step_ui_welcome">Découvrons ensemble l\'interface de jeu</string>
-    <string name="tuto_step_crosshair">Au centre vous trouverez votre viseur</string>
-    <string name="tuto_step_ammos">En bas à droite vous trouverez vos munitions</string>
+    <string name="tuto_step_welcome">Bienvenue dans le tutoriel, appuyez sur l\'écran pour passer aux étapes suivantes.</string>
+    <string name="tuto_step_ui_welcome">Découvrons ensemble l\'interface de jeu.</string>
+    <string name="tuto_step_crosshair">Au centre vous trouverez votre viseur.</string>
     <string name="tuto_step_combo">Ne manquez pas vos cibles pour obtenir un combo !</string>
-    <string name="tuto_step_serious_things">Passons aux choses serieuses</string>
+    <string name="tuto_step_ammos">Surveillez vos munitions en bas à droite.</string>
+    <string name="tuto_step_ammos_2">Vous regagner des munitions au cours du temps.</string>
+    <string name="tuto_step_score">Suivez votre score en bas à gauche.</string>
+    <string name="tuto_step_serious_things">Passons aux choses serieuses.</string>
+    <string name="tuto_step_target">Alignez votre viseur avec le fantôme.</string>
+    <string name="tuto_step_kill">Appuez n\'importe ou sur votre écran pour le tuer.</string>
     <string name="tuto_step_end">Tutoriel terminé !</string>
-    <string name="tuto_touch_to_skip">Appuyez sur l\'écran pour continuer</string>
-    <string name="tuto_touch_to_end">Appuyez sur l\'écran pour continuer</string>
 
 </resources>

@@ -77,20 +77,10 @@ public class AnimationLayer extends RelativeLayout {
 	 * @param textSize
 	 * @param color
 	 * @param screenHeight
-	 * @param crossHaitHeight
+	 * @param crossHairsHeight
 	 */
-	public void setTopText(String info, int textSize, int color, int screenHeight, int crossHaitHeight) {
-		if (mTopTextView != null) {
-			if (!mTopTextView.getText().equals(info) && !isTextChanging) {
-				//TextView already displayed, replace text
-				Animation changeTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
-				AnimationTopTextChangeListener changeTextAnimationListener =
-						new AnimationTopTextChangeListener(info, textSize, color, screenHeight, crossHaitHeight);
-				changeTextAnimation.setAnimationListener(changeTextAnimationListener);
-				mTopTextView.startAnimation(changeTextAnimation);
-				isTextChanging = true;
-			}
-		} else {
+	public void setTopText(String info, int textSize, int color, int screenHeight, int crossHairsHeight) {
+		if (mTopTextView == null) {
 			//TextView never shown, need to instantiate it
 			mTopTextView = new TextView(getContext());
 			mTopTextView.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -103,9 +93,20 @@ public class AnimationLayer extends RelativeLayout {
 			addView(mTopTextView);
 			Animation createAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
 			AnimationSetTopTextListener createListener =
-					new AnimationSetTopTextListener(info, textSize, color, screenHeight, crossHaitHeight);
+					new AnimationSetTopTextListener(info, textSize, color, screenHeight, crossHairsHeight);
 			createAnimation.setAnimationListener(createListener);
-			setTopText(info, textSize, color, screenHeight, crossHaitHeight);
+			requestLayout();
+			//setTopText(info, textSize, color, screenHeight, crossHairsHeight);
+		}
+
+		if (!mTopTextView.getText().equals(info) && !isTextChanging) {
+			//TextView already displayed, replace text
+			Animation changeTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
+			AnimationTopTextChangeListener changeTextAnimationListener =
+					new AnimationTopTextChangeListener(info, textSize, color, screenHeight, crossHairsHeight);
+			changeTextAnimation.setAnimationListener(changeTextAnimationListener);
+			mTopTextView.startAnimation(changeTextAnimation);
+			isTextChanging = true;
 		}
 
 	}
@@ -219,7 +220,7 @@ public class AnimationLayer extends RelativeLayout {
 		private int mTextSize;
 		private int mColor;
 		private int mScreenHeight;
-		private int mCrossHaitHeight;
+		private int mCrossHairsHeight;
 
 
 		public AnimationSetTopTextListener(String text, int textSize, int color, int screenHeight, int crossHairHeight) {
@@ -227,7 +228,7 @@ public class AnimationLayer extends RelativeLayout {
 			mTextSize = textSize;
 			mColor = color;
 			mScreenHeight = screenHeight;
-			mCrossHaitHeight = crossHairHeight;
+			mCrossHairsHeight = crossHairHeight;
 		}
 
 		@Override
@@ -238,8 +239,9 @@ public class AnimationLayer extends RelativeLayout {
 					mTopTextView.setTextSize(mTextSize);
 					mTopTextView.setText(mText);
 					mTopTextView.setTextColor(getResources().getColor(mColor));
+					mTopTextView.requestLayout();
 					mTopTextRelativeLayoutParams.setMargins(0,
-							(int) (mScreenHeight / 2 - mTopTextView.getHeight() - mCrossHaitHeight), 0, 0);
+							(int) (mScreenHeight / 2 - mTopTextView.getHeight() - mCrossHairsHeight), 0, 0);
 				}
 			});
 		}

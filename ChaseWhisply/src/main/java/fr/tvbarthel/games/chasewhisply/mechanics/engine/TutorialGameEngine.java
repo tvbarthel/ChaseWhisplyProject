@@ -23,29 +23,12 @@ public class TutorialGameEngine extends GameEngine {
 	public void onScreenTouch() {
 		final GameInformationTutorial gameInformationTutorial =
 				(GameInformationTutorial) mGameInformation;
-		int step = gameInformationTutorial.getCurrentStep();
-		switch (step) {
-			case GameInformationTutorial.STEP_WELCOME:
-				gameInformationTutorial.setCurrentStep(GameInformationTutorial.STEP_UI_WELCOME);
-				break;
-			case GameInformationTutorial.STEP_UI_WELCOME:
-				gameInformationTutorial.setCurrentStep(GameInformationTutorial.STEP_CROSSHAIR);
-				break;
-			case GameInformationTutorial.STEP_CROSSHAIR:
-				gameInformationTutorial.setCurrentStep(GameInformationTutorial.STEP_AMMO);
-				break;
-			case GameInformationTutorial.STEP_AMMO:
-				gameInformationTutorial.setCurrentStep(GameInformationTutorial.STEP_COMBO);
-				break;
-			case GameInformationTutorial.STEP_COMBO:
-				gameInformationTutorial.setCurrentStep(GameInformationTutorial.STEP_SERIOUS_THINGS);
-				break;
-			case GameInformationTutorial.STEP_SERIOUS_THINGS:
-				gameInformationTutorial.setCurrentStep(GameInformationTutorial.STEP_END);
-				break;
-			case GameInformationTutorial.STEP_END:
-				stopGame();
-				break;
+		int currentStep = gameInformationTutorial.nextStep();
+		if(currentStep == GameInformationTutorial.STEP_END) {
+			stopGame();
+		}
+		if(currentStep == GameInformationTutorial.STEP_AMMO_2) {
+			mGameInformation.getWeapon().setCurrentAmmunition(0);
 		}
 		mGameSoundManager.playGhostLaugh();
 	}
