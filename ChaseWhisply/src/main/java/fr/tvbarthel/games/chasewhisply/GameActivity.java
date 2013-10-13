@@ -139,6 +139,8 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 	public void onClick(View view) {
 		mGameEngine.onScreenTouch();
 		mGameView.invalidate();
+		//TODO rework all this sad work
+		mGameView.onScreenTouch();
 	}
 
 }

@@ -34,6 +34,11 @@ public class StandardGameView extends GameView {
 		drawTimer(c);
 	}
 
+	@Override
+	public void onScreenTouch() {
+
+	}
+
 	/**
 	 * use to display a crossHair
 	 *

@@ -56,7 +56,7 @@ public class GameBehavior implements Parcelable {
 	}
 
 	/**
-	 * specific behavior onTouchScreen
+	 * specific behavior onScreenTouch
 	 */
 	public void onTouchScreen() {
 		mInterface.onTouchScreen();

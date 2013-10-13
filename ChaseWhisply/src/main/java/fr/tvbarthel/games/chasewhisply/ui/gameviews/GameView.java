@@ -8,8 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -58,6 +56,9 @@ public abstract class GameView extends View {
 	 * @param c
 	 */
 	public abstract void onDrawing(Canvas c);
+
+	//TODO rework dat shit
+	public abstract void onScreenTouch();
 
 
 	public GameView(Context context, GameInformation model) {

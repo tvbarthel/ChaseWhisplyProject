@@ -105,6 +105,7 @@ public class AnimationLayer extends RelativeLayout {
 			AnimationSetTopTextListener createListener =
 					new AnimationSetTopTextListener(info, textSize, color, screenHeight, crossHaitHeight);
 			createAnimation.setAnimationListener(createListener);
+			setTopText(info, textSize, color, screenHeight, crossHaitHeight);
 		}
 
 	}

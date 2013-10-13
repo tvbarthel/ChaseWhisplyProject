@@ -25,6 +25,37 @@ public class TutorialGameView extends GameView {
 		resetPainter();
 		//TODO rework all this sad work
 		switch (step) {
+			case GameInformationTutorial.STEP_CROSSHAIR:
+				drawCrossHair(c);
+				break;
+			case GameInformationTutorial.STEP_AMMO:
+				drawAmmo(c);
+				break;
+			case GameInformationTutorial.STEP_COMBO:
+				drawCombo(c);
+				break;
+		}
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+		//TODO rework all this quick work
+		if (mAnimationLayer != null) {
+			displayCurrentStepMessage();
+		}
+	}
+
+	@Override
+	public void onScreenTouch() {
+		//TODO rework all this quick work
+		displayCurrentStepMessage();
+	}
+
+	//TODO rework all this quick work
+	private void displayCurrentStepMessage() {
+		final int step = ((GameInformationTutorial) mModel).getCurrentStep();
+		switch (step) {
 			case GameInformationTutorial.STEP_WELCOME:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_welcome),
 						(int) mFontSize, R.color.holo_dark_green, mScreenHeight, mCrossHairs.getHeight() / 2);
@@ -36,17 +67,14 @@ public class TutorialGameView extends GameView {
 			case GameInformationTutorial.STEP_CROSSHAIR:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_crosshair),
 						(int) mFontSize, R.color.holo_dark_green, mScreenHeight, mCrossHairs.getHeight() / 2);
-				drawCrossHair(c);
 				break;
 			case GameInformationTutorial.STEP_AMMO:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_ammos),
 						(int) mFontSize, R.color.holo_dark_red, mScreenHeight, mCrossHairs.getHeight() / 2);
-				drawAmmo(c);
 				break;
 			case GameInformationTutorial.STEP_COMBO:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_combo),
 						(int) mFontSize, R.color.holo_dark_green, mScreenHeight, mCrossHairs.getHeight() / 2);
-				drawCombo(c);
 				break;
 			case GameInformationTutorial.STEP_SERIOUS_THINGS:
 				mAnimationLayer.setTopText(getResources().getString(R.string.tuto_step_serious_things),
