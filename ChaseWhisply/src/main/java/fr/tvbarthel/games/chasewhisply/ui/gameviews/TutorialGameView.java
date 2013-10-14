@@ -2,12 +2,22 @@ package fr.tvbarthel.games.chasewhisply.ui.gameviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.view.Gravity;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameInformationTutorial;
+import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
 
 public class TutorialGameView extends GameView {
+
+	private TextView mTutoTextView;
+	private final Animation mFadeOutAnimation;
+	private final Animation mFadeInAnimation;
 
 	/**
 	 * Display tutorial information
@@ -17,13 +27,15 @@ public class TutorialGameView extends GameView {
 	 */
 	public TutorialGameView(Context context, GameInformation model) {
 		super(context, model);
+
+		mFadeOutAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
+		mFadeInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
 	}
 
 	@Override
 	public void onDrawing(Canvas c) {
 		int step = ((GameInformationTutorial) mModel).getCurrentStep();
 		resetPainter();
-		//TODO rework all this sad work
 		switch (step) {
 			case GameInformationTutorial.STEP_CROSSHAIR:
 				drawCrossHair(c);
@@ -51,62 +63,6 @@ public class TutorialGameView extends GameView {
 
 		}
 	}
-
-	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		super.onSizeChanged(w, h, oldw, oldh);
-		//TODO rework all this quick work
-		if (mAnimationLayer != null) {
-			displayCurrentStepMessage();
-		}
-	}
-
-	@Override
-	public void onScreenTouch() {
-		//TODO rework all this quick work
-		displayCurrentStepMessage();
-	}
-
-	//TODO rework all this quick work
-	private void displayCurrentStepMessage() {
-		final int step = ((GameInformationTutorial) mModel).getCurrentStep();
-		int stringId = -1;
-		switch (step) {
-			case GameInformationTutorial.STEP_WELCOME:
-				stringId = R.string.tuto_step_welcome;
-				break;
-			case GameInformationTutorial.STEP_UI_WELCOME:
-				stringId = R.string.tuto_step_ui_welcome;
-				break;
-			case GameInformationTutorial.STEP_CROSSHAIR:
-				stringId = R.string.tuto_step_crosshair;
-				break;
-			case GameInformationTutorial.STEP_AMMO:
-				stringId = R.string.tuto_step_ammos;
-				break;
-			case GameInformationTutorial.STEP_AMMO_2:
-				stringId = R.string.tuto_step_ammos_2;
-				break;
-			case GameInformationTutorial.STEP_COMBO:
-				stringId = R.string.tuto_step_combo;
-				break;
-			case GameInformationTutorial.STEP_SCORE:
-				stringId = R.string.tuto_step_score;
-				break;
-			case GameInformationTutorial.STEP_SERIOUS_THINGS:
-				stringId = R.string.tuto_step_serious_things;
-				break;
-			case GameInformationTutorial.STEP_END:
-				stringId = R.string.tuto_step_end;
-				break;
-		}
-
-		if (stringId != -1) {
-			mAnimationLayer.setTopText(getResources().getString(stringId),
-					(int) mFontSize, R.color.card_shadow_grey, mScreenHeight, mCrossHairs.getHeight());
-		}
-	}
-
 
 	/**
 	 * use to display a crossHair
@@ -170,5 +126,111 @@ public class TutorialGameView extends GameView {
 				, mScreenHeight - mPaint.getTextSize()
 				, mPaint);
 
+	}
+
+	@Override
+	//TODO REWORK
+	public void setAnimationLayer(AnimationLayer animationLayer) {
+		super.setAnimationLayer(animationLayer);
+
+		//Create a text view supposed to display tuto messages
+		mTutoTextView = new TextView(getContext());
+		mTutoTextView.setTextSize(mFontSize);
+		mTutoTextView.setTextColor(getResources().getColor(R.color.card_shadow_grey));
+		mTutoTextView.setGravity(Gravity.CENTER);
+		final RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+		layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		final int padding = getResources().getDimensionPixelSize(R.dimen.default_padding);
+		mTutoTextView.setPadding(padding, padding, padding, padding);
+		mAnimationLayer.addView(mTutoTextView, layoutParams);
+
+		displayCurrentStepMessage();
+	}
+
+	@Override
+	//TODO REWORK
+	public void onScreenTouch() {
+		if (!mFadeInAnimation.hasEnded()) {
+			mFadeInAnimation.cancel();
+			mFadeInAnimation.reset();
+		}
+
+		if (!mFadeOutAnimation.hasEnded()) {
+			mFadeInAnimation.cancel();
+			mFadeOutAnimation.reset();
+		}
+
+		displayCurrentStepMessage();
+	}
+
+	//TODO REWORK
+	private void displayCurrentStepMessage() {
+		final int step = ((GameInformationTutorial) mModel).getCurrentStep();
+		int stringId = -1;
+		switch (step) {
+			case GameInformationTutorial.STEP_WELCOME:
+				stringId = R.string.tuto_step_welcome;
+				break;
+			case GameInformationTutorial.STEP_UI_WELCOME:
+				stringId = R.string.tuto_step_ui_welcome;
+				break;
+			case GameInformationTutorial.STEP_CROSSHAIR:
+				stringId = R.string.tuto_step_crosshair;
+				break;
+			case GameInformationTutorial.STEP_AMMO:
+				stringId = R.string.tuto_step_ammos;
+				break;
+			case GameInformationTutorial.STEP_AMMO_2:
+				stringId = R.string.tuto_step_ammos_2;
+				break;
+			case GameInformationTutorial.STEP_COMBO:
+				stringId = R.string.tuto_step_combo;
+				break;
+			case GameInformationTutorial.STEP_SCORE:
+				stringId = R.string.tuto_step_score;
+				break;
+			case GameInformationTutorial.STEP_SERIOUS_THINGS:
+				stringId = R.string.tuto_step_serious_things;
+				break;
+			case GameInformationTutorial.STEP_END:
+				stringId = R.string.tuto_step_end;
+				break;
+		}
+
+		if (stringId != -1) {
+			final FadeOutListener fadeOutListener = new FadeOutListener(stringId);
+			mFadeOutAnimation.setAnimationListener(fadeOutListener);
+			mTutoTextView.startAnimation(mFadeOutAnimation);
+		}
+	}
+
+	//TODO REWORK
+	private class FadeOutListener implements Animation.AnimationListener {
+		private final int mStringId;
+
+		public FadeOutListener(final int stringId) {
+			mStringId = stringId;
+		}
+
+		@Override
+		public void onAnimationStart(Animation animation) {
+		}
+
+		@Override
+		public void onAnimationEnd(Animation animation) {
+			post(new Runnable() {
+				@Override
+				public void run() {
+					mTutoTextView.setText(mStringId);
+					mTutoTextView.startAnimation(mFadeInAnimation);
+				}
+			});
+		}
+
+		@Override
+		public void onAnimationRepeat(Animation animation) {
+		}
 	}
 }

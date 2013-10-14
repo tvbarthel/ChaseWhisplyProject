@@ -79,6 +79,7 @@ public class AnimationLayer extends RelativeLayout {
 	 * @param screenHeight
 	 * @param crossHairsHeight
 	 */
+	//TODO REWORK
 	public void setTopText(String info, int textSize, int color, int screenHeight, int crossHairsHeight) {
 		if (mTopTextView == null) {
 			//TextView never shown, need to instantiate it
@@ -91,12 +92,6 @@ public class AnimationLayer extends RelativeLayout {
 			mTopTextRelativeLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 			mTopTextView.setLayoutParams(mTopTextRelativeLayoutParams);
 			addView(mTopTextView);
-			Animation createAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
-			AnimationSetTopTextListener createListener =
-					new AnimationSetTopTextListener(info, textSize, color, screenHeight, crossHairsHeight);
-			createAnimation.setAnimationListener(createListener);
-			requestLayout();
-			//setTopText(info, textSize, color, screenHeight, crossHairsHeight);
 		}
 
 		if (!mTopTextView.getText().equals(info) && !isTextChanging) {
@@ -114,6 +109,7 @@ public class AnimationLayer extends RelativeLayout {
 	/**
 	 * delete TextView shown at the top
 	 */
+	//TODO REWORK
 	public void hideTopText() {
 		if (mTopTextView != null) {
 			removeView(mTopTextView);
@@ -129,6 +125,7 @@ public class AnimationLayer extends RelativeLayout {
 	 * @param color
 	 * @param crossHairHeight
 	 */
+	//TODO REWORK
 	private void showTopText(String info, int textSize, int color, int screenHeight, int crossHairHeight) {
 		mTopTextView.setTextSize(textSize);
 		mTopTextView.setText(info);
@@ -142,6 +139,7 @@ public class AnimationLayer extends RelativeLayout {
 	/**
 	 * Delete the view once the animation ends
 	 */
+	//TODO REWORK
 	private class AnimationListenerWithDeleter implements Animation.AnimationListener {
 
 		private View mViewToDelete;
@@ -174,6 +172,7 @@ public class AnimationLayer extends RelativeLayout {
 	/**
 	 * Wait for the end of hiding animation and then call showTopText
 	 */
+	//TODO REWORK
 	private class AnimationTopTextChangeListener implements Animation.AnimationListener {
 
 		private String mText;
@@ -201,56 +200,6 @@ public class AnimationLayer extends RelativeLayout {
 				@Override
 				public void run() {
 					showTopText(mText, mTextSize, mColor, mScreenHeight, mCrossHaitHeight);
-					isTextChanging = false;
-				}
-			});
-		}
-
-		@Override
-		public void onAnimationRepeat(Animation animation) {
-		}
-	}
-
-	/**
-	 * Wait for the end of hiding animation and then call showTopText
-	 */
-	private class AnimationSetTopTextListener implements Animation.AnimationListener {
-
-		private String mText;
-		private int mTextSize;
-		private int mColor;
-		private int mScreenHeight;
-		private int mCrossHairsHeight;
-
-
-		public AnimationSetTopTextListener(String text, int textSize, int color, int screenHeight, int crossHairHeight) {
-			mText = text;
-			mTextSize = textSize;
-			mColor = color;
-			mScreenHeight = screenHeight;
-			mCrossHairsHeight = crossHairHeight;
-		}
-
-		@Override
-		public void onAnimationStart(Animation animation) {
-			post(new Runnable() {
-				@Override
-				public void run() {
-					mTopTextView.setTextSize(mTextSize);
-					mTopTextView.setText(mText);
-					mTopTextView.setTextColor(getResources().getColor(mColor));
-					mTopTextView.requestLayout();
-					mTopTextRelativeLayoutParams.setMargins(0,
-							(int) (mScreenHeight / 2 - mTopTextView.getHeight() - mCrossHairsHeight), 0, 0);
-				}
-			});
-		}
-
-		@Override
-		public void onAnimationEnd(Animation animation) {
-			post(new Runnable() {
-				@Override
-				public void run() {
 					isTextChanging = false;
 				}
 			});
