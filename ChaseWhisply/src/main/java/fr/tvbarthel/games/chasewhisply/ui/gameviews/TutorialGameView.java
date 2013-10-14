@@ -36,32 +36,23 @@ public class TutorialGameView extends GameView {
 	public void onDrawing(Canvas c) {
 		int step = ((GameInformationTutorial) mModel).getCurrentStep();
 		resetPainter();
-		switch (step) {
-			case GameInformationTutorial.STEP_CROSSHAIR:
-				drawCrossHair(c);
-				break;
-			case GameInformationTutorial.STEP_COMBO:
-				drawCrossHair(c);
-				drawCombo(c);
-				break;
-			case GameInformationTutorial.STEP_AMMO:
-				drawCrossHair(c);
-				drawCombo(c);
-				drawAmmo(c);
-				break;
-			case GameInformationTutorial.STEP_AMMO_2:
-				drawCrossHair(c);
-				drawCombo(c);
-				drawAmmo(c);
-				break;
-			case GameInformationTutorial.STEP_SCORE:
-				drawCrossHair(c);
-				drawCombo(c);
-				drawAmmo(c);
-				drawScore(c);
-				break;
 
+		if (step >= GameInformationTutorial.STEP_CROSSHAIR) {
+			drawCrossHair(c);
 		}
+
+		if (step >= GameInformationTutorial.STEP_COMBO) {
+			drawCombo(c);
+		}
+
+		if (step >= GameInformationTutorial.STEP_AMMO) {
+			drawAmmo(c);
+		}
+
+		if (step >= GameInformationTutorial.STEP_SCORE) {
+			drawScore(c);
+		}
+
 	}
 
 	/**
@@ -136,7 +127,8 @@ public class TutorialGameView extends GameView {
 		//Create a text view supposed to display tuto messages
 		mTutoTextView = new TextView(getContext());
 		mTutoTextView.setTextSize(mFontSize);
-		mTutoTextView.setTextColor(getResources().getColor(R.color.card_shadow_grey));
+		mTutoTextView.setTextColor(getResources().getColor(R.color.white));
+		mTutoTextView.setBackgroundResource(R.color.alpha_shadow);
 		mTutoTextView.setGravity(Gravity.CENTER);
 		final RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
 				RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -193,6 +185,18 @@ public class TutorialGameView extends GameView {
 				break;
 			case GameInformationTutorial.STEP_SERIOUS_THINGS:
 				stringId = R.string.tuto_step_serious_things;
+				break;
+			case GameInformationTutorial.STEP_TARGET:
+				stringId = R.string.tuto_step_target;
+				break;
+			case GameInformationTutorial.STEP_KILL:
+				stringId = R.string.tuto_step_kill;
+				break;
+			case GameInformationTutorial.STEP_CONGRATULATION:
+				stringId = R.string.tuto_step_congratulation;
+				break;
+			case GameInformationTutorial.STEP_CONGRATULATION_2:
+				stringId = R.string.tuto_step_congratulation_2;
 				break;
 			case GameInformationTutorial.STEP_END:
 				stringId = R.string.tuto_step_end;

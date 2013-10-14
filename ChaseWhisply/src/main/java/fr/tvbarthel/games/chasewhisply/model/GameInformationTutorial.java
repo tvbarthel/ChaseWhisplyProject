@@ -14,7 +14,11 @@ public class GameInformationTutorial extends GameInformation {
 	public static final int STEP_AMMO_2 = 5;
 	public static final int STEP_SCORE = 6;
 	public static final int STEP_SERIOUS_THINGS = 7;
-	public static final int STEP_END = 8;
+	public static final int STEP_TARGET = 8;
+	public static final int STEP_KILL = 9;
+	public static final int STEP_CONGRATULATION = 10;
+	public static final int STEP_CONGRATULATION_2 = 11;
+	public static final int STEP_END = 12;
 
 	private int mCurrentStep;
 
@@ -36,7 +40,7 @@ public class GameInformationTutorial extends GameInformation {
 	}
 
 	public int nextStep() {
-		mScoreInformation.increaseScore(10);
+		mScoreInformation.increaseScore(20);
 		return ++mCurrentStep;
 	}
 

@@ -95,7 +95,6 @@ public abstract class GameEngine implements ReloadingRoutine.IReloadingRoutine, 
 	@Override
 	public void spawn() {
 		mGameBehavior.spawn(mXRange, mYRange);
-		mGameSoundManager.playGhostLaugh();
 	}
 
 	@Override

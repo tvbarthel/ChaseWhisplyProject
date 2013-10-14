@@ -322,6 +322,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 			case GameModeFactory.GAME_TYPE_SURVIVAL:
 			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+			case GameModeFactory.GAME_TYPE_TUTORIAL:
 				mFinalScoreTextView.setText(String.valueOf(score));
 				break;
 			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:

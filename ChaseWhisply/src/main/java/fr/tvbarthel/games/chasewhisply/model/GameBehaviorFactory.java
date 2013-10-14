@@ -38,11 +38,11 @@ public class GameBehaviorFactory {
 		//implement turorial behavior
 		final GameBehavior.IGameBehavior i = new GameBehavior.IGameBehavior() {
 
-			private GameInformationTutorial gameInformationTutorial;
+			private GameInformationTutorial mGameInformationTutorial;
 
 			@Override
 			public void onInit(GameInformation g) {
-				gameInformationTutorial = (GameInformationTutorial) g;
+				mGameInformationTutorial = (GameInformationTutorial) g;
 			}
 
 			@Override
@@ -62,12 +62,18 @@ public class GameBehaviorFactory {
 
 			@Override
 			public void onTouchScreen() {
-
+				if (mGameInformationTutorial.getCurrentStep() == GameInformationTutorial.STEP_TARGET) {
+					final float[] currentPosition = mGameInformationTutorial.getCurrentPosition();
+					final TargetableItem easyGhost = DisplayableItemFactory.createEasyGhost();
+					easyGhost.setX((int) currentPosition[0] + 5);
+					easyGhost.setY((int) currentPosition[1] + 7);
+					mGameInformationTutorial.addTargetableItem(easyGhost);
+				}
 			}
 
 			@Override
 			public boolean isCompleted(GameInformation g) {
-				return false;
+				return mGameInformationTutorial.getCurrentStep() == GameInformationTutorial.STEP_END;
 			}
 
 			@Override

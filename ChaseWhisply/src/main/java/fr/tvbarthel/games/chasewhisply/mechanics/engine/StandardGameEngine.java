@@ -65,4 +65,10 @@ public class StandardGameEngine extends GameEngine {
 			mGameSoundManager.playDryGunShot();
 		}
 	}
+
+	@Override
+	public void spawn() {
+		super.spawn();
+		mGameSoundManager.playGhostLaugh();
+	}
 }
