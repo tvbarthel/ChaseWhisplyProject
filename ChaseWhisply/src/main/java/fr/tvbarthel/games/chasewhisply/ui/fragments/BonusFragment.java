@@ -37,7 +37,6 @@ public class BonusFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setRetainInstance(true);
 		Bundle arguments = getArguments();
 		if (arguments.containsKey(EXTRA_GAME_MODE)) {
 			mGameMode = (GameMode) getArguments().get(EXTRA_GAME_MODE);
@@ -45,20 +44,22 @@ public class BonusFragment extends Fragment {
 	}
 
 	@Override
+	public void onResume() {
+		super.onResume();
+		//TODO beurk, to rework
+		mBonusEntryAdapter = new BonusEntryAdapter(getActivity(), new BonusEntry[]{
+				BonusEntryFactory.create(InventoryItemInformation.TYPE_STEEL_BULLET, mPlayerProfile.getSteelBulletQuantity()),
+				BonusEntryFactory.create(InventoryItemInformation.TYPE_GOLD_BULLET, mPlayerProfile.getGoldBulletQuantity()),
+				BonusEntryFactory.create(InventoryItemInformation.TYPE_ONE_SHOT_BULLET, mPlayerProfile.getOneShotBulletQuantity()),
+				BonusEntryFactory.create(InventoryItemInformation.TYPE_SPEED_POTION, mPlayerProfile.getSpeedPotionQuantity()),
+		});
+		mBonusGridView.setAdapter(mBonusEntryAdapter);
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_bonus, container, false);
 		mBonusGridView = ((GridView) v.findViewById(R.id.bonus_grid_view));
-
-		if (mBonusEntryAdapter == null) {
-			mBonusEntryAdapter = new BonusEntryAdapter(getActivity(), new BonusEntry[]{
-					BonusEntryFactory.create(InventoryItemInformation.TYPE_STEEL_BULLET, mPlayerProfile.getSteelBulletQuantity()),
-					BonusEntryFactory.create(InventoryItemInformation.TYPE_GOLD_BULLET, mPlayerProfile.getGoldBulletQuantity()),
-					BonusEntryFactory.create(InventoryItemInformation.TYPE_ONE_SHOT_BULLET, mPlayerProfile.getOneShotBulletQuantity()),
-					BonusEntryFactory.create(InventoryItemInformation.TYPE_SPEED_POTION, mPlayerProfile.getSpeedPotionQuantity()),
-			});
-		}
-
-		mBonusGridView.setAdapter(mBonusEntryAdapter);
 
 		(v.findViewById(R.id.bonus_start)).setOnClickListener(new View.OnClickListener() {
 			@Override
