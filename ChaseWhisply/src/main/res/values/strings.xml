@@ -273,7 +273,7 @@
     </plurals>
     <string name="inventory_item_speed_potion_description">
         This potion does not smell good at all, but if you have the bravery to drink it, you will reload your weapon
-        faster than ever.
+        faster than ever. Reloading time -300.
     </string>
     <string name="inventory_item_can_t_be_dropped">Can\'t be dropped</string>
     <string name="inventory_item_can_t_be_crafted">Can\'t be crafted</string>
@@ -301,17 +301,17 @@
     <string name="tuto_step_welcome">Welcome to the tutorial, touch the screen to take the next steps.</string>
     <string name="tuto_step_ui_welcome">We are going to discover the game interface.</string>
     <string name="tuto_step_crosshair">Your crosshairs is in the middle of the screen.</string>
-    <string name="tuto_step_combo">Don\'t miss any targets and add up combos !</string>
+    <string name="tuto_step_combo">Don\'t miss any targets and add up combos!</string>
     <string name="tuto_step_ammos">Mind your ammunition at the bottom right of the screen.</string>
     <string name="tuto_step_ammos_2">Your weapon reloads over the time.</string>
     <string name="tuto_step_score">Keep an eye on your score at the bottom left of the screen.</string>
     <string name="tuto_step_serious_things">Let\'s get down to business.</string>
-    <string name="tuto_step_target">Align your gun sights and the ghost by moving your phone…</string>
+    <string name="tuto_step_target">Align your gun sights with the ghost by moving your phone…</string>
     <string name="tuto_step_kill">…Then touch the screen anywhere to shoot.</string>
-    <string name="tuto_step_congratulation">Congratulation, you have just kill your first ghost!</string>
+    <string name="tuto_step_congratulation">Congratulation, you have just killed your first ghost!</string>
     <string name="tuto_step_target_2">Be careful, some ghosts are stronger…</string>
     <string name="tuto_step_kill_2">…Shoot multiple times!</string>
-    <string name="tuto_step_congratulation_2">Your are know ready for adventure.</string>
-    <string name="tuto_step_end">Tutorial completed !</string>
+    <string name="tuto_step_congratulation_2">You are know ready for adventure.</string>
+    <string name="tuto_step_end">Tutorial completed!</string>
 
 </resources>
