@@ -194,7 +194,7 @@
     <string name="profile_inventory_title">Inventaire</string>
     <string name="profile_inventory_description">Gérez votre inventaire et craftez d\'utiles bonus.</string>
     <string name="profile_missions_title">Missions</string>
-    <string name="profile_missions_description">Trouvez de nouveaux défis et completez de risquées missions.</string>
+    <string name="profile_missions_description">Trouvez de nouveaux défis et completez des missions risquées.</string>
 
     <!-- Bestiary Fragment -->
     <string name="bestiary_title">Bestiaire</string>
@@ -248,8 +248,7 @@
         <item quantity="other">Balles en acier</item>
     </plurals>
     <string name="inventory_item_steel_bullet_description">Quand vous tenez cette balle dans votre main, vous pouvez
-        sentir
-        la force de ce lourd projectile. Utiliser des balles en acier vous donne un bonus de +1 en dégats.
+        sentir la force de ce lourd projectile. Utiliser des balles en acier vous donne un bonus de +1 en dégats.
     </string>
     <plurals name="inventory_item_gold_bullet_title">
         <item quantity="one">Balle en or</item>
@@ -280,7 +279,7 @@
     </plurals>
     <string name="inventory_item_speed_potion_description">
         Cette potion ne sent pas bon du tout, mais si vous avez le courage de la boire, vous rechargerez votre arme
-        plus rapidement que jamais.
+        plus rapidement que jamais. Temps de rechargement -300.
     </string>
     <string name="inventory_item_can_t_be_dropped">Ne peut-être ramassé</string>
     <string name="inventory_item_can_t_be_crafted">Ne peut-être construit</string>
