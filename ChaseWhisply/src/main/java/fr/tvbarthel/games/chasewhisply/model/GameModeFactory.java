@@ -11,7 +11,7 @@ public class GameModeFactory {
 	public static final int GAME_TYPE_SURVIVAL = 0x00000003;
 	public static final int GAME_TYPE_DEATH_TO_THE_KING = 0x00000004;
 	public static final int GAME_TYPE_OVERALL_RANKING = 0x00000005;
-	public static final int GAME_REQUIRED_LEVEL_SURVIVAL_MODE = 2;
+	public static final int GAME_REQUIRED_LEVEL_SURVIVAL_MODE = 5;
 	public static final int GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING = 10;
 
 	/**

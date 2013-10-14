@@ -50,7 +50,7 @@
     <string name="game_mode_time_limited_level_3">Marathon: kill as many ghosts as you can in 90 seconds.</string>
     <string name="game_mode_target_limited">Kill all ghosts as fast as you can!</string>
     <string name="game_mode_survival">Survival: each kill gives additional time.</string>
-    <string name="game_mode_survival_required_message">Survival : Level 2 is required to access this game mode.</string>
+    <string name="game_mode_survival_required_message">Survival : Level 5 is required to access this game mode.</string>
     <string name="game_mode_kill_the_king">Death to the king ! : You have five second to kill the king.</string>
     <string name="game_mode_kill_the_king_required_message">Death to the king  ! : Level 10 is required to access this game mode.</string>
     <string name="game_mode_tutorial">Tutorial : Learn how to play.</string>

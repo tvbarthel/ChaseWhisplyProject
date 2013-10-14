@@ -51,7 +51,7 @@
     <string name="game_mode_time_limited_level_3">Marathon : tuez le plus de fantômes possibles en 90 secondes.</string>
     <string name="game_mode_target_limited">Tuez tous les fantômes le plus vite possible.</string>
     <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps supplémentaire.</string>
-    <string name="game_mode_survival_required_message">Survie : Vous devez être level 2 pour accéder à ce mode de jeu.</string>
+    <string name="game_mode_survival_required_message">Survie : Vous devez être level 5 pour accéder à ce mode de jeu.</string>
     <string name="game_mode_kill_the_king">Mort au roi ! : Vous avez 5 secondes pour trouver et tuer le roi.</string>
     <string name="game_mode_kill_the_king_required_message">Mort au roi ! : Vous devez être level 10 pour accéder à ce mode de jeu.</string>
     <string name="game_mode_tutorial">Tutoriel : Apprennez à jouer.</string>
