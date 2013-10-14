@@ -236,7 +236,8 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			final int numberOfLoots = gameInformation.getNumberOfLoots();
 
 			//Submit score for the played game mode
-			if (score > 0) {
+			final int leaderBoardStringId = gameMode.getLeaderboardStringId();
+			if (score > 0 && leaderBoardStringId != -1) {
 				gamesClient.submitScore(getResources().getString(gameMode.getLeaderboardStringId()), score);
 			}
 
