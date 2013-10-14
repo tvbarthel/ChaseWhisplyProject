@@ -29,7 +29,7 @@ public class TutorialGameEngine extends GameEngine {
 
 		final int currentStep = gameInformationTutorial.getCurrentStep();
 
-		if (currentStep == GameInformationTutorial.STEP_KILL) {
+		if (currentStep == GameInformationTutorial.STEP_KILL || currentStep == GameInformationTutorial.STEP_KILL_2) {
 			fire();
 		} else {
 			final int nextStep = gameInformationTutorial.nextStep();
@@ -43,7 +43,7 @@ public class TutorialGameEngine extends GameEngine {
 				mGameInformation.getWeapon().setCurrentAmmunition(0);
 			}
 
-			if (nextStep == GameInformationTutorial.STEP_TARGET) {
+			if (nextStep == GameInformationTutorial.STEP_TARGET || nextStep == GameInformationTutorial.STEP_TARGET_2) {
 				mGameBehavior.onTouchScreen();
 			}
 		}

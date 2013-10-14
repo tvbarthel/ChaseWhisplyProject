@@ -2,6 +2,7 @@ package fr.tvbarthel.games.chasewhisply.ui.gameviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -126,16 +127,17 @@ public class TutorialGameView extends GameView {
 
 		//Create a text view supposed to display tuto messages
 		mTutoTextView = new TextView(getContext());
-		mTutoTextView.setTextSize(mFontSize);
+		mTutoTextView.setTextAppearance(getContext(), android.R.style.TextAppearance_Large);
 		mTutoTextView.setTextColor(getResources().getColor(R.color.white));
+		mTutoTextView.setTypeface(null, Typeface.BOLD);
 		mTutoTextView.setBackgroundResource(R.color.alpha_shadow);
 		mTutoTextView.setGravity(Gravity.CENTER);
 		final RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+				RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 		final int padding = getResources().getDimensionPixelSize(R.dimen.default_padding);
-		mTutoTextView.setPadding(padding, padding, padding, padding);
+		mTutoTextView.setPadding(padding, 2 * padding, padding, padding);
 		mAnimationLayer.addView(mTutoTextView, layoutParams);
 
 		displayCurrentStepMessage();
@@ -189,8 +191,14 @@ public class TutorialGameView extends GameView {
 			case GameInformationTutorial.STEP_TARGET:
 				stringId = R.string.tuto_step_target;
 				break;
+			case GameInformationTutorial.STEP_TARGET_2:
+				stringId = R.string.tuto_step_target_2;
+				break;
 			case GameInformationTutorial.STEP_KILL:
 				stringId = R.string.tuto_step_kill;
+				break;
+			case GameInformationTutorial.STEP_KILL_2:
+				stringId = R.string.tuto_step_kill_2;
 				break;
 			case GameInformationTutorial.STEP_CONGRATULATION:
 				stringId = R.string.tuto_step_congratulation;

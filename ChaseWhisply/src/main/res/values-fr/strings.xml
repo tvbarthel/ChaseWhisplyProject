@@ -309,14 +309,16 @@
     <string name="tuto_step_welcome">Bienvenue dans le tutoriel, appuyez sur l\'écran pour passer aux étapes suivantes.</string>
     <string name="tuto_step_ui_welcome">Découvrons ensemble l\'interface de jeu.</string>
     <string name="tuto_step_crosshair">Au centre vous trouverez votre viseur.</string>
-    <string name="tuto_step_combo">Ne manquez aucune cible et vous gagnerez des combos !</string>
+    <string name="tuto_step_combo">Ne manquez aucune cible et vous cumulerez des combos !</string>
     <string name="tuto_step_ammos">Surveillez vos munitions en bas à droite.</string>
-    <string name="tuto_step_ammos_2">Vous regagner des munitions au cours du temps.</string>
+    <string name="tuto_step_ammos_2">Vous regagnez des munitions au cours du temps.</string>
     <string name="tuto_step_score">Suivez votre score en bas à gauche.</string>
     <string name="tuto_step_serious_things">Passons aux choses serieuses.</string>
     <string name="tuto_step_target">Alignez votre viseur avec le fantôme en déplaçant votre téléphone…</string>
-    <string name="tuto_step_kill">…Puis appuyez n\'importe ou sur votre écran pour tirer.</string>
+    <string name="tuto_step_kill">…Puis appuyez n\'importe où sur votre écran pour tirer.</string>
     <string name="tuto_step_congratulation">Bravo vous venez de tuer votre premier fantôme !</string>
+    <string name="tuto_step_target_2">Attention, certains fantômes sont plus forts…</string>
+    <string name="tuto_step_kill_2">…Tirez plusieurs fois !</string>
     <string name="tuto_step_congratulation_2">Vous êtes maintenant fin prêt pour l\'aventure.</string>
     <string name="tuto_step_end">Tutoriel terminé !</string>
 

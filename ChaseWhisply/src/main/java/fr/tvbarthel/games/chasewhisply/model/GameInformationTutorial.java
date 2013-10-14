@@ -17,8 +17,10 @@ public class GameInformationTutorial extends GameInformation {
 	public static final int STEP_TARGET = 8;
 	public static final int STEP_KILL = 9;
 	public static final int STEP_CONGRATULATION = 10;
-	public static final int STEP_CONGRATULATION_2 = 11;
-	public static final int STEP_END = 12;
+	public static final int STEP_TARGET_2 = 11;
+	public static final int STEP_KILL_2 = 12;
+	public static final int STEP_CONGRATULATION_2 = 13;
+	public static final int STEP_END = 14;
 
 	private int mCurrentStep;
 

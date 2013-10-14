@@ -68,6 +68,12 @@ public class GameBehaviorFactory {
 					easyGhost.setX((int) currentPosition[0] + 5);
 					easyGhost.setY((int) currentPosition[1] + 7);
 					mGameInformationTutorial.addTargetableItem(easyGhost);
+				} else if (mGameInformationTutorial.getCurrentStep() == GameInformationTutorial.STEP_TARGET_2) {
+					final float[] currentPosition = mGameInformationTutorial.getCurrentPosition();
+					final TargetableItem easyGhost = DisplayableItemFactory.createGhostWithHelmet();
+					easyGhost.setX((int) currentPosition[0] - 5);
+					easyGhost.setY((int) currentPosition[1] + 7);
+					mGameInformationTutorial.addTargetableItem(easyGhost);
 				}
 			}
 
