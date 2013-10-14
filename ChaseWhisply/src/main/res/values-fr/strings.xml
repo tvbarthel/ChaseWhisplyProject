@@ -318,7 +318,7 @@
     <string name="tuto_step_congratulation">Bravo vous venez de tuer votre premier fantôme !</string>
     <string name="tuto_step_target_2">Attention, certains fantômes sont plus forts…</string>
     <string name="tuto_step_kill_2">…Tirez plusieurs fois !</string>
-    <string name="tuto_step_congratulation_2">Vous êtes maintenant fin prêt pour l\'aventure.</string>
+    <string name="tuto_step_congratulation_2">Tutoriel terminé. Vous êtes maintenant fin prêt pour l\'aventure !</string>
     <string name="tuto_step_end">Tutoriel terminé !</string>
 
 </resources>
