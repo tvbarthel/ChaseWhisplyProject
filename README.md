@@ -1,3 +1,8 @@
+First public release !
+========
+Our first app, a free augmented reality game,  is now available on the play store !
+[![Download](static/standard-icon-googleplay-app-store.png)](https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply) 
+
 Beta Test V2.3
 ========
 The beta 2.3 is out! Join the [Community](https://plus.google.com/communities/104127077976914732043) and download the application! 
