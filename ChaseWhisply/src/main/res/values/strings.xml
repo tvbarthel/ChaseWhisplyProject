@@ -311,7 +311,7 @@
     <string name="tuto_step_congratulation">Congratulation, you have just killed your first ghost!</string>
     <string name="tuto_step_target_2">Be careful, some ghosts are stronger…</string>
     <string name="tuto_step_kill_2">…Shoot multiple times!</string>
-    <string name="tuto_step_congratulation_2">Tutorial completed. You are know ready for adventure !</string>
+    <string name="tuto_step_congratulation_2">Tutorial completed. You are now ready for adventure !</string>
     <string name="tuto_step_end">Tutorial completed!</string>
 
 </resources>
