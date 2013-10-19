@@ -249,7 +249,7 @@
         <item quantity="other">Gold Bullets</item>
     </plurals>
     <string name="inventory_item_gold_bullet_description">A bullet made of gold is incredibly deadly against ghosts.
-        Using steel bullets grants you a +3 bonus damage.
+        Using gold bullets grants you a +3 bonus damage.
     </string>
     <plurals name="inventory_item_one_shot_bullet_title">
         <item quantity="one">\"One-Shot\" Bullet</item>
