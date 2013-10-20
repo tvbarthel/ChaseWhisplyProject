@@ -44,7 +44,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			GameScoreFragment.class.getName() + ".Bundle.playerProfileSaved";
 	private static final String BUNDLE_CURRENT_EXP_EARNED =
 			GameScoreFragment.class.getName() + ".Bundle.expEarned";
-	private static final long CLICK_DELAY = 1500;
+	private static final long CLICK_DELAY = 1400;
 	private static final long TICK_INTERVAL = 100;
 	private static final int NUMBER_OF_TICK = 30;
 	private Listener mListener = null;
