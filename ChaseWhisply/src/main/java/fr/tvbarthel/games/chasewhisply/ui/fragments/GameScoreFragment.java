@@ -44,6 +44,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			GameScoreFragment.class.getName() + ".Bundle.playerProfileSaved";
 	private static final String BUNDLE_CURRENT_EXP_EARNED =
 			GameScoreFragment.class.getName() + ".Bundle.expEarned";
+	private static final long CLICK_DELAY = 1500;
 	private static final long TICK_INTERVAL = 100;
 	private static final int NUMBER_OF_TICK = 30;
 	private Listener mListener = null;
@@ -78,6 +79,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private TextView mExpEarnedTextView;
 	private Button mSkipButton;
 	private View mSignInView;
+	private long mAttachTime;
 
 	public static GameScoreFragment newInstance(GameInformation gameInformation) {
 		final GameScoreFragment fragment = new GameScoreFragment();
@@ -91,6 +93,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
+		mAttachTime = System.currentTimeMillis();
 		if (activity instanceof GameScoreFragment.Listener) {
 			mListener = (GameScoreFragment.Listener) activity;
 			mPlayerProfile = new PlayerProfile(activity.getSharedPreferences(
@@ -105,7 +108,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	public void onDetach() {
 		super.onDetach();
 		mListener = null;
-		if(mTimerRoutine != null) {
+		if (mTimerRoutine != null) {
 			mTimerRoutine.stopRoutine();
 			mTimerRoutine = null;
 		}
@@ -157,10 +160,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		}
 
 		updatePlayerProfile();
-
 		return v;
 	}
-
 
 
 	@Override
@@ -191,21 +192,22 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 	@Override
 	public void onClick(View view) {
-		switch (view.getId()) {
-			case R.id.score_button_home:
-				mListener.onHomeRequested();
-				break;
-			case R.id.score_button_skip:
-				finalizeScoreDisplayed();
-				break;
-			case R.id.score_button_replay:
-				mListener.onReplayRequested(mGameInformation);
-				break;
-			case R.id.score_button_share:
-				mListener.onShareScoreRequested(mRetrievedScore);
-				break;
+		if (mIsDisplayDone || (System.currentTimeMillis() - mAttachTime > CLICK_DELAY)) {
+			switch (view.getId()) {
+				case R.id.score_button_home:
+					mListener.onHomeRequested();
+					break;
+				case R.id.score_button_skip:
+					finalizeScoreDisplayed();
+					break;
+				case R.id.score_button_replay:
+					mListener.onReplayRequested(mGameInformation);
+					break;
+				case R.id.score_button_share:
+					mListener.onShareScoreRequested(mRetrievedScore);
+					break;
+			}
 		}
-
 	}
 
 	@Override
