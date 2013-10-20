@@ -40,7 +40,7 @@ public class TutorialGameEngine extends GameEngine {
 			}
 
 			if (nextStep == GameInformationTutorial.STEP_AMMO_2) {
-				mGameInformation.getWeapon().setCurrentAmmunition(0);
+				mGameInformation.getWeapon().setCurrentAmmunition(1);
 			}
 
 			if (nextStep == GameInformationTutorial.STEP_TARGET || nextStep == GameInformationTutorial.STEP_TARGET_2) {

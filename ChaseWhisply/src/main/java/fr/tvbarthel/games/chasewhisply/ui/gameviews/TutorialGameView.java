@@ -14,7 +14,7 @@ import fr.tvbarthel.games.chasewhisply.model.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameInformationTutorial;
 import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
 
-public class TutorialGameView extends GameView {
+public class TutorialGameView extends StandardGameView {
 
 	private TextView mTutoTextView;
 	private final Animation mFadeOutAnimation;
@@ -53,70 +53,6 @@ public class TutorialGameView extends GameView {
 		if (step >= GameInformationTutorial.STEP_SCORE) {
 			drawScore(c);
 		}
-
-	}
-
-	/**
-	 * use to display a crossHair
-	 *
-	 * @param canvas
-	 */
-	private void drawCrossHair(Canvas canvas) {
-		resetPainter();
-		useGreenPainter();
-		canvas.drawBitmap(mCrossHairs, (float) (mScreenWidth - mCrossHairs.getWidth()) / 2,
-				(float) (mScreenHeight - mCrossHairs.getHeight()) / 2, mPaint);
-	}
-
-	/**
-	 * draw ammo on player screen, in green if ammo > 0 else in red
-	 *
-	 * @param canvas canvas from View.onDraw method
-	 */
-	private void drawAmmo(Canvas canvas) {
-		resetPainter();
-		useGreenPainter();
-		canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - mPadding),
-				(float) (getHeight() - mAmmoBitmap.getHeight() - mPadding), mPaint);
-
-		mPaint.setTextSize(mAmmoBitmap.getHeight() / 2);
-		canvas.drawText(String.valueOf(mModel.getWeapon().getCurrentAmmunition())
-				, mScreenWidth - mAmmoBitmap.getWidth() - mPaint.getTextSize() / 2 - mPadding
-				, mScreenHeight - (mAmmoBitmap.getHeight() / 4)
-				, mPaint);
-	}
-
-	/**
-	 * draw combo counter near crossHair
-	 *
-	 * @param canvas canvas from View.onDraw method
-	 */
-	private void drawCombo(Canvas canvas) {
-		resetPainter();
-		useGreenPainter();
-		final String currentCombo = String.format(mComboString, 3);
-		mPaint.getTextBounds(currentCombo, 0, currentCombo.length(), mBounds);
-		canvas.drawText(currentCombo
-				, mScreenWidth / 2 + mCrossHairs.getWidth() / 2 + mBounds.width() / 2
-				, mScreenHeight / 2 + mCrossHairs.getHeight() / 2
-				, mPaint);
-	}
-
-	/**
-	 * draw score
-	 *
-	 * @param canvas canvas from View.onDraw method
-	 */
-	private void drawScore(Canvas canvas) {
-		resetPainter();
-		useGreenPainter();
-		final String score = String.format(mScoreString, mModel.getCurrentScore());
-
-		mPaint.getTextBounds(score, 0, score.length(), mBounds);
-		canvas.drawText(score
-				, mBounds.width() / 2 + mPadding
-				, mScreenHeight - mPaint.getTextSize()
-				, mPaint);
 
 	}
 
