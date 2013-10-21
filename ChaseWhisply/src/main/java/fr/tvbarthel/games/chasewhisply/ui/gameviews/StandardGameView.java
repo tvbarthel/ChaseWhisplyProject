@@ -44,7 +44,7 @@ public class StandardGameView extends GameView {
 	 *
 	 * @param canvas
 	 */
-	private void drawCrossHair(Canvas canvas) {
+	protected void drawCrossHair(Canvas canvas) {
 		canvas.drawBitmap(mCrossHairs, (float) (mScreenWidth - mCrossHairs.getWidth()) / 2,
 				(float) (mScreenHeight - mCrossHairs.getHeight()) / 2, mPaint);
 	}
@@ -54,7 +54,7 @@ public class StandardGameView extends GameView {
 	 *
 	 * @param canvas canvas from View.onDraw method
 	 */
-	private void drawAmmo(Canvas canvas) {
+	protected void drawAmmo(Canvas canvas) {
 		final int currentAmmunition = mModel.getWeapon().getCurrentAmmunition();
 		resetPainter();
 
@@ -85,7 +85,7 @@ public class StandardGameView extends GameView {
 	 *
 	 * @param canvas canvas from View.onDraw method
 	 */
-	private void drawCombo(Canvas canvas) {
+	protected void drawCombo(Canvas canvas) {
 		final int comboNumber = mModel.getCurrentCombo();
 		resetPainter();
 		useGreenPainter();
@@ -104,7 +104,7 @@ public class StandardGameView extends GameView {
 	 *
 	 * @param canvas canvas from View.onDraw method
 	 */
-	private void drawScore(Canvas canvas) {
+	protected void drawScore(Canvas canvas) {
 		resetPainter();
 		useGreenPainter();
 		final String score = String.format(mScoreString, mModel.getCurrentScore());
@@ -122,7 +122,7 @@ public class StandardGameView extends GameView {
 	 *
 	 * @param canvas canvas from View.onDraw method
 	 */
-	private void drawTimer(Canvas canvas) {
+	protected void drawTimer(Canvas canvas) {
 		final long millis = mModel.getTime();
 		final int seconds = (int) (millis / 1000) - 1;
 		final String remainingTime = String.format(mTimeString, seconds);

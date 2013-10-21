@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Chase Whisply</string>
+
+    <string name="integer_zero">0</string>
+    <string name="integer_four">4</string>
+
+    <string name="soon_tm">Čoskoro …</string>
+
+    <!-- Home Activity !-->
+    <string name="home_play">Hrať</string>
+    <string name="home_leaderboard">Prehľad skóre</string>
+    <string name="home_achievement">Úspechy</string>
+    <string name="home_about">O aplikácií</string>
+    <string name="home_sign_in">Prihláste sa</string>
+    <string name="home_sign_info">Prihláste sa cez Google a zdielajte Vaše dosiahnuté skóre a úspechy s Vašimi priateľmi.</string>
+    <string name="home_not_sign_in_leaderboard">Prihláste sa cez Google a prezrite si tabuľku skóre.</string>
+    <string name="home_not_sign_in_achievement">Prihláste sa cez Google a odomknite nové úspechy.</string>
+    <string name="home_sign_out">Odhlásiť</string>
+    <string name="home_sign_out_confirm_dialog_message">Naozaj si prajete odhlásiť?</string>
+    <string name="home_sign_out_success">Boli ste úspešne odhlásený.</string>
+    <string name="home_internet_unavailable">Prosím skontrolujte Vaše internetové pripojenie.</string>
+    <string name="home_profile">Profil</string>
+    <string name="home_device_not_compatible">Ospravedlňujeme sa, Vaše zariadenie nie je kompatibilné.</string>
+
+    <!-- in game !-->
+    <string name="in_game_kill_counter">Počet zabití: %1$d</string>
+    <string name="in_game_combo_counter">x %1$d</string>
+    <string name="in_game_score">Skóre: %1$d</string>
+    <string name="in_game_time">Čas: %1$d s</string>
+    <string name="in_game_no_ammo_message">Žiadne náboje</string>
+
+    <!-- Level Chooser Activity !-->
+    <string name="level_chooser">Zvoľte typ hry</string>
+
+    <!-- Leaderboard Chooser Fragment !-->
+    <string name="leaderboard_chooser_title">Zvoľte rebríček skóre</string>
+    <string name="leaderboard_overall_ranking_description">Celkové poradie.</string>
+    <string name="leaderboard_chooser_time_limited_level_1_description">Šprint Najvyššie dosiahnuté skóre.</string>
+    <string name="leaderboard_chooser_time_limited_level_2_description">60 sekúnd Najvyššie dosiahnuté skóre.</string>
+    <string name="leaderboard_chooser_time_limited_level_3_description">Maratón Najvyššie dosiahnuté skóre.</string>
+    <string name="leaderboard_chooser_survival_description">Prežitie Najvyššie dosiahnuté skóre.</string>
+    <string name="leaderboard_death_to_the_king_description">Smrť kráľa najrýchlejší čas.</string>
+
+    <!-- Game Mode rules !-->
+    <string name="game_mode_remaining_time">Zabi čo najviac duchov v časovom limite.</string>
+    <string name="game_mode_time_limited_level_1">Šprint: zabi čo najviac duchov počas 30 sekúnd.</string>
+    <string name="game_mode_time_limited_level_2">Zabi čo najviac duchov počas 60 sekúnd.</string>
+    <string name="game_mode_time_limited_level_3">Maratón: zabi čo najviac duchov počas 90 sekúnd.</string>
+    <string name="game_mode_target_limited">Zabi všetkých duchov čo možeš!</string>
+    <string name="game_mode_survival">Prežitie: za každé zabitie získaš čas.</string>
+    <string name="game_mode_survival_required_message">Prežitie : Aby si mohol zvoliť tento typ hry, musíš prejť level 5.</string>
+    <string name="game_mode_kill_the_king">Smrť kráľa ! : Máš 5 sekúnd aby si zabil kráľa.</string>
+    <string name="game_mode_kill_the_king_required_message">Smrť kráľa  ! : Aby si mohol zvoliť tento typ hry, musíš prejť level 10.</string>
+    <string name="game_mode_tutorial">Cvičenie : Nauč sa ako hrať.</string>
+
+    <!-- Score Activity !-->
+    <string name="score_number_of_bullets_fired">Guľky Vystrielané</string>
+    <string name="score_number_of_targets_killed">Ciele Zabité</string>
+    <string name="score_max_combo">Najviac Trikov</string>
+    <string name="score_exp_earned">Zarobené Exp</string>
+    <string name="score_final_score">Konečné Skóre</string>
+    <string name="score_lost">prehra</string>
+    <string name="score_skip_button">Preskočiť</string>
+    <string name="score_replay_button">Hraj znovu</string>
+    <string name="score_home_button">Domov</string>
+    <string name="score_share_button">Zdieľaj</string>
+    <string name="score_share_dialog">Ako chceš zdieľať?</string>
+    <string name="score_share_subject">Chase Whisply</string>
+    <string name="score_share_content">Hrám Chase Whisply. Dokážeš prekonať moje skóre : %1$d
+        ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
+    </string>
+    <string name="sign_in_message">Ak sa prihlásiš cez Google Plus, budeš môcť zdieľať dosiahnuté skóre a úspechy so všetkými inými hráčmi !
+    </string>
+    <string name="score_loot_title">Počas lovu si našiel</string>
+    <string name="score_loot_default">nič.</string>
+
+    <!-- About Fragment -->
+    <string name="about_title">Chase Whisply</string>
+    <string name="about_version_detail">verzia Beta.3.1</string>
+    <string name="about_developer_card_title">Vývojári</string>
+    <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
+    <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
+    <string name="about_thanks_section">Špeciálne poďakovanie…</string>
+    <string name="about_thanks_tkeunebr">Thomas Keunebroek, za jeho dôsledné rady a dennú pomoc.</string>
+    <string name="about_thanks_beat_the_dev_winners">dvaja víťazi \"Poraz Vývojárov\" akcie: Faly Sixlay &amp; BMX22C.</string>
+    <string name="about_thanks_beta_testers">Všetkým Beta testerom, špeciálne J. Morgan, M. Nasato, T. Lin Aung, M.
+        Coulon, C. Morris,  C. Cuadra, A. Peng, J. Bastien, DARKSULLI, M. Bet, BMX22C, J. Nye, Y. Ritter,Y. Safraoui and S. Aubineau.
+    </string>
+    <string name="about_license_section">Licencia</string>
+    <string name="about_license_title">Licencia spadá pod Beerware License</string>
+    <string name="about_license_content">\"Môžeš robiť čo chceš. Ak sa jedného dňa stretneme a budeš si myslieť, že to čo robíme má hodnotu, pozveš nás na pivo (alebo hocičo iné) ako poďakovanie.\"
+    </string>
+    <string name="about_license_content_link">Zdrojový kód je dostupný na linke
+        https://github.com/tvbarthel/ChaseWhisplyProject
+    </string>
+
+    <!-- Tuto Activity -->
+    <string name="tuto_default_title">Čoskoro</string>
+    <string name="tuto_title_page_0">Chase Whisply</string>
+    <string name="tuto_title_page_1">V hre\nCiele</string>
+    <string name="tuto_title_page_2">V hre\nCiele</string>
+    <string name="tuto_title_page_3">V hre\nTriky</string>
+    <string name="tuto_title_page_4">V hre\nPresuny</string>
+    <string name="tuto_title_page_5">V hre\nMunícia</string>
+    <string name="tuto_title_page_6">V hre\nMunícia</string>
+    <string name="tuto_title_page_7">Zoznam\nZručností</string>
+    <string name="tuto_title_page_8">Menu\nHra</string>
+    <string name="tuto_title_page_9">Menu\nProfil</string>
+    <string name="tuto_title_page_10">Menu\nSkóre</string>
+    <string name="tuto_title_page_11">Menu\nÚspechy</string>
+    <string name="tuto_title_page_12">Pripravený na\nBoj</string>
+    <string name="tuto_button_close">Zavrieť</string>
+
+    <!-- Tuto Default Fragment -->
+    <string name="tuto_default_fragment_content">Základná časť</string>
+
+    <!-- Tuto Fragment Page Welcome -->
+    <string name="tuto_page_welcome_title">Vitajte,</string>
+    <string name="tuto_page_welcome_subtitle">padawan.</string>
+    <string name="tuto_page_welcome_content">Pokúste sa nájsť a zabiť všetkých duchov žijúcich vo Vašom okolíô
+    </string>
+    <string name="tuto_page_welcome_additional_text">Ak sa chcete dozvedieť viac skrolnite vľavo.</string>
+
+    <!-- Tuto Fragment Page Play Button -->
+    <string name="tuto_page_play_button_content">Zvoľte Váš obľubený typ hry a lovte duchov okolo Vás.</string>
+
+    <!--Tuto Fragment Page Profile Button -->
+    <string name="tuto_page_profile_button_content">Získajte informácie o Vašom postupe a o Vašich nepriateľoch.</string>
+
+    <!-- Tuto Fragment Page Leaderboard Button -->
+    <string name="tuto_page_leaderboard_button_content">Porovnávajte si skóre s Vašimi priateľmi a skúste byť najlepším lovcom na celom svete.
+    </string>
+
+    <!-- Tuto Fragment Page Achievement Button -->
+    <string name="tuto_page_achievement_button_content">Zlepšite sa v lovení duchov a sledujte priebeh zlepšovania.
+    </string>
+
+    <!-- Tuto Fragment Page Aim Tip -->
+    <string name="tuto_page_aim_tip_content">Aby bolo možné zamerať ducha jednoducho, pokúste sa predstaviť svoj telefón ako mieritko zbrane. Pohybujte celými rukami, nie len zápästiami.
+    </string>
+
+    <!-- Tuto Fragment Page Target -->
+    <string name="tuto_page_target_content">Vaše cieľe sú Whisply a jeho súrodenci.</string>
+    <string name="tuto_page_target_bis_content">Zamierte jednou z Vašich zbraní pohybom telefónu a strielajte dotykom na displej.
+    </string>
+
+    <!-- Tuto Fragment Page Ammo -->
+    <string name="tuto_page_ammo_content">Sledujte stav Vašej munície vpravo na spodu obrazovky aby sa Vám neminula.
+    </string>
+    <string name="tuto_page_ammo_bis_content">Muníciu získate postupne.</string>
+
+    <!-- Tuto Fragment Page Ready To Fight -->
+    <string name="tuto_page_ready_to_fight_congratulation">Gratulujeme, ste pripravený hrať.</string>
+    <string name="tuto_page_ready_to_fight_reaccess_tutorial">Cvičenie Vám bude k dispozícií kedykoľvek v hlavnom menu.
+    </string>
+    <string name="tuto_page_ready_to_fight_gl_hf">Veľa štastia &amp; Zabavte sa.</string>
+
+    <!-- Tuto Fragment Page Combos -->
+    <string name="tuto_page_combo_content">Neminte Váš cieľ a využívajte triky pre dosiahnutie vysokého skóre rýchlejšie.
+    </string>
+    <string name="tuto_page_combo_example">x4</string>
+
+    <!-- Tuto Fragment Page Inventory -->
+    <string name="tuto_page_inventory_craft_content">Použite silné bonusy z Vášho inventáru.</string>
+
+    <!-- Profile Fragment -->
+    <string name="profile_title">Váš profil</string>
+    <string name="profile_level">Level %1$d</string>
+    <string name="profile_exp">Exp %1$d/%2$d</string>
+    <string name="profile_general_information">Základné informácie</string>
+    <string name="profile_games_played">Hrané hry</string>
+    <string name="profile_targets_killed">Zasiahnuté cieľe</string>
+    <string name="profile_bullets_fired">Vystrelené guľky</string>
+    <string name="profile_accuracy">Presnosť</string>
+    <string name="profile_bestiary_title">Beštia</string>
+    <string name="profile_bestiary_description">Získajte informácie o dochoch, ktorých musíte nájsť a zabiť.</string>
+    <string name="profile_weapons_title">Zbrane</string>
+    <string name="profile_weapons_description">Zvoľte si zbrane zodpovedne ešte pred začatím lovu.</string>
+    <string name="profile_inventory_title">Zoznam</string>
+    <string name="profile_inventory_description">Doplnte Váš zoznam a zručnosti nejakými bonusmi.</string>
+    <string name="profile_missions_title">Misie</string>
+    <string name="profile_missions_description">Nájdite nové výzvy a prejdite riskantné misie.</string>
+
+    <!-- Bestiary Fragment -->
+    <string name="bestiary_title">Beštia</string>
+    <string name="bestiary_health">Zdravie</string>
+    <string name="bestiary_point_value">Bod</string>
+    <string name="bestiary_exp_value">Exp</string>
+    <string name="bestiary_easy_ghost_title">Jednoduchý duch</string>
+    <string name="bestiary_ghost_with_helmet_title">Zosilnený duch</string>
+    <string name="bestiary_baby_ghost_title">Detský duch</string>
+    <string name="bestiary_hidden_ghost_title">Skrytý duch</string>
+    <string name="bestiary_king_ghost_title">Kráľ duchov</string>
+    <string name="bestiary_blond_ghost_title">Svetlý duch</string>
+
+    <!-- Inventory Fragment -->
+    <string name="inventory_title">Zoznam</string>
+    <string name="inventory_item_default_title">Nadpis položky</string>
+    <string name="inventory_item_default_description">Popis položky</string>
+    <plurals name="inventory_item_coin_title">
+        <item quantity="one">Stará Koruna</item>
+        <item quantity="other">Staré Koruny</item>
+    </plurals>
+    <string name="inventory_item_coin_description">Táto minca je tak stará, že je nemožné zistiť, či bola alebo nebola vyrobená zo zlata. Ale nie je ťažká a preto ju môžete nosiť v taške len tak.
+    </string>
+    <plurals name="inventory_item_broken_helmet_horn_title">
+        <item quantity="one">Kúsok zlámanej helmy</item>
+        <item quantity="other">Kúsky zlámaných heliem</item>
+    </plurals>
+    <string name="inventory_item_broken_helmet_horn_description">Malý kúsok ocele pochádza z prilby ducha. Môže byť užitočný pri výrobe niečoho z ocele.
+    </string>
+    <plurals name="inventory_item_baby_drool_title">
+        <item quantity="one">Detská Slina</item>
+        <item quantity="other">Detské Sliny</item>
+    </plurals>
+    <string name="inventory_item_baby_drool_description">Prečo by sa na Zemi mali udržovať detské sliny v zásobe FPS?!?
+    </string>
+    <plurals name="inventory_item_king_crown_title">
+        <item quantity="one">Kráľovská Koruna</item>
+        <item quantity="other">Kráľovské Koruny</item>
+    </plurals>
+    <string name="inventory_item_king_crown_description">Krásne a žiadané šperky. Ak sa rozhodnete ich roztaviť získate obrovské množstvo zlata.
+    </string>
+    <plurals name="inventory_item_steel_bullet_title">
+        <item quantity="one">Oceľová Guľka</item>
+        <item quantity="other">Oceľové Guľky</item>
+    </plurals>
+    <string name="inventory_item_steel_bullet_description">Keď držíte oceľovú guľku v ruke, môžete cítiť jej silu. Používanie týchto guliek Vám udelí +1 bonus poškodenia.
+    </string>
+    <plurals name="inventory_item_gold_bullet_title">
+        <item quantity="one">Zlatá Guľka</item>
+        <item quantity="other">Zlaté Guľky</item>
+    </plurals>
+    <string name="inventory_item_gold_bullet_description">Guľky vyrobené zo zlata sú pre duchov velice vražedné.
+        Používanie týchto guliek Vám udelí +3 bonus poškodenia.
+    </string>
+    <plurals name="inventory_item_one_shot_bullet_title">
+        <item quantity="one">\"Jednorázová\" Guľka</item>
+        <item quantity="other">\"Jednorázové\" Guľky</item>
+    </plurals>
+    <string name="inventory_item_one_shot_bullet_description">
+        Guľka, ktorej sila je tak veľká, že môže zabiť viacerých duchov naraz. Tento typ guliek je veľmi drahý, tak s nimi zaobchádzajte opatrne. Používanie týchto guliek Vám udelí +10 bonus poškodenia.
+    </string>
+    <plurals name="inventory_item_ghost_tear_title">
+        <item quantity="one">Slza ducha</item>
+        <item quantity="other">Slzy ducha</item>
+    </plurals>
+    <string name="inventory_item_ghost_tear_description">
+        Malá slza pochádza z matky ducha, ktorá sa snažila zachrániť jej duchov. Táto malá kvapka Vám môže priniesť mimoriadnu silu.
+    </string>
+    <plurals name="inventory_item_speed_potion_title">
+        <item quantity="one">Rýchlosť elixíru</item>
+        <item quantity="other">Rýchlosť elixírov</item>
+    </plurals>
+    <string name="inventory_item_speed_potion_description">
+        Tento elixír nevonia dobre, ale ak budete dostatočne odvážny a vypijete ho, Vaša zbraň sa bude prebíjať rýchlejšie.
+    </string>
+    <string name="inventory_item_can_t_be_dropped">Nemožno vynechať</string>
+    <string name="inventory_item_can_t_be_crafted">Nemožno vytvoriť</string>
+    <string name="inventory_item_quantity">Množstvo</string>
+    <string name="inventory_item_dropped_by">Pokles o</string>
+    <string name="inventory_item_recipe">Recept</string>
+    <string name="recipe_item_entry">%1$sx %2$s,</string>
+    <string name="dropped_by_entry">%1$s (%2$d%%),</string>
+
+    <!-- Craft Dialog Fragment -->
+    <string name="craft_dialog_fragment_not_enough_resources">Nemáte dostatok zdrojov, potrebujete %1$s.</string>
+    <string name="craft_dialog_fragment_request">Použíte %1$s aby ste mohli 1x %2$s?</string>
+    <string name="craft_dialog_fragment_ok_response">Ok</string>
+    <string name="craft_dialog_fragment_yes_response">Áno</string>
+    <string name="craft_dialog_fragment_no_response">Nie</string>
+
+    <!-- Bonus -->
+    <string name="bonus_title">Zistať bonus</string>
+    <string name="bonus_effect">Efekty</string>
+    <string name="bonus_quantity">Dostupné množstvo</string>
+    <string name="bonus_damage_effect">Poškodenie +%1$s</string>
+    <string name="bonus_speed_effect">Čas prebíjania -%1$s</string>
+
+    <!-- In Game Tutorial -->
+    <string name="tuto_step_welcome">Vitajte v cvičení, dotykom displeja prejdete na ďalší krok.</string>
+    <string name="tuto_step_ui_welcome">Predstavíme si grafické rozhranie hry.</string>
+    <string name="tuto_step_crosshair">Mieritko je presne v strede obrazovky.</string>
+    <string name="tuto_step_combo">Neminte žiaden cieľ a využívajte triky!</string>
+    <string name="tuto_step_ammos">Vaša munícia je zobrazená vpravo na spodu obrazovky.</string>
+    <string name="tuto_step_ammos_2">Zbraň sa nabíja automaticky, po vystrielaní všetkých nábov.</string>
+    <string name="tuto_step_score">Vami dosiahnuté skóre sa nachádza vľavo na spodu obrazovky.</string>
+    <string name="tuto_step_serious_things">Vráťme sa k biznisu.</string>
+    <string name="tuto_step_target">Zamierne na ducha pohybom zariadenia</string>
+    <string name="tuto_step_kill">…Pre strelbu sa hocikde dotknite displeja.</string>
+    <string name="tuto_step_congratulation">Gratuluteme, zabili ste Vášho prvého ducha!</string>
+    <string name="tuto_step_target_2">Buď opatrný, niektorý z duchov sú silnejší…</string>
+    <string name="tuto_step_kill_2">…Strel niekoľko krát!</string>
+    <string name="tuto_step_congratulation_2">Cvičenie ukončené. Ste pripravený zaziť dobrodružstvo !</string>
+    <string name="tuto_step_end">Cvičenie ukončené!</string>
+
+</resources>
