@@ -6,9 +6,11 @@ import android.content.Context;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorFactory;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTutorial;
+import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTwentyInARow;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTutorial;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTwentyInARow;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.Routine;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.RoutineTicker;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
@@ -20,9 +22,11 @@ import fr.tvbarthel.games.chasewhisply.model.weapon.WeaponFactory;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTime;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTimeDecreasing;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTutorial;
+import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTwentyInARow;
 
 public class GameEngineFactory {
 	private static final long DEFAULT_SPAWNING_TIME = 1000;
+	private static final long TWENTY_IN_A_ROW_SPAWNING_TIME = 800;
 	private static final long DEFAULT_TICKING_TIME = 1000;
 	private static final long DEFAULT_STARTING_TIME = 30000;
 
@@ -43,6 +47,10 @@ public class GameEngineFactory {
 
 			case GameModeFactory.GAME_TYPE_TUTORIAL:
 				gameEngine = createTutorial(context, gameMode, iGameEngine);
+				break;
+
+			case GameModeFactory.GAME_TYPE_TWENTY_IN_A_ROW:
+				gameEngine = createTwentyInARow(context, gameMode, iGameEngine);
 				break;
 
 		}
@@ -69,7 +77,46 @@ public class GameEngineFactory {
 				gameEngine = createTutorial(context, iGameEngine, (GameInformationTutorial) gameInformation);
 				break;
 
+			case GameModeFactory.GAME_TYPE_TWENTY_IN_A_ROW:
+				gameEngine = createTwentyInARow(context, iGameEngine, (GameInformationTwentyInARow) gameInformation);
+				break;
+
 		}
+		return gameEngine;
+	}
+
+
+	private static GameEngine createTwentyInARow(final Context context, final GameMode gameMode
+			, final GameEngine.IGameEngine iGameEngine) {
+		//Weapon
+		final Weapon weapon = WeaponFactory.createBasicWeapon();
+
+		//Game Information
+		final GameInformationTwentyInARow gameInformation = new GameInformationTwentyInARow(gameMode,
+				weapon, 1);
+
+		return createTwentyInARow(context, iGameEngine, gameInformation);
+	}
+
+
+	private static GameEngine createTwentyInARow(final Context context,
+												 final GameEngine.IGameEngine iGameEngine,
+												 GameInformationTime gameInformation) {
+		//Game Behavior
+		final GameBehaviorTwentyInARow gameBehavior = GameBehaviorFactory.createTwentyInARow();
+		gameBehavior.setGameInformation(gameInformation);
+
+		//Game Engine & Game Behavior
+		final GameEngineTwentyInARow gameEngine = new GameEngineTwentyInARow(context, iGameEngine, gameBehavior);
+		gameEngine.addRoutine(new Routine(Routine.TYPE_RELOADER, gameInformation.getWeapon().getReloadingTime()));
+		gameEngine.addRoutine(new Routine(Routine.TYPE_SPAWNER, TWENTY_IN_A_ROW_SPAWNING_TIME));
+		gameEngine.addRoutine(new RoutineTicker(DEFAULT_TICKING_TIME));
+		gameBehavior.setInterface(gameEngine);
+
+		//Game View
+		final GameViewTwentyInARow gameView = new GameViewTwentyInARow(context, gameEngine);
+		gameEngine.setGameView(gameView);
+
 		return gameEngine;
 	}
 

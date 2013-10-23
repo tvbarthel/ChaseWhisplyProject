@@ -11,8 +11,10 @@ public class GameModeFactory {
 	public static final int GAME_TYPE_SURVIVAL = 0x00000003;
 	public static final int GAME_TYPE_DEATH_TO_THE_KING = 0x00000004;
 	public static final int GAME_TYPE_OVERALL_RANKING = 0x00000005;
+	public static final int GAME_TYPE_TWENTY_IN_A_ROW = 0x00000006;
 	public static final int GAME_REQUIRED_LEVEL_SURVIVAL_MODE = 5;
 	public static final int GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING = 10;
+	public static final int GAME_REQUIRED_LEVEL_TWENTY_IN_A_ROW = 15;
 
 	/**
 	 * game mode for learn how to play.
@@ -123,6 +125,26 @@ public class GameModeFactory {
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_death_to_the_king_description);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING);
 		g.setRequiredMessage(R.string.game_mode_kill_the_king_required_message);
+		return g;
+	}
+
+	public static GameMode createTwentyInARow(int level) {
+		final GameMode g = new GameMode() {
+			@Override
+			public boolean isAvailable(PlayerProfile p) {
+				//only available if player level > required level
+				return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
+			}
+		};
+		g.setType(GAME_TYPE_TWENTY_IN_A_ROW);
+		g.setLevel(level);
+		g.setRules(R.string.game_mode_twenty_in_a_row);
+		g.setImage(R.drawable.ic_mission);
+		//TODO
+		//g.setLeaderboardStringId();
+		//g.setLeaderboardDescriptionStringId();
+		g.setRequiredCondition(GAME_REQUIRED_LEVEL_TWENTY_IN_A_ROW);
+		g.setRequiredMessage(R.string.game_mode_twenty_in_a_row_required_message);
 		return g;
 	}
 

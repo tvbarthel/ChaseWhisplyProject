@@ -4,7 +4,7 @@ import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 
 public class GameBehaviorFactory {
-	private static final int DEFAULT_MAX_TARGET = 10;
+	public static final int DEFAULT_MAX_TARGET = 10;
 
 	public static GameBehaviorTimeDecreasing createSprintOrMarathon() {
 		return new GameBehaviorTimeDecreasing() {
@@ -50,5 +50,9 @@ public class GameBehaviorFactory {
 				}
 			}
 		};
+	}
+
+	public static GameBehaviorTwentyInARow createTwentyInARow() {
+		return new GameBehaviorTwentyInARow();
 	}
 }

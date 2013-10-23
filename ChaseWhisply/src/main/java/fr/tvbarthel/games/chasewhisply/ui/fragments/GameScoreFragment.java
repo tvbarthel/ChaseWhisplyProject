@@ -243,7 +243,9 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		mRetrievedCombo = gameInformation.getMaxCombo();
 		mRetrievedExpEarned = gameInformation.getExpEarned();
 		//TODO find a better way to display score
-		if (gameInformation.getGameMode().getType() == GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING) {
+		final int gameType = gameInformation.getGameMode().getType();
+		if (gameType == GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING
+				|| gameType == GameModeFactory.GAME_TYPE_TWENTY_IN_A_ROW) {
 			mRetrievedScore = ((GameInformationTime) gameInformation).getPlayingTime();
 		} else {
 			mRetrievedScore = gameInformation.getCurrentScore();
@@ -334,6 +336,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			case GameModeFactory.GAME_TYPE_TUTORIAL:
 				mFinalScoreTextView.setText(String.valueOf(score));
 				break;
+			case GameModeFactory.GAME_TYPE_TWENTY_IN_A_ROW:
 			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
 				final Calendar cl = Calendar.getInstance();
 				cl.setTimeInMillis(score);

@@ -53,6 +53,8 @@
     <string name="game_mode_survival_required_message">Survival : Level 5 is required to access this game mode.</string>
     <string name="game_mode_kill_the_king">Death to the king ! : You have five second to kill the king.</string>
     <string name="game_mode_kill_the_king_required_message">Death to the king  ! : Level 10 is required to access this game mode.</string>
+    <string name="game_mode_twenty_in_a_row">20 in a row: Kill 20 ghosts in a row, as fast as possible.</string>
+    <string name="game_mode_twenty_in_a_row_required_message">20 in a row: Level 15 is required to access this game mode.</string>
     <string name="game_mode_tutorial">Tutorial : Learn how to play.</string>
 
     <!-- Score Activity !-->

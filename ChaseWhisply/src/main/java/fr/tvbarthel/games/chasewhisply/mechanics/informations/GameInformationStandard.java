@@ -131,8 +131,12 @@ public class GameInformationStandard extends GameInformation {
 	public void targetKilled() {
 		mTargetableItems.remove(mCurrentTarget);
 		mScoreInformation.increaseNumberOfTargetsKilled();
-		mScoreInformation.addLoot(mCurrentTarget.getDrop());
+		mScoreInformation.addLoots(mCurrentTarget.getDrop());
 		mCurrentTarget = null;
+	}
+	
+	public void addLoots(ArrayList<Integer> loots) {
+		mScoreInformation.addLoots(loots);
 	}
 
 	/**

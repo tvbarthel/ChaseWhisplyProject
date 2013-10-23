@@ -101,7 +101,7 @@ public class ScoreInformation implements Parcelable {
 		mCurrentCombo = 0;
 	}
 
-	public void addLoot(ArrayList<Integer> loot) {
+	public void addLoots(ArrayList<Integer> loot) {
 		mLoot.addAll(loot);
 	}
 
