@@ -2,8 +2,10 @@ package fr.tvbarthel.games.chasewhisply.ui.dialogfragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.widget.Button;
 
 import fr.tvbarthel.games.chasewhisply.R;
 
@@ -24,7 +26,14 @@ public class CraftNotEnoughResourcesDialogFragment extends DialogFragment {
 		builder.setMessage(String.format(getString(R.string.craft_dialog_fragment_not_enough_resources),
 				getArguments().getString(EXTRA_ADDITIONAL_MESSAGE)));
 		builder.setNegativeButton(R.string.craft_dialog_fragment_ok_response, null);
-
-		return builder.create();
+		AlertDialog alertDialog = builder.create();
+		alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+			@Override
+			public void onShow(DialogInterface dialog) {
+				Button negativeButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
+				negativeButton.setBackgroundResource(R.drawable.button_dialog);
+			}
+		});
+		return alertDialog;
 	}
 }

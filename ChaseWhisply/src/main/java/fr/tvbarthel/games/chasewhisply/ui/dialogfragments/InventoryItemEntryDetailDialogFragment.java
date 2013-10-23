@@ -3,8 +3,10 @@ package fr.tvbarthel.games.chasewhisply.ui.dialogfragments;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.widget.Button;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
@@ -56,7 +58,15 @@ public class InventoryItemEntryDetailDialogFragment extends DialogFragment imple
 		builder.setCancelable(true);
 		builder.setPositiveButton(R.string.craft_dialog_fragment_ok_response, null);
 
-		return builder.create();
+		AlertDialog alertDialog = builder.create();
+		alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+			@Override
+			public void onShow(DialogInterface dialog) {
+				Button positiveButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+				positiveButton.setBackgroundResource(R.drawable.button_dialog);
+			}
+		});
+		return alertDialog;
 	}
 
 	public void udpateInventoryItemEntry(InventoryItemEntry inventoryItemEntry) {

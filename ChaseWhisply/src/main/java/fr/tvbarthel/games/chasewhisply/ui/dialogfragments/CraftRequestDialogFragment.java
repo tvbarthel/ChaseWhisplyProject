@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.widget.Button;
 
 import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
@@ -56,7 +57,17 @@ public class CraftRequestDialogFragment extends DialogFragment {
 
 		builder.setNegativeButton(R.string.craft_dialog_fragment_no_response, null);
 
-		return builder.create();
+		AlertDialog alertDialog = builder.create();
+		alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+			@Override
+			public void onShow(DialogInterface dialog) {
+				Button negativeButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
+				negativeButton.setBackgroundResource(R.drawable.button_dialog);
+				Button positiveButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+				positiveButton.setBackgroundResource(R.drawable.button_dialog);
+			}
+		});
+		return alertDialog;
 	}
 
 	public interface Listener {
