@@ -3,7 +3,7 @@ package fr.tvbarthel.games.chasewhisply.model.bonus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 
 public class BonusSpeed implements Bonus, BonusInventoryItemConsumer {
@@ -29,7 +29,7 @@ public class BonusSpeed implements Bonus, BonusInventoryItemConsumer {
 	}
 
 	@Override
-	public void apply(GameInformation gameInformation) {
+	public void apply(GameInformationStandard gameInformation) {
 		final long currentReloadingTime = gameInformation.getWeapon().getReloadingTime();
 		gameInformation.getWeapon().setReloadingTime(currentReloadingTime - mSpeedReduction);
 	}

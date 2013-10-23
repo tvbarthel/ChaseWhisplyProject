@@ -16,7 +16,8 @@ import android.widget.Toast;
 import com.google.android.gms.games.GamesClient;
 
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
@@ -226,7 +227,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	}
 
 	@Override
-	public void onUpdateAchievements(final GameInformation gameInformation, final PlayerProfile playerProfile) {
+	public void onUpdateAchievements(final GameInformationStandard gameInformation, final PlayerProfile playerProfile) {
 		final GamesClient gamesClient = getGamesClient();
 		if (gamesClient.isConnected()) {
 			final int score = gameInformation.getCurrentScore();

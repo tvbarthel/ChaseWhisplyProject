@@ -38,7 +38,7 @@ public class GameModeView extends RelativeLayout {
 	/**
 	 * get GameMode
 	 *
-	 * @return mModel
+	 * @return mGameEngine
 	 */
 	public GameMode getModel() {
 		return mModel;

@@ -19,8 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.mechanics.routine.TimerRoutine;
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTime;
+import fr.tvbarthel.games.chasewhisply.mechanics.routine.Routine;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
@@ -48,8 +50,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private static final long TICK_INTERVAL = 100;
 	private static final int NUMBER_OF_TICK = 30;
 	private Listener mListener = null;
-	private GameInformation mGameInformation;
-	private TimerRoutine mTimerRoutine;
+	private GameInformationStandard mGameInformation;
+	private Routine mRoutine;
 	private float mNumberOfBulletsFiredByTick;
 	private float mCurrentNumberOfBulletsFired;
 	private float mNumberOfTargetsKilledByTick;
@@ -108,9 +110,9 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	public void onDetach() {
 		super.onDetach();
 		mListener = null;
-		if (mTimerRoutine != null) {
-			mTimerRoutine.stopRoutine();
-			mTimerRoutine = null;
+		if (mRoutine != null) {
+			mRoutine.stopRoutine();
+			mRoutine = null;
 		}
 	}
 
@@ -168,9 +170,9 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		mTimerRoutine = new TimerRoutine(TICK_INTERVAL) {
+		mRoutine = new Routine(Routine.TYPE_TICKER, TICK_INTERVAL) {
 			@Override
-			protected void doOnTick() {
+			protected void run() {
 				if (mCurrentTickNumber >= NUMBER_OF_TICK) {
 					finalizeScoreDisplayed();
 				} else {
@@ -183,7 +185,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			finalizeScoreDisplayed();
 		} else if (hasSomethingToDisplay()) {
 			initScoreDisplay(savedInstanceState);
-			mTimerRoutine.startRoutine();
+			mRoutine.startRoutine();
 		} else {
 			mSkipButton.setVisibility(View.GONE);
 			mIsDisplayDone = true;
@@ -235,12 +237,17 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		}
 	}
 
-	private void retrieveGameDetails(GameInformation gameInformation) {
+	private void retrieveGameDetails(GameInformationStandard gameInformation) {
 		mRetrievedBulletFired = gameInformation.getBulletsFired();
 		mRetrievedTargetKilled = gameInformation.getFragNumber();
 		mRetrievedCombo = gameInformation.getMaxCombo();
 		mRetrievedExpEarned = gameInformation.getExpEarned();
-		mRetrievedScore = gameInformation.getCurrentScore();
+		//TODO find a better way to display score
+		if (gameInformation.getGameMode().getType() == GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING) {
+			mRetrievedScore = ((GameInformationTime) gameInformation).getPlayingTime();
+		} else {
+			mRetrievedScore = gameInformation.getCurrentScore();
+		}
 	}
 
 	private void initCurrentScoreDisplayed(Bundle savedBundle) {
@@ -294,7 +301,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	}
 
 	private void finalizeScoreDisplayed() {
-		mTimerRoutine.stopRoutine();
+		mRoutine.stopRoutine();
 
 		displayDetails(
 				mRetrievedBulletFired,
@@ -328,14 +335,9 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 				mFinalScoreTextView.setText(String.valueOf(score));
 				break;
 			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
-				if (score > 0) {
-					final Calendar cl = Calendar.getInstance();
-					cl.setTimeInMillis(score);
-					mFinalScoreTextView.setText(cl.get(Calendar.SECOND) + "' " + cl.get(Calendar.MILLISECOND) + "''");
-				} else {
-					mFinalScoreTextView.setText(getResources().getString(R.string.score_lost));
-				}
-
+				final Calendar cl = Calendar.getInstance();
+				cl.setTimeInMillis(score);
+				mFinalScoreTextView.setText(cl.get(Calendar.SECOND) + "' " + cl.get(Calendar.MILLISECOND) + "''");
 				break;
 		}
 	}
@@ -399,7 +401,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 		public void onHomeRequested();
 
-		public void onUpdateAchievements(final GameInformation gameInformation, final PlayerProfile playerProfile);
+		public void onUpdateAchievements(final GameInformationStandard gameInformation, final PlayerProfile playerProfile);
 
 		public void onShareScoreRequested(long score);
 	}

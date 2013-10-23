@@ -4,10 +4,10 @@ package fr.tvbarthel.games.chasewhisply.model.bonus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
 
 public interface Bonus extends Parcelable {
-	public void apply(GameInformation gameInformation);
+	public void apply(GameInformationStandard gameInformation);
 
 	public static class DummyBonus implements Bonus {
 
@@ -18,7 +18,7 @@ public interface Bonus extends Parcelable {
 		}
 
 		@Override
-		public void apply(GameInformation gameInformation) {
+		public void apply(GameInformationStandard gameInformation) {
 		}
 
 		@Override

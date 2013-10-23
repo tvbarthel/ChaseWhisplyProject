@@ -115,4 +115,51 @@ public class TargetableItem extends DisplayableItem {
 	public void setDrop(ArrayList<Integer> drop) {
 		mDrop = drop;
 	}
+
+	/**
+	 * spawn rules for all mobs
+	 *
+	 * @return
+	 */
+	public static int randomGhostType() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 40) {
+			//40%
+			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 60) {
+			//20%
+			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+		} else if (randomDraw < 75) {
+			//15%
+			return DisplayableItemFactory.TYPE_BLOND_GHOST;
+		} else if (randomDraw < 90) {
+			//15%
+			return DisplayableItemFactory.TYPE_BABY_GHOST;
+		} else if (randomDraw < 99) {
+			//9%
+			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
+		} else {
+			//1%
+			return DisplayableItemFactory.TYPE_KING_GHOST;
+		}
+	}
+
+	/**
+	 * spawn rules for all mobs exept king
+	 *
+	 * @return
+	 */
+	public static int randomGhostTypeWithoutKing() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 60) {
+			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 75) {
+			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+		} else if (randomDraw < 90) {
+			return DisplayableItemFactory.TYPE_BABY_GHOST;
+		} else {
+			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
+		}
+
+	}
 }

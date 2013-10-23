@@ -3,48 +3,31 @@ package fr.tvbarthel.games.chasewhisply;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngineFactory;
-import fr.tvbarthel.games.chasewhisply.model.GameBehavior;
-import fr.tvbarthel.games.chasewhisply.model.GameBehaviorFactory;
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
-import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
-import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
-import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
-import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameView;
-import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewFactory;
 
-public class GameActivity extends ARActivity implements GameEngine.IGameEngine, View.OnClickListener {
+public class GameActivity extends ARActivity implements GameEngine.IGameEngine {
 
-	private static final String BUNDLE_GAME_BEHAVIOR = "GameActivity.Bundle.GameBehavior";
+	private static final String BUNDLE_GAME_INFORMATION = "GameActivity.Bundle.GameInformation";
 	public static final String EXTRA_GAME_MODE = "ExtraGameModeFromChooser";
 	private final ViewGroup.LayoutParams mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
 			, ViewGroup.LayoutParams.WRAP_CONTENT);
-	private GameBehavior mGameBehavior;
-	private GameInformation mGameInformation;
+
 	private GameEngine mGameEngine;
-	private GameView mGameView;
-	private GameMode mGameMode;
+	private GameInformation mLastGameInformationSaved;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
-		final Intent intent = getIntent();
-		if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_GAME_BEHAVIOR)) {
-			mGameBehavior = savedInstanceState.getParcelable(BUNDLE_GAME_BEHAVIOR);
-			mGameInformation = mGameBehavior.getGameInformation();
-			mGameMode = mGameBehavior.getGameInformation().getGameMode();
-		} else if (intent != null && intent.hasExtra(EXTRA_GAME_MODE)) {
-			mGameMode = intent.getParcelableExtra(EXTRA_GAME_MODE);
-		} else {
-			finish();
+		if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_GAME_INFORMATION)) {
+			mLastGameInformationSaved = savedInstanceState.getParcelable(BUNDLE_GAME_INFORMATION);
 		}
 	}
 
@@ -52,7 +35,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putParcelable(BUNDLE_GAME_BEHAVIOR, mGameBehavior);
+		outState.putParcelable(BUNDLE_GAME_INFORMATION, mGameEngine.getGameInformation());
 	}
 
 	@Override
@@ -60,7 +43,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 		super.onPause();
 
 		if (mGameEngine != null) {
-			mGameEngine.pauseGame();
+			mGameEngine.pause();
 		}
 	}
 
@@ -68,56 +51,28 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 	void onSmoothCoordinateChanged(float[] smoothCoordinate) {
 		mGameEngine.changePosition((float) Math.toDegrees(smoothCoordinate[0]),
 				(float) Math.toDegrees(smoothCoordinate[1]));
-		mGameView.invalidate();
 	}
 
 	@Override
 	void onCameraReady(float horizontal, float vertical) {
 		//if no gameBehavior choose the one corresponding to the right gameMode
-		boolean firstLaunch = false;
-		if (mGameBehavior == null) {
-			firstLaunch = true;
-			switch (mGameMode.getType()) {
-				case GameModeFactory.GAME_TYPE_REMAINING_TIME:
-					mGameBehavior = GameBehaviorFactory.createRemainingTimeAllMobsGame(
-							mGameMode.getLevel(), horizontal, vertical, mGameMode);
-					break;
-				case GameModeFactory.GAME_TYPE_SURVIVAL:
-					mGameBehavior = GameBehaviorFactory.createSurvivalGame(
-							horizontal, vertical, mGameMode);
-					break;
-				case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
-					mGameBehavior = GameBehaviorFactory.createKillTheKingGame(
-							horizontal, vertical, mGameMode);
-					break;
-				case GameModeFactory.GAME_TYPE_TUTORIAL:
-					mGameBehavior = GameBehaviorFactory.createTutorialGame(
-							horizontal, vertical, mGameMode);
-					break;
-				default:
-					finish();
-					break;
-			}
-			mGameInformation = mGameBehavior.getGameInformation();
-		}
-
-		//instantiate GameView with GameModel
-		mGameView = GameViewFactory.createGameViewByGameMode(GameActivity.this, mGameInformation, mGameMode.getType());
-		mGameView.setOnClickListener(GameActivity.this);
-		addContentView(mGameView, mLayoutParams);
-
-		AnimationLayer animationLayer = new AnimationLayer(GameActivity.this);
-		addContentView(animationLayer, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
-				, ViewGroup.LayoutParams.MATCH_PARENT));
-
-		mGameView.setAnimationLayer(animationLayer);
-
-		//instantiate game engine
-		mGameEngine = GameEngineFactory.createGameEngineByGameMode(this, GameActivity.this, mGameBehavior, mGameMode.getType());
-		if (firstLaunch) {
-			mGameEngine.startGame();
+		final Intent intent = getIntent();
+		if (mLastGameInformationSaved != null) {
+			mGameEngine = GameEngineFactory.restore(this, this, mLastGameInformationSaved);
+			mGameEngine.setCameraAngle(horizontal, vertical);
+			addContentView(mGameEngine.getGameView(), mLayoutParams);
+			addContentView(mGameEngine.getAnimationLayer(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+					, ViewGroup.LayoutParams.MATCH_PARENT));
+			mGameEngine.resume();
+		} else if (intent != null && intent.hasExtra(EXTRA_GAME_MODE)) {
+			mGameEngine = GameEngineFactory.create(this, this, (GameMode) intent.getParcelableExtra(EXTRA_GAME_MODE));
+			mGameEngine.setCameraAngle(horizontal, vertical);
+			addContentView(mGameEngine.getGameView(), mLayoutParams);
+			addContentView(mGameEngine.getAnimationLayer(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+					, ViewGroup.LayoutParams.MATCH_PARENT));
+			mGameEngine.start();
 		} else {
-			mGameEngine.resumeGame();
+			finish();
 		}
 
 	}
@@ -125,22 +80,9 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine, 
 	@Override
 	public void onGameEngineStop() {
 		final Intent scoreIntent = new Intent(this, HomeActivity.class);
-		scoreIntent.putExtra(GameScoreFragment.EXTRA_GAME_INFORMATION, mGameBehavior.getGameInformation());
+		scoreIntent.putExtra(GameScoreFragment.EXTRA_GAME_INFORMATION, mGameEngine.getGameInformation());
 		setResult(RESULT_OK, scoreIntent);
 		finish();
-	}
-
-	@Override
-	public void onTargetKilled(TargetableItem targetKilled) {
-		mGameView.animateDyingGhost(targetKilled);
-	}
-
-	@Override
-	public void onClick(View view) {
-		mGameEngine.onScreenTouch();
-		mGameView.invalidate();
-		//TODO rework all this sad work
-		mGameView.onScreenTouch();
 	}
 
 }

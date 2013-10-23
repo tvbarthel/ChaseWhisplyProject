@@ -10,32 +10,28 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
-import fr.tvbarthel.games.chasewhisply.model.GameInformationTutorial;
+import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngineTutorial;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTutorial;
 import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
 
-public class TutorialGameView extends StandardGameView {
+public class GameViewTutorial extends GameViewStandard {
 
+	private GameEngineTutorial mGameEngine;
 	private TextView mTutoTextView;
 	private final Animation mFadeOutAnimation;
 	private final Animation mFadeInAnimation;
 
-	/**
-	 * Display tutorial information
-	 *
-	 * @param context
-	 * @param model
-	 */
-	public TutorialGameView(Context context, GameInformation model) {
-		super(context, model);
-
+	public GameViewTutorial(Context context, GameEngineTutorial gameEngine) {
+		super(context, gameEngine);
+		mGameEngine = gameEngine;
 		mFadeOutAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
 		mFadeInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
 	}
 
 	@Override
 	public void onDrawing(Canvas c) {
-		int step = ((GameInformationTutorial) mModel).getCurrentStep();
+		super.onDrawing(c);
+		int step = mGameEngine.getCurrentStep();
 		resetPainter();
 
 		if (step >= GameInformationTutorial.STEP_CROSSHAIR) {
@@ -79,9 +75,7 @@ public class TutorialGameView extends StandardGameView {
 		displayCurrentStepMessage();
 	}
 
-	@Override
-	//TODO REWORK
-	public void onScreenTouch() {
+	public void updateStepMessage() {
 		if (!mFadeInAnimation.hasEnded()) {
 			mFadeInAnimation.cancel();
 			mFadeInAnimation.reset();
@@ -97,7 +91,7 @@ public class TutorialGameView extends StandardGameView {
 
 	//TODO REWORK
 	private void displayCurrentStepMessage() {
-		final int step = ((GameInformationTutorial) mModel).getCurrentStep();
+		final int step = mGameEngine.getCurrentStep();
 		int stringId = -1;
 		switch (step) {
 			case GameInformationTutorial.STEP_WELCOME:

@@ -4,7 +4,7 @@ package fr.tvbarthel.games.chasewhisply.model.bonus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 
 public class BonusDamage implements Bonus, BonusInventoryItemConsumer {
@@ -26,7 +26,7 @@ public class BonusDamage implements Bonus, BonusInventoryItemConsumer {
 	}
 
 	@Override
-	public void apply(GameInformation gameInformation) {
+	public void apply(GameInformationStandard gameInformation) {
 		int currentDamage = gameInformation.getWeapon().getDamage();
 		gameInformation.getWeapon().setDamage(currentDamage + mBonusDamage);
 	}
@@ -68,9 +68,9 @@ public class BonusDamage implements Bonus, BonusInventoryItemConsumer {
 	@Override
 	public Bonus consume(PlayerProfile playerProfile) {
 		final long remainingQuantity = playerProfile.decreaseInventoryItemQuantity(mInventoryItemType, 1);
-		if (remainingQuantity > 0)  {
+		if (remainingQuantity > 0) {
 			return this;
-		}else {
+		} else {
 			return new Bonus.DummyBonus();
 		}
 	}

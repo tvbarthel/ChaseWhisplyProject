@@ -1,10 +1,12 @@
-package fr.tvbarthel.games.chasewhisply.model;
+package fr.tvbarthel.games.chasewhisply.mechanics.informations;
 
 import android.os.Parcel;
+import android.os.Parcelable;
 
+import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 
-public class GameInformationTutorial extends GameInformation {
+public class GameInformationTutorial extends GameInformationStandard {
 
 	public static final int STEP_WELCOME = 0;
 	public static final int STEP_UI_WELCOME = 1;
@@ -24,9 +26,13 @@ public class GameInformationTutorial extends GameInformation {
 
 	private int mCurrentStep;
 
-	public GameInformationTutorial(long spawningTime, Weapon weapon) {
-		super(spawningTime, weapon);
+	public GameInformationTutorial(GameMode gameMode, Weapon weapon) {
+		super(gameMode, weapon);
 		mCurrentStep = STEP_WELCOME;
+	}
+
+	protected GameInformationTutorial(Parcel in) {
+		super(in);
 	}
 
 	@Override
@@ -53,4 +59,14 @@ public class GameInformationTutorial extends GameInformation {
 	public int getCurrentStep() {
 		return mCurrentStep;
 	}
+
+	public static final Parcelable.Creator<GameInformationTutorial> CREATOR = new Parcelable.Creator<GameInformationTutorial>() {
+		public GameInformationTutorial createFromParcel(Parcel in) {
+			return new GameInformationTutorial(in);
+		}
+
+		public GameInformationTutorial[] newArray(int size) {
+			return new GameInformationTutorial[size];
+		}
+	};
 }

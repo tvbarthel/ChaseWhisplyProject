@@ -2,138 +2,153 @@ package fr.tvbarthel.games.chasewhisply.mechanics.engine;
 
 
 import android.content.Context;
+import android.view.View;
 
-import fr.tvbarthel.games.chasewhisply.mechanics.routine.ReloadingRoutine;
-import fr.tvbarthel.games.chasewhisply.mechanics.routine.SpawningRoutine;
-import fr.tvbarthel.games.chasewhisply.mechanics.routine.TickerRoutine;
-import fr.tvbarthel.games.chasewhisply.model.GameBehavior;
-import fr.tvbarthel.games.chasewhisply.model.GameInformation;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehavior;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.routine.Routine;
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.sound.GameSoundManager;
+import fr.tvbarthel.games.chasewhisply.ui.AnimationLayer;
+import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameView;
 
-public abstract class GameEngine implements ReloadingRoutine.IReloadingRoutine, SpawningRoutine.ISpawningRoutine, TickerRoutine.ITickerRoutine {
+public abstract class GameEngine implements View.OnClickListener, GameBehavior.IGameBehavior, Routine.IRoutine {
 	public static final int STATE_STOP = 0x00000001;
 	public static final int STATE_RUNNING = 0x00000002;
 	public static final int STATE_PAUSED = 0x00000003;
 
-	protected IGameEngine mInterface;
-	protected GameInformation mGameInformation;
-	protected GameBehavior mGameBehavior;
-	protected ReloadingRoutine mReloadingRoutine;
-	protected SpawningRoutine mSpawningRoutine;
-	protected TickerRoutine mTickerRoutine;
 	protected int mCurrentState;
-	protected int mXRange;
-	protected int mYRange;
-	protected GameSoundManager mGameSoundManager;
+
+	final protected GameSoundManager mGameSoundManager;
+	final protected IGameEngine mInterface;
+	final protected GameBehavior mGameBehavior;
+	final protected ArrayList<Routine> mRoutines;
+	private GameView mGameView;
+	protected AnimationLayer mAnimationLayer;
 
 	public GameEngine(final Context context, IGameEngine iGameEngine, GameBehavior gameBehavior) {
+		mGameSoundManager = new GameSoundManager(context);
+		mRoutines = new ArrayList<Routine>();
+		mCurrentState = STATE_STOP;
 		mInterface = iGameEngine;
 		mGameBehavior = gameBehavior;
-		mGameInformation = mGameBehavior.getGameInformation();
-		mReloadingRoutine = new ReloadingRoutine(mGameInformation.getWeapon().getReloadingTime(), this);
-		mSpawningRoutine = new SpawningRoutine(mGameInformation.getSpawningTime(), this);
-		mTickerRoutine = new TickerRoutine(mGameInformation.getTickingTime(), this);
-		mCurrentState = STATE_STOP;
-		mGameSoundManager = new GameSoundManager(context);
+		mAnimationLayer = new AnimationLayer(context);
 	}
 
+	@Override
+	public void onClick(View v) {
+		mGameBehavior.onClick();
+	}
 
 	/**
 	 * start the game, should be called only at the beginning once.
 	 */
-	public void startGame() {
-		mGameBehavior.init();
-		mReloadingRoutine.startRoutine();
-		mSpawningRoutine.startRoutine();
-		mTickerRoutine.startRoutine();
+	public void start() {
+		startRoutines();
 		mCurrentState = STATE_RUNNING;
-		mXRange = mGameInformation.getSceneWidth() / 2 + mGameInformation.getSceneWidth() / 10;
-		mYRange = mGameInformation.getSceneHeight() / 2 + mGameInformation.getSceneHeight() / 10;
 	}
 
 	/**
 	 * pause the game.
 	 */
-	public void pauseGame() {
+	public void pause() {
 		mGameSoundManager.stopAllSounds();
-		mReloadingRoutine.stopRoutine();
-		mSpawningRoutine.stopRoutine();
-		mTickerRoutine.stopRoutine();
+		stopRoutines();
 		mCurrentState = STATE_PAUSED;
 	}
 
 	/**
 	 * resume the game
 	 */
-	public void resumeGame() {
-		mReloadingRoutine.startRoutine();
-		mSpawningRoutine.startRoutine();
-		mTickerRoutine.startRoutine();
+	public void resume() {
+		startRoutines();
 		mCurrentState = STATE_RUNNING;
-		mXRange = mGameInformation.getSceneWidth() / 2 + mGameInformation.getSceneWidth() / 10;
-		mYRange = mGameInformation.getSceneHeight() / 2 + mGameInformation.getSceneHeight() / 10;
 	}
 
 	/**
-	 * stop the game, should be called only once at the end.
+	 * stop the game, should not be called manually
 	 */
-	public void stopGame() {
+	public void stop() {
 		mGameSoundManager.stopAllSounds();
-		mReloadingRoutine.stopRoutine();
-		mSpawningRoutine.stopRoutine();
-		mTickerRoutine.stopRoutine();
+		stopRoutines();
 		mCurrentState = STATE_STOP;
 		mInterface.onGameEngineStop();
 	}
 
-	@Override
-	public void reload() {
-		mGameInformation.getWeapon().reload();
+	protected void setGameView(GameView gameView) {
+		mGameView = gameView;
+		mGameView.setOnClickListener(this);
+		mGameView.setAnimationLayer(mAnimationLayer);
 	}
 
-	@Override
-	public void spawn() {
-		mGameBehavior.spawn(mXRange, mYRange);
-	}
-
-	@Override
-	public void onTick(long tickingTime) {
-		mGameBehavior.tick(tickingTime);
-		if (mGameBehavior.isCompleted()) {
-			stopGame();
+	protected void startRoutines() {
+		for (Routine routine : mRoutines) {
+			routine.startRoutine();
 		}
 	}
 
+	protected void stopRoutines() {
+		for (Routine routine : mRoutines) {
+			routine.stopRoutine();
+		}
+	}
+
+	protected void addRoutine(Routine routine) {
+		routine.setIRoutine(this);
+		mRoutines.add(routine);
+	}
+
 	public void changePosition(float posX, float posY) {
-		mGameInformation.setCurrentPosition(posX, posY);
-	}
-
-	/**
-	 * Getters & Setters
-	 */
-	public void setSceneWidth(int sceneWidth) {
-		mGameInformation.setSceneWidth(sceneWidth);
-	}
-
-	public void setSceneHeight(int sceneHeight) {
-		mGameInformation.setSceneHeight(sceneHeight);
+		mGameBehavior.setCurrentPosition(posX, posY);
+		mGameView.invalidate();
 	}
 
 	public GameInformation getGameInformation() {
-		return mGameInformation;
+		return mGameBehavior.getGameInformation();
 	}
 
-	public int getCurrentState() {
-		return mCurrentState;
+	public void setCameraAngle(float horizontal, float vertical) {
+		mGameView.setCameraAngleInDegree(horizontal, vertical);
+	}
+
+	public float[] getCurrentPosition() {
+		return mGameBehavior.getCurrentPosition();
+	}
+
+	public List<DisplayableItem> getItemsForDisplay() {
+		return mGameBehavior.getItemsForDisplay();
+	}
+
+
+	public TargetableItem getCurrentTarget() {
+		return mGameBehavior.getCurrentTarget();
+	}
+
+	public void setCurrentTarget(TargetableItem t) {
+		mGameBehavior.setCurrentTarget(t);
+	}
+
+	public void removeTarget() {
+		mGameBehavior.removeTarget();
+	}
+
+	public int getLastScoreAdded() {
+		return mGameBehavior.getLastScoreAdded();
+	}
+
+	public GameView getGameView() {
+		return mGameView;
+	}
+
+	public AnimationLayer getAnimationLayer() {
+		return mAnimationLayer;
 	}
 
 	public interface IGameEngine {
 		abstract public void onGameEngineStop();
-
-		abstract public void onTargetKilled(TargetableItem targetKilled);
 	}
-
-	public abstract void onScreenTouch();
-
 }
