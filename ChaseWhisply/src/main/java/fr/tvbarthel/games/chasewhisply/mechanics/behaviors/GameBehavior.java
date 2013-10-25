@@ -34,5 +34,7 @@ public interface GameBehavior {
 		public abstract void stop();
 
 		public abstract void onTargetKilled(TargetableItem target);
+
+		public abstract void onSoundRequest(int soundType);
 	}
 }

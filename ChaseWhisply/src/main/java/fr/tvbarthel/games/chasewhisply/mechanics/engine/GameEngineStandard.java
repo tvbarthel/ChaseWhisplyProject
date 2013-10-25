@@ -31,7 +31,7 @@ public abstract class GameEngineStandard extends GameEngine {
 
 	protected void setGameView(GameView gameView) {
 		super.setGameView(gameView);
-		mGameView = (GameViewStandard)gameView;
+		mGameView = (GameViewStandard) gameView;
 	}
 
 	public void onTargetKilled(TargetableItem target) {

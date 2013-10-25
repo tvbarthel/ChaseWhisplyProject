@@ -2,6 +2,7 @@ package fr.tvbarthel.games.chasewhisply.mechanics.behaviors;
 
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
+import fr.tvbarthel.games.chasewhisply.sound.GameSoundManager;
 
 public class GameBehaviorFactory {
 	public static final int DEFAULT_MAX_TARGET = 10;
@@ -11,6 +12,7 @@ public class GameBehaviorFactory {
 			@Override
 			public void spawn(int xRange, int yRange) {
 				allSpawnBehavior(xRange, yRange);
+				mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_LAUGH_RANDOM);
 			}
 		};
 	}
@@ -25,6 +27,7 @@ public class GameBehaviorFactory {
 			public void spawn(int xRange, int yRange) {
 				if (mGameInformation.getCurrentTargetsNumber() < DEFAULT_MAX_TARGET) {
 					allSpawnBehavior(xRange, yRange);
+					mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_LAUGH_RANDOM);
 				}
 			}
 
