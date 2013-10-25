@@ -11,6 +11,12 @@ import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.model.MathUtils;
 
 public class GameSoundManager {
+	public static final int SOUND_TYPE_GUN_SHOT = 0x00000001;
+	public static final int SOUND_TYPE_DRY_SHOT = 0x00000002;
+	public static final int SOUND_TYPE_GHOST_DEATH = 0x00000003;
+	public static final int SOUND_TYPE_LAUGH = 0x00000004;
+	public static final int SOUND_TYPE_LAUGH_RANDOM = 0x0000005;
+
 	private final SparseIntArray mStreamIds;
 	private final SparseBooleanArray mIsSoundLoaded = new SparseBooleanArray();
 
@@ -59,6 +65,26 @@ public class GameSoundManager {
 		mStreamIds.put(R.raw.laugh_1, mSoundPool.load(context, R.raw.laugh_1, 1));
 	}
 
+	public void requestSound(int soundType) {
+		switch (soundType) {
+			case SOUND_TYPE_DRY_SHOT:
+				playDryGunShot();
+				break;
+			case SOUND_TYPE_GHOST_DEATH:
+				playGhostDeath();
+				break;
+			case SOUND_TYPE_LAUGH:
+				playGhostLaugh();
+				break;
+			case SOUND_TYPE_LAUGH_RANDOM:
+				playGhostLaughRandom();
+				break;
+			case SOUND_TYPE_GUN_SHOT:
+				playGunShot();
+				break;
+		}
+	}
+
 	public void playGunShot() {
 		playSoundFromPool(R.raw.gun_shot_2);
 	}
@@ -71,7 +97,11 @@ public class GameSoundManager {
 		playSoundFromPool(R.raw.ghost_death, 0.1f);
 	}
 
-	public void playGhostLaugh() {
+	public void playGhostLaugh(){
+		playSoundFromPool(R.raw.laugh_1, 0.2f);
+	}
+
+	public void playGhostLaughRandom() {
 		mGhostLaughRate += 1;
 		final int draft = MathUtils.randomize(0, 200);
 		if (draft < mGhostLaughRate) {

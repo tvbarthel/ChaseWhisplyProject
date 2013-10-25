@@ -7,6 +7,7 @@ import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationSta
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
+import fr.tvbarthel.games.chasewhisply.sound.GameSoundManager;
 
 
 public abstract class GameBehaviorStandard implements GameBehavior {
@@ -93,7 +94,7 @@ public abstract class GameBehaviorStandard implements GameBehavior {
 		final int dmg = mGameInformation.getWeapon().fire();
 		final TargetableItem currentTarget = mGameInformation.getCurrentTarget();
 		if (dmg != 0) {
-			mGameInformation.bulletFired();
+			fireABullet();
 			if (currentTarget == null) {
 				//miss
 				fireResult = FIRE_RESULT_MISS;
@@ -108,16 +109,27 @@ public abstract class GameBehaviorStandard implements GameBehavior {
 					killTarget(currentTarget);
 				}
 			}
+		}else{
+			shotWithoutAmmo();
 		}
 		return fireResult;
 	}
 
+	protected void fireABullet() {
+		mGameInformation.bulletFired();
+		mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_GUN_SHOT);
+	}
+
+	protected void shotWithoutAmmo() {
+		mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_DRY_SHOT);
+	}
 
 	protected void killTarget(TargetableItem currentTarget) {
 		mGameInformation.targetKilled();
 		mGameInformation.stackCombo();
 		mGameInformation.increaseScore(10 * currentTarget.getBasePoint() + 10 * mGameInformation.getCurrentCombo());
 		mGameInformation.earnExp(currentTarget.getExpPoint());
+		mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_GHOST_DEATH);
 		mIGameBehavior.onTargetKilled(currentTarget);
 	}
 

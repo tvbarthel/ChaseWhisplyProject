@@ -148,6 +148,11 @@ public abstract class GameEngine implements View.OnClickListener, GameBehavior.I
 		return mAnimationLayer;
 	}
 
+	@Override
+	public void onSoundRequest(int soundType) {
+		mGameSoundManager.requestSound(soundType);
+	}
+
 	public interface IGameEngine {
 		abstract public void onGameEngineStop();
 	}
