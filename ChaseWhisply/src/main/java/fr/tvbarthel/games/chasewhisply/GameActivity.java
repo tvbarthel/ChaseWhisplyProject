@@ -57,24 +57,28 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine {
 	void onCameraReady(float horizontal, float vertical) {
 		//if no gameBehavior choose the one corresponding to the right gameMode
 		final Intent intent = getIntent();
-		if (mLastGameInformationSaved != null) {
+		if(mGameEngine != null) {
+			configureGameEngine(horizontal, vertical);
+			mGameEngine.resume();
+		}else if (mLastGameInformationSaved != null) {
 			mGameEngine = GameEngineFactory.restore(this, this, mLastGameInformationSaved);
-			mGameEngine.setCameraAngle(horizontal, vertical);
-			addContentView(mGameEngine.getGameView(), mLayoutParams);
-			addContentView(mGameEngine.getAnimationLayer(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
-					, ViewGroup.LayoutParams.MATCH_PARENT));
+			configureGameEngine(horizontal, vertical);
 			mGameEngine.resume();
 		} else if (intent != null && intent.hasExtra(EXTRA_GAME_MODE)) {
 			mGameEngine = GameEngineFactory.create(this, this, (GameMode) intent.getParcelableExtra(EXTRA_GAME_MODE));
-			mGameEngine.setCameraAngle(horizontal, vertical);
-			addContentView(mGameEngine.getGameView(), mLayoutParams);
-			addContentView(mGameEngine.getAnimationLayer(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
-					, ViewGroup.LayoutParams.MATCH_PARENT));
+			configureGameEngine(horizontal, vertical);
 			mGameEngine.start();
 		} else {
 			finish();
 		}
 
+	}
+
+	private void configureGameEngine(float horizontal, float vertical) {
+		mGameEngine.setCameraAngle(horizontal, vertical);
+		addContentView(mGameEngine.getGameView(), mLayoutParams);
+		addContentView(mGameEngine.getAnimationLayer(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+				, ViewGroup.LayoutParams.MATCH_PARENT));
 	}
 
 	@Override

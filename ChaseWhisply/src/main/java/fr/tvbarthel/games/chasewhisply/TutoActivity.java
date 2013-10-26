@@ -24,7 +24,7 @@ import fr.tvbarthel.games.chasewhisply.ui.fragments.TutoFragment;
 
 public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewFactory {
 	public static final String EXTRA_HELP_REQUESTED = "ExtraHelpRequested";
-	public static final int NB_PAGES = 13;
+	public static final int NB_PAGES = 7;
 	private static final String FIRST_LAUNCH_KEY = "First_launch_KEY";
 	private SharedPreferences mPrefs;
 	private String[] mPageTitles;
@@ -59,17 +59,11 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 
 		mPageTitles = new String[]{
 				getResources().getString(R.string.tuto_title_page_0),
-				getResources().getString(R.string.tuto_title_page_1),
-				getResources().getString(R.string.tuto_title_page_2),
-				getResources().getString(R.string.tuto_title_page_3),
-				getResources().getString(R.string.tuto_title_page_4),
-				getResources().getString(R.string.tuto_title_page_5),
-				getResources().getString(R.string.tuto_title_page_6),
-				getResources().getString(R.string.tuto_title_page_7),
 				getResources().getString(R.string.tuto_title_page_8),
 				getResources().getString(R.string.tuto_title_page_9),
 				getResources().getString(R.string.tuto_title_page_10),
 				getResources().getString(R.string.tuto_title_page_11),
+				getResources().getString(R.string.tuto_title_page_7),
 				getResources().getString(R.string.tuto_title_page_12)};
 
 		//initialize title text switcher
@@ -156,39 +150,21 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 					layoutResId = R.layout.fragment_tuto_welcome;
 					break;
 				case 1:
-					layoutResId = R.layout.fragment_tuto_target;
-					break;
-				case 2:
-					layoutResId = R.layout.fragment_tuto_target_bis;
-					break;
-				case 3:
-					layoutResId = R.layout.fragment_tuto_combo;
-					break;
-				case 4:
-					layoutResId = R.layout.fragment_tuto_aim_tips;
-					break;
-				case 5:
-					layoutResId = R.layout.fragment_tuto_ammo;
-					break;
-				case 6:
-					layoutResId = R.layout.fragment_tuto_ammo_bis;
-					break;
-				case 7:
-					layoutResId = R.layout.fragment_tuto_inventory_craft;
-					break;
-				case 8:
 					layoutResId = R.layout.fragment_tuto_play_button;
 					break;
-				case 9:
+				case 2:
 					layoutResId = R.layout.fragment_tuto_profile_button;
 					break;
-				case 10:
+				case 3:
 					layoutResId = R.layout.fragment_tuto_leaderboard_button;
 					break;
-				case 11:
+				case 4:
 					layoutResId = R.layout.fragment_tuto_achievement_button;
 					break;
-				case 12:
+				case 5:
+					layoutResId = R.layout.fragment_tuto_inventory_craft;
+					break;
+				case 6:
 					layoutResId = R.layout.fragment_tuto_ready_to_fight;
 					break;
 				default:
