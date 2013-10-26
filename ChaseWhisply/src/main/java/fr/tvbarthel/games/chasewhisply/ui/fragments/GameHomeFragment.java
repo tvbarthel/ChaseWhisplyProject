@@ -11,7 +11,7 @@ import android.view.animation.AnimationUtils;
 
 import fr.tvbarthel.games.chasewhisply.R;
 
-public class GameHomeFragment extends Fragment implements View.OnClickListener {
+public class GameHomeFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener {
 	public static final String FRAGMENT_TAG = "GameHomeFragment_TAG";
 	private static final String STATE_SIGNED_IN = "State_signed";
 	private boolean mSignedIn;
@@ -44,8 +44,13 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 				R.id.home_profile
 		};
 		for (int i : clickable) {
-			v.findViewById(i).setOnClickListener(this);
+			final View view = v.findViewById(i);
+			view.setOnClickListener(this);
+			if (i == R.id.home_about || i == R.id.home_help_tuto) {
+				view.findViewById(i).setOnLongClickListener(this);
+			}
 		}
+
 		initWhisplyPicture(v);
 		notifySignedStateChanged(mSignedIn, true, v);
 		return v;
@@ -130,6 +135,23 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 	}
 
 	@Override
+	public boolean onLongClick(View view) {
+		if (mListener == null)
+			return false;
+		switch (view.getId()) {
+			case R.id.home_about:
+				mListener.toast(getResources().getString(R.string.home_i_button_on_long_press));
+				break;
+			case R.id.home_help_tuto:
+				mListener.toast(getResources().getString(R.string.home_help_button_on_long_press));
+				break;
+			default:
+				break;
+		}
+		return true;
+	}
+
+	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
@@ -172,6 +194,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		}
 	}
 
+
 	//interface
 	public interface Listener {
 		public void onStartGameRequested();
@@ -191,5 +214,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener {
 		public void onHelpRequested();
 
 		public void onShowProfileRequested();
+
+		public void toast(String message);
 	}
 }

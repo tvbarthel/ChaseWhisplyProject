@@ -23,6 +23,10 @@
     <string name="home_internet_unavailable">Please connect to the Internet.</string>
     <string name="home_profile">Profile</string>
     <string name="home_device_not_compatible">Sorry, you device seems to be not compatible.</string>
+    <string name="home_i_button">i</string>
+    <string name="home_help_button">\?</string>
+    <string name="home_i_button_on_long_press">About</string>
+    <string name="home_help_button_on_long_press">Help</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag: %1$d</string>

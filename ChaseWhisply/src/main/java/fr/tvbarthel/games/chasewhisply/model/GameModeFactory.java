@@ -33,6 +33,7 @@ public class GameModeFactory {
 		g.setType(GAME_TYPE_TUTORIAL);
 		g.setRules(R.string.game_mode_tutorial);
 		g.setImage(R.drawable.ic_icon_tutorial);
+		g.setBonusAvailable(false);
 		return g;
 	}
 
@@ -46,6 +47,7 @@ public class GameModeFactory {
 		};
 		g.setType(GAME_TYPE_REMAINING_TIME);
 		g.setLevel(level);
+		g.setBonusAvailable(true);
 		switch (level) {
 			case 1:
 				g.setRules(R.string.game_mode_time_limited_level_1);
@@ -106,6 +108,7 @@ public class GameModeFactory {
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_survival_description);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_SURVIVAL_MODE);
 		g.setRequiredMessage(R.string.game_mode_survival_required_message);
+		g.setBonusAvailable(true);
 		return g;
 	}
 
@@ -125,6 +128,7 @@ public class GameModeFactory {
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_death_to_the_king_description);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING);
 		g.setRequiredMessage(R.string.game_mode_kill_the_king_required_message);
+		g.setBonusAvailable(false);
 		return g;
 	}
 
