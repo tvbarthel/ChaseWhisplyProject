@@ -22,6 +22,8 @@
     <string name="home_internet_unavailable">Veuillez vous connecter à Internet.</string>
     <string name="home_profile">Profil</string>
     <string name="home_device_not_compatible">Désolé, mais votre terminal ne semble pas compatible.</string>
+    <string name="home_i_button_on_long_press">Á-propos</string>
+    <string name="home_help_button_on_long_press">Aide</string>
 
     <!-- in game !-->
     <string name="in_game_kill_counter">Frag : %1$d</string>

@@ -193,6 +193,11 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 		startActivity(new Intent(this, ProfileActivity.class));
 	}
 
+	@Override
+	public void toast(String message) {
+		makeToast(message);
+	}
+
 	/**
 	 * use to inform user
 	 *

@@ -134,25 +134,39 @@
             android:layout_marginLeft="-10dp"
             android:src="@drawable/ghost" />
 
-        <ImageButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/home_help_tuto"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:background="@null"
-            android:src="@drawable/button_help_tuto"
-            android:padding="@dimen/half_padding" />
+            android:text="@string/home_help_button"
+            android:textSize="@dimen/home_text_size"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_toLeftOf="@+id/home_help_tuto"
+            android:background="@drawable/button_base"
+            android:layout_marginBottom="@dimen/default_half_vertical_margin"
+            android:layout_marginRight="@dimen/default_half_horizontal_margin"
+            android:minWidth="48dp"
+            android:minHeight="48dp"/>
 
-        <ImageButton
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/home_about"
+            android:text="@string/home_i_button"
+            android:textSize="@dimen/home_text_size"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             android:layout_toLeftOf="@+id/home_help_tuto"
-            android:src="@drawable/button_help_about"
-            android:background="@null"
-            android:padding="@dimen/half_padding"
-            android:layout_alignParentBottom="true" />
+            android:background="@drawable/button_base"
+            android:layout_marginBottom="@dimen/default_half_vertical_margin"
+            android:layout_marginRight="@dimen/default_half_horizontal_margin"
+            android:layout_alignParentBottom="true"
+            android:minWidth="48dp"
+            android:minHeight="48dp"/>
 
     </RelativeLayout>
 
