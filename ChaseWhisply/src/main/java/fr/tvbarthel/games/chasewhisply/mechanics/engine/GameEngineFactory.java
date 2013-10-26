@@ -243,8 +243,8 @@ public class GameEngineFactory {
 						mGameBehavior.reload();
 						break;
 					case Routine.TYPE_SPAWNER:
-						//TODO
-						mGameBehavior.spawn(50, 50);
+						final float[] cameraAngle = mGameView.getCameraAngleInDegree();
+						mGameBehavior.spawn((int)cameraAngle[0], (int)cameraAngle[1]);
 						break;
 					case Routine.TYPE_TICKER:
 						mGameBehavior.tick((Long) obj);
@@ -293,8 +293,8 @@ public class GameEngineFactory {
 						mGameBehavior.reload();
 						break;
 					case Routine.TYPE_SPAWNER:
-						//TODO
-						mGameBehavior.spawn(50, 50);
+						final float[] cameraAngle = mGameView.getCameraAngleInDegree();
+						mGameBehavior.spawn((int)cameraAngle[0], (int)cameraAngle[1]);
 						break;
 					case Routine.TYPE_TICKER:
 						mGameBehavior.tick((Long) obj);

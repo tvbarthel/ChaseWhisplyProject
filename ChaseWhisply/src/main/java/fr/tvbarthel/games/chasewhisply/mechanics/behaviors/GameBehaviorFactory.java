@@ -11,7 +11,7 @@ public class GameBehaviorFactory {
 		return new GameBehaviorTimeDecreasing() {
 			@Override
 			public void spawn(int xRange, int yRange) {
-				allSpawnBehavior(xRange, yRange);
+				allSpawnBehavior(xRange / 2 + xRange / 10, yRange / 2 + yRange / 10);
 				mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_LAUGH_RANDOM);
 			}
 		};
@@ -26,7 +26,7 @@ public class GameBehaviorFactory {
 			@Override
 			public void spawn(int xRange, int yRange) {
 				if (mGameInformation.getCurrentTargetsNumber() < DEFAULT_MAX_TARGET) {
-					allSpawnBehavior(xRange, yRange);
+					allSpawnBehavior(xRange / 2 + xRange / 10, yRange / 2 + yRange / 10);
 					mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_LAUGH_RANDOM);
 				}
 			}
