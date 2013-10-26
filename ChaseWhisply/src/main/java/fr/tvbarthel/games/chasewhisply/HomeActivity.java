@@ -288,8 +288,14 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 
 	@Override
 	public void onLevelChosen(GameModeView g) {
-		getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-				BonusFragment.newInstance(g.getModel())).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+		final GameMode gameMode = g.getModel();
+		if (gameMode.areBonusAvailable()) {
+			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+					BonusFragment.newInstance(gameMode)).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+		} else {
+			onGameStartRequest(gameMode);
+		}
+
 	}
 
 	public void startNewGame(GameMode gameMode, int requestCode) {

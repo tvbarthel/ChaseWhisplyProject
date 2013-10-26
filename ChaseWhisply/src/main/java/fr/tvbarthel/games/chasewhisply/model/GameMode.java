@@ -16,6 +16,7 @@ public abstract class GameMode implements Parcelable {
 	private Bonus mBonus;
 	private int mRequiredCondition;
 	private int mRequiredMessage;
+	private boolean mBonusAvailable;
 
 	public GameMode() {
 		mType = -1;
@@ -24,9 +25,10 @@ public abstract class GameMode implements Parcelable {
 		mRules = -1;
 		mLeaderboardStringId = -1;
 		mLeaderboardDescriptionStringId = -1;
-		mBonus = null;
+		mBonus = new Bonus.DummyBonus();
 		mRequiredCondition = -1;
 		mRequiredMessage = -1;
+		mBonusAvailable = true;
 
 	}
 
@@ -50,6 +52,7 @@ public abstract class GameMode implements Parcelable {
 		out.writeParcelable(mBonus, i);
 		out.writeInt(mRequiredCondition);
 		out.writeInt(mRequiredMessage);
+		out.writeByte((byte) (mBonusAvailable ? 1 : 0));
 	}
 
 	/**
@@ -67,6 +70,7 @@ public abstract class GameMode implements Parcelable {
 		mBonus = in.readParcelable(Bonus.class.getClassLoader());
 		mRequiredCondition = in.readInt();
 		mRequiredMessage = in.readInt();
+		mBonusAvailable = in.readByte() == 1;
 	}
 
 	public static final Parcelable.Creator<GameMode> CREATOR = new Parcelable.Creator<GameMode>() {
@@ -174,6 +178,23 @@ public abstract class GameMode implements Parcelable {
 	 */
 	public int getRequiredMessage() {
 		return mRequiredMessage;
+	}
+
+
+	/**
+	 * @param areBonusAvailable true if player can choose a bonus
+	 */
+	public void setBonusAvailable(boolean areBonusAvailable) {
+		mBonusAvailable = areBonusAvailable;
+	}
+
+	/**
+	 * are Bonus available for this mode ?
+	 *
+	 * @return
+	 */
+	public boolean areBonusAvailable() {
+		return mBonusAvailable;
 	}
 
 	/**
