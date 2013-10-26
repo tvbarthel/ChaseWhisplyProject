@@ -144,6 +144,69 @@ public class TargetableItem extends DisplayableItem {
 		}
 	}
 
+	public static int randomGhostTypeHard() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 10) {
+			//10%
+			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 20) {
+			//10%
+			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+		} else if (randomDraw < 50) {
+			//30%
+			return DisplayableItemFactory.TYPE_BLOND_GHOST;
+		} else if (randomDraw < 80) {
+			//30%
+			return DisplayableItemFactory.TYPE_BABY_GHOST;
+		} else if (randomDraw < 99) {
+			//19%
+			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
+		} else {
+			//1%
+			return DisplayableItemFactory.TYPE_KING_GHOST;
+		}
+	}
+
+	public static int randomGhostTypeHarder() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 10) {
+			//10%
+			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 20) {
+			//10%
+			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+		} else if (randomDraw < 45) {
+			//25%
+			return DisplayableItemFactory.TYPE_BLOND_GHOST;
+		} else if (randomDraw < 70) {
+			//25%
+			return DisplayableItemFactory.TYPE_BABY_GHOST;
+		} else if (randomDraw < 99) {
+			//29%
+			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
+		} else {
+			//1%
+			return DisplayableItemFactory.TYPE_KING_GHOST;
+		}
+	}
+
+	public static int randomGhostTypeHardest() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 19) {
+			//19%
+			return DisplayableItemFactory.TYPE_BLOND_GHOST;
+		} else if (randomDraw < 59) {
+			//40%
+			return DisplayableItemFactory.TYPE_BABY_GHOST;
+		} else if (randomDraw < 99) {
+			//40%
+			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
+		} else {
+			//1%
+			return DisplayableItemFactory.TYPE_KING_GHOST;
+		}
+	}
+
 	/**
 	 * spawn rules for all mobs exept king
 	 *

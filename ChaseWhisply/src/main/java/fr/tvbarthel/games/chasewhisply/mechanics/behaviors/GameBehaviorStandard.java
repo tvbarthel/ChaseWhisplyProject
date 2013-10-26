@@ -109,7 +109,7 @@ public abstract class GameBehaviorStandard implements GameBehavior {
 					killTarget(currentTarget);
 				}
 			}
-		}else{
+		} else {
 			shotWithoutAmmo();
 		}
 		return fireResult;
@@ -157,9 +157,28 @@ public abstract class GameBehaviorStandard implements GameBehavior {
 	 * @param xRange x range for the spawn rules
 	 * @param yRange y range for the spawn rules
 	 */
-	protected void allSpawnBehavior(int xRange, int yRange) {
+	protected void spawnStandardBehavior(int xRange, int yRange) {
+		final int ghostType = TargetableItem.randomGhostType();
+		spawnGhost(ghostType, xRange, yRange);
+	}
+
+	protected void spawnHardBehavior(int xRange, int yRange) {
+		final int ghostType = TargetableItem.randomGhostTypeHard();
+		spawnGhost(ghostType, xRange, yRange);
+	}
+
+	protected void spawnHarderBehavior(int xRange, int yRange) {
+		final int ghostType = TargetableItem.randomGhostTypeHarder();
+		spawnGhost(ghostType, xRange, yRange);
+	}
+
+	protected void spawnHardestBehavior(int xRange, int yRange) {
+		final int ghostType = TargetableItem.randomGhostTypeHardest();
+		spawnGhost(ghostType, xRange, yRange);
+	}
+
+	private void spawnGhost(int ghostType, int xRange, int yRange) {
 		final float[] pos = mGameInformation.getCurrentPosition();
-		int ghostType = TargetableItem.randomGhostType();
 		mGameInformation.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(
 				ghostType,
 				(int) pos[0] - xRange,

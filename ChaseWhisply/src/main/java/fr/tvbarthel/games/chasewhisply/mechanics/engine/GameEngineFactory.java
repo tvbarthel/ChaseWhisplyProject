@@ -8,6 +8,7 @@ import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTutorial;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTwentyInARow;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationSurvival;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTutorial;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTwentyInARow;
@@ -220,7 +221,7 @@ public class GameEngineFactory {
 		final Weapon weapon = WeaponFactory.createBasicWeapon();
 
 		//Game Information
-		final GameInformationTime gameInformation = new GameInformationTime(gameMode,
+		final GameInformationSurvival gameInformation = new GameInformationSurvival(gameMode,
 				weapon, DEFAULT_STARTING_TIME);
 
 		return createSurvival(context, iGameEngine, gameInformation);
@@ -244,7 +245,7 @@ public class GameEngineFactory {
 						break;
 					case Routine.TYPE_SPAWNER:
 						final float[] cameraAngle = mGameView.getCameraAngleInDegree();
-						mGameBehavior.spawn((int)cameraAngle[0], (int)cameraAngle[1]);
+						mGameBehavior.spawn((int) cameraAngle[0], (int) cameraAngle[1]);
 						break;
 					case Routine.TYPE_TICKER:
 						mGameBehavior.tick((Long) obj);
@@ -294,7 +295,7 @@ public class GameEngineFactory {
 						break;
 					case Routine.TYPE_SPAWNER:
 						final float[] cameraAngle = mGameView.getCameraAngleInDegree();
-						mGameBehavior.spawn((int)cameraAngle[0], (int)cameraAngle[1]);
+						mGameBehavior.spawn((int) cameraAngle[0], (int) cameraAngle[1]);
 						break;
 					case Routine.TYPE_TICKER:
 						mGameBehavior.tick((Long) obj);
