@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nineoldandroids.animation.Animator;
@@ -25,21 +26,19 @@ import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.Routine;
-import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
+import fr.tvbarthel.games.chasewhisply.model.LevelInformation;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntryFactory;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
 
 public class GameScoreFragment extends Fragment implements View.OnClickListener {
 	public static final String FRAGMENT_TAG = "GameScoreFragment_TAG";
 	public static final String EXTRA_GAME_INFORMATION = "GameScoreFragment.Extra.GameInformation";
 	private static final String BUNDLE_IS_DISPLAY_DONE = GameScoreFragment.class.getName() + ".Bundle.isDisplayDone";
-	private static final String BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED =
-			GameScoreFragment.class.getName() + ".Bundle.currentNumberOfBulletsFired";
-	private static final String BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED =
-			GameScoreFragment.class.getName() + ".Bundle.currentNumberOfTargetsKilled";
-	private static final String BUNDLE_CURRENT_MAX_COMBO =
-			GameScoreFragment.class.getName() + ".Bundle.currentMaxCombo";
+	private static final String BUNDLE_HAS_LEVELED_UP = GameScoreFragment.class.getName() + ".Bundle.hasLeveledUp";
+	private static final String BUNDLE_HAS_INCREASED_RANK = GameScoreFragment.class.getName() + ".Bundle.hasIncreaseRank";
 	private static final String BUNDLE_CURRENT_FINAL_SCORE =
 			GameScoreFragment.class.getName() + ".Bundle.currentFinalScore";
 	private static final String BUNDLE_CURRENT_ACHIEVEMENT_CHECKED =
@@ -48,22 +47,22 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			GameScoreFragment.class.getName() + ".Bundle.playerProfileSaved";
 	private static final String BUNDLE_CURRENT_EXP_EARNED =
 			GameScoreFragment.class.getName() + ".Bundle.expEarned";
+	private static final String BUNDLE_CURRENT_EXP_BAR =
+			GameScoreFragment.class.getName() + ".Bundle.expBar";
+
 	private static final long CLICK_DELAY = 1400;
 	private static final long TICK_INTERVAL = 100;
 	private static final int NUMBER_OF_TICK = 30;
+
 	private Listener mListener = null;
 	private GameInformationStandard mGameInformation;
 	private Routine mRoutine;
-	private float mNumberOfBulletsFiredByTick;
-	private float mCurrentNumberOfBulletsFired;
-	private float mNumberOfTargetsKilledByTick;
-	private float mCurrentNumberOfTargetsKilled;
 	private float mCurrentExpEarned;
 	private float mExpEarnedByTick;
-	private float mComboByTick;
-	private float mCurrentMaxCombo;
 	private float mFinalScoreByTick;
 	private float mCurrentFinalScore;
+	private float mCurrentExpBar;
+	private float mExpBarByTick;
 	private float mCurrentTickNumber;
 	private boolean mIsDisplayDone = false;
 	private boolean mAchievementChecked = false;
@@ -75,15 +74,18 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	private long mRetrievedExpEarned;
 	private long mRetrievedCombo;
 	private long mRetrievedScore;
+	private long mRetrievedExpBar;
 	//UI
-	private TextView mNumberOfBulletsFiredTextView;
-	private TextView mNumberOfTargetsKilledTextView;
-	private TextView mMaxComboTextView;
-	private TextView mFinalScoreTextView;
+	private TextView mFinalScoreTopTextView;
+	private TextView mFinalScoreBottomTextView;
 	private TextView mExpEarnedTextView;
 	private Button mSkipButton;
 	private View mSignInView;
+	private ProgressBar mExpbar;
 	private long mAttachTime;
+	//Congratz card
+	private boolean mHasLeveledUp;
+	private boolean mHasIncreaseRank;
 
 	public static GameScoreFragment newInstance(GameInformation gameInformation) {
 		final GameScoreFragment fragment = new GameScoreFragment();
@@ -136,20 +138,48 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 			mIsDisplayDone = savedInstanceState.getBoolean(BUNDLE_IS_DISPLAY_DONE, false);
 			mAchievementChecked = savedInstanceState.getBoolean(BUNDLE_CURRENT_ACHIEVEMENT_CHECKED, false);
 			mPlayerProfileSaved = savedInstanceState.getBoolean(BUNDLE_CURRENT_PLAYER_PROFILE_SAVED, false);
+			mHasIncreaseRank = savedInstanceState.getBoolean(BUNDLE_HAS_INCREASED_RANK, false);
+			mHasLeveledUp = savedInstanceState.getBoolean(BUNDLE_HAS_LEVELED_UP, false);
 		}
 
 		if (getArguments().containsKey(EXTRA_GAME_INFORMATION)) {
 			mGameInformation = getArguments().getParcelable(EXTRA_GAME_INFORMATION);
 			retrieveGameDetails(mGameInformation);
+
+			//set info to details card
+			((TextView) v.findViewById(R.id.numberOfTargetsKilled)).setText(String.valueOf(mRetrievedTargetKilled));
+			((TextView) v.findViewById(R.id.numberOfBulletsFired)).setText(String.valueOf(mRetrievedBulletFired));
+			((TextView) v.findViewById(R.id.maxCombo)).setText(String.valueOf(mRetrievedCombo));
+			((TextView) v.findViewById(R.id.expEarned)).setText(String.valueOf(mRetrievedExpEarned));
 		}
 
-		mNumberOfTargetsKilledTextView = (TextView) v.findViewById(R.id.numberOfTargetsKilled);
-		mNumberOfBulletsFiredTextView = (TextView) v.findViewById(R.id.numberOfBulletsFired);
-		mMaxComboTextView = (TextView) v.findViewById(R.id.maxCombo);
-		mFinalScoreTextView = (TextView) v.findViewById(R.id.finalScore);
+		//update playerProfile with value of this game
+		updatePlayerProfile();
+
+		//populate the view
+		final LevelInformation levelInformation = mPlayerProfile.getLevelInformation();
+		((TextView) v.findViewById(R.id.result_level)).setText(String.format(getString(R.string.profile_level), levelInformation.getLevel()));
+		((TextView) v.findViewById(R.id.result_current_exp)).setText(String.format(getString(R.string.profile_exp), levelInformation.getExpProgress(), levelInformation.getExpNeededToLevelUp()));
+		mRetrievedExpBar = levelInformation.getProgressInPercent();
+
+		//congratz card ?
+		final View congratzCard = v.findViewById(R.id.result_card_congratz);
+		final TextView congratsText = (TextView) v.findViewById(R.id.result_congratz_message);
+		if (mHasLeveledUp) {
+			congratzCard.setVisibility(View.VISIBLE);
+			congratsText.setText(getString(R.string.score_congratz_level_up) + "\n");
+		}
+		if (mHasIncreaseRank) {
+			congratzCard.setVisibility(View.VISIBLE);
+			congratsText.setText(congratsText.getText() + getString(R.string.score_congratz_rank_up));
+		}
+
+		mFinalScoreTopTextView = (TextView) v.findViewById(R.id.result_score_top);
+		mFinalScoreBottomTextView = (TextView) v.findViewById(R.id.finalScore);
 		mSkipButton = (Button) v.findViewById(R.id.score_button_skip);
 		mSignInView = v.findViewById(R.id.sign_in_message);
-		mExpEarnedTextView = (TextView) v.findViewById(R.id.expEarned);
+		mExpEarnedTextView = (TextView) v.findViewById(R.id.result_earned_exp);
+		mExpbar = (ProgressBar) v.findViewById(R.id.result_level_progess_bar);
 
 		HashMap<Integer, Integer> loots = mGameInformation.getLoot();
 		if (loots.size() != 0) {
@@ -185,7 +215,6 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		}
 
 
-		updatePlayerProfile();
 		return v;
 	}
 
@@ -240,13 +269,12 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean(BUNDLE_IS_DISPLAY_DONE, mIsDisplayDone);
-		outState.putFloat(BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED, mCurrentNumberOfBulletsFired);
-		outState.putFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED, mCurrentNumberOfTargetsKilled);
-		outState.putFloat(BUNDLE_CURRENT_MAX_COMBO, mCurrentMaxCombo);
 		outState.putFloat(BUNDLE_CURRENT_FINAL_SCORE, mCurrentFinalScore);
 		outState.putBoolean(BUNDLE_CURRENT_ACHIEVEMENT_CHECKED, mAchievementChecked);
 		outState.putBoolean(BUNDLE_CURRENT_PLAYER_PROFILE_SAVED, mPlayerProfileSaved);
 		outState.putFloat(BUNDLE_CURRENT_EXP_EARNED, mCurrentExpEarned);
+		outState.putBoolean(BUNDLE_HAS_LEVELED_UP, mHasLeveledUp);
+		outState.putBoolean(BUNDLE_HAS_INCREASED_RANK, mHasIncreaseRank);
 	}
 
 	public void notifySignedStateChanged(boolean signedIn) {
@@ -278,29 +306,21 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 	private void initCurrentScoreDisplayed(Bundle savedBundle) {
 		if (savedBundle != null) {
-			mCurrentNumberOfBulletsFired = savedBundle.getFloat(BUNDLE_CURRENT_NUMBER_OF_BULLETS_FIRED);
-			mCurrentNumberOfTargetsKilled = savedBundle.getFloat(BUNDLE_CURRENT_NUMBER_OF_TARGETS_KILLED);
-			mCurrentMaxCombo = savedBundle.getFloat(BUNDLE_CURRENT_MAX_COMBO);
 			mCurrentFinalScore = savedBundle.getFloat(BUNDLE_CURRENT_FINAL_SCORE);
 			mCurrentExpEarned = savedBundle.getFloat(BUNDLE_CURRENT_EXP_EARNED);
+			mCurrentExpEarned = savedBundle.getFloat(BUNDLE_CURRENT_EXP_BAR);
 		} else {
-			mCurrentNumberOfBulletsFired = 0;
-			mCurrentNumberOfTargetsKilled = 0;
-			mCurrentMaxCombo = 0;
 			mCurrentFinalScore = 0;
 			mCurrentExpEarned = 0;
+			mCurrentExpBar = 0;
 		}
 	}
 
 	private void initScoreByTick() {
 		if (mGameInformation != null) {
-			mNumberOfBulletsFiredByTick =
-					(float) (mRetrievedBulletFired - mCurrentNumberOfBulletsFired) / NUMBER_OF_TICK;
-			mNumberOfTargetsKilledByTick =
-					(float) (mRetrievedTargetKilled - mCurrentNumberOfTargetsKilled) / NUMBER_OF_TICK;
-			mComboByTick = (float) (mRetrievedCombo - mCurrentMaxCombo) / NUMBER_OF_TICK;
 			mFinalScoreByTick = (float) (mRetrievedScore - mCurrentFinalScore) / NUMBER_OF_TICK;
 			mExpEarnedByTick = (float) (mRetrievedExpEarned - mCurrentExpEarned) / NUMBER_OF_TICK;
+			mExpBarByTick = (float) (mRetrievedExpBar - mCurrentExpBar) / NUMBER_OF_TICK;
 		}
 	}
 
@@ -312,29 +332,20 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 	private void incrementCurrentScoreDisplayed() {
 		mCurrentTickNumber++;
-		mCurrentNumberOfBulletsFired += mNumberOfBulletsFiredByTick;
-		mCurrentNumberOfTargetsKilled += mNumberOfTargetsKilledByTick;
-		mCurrentMaxCombo += mComboByTick;
 		mCurrentFinalScore += mFinalScoreByTick;
 		mCurrentExpEarned += mExpEarnedByTick;
+		mCurrentExpBar += mExpBarByTick;
 
 		displayDetails(
-				(long) mCurrentNumberOfBulletsFired,
-				(long) mCurrentNumberOfTargetsKilled,
-				(long) mCurrentMaxCombo,
 				(long) mCurrentFinalScore,
-				(long) mCurrentExpEarned);
+				(long) mCurrentExpEarned,
+				(long) mCurrentExpBar);
 	}
 
 	private void finalizeScoreDisplayed() {
 		mRoutine.stopRoutine();
 
-		displayDetails(
-				mRetrievedBulletFired,
-				mRetrievedTargetKilled,
-				mRetrievedCombo,
-				mRetrievedScore,
-				mRetrievedExpEarned);
+		displayDetails(mRetrievedScore, mRetrievedExpEarned, mRetrievedExpBar);
 
 		if (mIsDisplayDone) {
 			mSkipButton.setVisibility(View.GONE);
@@ -345,35 +356,30 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 	}
 
-	private void displayDetails(long bulletFired, long fragNumber, long maxCombo, long score, long expEarned) {
-
-		mNumberOfBulletsFiredTextView.setText(String.valueOf(bulletFired));
-		mNumberOfTargetsKilledTextView.setText(String.valueOf(fragNumber));
-		mMaxComboTextView.setText(String.valueOf(maxCombo));
-		mExpEarnedTextView.setText(String.valueOf(expEarned));
-
+	private void displayDetails(long score, long expEarned, long progressBar) {
+		mExpEarnedTextView.setText(String.format(getString(R.string.score_added_exp), expEarned));
+		mExpbar.setProgress((int) progressBar);
 		//TODO create an abstract method displaysGamesDetails and implement a specific behavior for each mode
 		switch (mGameInformation.getGameMode().getType()) {
 
 			case GameModeFactory.GAME_TYPE_SURVIVAL:
 			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
 			case GameModeFactory.GAME_TYPE_TUTORIAL:
-				mFinalScoreTextView.setText(String.valueOf(score));
+				mFinalScoreTopTextView.setText(String.valueOf(score));
+				mFinalScoreBottomTextView.setText(String.valueOf(score));
 				break;
 			case GameModeFactory.GAME_TYPE_TWENTY_IN_A_ROW:
 			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
 				final Calendar cl = Calendar.getInstance();
 				cl.setTimeInMillis(score);
-				mFinalScoreTextView.setText(cl.get(Calendar.SECOND) + "' " + cl.get(Calendar.MILLISECOND) + "''");
+				mFinalScoreTopTextView.setText(cl.get(Calendar.SECOND) + "' " + cl.get(Calendar.MILLISECOND) + "''");
+				mFinalScoreBottomTextView.setText(cl.get(Calendar.SECOND) + "' " + cl.get(Calendar.MILLISECOND) + "''");
 				break;
 		}
 	}
 
 	private boolean hasSomethingToDisplay() {
 		return mGameInformation.getCurrentScore() != 0 ||
-				mGameInformation.getMaxCombo() != 0 ||
-				mGameInformation.getFragNumber() != 0 ||
-				mGameInformation.getBulletsFired() != 0 ||
 				mGameInformation.getExpEarned() != 0;
 
 	}
@@ -404,15 +410,27 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 	}
 
 	private void updatePlayerProfile() {
+		final GameMode gameMode = mGameInformation.getGameMode();
+		final int oldLevel = mPlayerProfile.getLevelInformation().getLevel();
+		final int oldRank = mPlayerProfile.getRankByGameMode(gameMode);
 		if (mGameInformation != null && !mPlayerProfileSaved) {
 			mPlayerProfile.increaseBulletsFired(mRetrievedBulletFired);
 			mPlayerProfile.increaseGamesPlayed(1);
 			mPlayerProfile.increaseTargetsKilled(mRetrievedTargetKilled);
 			mPlayerProfile.increaseBulletsMissed(mGameInformation.getBulletsMissed());
 			mPlayerProfile.increaseExperienceEarned(mRetrievedExpEarned);
+			mPlayerProfile.setRankByGameMode(gameMode, mGameInformation.getRank());
 			updateInventoryEntryQuantity();
 			mGameInformation.useBonus(mPlayerProfile);
 			mPlayerProfileSaved = mPlayerProfile.saveChanges();
+		}
+		//check if player has leveled up
+		if (oldLevel < mPlayerProfile.getLevelInformation().getLevel()) {
+			mHasLeveledUp = true;
+		}
+		//check if player has increased his rank
+		if (oldRank < mPlayerProfile.getRankByGameMode(gameMode)) {
+			mHasIncreaseRank = true;
 		}
 	}
 

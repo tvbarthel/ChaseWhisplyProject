@@ -12,16 +12,18 @@ import java.util.Map;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
+import fr.tvbarthel.games.chasewhisply.ui.InventoryCraftListener;
 import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.CraftNotEnoughResourcesDialogFragment;
 import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.CraftRequestDialogFragment;
-import fr.tvbarthel.games.chasewhisply.ui.InventoryCraftListener;
 import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.InventoryItemEntryDetailDialogFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.BestiaryFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeDetailsFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.InventoryFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.ProfileFragment;
 
 public class ProfileActivity extends FragmentActivity implements ProfileFragment.Listener, InventoryFragment.Listener,
-		CraftRequestDialogFragment.Listener, InventoryCraftListener {
+		CraftRequestDialogFragment.Listener, InventoryCraftListener, GameModeDetailsFragment.Listener {
 
 	private Toast mTextToast;
 	private PlayerProfile mPlayerProfile;
@@ -60,6 +62,12 @@ public class ProfileActivity extends FragmentActivity implements ProfileFragment
 	public void onInventoryRequested() {
 		getSupportFragmentManager().beginTransaction().replace(R.id.profile_fragment_container,
 				new InventoryFragment(), InventoryFragment.TAG).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+	}
+
+	@Override
+	public void onMissionRequested() {
+		getSupportFragmentManager().beginTransaction().replace(R.id.profile_fragment_container,
+				new GameModeDetailsFragment(), GameModeDetailsFragment.TAG).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 
 	/**
@@ -120,7 +128,13 @@ public class ProfileActivity extends FragmentActivity implements ProfileFragment
 		if (areChangesSaved) {
 			inventoryItemEntry.setQuantityAvailable(newQuantity);
 			if (inventoryFragment != null) inventoryFragment.loadInformation();
-			if (inventoryDialogFragment != null) inventoryDialogFragment.udpateInventoryItemEntry(inventoryItemEntry);
+			if (inventoryDialogFragment != null)
+				inventoryDialogFragment.udpateInventoryItemEntry(inventoryItemEntry);
 		}
+	}
+
+	@Override
+	public void onGameModeDetailsRequest(GameMode gameMode) {
+		//TODO show gameMode details
 	}
 }

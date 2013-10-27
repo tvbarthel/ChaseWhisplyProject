@@ -4,6 +4,8 @@ package fr.tvbarthel.games.chasewhisply.model;
 import android.content.SharedPreferences;
 
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
 
 public class PlayerProfile {
 	public static final String SHARED_PREFERENCES_NAME = "PlayerProfile";
@@ -21,6 +23,11 @@ public class PlayerProfile {
 	private static final String KEY_ITEM_QUANTITY_ONE_SHOT_BULLET = "keyItemQuantityOneShotBullet";
 	private static final String KEY_ITEM_QUANTITY_GHOST_TEAR = "keyItemQuantityGhostTear";
 	private static final String KEY_ITEM_QUANTITY_SPEED_POTION = "keyItemQuantitySpeedPotion";
+	private static final String KEY_RANK_SPRINT = "keyRankSprint";
+	private static final String KEY_RANK_MARATHON = "keyRankMarathon";
+	private static final String KEY_RANK_SURVIVAL = "keyRankSurvival";
+	private static final String KEY_RANK_DEATH_TO_THE_KING = "keyRankDeathToTheKing";
+
 	private SharedPreferences mSharedPreferences;
 	private SharedPreferences.Editor mEditor;
 
@@ -264,6 +271,63 @@ public class PlayerProfile {
 		} while (experienceEarned > nextStep);
 
 		return new LevelInformation(level, experienceEarned, currentStep, nextStep);
+	}
+
+	public int getRankByGameMode(GameMode g) {
+		final int type = g.getType();
+		final int level = g.getLevel();
+		int rank;
+		switch (type) {
+			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
+				rank = mSharedPreferences.getInt(KEY_RANK_DEATH_TO_THE_KING, 0);
+				break;
+			case GameModeFactory.GAME_TYPE_SURVIVAL:
+				rank = mSharedPreferences.getInt(KEY_RANK_SURVIVAL, 0);
+				break;
+			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+				if (level == 1) {
+					rank = mSharedPreferences.getInt(KEY_RANK_SPRINT, 0);
+				} else if (level == 3) {
+					rank = mSharedPreferences.getInt(KEY_RANK_MARATHON, 0);
+				} else {
+					rank = 0;
+				}
+				break;
+			default:
+				rank = 0;
+				break;
+		}
+		return rank;
+	}
+
+	public void setRankByGameMode(GameMode g, int rank) {
+		final int type = g.getType();
+		final int level = g.getLevel();
+		switch (type) {
+			case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
+				if (rank > mSharedPreferences.getInt(KEY_RANK_DEATH_TO_THE_KING, 0)) {
+					mEditor.putInt(KEY_RANK_DEATH_TO_THE_KING, rank);
+				}
+				break;
+			case GameModeFactory.GAME_TYPE_SURVIVAL:
+				if (rank > mSharedPreferences.getInt(KEY_RANK_SURVIVAL, 0)) {
+					mEditor.putInt(KEY_RANK_SURVIVAL, rank);
+				}
+				break;
+			case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+				if (level == 1) {
+					if (rank > mSharedPreferences.getInt(KEY_RANK_SPRINT, 0)) {
+						mEditor.putInt(KEY_RANK_SPRINT, rank);
+					}
+				} else if (level == 3) {
+					if (rank > mSharedPreferences.getInt(KEY_RANK_MARATHON, 0)) {
+						mEditor.putInt(KEY_RANK_MARATHON, rank);
+					}
+				}
+				break;
+			default:
+				break;
+		}
 	}
 
 }

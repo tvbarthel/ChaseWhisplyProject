@@ -26,6 +26,36 @@
             android:textIsSelectable="false"
             android:textSize="36sp"/>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_shadow_base"
+            android:padding="@dimen/default_padding"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
+            android:id="@+id/result_card_congratz"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/rsult_title_drop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="@string/score_title_congratz_card"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/holo_dark_green"
+                android:textIsSelectable="false"
+                android:textSize="@dimen/home_text_size"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/text_view_grey"
+                android:id="@+id/result_congratz_message"/>
+
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,36 +178,6 @@
                 android:progress="30"/>
 
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/card_shadow_base"
-            android:padding="@dimen/default_padding"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/default_vertical_margin"
-            android:id="@+id/result_card_congratz">
-
-            <TextView
-                android:id="@+id/rsult_title_drop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:text="@string/score_title_congratz_card"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/holo_dark_green"
-                android:textIsSelectable="false"
-                android:textSize="@dimen/home_text_size"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/text_view_grey"
-                android:text="@string/score_congratz_level_up"
-                android:id="@+id/result_congratz_message"/>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
