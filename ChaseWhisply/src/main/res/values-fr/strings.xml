@@ -76,12 +76,12 @@
     </string>
     <string name="score_loot_title">Durant la chasse vous avez trouvé</string>
     <string name="score_loot_default">rien du tout.</string>
-    <string name="score_title_fragment">Partie terminée !</string>
+    <string name="score_title_fragment">Partie terminée</string>
     <string name="score_title_grade">Grade :</string>
     <string name="score_title_score">Score :</string>
     <string name="score_title_details_card">Détails </string>
-    <string name="score_congratz_level_up">Vous venez de gagner un niveau !</string>
-    <string name="score_congratz_rank_up">Vous venez d\'améliorer votre grade !</string>
+    <string name="score_congratz_level_up">Vous venez de gagner un niveau.</string>
+    <string name="score_congratz_rank_up">Vous venez d\'améliorer votre grade.</string>
     <string name="score_title_congratz_card">Félicitations !</string>
 
     <!-- About Fragment -->

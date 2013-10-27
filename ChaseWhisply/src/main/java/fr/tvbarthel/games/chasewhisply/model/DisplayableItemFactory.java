@@ -47,7 +47,7 @@ public class DisplayableItemFactory {
 	public final static int EXP_POINT_BABY_GHOST = 4;
 	public final static int EXP_POINT_GHOST_WITH_HELMET = 10;
 	public final static int EXP_POINT_HIDDEN_GHOST = 5;
-	public final static int EXP_POINT_KING_GHOST = 20;
+	public final static int EXP_POINT_KING_GHOST = 100;
 	public final static int EXP_POINT_BLOND_GHOST = 4;
 
 
