@@ -76,8 +76,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 				mListener.onInventoryRequested();
 				break;
 			case R.id.profile_weapons:
-			case R.id.profile_missions:
 				mListener.onNotAvailableFeatureRequested();
+				break;
+			case R.id.profile_missions:
+				mListener.onMissionRequested();
 				break;
 		}
 	}
@@ -88,5 +90,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 		public void onBestiaryRequested();
 
 		public void onInventoryRequested();
+
+		public void onMissionRequested();
 	}
 }
