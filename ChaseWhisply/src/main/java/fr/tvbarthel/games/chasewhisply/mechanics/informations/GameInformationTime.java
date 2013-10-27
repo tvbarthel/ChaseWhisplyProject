@@ -4,7 +4,7 @@ package fr.tvbarthel.games.chasewhisply.mechanics.informations;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 
 public class GameInformationTime extends GameInformationStandard {

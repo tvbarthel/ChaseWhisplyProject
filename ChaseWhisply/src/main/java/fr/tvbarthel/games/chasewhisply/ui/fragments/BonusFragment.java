@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
 import fr.tvbarthel.games.chasewhisply.model.bonus.BonusEntry;

@@ -9,7 +9,7 @@ import java.util.List;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.score.ScoreInformation;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItem;
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 

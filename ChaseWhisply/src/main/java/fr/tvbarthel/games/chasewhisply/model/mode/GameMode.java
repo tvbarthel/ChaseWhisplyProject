@@ -1,11 +1,13 @@
-package fr.tvbarthel.games.chasewhisply.model;
+package fr.tvbarthel.games.chasewhisply.model.mode;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
+import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
 
-public abstract class GameMode implements Parcelable {
+public class GameMode implements Parcelable {
 
 	private int mType;
 	private int mLevel;
@@ -35,6 +37,16 @@ public abstract class GameMode implements Parcelable {
 	protected GameMode(Parcel in) {
 		readFromParcel(in);
 	}
+
+	public static final Parcelable.Creator<GameMode> CREATOR = new Parcelable.Creator<GameMode>() {
+		public GameMode createFromParcel(Parcel in) {
+			return new GameMode(in);
+		}
+
+		public GameMode[] newArray(int size) {
+			return new GameMode[size];
+		}
+	};
 
 	@Override
 	public int describeContents() {
@@ -72,21 +84,6 @@ public abstract class GameMode implements Parcelable {
 		mRequiredMessage = in.readInt();
 		mBonusAvailable = in.readByte() == 1;
 	}
-
-	public static final Parcelable.Creator<GameMode> CREATOR = new Parcelable.Creator<GameMode>() {
-		public GameMode createFromParcel(Parcel in) {
-			return new GameMode(in) {
-				@Override
-				public boolean isAvailable(PlayerProfile p) {
-					return true;
-				}
-			};
-		}
-
-		public GameMode[] newArray(int size) {
-			return new GameMode[size];
-		}
-	};
 
 	public int getType() {
 		return mType;
@@ -197,13 +194,26 @@ public abstract class GameMode implements Parcelable {
 		return mBonusAvailable;
 	}
 
+
 	/**
 	 * define own rules for availability
 	 *
 	 * @param p player profile
 	 * @return true if available
 	 */
-	abstract public boolean isAvailable(PlayerProfile p);
+	public boolean isAvailable(PlayerProfile p) {
+		//always available
+		return true;
+	}
 
-
+	/**
+	 * define own rules for grade
+	 *
+	 * @param gameInformation
+	 * @return
+	 */
+	public int getRank(GameInformation gameInformation) {
+		//always get the rank deserter
+		return 0;
+	}
 }

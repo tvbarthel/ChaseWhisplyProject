@@ -18,7 +18,7 @@ import com.google.android.gms.games.GamesClient;
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;

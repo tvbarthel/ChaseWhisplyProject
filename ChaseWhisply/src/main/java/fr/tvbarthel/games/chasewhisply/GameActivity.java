@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngineFactory;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 
 public class GameActivity extends ARActivity implements GameEngine.IGameEngine {

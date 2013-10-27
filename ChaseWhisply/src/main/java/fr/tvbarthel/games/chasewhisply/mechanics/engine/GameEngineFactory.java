@@ -15,8 +15,8 @@ import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTwe
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.Routine;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.RoutineTicker;
 import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
-import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.model.weapon.WeaponFactory;

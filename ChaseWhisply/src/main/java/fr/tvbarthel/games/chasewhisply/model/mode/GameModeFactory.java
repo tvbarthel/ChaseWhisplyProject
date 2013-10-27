@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.model;
+package fr.tvbarthel.games.chasewhisply.model.mode;
 
 
 import fr.tvbarthel.games.chasewhisply.R;
@@ -12,9 +12,16 @@ public class GameModeFactory {
 	public static final int GAME_TYPE_DEATH_TO_THE_KING = 0x00000004;
 	public static final int GAME_TYPE_OVERALL_RANKING = 0x00000005;
 	public static final int GAME_TYPE_TWENTY_IN_A_ROW = 0x00000006;
+
 	public static final int GAME_REQUIRED_LEVEL_SURVIVAL_MODE = 5;
 	public static final int GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING = 10;
 	public static final int GAME_REQUIRED_LEVEL_TWENTY_IN_A_ROW = 15;
+
+	public static final int GAME_RANK_DESERTER = 0x00000000;
+	public static final int GAME_RANK_SOLDIER = 0x00000001;
+	public static final int GAME_RANK_CORPORAL = 0x00000002;
+	public static final int GAME_RANK_SERGEANT = 0x00000003;
+	public static final int GAME_RANK_ADMIRAL = 0x00000004;
 
 	/**
 	 * game mode for learn how to play.
@@ -23,13 +30,7 @@ public class GameModeFactory {
 	 * @return
 	 */
 	public static GameMode createTutorialGame() {
-		final GameMode g = new GameMode() {
-			@Override
-			public boolean isAvailable(PlayerProfile p) {
-				//always available
-				return true;
-			}
-		};
+		final GameMode g = new GameModeTutorial();
 		g.setType(GAME_TYPE_TUTORIAL);
 		g.setRules(R.string.game_mode_tutorial);
 		g.setImage(R.drawable.ic_icon_tutorial);
@@ -38,13 +39,7 @@ public class GameModeFactory {
 	}
 
 	public static GameMode createRemainingTimeGame(int level) {
-		final GameMode g = new GameMode() {
-			@Override
-			public boolean isAvailable(PlayerProfile p) {
-				//always available
-				return true;
-			}
-		};
+		final GameMode g = new GameMode();
 		g.setType(GAME_TYPE_REMAINING_TIME);
 		g.setLevel(level);
 		g.setBonusAvailable(true);
@@ -77,7 +72,7 @@ public class GameModeFactory {
 		return g;
 	}
 
-	public static GameMode createLimitedTargetsGame(int level) {
+/*	public static GameMode createLimitedTargetsGame(int level) {
 		final GameMode g = new GameMode() {
 			@Override
 			public boolean isAvailable(PlayerProfile p) {
@@ -90,16 +85,10 @@ public class GameModeFactory {
 		g.setRules(R.string.game_mode_target_limited);
 		g.setImage(R.drawable.ghost_targeted);
 		return g;
-	}
+	}*/
 
 	public static GameMode createSurvivalGame(int level) {
-		final GameMode g = new GameMode() {
-			@Override
-			public boolean isAvailable(PlayerProfile p) {
-				//only available if player level > required level
-				return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
-			}
-		};
+		final GameMode g = new GameModeSurvival();
 		g.setType(GAME_TYPE_SURVIVAL);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_survival);
@@ -113,13 +102,7 @@ public class GameModeFactory {
 	}
 
 	public static GameMode createKillTheKingGame(int level) {
-		final GameMode g = new GameMode() {
-			@Override
-			public boolean isAvailable(PlayerProfile p) {
-				//only available if player level > required level
-				return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
-			}
-		};
+		final GameMode g = new GameModeDeathToTheKing();
 		g.setType(GAME_TYPE_DEATH_TO_THE_KING);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_kill_the_king);
@@ -133,13 +116,7 @@ public class GameModeFactory {
 	}
 
 	public static GameMode createTwentyInARow(int level) {
-		final GameMode g = new GameMode() {
-			@Override
-			public boolean isAvailable(PlayerProfile p) {
-				//only available if player level > required level
-				return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
-			}
-		};
+		final GameMode g = new GameMode();
 		g.setType(GAME_TYPE_TWENTY_IN_A_ROW);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_twenty_in_a_row);
@@ -153,13 +130,7 @@ public class GameModeFactory {
 	}
 
 	public static GameMode createOverallRanking() {
-		final GameMode g = new GameMode() {
-			@Override
-			public boolean isAvailable(PlayerProfile p) {
-				//always available
-				return true;
-			}
-		};
+		final GameMode g = new GameMode();
 		g.setType(GAME_TYPE_OVERALL_RANKING);
 		g.setImage(R.drawable.ic_icon_overall_ranking);
 		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);

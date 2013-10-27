@@ -330,4 +330,13 @@
     <string name="tuto_step_congratulation_2">Tutoriel terminé. Vous êtes maintenant fin prêt pour l\'aventure !</string>
     <string name="tuto_step_end">Tutoriel terminé !</string>
 
+    <!-- Military ranks -->
+    <string-array name="ranks_array_full">
+        <item>Déserteur</item>
+        <item>Soldat</item>
+        <item>Caporal</item>
+        <item>Sergent</item>
+        <item>Amiral</item>
+    </string-array>
+
 </resources>

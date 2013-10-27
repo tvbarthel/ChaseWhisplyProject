@@ -12,8 +12,8 @@ import android.widget.GridView;
 import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
-import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.ui.adapter.GameModeViewAdapter;
 import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;

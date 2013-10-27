@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.R;
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.ui.adapter.GameModeViewAdapter;
 
 public class GameModeView extends RelativeLayout {

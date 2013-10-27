@@ -329,4 +329,20 @@
     <string name="tuto_step_congratulation_2">Tutorial completed. You are now ready for adventure !</string>
     <string name="tuto_step_end">Tutorial completed!</string>
 
+    <!-- Military ranks -->
+    <string-array name="ranks_array_full">
+        <item>Deserter</item>
+        <item>Soldier</item>
+        <item>Corporal</item>
+        <item>Sergeant</item>
+        <item>Admiral</item>
+    </string-array>
+    <string-array name="ranks_array_letter">
+        <item>E</item>
+        <item>D</item>
+        <item>C</item>
+        <item>B</item>
+        <item>A</item>
+    </string-array>
+
 </resources>

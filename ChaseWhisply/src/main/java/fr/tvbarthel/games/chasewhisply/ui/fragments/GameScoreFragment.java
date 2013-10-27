@@ -3,8 +3,10 @@ package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +25,7 @@ import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.Routine;
-import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntryFactory;
@@ -118,6 +120,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		final Resources res = getResources();
 		View v = inflater.inflate(R.layout.fragment_score, container, false);
 		final int[] clickable = new int[]{
 				R.id.score_button_replay,
@@ -155,11 +158,32 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 				InventoryItemEntry inventoryItemEntry = InventoryItemEntryFactory.create(entry.getKey(), entry.getValue());
 				final long quantityDropped = inventoryItemEntry.getQuantityAvailable();
 				final int titleResourceId = inventoryItemEntry.getTitleResourceId();
-				stringLoot += String.valueOf(quantityDropped) + "x " + getResources().getQuantityString(titleResourceId, (int) quantityDropped) + "\n";
+				stringLoot += String.valueOf(quantityDropped) + "x " + res.getQuantityString(titleResourceId, (int) quantityDropped) + "\n";
 			}
 			stringLoot = stringLoot.substring(0, stringLoot.length() - 1);
 			((TextView) v.findViewById(R.id.score_loot_list)).setText(stringLoot);
 		}
+
+		//show the right rank
+		String[] ranks = res.getStringArray(R.array.ranks_array_full);
+		String[] grades = res.getStringArray(R.array.ranks_array_letter);
+		final int gameRank = mGameInformation.getRank();
+		Log.d("DEBUG", "rank = " + gameRank);
+		switch (gameRank) {
+			case GameModeFactory.GAME_RANK_DESERTER:
+			case GameModeFactory.GAME_RANK_SOLDIER:
+			case GameModeFactory.GAME_RANK_CORPORAL:
+			case GameModeFactory.GAME_RANK_SERGEANT:
+			case GameModeFactory.GAME_RANK_ADMIRAL:
+				((TextView) v.findViewById(R.id.result_rang)).setText(ranks[gameRank]);
+				((TextView) v.findViewById(R.id.result_grade)).setText(grades[gameRank]);
+				break;
+			default:
+				((TextView) v.findViewById(R.id.result_rang)).setText(ranks[0]);
+				((TextView) v.findViewById(R.id.result_grade)).setText(grades[0]);
+				break;
+		}
+
 
 		updatePlayerProfile();
 		return v;

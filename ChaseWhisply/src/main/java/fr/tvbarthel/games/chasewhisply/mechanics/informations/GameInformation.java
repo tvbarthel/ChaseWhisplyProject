@@ -3,7 +3,7 @@ package fr.tvbarthel.games.chasewhisply.mechanics.informations;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import fr.tvbarthel.games.chasewhisply.model.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.bonus.Bonus;
 import fr.tvbarthel.games.chasewhisply.model.bonus.BonusInventoryItemConsumer;
@@ -56,6 +56,15 @@ abstract public class GameInformation implements Parcelable {
 		if (currentBonus instanceof BonusInventoryItemConsumer) {
 			mGameMode.setBonus(((BonusInventoryItemConsumer) currentBonus).consume(playerProfile));
 		}
+	}
+
+	/**
+	 * retrieve grade for the current informations
+	 *
+	 * @return
+	 */
+	public int getRank() {
+		return mGameMode.getRank(this);
 	}
 
 }
