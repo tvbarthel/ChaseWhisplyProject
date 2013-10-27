@@ -1,9 +1,7 @@
 package fr.tvbarthel.games.chasewhisply.ui;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -17,14 +15,10 @@ import fr.tvbarthel.games.chasewhisply.R;
 
 public class AnimationLayer extends RelativeLayout {
 	private final Context mContext;
-	private TextView mTopTextView;
-	private RelativeLayout.LayoutParams mTopTextRelativeLayoutParams;
-	private boolean isTextChanging;
 
 	public AnimationLayer(Context context) {
 		super(context);
 		mContext = context;
-		isTextChanging = false;
 	}
 
 	public void drawDyingGhost(Drawable drawable, int score, int textSize, int posX, int posY) {
@@ -70,75 +64,47 @@ public class AnimationLayer extends RelativeLayout {
 	}
 
 
-	/**
-	 * use to display text information in top screen
-	 *
-	 * @param info
-	 * @param textSize
-	 * @param color
-	 * @param screenHeight
-	 * @param crossHairsHeight
-	 */
-	//TODO REWORK
-	public void setTopText(String info, int textSize, int color, int screenHeight, int crossHairsHeight) {
-		if (mTopTextView == null) {
-			//TextView never shown, need to instantiate it
-			mTopTextView = new TextView(getContext());
-			mTopTextView.setGravity(Gravity.CENTER_HORIZONTAL);
-			mTopTextView.setTypeface(null, Typeface.BOLD);
-			mTopTextView.setTextSize(textSize);
-			mTopTextRelativeLayoutParams = new RelativeLayout.LayoutParams(
-					ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-			mTopTextRelativeLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-			mTopTextView.setLayoutParams(mTopTextRelativeLayoutParams);
-			addView(mTopTextView);
-		}
-
-		if (!mTopTextView.getText().equals(info) && !isTextChanging) {
-			//TextView already displayed, replace text
-			Animation changeTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
-			AnimationTopTextChangeListener changeTextAnimationListener =
-					new AnimationTopTextChangeListener(info, textSize, color, screenHeight, crossHairsHeight);
-			changeTextAnimation.setAnimationListener(changeTextAnimationListener);
-			mTopTextView.startAnimation(changeTextAnimation);
-			isTextChanging = true;
-		}
-
-	}
-
-	/**
-	 * delete TextView shown at the top
-	 */
-	//TODO REWORK
-	public void hideTopText() {
-		if (mTopTextView != null && !mTopTextView.getText().equals("")) {
-			mTopTextView.setText("");
+	public void showTextView(TextView textView) {
+		final Context context = getContext();
+		if (context != null) {
+			final Animation oldAnimation = textView.getAnimation();
+			if (oldAnimation != null) oldAnimation.cancel();
+			final Animation fadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+			textView.startAnimation(fadeIn);
 		}
 	}
 
-	/**
-	 * display new text in the TextView
-	 *
-	 * @param info
-	 * @param textSize
-	 * @param color
-	 * @param crossHairHeight
-	 */
-	//TODO REWORK
-	private void showTopText(String info, int textSize, int color, int screenHeight, int crossHairHeight) {
-		mTopTextView.setTextSize(textSize);
-		mTopTextView.setText(info);
-		mTopTextView.setTextColor(getResources().getColor(color));
-		mTopTextRelativeLayoutParams.setMargins(0,
-				(int) (screenHeight / 2 - mTopTextView.getHeight() - crossHairHeight), 0, 0);
-		Animation showTextAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
-		mTopTextView.startAnimation(showTextAnimation);
+	public void changeTextView(TextView textView, int nextStringId) {
+		final Context context = getContext();
+		if (context != null) {
+			changeTextView(textView, context.getString(nextStringId));
+		}
 	}
+
+	public void changeTextView(TextView textView, String nextString) {
+		final Context context = getContext();
+		if (context != null) {
+			final Animation oldAnimation = textView.getAnimation();
+			if (oldAnimation != null) oldAnimation.cancel();
+			final Animation fadeOut = AnimationUtils.loadAnimation(context, R.anim.fade_out);
+			fadeOut.setAnimationListener(new FadeOutTextViewListener(textView, nextString));
+			textView.startAnimation(fadeOut);
+		}
+	}
+
+	public void hideTextView(TextView textView) {
+		final Context context = getContext();
+		if (context != null) {
+			final Animation fadeOut = AnimationUtils.loadAnimation(context, R.anim.fade_out);
+			fadeOut.setAnimationListener(new FadeOutTextViewListener(textView));
+			textView.startAnimation(fadeOut);
+		}
+	}
+
 
 	/**
 	 * Delete the view once the animation ends
 	 */
-	//TODO REWORK
 	private class AnimationListenerWithDeleter implements Animation.AnimationListener {
 
 		private View mViewToDelete;
@@ -168,25 +134,19 @@ public class AnimationLayer extends RelativeLayout {
 		}
 	}
 
-	/**
-	 * Wait for the end of hiding animation and then call showTopText
-	 */
-	//TODO REWORK
-	private class AnimationTopTextChangeListener implements Animation.AnimationListener {
 
-		private String mText;
-		private int mTextSize;
-		private int mColor;
-		private int mScreenHeight;
-		private int mCrossHaitHeight;
+	private class FadeOutTextViewListener implements Animation.AnimationListener {
+		private String mNextString;
+		private final TextView mTextView;
+
+		public FadeOutTextViewListener(TextView textView) {
+			mTextView = textView;
+		}
 
 
-		public AnimationTopTextChangeListener(String text, int textSize, int color, int screenHeight, int crossHairHeight) {
-			mText = text;
-			mTextSize = textSize;
-			mColor = color;
-			mScreenHeight = screenHeight;
-			mCrossHaitHeight = crossHairHeight;
+		public FadeOutTextViewListener(TextView textView, final String nextString) {
+			mNextString = nextString;
+			mTextView = textView;
 		}
 
 		@Override
@@ -198,8 +158,16 @@ public class AnimationLayer extends RelativeLayout {
 			post(new Runnable() {
 				@Override
 				public void run() {
-					showTopText(mText, mTextSize, mColor, mScreenHeight, mCrossHaitHeight);
-					isTextChanging = false;
+					final Context context = getContext();
+					if (mNextString != null && context != null) {
+						mTextView.setText(mNextString);
+						final Animation fadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+						if (fadeIn != null) {
+							mTextView.startAnimation(fadeIn);
+						}
+					} else {
+						mTextView.setVisibility(GONE);
+					}
 				}
 			});
 		}

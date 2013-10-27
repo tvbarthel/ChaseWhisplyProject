@@ -105,12 +105,12 @@ public class GameModeFactory {
 		final GameMode g = new GameModeDeathToTheKing();
 		g.setType(GAME_TYPE_DEATH_TO_THE_KING);
 		g.setLevel(level);
-		g.setRules(R.string.game_mode_kill_the_king);
+		g.setRules(R.string.game_mode_death_to_the_king);
 		g.setImage(R.drawable.ic_icon_death_to_the_king);
 		g.setLeaderboardStringId(R.string.leaderboard_death_to_the_king);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_death_to_the_king_description);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING);
-		g.setRequiredMessage(R.string.game_mode_kill_the_king_required_message);
+		g.setRequiredMessage(R.string.game_mode_death_to_the_king_required_message);
 		g.setBonusAvailable(false);
 		return g;
 	}

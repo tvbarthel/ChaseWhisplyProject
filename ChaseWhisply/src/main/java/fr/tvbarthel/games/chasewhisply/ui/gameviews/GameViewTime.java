@@ -27,7 +27,7 @@ public class GameViewTime extends GameViewStandard {
 	 */
 	protected void drawTimer(Canvas canvas) {
 		final long millis = mGameEngine.getCurrentTime();
-		final int seconds = (int) (millis / 1000) - 1;
+		final int seconds = (int) (millis / 1000);
 		final String remainingTime = String.format(mTimeString, seconds);
 		resetPainter();
 		useGreenPainter();

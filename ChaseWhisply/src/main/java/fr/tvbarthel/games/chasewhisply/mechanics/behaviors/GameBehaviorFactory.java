@@ -1,7 +1,5 @@
 package fr.tvbarthel.games.chasewhisply.mechanics.behaviors;
 
-import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
-import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.sound.GameSoundManager;
 
 public class GameBehaviorFactory {
@@ -21,24 +19,12 @@ public class GameBehaviorFactory {
 		return new GameBehaviorTutorial();
 	}
 
-	public static GameBehaviorTimeDecreasing createSurvival() {
+	public static GameBehaviorSurvival createSurvival() {
 		return new GameBehaviorSurvival();
 	}
 
-	public static GameBehaviorTimeIncreasing createDeathToTheKing() {
-		return new GameBehaviorTimeIncreasing() {
-			@Override
-			public void spawn(int xRange, int yRange) {
-			}
-
-			@Override
-			protected void killTarget(TargetableItem currentTarget) {
-				super.killTarget(currentTarget);
-				if (currentTarget.getType() == DisplayableItemFactory.TYPE_KING_GHOST) {
-					mIGameBehavior.stop();
-				}
-			}
-		};
+	public static GameBehaviorDeathToTheKing createDeathToTheKing() {
+		return new GameBehaviorDeathToTheKing();
 	}
 
 	public static GameBehaviorTwentyInARow createTwentyInARow() {
