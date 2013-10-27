@@ -30,4 +30,8 @@ public class GameBehaviorFactory {
 	public static GameBehaviorTwentyInARow createTwentyInARow() {
 		return new GameBehaviorTwentyInARow();
 	}
+
+	public static GameBehaviorMemorize createMemorize() {
+		return new GameBehaviorMemorize();
+	}
 }

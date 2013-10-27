@@ -12,7 +12,7 @@ public class GameBehaviorTwentyInARow extends GameBehaviorTimeIncreasing {
 	@Override
 	public void spawn(int xRange, int yRange) {
 		if (mGameInformation.getCurrentTargetsNumber() < GameBehaviorFactory.DEFAULT_MAX_TARGET) {
-			spawnStandardBehavior(xRange, yRange);
+			spawnStandardBehavior(xRange / 2 +  xRange / 10, yRange / 2 + yRange / 10);
 			mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_LAUGH_RANDOM);
 		}
 	}

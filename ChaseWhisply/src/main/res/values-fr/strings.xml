@@ -56,6 +56,10 @@
     <string name="game_mode_survival_required_message">Survie : Vous devez être level 5 pour accéder à ce mode de jeu.</string>
     <string name="game_mode_death_to_the_king">Mort au roi ! : trouvez et tuez le roi le plus vite possible.</string>
     <string name="game_mode_death_to_the_king_required_message">Mort au roi ! : Vous devez être level 10 pour accéder à ce mode de jeu.</string>
+    <string name="game_mode_twenty_in_a_row">20 à la suite : Tuez 20 fantômes à la suite le plus vite possible</string>
+    <string name="game_mode_twenty_in_a_row_required_message">20 à la suite : Vous devez être level 15 pour accéder à ce mode de jeu.</string>
+    <string name="game_mode_memorize">Wanted : mémorizez et tuez les fantômes dans le bon ordre.</string>
+    <string name="game_mode_memorize_required_message">Wanted : Vous devez être level 15 pour accéder à ce mode de jeu</string>
     <string name="game_mode_tutorial">Tutoriel : Apprennez à jouer.</string>
 
     <!-- Score Activity !-->
@@ -341,6 +345,10 @@
 
     <!-- Death To The King -->
     <string name="game_mode_death_to_the_king_instruction">Dès que vous êtes prêt, appuyez sur l\'écran pour invoquer le roi et ses acolytes !</string>
+
+    <!-- Memorize -->
+    <string name="game_mode_memorize_instruction">Mémorisez\n%1$s</string>
+    <string name="game_mode_memorize_wave">Vague %1$d</string>
 
 
 </resources>

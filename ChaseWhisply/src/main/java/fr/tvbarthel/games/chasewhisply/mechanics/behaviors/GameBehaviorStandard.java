@@ -177,7 +177,7 @@ public abstract class GameBehaviorStandard implements GameBehavior {
 		spawnGhost(ghostType, xRange, yRange);
 	}
 
-	private void spawnGhost(int ghostType, int xRange, int yRange) {
+	public void spawnGhost(int ghostType, int xRange, int yRange) {
 		final float[] pos = mGameInformation.getCurrentPosition();
 		mGameInformation.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(
 				ghostType,

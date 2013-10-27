@@ -12,9 +12,9 @@ import android.widget.GridView;
 import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.R;
+import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
-import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.ui.adapter.GameModeViewAdapter;
 import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;
 
@@ -87,6 +87,9 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
 
 		//Sixth mode: twenty in a row
 		mGameModeViewAdapter.add(GameModeFactory.createTwentyInARow(1));
+
+		//Seventh mode : memorize
+		mGameModeViewAdapter.add(GameModeFactory.createMemorize(1));
 
 		mGameModeViewAdapter.notifyDataSetChanged();
 	}
