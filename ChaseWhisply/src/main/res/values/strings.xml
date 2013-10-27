@@ -82,6 +82,15 @@
     </string>
     <string name="score_loot_title">During the hunt you found</string>
     <string name="score_loot_default">nothing.</string>
+    <string name="score_title_fragment">Game over !</string>
+    <string name="score_title_grade">Rank :</string>
+    <string name="score_title_score">Score :</string>
+    <string name="score_title_details_card">Details </string>
+    <string name="score_congratz_level_up">You have just leveled up !</string>
+    <string name="score_congratz_rank_up">You have just increased your rank !</string>
+    <string name="score_title_congratz_card">Congratulation !</string>
+    <string name="score_current_exp">Exp %1$d/%2$d</string>
+    <string name="score_added_exp">(+ %1$d)</string>
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>
