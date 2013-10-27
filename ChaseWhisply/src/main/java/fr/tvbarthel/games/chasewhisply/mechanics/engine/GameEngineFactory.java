@@ -3,23 +3,25 @@ package fr.tvbarthel.games.chasewhisply.mechanics.engine;
 
 import android.content.Context;
 
+import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorDeathToTheKing;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorFactory;
+import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorSurvival;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTutorial;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTwentyInARow;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationDeathToTheKing;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationSurvival;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTutorial;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTwentyInARow;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.Routine;
 import fr.tvbarthel.games.chasewhisply.mechanics.routine.RoutineTicker;
-import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.GameModeFactory;
-import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.model.weapon.WeaponFactory;
+import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewDeathToTheKing;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTime;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTimeDecreasing;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTutorial;
@@ -167,17 +169,9 @@ public class GameEngineFactory {
 		final Weapon weapon = WeaponFactory.createBasicWeapon();
 
 		//Game Information
-		final GameInformationTime gameInformation = new GameInformationTime(gameMode,
-				weapon, 1000);
-		for (int i = 0; i < 100; i++) {
-			if (i != 50) {
-				gameInformation.addTargetableItem(DisplayableItemFactory.createGhostWithRandomCoordinates(
-						TargetableItem.randomGhostTypeWithoutKing()));
-			} else {
-				gameInformation.addTargetableItem(DisplayableItemFactory.createKingGhostForDeathToTheKing());
-			}
+		final GameInformationDeathToTheKing gameInformation = new GameInformationDeathToTheKing(gameMode,
+				weapon, 0);
 
-		}
 
 		return createDeathToTheKing(context, iGameEngine, gameInformation);
 	}
@@ -186,30 +180,17 @@ public class GameEngineFactory {
 												   final GameEngine.IGameEngine iGameEngine,
 												   GameInformationTime gameInformation) {
 		//Game Behavior
-		final GameBehaviorTime gameBehavior = GameBehaviorFactory.createDeathToTheKing();
+		final GameBehaviorDeathToTheKing gameBehavior = GameBehaviorFactory.createDeathToTheKing();
 		gameBehavior.setGameInformation(gameInformation);
 
 		//Game Engine & Game Behavior
-		final GameEngineTime gameEngine = new GameEngineTime(context, iGameEngine, gameBehavior) {
-			@Override
-			public void onRun(int routineType, Object obj) {
-				switch (routineType) {
-					case Routine.TYPE_RELOADER:
-						mGameBehavior.reload();
-						break;
-					case Routine.TYPE_TICKER:
-						mGameBehavior.tick((Long) obj);
-						break;
-
-				}
-			}
-		};
+		final GameEngineDeathToTheKing gameEngine = new GameEngineDeathToTheKing(context, iGameEngine, gameBehavior);
 		gameEngine.addRoutine(new Routine(Routine.TYPE_RELOADER, gameInformation.getWeapon().getReloadingTime()));
 		gameEngine.addRoutine(new RoutineTicker(DEFAULT_TICKING_TIME));
 		gameBehavior.setInterface(gameEngine);
 
 		//Game View
-		final GameViewTime gameView = new GameViewTime(context, gameEngine);
+		final GameViewDeathToTheKing gameView = new GameViewDeathToTheKing(context, gameEngine);
 		gameEngine.setGameView(gameView);
 
 		return gameEngine;
@@ -232,7 +213,7 @@ public class GameEngineFactory {
 											 final GameEngine.IGameEngine iGameEngine,
 											 GameInformationTime gameInformation) {
 		//Game Behavior
-		final GameBehaviorTime gameBehavior = GameBehaviorFactory.createSurvival();
+		final GameBehaviorSurvival gameBehavior = GameBehaviorFactory.createSurvival();
 		gameBehavior.setGameInformation(gameInformation);
 
 		//Game Engine & Game Behavior

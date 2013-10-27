@@ -51,8 +51,8 @@
     <string name="game_mode_target_limited">Zabi všetkých duchov čo možeš!</string>
     <string name="game_mode_survival">Prežitie: za každé zabitie získaš čas.</string>
     <string name="game_mode_survival_required_message">Prežitie : Aby si mohol zvoliť tento typ hry, musíš prejť level 5.</string>
-    <string name="game_mode_kill_the_king">Smrť kráľa ! : Máš 5 sekúnd aby si zabil kráľa.</string>
-    <string name="game_mode_kill_the_king_required_message">Smrť kráľa  ! : Aby si mohol zvoliť tento typ hry, musíš prejť level 10.</string>
+    <string name="game_mode_death_to_the_king">Smrť kráľa ! : Máš 5 sekúnd aby si zabil kráľa.</string>
+    <string name="game_mode_death_to_the_king_required_message">Smrť kráľa  ! : Aby si mohol zvoliť tento typ hry, musíš prejť level 10.</string>
     <string name="game_mode_tutorial">Cvičenie : Nauč sa ako hrať.</string>
 
     <!-- Score Activity !-->

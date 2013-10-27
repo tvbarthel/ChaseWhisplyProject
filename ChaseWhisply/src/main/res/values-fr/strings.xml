@@ -54,8 +54,8 @@
     <string name="game_mode_target_limited">Tuez tous les fantômes le plus vite possible.</string>
     <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps supplémentaire.</string>
     <string name="game_mode_survival_required_message">Survie : Vous devez être level 5 pour accéder à ce mode de jeu.</string>
-    <string name="game_mode_kill_the_king">Mort au roi ! : Vous avez 5 secondes pour trouver et tuer le roi.</string>
-    <string name="game_mode_kill_the_king_required_message">Mort au roi ! : Vous devez être level 10 pour accéder à ce mode de jeu.</string>
+    <string name="game_mode_death_to_the_king">Mort au roi ! : trouvez et tuez le roi le plus vite possible.</string>
+    <string name="game_mode_death_to_the_king_required_message">Mort au roi ! : Vous devez être level 10 pour accéder à ce mode de jeu.</string>
     <string name="game_mode_tutorial">Tutoriel : Apprennez à jouer.</string>
 
     <!-- Score Activity !-->
@@ -322,5 +322,8 @@
     <string name="tuto_step_kill_2">…Tirez plusieurs fois !</string>
     <string name="tuto_step_congratulation_2">Tutoriel terminé. Vous êtes maintenant fin prêt pour l\'aventure !</string>
     <string name="tuto_step_end">Tutoriel terminé !</string>
+
+    <!-- Death To The King -->
+    <string name="game_mode_death_to_the_king_instruction">Dès que vous êtes prêt, appuyez sur l\'écran pour invoquer le roi et ses acolytes !</string>
 
 </resources>

@@ -97,6 +97,7 @@ public class AnimationLayer extends RelativeLayout {
 		if (context != null) {
 			final Animation fadeOut = AnimationUtils.loadAnimation(context, R.anim.fade_out);
 			fadeOut.setAnimationListener(new FadeOutTextViewListener(textView));
+			textView.startAnimation(fadeOut);
 		}
 	}
 
@@ -164,6 +165,8 @@ public class AnimationLayer extends RelativeLayout {
 						if (fadeIn != null) {
 							mTextView.startAnimation(fadeIn);
 						}
+					} else {
+						mTextView.setVisibility(GONE);
 					}
 				}
 			});
