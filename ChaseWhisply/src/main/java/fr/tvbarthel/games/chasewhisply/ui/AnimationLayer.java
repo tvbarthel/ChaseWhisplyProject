@@ -111,9 +111,8 @@ public class AnimationLayer extends RelativeLayout {
 	 */
 	//TODO REWORK
 	public void hideTopText() {
-		if (mTopTextView != null) {
-			removeView(mTopTextView);
-			mTopTextView = null;
+		if (mTopTextView != null && !mTopTextView.getText().equals("")) {
+			mTopTextView.setText("");
 		}
 	}
 

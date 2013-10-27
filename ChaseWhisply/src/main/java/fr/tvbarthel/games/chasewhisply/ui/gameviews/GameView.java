@@ -57,6 +57,10 @@ public abstract class GameView extends View {
 		mCameraAngleInDegreeVertical = vertical;
 	}
 
+	public float[] getCameraAngleInDegree() {
+		return new float[]{mCameraAngleInDegreeHorizontal, mCameraAngleInDegreeVertical};
+	}
+
 	private void initializeScreenDimension(int width, int height) {
 		mScreenWidth = width;
 		mScreenHeight = height;
