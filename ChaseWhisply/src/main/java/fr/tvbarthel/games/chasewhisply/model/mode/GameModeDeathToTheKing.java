@@ -10,10 +10,10 @@ import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 
 public class GameModeDeathToTheKing extends GameMode {
 
-	private static final int RANK_LIMIT_ADMIRAL = 4000;
-	private static final int RANK_LIMIT_SERGEANT = 6000;
-	private static final int RANK_LIMIT_CORPORAL = 8000;
-	private static final int RANK_LIMIT_SOLDIER = 10000;
+	private static final int RANK_LIMIT_ADMIRAL = 2000;
+	private static final int RANK_LIMIT_SERGEANT = 4000;
+	private static final int RANK_LIMIT_CORPORAL = 6000;
+	private static final int RANK_LIMIT_SOLDIER = 8000;
 
 	public GameModeDeathToTheKing() {
 		super();
