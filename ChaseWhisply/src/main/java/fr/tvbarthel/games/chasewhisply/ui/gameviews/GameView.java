@@ -181,10 +181,4 @@ public abstract class GameView extends View {
 	public void setAnimationLayer(AnimationLayer animationLayer) {
 		mAnimationLayer = animationLayer;
 	}
-
-	@Override
-	protected void onDetachedFromWindow() {
-		mAnimationLayer.hideTopText();
-		super.onDetachedFromWindow();
-	}
 }
