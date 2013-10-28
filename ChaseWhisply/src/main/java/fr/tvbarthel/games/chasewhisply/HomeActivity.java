@@ -271,6 +271,27 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			if (numberOfLoots >= ACHIEVEMENT_EXPERT_LOOTER_LIMIT) {
 				gamesClient.unlockAchievement(getString(R.string.achievement_expert_looter));
 			}
+
+			//check ranks achievement
+			if (playerProfile.getRankByGameMode(gameMode) == GameModeFactory.GAME_RANK_ADMIRAL) {
+				switch (gameMode.getType()) {
+					case GameModeFactory.GAME_TYPE_SURVIVAL:
+						break;
+					case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
+						break;
+					case GameModeFactory.GAME_TYPE_TWENTY_IN_A_ROW:
+						break;
+					case GameModeFactory.GAME_TYPE_MEMORIZE:
+						break;
+					case GameModeFactory.GAME_TYPE_REMAINING_TIME:
+						if (gameMode.getLevel() == 1) {
+							//sprint
+						} else if (gameMode.getLevel() == 3) {
+							//marathon
+						}
+						break;
+				}
+			}
 		}
 	}
 
