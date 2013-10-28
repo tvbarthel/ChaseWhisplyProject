@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="game_mode_memorize">Wanted : memorize and kill the ghosts in the correct order.</string>
+
+    <string name="inventory_item_ghost_tear_description">
+        A tiny drop of tear that probably came from a Mom ghost who died trying to save her children. You can feel a
+        strange power emanating from this small drop.
+    </string>
+
+    <string name="game_mode_memorize_instruction">Memorize\n%1$s</string>
+
+</resources>
