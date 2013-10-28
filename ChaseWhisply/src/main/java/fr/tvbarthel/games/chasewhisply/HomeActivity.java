@@ -18,19 +18,21 @@ import com.google.android.gms.games.GamesClient;
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
-import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
+import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.ui.customviews.GameModeView;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.AboutFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.BonusFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameHomeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeChooserFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameScoreFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener,
-		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener, BonusFragment.Listener {
+		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener, BonusFragment.Listener, GameModeFragment.Listener {
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
@@ -289,13 +291,13 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	@Override
 	public void onLevelChosen(GameModeView g) {
 		final GameMode gameMode = g.getModel();
-		if (gameMode.areBonusAvailable()) {
-			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
-					BonusFragment.newInstance(gameMode)).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-		} else {
+		if (gameMode.getType() == GameModeFactory.GAME_TYPE_TUTORIAL) {
+			//no details view for tutorial
 			onGameStartRequest(gameMode);
+		} else {
+			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+					GameModeFragment.newInstance(gameMode), GameModeFragment.TAG).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 		}
-
 	}
 
 	public void startNewGame(GameMode gameMode, int requestCode) {
@@ -331,6 +333,17 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	public void onGameStartRequest(GameMode gameMode) {
 		startNewGame(gameMode, REQUEST_GAME_ACTIVITY_FRESH_START);
 	}
+
+	@Override
+	public void onPlayRequest(GameMode gameMode) {
+		if (gameMode.areBonusAvailable()) {
+			getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
+					BonusFragment.newInstance(gameMode)).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+		} else {
+			onGameStartRequest(gameMode);
+		}
+	}
+
 
 	public static class SignOutConfirmDialogFragment extends DialogFragment {
 		public SignOutConfirmDialogFragment() {
