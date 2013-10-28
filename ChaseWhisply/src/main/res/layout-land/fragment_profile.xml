@@ -313,58 +313,13 @@
             android:layout_gravity="center">
 
             <RelativeLayout
-                android:id="@+id/profile_weapons"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/card_shadow"
-                android:clickable="true"
-                android:layout_weight="1"
-                android:layout_marginRight="@dimen/default_half_horizontal_margin">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView3"
-                    android:src="@drawable/ic_weapon"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:padding="2dp"
-                    android:layout_marginRight="@dimen/default_half_horizontal_margin"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@drawable/button_text_color"
-                    android:text="@string/profile_weapons_title"
-                    android:id="@+id/textView13"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/imageView3"
-                    android:layout_marginTop="@dimen/half_padding"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@drawable/button_text_color"
-                    android:text="@string/profile_weapons_description"
-                    android:id="@+id/textView14"
-                    android:layout_below="@+id/textView13"
-                    android:layout_toRightOf="@+id/imageView3"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignBottom="@+id/imageView3"
-                    android:paddingRight="@dimen/half_padding"
-                    android:paddingBottom="@dimen/half_padding"/>
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/profile_missions"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/card_shadow"
                 android:clickable="true"
                 android:layout_weight="1"
-                android:layout_marginLeft="@dimen/default_half_horizontal_margin">
+                android:layout_marginRight="@dimen/default_half_horizontal_margin">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -398,6 +353,51 @@
                     android:layout_toRightOf="@+id/imageView5"
                     android:layout_alignParentRight="true"
                     android:layout_alignBottom="@+id/imageView5"
+                    android:paddingRight="@dimen/half_padding"
+                    android:paddingBottom="@dimen/half_padding"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/profile_weapons"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_shadow"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/default_half_horizontal_margin">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/ic_weapon"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:padding="2dp"
+                    android:layout_marginRight="@dimen/default_half_horizontal_margin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/button_text_color"
+                    android:text="@string/profile_weapons_title"
+                    android:id="@+id/textView13"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imageView3"
+                    android:layout_marginTop="@dimen/half_padding"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@drawable/button_text_color"
+                    android:text="@string/profile_weapons_description"
+                    android:id="@+id/textView14"
+                    android:layout_below="@+id/textView13"
+                    android:layout_toRightOf="@+id/imageView3"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignBottom="@+id/imageView3"
                     android:paddingRight="@dimen/half_padding"
                     android:paddingBottom="@dimen/half_padding"/>
             </RelativeLayout>

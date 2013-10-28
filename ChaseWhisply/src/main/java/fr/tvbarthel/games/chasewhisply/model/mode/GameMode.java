@@ -1,5 +1,6 @@
 package fr.tvbarthel.games.chasewhisply.model.mode;
 
+import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -18,6 +19,8 @@ public class GameMode implements Parcelable {
 	private Bonus mBonus;
 	private int mRequiredCondition;
 	private int mRequiredMessage;
+	private int mTitle;
+	private int mLongDescription;
 	private boolean mBonusAvailable;
 
 	public GameMode() {
@@ -31,6 +34,8 @@ public class GameMode implements Parcelable {
 		mRequiredCondition = -1;
 		mRequiredMessage = -1;
 		mBonusAvailable = true;
+		mTitle = -1;
+		mLongDescription = -1;
 
 	}
 
@@ -65,6 +70,9 @@ public class GameMode implements Parcelable {
 		out.writeInt(mRequiredCondition);
 		out.writeInt(mRequiredMessage);
 		out.writeByte((byte) (mBonusAvailable ? 1 : 0));
+		out.writeInt(mTitle);
+		out.writeInt(mLongDescription);
+
 	}
 
 	/**
@@ -83,6 +91,8 @@ public class GameMode implements Parcelable {
 		mRequiredCondition = in.readInt();
 		mRequiredMessage = in.readInt();
 		mBonusAvailable = in.readByte() == 1;
+		mTitle = in.readInt();
+		mLongDescription = in.readInt();
 	}
 
 	public int getType() {
@@ -216,4 +226,46 @@ public class GameMode implements Parcelable {
 		//always get the rank deserter
 		return 0;
 	}
+
+	/**
+	 * retrieve gameMode title
+	 *
+	 * @return
+	 */
+	public int getTitle() {
+		return mTitle;
+	}
+
+	public void setTitle(int t) {
+		mTitle = t;
+	}
+
+	public String getAdmiralRankRule(Resources res) {
+		return "";
+	}
+
+	public String getSergeantRankRule(Resources res) {
+		return "";
+	}
+
+	public String getCorporalRankRule(Resources res) {
+		return "";
+	}
+
+	public String getSoldierRankRule(Resources res) {
+		return "";
+	}
+
+	public String getDeserterRankRule(Resources res) {
+		return "";
+	}
+
+	public void setLongDescription(int description) {
+		mLongDescription = description;
+	}
+
+	public int getLongDescription() {
+		return mLongDescription;
+	}
+
 }

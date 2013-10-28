@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/details_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
+            android:layout_marginTop="@dimen/default_vertical_margin"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey"
+            android:textIsSelectable="false"
+            android:textSize="36sp"/>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_shadow_base"
+            android:id="@+id/result_card_grade"
+            android:layout_marginBottom="@dimen/default_vertical_margin">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:src="@drawable/double_green_square"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@+id/details_progess_bar"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/holo_dark_green"
+                android:text="@string/score_title_grade"
+                android:id="@+id/details_rang_static"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/default_vertical_margin"
+                android:layout_marginLeft="@dimen/default_half_horizontal_margin"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/holo_dark_green"
+                android:id="@+id/details_rank"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/default_vertical_margin"
+                android:layout_marginLeft="@dimen/default_half_horizontal_margin"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin"
+                android:layout_toRightOf="@+id/details_rang_static"/>
+
+            <TextView
+                android:id="@+id/details_rank_letter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/holo_dark_red"
+                android:textStyle="bold"
+                android:textSize="50sp"
+                android:layout_marginRight="@dimen/default_vertical_margin"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text_view_grey"
+                android:id="@+id/details_description"
+                android:layout_below="@+id/details_rang_static"
+                android:layout_alignLeft="@+id/details_rang_static"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin"
+                android:layout_toLeftOf="@+id/imageView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/text_view_grey"
+                android:text="@string/progression"
+                android:id="@+id/details_progression_static"
+                android:layout_below="@+id/details_description"
+                android:layout_alignLeft="@+id/details_description"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/holo_dark_green"
+                android:id="@+id/details_progression"
+                android:layout_below="@+id/details_description"
+                android:layout_toRightOf="@+id/details_progression_static"
+                android:layout_marginLeft="@dimen/default_half_horizontal_margin"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/details_progression_static"
+                android:layout_alignLeft="@+id/details_progression_static"
+                android:id="@+id/details_progess_bar"
+                android:paddingBottom="@dimen/half_padding"
+                android:paddingTop="@dimen/half_padding"
+                android:layout_toLeftOf="@+id/imageView"
+                android:progress="30"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
+            android:layout_marginTop="@dimen/default_vertical_margin"
+            android:gravity="center"
+            android:text="@string/military_ranks"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey"
+            android:textIsSelectable="false"
+            android:textSize="36sp"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_shadow_base"
+            android:layout_marginBottom="@dimen/default_half_vertical_margin">
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_shadow_base"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/holo_dark_green"
+                    android:text="@string/admiral"
+                    android:layout_gravity="left"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/text_view_grey"
+                    android:layout_gravity="right"
+                    android:id="@+id/admiral_description"
+                    android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_shadow_base"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/holo_dark_green"
+                    android:text="@string/sergeant"
+                    android:layout_gravity="left"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_gravity="right"
+                    android:textColor="@color/text_view_grey"
+                    android:id="@+id/sergeant_description"
+                    android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_shadow_base"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/holo_dark_green"
+                    android:text="@string/corporal"
+                    android:layout_gravity="left"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_gravity="right"
+                    android:textColor="@color/text_view_grey"
+                    android:id="@+id/corporal_description"
+                    android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_shadow_base"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/holo_dark_green"
+                    android:text="@string/soldier"
+                    android:layout_gravity="left"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_gravity="right"
+                    android:textColor="@color/text_view_grey"
+                    android:id="@+id/soldier_description"
+                    android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_shadow_base"
+                android:layout_marginBottom="@dimen/default_vertical_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/holo_dark_green"
+                    android:text="@string/deserter"
+                    android:layout_gravity="left"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_gravity="right"
+                    android:textColor="@color/text_view_grey"
+                    android:id="@+id/deserter_description"
+                    android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
+            android:layout_marginTop="@dimen/default_vertical_margin"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey"
+            android:textIsSelectable="false"
+            android:textSize="36sp"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_shadow_base"
+            android:padding="@dimen/default_padding"
+            android:orientation="vertical"
+            android:id="@+id/details_achievements"
+            android:visibility="gone">
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

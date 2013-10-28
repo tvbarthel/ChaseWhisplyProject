@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -198,7 +197,6 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 		String[] ranks = res.getStringArray(R.array.ranks_array_full);
 		String[] grades = res.getStringArray(R.array.ranks_array_letter);
 		final int gameRank = mGameInformation.getRank();
-		Log.d("DEBUG", "rank = " + gameRank);
 		switch (gameRank) {
 			case GameModeFactory.GAME_RANK_DESERTER:
 			case GameModeFactory.GAME_RANK_SOLDIER:

@@ -42,9 +42,9 @@ public class GameModeDetailsAdapter extends ArrayAdapter<GameMode> {
 			rowView = inflater.inflate(R.layout.row_mode_details_entry, parent, false);
 		}
 
-		GameMode currentGameMode = mGameModes.get(position);
+		final GameMode currentGameMode = mGameModes.get(position);
 		final TextView title = (TextView) rowView.findViewById(R.id.row_game_details_title);
-		title.setText(currentGameMode.getRules());
+		title.setText(currentGameMode.getTitle());
 		final ImageView icon = (ImageView) rowView.findViewById(R.id.row_game_details_icon);
 		icon.setBackgroundResource(currentGameMode.getImage());
 		final TextView rank = (TextView) rowView.findViewById(R.id.row_game_details_rank);
@@ -52,7 +52,12 @@ public class GameModeDetailsAdapter extends ArrayAdapter<GameMode> {
 		final int currentRank = mPlayerProfile.getRankByGameMode(currentGameMode);
 		rank.setText(grades[currentRank]);
 
-
+		rowView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mListener.onGameModeSelected(currentGameMode);
+			}
+		});
 		return rowView;
 	}
 

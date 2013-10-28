@@ -54,7 +54,6 @@ public class GameModeDetailsFragment extends Fragment implements GameModeDetails
 		View v = inflater.inflate(R.layout.fragment_mode_details, container, false);
 		mGameModeDetailsAdapter = new GameModeDetailsAdapter(getActivity(), new ArrayList<GameMode>(), this, mPlayerProfile);
 		((GridView) v.findViewById(R.id.mode_details_grid_view)).setAdapter(mGameModeDetailsAdapter);
-
 		loadGameMode();
 		return v;
 	}

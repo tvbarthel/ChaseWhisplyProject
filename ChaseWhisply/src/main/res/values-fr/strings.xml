@@ -58,6 +58,24 @@
     <string name="game_mode_death_to_the_king_required_message">Mort au roi ! : Vous devez être level 10 pour accéder à ce mode de jeu.</string>
     <string name="game_mode_tutorial">Tutoriel : Apprennez à jouer.</string>
 
+    <!-- Game Mode titles !-->
+    <string name="game_mode_title_sprint">Sprint</string>
+    <string name="game_mode_title_marathon">Marathon</string>
+    <string name="game_mode_title_survival">Survie</string>
+    <string name="game_mode_title_death_to_the_king">Mort au roi</string>
+    <string name="game_mode_title_twenty_in_a_row">20 à la suite</string>
+
+    <!-- Game Mode rank rules !-->
+    <string name="game_mode_rank_rules_death_to_the_king">Terminée la missin en moins de %1$.1f secondes.</string>
+    <string name="game_mode_rank_rules_death_to_the_king_deserter">Terminée au moins une fois la mission.</string>
+
+    <!-- Game Mode long description !-->
+    <string name="game_mode_description_death_to_the_king">Votre mission est de trouver et tuer le roi
+        le plus rapidement possible. Dès que vous êtes prêt, appuyez sur l\'écran pour invoquer le roi
+        et ses acolytes ! Ne perdez pas de temps avec les acolytes et entrez dans l\'histoire en devenant
+        le chasseur de fantomes le plus rapide de l\'ouest ! \n\nMalheureusement pour vous, les bonus ne
+        sont pas disponibles pour cette mission.</string>
+
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Balles tirées</string>
     <string name="score_number_of_targets_killed">Cibles abattues</string>
@@ -330,14 +348,16 @@
     <string name="tuto_step_congratulation_2">Tutoriel terminé. Vous êtes maintenant fin prêt pour l\'aventure !</string>
     <string name="tuto_step_end">Tutoriel terminé !</string>
 
+    <!-- GameMode details -->
+    <string name="progression">Progression</string>
+
     <!-- Military ranks -->
-    <string-array name="ranks_array_full">
-        <item>Déserteur</item>
-        <item>Soldat</item>
-        <item>Caporal</item>
-        <item>Sergent</item>
-        <item>Amiral</item>
-    </string-array>
+    <string name="military_ranks">Grades</string>
+    <string name="deserter">Déserteur</string>
+    <string name="soldier">Soldat</string>
+    <string name="corporal">Caporal</string>
+    <string name="sergeant">Sergent</string>
+    <string name="admiral">Amiral</string>
 
     <!-- Death To The King -->
     <string name="game_mode_death_to_the_king_instruction">Dès que vous êtes prêt, appuyez sur l\'écran pour invoquer le roi et ses acolytes !</string>

@@ -61,6 +61,23 @@
     <string name="game_mode_twenty_in_a_row_required_message">20 in a row: Level 15 is required to access this game mode.</string>
     <string name="game_mode_tutorial">Tutorial : Learn how to play.</string>
 
+    <!-- Game Mode titles !-->
+    <string name="game_mode_title_sprint">Sprint</string>
+    <string name="game_mode_title_marathon">Marathon</string>
+    <string name="game_mode_title_survival">Survival</string>
+    <string name="game_mode_title_death_to_the_king">Death to the king</string>
+    <string name="game_mode_title_twenty_in_a_row">20 in a row</string>
+
+    <!-- Game Mode rank rules !-->
+    <string name="game_mode_rank_rules_death_to_the_king">Complete the mission in %1$.1f seconds or less.</string>
+    <string name="game_mode_rank_rules_death_to_the_king_deserter">At least, Complete the mission.</string>
+
+    <!-- Game Mode long description !-->
+    <string name="game_mode_description_death_to_the_king">Your mission is to find and kill the king.
+        As soon as you are ready, touch the screen to summon the king and his sidekicks. Don\'t waste
+        your time with the sidekicks and write down your name in the history by being the fastest
+        ghost hunter in the West! \n\nUnfortunately bonus are unavailable for this mission.</string>
+
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>
     <string name="score_number_of_targets_killed">Targets Killed</string>
@@ -329,14 +346,25 @@
     <string name="tuto_step_congratulation_2">Tutorial completed. You are now ready for adventure !</string>
     <string name="tuto_step_end">Tutorial completed!</string>
 
+    <!-- GameMode details -->
+    <string name="progression">Progress</string>
+
     <!-- Military ranks -->
+    <string name="military_ranks">Ranks</string>
+    <string name="deserter">Deserter</string>
+    <string name="soldier">Soldier</string>
+    <string name="corporal">Corporal</string>
+    <string name="sergeant">Sergeant</string>
+    <string name="admiral">Admiral</string>
+
     <string-array name="ranks_array_full">
-        <item>Deserter</item>
-        <item>Soldier</item>
-        <item>Corporal</item>
-        <item>Sergeant</item>
-        <item>Admiral</item>
+        <item>@string/deserter</item>
+        <item>@string/soldier</item>
+        <item>@string/corporal</item>
+        <item>@string/sergeant</item>
+        <item>@string/admiral</item>
     </string-array>
+
     <string-array name="ranks_array_letter">
         <item>E</item>
         <item>D</item>

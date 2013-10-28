@@ -19,6 +19,7 @@ import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.CraftRequestDialogFrag
 import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.InventoryItemEntryDetailDialogFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.BestiaryFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeDetailsFragment;
+import fr.tvbarthel.games.chasewhisply.ui.fragments.GameModeFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.InventoryFragment;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.ProfileFragment;
 
@@ -135,6 +136,7 @@ public class ProfileActivity extends FragmentActivity implements ProfileFragment
 
 	@Override
 	public void onGameModeDetailsRequest(GameMode gameMode) {
-		//TODO show gameMode details
+		getSupportFragmentManager().beginTransaction().replace(R.id.profile_fragment_container,
+				GameModeFragment.newInstance(gameMode), GameModeFragment.TAG).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
 	}
 }
