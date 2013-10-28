@@ -57,7 +57,7 @@
     <string name="game_mode_survival_required_message">Survival : Level 5 is required to access this game mode.</string>
     <string name="game_mode_death_to_the_king">Death to the king ! : find and kill the king as fast as you can.</string>
     <string name="game_mode_death_to_the_king_required_message">Death to the king  ! : Level 10 is required to access this game mode.</string>
-    <string name="game_mode_twenty_in_a_row">20 in a row: Kill 20 ghosts in a row, as fast as possible.</string>
+    <string name="game_mode_twenty_in_a_row">20 in a row: Kill 20 baby ghosts in a row, as fast as possible.</string>
     <string name="game_mode_twenty_in_a_row_required_message">20 in a row: Level 15 is required to access this game mode.</string>
     <string name="game_mode_memorize">Wanted : memorize and kill the ghosts in the right order.</string>
     <string name="game_mode_memorize_required_message">Wanted : Level 15 is required to access this game mode.</string>

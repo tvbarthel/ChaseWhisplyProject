@@ -3,6 +3,7 @@ package fr.tvbarthel.games.chasewhisply.mechanics.behaviors;
 import java.util.ArrayList;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTwentyInARow;
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
 import fr.tvbarthel.games.chasewhisply.sound.GameSoundManager;
@@ -12,7 +13,7 @@ public class GameBehaviorTwentyInARow extends GameBehaviorTimeIncreasing {
 	@Override
 	public void spawn(int xRange, int yRange) {
 		if (mGameInformation.getCurrentTargetsNumber() < GameBehaviorFactory.DEFAULT_MAX_TARGET) {
-			spawnStandardBehavior(xRange / 2 +  xRange / 10, yRange / 2 + yRange / 10);
+			spawnGhost(DisplayableItemFactory.TYPE_BABY_GHOST, xRange / 2 +  xRange / 10, yRange / 2 + yRange / 10);
 			mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_LAUGH_RANDOM);
 		}
 	}
