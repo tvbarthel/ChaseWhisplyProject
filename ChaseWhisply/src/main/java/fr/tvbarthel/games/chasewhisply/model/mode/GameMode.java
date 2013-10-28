@@ -13,7 +13,6 @@ public class GameMode implements Parcelable {
 	private int mType;
 	private int mLevel;
 	private int mImage;
-	private int mRules;
 	private int mLeaderboardStringId;
 	private int mLeaderboardDescriptionStringId;
 	private Bonus mBonus;
@@ -27,7 +26,6 @@ public class GameMode implements Parcelable {
 		mType = -1;
 		mLevel = -1;
 		mImage = -1;
-		mRules = -1;
 		mLeaderboardStringId = -1;
 		mLeaderboardDescriptionStringId = -1;
 		mBonus = new Bonus.DummyBonus();
@@ -63,7 +61,6 @@ public class GameMode implements Parcelable {
 		out.writeInt(mType);
 		out.writeInt(mLevel);
 		out.writeInt(mImage);
-		out.writeInt(mRules);
 		out.writeInt(mLeaderboardStringId);
 		out.writeInt(mLeaderboardDescriptionStringId);
 		out.writeParcelable(mBonus, i);
@@ -84,7 +81,6 @@ public class GameMode implements Parcelable {
 		mType = in.readInt();
 		mLevel = in.readInt();
 		mImage = in.readInt();
-		mRules = in.readInt();
 		mLeaderboardStringId = in.readInt();
 		mLeaderboardDescriptionStringId = in.readInt();
 		mBonus = in.readParcelable(Bonus.class.getClassLoader());
@@ -117,14 +113,6 @@ public class GameMode implements Parcelable {
 
 	public void setImage(int mImage) {
 		this.mImage = mImage;
-	}
-
-	public int getRules() {
-		return mRules;
-	}
-
-	public void setRules(int mRules) {
-		this.mRules = mRules;
 	}
 
 	public void setLeaderboardStringId(int stringId) {

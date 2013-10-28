@@ -35,10 +35,9 @@ public class GameModeFactory {
 	public static GameMode createTutorialGame() {
 		final GameMode g = new GameModeTutorial();
 		g.setType(GAME_TYPE_TUTORIAL);
-		g.setRules(R.string.game_mode_tutorial);
 		g.setImage(R.drawable.ic_icon_tutorial);
 		g.setBonusAvailable(false);
-		g.setTitle(R.string.game_mode_tutorial);
+		g.setTitle(R.string.game_mode_title_tutorial);
 		return g;
 	}
 
@@ -47,7 +46,6 @@ public class GameModeFactory {
 		switch (level) {
 			case 1:
 				g = new GameModeSprint();
-				g.setRules(R.string.game_mode_time_limited_level_1);
 				g.setImage(R.drawable.ic_icon_time_based_game_30_s);
 				g.setLeaderboardStringId(R.string.leaderboard_sprint);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_sprint);
@@ -57,7 +55,6 @@ public class GameModeFactory {
 
 			case 2:
 				g = new GameMode();
-				g.setRules(R.string.game_mode_time_limited_level_2);
 				g.setImage(R.drawable.ic_icon_time_based_game_60_s);
 				g.setLeaderboardStringId(R.string.leaderboard_60_seconds);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_2_description);
@@ -65,7 +62,6 @@ public class GameModeFactory {
 
 			case 3:
 				g = new GameModeMarathon();
-				g.setRules(R.string.game_mode_time_limited_level_3);
 				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
 				g.setLeaderboardStringId(R.string.leaderboard_marathon);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_marathon);
@@ -75,7 +71,6 @@ public class GameModeFactory {
 
 			default:
 				g = new GameMode();
-				g.setRules(R.string.game_mode_remaining_time);
 				g.setImage(R.drawable.ghost);
 		}
 		g.setType(GAME_TYPE_REMAINING_TIME);
@@ -103,12 +98,11 @@ public class GameModeFactory {
 		final GameMode g = new GameModeSurvival();
 		g.setType(GAME_TYPE_SURVIVAL);
 		g.setLevel(level);
-		g.setRules(R.string.game_mode_survival);
 		g.setImage(R.drawable.ic_icon_time_based_game_inf);
 		g.setLeaderboardStringId(R.string.leaderboard_survival);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_survival);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_SURVIVAL_MODE);
-		g.setRequiredMessage(R.string.game_mode_survival_required_message);
+		g.setRequiredMessage(R.string.game_mode_required_message_survival);
 		g.setBonusAvailable(true);
 		g.setTitle(R.string.game_mode_title_survival);
 		g.setLongDescription(R.string.game_mode_description_survival);
@@ -119,12 +113,11 @@ public class GameModeFactory {
 		final GameMode g = new GameModeDeathToTheKing();
 		g.setType(GAME_TYPE_DEATH_TO_THE_KING);
 		g.setLevel(level);
-		g.setRules(R.string.game_mode_death_to_the_king);
 		g.setImage(R.drawable.ic_icon_death_to_the_king);
 		g.setLeaderboardStringId(R.string.leaderboard_death_to_the_king);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_death_to_the_king);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING);
-		g.setRequiredMessage(R.string.game_mode_death_to_the_king_required_message);
+		g.setRequiredMessage(R.string.game_mode_required_message_death_to_the_king);
 		g.setBonusAvailable(false);
 		g.setTitle(R.string.game_mode_title_death_to_the_king);
 		g.setLongDescription(R.string.game_mode_description_death_to_the_king);
@@ -135,13 +128,12 @@ public class GameModeFactory {
 		final GameMode g = new GameModeTwentyInARow();
 		g.setType(GAME_TYPE_TWENTY_IN_A_ROW);
 		g.setLevel(level);
-		g.setRules(R.string.game_mode_twenty_in_a_row);
 		g.setImage(R.drawable.ic_icon_twenty_in_a_row);
 		//TODO
 		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_twenty_in_a_row);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_TWENTY_IN_A_ROW);
-		g.setRequiredMessage(R.string.game_mode_twenty_in_a_row_required_message);
+		g.setRequiredMessage(R.string.game_mode_required_message_twenty_in_a_row);
 		g.setTitle(R.string.game_mode_title_twenty_in_a_row);
 		g.setLongDescription(R.string.game_mode_description_twenty_in_a_row);
 		g.setBonusAvailable(false);
@@ -152,13 +144,12 @@ public class GameModeFactory {
 		final GameModeMemorize g = new GameModeMemorize();
 		g.setType(GAME_TYPE_MEMORIZE);
 		g.setLevel(level);
-		g.setRules(R.string.game_mode_memorize);
 		g.setImage(R.drawable.ic_icon_memorize);
 		//TODO
 		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_memorize);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_MEMORIZE);
-		g.setRequiredMessage(R.string.game_mode_memorize_required_message);
+		g.setRequiredMessage(R.string.game_mode_required_message_memorize);
 		g.setTitle(R.string.game_mode_title_memorize);
 		g.setLongDescription(R.string.game_mode_description_memorize);
 		return g;
