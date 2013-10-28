@@ -144,6 +144,7 @@ public class GameModeFactory {
 		g.setRequiredMessage(R.string.game_mode_twenty_in_a_row_required_message);
 		g.setTitle(R.string.game_mode_title_twenty_in_a_row);
 		g.setLongDescription(R.string.game_mode_description_twenty_in_a_row);
+		g.setBonusAvailable(false);
 		return g;
 	}
 
