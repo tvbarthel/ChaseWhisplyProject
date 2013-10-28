@@ -62,7 +62,7 @@ public class GameModeFactory {
 				break;
 
 			case 3:
-				g = new GameMode();
+				g = new GameModeMarathon();
 				g.setRules(R.string.game_mode_time_limited_level_3);
 				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
 				g.setLeaderboardStringId(R.string.leaderboard_marathon);
