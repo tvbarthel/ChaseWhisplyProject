@@ -14,12 +14,12 @@
     <string name="home_achievement">Achievements</string>
     <string name="home_about">About</string>
     <string name="home_sign_in">Sign in</string>
-    <string name="home_sign_info">Sign in with Google to share your score and achievements with your friends.</string>
+    <string name="home_sign_info">Sign in with your Google+ account to share your score and achievements with your friends.</string>
     <string name="home_not_sign_in_leaderboard">Sign in with Google to see the leaderboards.</string>
     <string name="home_not_sign_in_achievement">Sign in with Google to unlock achievements.</string>
     <string name="home_sign_out">Sign out</string>
     <string name="home_sign_out_confirm_dialog_message">Are you sure you wish to sign out?</string>
-    <string name="home_sign_out_success">You\'ve successfully signed out.</string>
+    <string name="home_sign_out_success">You’ve successfully signed out.</string>
     <string name="home_internet_unavailable">Please connect to the Internet.</string>
     <string name="home_profile">Profile</string>
     <string name="home_device_not_compatible">Sorry, you device appears to be incompatible.</string>
@@ -59,7 +59,7 @@
     <string name="game_mode_death_to_the_king_required_message">Death to the king  ! : Level 10 is required to access this game mode.</string>
     <string name="game_mode_twenty_in_a_row">20 in a row: Kill 20 ghosts in a row, as quickly as possible.</string>
     <string name="game_mode_twenty_in_a_row_required_message">20 in a row: Level 15 is required to access this game mode.</string>
-    <string name="game_mode_memorize">Wanted : memorize and kill the ghosts in the correct order.</string>
+    <string name="game_mode_memorize">Wanted : memorise and kill the ghosts in the correct order.</string>
     <string name="game_mode_memorize_required_message">Wanted : Level 15 is required to access this game mode.</string>
     <string name="game_mode_tutorial">Tutorial : Learn how to play.</string>
 
@@ -98,11 +98,11 @@
     <string name="about_title">Chase Whisply</string>
     <string name="about_version_detail">version Beta.3.1</string>
     <string name="about_developer_card_title">Developers</string>
-    <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
-    <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
+    <string name="about_tbarthel_name">Thomas “Tbarthel” Barthélémy</string>
+    <string name="about_vbarthel_name">Vincent “Vbarthel” Barthélémy</string>
     <string name="about_thanks_section">Special thanks to…</string>
     <string name="about_thanks_tkeunebr">Thomas Keunebroek, for his early day support and precious advice.</string>
-    <string name="about_thanks_beat_the_dev_winners">the two winners of the \"Beat the Devs\" event: Faly Sixlay &amp; BMX22C.</string>
+    <string name="about_thanks_beat_the_dev_winners">the two winners of the “Beat the Devs” event: Faly Sixlay &amp; BMX22C.</string>
     <string name="about_thanks_beta_testers">All the beta testers, especially J. Morgan, M. Nasato, T. Lin Aung, M.
         Coulon, C. Morris,  C. Cuadra, A. Peng, J. Bastien, DARKSULLI, M. Bet, BMX22C, J. Nye, Y. Ritter,Y. Safraoui and S. Aubineau.
     </string>
@@ -142,7 +142,7 @@
     <string name="tuto_page_welcome_content">Your mission is to seek, find and kill
         the ghosts living around you.
     </string>
-    <string name="tuto_page_welcome_additional_text">Swipe left to learn more.</string>
+    <string name="tuto_page_welcome_additional_text">Swipe right-to-left to learn more.</string>
 
     <!-- Tuto Fragment Page Play Button -->
     <string name="tuto_page_play_button_content">Select your favorite mode and hunt the ghosts around you.</string>
@@ -151,7 +151,7 @@
     <string name="tuto_page_profile_button_content">Follow your progress and discover information about your enemy.</string>
 
     <!-- Tuto Fragment Page Leaderboard Button -->
-    <string name="tuto_page_leaderboard_button_content">Compare your score with your friends\' and try to be the best
+    <string name="tuto_page_leaderboard_button_content">Compare your score with your friends’ and try to be the best
         hunter in the World.
     </string>
 
@@ -172,10 +172,10 @@
     </string>
 
     <!-- Tuto Fragment Page Ammo -->
-    <string name="tuto_page_ammo_content">Watch out your ammunition on the bottom right of your screen, or you will run
+    <string name="tuto_page_ammo_content">Watch your ammunition on the bottom right of your screen, or you will run
         out.
     </string>
-    <string name="tuto_page_ammo_bis_content">Your ammunition increases with time.</string>
+    <string name="tuto_page_ammo_bis_content">Your ammunition replenishes with time.</string>
 
     <!-- Tuto Fragment Page Ready To Fight -->
     <string name="tuto_page_ready_to_fight_congratulation">Congratulations, you are ready to play.</string>
@@ -185,7 +185,7 @@
     <string name="tuto_page_ready_to_fight_gl_hf">Good Luck &amp; Have Fun.</string>
 
     <!-- Tuto Fragment Page Combos -->
-    <string name="tuto_page_combo_content">Don\'t miss your target, and complete combos to increase your score quicker.
+    <string name="tuto_page_combo_content">Don’t miss your target, and complete combos to increase your score quicker.
     </string>
     <string name="tuto_page_combo_example">x4</string>
 
@@ -202,7 +202,7 @@
     <string name="profile_bullets_fired">Bullets Fired</string>
     <string name="profile_accuracy">Accuracy</string>
     <string name="profile_bestiary_title">Bestiary</string>
-    <string name="profile_bestiary_description">Find out about the ghosts you have to track and kill.</string>
+    <string name="profile_bestiary_description">Find out about the ghosts you must track and kill.</string>
     <string name="profile_weapons_title">Weapons</string>
     <string name="profile_weapons_description">Chose your weapons wisely before starting your hunt.</string>
     <string name="profile_inventory_title">Inventory</string>
@@ -215,23 +215,23 @@
     <string name="bestiary_health">Health</string>
     <string name="bestiary_point_value">Point</string>
     <string name="bestiary_exp_value">Exp</string>
-    <string name="bestiary_easy_ghost_title">Simple Ghost</string>
+    <string name="bestiary_easy_ghost_title">Simple Ghost</string>  <!-- Common Ghost would be better, but I didn't want to chage it -->
     <string name="bestiary_ghost_with_helmet_title">Reinforced Ghost</string>
     <string name="bestiary_baby_ghost_title">Baby Ghost</string>
     <string name="bestiary_hidden_ghost_title">Hidden Ghost</string>
     <string name="bestiary_king_ghost_title">King of Ghosts</string>
-    <string name="bestiary_blond_ghost_title">Blond Ghost</string>
+    <string name="bestiary_blond_ghost_title">Blonde Ghost</string>
 
     <!-- Inventory Fragment -->
     <string name="inventory_title">Inventory</string>
-    <string name="inventory_item_default_title">Item\'s Title</string>
-    <string name="inventory_item_default_description">Item\'s Description</string>
+    <string name="inventory_item_default_title">Item’s Title</string>
+    <string name="inventory_item_default_description">Item’s Description</string>
     <plurals name="inventory_item_coin_title">
         <item quantity="one">Old Coin</item>
         <item quantity="other">Old Coins</item>
     </plurals>
     <string name="inventory_item_coin_description">This coin is so old that you have a very difficult time determining
-        whether it is actually made of gold. Since it\'s not too heavy, you keep it in your bag regardless.
+        whether it is actually made of gold. Since it’s not too heavy, you keep it in your bag regardless.
     </string>
     <plurals name="inventory_item_broken_helmet_horn_title">
         <item quantity="one">Broken Helmet Horn</item>
@@ -248,8 +248,8 @@
         inventory?!?
     </string>
     <plurals name="inventory_item_king_crown_title">
-        <item quantity="one">King\'s Crown</item>
-        <item quantity="other">King\'s Crowns</item>
+        <item quantity="one">King’s Crown</item>
+        <item quantity="other">King’’s Crowns</item>
     </plurals>
     <string name="inventory_item_king_crown_description">A beautiful and sought-after jewelry. It could definitely be melted down 
         to extract a huge amount of gold.
@@ -269,19 +269,19 @@
         Using gold bullets grants you +3 damage bonus.
     </string>
     <plurals name="inventory_item_one_shot_bullet_title">
-        <item quantity="one">\"One-Shot\" Bullet</item>
-        <item quantity="other">\"One-Shot\" Bullets</item>
+        <item quantity="one">“One-Shot” Bullet</item>
+        <item quantity="other">“One-Shot” Bullets</item>
     </plurals>
     <string name="inventory_item_one_shot_bullet_description">
         A bullet that is so strong that it can kill any ghost instantaneously. This kind of bullets is very expensive,
         so handle it with great care. Using these bullets grants you +10 damage bonus.
     </string>
     <plurals name="inventory_item_ghost_tear_title">
-        <item quantity="one">Ghost Tear</item>
-        <item quantity="other">Ghost Tear</item>
+        <item quantity="one">Ghost Teardrop</item>
+        <item quantity="other">Ghost Teardrops</item>
     </plurals>
     <string name="inventory_item_ghost_tear_description">
-        A tiny drop of tear that probably came from a mom ghost that died trying to save her children. You can feel a
+        A tiny drop of tear that probably came from a Mum ghost who died trying to save her children. You can feel a
         strange power emanating from this small drop.
     </string>
     <plurals name="inventory_item_speed_potion_title">
@@ -292,8 +292,8 @@
         This potion does not smell good at all, but if you are brave enough to drink it, you will reload your weapon
         faster than ever. Reloading time -300.
     </string>
-    <string name="inventory_item_can_t_be_dropped">Can\'t be dropped</string>
-    <string name="inventory_item_can_t_be_crafted">Can\'t be crafted</string>
+    <string name="inventory_item_can_t_be_dropped">Can’t be dropped</string>
+    <string name="inventory_item_can_t_be_crafted">Can’t be crafted</string>
     <string name="inventory_item_quantity">Quantity</string>
     <string name="inventory_item_dropped_by">Dropped By</string>
     <string name="inventory_item_recipe">Recipe</string>
@@ -317,15 +317,15 @@
     <!-- In Game Tutorial -->
     <string name="tuto_step_welcome">Welcome to the tutorial, touch the screen to continue.</string>
     <string name="tuto_step_ui_welcome">We are going to explore the game interface.</string>
-    <string name="tuto_step_crosshair">Your crosshair is in the middle of the screen.</string>
-    <string name="tuto_step_combo">Don\'t miss any targets and add up combos!</string>
+    <string name="tuto_step_crosshair">Your gunsight is in the middle of the screen.</string>
+    <string name="tuto_step_combo">Don’t miss any targets and add up combos!</string>
     <string name="tuto_step_ammos">Mind your ammunition at the bottom right of the screen.</string>
     <string name="tuto_step_ammos_2">Your weapon reloads over time.</string>
     <string name="tuto_step_score">Keep an eye on your score at the bottom left of the screen.</string>
-    <string name="tuto_step_serious_things">Let\'s get down to business.</string>
-    <string name="tuto_step_target">Align your gunsight with the ghost by moving your phone…</string>
+    <string name="tuto_step_serious_things">Let’s get down to business.</string>
+    <string name="tuto_step_target">Aim your gunsight at the ghost by moving your phone…</string>
     <string name="tuto_step_kill">…Then touch the screen anywhere to shoot.</string>
-    <string name="tuto_step_congratulation">Congratulation, you have just killed your first ghost!</string>
+    <string name="tuto_step_congratulation">Congratulations, you have just killed your first ghost!</string>
     <string name="tuto_step_target_2">Be careful, some ghosts are stronger…</string>
     <string name="tuto_step_kill_2">…Shoot multiple times!</string>
     <string name="tuto_step_congratulation_2">Tutorial completed. You are now prepared for your adventure!</string>
@@ -351,7 +351,7 @@
     <string name="game_mode_death_to_the_king_instruction">As soon as you are ready, touch the screen to summon the king and his sidekicks!</string>
 
     <!-- Memorize -->
-    <string name="game_mode_memorize_instruction">Memorize\n%1$s</string>
+    <string name="game_mode_memorize_instruction">Memorise\n%1$s</string>
     <string name="game_mode_memorize_wave">Wave %1$d</string>
 
 </resources>
