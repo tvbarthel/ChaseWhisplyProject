@@ -1,8 +1,10 @@
 package fr.tvbarthel.games.chasewhisply.model.mode;
 
+import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import fr.tvbarthel.games.chasewhisply.R;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationSurvival;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
@@ -14,6 +16,7 @@ public class GameModeSurvival extends GameMode {
 	private static final int RANK_LIMIT_SOLDIER = 100;
 	private static final int RANK_LIMIT_CORPORAL = 200;
 	private static final int RANK_LIMIT_SERGEANT = 300;
+	private static final int RANK_LIMIT_ADMIRAL = 400;
 
 	public GameModeSurvival() {
 		super();
@@ -57,5 +60,30 @@ public class GameModeSurvival extends GameMode {
 		} else {
 			return GameModeFactory.GAME_RANK_ADMIRAL;
 		}
+	}
+
+	@Override
+	public String getAdmiralRankRule(Resources res) {
+		return String.format(res.getString(R.string.game_mode_rank_rules_survival), RANK_LIMIT_ADMIRAL);
+	}
+
+	@Override
+	public String getSergeantRankRule(Resources res) {
+		return String.format(res.getString(R.string.game_mode_rank_rules_survival), RANK_LIMIT_SERGEANT);
+	}
+
+	@Override
+	public String getCorporalRankRule(Resources res) {
+		return String.format(res.getString(R.string.game_mode_rank_rules_survival), RANK_LIMIT_CORPORAL);
+	}
+
+	@Override
+	public String getSoldierRankRule(Resources res) {
+		return String.format(res.getString(R.string.game_mode_rank_rules_survival), RANK_LIMIT_SOLDIER);
+	}
+
+	@Override
+	public String getDeserterRankRule(Resources res) {
+		return String.format(res.getString(R.string.game_mode_rank_rules_survival_deserter), RANK_LIMIT_DESERTER);
 	}
 }
