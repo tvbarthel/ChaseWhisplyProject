@@ -23,7 +23,7 @@ public class GameBehaviorTwentyInARow extends GameBehaviorTimeIncreasing {
 		super.killTarget(currentTarget);
 		if (((GameInformationTwentyInARow) mGameInformation).increaseCurrentStack() >= 20) {
 			final ArrayList<Integer> reward = new ArrayList<Integer>();
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 50; i++) {
 				reward.add(InventoryItemInformation.TYPE_COIN);
 			}
 			mGameInformation.addLoots(reward);
