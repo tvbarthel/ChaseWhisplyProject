@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/text_view_grey"
-                    android:layout_gravity="right"
+                    android:layout_gravity="left"
                     android:id="@+id/admiral_description"
                     android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
 
@@ -191,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_gravity="right"
+                    android:layout_gravity="left"
                     android:textColor="@color/text_view_grey"
                     android:id="@+id/sergeant_description"
                     android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
@@ -217,7 +217,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_gravity="right"
+                    android:layout_gravity="left"
                     android:textColor="@color/text_view_grey"
                     android:id="@+id/corporal_description"
                     android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
@@ -243,7 +243,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_gravity="right"
+                    android:layout_gravity="left"
                     android:textColor="@color/text_view_grey"
                     android:id="@+id/soldier_description"
                     android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
@@ -269,7 +269,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_gravity="right"
+                    android:layout_gravity="left"
                     android:textColor="@color/text_view_grey"
                     android:id="@+id/deserter_description"
                     android:layout_marginBottom="@dimen/default_half_vertical_margin"/>

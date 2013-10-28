@@ -75,6 +75,8 @@
     <string name="game_mode_rank_rules_death_to_the_king">Complete the mission in %1$.1f seconds or less.</string>
     <string name="game_mode_rank_rules_death_to_the_king_deserter">At least, Complete the mission.</string>
     <string name="game_mode_rank_rules_memorize">Clean the wave %1$d.</string>
+    <string name="game_mode_rank_rules_sprint">Complete the mission with a score of %1$d or higher.</string>
+    <string name="game_mode_rank_rules_sprint_deserter">At least, Complete the mission.</string>
 
     <!-- Game Mode long description !-->
     <string name="game_mode_description_death_to_the_king">Your mission is to find and kill the king.

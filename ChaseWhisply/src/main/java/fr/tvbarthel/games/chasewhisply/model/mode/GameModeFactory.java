@@ -42,12 +42,10 @@ public class GameModeFactory {
 	}
 
 	public static GameMode createRemainingTimeGame(int level) {
-		final GameMode g = new GameMode();
-		g.setType(GAME_TYPE_REMAINING_TIME);
-		g.setLevel(level);
-		g.setBonusAvailable(true);
+		final GameMode g;
 		switch (level) {
 			case 1:
+				g = new GameModeSprint();
 				g.setRules(R.string.game_mode_time_limited_level_1);
 				g.setImage(R.drawable.ic_icon_time_based_game_30_s);
 				g.setLeaderboardStringId(R.string.leaderboard_sprint);
@@ -56,6 +54,7 @@ public class GameModeFactory {
 				break;
 
 			case 2:
+				g = new GameMode();
 				g.setRules(R.string.game_mode_time_limited_level_2);
 				g.setImage(R.drawable.ic_icon_time_based_game_60_s);
 				g.setLeaderboardStringId(R.string.leaderboard_60_seconds);
@@ -63,6 +62,7 @@ public class GameModeFactory {
 				break;
 
 			case 3:
+				g = new GameMode();
 				g.setRules(R.string.game_mode_time_limited_level_3);
 				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
 				g.setLeaderboardStringId(R.string.leaderboard_marathon);
@@ -71,9 +71,13 @@ public class GameModeFactory {
 				break;
 
 			default:
+				g = new GameMode();
 				g.setRules(R.string.game_mode_remaining_time);
 				g.setImage(R.drawable.ghost);
 		}
+		g.setType(GAME_TYPE_REMAINING_TIME);
+		g.setLevel(level);
+		g.setBonusAvailable(true);
 		return g;
 	}
 
