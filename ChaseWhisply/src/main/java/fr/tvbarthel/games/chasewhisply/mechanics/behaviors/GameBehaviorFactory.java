@@ -24,7 +24,7 @@ public class GameBehaviorFactory {
 			@Override
 			public void spawn(int xRange, int yRange) {
 				if (mGameInformation.getCurrentTargetsNumber() < GameBehaviorFactory.DEFAULT_MAX_TARGET) {
-					final int ghostType = TargetableItem.randomGhostTypeHarder();
+					final int ghostType = TargetableItem.randomGhostType();
 					spawnGhost(ghostType, xRange / 2 + xRange / 10, yRange / 2 + yRange / 10);
 					mIGameBehavior.onSoundRequest(GameSoundManager.SOUND_TYPE_LAUGH_RANDOM);
 				}
