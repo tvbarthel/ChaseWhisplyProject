@@ -80,7 +80,7 @@ public class GameModeSprint extends GameMode {
 
 	@Override
 	public String getDeserterRankRule(Resources res) {
-		return String.format(res.getString(R.string.game_mode_rank_rules_sprint), RANK_LIMIT_DESERTER);
+		return String.format(res.getString(R.string.game_mode_rank_rules_sprint_deserter), RANK_LIMIT_DESERTER);
 	}
 }
 
