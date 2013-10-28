@@ -63,12 +63,12 @@
     <string name="game_mode_tutorial">Tutoriel : Apprennez à jouer.</string>
 
     <!-- Game Mode titles !-->
-    <string name="game_mode_title_sprint">Sprint</string>
-    <string name="game_mode_title_marathon">Marathon</string>
-    <string name="game_mode_title_survival">Survie</string>
+    <string name="game_mode_title_sprint">Les éclaireurs d\'abord !</string>
+    <string name="game_mode_title_marathon">Prouvez votre endurance</string>
+    <string name="game_mode_title_survival">L\'Ultime Bataille</string>
     <string name="game_mode_title_death_to_the_king">Mort au roi</string>
-    <string name="game_mode_title_twenty_in_a_row">20 à la suite</string>
-    <string name="game_mode_title_memorize">Wanted</string>
+    <string name="game_mode_title_twenty_in_a_row">Tout n\'est qu\'illusion…</string>
+    <string name="game_mode_title_memorize">Casse tête</string>
 
     <!-- Game Mode rank rules !-->
     <string name="game_mode_rank_rules_death_to_the_king">Terminez la mission en moins de %1$.1f secondes.</string>
@@ -85,15 +85,27 @@
 
 
     <!-- Game Mode long description !-->
-    <string name="game_mode_description_death_to_the_king">Votre mission est de trouver et tuer le roi
-        le plus rapidement possible. Dès que vous êtes prêt, appuyez sur l\'écran pour invoquer le roi
-        et ses acolytes ! Ne perdez pas de temps avec les acolytes et entrez dans l\'histoire en devenant
-        le chasseur de fantomes le plus rapide de l\'ouest ! \n\nMalheureusement pour vous, les bonus ne
-        sont pas disponibles pour cette mission.</string>
-    <string name="game_mode_description_memorize">Dans cette mission vous incarnez un chasseur de prime. Votre
-        objectif est de mémoriser une liste de fantômes recherchés puis de les exécuter dans le bon ordre. Lors de chaque
-        nouvelle vague, un nouveau fantôme est ajouté à la liste. Pour devenir le meilleur chasseur de prime, vous allez devoir
-        utiliser votre cerveau et non seulement vous reposez sur vos techniques de tire !</string>
+    <string name="game_mode_description_sprint">
+        Whisply et ses disciples ont eu vent de votre enrôlement dans l’armée
+        des chasseurs de fantôme. Préparez vous à résister aux premières vagues
+        d’éclaireurs ennemis qui se dirigent vers vous. Pas de quartier !</string>
+    <string name="game_mode_description_death_to_the_king">
+        Plus aucun fantôme n’ose venir vous affronter !
+        Le roi a donc decidé de se déplacer en personne pour vous defier.
+        Retrouvez le et tuez le le plus rapidement possible avant qu’il ne change d’avis !
+        Attention, le roi ne se déplace jamais seul. Ne perdez pas de temps avec ses acolytes
+        et devenez le chasseur de fantômes le plus rapide de l’ouest.
+        \n\nVotre mission est de trouver et tuer le roi
+        le plus rapidement possible. Dès que vous êtes prêt, appuyez sur l’écran pour invoquer le roi
+        et ses acolytes !
+        \n\nMalheureusement pour vous, les bonus ne sont pas disponibles pour cette mission.</string>
+
+    <string name="game_mode_description_memorize">
+        Face à votre courage, Whisply a décidé de changer de stratégie !
+        Cette fois ci, c’est un vrai casse tête que vous devrez combattre !
+        Montrez lui qu’un chasseur de fantôme se doit d’avoir un cerveau et peut mémoriser plusieurs cibles à la fois.
+        \n\nVotre objectif est de mémoriser une liste de fantômes puis de les exécuter dans le bon ordre. Lors de chaque
+        nouvelle vague, un nouveau fantôme est ajouté à la liste.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Balles tirées</string>

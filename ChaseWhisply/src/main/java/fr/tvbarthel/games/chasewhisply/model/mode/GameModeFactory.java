@@ -50,6 +50,7 @@ public class GameModeFactory {
 				g.setImage(R.drawable.ic_icon_time_based_game_30_s);
 				g.setLeaderboardStringId(R.string.leaderboard_sprint);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_1_description);
+				g.setLongDescription(R.string.game_mode_description_sprint);
 				g.setTitle(R.string.game_mode_title_sprint);
 				break;
 

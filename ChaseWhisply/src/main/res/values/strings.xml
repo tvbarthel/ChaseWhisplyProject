@@ -64,12 +64,12 @@
     <string name="game_mode_tutorial">Tutorial : Learn how to play.</string>
 
     <!-- Game Mode titles !-->
-    <string name="game_mode_title_sprint">Sprint</string>
-    <string name="game_mode_title_marathon">Marathon</string>
-    <string name="game_mode_title_survival">Survival</string>
+    <string name="game_mode_title_sprint">Scouts First!</string>
+    <string name="game_mode_title_marathon">Prove your Stamina</string>
+    <string name="game_mode_title_survival">The Final Battle</string>
     <string name="game_mode_title_death_to_the_king">Death to the king</string>
-    <string name="game_mode_title_twenty_in_a_row">20 in a row</string>
-    <string name="game_mode_title_memorize">Wanted</string>
+    <string name="game_mode_title_twenty_in_a_row">Everything is an illusion…</string>
+    <string name="game_mode_title_memorize">Brainteaser</string>
 
     <!-- Game Mode rank rules !-->
     <string name="game_mode_rank_rules_death_to_the_king">Complete the mission in %1$.1f seconds or less.</string>
@@ -86,6 +86,7 @@
 
 
     <!-- Game Mode long description !-->
+    <string name="game_mode_description_sprint">TODO</string>
     <string name="game_mode_description_death_to_the_king">Your mission is to find and kill the king.
         As soon as you are ready, touch the screen to summon the king and his sidekicks. Don\'t waste
         your time with the sidekicks and write down your name in the history by being the fastest
