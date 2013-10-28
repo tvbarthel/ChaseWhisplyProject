@@ -81,7 +81,6 @@ public class GameViewTutorial extends GameViewStandard {
 		displayCurrentStepMessage(true);
 	}
 
-	//TODO REWORK
 	private void displayCurrentStepMessage(boolean changeText) {
 		final int step = mGameEngine.getCurrentStep();
 		int stringId = -1;

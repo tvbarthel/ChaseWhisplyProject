@@ -5,12 +5,14 @@ import android.content.Context;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorDeathToTheKing;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorFactory;
+import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorMemorize;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorSurvival;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTutorial;
 import fr.tvbarthel.games.chasewhisply.mechanics.behaviors.GameBehaviorTwentyInARow;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationDeathToTheKing;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationMemorize;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationSurvival;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTime;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTutorial;
@@ -23,6 +25,7 @@ import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
 import fr.tvbarthel.games.chasewhisply.model.weapon.WeaponFactory;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewDeathToTheKing;
+import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewMemorize;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTime;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTimeDecreasing;
 import fr.tvbarthel.games.chasewhisply.ui.gameviews.GameViewTutorial;
@@ -57,6 +60,10 @@ public class GameEngineFactory {
 				gameEngine = createTwentyInARow(context, gameMode, iGameEngine);
 				break;
 
+			case GameModeFactory.GAME_TYPE_MEMORIZE:
+				gameEngine = createMemorize(context, gameMode, iGameEngine);
+				break;
+
 		}
 		return gameEngine;
 	}
@@ -85,7 +92,43 @@ public class GameEngineFactory {
 				gameEngine = createTwentyInARow(context, iGameEngine, (GameInformationTwentyInARow) gameInformation);
 				break;
 
+			case GameModeFactory.GAME_TYPE_MEMORIZE:
+				gameEngine = createMemorize(context, iGameEngine, (GameInformationMemorize) gameInformation);
+				break;
+
 		}
+		return gameEngine;
+	}
+
+	private static GameEngine createMemorize(final Context context, final GameMode gameMode
+			, final GameEngine.IGameEngine iGameEngine) {
+		//Weapon
+		final Weapon weapon = WeaponFactory.createBasicWeapon();
+
+		//Game Information
+		final GameInformationMemorize gameInformation = new GameInformationMemorize(gameMode, weapon);
+
+		return createMemorize(context, iGameEngine, gameInformation);
+	}
+
+
+	private static GameEngine createMemorize(final Context context,
+											 final GameEngine.IGameEngine iGameEngine,
+											 GameInformationMemorize gameInformation) {
+		//Game Behavior
+		final GameBehaviorMemorize gameBehavior = GameBehaviorFactory.createMemorize();
+		gameBehavior.setGameInformation(gameInformation);
+
+		//Game Engine & Game Behavior
+		final GameEngineMemorize gameEngine = new GameEngineMemorize(context, iGameEngine, gameBehavior);
+		gameEngine.addRoutine(new Routine(Routine.TYPE_RELOADER, gameInformation.getWeapon().getReloadingTime()));
+		gameEngine.addRoutine(new RoutineTicker(2000));
+		gameBehavior.setInterface(gameEngine);
+
+		//Game View
+		final GameViewMemorize gameView = new GameViewMemorize(context, gameEngine);
+		gameEngine.setGameView(gameView);
+
 		return gameEngine;
 	}
 
