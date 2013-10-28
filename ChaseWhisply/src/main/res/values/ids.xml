@@ -11,13 +11,24 @@
     <string name="achievement_novice_looter">CgkIyKropZoEEAIQEg</string>
     <string name="achievement_trained_looter">CgkIyKropZoEEAIQEw</string>
     <string name="achievement_expert_looter">CgkIyKropZoEEAIQFA</string>
+    <string name="achievement_scouts_first_admiral_rank">CgkIyKropZoEEAIQGg</string>
+    <string name="achievement_everything_is_an_illusion_admiral_rank">CgkIyKropZoEEAIQGw</string>
+    <string name="achievement_prove_your_stamina__admiral_rank">CgkIyKropZoEEAIQHQ</string>
+    <string name="achievement_brainteaser_admiral_rank">CgkIyKropZoEEAIQIQ</string>
+    <string name="achievement_death_to_the_king_admiral_rank">CgkIyKropZoEEAIQIg</string>
+    <string name="achievement_the_final_battle_admiral_rank">CgkIyKropZoEEAIQJA</string>
 
     <string name="leaderboard_overall_ranking">CgkIyKropZoEEAIQFw</string>
-    <string name="leaderboard_30_seconds">CgkIyKropZoEEAIQDQ</string>
-    <string name="leaderboard_60_seconds">CgkIyKropZoEEAIQDg</string>
-    <string name="leaderboard_90_seconds">CgkIyKropZoEEAIQDw</string>
-    <string name="leaderboard_survival">CgkIyKropZoEEAIQEA</string>
+    <string name="leaderboard_scouts_first">CgkIyKropZoEEAIQHA</string>
+    <string name="leaderboard_everything_is_an_illusion">CgkIyKropZoEEAIQHg</string>
+    <string name="leaderboard_prove_your_stamina">CgkIyKropZoEEAIQHw</string>
+    <string name="leaderboard_brainteaser">CgkIyKropZoEEAIQIA</string>
     <string name="leaderboard_death_to_the_king">CgkIyKropZoEEAIQFg</string>
-    <string name="leaderboard_sprint">CgkIyKropZoEEAIQGA</string>
-    <string name="leaderboard_marathon">CgkIyKropZoEEAIQGQ</string>
+    <string name="leaderboard_the_final_battle">CgkIyKropZoEEAIQIw</string>
+    <string name="leaderboard_sprint_hall_of_fame">CgkIyKropZoEEAIQGA</string>
+    <string name="leaderboard_marathon_hall_of_fame">CgkIyKropZoEEAIQGQ</string>
+    <string name="leaderboard_survival_hall_of_fame">CgkIyKropZoEEAIQEA</string>
+    <string name="leaderboard_beta_tester_hall_of_fame_1">CgkIyKropZoEEAIQDQ</string>
+    <string name="leaderboard_beta_tester_hall_of_fame_2">CgkIyKropZoEEAIQDg</string>
+    <string name="leaderboard_beta_tester_hall_of_fame_3">CgkIyKropZoEEAIQDw</string>
 </resources>

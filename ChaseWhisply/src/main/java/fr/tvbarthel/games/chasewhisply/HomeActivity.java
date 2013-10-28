@@ -276,18 +276,22 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 			if (playerProfile.getRankByGameMode(gameMode) == GameModeFactory.GAME_RANK_ADMIRAL) {
 				switch (gameMode.getType()) {
 					case GameModeFactory.GAME_TYPE_SURVIVAL:
+						gamesClient.unlockAchievement(getString(R.string.achievement_the_final_battle_admiral_rank));
 						break;
 					case GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING:
+						gamesClient.unlockAchievement(getString(R.string.achievement_death_to_the_king_admiral_rank));
 						break;
 					case GameModeFactory.GAME_TYPE_TWENTY_IN_A_ROW:
+						gamesClient.unlockAchievement(getString(R.string.achievement_everything_is_an_illusion_admiral_rank));
 						break;
 					case GameModeFactory.GAME_TYPE_MEMORIZE:
+						gamesClient.unlockAchievement(getString(R.string.achievement_brainteaser_admiral_rank));
 						break;
 					case GameModeFactory.GAME_TYPE_REMAINING_TIME:
 						if (gameMode.getLevel() == 1) {
-							//sprint
+							gamesClient.unlockAchievement(getString(R.string.achievement_scouts_first_admiral_rank));
 						} else if (gameMode.getLevel() == 3) {
-							//marathon
+							gamesClient.unlockAchievement(getString(R.string.achievement_prove_your_stamina__admiral_rank));
 						}
 						break;
 				}

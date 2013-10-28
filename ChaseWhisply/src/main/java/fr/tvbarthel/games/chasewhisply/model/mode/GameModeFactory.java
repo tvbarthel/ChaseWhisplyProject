@@ -41,7 +41,7 @@ public class GameModeFactory {
 			case 1:
 				g = new GameModeSprint();
 				g.setImage(R.drawable.ic_icon_time_based_game_30_s);
-				g.setLeaderboardStringId(R.string.leaderboard_sprint);
+				g.setLeaderboardStringId(R.string.leaderboard_scouts_first);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_sprint);
 				g.setLongDescription(R.string.game_mode_description_sprint);
 				g.setTitle(R.string.game_mode_title_sprint);
@@ -57,7 +57,7 @@ public class GameModeFactory {
 			case 3:
 				g = new GameModeMarathon();
 				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
-				g.setLeaderboardStringId(R.string.leaderboard_marathon);
+				g.setLeaderboardStringId(R.string.leaderboard_prove_your_stamina);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_marathon);
 				g.setRequiredMessage(R.string.game_mode_required_message_marathon);
 				g.setTitle(R.string.game_mode_title_marathon);
@@ -94,7 +94,7 @@ public class GameModeFactory {
 		g.setType(GAME_TYPE_SURVIVAL);
 		g.setLevel(level);
 		g.setImage(R.drawable.ic_icon_time_based_game_inf);
-		g.setLeaderboardStringId(R.string.leaderboard_survival);
+		g.setLeaderboardStringId(R.string.leaderboard_the_final_battle);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_survival);
 		g.setRequiredMessage(R.string.game_mode_required_message_survival);
 		g.setBonusAvailable(true);
@@ -123,7 +123,7 @@ public class GameModeFactory {
 		g.setLevel(level);
 		g.setImage(R.drawable.ic_icon_twenty_in_a_row);
 		//TODO
-		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);
+		g.setLeaderboardStringId(R.string.leaderboard_everything_is_an_illusion);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_twenty_in_a_row);
 		g.setRequiredMessage(R.string.game_mode_required_message_twenty_in_a_row);
 		g.setTitle(R.string.game_mode_title_twenty_in_a_row);
@@ -138,7 +138,7 @@ public class GameModeFactory {
 		g.setLevel(level);
 		g.setImage(R.drawable.ic_icon_memorize);
 		//TODO
-		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);
+		g.setLeaderboardStringId(R.string.leaderboard_brainteaser);
 		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_memorize);
 		g.setRequiredMessage(R.string.game_mode_required_message_memorize);
 		g.setTitle(R.string.game_mode_title_memorize);
