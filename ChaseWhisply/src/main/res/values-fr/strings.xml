@@ -68,10 +68,12 @@
     <string name="game_mode_title_survival">Survie</string>
     <string name="game_mode_title_death_to_the_king">Mort au roi</string>
     <string name="game_mode_title_twenty_in_a_row">20 à la suite</string>
+    <string name="game_mode_title_memorize">Wanted</string>
 
     <!-- Game Mode rank rules !-->
-    <string name="game_mode_rank_rules_death_to_the_king">Terminée la missin en moins de %1$.1f secondes.</string>
-    <string name="game_mode_rank_rules_death_to_the_king_deserter">Terminée au moins une fois la mission.</string>
+    <string name="game_mode_rank_rules_death_to_the_king">Terminez la mission en moins de %1$.1f secondes.</string>
+    <string name="game_mode_rank_rules_death_to_the_king_deserter">Terminez au moins une fois la mission.</string>
+    <string name="game_mode_rank_rules_memorize">Terminez la vague %1$d</string>
 
     <!-- Game Mode long description !-->
     <string name="game_mode_description_death_to_the_king">Votre mission est de trouver et tuer le roi
@@ -79,6 +81,10 @@
         et ses acolytes ! Ne perdez pas de temps avec les acolytes et entrez dans l\'histoire en devenant
         le chasseur de fantomes le plus rapide de l\'ouest ! \n\nMalheureusement pour vous, les bonus ne
         sont pas disponibles pour cette mission.</string>
+    <string name="game_mode_description_memorize">Dans cette mission vous incarnez un chasseur de prime. Votre
+        objectif est de mémoriser une liste de fantômes recherchés puis de les exécuter dans le bon ordre. Lors de chaque
+        nouvelle vague, un nouveau fantôme est ajouté à la liste. Pour devenir le meilleur chasseur de prime, vous allez devoir
+        utiliser votre cerveau et non seulement vous reposez sur vos techniques de tire !</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Balles tirées</string>

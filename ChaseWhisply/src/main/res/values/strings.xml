@@ -69,16 +69,22 @@
     <string name="game_mode_title_survival">Survival</string>
     <string name="game_mode_title_death_to_the_king">Death to the king</string>
     <string name="game_mode_title_twenty_in_a_row">20 in a row</string>
+    <string name="game_mode_title_memorize">Wanted</string>
 
     <!-- Game Mode rank rules !-->
     <string name="game_mode_rank_rules_death_to_the_king">Complete the mission in %1$.1f seconds or less.</string>
     <string name="game_mode_rank_rules_death_to_the_king_deserter">At least, Complete the mission.</string>
+    <string name="game_mode_rank_rules_memorize">Clean the wave %1$d.</string>
 
     <!-- Game Mode long description !-->
     <string name="game_mode_description_death_to_the_king">Your mission is to find and kill the king.
         As soon as you are ready, touch the screen to summon the king and his sidekicks. Don\'t waste
         your time with the sidekicks and write down your name in the history by being the fastest
         ghost hunter in the West! \n\nUnfortunately bonus are unavailable for this mission.</string>
+    <string name="game_mode_description_memorize">As a bounty hunter, your mission is to
+        memorize a wanted ghost list and then try to kill them in the correct order.
+        On each new wave, one more ghost is added to the wanted list. In order to be the
+        best bounty hunter you will have to use your brain and not only rely on your shooting skill!</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>

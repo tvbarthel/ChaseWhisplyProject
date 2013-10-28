@@ -82,6 +82,9 @@ public class GameModeDetailsFragment extends Fragment implements GameModeDetails
 		//Sixth mode: twenty in a row
 		mGameModeDetailsAdapter.add(GameModeFactory.createTwentyInARow(1));
 
+		//Seventh mode : memorize
+		mGameModeDetailsAdapter.add(GameModeFactory.createMemorize(1));
+
 		mGameModeDetailsAdapter.notifyDataSetChanged();
 	}
 

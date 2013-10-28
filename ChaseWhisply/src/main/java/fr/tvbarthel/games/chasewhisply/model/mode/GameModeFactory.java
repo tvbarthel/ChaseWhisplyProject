@@ -149,6 +149,8 @@ public class GameModeFactory {
 		//g.setLeaderboardDescriptionStringId();
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_MEMORIZE);
 		g.setRequiredMessage(R.string.game_mode_memorize_required_message);
+		g.setTitle(R.string.game_mode_title_memorize);
+		g.setLongDescription(R.string.game_mode_description_memorize);
 		return g;
 	}
 
