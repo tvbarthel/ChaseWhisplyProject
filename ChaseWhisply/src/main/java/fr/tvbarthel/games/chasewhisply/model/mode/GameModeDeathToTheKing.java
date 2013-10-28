@@ -27,8 +27,7 @@ public class GameModeDeathToTheKing extends GameMode {
 
 	@Override
 	public boolean isAvailable(PlayerProfile p) {
-		//only available if player level > required level
-		return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
+		return p.getRankByGameMode(GameModeFactory.createMemorize(0)) >= GameModeFactory.GAME_RANK_CORPORAL;
 	}
 
 	@Override

@@ -28,8 +28,7 @@ public class GameModeSurvival extends GameMode {
 
 	@Override
 	public boolean isAvailable(PlayerProfile p) {
-		//only available if player level > required level
-		return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
+		return p.getRankByGameMode(GameModeFactory.createKillTheKingGame(0)) >= GameModeFactory.GAME_RANK_CORPORAL;
 	}
 
 	@Override

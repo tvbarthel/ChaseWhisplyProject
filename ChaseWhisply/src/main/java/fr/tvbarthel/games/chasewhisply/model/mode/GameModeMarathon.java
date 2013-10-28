@@ -27,8 +27,7 @@ public class GameModeMarathon extends GameMode {
 
 	@Override
 	public boolean isAvailable(PlayerProfile p) {
-		//always available
-		return true;
+		return p.getRankByGameMode(GameModeFactory.createTwentyInARow(0)) >= GameModeFactory.GAME_RANK_CORPORAL;
 	}
 
 	@Override

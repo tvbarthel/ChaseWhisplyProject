@@ -27,7 +27,7 @@ public class GameModeMemorize extends GameMode {
 	@Override
 	public boolean isAvailable(PlayerProfile p) {
 		//only available if player level > required level
-		return p.getLevelInformation().getLevel() >= this.getRequiredCondition();
+		return p.getRankByGameMode(GameModeFactory.createRemainingTimeGame(3)) >= GameModeFactory.GAME_RANK_CORPORAL;
 	}
 
 	@Override
