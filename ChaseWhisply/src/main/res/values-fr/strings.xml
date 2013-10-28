@@ -46,23 +46,15 @@
     <string name="leaderboard_chooser_title_memorize">Casse tête</string>
     <string name="leaderboard_chooser_title_twenty_in_a_row">Tout n\'est qu\'illusion…</string>
 
-    <!-- Game Mode rules !-->
-    <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps imparti.</string>
-    <string name="game_mode_time_limited_level_1">Sprint : tuez le plus de fantômes possibles en 30 secondes.</string>
-    <string name="game_mode_time_limited_level_2">Tuez le plus de fantômes possibles en 60 secondes.</string>
-    <string name="game_mode_time_limited_level_3">Marathon : tuez le plus de fantômes possibles en 90 secondes.</string>
-    <string name="game_mode_target_limited">Tuez tous les fantômes le plus vite possible.</string>
-    <string name="game_mode_survival">Survie : chaque fantôme tué vous rapporte du temps supplémentaire.</string>
-    <string name="game_mode_survival_required_message">Survie : Vous devez être level 5 pour accéder à ce mode de jeu.</string>
-    <string name="game_mode_death_to_the_king">Mort au roi ! : trouvez et tuez le roi le plus vite possible.</string>
-    <string name="game_mode_death_to_the_king_required_message">Mort au roi ! : Vous devez être level 10 pour accéder à ce mode de jeu.</string>
-    <string name="game_mode_twenty_in_a_row">20 à la suite : Tuez 20 bébés fantômes à la suite le plus vite possible</string>
-    <string name="game_mode_twenty_in_a_row_required_message">20 à la suite : Vous devez être level 15 pour accéder à ce mode de jeu.</string>
-    <string name="game_mode_memorize">Wanted : mémorizez et tuez les fantômes dans le bon ordre.</string>
-    <string name="game_mode_memorize_required_message">Wanted : Vous devez être level 15 pour accéder à ce mode de jeu</string>
-    <string name="game_mode_tutorial">Tutoriel : Apprennez à jouer.</string>
+    <!-- Game Mode requirements !-->
+    <string name="game_mode_required_message_twenty_in_a_row">Tout n\'est qu\'illusion: le grade Caporal de la mission "Les éclaireurs d\'abord" est requis.</string>
+    <string name="game_mode_required_message_marathon">Prouvez votre endurance: le grade Caporal de la mission "Tout n\'est qu\'illusion" est requis.</string>
+    <string name="game_mode_required_message_memorize">Casse tête: le grade Caporal de la mission "Prouvez votre endurance" est requis.</string>
+    <string name="game_mode_required_message_death_to_the_king">Mort au Roi: le grade Caporal de la mission "Casse tête" est requis.</string>
+    <string name="game_mode_required_message_survival">L\'Ultime Bataille: le grade Caporal de la mission "Mort au Roi" est requis.</string>
 
     <!-- Game Mode titles !-->
+    <string name="game_mode_title_tutorial">Tutoriel : Apprennez à jouer.</string>
     <string name="game_mode_title_sprint">Les éclaireurs d\'abord !</string>
     <string name="game_mode_title_marathon">Prouvez votre endurance</string>
     <string name="game_mode_title_survival">L\'Ultime Bataille</string>

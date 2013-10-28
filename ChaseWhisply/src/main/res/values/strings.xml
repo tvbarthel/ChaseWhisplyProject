@@ -49,27 +49,19 @@
     <string name="leaderboard_chooser_title_memorize">Brainteaser</string>
     <string name="leaderboard_chooser_title_twenty_in_a_row">Everything is an illusion…</string>
 
-    <!-- Game Mode rules !-->
-    <string name="game_mode_remaining_time">Kill the most ghosts you can in the given time.</string>
-    <string name="game_mode_time_limited_level_1">Sprint: kill as many ghosts as you can in 30 seconds.</string>
-    <string name="game_mode_time_limited_level_2">Kill as many ghosts as you can in 60 seconds.</string>
-    <string name="game_mode_time_limited_level_3">Marathon: kill as many ghosts as you can in 90 seconds.</string>
-    <string name="game_mode_target_limited">Kill all the ghosts as quickly as you can!</string>
-    <string name="game_mode_survival">Survival: each kill gives additional time.</string>
-    <string name="game_mode_survival_required_message">Survival : Level 5 is required to access this game mode.</string>
-    <string name="game_mode_death_to_the_king">Death to the king ! : find and kill the king as quickly as you can.</string>
-    <string name="game_mode_death_to_the_king_required_message">Death to the king  ! : Level 10 is required to access this game mode.</string>
-    <string name="game_mode_twenty_in_a_row">20 in a row: Kill 20 baby ghosts in a row, as quickly as possible.</string>
-    <string name="game_mode_twenty_in_a_row_required_message">20 in a row: Level 15 is required to access this game mode.</string>
-    <string name="game_mode_memorize">Wanted : memorise and kill the ghosts in the correct order.</string>
-    <string name="game_mode_memorize_required_message">Wanted : Level 15 is required to access this game mode.</string>
-    <string name="game_mode_tutorial">Tutorial : Learn how to play.</string>
+    <!-- Game Mode requirements !-->
+    <string name="game_mode_required_message_twenty_in_a_row">Everything is an illusion: the Corporal Rank of the mission \"Scout First\" is required.</string>
+    <string name="game_mode_required_message_marathon">Prove your Stamina: the Corporal Rank of the mission \"Everything is an illusion\" is required.</string>
+    <string name="game_mode_required_message_memorize">Brainteaser: the Corporal Rank of the mission \"Prove your Stamina\" is required.</string>
+    <string name="game_mode_required_message_death_to_the_king">Death to the King: the Corporal Rank of the mission \"Brainteaser\" is required.</string>
+    <string name="game_mode_required_message_survival">The Final Battle: the Corporal Rank of the mission \"Death to the King\" is required.</string>
 
     <!-- Game Mode titles !-->
+    <string name="game_mode_title_tutorial">Tutorial : Learn how to play.</string>
     <string name="game_mode_title_sprint">Scouts First!</string>
     <string name="game_mode_title_marathon">Prove your Stamina</string>
     <string name="game_mode_title_survival">The Final Battle</string>
-    <string name="game_mode_title_death_to_the_king">Death to the king</string>
+    <string name="game_mode_title_death_to_the_king">Death to the King</string>
     <string name="game_mode_title_twenty_in_a_row">Everything is an illusion…</string>
     <string name="game_mode_title_memorize">Brainteaser</string>
 
