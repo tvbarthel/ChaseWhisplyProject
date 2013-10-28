@@ -87,6 +87,9 @@
 
     <!-- Game Mode long description !-->
     <string name="game_mode_description_sprint">TODO</string>
+    <string name="game_mode_description_twenty_in_a_row">TODO</string>
+    <string name="game_mode_description_marathon">TODO</string>
+    <string name="game_mode_description_survival">TODO</string>
     <string name="game_mode_description_death_to_the_king">Your mission is to find and kill the king.
         As soon as you are ready, touch the screen to summon the king and his sidekicks. Don\'t waste
         your time with the sidekicks and write down your name in the history by being the fastest

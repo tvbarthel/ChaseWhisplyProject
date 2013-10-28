@@ -89,6 +89,24 @@
         Whisply et ses disciples ont eu vent de votre enrôlement dans l’armée
         des chasseurs de fantôme. Préparez vous à résister aux premières vagues
         d’éclaireurs ennemis qui se dirigent vers vous. Pas de quartier !</string>
+    <string name="game_mode_description_twenty_in_a_row">
+        Ne vous laissez pas influencer !
+        Ces mignons petits fantômes ont été envoyés pour vous destabiliser mais ne sont qu’illusion !
+        Whisply maitrise l’art du camouflage et n’hésitera pas à s’en servir.
+        Eliminez 20 bébés fantômes d’affilée pour prouver votre détermination.</string>
+    <string name="game_mode_description_marathon">
+        Vous commencez à représenter une vraie menace pour Whisply et les siens !
+        Une importante vague de fantômes se dirige vers vous.
+        Préparez vous à leur prouver votre endurance !
+        \n\nPour cette longue bataille, il peut être judicieux d’équiper un bonus afin
+        de ne pas être trop rapidement à court de munition!
+    </string>
+    <string name="game_mode_description_survival">
+        Maintenant que le roi est mort, Whisply et ses disciples n’ont plus rien à perdre.
+        Préparez vous pour l’ultime bataille qui s’annonce sans fin !
+        Vous regagnez du temps à chaque cibles abatues. Profitez en pour annéantir une bonne fois pour toute
+        un maximum de fantômes !
+    </string>
     <string name="game_mode_description_death_to_the_king">
         Plus aucun fantôme n’ose venir vous affronter !
         Le roi a donc decidé de se déplacer en personne pour vous defier.

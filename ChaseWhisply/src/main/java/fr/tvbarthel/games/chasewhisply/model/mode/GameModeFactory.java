@@ -69,6 +69,7 @@ public class GameModeFactory {
 				g.setLeaderboardStringId(R.string.leaderboard_marathon);
 				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_3_description);
 				g.setTitle(R.string.game_mode_title_marathon);
+				g.setLongDescription(R.string.game_mode_description_marathon);
 				break;
 
 			default:
@@ -109,6 +110,7 @@ public class GameModeFactory {
 		g.setRequiredMessage(R.string.game_mode_survival_required_message);
 		g.setBonusAvailable(true);
 		g.setTitle(R.string.game_mode_title_survival);
+		g.setLongDescription(R.string.game_mode_description_survival);
 		return g;
 	}
 
@@ -140,6 +142,7 @@ public class GameModeFactory {
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_TWENTY_IN_A_ROW);
 		g.setRequiredMessage(R.string.game_mode_twenty_in_a_row_required_message);
 		g.setTitle(R.string.game_mode_title_twenty_in_a_row);
+		g.setLongDescription(R.string.game_mode_description_twenty_in_a_row);
 		return g;
 	}
 
