@@ -128,7 +128,7 @@ public class GameModeFactory {
 	}
 
 	public static GameMode createTwentyInARow(int level) {
-		final GameMode g = new GameMode();
+		final GameMode g = new GameModeTwentyInARow();
 		g.setType(GAME_TYPE_TWENTY_IN_A_ROW);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_twenty_in_a_row);

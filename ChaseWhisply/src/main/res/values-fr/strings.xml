@@ -78,6 +78,8 @@
     <string name="game_mode_rank_rules_sprint_deserter">Terminez au moins une fois la mission.</string>
     <string name="game_mode_rank_rules_marathon">Prouvez votre endurance en terminant la mission avec un score de %1$d ou plus.</string>
     <string name="game_mode_rank_rules_marathon_deserter">A défaut d\'être endurant, terminez au moins une fois la mission.</string>
+    <string name="game_mode_rank_rules_twenty_in_a_row">Tuez 20 bébés fantômes à la suite en moins de %1$d secondes.</string>
+    <string name="game_mode_rank_rules_twenty_in_a_row_deserter">Tuez 20 bébés fantômes à la suite.</string>
 
     <!-- Game Mode long description !-->
     <string name="game_mode_description_death_to_the_king">Votre mission est de trouver et tuer le roi

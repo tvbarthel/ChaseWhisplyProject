@@ -79,6 +79,8 @@
     <string name="game_mode_rank_rules_sprint_deserter">At least, Complete the mission.</string>
     <string name="game_mode_rank_rules_marathon">Prove your stamina with a score of %1$d or higher.</string>
     <string name="game_mode_rank_rules_marathon_deserter">At least, come to the end of the mission to prove your stamina.</string>
+    <string name="game_mode_rank_rules_twenty_in_a_row">Kill 20 baby ghost in a row in less than %1$d seconds.</string>
+    <string name="game_mode_rank_rules_twenty_in_a_row_deserter">Kill 20 baby ghost in a row.</string>
 
     <!-- Game Mode long description !-->
     <string name="game_mode_description_death_to_the_king">Your mission is to find and kill the king.
