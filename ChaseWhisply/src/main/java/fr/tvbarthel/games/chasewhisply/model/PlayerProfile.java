@@ -256,7 +256,7 @@ public class PlayerProfile {
 	}
 
 	public int getLevelStep(int level) {
-		return (int) (100 * level + Math.pow(level, 2.75));
+		return (int) (115 * level + Math.pow(level, 3));
 	}
 
 	public LevelInformation getLevelInformation() {
