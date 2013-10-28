@@ -36,7 +36,7 @@
     <string name="in_game_no_ammo_message">No Ammo</string>
 
     <!-- Level Chooser Activity !-->
-    <string name="level_chooser">Select game mode</string>
+    <string name="level_chooser">Select a mission</string>
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Select leaderboard</string>

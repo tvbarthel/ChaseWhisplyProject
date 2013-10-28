@@ -33,7 +33,7 @@
     <string name="in_game_no_ammo_message">Pas de munition</string>
 
     <!-- Level Chooser Activity !-->
-    <string name="level_chooser">Sélectionnez un mode de jeu</string>
+    <string name="level_chooser">Sélectionnez une mission</string>
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Sélectionnez un classement</string>
