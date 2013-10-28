@@ -30,6 +30,7 @@
             android:maxLines="1"
             android:minLines="1"
             android:ellipsize="end"
+            android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/button_text_color"
             android:layout_alignParentStart="true"/>
@@ -47,6 +48,7 @@
                 android:maxLines="1"
                 android:minLines="1"
                 android:ellipsize="end"
+                android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@drawable/button_text_color"
                 android:layout_alignParentStart="true"/>
@@ -59,6 +61,7 @@
                 android:maxLines="1"
                 android:minLines="1"
                 android:ellipsize="end"
+                android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/holo_dark_green"
                 android:layout_alignParentStart="true"/>
