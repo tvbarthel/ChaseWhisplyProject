@@ -67,29 +67,28 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
 		//how to play : learn basics of the game play
 		mGameModeViewAdapter.add(GameModeFactory.createTutorialGame());
 
-		//First mode: Kill as many Ghosts as you can in 30 seconds.
+		//First mission: Scouts First
 		//Sprint mode
 		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(1));
 
-		//Second mode: Kill as many Ghosts as you can in 60 seconds. (level 2)
-		//intermediary mode - not used anymore ?
-		//mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(2));
+		//Second mission: Everything is an illusion
+		//Twenty in a row
+		mGameModeViewAdapter.add(GameModeFactory.createTwentyInARow(1));
 
-		//Third mode: Kill as many Ghosts as you can in 30 seconds. (level 3)
+		//Third mission: Prove your stamina
 		//Marathon mode
 		mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(3));
 
-		//Fourth mode: survival
-		mGameModeViewAdapter.add(GameModeFactory.createSurvivalGame(1));
+		//Fourth mission: Brainteaser
+		//Memorize
+		mGameModeViewAdapter.add(GameModeFactory.createMemorize(1));
 
-		//Fifth mode: Death to the king
+		//Fifth mission: Death to the king
+		//Death to the king
 		mGameModeViewAdapter.add(GameModeFactory.createKillTheKingGame(1));
 
-		//Sixth mode: twenty in a row
-		mGameModeViewAdapter.add(GameModeFactory.createTwentyInARow(1));
-
-		//Seventh mode : memorize
-		mGameModeViewAdapter.add(GameModeFactory.createMemorize(1));
+		//Sixth mission: The Final Battle
+		mGameModeViewAdapter.add(GameModeFactory.createSurvivalGame(1));
 
 		mGameModeViewAdapter.notifyDataSetChanged();
 	}
