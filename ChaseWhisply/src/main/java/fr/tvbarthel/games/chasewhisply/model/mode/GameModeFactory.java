@@ -47,13 +47,6 @@ public class GameModeFactory {
 				g.setTitle(R.string.game_mode_title_sprint);
 				break;
 
-			case 2:
-				g = new GameMode();
-				g.setImage(R.drawable.ic_icon_time_based_game_60_s);
-				g.setLeaderboardStringId(R.string.leaderboard_60_seconds);
-				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_2_description);
-				break;
-
 			case 3:
 				g = new GameModeMarathon();
 				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
