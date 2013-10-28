@@ -44,7 +44,7 @@ public class GameBehaviorSurvival extends GameBehaviorTimeDecreasing {
 		final int difficulty = mGameInformation.getDifficulty();
 		int bonusTime = TIME_GAIN_EASY;
 
-		if (difficulty == GameInformationSurvival.DIFFICULTY_HARD) {
+		if (difficulty != GameInformationSurvival.DIFFICULTY_EASY) {
 			bonusTime = TIME_GAIN_HARD;
 		}
 
