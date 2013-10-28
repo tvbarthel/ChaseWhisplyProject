@@ -13,10 +13,10 @@ import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 public class GameModeSurvival extends GameMode {
 
 	private static final int RANK_LIMIT_DESERTER = 10;
-	private static final int RANK_LIMIT_SOLDIER = 100;
-	private static final int RANK_LIMIT_CORPORAL = 200;
-	private static final int RANK_LIMIT_SERGEANT = 300;
-	private static final int RANK_LIMIT_ADMIRAL = 400;
+	private static final int RANK_LIMIT_SOLDIER = 5000;
+	private static final int RANK_LIMIT_CORPORAL = 10000;
+	private static final int RANK_LIMIT_SERGEANT = 15000;
+	private static final int RANK_LIMIT_ADMIRAL = 17000;
 
 	public GameModeSurvival() {
 		super();
@@ -49,16 +49,16 @@ public class GameModeSurvival extends GameMode {
 
 	protected int processRank(GameInformationSurvival g) {
 		final int score = g.getScoreInformation().getScore();
-		if (score < RANK_LIMIT_DESERTER) {
-			return GameModeFactory.GAME_RANK_DESERTER;
-		} else if (score < RANK_LIMIT_SOLDIER) {
-			return GameModeFactory.GAME_RANK_SOLDIER;
-		} else if (score < RANK_LIMIT_CORPORAL) {
-			return GameModeFactory.GAME_RANK_CORPORAL;
-		} else if (score < RANK_LIMIT_SERGEANT) {
-			return GameModeFactory.GAME_RANK_SERGEANT;
-		} else {
+		if (score >= RANK_LIMIT_ADMIRAL) {
 			return GameModeFactory.GAME_RANK_ADMIRAL;
+		} else if (score >= RANK_LIMIT_SERGEANT) {
+			return GameModeFactory.GAME_RANK_SERGEANT;
+		} else if (score >= RANK_LIMIT_CORPORAL) {
+			return GameModeFactory.GAME_RANK_CORPORAL;
+		} else if (score >= RANK_LIMIT_SOLDIER) {
+			return GameModeFactory.GAME_RANK_SOLDIER;
+		} else {
+			return GameModeFactory.GAME_RANK_DESERTER;
 		}
 	}
 
