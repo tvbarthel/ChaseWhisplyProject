@@ -84,7 +84,7 @@ public class GameViewMemorize extends GameViewStandard {
 		mPaint.getTextBounds(currentWaveStr, 0, currentWaveStr.length(), mBounds);
 		canvas.drawText(currentWaveStr
 				, mBounds.width() / 2 + mPadding
-				, mScreenHeight - mPadding
+				, mScreenHeight - 2 * mPadding
 				, mPaint);
 	}
 

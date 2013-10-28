@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
+import fr.tvbarthel.games.chasewhisply.model.DisplayableItemFactory;
+import fr.tvbarthel.games.chasewhisply.model.MathUtils;
 import fr.tvbarthel.games.chasewhisply.model.TargetableItem;
 import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.weapon.Weapon;
@@ -41,10 +43,33 @@ public class GameInformationMemorize extends GameInformationStandard {
 		if (mGhostTypeList == null) {
 			mGhostTypeList = new ArrayList<Integer>();
 			for (int i = 0; i < DEFAULT_GHOST_NUMBER + mCurrentWave; i++) {
-				mGhostTypeList.add(TargetableItem.randomGhostType());
+				mGhostTypeList.add(randomGhostType());
 			}
 		} else {
-			mGhostTypeList.add(TargetableItem.randomGhostType());
+			mGhostTypeList.add(randomGhostType());
+		}
+	}
+
+	public int randomGhostType() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 20) {
+			//20%
+			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 40) {
+			//20%
+			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+		} else if (randomDraw < 60) {
+			//20%
+			return DisplayableItemFactory.TYPE_BLOND_GHOST;
+		} else if (randomDraw < 80) {
+			//20%
+			return DisplayableItemFactory.TYPE_BABY_GHOST;
+		} else if (randomDraw < 99) {
+			//19%
+			return DisplayableItemFactory.TYPE_GHOST_WITH_HELMET;
+		} else {
+			//1%
+			return DisplayableItemFactory.TYPE_KING_GHOST;
 		}
 	}
 
