@@ -10,8 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/row_game_details_icon"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_gravity="center_vertical"
         android:layout_margin="4dp"
         android:maxWidth="10dp"
@@ -32,12 +30,9 @@
             android:maxLines="1"
             android:minLines="1"
             android:ellipsize="end"
-            android:text="Death To The King"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/button_text_color"
-            android:layout_centerInParent="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/row_game_details_rank"/>
+            android:layout_alignParentStart="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +47,6 @@
                 android:maxLines="1"
                 android:minLines="1"
                 android:ellipsize="end"
-                android:text="Grade actuel : "
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@drawable/button_text_color"
                 android:layout_alignParentStart="true"/>
@@ -65,7 +59,6 @@
                 android:maxLines="1"
                 android:minLines="1"
                 android:ellipsize="end"
-                android:text="C"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/holo_dark_green"
                 android:layout_alignParentStart="true"/>
