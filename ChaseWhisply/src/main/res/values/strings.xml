@@ -358,7 +358,7 @@
     <string name="tuto_step_crosshair">Your gunsight is in the middle of the screen.</string>
     <string name="tuto_step_combo">Don’t miss any targets and add up combos!</string>
     <string name="tuto_step_ammos">Mind your ammunition at the bottom right of the screen.</string>
-    <string name="tuto_step_ammos_2">Your weapon reloads over time.</string>
+    <string name="tuto_step_ammos_2">Your weapon replenishes with time.</string>
     <string name="tuto_step_score">Keep an eye on your score at the bottom left of the screen.</string>
     <string name="tuto_step_serious_things">Let’s get down to business.</string>
     <string name="tuto_step_target">Aim your gunsight at the ghost by moving your phone…</string>
