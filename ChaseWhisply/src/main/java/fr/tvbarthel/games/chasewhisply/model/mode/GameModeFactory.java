@@ -128,7 +128,7 @@ public class GameModeFactory {
 		g.setType(GAME_TYPE_TWENTY_IN_A_ROW);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_twenty_in_a_row);
-		g.setImage(R.drawable.ic_mission);
+		g.setImage(R.drawable.ic_icon_twenty_in_a_row);
 		//TODO
 		//g.setLeaderboardStringId();
 		//g.setLeaderboardDescriptionStringId();
@@ -143,7 +143,7 @@ public class GameModeFactory {
 		g.setType(GAME_TYPE_MEMORIZE);
 		g.setLevel(level);
 		g.setRules(R.string.game_mode_memorize);
-		g.setImage(R.drawable.ic_mission);
+		g.setImage(R.drawable.ic_icon_memorize);
 		//TODO
 		//g.setLeaderboardStringId();
 		//g.setLeaderboardDescriptionStringId();
