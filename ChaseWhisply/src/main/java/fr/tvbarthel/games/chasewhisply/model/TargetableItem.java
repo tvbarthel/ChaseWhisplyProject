@@ -116,11 +116,24 @@ public class TargetableItem extends DisplayableItem {
 		mDrop = drop;
 	}
 
-	/**
-	 * spawn rules for all mobs
-	 *
-	 * @return
-	 */
+
+	public static int randomGhostTypeEasy() {
+		final int randomDraw = MathUtils.randomize(0, 100);
+		if (randomDraw < 40) {
+			//40%
+			return DisplayableItemFactory.TYPE_EASY_GHOST;
+		} else if (randomDraw < 80) {
+			//40%
+			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
+		} else if (randomDraw < 99) {
+			//19%
+			return DisplayableItemFactory.TYPE_BLOND_GHOST;
+		} else {
+			//1%
+			return DisplayableItemFactory.TYPE_KING_GHOST;
+		}
+	}
+
 	public static int randomGhostType() {
 		final int randomDraw = MathUtils.randomize(0, 100);
 		if (randomDraw < 40) {
@@ -150,10 +163,10 @@ public class TargetableItem extends DisplayableItem {
 			//10%
 			return DisplayableItemFactory.TYPE_EASY_GHOST;
 		} else if (randomDraw < 20) {
-			//10%
+			//15%
 			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
 		} else if (randomDraw < 50) {
-			//30%
+			//25%
 			return DisplayableItemFactory.TYPE_BLOND_GHOST;
 		} else if (randomDraw < 80) {
 			//30%
@@ -172,11 +185,11 @@ public class TargetableItem extends DisplayableItem {
 		if (randomDraw < 10) {
 			//10%
 			return DisplayableItemFactory.TYPE_EASY_GHOST;
-		} else if (randomDraw < 20) {
-			//10%
+		} else if (randomDraw < 25) {
+			//15%
 			return DisplayableItemFactory.TYPE_HIDDEN_GHOST;
-		} else if (randomDraw < 45) {
-			//25%
+		} else if (randomDraw < 40) {
+			//20%
 			return DisplayableItemFactory.TYPE_BLOND_GHOST;
 		} else if (randomDraw < 70) {
 			//25%
