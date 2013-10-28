@@ -38,6 +38,7 @@ public class GameModeFactory {
 		g.setRules(R.string.game_mode_tutorial);
 		g.setImage(R.drawable.ic_icon_tutorial);
 		g.setBonusAvailable(false);
+		g.setTitle(R.string.game_mode_tutorial);
 		return g;
 	}
 

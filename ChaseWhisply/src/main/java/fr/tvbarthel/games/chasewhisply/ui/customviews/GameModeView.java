@@ -52,7 +52,6 @@ public class GameModeView extends RelativeLayout {
 	public void setModel(GameMode model) {
 		mModel = model;
 		mGameModeImage.setImageResource(mModel.getImage());
-		mGameModeDescription.setText(mModel.getRules());
 	}
 
 	public void setModelForLeaderboard(GameMode model) {
@@ -79,6 +78,6 @@ public class GameModeView extends RelativeLayout {
 		this.setEnabled(isAllowed);
 		this.setClickable(isAllowed);
 		this.setBackgroundResource(isAllowed ? R.drawable.card_shadow : R.drawable.card_shadow_disable);
-		mGameModeDescription.setText(isAllowed ? mModel.getRules() : mModel.getRequiredMessage());
+		mGameModeDescription.setText(isAllowed ? mModel.getTitle() : mModel.getRequiredMessage());
 	}
 }
