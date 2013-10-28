@@ -36,12 +36,12 @@
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Zvoľte rebríček skóre</string>
-    <string name="leaderboard_overall_ranking_description">Celkové poradie.</string>
-    <string name="leaderboard_chooser_time_limited_level_1_description">Šprint Najvyššie dosiahnuté skóre.</string>
+    <string name="leaderboard_chooser_title_overall_ranking">Celkové poradie.</string>
+    <string name="leaderboard_chooser_title_sprint">Šprint Najvyššie dosiahnuté skóre.</string>
     <string name="leaderboard_chooser_time_limited_level_2_description">60 sekúnd Najvyššie dosiahnuté skóre.</string>
-    <string name="leaderboard_chooser_time_limited_level_3_description">Maratón Najvyššie dosiahnuté skóre.</string>
-    <string name="leaderboard_chooser_survival_description">Prežitie Najvyššie dosiahnuté skóre.</string>
-    <string name="leaderboard_death_to_the_king_description">Smrť kráľa najrýchlejší čas.</string>
+    <string name="leaderboard_chooser_title_marathon">Maratón Najvyššie dosiahnuté skóre.</string>
+    <string name="leaderboard_chooser_title_survival">Prežitie Najvyššie dosiahnuté skóre.</string>
+    <string name="leaderboard_chooser_title_death_to_the_king">Smrť kráľa najrýchlejší čas.</string>
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Zabi čo najviac duchov v časovom limite.</string>

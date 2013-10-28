@@ -50,7 +50,7 @@ public class GameModeFactory {
 				g.setRules(R.string.game_mode_time_limited_level_1);
 				g.setImage(R.drawable.ic_icon_time_based_game_30_s);
 				g.setLeaderboardStringId(R.string.leaderboard_sprint);
-				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_1_description);
+				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_sprint);
 				g.setLongDescription(R.string.game_mode_description_sprint);
 				g.setTitle(R.string.game_mode_title_sprint);
 				break;
@@ -68,7 +68,7 @@ public class GameModeFactory {
 				g.setRules(R.string.game_mode_time_limited_level_3);
 				g.setImage(R.drawable.ic_icon_time_based_game_90_s);
 				g.setLeaderboardStringId(R.string.leaderboard_marathon);
-				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_time_limited_level_3_description);
+				g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_marathon);
 				g.setTitle(R.string.game_mode_title_marathon);
 				g.setLongDescription(R.string.game_mode_description_marathon);
 				break;
@@ -106,7 +106,7 @@ public class GameModeFactory {
 		g.setRules(R.string.game_mode_survival);
 		g.setImage(R.drawable.ic_icon_time_based_game_inf);
 		g.setLeaderboardStringId(R.string.leaderboard_survival);
-		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_survival_description);
+		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_survival);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_SURVIVAL_MODE);
 		g.setRequiredMessage(R.string.game_mode_survival_required_message);
 		g.setBonusAvailable(true);
@@ -122,7 +122,7 @@ public class GameModeFactory {
 		g.setRules(R.string.game_mode_death_to_the_king);
 		g.setImage(R.drawable.ic_icon_death_to_the_king);
 		g.setLeaderboardStringId(R.string.leaderboard_death_to_the_king);
-		g.setLeaderboardDescriptionStringId(R.string.leaderboard_death_to_the_king_description);
+		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_death_to_the_king);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_DEATH_TO_THE_KING);
 		g.setRequiredMessage(R.string.game_mode_death_to_the_king_required_message);
 		g.setBonusAvailable(false);
@@ -138,8 +138,8 @@ public class GameModeFactory {
 		g.setRules(R.string.game_mode_twenty_in_a_row);
 		g.setImage(R.drawable.ic_icon_twenty_in_a_row);
 		//TODO
-		//g.setLeaderboardStringId();
-		//g.setLeaderboardDescriptionStringId();
+		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);
+		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_twenty_in_a_row);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_TWENTY_IN_A_ROW);
 		g.setRequiredMessage(R.string.game_mode_twenty_in_a_row_required_message);
 		g.setTitle(R.string.game_mode_title_twenty_in_a_row);
@@ -154,8 +154,8 @@ public class GameModeFactory {
 		g.setRules(R.string.game_mode_memorize);
 		g.setImage(R.drawable.ic_icon_memorize);
 		//TODO
-		//g.setLeaderboardStringId();
-		//g.setLeaderboardDescriptionStringId();
+		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);
+		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_memorize);
 		g.setRequiredCondition(GAME_REQUIRED_LEVEL_MEMORIZE);
 		g.setRequiredMessage(R.string.game_mode_memorize_required_message);
 		g.setTitle(R.string.game_mode_title_memorize);
@@ -168,7 +168,7 @@ public class GameModeFactory {
 		g.setType(GAME_TYPE_OVERALL_RANKING);
 		g.setImage(R.drawable.ic_icon_overall_ranking);
 		g.setLeaderboardStringId(R.string.leaderboard_overall_ranking);
-		g.setLeaderboardDescriptionStringId(R.string.leaderboard_overall_ranking_description);
+		g.setLeaderboardDescriptionStringId(R.string.leaderboard_chooser_title_overall_ranking);
 		return g;
 	}
 }

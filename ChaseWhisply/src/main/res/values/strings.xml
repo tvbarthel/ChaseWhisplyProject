@@ -40,12 +40,14 @@
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Select leaderboard</string>
-    <string name="leaderboard_overall_ranking_description">Overall Ranking.</string>
-    <string name="leaderboard_chooser_time_limited_level_1_description">Sprint High Scores.</string>
+    <string name="leaderboard_chooser_title_overall_ranking">Overall Ranking</string>
+    <string name="leaderboard_chooser_title_sprint">Scout First!</string>
     <string name="leaderboard_chooser_time_limited_level_2_description">60 seconds High Scores.</string>
-    <string name="leaderboard_chooser_time_limited_level_3_description">Marathon High Scores.</string>
-    <string name="leaderboard_chooser_survival_description">Survival High Scores.</string>
-    <string name="leaderboard_death_to_the_king_description">Death To The King fastest time.</string>
+    <string name="leaderboard_chooser_title_marathon">Prove your stamina</string>
+    <string name="leaderboard_chooser_title_survival">The Final Battle</string>
+    <string name="leaderboard_chooser_title_death_to_the_king">Death To The King</string>
+    <string name="leaderboard_chooser_title_memorize">Brainteaser</string>
+    <string name="leaderboard_chooser_title_twenty_in_a_row">Everything is an illusion…</string>
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Kill the most ghosts you can in the given time.</string>

@@ -36,15 +36,15 @@
     <string name="level_chooser">Sélectionnez une mission</string>
 
     <!-- Leaderboard Chooser Fragment !-->
-    <string name="leaderboard_chooser_title">Sélectionnez un classement</string>
-    <string name="leaderboard_overall_ranking_description">Classement général.</string>
-    <string name="leaderboard_chooser_time_limited_level_1_description">Classement du Sprint</string>
-    <string name="leaderboard_chooser_time_limited_level_2_description">Meilleurs scores, mode de
-        jeu : 60 secondes.
-    </string>
-    <string name="leaderboard_chooser_time_limited_level_3_description">Classement du Marathon</string>
-    <string name="leaderboard_chooser_survival_description">Classement survie</string>
-    <string name="leaderboard_death_to_the_king_description">Meilleurs temps en mode : Mort au roi.</string>
+    <string name="leaderboard_chooser_title">Séléctionnez un classement</string>
+    <string name="leaderboard_chooser_title_overall_ranking">Classement Général</string>
+    <string name="leaderboard_chooser_title_sprint">Les éclaireurs d\'abord</string>
+    <string name="leaderboard_chooser_time_limited_level_2_description">60 seconds High Scores.</string>
+    <string name="leaderboard_chooser_title_marathon">Prouvez votre endurance</string>
+    <string name="leaderboard_chooser_title_survival">L\'Ultime Bataille</string>
+    <string name="leaderboard_chooser_title_death_to_the_king">Mort au Roi</string>
+    <string name="leaderboard_chooser_title_memorize">Casse tête</string>
+    <string name="leaderboard_chooser_title_twenty_in_a_row">Tout n\'est qu\'illusion…</string>
 
     <!-- Game Mode rules !-->
     <string name="game_mode_remaining_time">Tuez le plus de fantômes possibles dans le temps imparti.</string>
