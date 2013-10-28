@@ -14,9 +14,9 @@ public class GameModeSprint extends GameMode {
 
 	private static final int RANK_LIMIT_DESERTER = 0;
 	private static final int RANK_LIMIT_SOLDIER = 500;
-	private static final int RANK_LIMIT_CORPORAL = 1000;
-	private static final int RANK_LIMIT_SERGEANT = 1350;
-	private static final int RANK_LIMIT_ADMIRAL = 1700;
+	private static final int RANK_LIMIT_CORPORAL = 900;
+	private static final int RANK_LIMIT_SERGEANT = 1300;
+	private static final int RANK_LIMIT_ADMIRAL = 1650;
 
 	public GameModeSprint() {
 		super();
