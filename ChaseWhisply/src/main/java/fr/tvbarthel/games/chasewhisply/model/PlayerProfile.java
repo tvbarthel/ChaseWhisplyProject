@@ -27,6 +27,7 @@ public class PlayerProfile {
 	private static final String KEY_RANK_MARATHON = "keyRankMarathon";
 	private static final String KEY_RANK_SURVIVAL = "keyRankSurvival";
 	private static final String KEY_RANK_DEATH_TO_THE_KING = "keyRankDeathToTheKing";
+	private static final String KEY_RANK_MEMORIZE = "keyRankMemorize";
 
 	private SharedPreferences mSharedPreferences;
 	private SharedPreferences.Editor mEditor;
@@ -293,6 +294,9 @@ public class PlayerProfile {
 					rank = 0;
 				}
 				break;
+			case GameModeFactory.GAME_TYPE_MEMORIZE:
+				rank = mSharedPreferences.getInt(KEY_RANK_MEMORIZE, 0);
+				break;
 			default:
 				rank = 0;
 				break;
@@ -323,6 +327,11 @@ public class PlayerProfile {
 					if (rank > mSharedPreferences.getInt(KEY_RANK_MARATHON, 0)) {
 						mEditor.putInt(KEY_RANK_MARATHON, rank);
 					}
+				}
+				break;
+			case GameModeFactory.GAME_TYPE_MEMORIZE:
+				if (rank > mSharedPreferences.getInt(KEY_RANK_MEMORIZE, 0)) {
+					mEditor.putInt(KEY_RANK_MEMORIZE, rank);
 				}
 				break;
 			default:
