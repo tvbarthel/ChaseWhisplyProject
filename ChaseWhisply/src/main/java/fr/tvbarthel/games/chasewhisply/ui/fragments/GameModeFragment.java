@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class GameModeFragment extends Fragment {
 
 	private GameMode mGameMode;
 	private PlayerProfile mPlayerProfile;
+	private GameModeFragment.Listener mListener;
 
 
 	public static GameModeFragment newInstance(GameMode gameMode) {
@@ -39,6 +41,11 @@ public class GameModeFragment extends Fragment {
 		super.onAttach(activity);
 		mPlayerProfile = new PlayerProfile(activity.getSharedPreferences(
 				PlayerProfile.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE));
+
+		if (activity instanceof GameModeFragment.Listener) {
+			//show play button
+			mListener = (GameModeFragment.Listener) activity;
+		}
 	}
 
 	@Override
@@ -81,7 +88,23 @@ public class GameModeFragment extends Fragment {
 		deserter.setText(mGameMode.getDeserterRankRule(res));
 		if (descriptionId != -1) longDescription.setText(descriptionId);
 
+		if (mListener != null) {
+			//show button play
+			final Button start = (Button) v.findViewById(R.id.details_play);
+			start.setVisibility(View.VISIBLE);
+			start.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					mListener.onPlayRequest(mGameMode);
+				}
+			});
+		}
+
 		return v;
+	}
+
+	public interface Listener {
+		public void onPlayRequest(GameMode gameMode);
 	}
 
 }

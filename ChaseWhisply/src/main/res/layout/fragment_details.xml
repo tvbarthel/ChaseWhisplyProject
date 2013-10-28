@@ -277,6 +277,19 @@
             </LinearLayout>
         </LinearLayout>
 
+        <Button
+            android:id="@+id/details_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_play"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/home_play"
+            android:textColor="@color/white"
+            android:textSize="@dimen/home_text_size"
+            android:visibility="gone"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
