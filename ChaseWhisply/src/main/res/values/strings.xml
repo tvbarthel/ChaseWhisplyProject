@@ -148,7 +148,7 @@
     <string name="tuto_page_play_button_content">Select your favorite mode and hunt the ghosts around you.</string>
 
     <!--Tuto Fragment Page Profile Button -->
-    <string name="tuto_page_profile_button_content">Follow your progress and discover information about your ennemy.</string>
+    <string name="tuto_page_profile_button_content">Follow your progress and discover information about your enemy.</string>
 
     <!-- Tuto Fragment Page Leaderboard Button -->
     <string name="tuto_page_leaderboard_button_content">Compare your score with your friends\' and try to be the best
@@ -167,7 +167,7 @@
 
     <!-- Tuto Fragment Page Target -->
     <string name="tuto_page_target_content">Your targets are Whisply and his siblings.</string>
-    <string name="tuto_page_target_bis_content">Line up one of them in your gunsight by moving your phone, thne shoot by touching the
+    <string name="tuto_page_target_bis_content">Line up one of them in your gunsight by moving your phone, then shoot by touching the
         screen.
     </string>
 
@@ -244,7 +244,7 @@
         <item quantity="one">Baby Drool</item>
         <item quantity="other">Baby Drools</item>
     </plurals>
-    <string name="inventory_item_baby_drool_description">Why on the earth should you keep a baby drool in a FPS
+    <string name="inventory_item_baby_drool_description">Why on the earth should you keep a baby drool in an FPS
         inventory?!?
     </string>
     <plurals name="inventory_item_king_crown_title">
@@ -281,7 +281,7 @@
         <item quantity="other">Ghost Tear</item>
     </plurals>
     <string name="inventory_item_ghost_tear_description">
-        A tiny drop of tear that probably came from a ghost mom that died trying to save her children. You can feel a
+        A tiny drop of tear that probably came from a mom ghost that died trying to save her children. You can feel a
         strange power emanating from this small drop.
     </string>
     <plurals name="inventory_item_speed_potion_title">
@@ -328,7 +328,7 @@
     <string name="tuto_step_congratulation">Congratulation, you have just killed your first ghost!</string>
     <string name="tuto_step_target_2">Be careful, some ghosts are stronger…</string>
     <string name="tuto_step_kill_2">…Shoot multiple times!</string>
-    <string name="tuto_step_congratulation_2">Tutorial completed. You are now ready for adventure!</string>
+    <string name="tuto_step_congratulation_2">Tutorial completed. You are now prepared for your adventure!</string>
     <string name="tuto_step_end">Tutorial completed!</string>
 
     <!-- Military ranks -->
