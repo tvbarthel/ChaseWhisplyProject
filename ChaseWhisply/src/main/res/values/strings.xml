@@ -249,7 +249,7 @@
     </string>
     <plurals name="inventory_item_king_crown_title">
         <item quantity="one">King’s Crown</item>
-        <item quantity="other">King’’s Crowns</item>
+        <item quantity="other">King’s Crowns</item>
     </plurals>
     <string name="inventory_item_king_crown_description">A beautiful and sought-after jewelry. It could definitely be melted down 
         to extract a huge amount of gold.
