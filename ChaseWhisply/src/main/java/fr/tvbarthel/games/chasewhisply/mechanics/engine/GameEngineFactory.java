@@ -307,7 +307,11 @@ public class GameEngineFactory {
 													 final GameEngine.IGameEngine iGameEngine,
 													 GameInformationTime gameInformation) {
 		//Game Behavior
-		final GameBehaviorTime gameBehavior = GameBehaviorFactory.createSprintOrMarathon();
+		GameBehaviorTime gameBehavior = GameBehaviorFactory.createSprint();
+		if (gameInformation.getGameMode().getLevel() > 1) {
+			gameBehavior = GameBehaviorFactory.createMarathon();
+		}
+
 		gameBehavior.setGameInformation(gameInformation);
 
 		//Game Engine & Game Behavior
