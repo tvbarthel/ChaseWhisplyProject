@@ -86,18 +86,44 @@
 
 
     <!-- Game Mode long description !-->
-    <string name="game_mode_description_sprint">TODO</string>
-    <string name="game_mode_description_twenty_in_a_row">TODO</string>
-    <string name="game_mode_description_marathon">TODO</string>
-    <string name="game_mode_description_survival">TODO</string>
-    <string name="game_mode_description_death_to_the_king">Your mission is to find and kill the king.
-        As soon as you are ready, touch the screen to summon the king and his sidekicks. Don\'t waste
-        your time with the sidekicks and write down your name in the history by being the fastest
-        ghost hunter in the West! \n\nUnfortunately bonus are unavailable for this mission.</string>
-    <string name="game_mode_description_memorize">As a bounty hunter, your mission is to
-        memorize a wanted ghost list and then try to kill them in the correct order.
-        On each new wave, one more ghost is added to the wanted list. In order to be the
-        best bounty hunter you will have to use your brain and not only rely on your shooting skill!</string>
+    <string name="game_mode_description_sprint">
+        Whisply and his friends have heard that you joined the ghost hunter army.
+        Be ready to defeat the first waves of scouts that are heading towards you.
+        \nNo quarter and no mercy!
+    </string>
+    <string name="game_mode_description_twenty_in_a_row">
+        Don’t fall into Whisply’s trap!
+        These cute little ghosts have been send in order to distabilize you and play with your emotions,
+        but they are only an illusion! Whisply masters the art of disguise,
+        and he won’t hesitate to use it against hunters like you.
+        Kill 20 baby ghost in a row in order to show your determination.
+    </string>
+    <string name="game_mode_description_marathon">
+        You are now a serious threat to Whisply and his sidekicks!
+        A huge wave of ghost are heading towards you, and they seem pretty angry.
+        Prepare yourself for a long and exhausting battle.
+        \n\nFor this long fight, you should use a bonus in order to not run out ammunition to quickly!
+    </string>
+    <string name="game_mode_description_survival">
+        Now that you killed the king, Whisply and his sidekicks have nothing lose anymore.
+        Prepare yourself for a last epic fight that can last days and nights!
+        Each target you killed grants you a little more time.
+        Take this opportunity to exterminate a lot of ghosts once and for all!
+    </string>
+    <string name="game_mode_description_death_to_the_king">
+        No more ghosts dare challenge you! The king has decided to come in person to defeat you.
+        Find him and kill as quickly as possible before he changes his mind.
+        Be careful, the king never comes alone.
+        Don’t lose time on his sidekicks and become the fastest ghost hunter in the West.
+        \n\nAs soon as you are ready, touch the screen to summon the king and his sidekicks.
+        \n\nUnfortunately bonus are unavailable for this mission.</string>
+    <string name="game_mode_description_memorize">
+        Facing your bravery, Whisply has no choice but changing his strategy!
+        This time, a difficult brainteaser is what awaits you.
+        Take the challenge and show him that a ghost hunter must have an handy brain
+        that can memorize several targets at the same time.
+        \n\nYour mission is to memorize a ghost list and then try to kill them in the correct order.
+        On each new wave, one more ghost is added to the wanted list.</string>
 
     <!-- Score Activity !-->
     <string name="score_number_of_bullets_fired">Bullets Fired</string>
