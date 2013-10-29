@@ -18,6 +18,7 @@ import com.google.android.gms.games.GamesClient;
 import fr.tvbarthel.games.chasewhisply.google.BaseGameActivity;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformation;
 import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationStandard;
+import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTime;
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
@@ -237,11 +238,18 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	public void onUpdateAchievements(final GameInformationStandard gameInformation, final PlayerProfile playerProfile) {
 		final GamesClient gamesClient = getGamesClient();
 		if (gamesClient.isConnected()) {
-			final int score = gameInformation.getCurrentScore();
 			final long exp = playerProfile.getLevelInformation().getTotalExpEarned();
 			final GameMode gameMode = gameInformation.getGameMode();
 			final Weapon weapon = gameInformation.getWeapon();
 			final int numberOfLoots = gameInformation.getNumberOfLoots();
+
+			//TODO find a better way to retrieve score
+			long score = gameInformation.getCurrentScore();
+			final int gameType = gameInformation.getGameMode().getType();
+			if (gameType == GameModeFactory.GAME_TYPE_DEATH_TO_THE_KING
+					|| gameType == GameModeFactory.GAME_TYPE_TWENTY_IN_A_ROW) {
+				score = ((GameInformationTime) gameInformation).getPlayingTime();
+			}
 
 			//Submit score for the played game mode
 			final int leaderBoardStringId = gameMode.getLeaderboardStringId();
