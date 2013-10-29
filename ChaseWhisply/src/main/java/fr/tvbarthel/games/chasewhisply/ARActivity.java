@@ -12,6 +12,8 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
+import java.util.Arrays;
+
 import fr.tvbarthel.games.chasewhisply.beta.BetaUtils;
 import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 
@@ -174,7 +176,11 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
 		if (sensorEvent.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-			SensorManager.getRotationMatrixFromVector(mRotationMatrix, sensorEvent.values);
+			if (sensorEvent.values.length > 4) {
+				SensorManager.getRotationMatrixFromVector(mRotationMatrix, Arrays.copyOfRange(sensorEvent.values, 0, 4));
+			} else {
+				SensorManager.getRotationMatrixFromVector(mRotationMatrix, sensorEvent.values);
+			}
 			SensorManager.remapCoordinateSystem(mRotationMatrix, mRemappedXAxis, mRemappedYAxis, mRemappedRotationMatrix);
 			SensorManager.getOrientation(mRemappedRotationMatrix, mOrientationVals);
 			if (mCurrentRotation == Surface.ROTATION_0) {
