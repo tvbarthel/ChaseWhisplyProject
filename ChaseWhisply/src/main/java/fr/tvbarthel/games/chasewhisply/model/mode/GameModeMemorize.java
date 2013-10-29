@@ -11,10 +11,10 @@ import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 
 public class GameModeMemorize extends GameMode {
 	private static final int RANK_LIMIT_DESERTER = 0;
-	private static final int RANK_LIMIT_SOLDIER = 3;
-	private static final int RANK_LIMIT_CORPORAL = 5;
-	private static final int RANK_LIMIT_SERGEANT = 8;
-	private static final int RANK_LIMIT_ADMIRAL = 13;
+	private static final int RANK_LIMIT_SOLDIER = 2;
+	private static final int RANK_LIMIT_CORPORAL = 4;
+	private static final int RANK_LIMIT_SERGEANT = 7;
+	private static final int RANK_LIMIT_ADMIRAL = 10;
 
 	public GameModeMemorize() {
 		super();
