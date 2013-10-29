@@ -67,11 +67,17 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 
 		//Sensor
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-		mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+		mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+
 		if (mRotationVectorSensor == null) {
-			setResult(RESULT_SENSOR_NOT_SUPPORTED, null);
-			finish();
+			mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+
+			if (mRotationVectorSensor == null) {
+				setResult(RESULT_SENSOR_NOT_SUPPORTED, null);
+				finish();
+			}
 		}
+
 
 		//initialize to the identity matrix
 		mRotationMatrix[0] = 1;
@@ -175,7 +181,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
-		if (sensorEvent.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+		if (sensorEvent.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR || sensorEvent.sensor.getType() == Sensor.TYPE_GAME_ROTATION_VECTOR) {
 			if (sensorEvent.values.length > 4) {
 				SensorManager.getRotationMatrixFromVector(mRotationMatrix, Arrays.copyOfRange(sensorEvent.values, 0, 4));
 			} else {
