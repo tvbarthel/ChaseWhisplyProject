@@ -78,7 +78,7 @@
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>
-    <string name="about_version_detail">verzia Beta.3.1</string>
+    <string name="about_version_detail">verzia Beta.3.2</string>
     <string name="about_developer_card_title">Vývojári</string>
     <string name="about_tbarthel_name">Thomas \"Tbarthel\" Barthélémy</string>
     <string name="about_vbarthel_name">Vincent \"Vbarthel\" Barthélémy</string>
