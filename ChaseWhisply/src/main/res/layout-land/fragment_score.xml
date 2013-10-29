@@ -236,7 +236,9 @@
                 android:layout_marginBottom="@dimen/default_vertical_margin"
                 android:layout_marginRight="@dimen/default_horizontal_margin"
                 android:id="@+id/linearLayout2"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/linear_layout_buttons">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -252,7 +254,7 @@
                     android:textSize="@dimen/home_text_size"/>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/default_horizontal_margin"
                     android:orientation="horizontal">
@@ -312,9 +314,9 @@
 
 
                     <LinearLayout
-                        android:layout_width="70dp"
+                        android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_marginLeft="@dimen/half_padding"
+                        android:layout_marginLeft="@dimen/default_horizontal_margin"
                         android:orientation="vertical">
 
                         <TextView
@@ -368,15 +370,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:id="@+id/linear_layout_buttons"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/default_horizontal_margin"
                 android:orientation="vertical"
                 android:baselineAligned="false"
-                android:layout_alignParentRight="false"
+                android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/linearLayout2">
+                android:layout_centerVertical="true">
 
                 <Button
                     android:id="@+id/score_button_skip"
