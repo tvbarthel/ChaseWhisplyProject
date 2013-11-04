@@ -44,7 +44,7 @@ public class GameModeSprint extends GameMode {
 		} else if (score >= RANK_LIMIT_SOLDIER) {
 			return GameModeFactory.GAME_RANK_SOLDIER;
 		} else {
-			return GameModeFactory.GAME_RANK_ADMIRAL;
+			return GameModeFactory.GAME_RANK_DESERTER;
 		}
 	}
 
