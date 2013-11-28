@@ -39,6 +39,19 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	//Beta-Only
 	private int mSensorDelay;
 
+	//Compatibility Mode for Rotation Sensor
+	protected final int MAGNETIC_FIELD_FILTER_THRESHOLD = 10;
+	protected boolean isCompatibilityModeActivated;
+	protected float[] mAcceleration = new float[3];
+	protected float[] mAccelerationBuffer = new float[3];
+	protected float[] mMagneticField = new float[3];
+	protected float[] mMagneticFieldBuffer = new float[3];
+	protected int[] mMagneticFieldFilter = new int[]{0, 0, 0};
+	protected float[] mCompatibilityModeRotationVector = new float[3];
+	protected float[] mCompatibilityModeRotationVectorBuffer = new float[]{0f, 0f, 0f};
+	protected Sensor mAccelerationSensor;
+	protected Sensor mMagneticSensor;
+
 	/**
 	 * A safe way to get an instance of the Camera object.
 	 */
@@ -73,8 +86,14 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 			mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
 			if (mRotationVectorSensor == null) {
-				setResult(RESULT_SENSOR_NOT_SUPPORTED, null);
-				finish();
+				//Compatibility Mode for Rotation Sensor
+				mAccelerationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+				mMagneticSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
+				if (mAccelerationSensor == null || mMagneticSensor == null) {
+					setResult(RESULT_SENSOR_NOT_SUPPORTED, null);
+					finish();
+				}
 			}
 		}
 
@@ -181,12 +200,36 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
-		if (sensorEvent.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR || sensorEvent.sensor.getType() == Sensor.TYPE_GAME_ROTATION_VECTOR) {
+		final int sensorType = sensorEvent.sensor.getType();
+		float[] rotationVector = null;
+
+		if (sensorType == Sensor.TYPE_ROTATION_VECTOR || sensorType == Sensor.TYPE_GAME_ROTATION_VECTOR) {
 			if (sensorEvent.values.length > 4) {
-				SensorManager.getRotationMatrixFromVector(mRotationMatrix, Arrays.copyOfRange(sensorEvent.values, 0, 4));
+				rotationVector = Arrays.copyOfRange(sensorEvent.values, 0, 4);
 			} else {
-				SensorManager.getRotationMatrixFromVector(mRotationMatrix, sensorEvent.values);
+				rotationVector = sensorEvent.values.clone();
 			}
+
+		} else if (sensorType == Sensor.TYPE_ACCELEROMETER || sensorType == Sensor.TYPE_MAGNETIC_FIELD) {
+			if (sensorType == Sensor.TYPE_ACCELEROMETER) {
+				mAccelerationBuffer = sensorEvent.values.clone();
+				filterAcceleration();
+			} else {
+				mMagneticFieldBuffer = sensorEvent.values.clone();
+				filterMagneticFieldVectorBis();
+				/*filterMagneticFieldVector();
+				Log.d("argonne", String.valueOf(isMagneticFieldNew()));
+				if(isMagneticFieldNew()) {
+					mMagneticField = mMagneticFieldBuffer.clone();
+				}*/
+			}
+			computeSupportRotationVector();
+			rotationVector = mCompatibilityModeRotationVector.clone();
+
+		}
+
+		if (rotationVector != null) {
+			SensorManager.getRotationMatrixFromVector(mRotationMatrix, rotationVector);
 			SensorManager.remapCoordinateSystem(mRotationMatrix, mRemappedXAxis, mRemappedYAxis, mRemappedRotationMatrix);
 			SensorManager.getOrientation(mRemappedRotationMatrix, mOrientationVals);
 			if (mCurrentRotation == Surface.ROTATION_0) {
@@ -197,6 +240,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 			}
 			onSmoothCoordinateChanged(new float[]{mOrientationVals[0], mOrientationVals[2]});
 		}
+
 	}
 
 
@@ -238,10 +282,76 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 			setContentView(mCameraPreview);
 
 			//Sensor
-			mSensorManager.registerListener(ARActivity.this, mRotationVectorSensor, mSensorDelay);
+			if (mRotationVectorSensor != null) {
+				mSensorManager.registerListener(ARActivity.this, mRotationVectorSensor, mSensorDelay);
+			} else {
+				mSensorManager.registerListener(ARActivity.this, mAccelerationSensor, mSensorDelay);
+				mSensorManager.registerListener(ARActivity.this, mMagneticSensor, mSensorDelay);
+			}
+
 			onCameraReady(horizontalViewAngle, verticalViewAngle);
 
 		}
+	}
+
+	protected void computeSupportRotationVector() {
+		float[] R = new float[9];
+		SensorManager.getRotationMatrix(R, null, mAcceleration, mMagneticField);
+
+		mCompatibilityModeRotationVector = rotMat2rotVec(R);
+
+		float alpha = 0.1f;
+		mCompatibilityModeRotationVector[0] = alpha * mCompatibilityModeRotationVector[0] + (1 - alpha) * mCompatibilityModeRotationVectorBuffer[0];
+		mCompatibilityModeRotationVector[1] = alpha * mCompatibilityModeRotationVector[1] + (1 - alpha) * mCompatibilityModeRotationVectorBuffer[1];
+		mCompatibilityModeRotationVector[2] = alpha * mCompatibilityModeRotationVector[2] + (1 - alpha) * mCompatibilityModeRotationVectorBuffer[2];
+		mCompatibilityModeRotationVectorBuffer = mCompatibilityModeRotationVector.clone();
+	}
+
+	protected boolean isMagneticFieldNew() {
+		return Math.abs(mMagneticFieldFilter[0]) == MAGNETIC_FIELD_FILTER_THRESHOLD
+				|| Math.abs(mMagneticFieldFilter[1]) == MAGNETIC_FIELD_FILTER_THRESHOLD
+				|| Math.abs(mMagneticFieldFilter[2]) == MAGNETIC_FIELD_FILTER_THRESHOLD;
+	}
+
+	protected void filterAcceleration() {
+		float alpha = 0.40f;
+		mAcceleration[0] = alpha * mAcceleration[0] + (1 - alpha) * mAccelerationBuffer[0];
+		mAcceleration[1] = alpha * mAcceleration[1] + (1 - alpha) * mAccelerationBuffer[1];
+		mAcceleration[2] = alpha * mAcceleration[2] + (1 - alpha) * mAccelerationBuffer[2];
+	}
+
+	protected void filterMagneticFieldVectorBis() {
+		float alpha = 0.10f;
+		mMagneticField[0] = alpha * mMagneticField[0] + (1 - alpha) * mMagneticFieldBuffer[0];
+		mMagneticField[1] = alpha * mMagneticField[1] + (1 - alpha) * mMagneticFieldBuffer[1];
+		mMagneticField[2] = alpha * mMagneticField[2] + (1 - alpha) * mMagneticFieldBuffer[2];
+	}
+
+	protected void filterMagneticFieldVector() {
+		filterMagneticFieldVectorValue(0);
+		filterMagneticFieldVectorValue(1);
+		filterMagneticFieldVectorValue(2);
+	}
+
+	protected void filterMagneticFieldVectorValue(int i) {
+		if (mMagneticFieldBuffer[i] > mMagneticField[i]) {
+			mMagneticFieldFilter[i] = Math.min(mMagneticFieldFilter[i] + 1,
+					MAGNETIC_FIELD_FILTER_THRESHOLD);
+		} else if(mMagneticFieldBuffer[i] < mMagneticField[i]){
+			mMagneticFieldFilter[i] = Math.max(mMagneticFieldFilter[i] - 1,
+					-MAGNETIC_FIELD_FILTER_THRESHOLD);
+		}
+	}
+
+
+	protected float[] rotMat2rotVec(float[] rotMat) {
+		double theta = Math.acos((rotMat[0] + rotMat[4] + rotMat[8] - 1) / 2);
+		double k = 0.5 / Math.sqrt(rotMat[0] + rotMat[4] + rotMat[8] + 1);
+
+		return new float[]{
+				(float) k * (rotMat[7] - rotMat[5]),
+				(float) k * (rotMat[2] - rotMat[6]),
+				(float) k * (rotMat[3] - rotMat[1])};
 	}
 
 	abstract void onSmoothCoordinateChanged(float[] smoothCoordinate);
