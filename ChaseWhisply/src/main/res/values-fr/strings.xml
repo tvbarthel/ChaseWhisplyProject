@@ -168,6 +168,7 @@
     <string name="sign_in_message">La prochaine fois, sauvegardez, partagez et comparez vos scores
         avec les autres joueurs en vous connectant via Google Plus !
     </string>
+    <string name="about_compatibility_mode_label">Forcer le mode de compatibilité</string>
 
     <!-- Tuto Activity -->
     <string name="tuto_default_title">Bientôt…</string>
@@ -406,5 +407,6 @@
     <string name="game_mode_memorize_instruction">Mémorisez\n%1$s</string>
     <string name="game_mode_memorize_wave">Vague %1$d</string>
 
+    <string name="toast_compatibility_mode">Mode de compatibilité</string>
 
 </resources>

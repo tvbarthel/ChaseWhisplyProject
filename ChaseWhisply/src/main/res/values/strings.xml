@@ -172,6 +172,8 @@
     <string name="about_license_content_link">Source code available at
         https://github.com/tvbarthel/ChaseWhisplyProject
     </string>
+    <string name="about_beta_test_section">Beta Test</string>
+    <string name="about_compatibility_mode_label">Force compatibility mode</string>
 
     <!-- Tuto Activity -->
     <string name="tuto_default_title">Soon…</string>
@@ -423,5 +425,7 @@
     <!-- Memorize -->
     <string name="game_mode_memorize_instruction">Memorise\n%1$s</string>
     <string name="game_mode_memorize_wave">Wave %1$d</string>
+
+    <string name="toast_compatibility_mode">Compatibility Mode</string>
 
 </resources>

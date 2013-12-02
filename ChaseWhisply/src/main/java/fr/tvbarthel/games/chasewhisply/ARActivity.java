@@ -1,6 +1,8 @@
 package fr.tvbarthel.games.chasewhisply;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import java.util.Arrays;
 
@@ -76,27 +79,24 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		super.onCreate(savedInstanceState);
 
 		//Beta-Only
-		mSensorDelay = getSharedPreferences(BetaUtils.KEY_SHARED_PREFERENCES, MODE_PRIVATE).getInt(BetaUtils.KEY_SENSOR_DELAY, SensorManager.SENSOR_DELAY_GAME);
+		final SharedPreferences betaSharedPreferences = getSharedPreferences(BetaUtils.KEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+		mSensorDelay = betaSharedPreferences.getInt(BetaUtils.KEY_SENSOR_DELAY, SensorManager.SENSOR_DELAY_GAME);
+		final boolean isCompatibilityModeActivated = betaSharedPreferences.getBoolean(BetaUtils.KEY_COMPATIBILITY_MODE_ACTIVATED, false);
 
 		//Sensor
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-		mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
 
-		if (mRotationVectorSensor == null) {
-			mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-
+		if (isCompatibilityModeActivated) {
+			useCompatibilityMode();
+		} else {
+			mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
 			if (mRotationVectorSensor == null) {
-				//Compatibility Mode for Rotation Sensor
-				mAccelerationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-				mMagneticSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-
-				if (mAccelerationSensor == null || mMagneticSensor == null) {
-					setResult(RESULT_SENSOR_NOT_SUPPORTED, null);
-					finish();
+				mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+				if (mRotationVectorSensor == null) {
+					useCompatibilityMode();
 				}
 			}
 		}
-
 
 		//initialize to the identity matrix
 		mRotationMatrix[0] = 1;
@@ -105,6 +105,18 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		mRotationMatrix[12] = 1;
 
 		setRemappedAxis();
+	}
+
+	private void useCompatibilityMode() {
+		//Compatibility Mode for Rotation Sensor
+		mAccelerationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		mMagneticSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+		if (mAccelerationSensor == null || mMagneticSensor == null) {
+			setResult(RESULT_SENSOR_NOT_SUPPORTED, null);
+			finish();
+		} else {
+			Toast.makeText(this, getString(R.string.toast_compatibility_mode), Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private void setRemappedAxis() {
@@ -337,7 +349,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		if (mMagneticFieldBuffer[i] > mMagneticField[i]) {
 			mMagneticFieldFilter[i] = Math.min(mMagneticFieldFilter[i] + 1,
 					MAGNETIC_FIELD_FILTER_THRESHOLD);
-		} else if(mMagneticFieldBuffer[i] < mMagneticField[i]){
+		} else if (mMagneticFieldBuffer[i] < mMagneticField[i]) {
 			mMagneticFieldFilter[i] = Math.max(mMagneticFieldFilter[i] - 1,
 					-MAGNETIC_FIELD_FILTER_THRESHOLD);
 		}
