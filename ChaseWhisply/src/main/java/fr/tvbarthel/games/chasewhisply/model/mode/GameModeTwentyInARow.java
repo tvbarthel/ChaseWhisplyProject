@@ -10,10 +10,10 @@ import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTim
 import fr.tvbarthel.games.chasewhisply.model.PlayerProfile;
 
 public class GameModeTwentyInARow extends GameMode{
-	private static final int RANK_LIMIT_ADMIRAL = 18000;
-	private static final int RANK_LIMIT_SERGEANT = 20000;
-	private static final int RANK_LIMIT_CORPORAL = 25000;
-	private static final int RANK_LIMIT_SOLDIER = 30000;
+	private static final int RANK_LIMIT_ADMIRAL = 20000;
+	private static final int RANK_LIMIT_SERGEANT = 25000;
+	private static final int RANK_LIMIT_CORPORAL = 30000;
+	private static final int RANK_LIMIT_SOLDIER = 35000;
 
 	public GameModeTwentyInARow() {
 		super();
