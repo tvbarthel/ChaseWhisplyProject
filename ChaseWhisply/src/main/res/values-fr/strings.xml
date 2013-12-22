@@ -141,6 +141,7 @@
     <string name="score_congratz_level_up">Vous venez de gagner un niveau.</string>
     <string name="score_congratz_rank_up">Vous venez d\'améliorer votre grade.</string>
     <string name="score_title_congratz_card">Félicitations !</string>
+    <string name="score_button_next_mission">Autre Mission</string>
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>

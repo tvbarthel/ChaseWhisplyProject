@@ -407,6 +407,19 @@
                     android:layout_gravity="center"/>
 
                 <Button
+                    android:id="@+id/score_button_next_mission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_play"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:text="@string/score_button_next_mission"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:minWidth="200dp"
+                    android:layout_gravity="center"/>
+
+                <Button
                     android:id="@+id/score_button_share"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
