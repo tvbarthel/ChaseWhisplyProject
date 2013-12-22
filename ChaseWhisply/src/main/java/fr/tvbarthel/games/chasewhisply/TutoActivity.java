@@ -2,7 +2,6 @@ package fr.tvbarthel.games.chasewhisply;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -23,9 +22,7 @@ import android.widget.ViewSwitcher;
 import fr.tvbarthel.games.chasewhisply.ui.fragments.TutoFragment;
 
 public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewFactory {
-	public static final String EXTRA_HELP_REQUESTED = "ExtraHelpRequested";
 	public static final int NB_PAGES = 7;
-	private static final String FIRST_LAUNCH_KEY = "First_launch_KEY";
 	private SharedPreferences mPrefs;
 	private String[] mPageTitles;
 	private TextSwitcher mTitleSwitcher;
@@ -49,12 +46,11 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 		mSlideRightOutAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_right_out);
 
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		final boolean firstLaunch = mPrefs.getBoolean(FIRST_LAUNCH_KEY, true);
-		final boolean helpRequested = getIntent().getBooleanExtra(EXTRA_HELP_REQUESTED, false);
-		if (!firstLaunch && !helpRequested) {
-			Intent intent = new Intent(this, HomeActivity.class);
-			startActivity(intent);
-			finish();
+		final boolean firstLaunch = mPrefs.getBoolean(HomeActivity.KEY_HAS_TUTO_BEEN_SEEN, false);
+		if (!firstLaunch) {
+			final SharedPreferences.Editor editor = mPrefs.edit();
+			editor.putBoolean(HomeActivity.KEY_HAS_TUTO_BEEN_SEEN, true);
+			editor.apply();
 		}
 
 		mPageTitles = new String[]{
@@ -109,18 +105,6 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
 	}
 
 	private void closeTutorial() {
-		final boolean helpRequested = getIntent().getBooleanExtra(EXTRA_HELP_REQUESTED, false);
-		if (!helpRequested) {
-			final Intent intent = new Intent(this, HomeActivity.class);
-			startActivity(intent);
-			final SharedPreferences.Editor editor = mPrefs.edit();
-			editor.putBoolean(FIRST_LAUNCH_KEY, false);
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-				editor.apply();
-			} else {
-				editor.commit();
-			}
-		}
 		finish();
 	}
 

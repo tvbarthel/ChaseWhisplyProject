@@ -34,6 +34,8 @@ import fr.tvbarthel.games.chasewhisply.ui.fragments.LeaderboardChooserFragment;
 
 public class HomeActivity extends BaseGameActivity implements GameHomeFragment.Listener, GameScoreFragment.Listener,
 		GameModeChooserFragment.Listener, LeaderboardChooserFragment.Listener, BonusFragment.Listener, GameModeFragment.Listener {
+	//Key
+	public static final String KEY_HAS_TUTO_BEEN_SEEN = "HomeActivity.Key.HasTutoBeenSeen";
 	//Request code
 	private static final int REQUEST_ACHIEVEMENT = 0x00000000;
 	private static final int REQUEST_LEADERBOARD = 0x00000001;
@@ -187,7 +189,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
 	@Override
 	public void onHelpRequested() {
 		final Intent intent = new Intent(this, TutoActivity.class);
-		intent.putExtra(TutoActivity.EXTRA_HELP_REQUESTED, true);
 		startActivity(intent);
 	}
 

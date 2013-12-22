@@ -2,6 +2,7 @@ package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import fr.tvbarthel.games.chasewhisply.HomeActivity;
 import fr.tvbarthel.games.chasewhisply.R;
 
 public class GameHomeFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener {
@@ -54,6 +56,12 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
 		initWhisplyPicture(v);
 		notifySignedStateChanged(mSignedIn, true, v);
 		return v;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		updateTutoButtonAnimation();
 	}
 
 	@Override
@@ -156,6 +164,21 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
 		super.onSaveInstanceState(outState);
 
 		outState.putBoolean(STATE_SIGNED_IN, mSignedIn);
+	}
+
+	private void updateTutoButtonAnimation() {
+		final boolean hasTutoEverBeenSeen = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(HomeActivity.KEY_HAS_TUTO_BEEN_SEEN, false);
+		final View buttonTutoHelp = getView().findViewById(R.id.home_help_tuto);
+		if (buttonTutoHelp != null) {
+			if (!hasTutoEverBeenSeen) {
+				final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.tuto_anim);
+				if (animation != null) {
+					buttonTutoHelp.startAnimation(animation);
+				}
+			} else {
+				buttonTutoHelp.clearAnimation();
+			}
+		}
 	}
 
 	public void notifySignedStateChanged(boolean signedIn) {

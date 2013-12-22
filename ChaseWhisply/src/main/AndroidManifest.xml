@@ -38,20 +38,20 @@
 
         <activity
             android:label="@string/app_name"
-            android:name=".HomeActivity" />
-
-        <activity android:name=".ProfileActivity" />
-
-        <activity
-            android:name=".GameActivity"
-            android:parentActivityName=".HomeActivity" />
-        <activity android:name=".TutoActivity">
+            android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ProfileActivity" />
+
+        <activity
+            android:name=".GameActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity android:name=".TutoActivity" />
     </application>
 
 </manifest>
