@@ -23,6 +23,8 @@ import fr.tvbarthel.games.chasewhisply.ui.CameraPreview;
 public abstract class ARActivity extends Activity implements SensorEventListener {
 
 	public static final int RESULT_SENSOR_NOT_SUPPORTED = 111;
+	private static final float KP = 2f; // proportional gain governs rate of convergence to accelerometer/magnetometer
+	private static final float KI = 0.001f; // integral gain governs rate of convergence of gyroscope biases
 
 	//Camera
 	protected Camera mCamera;
@@ -43,36 +45,16 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	private int mSensorDelay;
 
 	//Compatibility Mode for Rotation Sensor
-	protected final int MAGNETIC_FIELD_FILTER_THRESHOLD = 10;
-	protected boolean isCompatibilityModeActivated;
-	protected float[] mAcceleration = new float[3];
-	protected float[] mAccelerationBuffer = new float[3];
-	protected float[] mMagneticField = new float[3];
-	protected float[] mMagneticFieldBuffer = new float[3];
-	protected int[] mMagneticFieldFilter = new int[]{0, 0, 0};
-	protected float[] mCompatibilityModeRotationVector = new float[3];
-	protected float[] mCompatibilityModeRotationVectorBuffer = new float[]{0f, 0f, 0f};
+	protected float[] mAcceleration;
+	protected float[] mMagneticField;
+	protected float[] mGyroscope;
+	protected float[] mQuaternion = new float[]{1f, 0f, 0f, 0f};
+	protected float[] mIntegralError = new float[]{0f, 0f, 0f};
+
 	protected Sensor mAccelerationSensor;
 	protected Sensor mMagneticSensor;
-
-	/**
-	 * A safe way to get an instance of the Camera object.
-	 */
-	protected Camera getCameraInstance() {
-		Camera c = null;
-		try {
-			c = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
-			mCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
-		} catch (Exception e) {
-			try {
-				c = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
-				mCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
-			} catch (Exception e2) {
-				mCameraId = -1;
-			}
-		}
-		return c; // returns null if camera is unavailable
-	}
+	protected Sensor mGyroscopeSensor;
+	protected long lastUpdate = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,16 +68,8 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		//Sensor
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-		if (isCompatibilityModeActivated) {
+		if (isCompatibilityModeActivated || !useRotationSensor()) {
 			useCompatibilityMode();
-		} else {
-			mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
-			if (mRotationVectorSensor == null) {
-				mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-				if (mRotationVectorSensor == null) {
-					useCompatibilityMode();
-				}
-			}
 		}
 
 		//initialize to the identity matrix
@@ -103,20 +77,162 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		mRotationMatrix[4] = 1;
 		mRotationMatrix[8] = 1;
 		mRotationMatrix[12] = 1;
-
 		setRemappedAxis();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		new CameraAsyncTask().execute();
+	}
+
+	@Override
+	protected void onPause() {
+		releaseCamera();
+
+		if (mCameraPreview != null) {
+			final SurfaceHolder holder = mCameraPreview.getHolder();
+			if (holder != null) {
+				holder.removeCallback(mCameraPreview);
+			}
+		}
+
+		//Sensor
+		mSensorManager.unregisterListener(this);
+
+		super.onPause();
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent sensorEvent) {
+		final int sensorType = sensorEvent.sensor.getType();
+		float[] rotationVector = null;
+
+		rotationVector = getRotationVector(sensorEvent);
+
+		if (rotationVector != null) {
+			updateCoordinate(rotationVector);
+		}
+	}
+
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int i) {
+	}
+
+
+	private void updateCoordinate(float[] rotationVector) {
+		SensorManager.getRotationMatrixFromVector(mRotationMatrix, rotationVector);
+		SensorManager.remapCoordinateSystem(mRotationMatrix, mRemappedXAxis, mRemappedYAxis, mRemappedRotationMatrix);
+		SensorManager.getOrientation(mRemappedRotationMatrix, mOrientationVals);
+		if (mCurrentRotation == Surface.ROTATION_0) {
+			//For some reasons, there is a difference of 100° on the Y coordinate
+			//between landscape and portrait orientation. This is a poor
+			//attempt at fixing this issue.
+			mOrientationVals[2] -= 1.7453292519;
+		}
+		onSmoothCoordinateChanged(new float[]{mOrientationVals[0], mOrientationVals[2]});
+	}
+
+	private boolean useRotationSensor() {
+		boolean success = false;
+		mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+		if (mRotationVectorSensor != null) {
+			success = true;
+		} else {
+			mRotationVectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+			if (mRotationVectorSensor != null) {
+				success = true;
+			}
+		}
+		return success;
+	}
+
+	private float[] getRotationVector(SensorEvent sensorEvent) {
+		float[] rotationVector = null;
+		int sensorType = sensorEvent.sensor.getType();
+		if (sensorType == Sensor.TYPE_ROTATION_VECTOR
+				|| sensorType == Sensor.TYPE_GAME_ROTATION_VECTOR) {
+			rotationVector = getRotationVectorDirectly(sensorEvent);
+		} else if (sensorType == Sensor.TYPE_ACCELEROMETER
+				|| sensorType == Sensor.TYPE_MAGNETIC_FIELD
+				|| sensorType == Sensor.TYPE_GYROSCOPE) {
+			rotationVector = computeRotationVectorFromAccMagGyr(sensorEvent);
+		}
+		return rotationVector;
+	}
+
+	private float[] computeRotationVectorFromAccMagGyr(SensorEvent sensorEvent) {
+		float[] rotationVector = null;
+		int sensorType = sensorEvent.sensor.getType();
+		if (sensorType == Sensor.TYPE_ACCELEROMETER) {
+			mAcceleration = sensorEvent.values.clone();
+		} else if (sensorType == Sensor.TYPE_MAGNETIC_FIELD) {
+			mMagneticField = sensorEvent.values.clone();
+		} else {
+			mGyroscope = sensorEvent.values.clone();
+		}
+		long currentTime = System.nanoTime();
+		if (lastUpdate != -1) {
+			float halfSamplePeriod = ((currentTime - lastUpdate) * 1E-9f) / 2;
+			if (mAcceleration != null && mMagneticField != null && mGyroscope != null) {
+				AHRSUpdate(halfSamplePeriod);
+				rotationVector = Arrays.copyOfRange(mQuaternion, 1, 4);
+			}
+		}
+		lastUpdate = currentTime;
+		return rotationVector;
+	}
+
+	private float[] getRotationVectorDirectly(SensorEvent sensorEvent) {
+		if (sensorEvent.values.length > 4) {
+			return Arrays.copyOfRange(sensorEvent.values, 0, 4);
+		} else {
+			return sensorEvent.values.clone();
+		}
 	}
 
 	private void useCompatibilityMode() {
 		//Compatibility Mode for Rotation Sensor
 		mAccelerationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		mMagneticSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-		if (mAccelerationSensor == null || mMagneticSensor == null) {
+		mGyroscopeSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+		if (mAccelerationSensor == null || mMagneticSensor == null || mGyroscopeSensor == null) {
 			setResult(RESULT_SENSOR_NOT_SUPPORTED, null);
 			finish();
 		} else {
 			Toast.makeText(this, getString(R.string.toast_compatibility_mode), Toast.LENGTH_SHORT).show();
 		}
+	}
+
+
+	public void setCameraDisplayOrientation(android.hardware.Camera camera) {
+		android.hardware.Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
+		android.hardware.Camera.getCameraInfo(mCameraId, info);
+		int degrees = 0;
+		switch (mCurrentRotation) {
+			case Surface.ROTATION_0:
+				degrees = 0;
+				break;
+			case Surface.ROTATION_90:
+				degrees = 90;
+				break;
+			case Surface.ROTATION_180:
+				degrees = 180;
+				break;
+			case Surface.ROTATION_270:
+				degrees = 270;
+				break;
+		}
+
+		int result;
+		if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+			result = (info.orientation + degrees) % 360;
+			result = (360 - result) % 360;  // compensate the mirror
+		} else {  // back-facing
+			result = (info.orientation - degrees + 360) % 360;
+		}
+		camera.setDisplayOrientation(result);
 	}
 
 	private void setRemappedAxis() {
@@ -148,56 +264,23 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		}
 	}
 
-	public void setCameraDisplayOrientation(Activity activity, android.hardware.Camera camera) {
-		android.hardware.Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
-		android.hardware.Camera.getCameraInfo(mCameraId, info);
-		int degrees = 0;
-		switch (mCurrentRotation) {
-			case Surface.ROTATION_0:
-				degrees = 0;
-				break;
-			case Surface.ROTATION_90:
-				degrees = 90;
-				break;
-			case Surface.ROTATION_180:
-				degrees = 180;
-				break;
-			case Surface.ROTATION_270:
-				degrees = 270;
-				break;
-		}
-
-		int result;
-		if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-			result = (info.orientation + degrees) % 360;
-			result = (360 - result) % 360;  // compensate the mirror
-		} else {  // back-facing
-			result = (info.orientation - degrees + 360) % 360;
-		}
-		camera.setDisplayOrientation(result);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		new CameraAsyncTask().execute();
-	}
-
-	@Override
-	protected void onPause() {
-		releaseCamera();
-
-		if (mCameraPreview != null) {
-			final SurfaceHolder holder = mCameraPreview.getHolder();
-			if (holder != null) {
-				holder.removeCallback(mCameraPreview);
+	/**
+	 * A safe way to get an instance of the Camera object.
+	 */
+	protected Camera getCameraInstance() {
+		Camera c = null;
+		try {
+			c = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
+			mCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
+		} catch (Exception e) {
+			try {
+				c = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
+				mCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
+			} catch (Exception e2) {
+				mCameraId = -1;
 			}
 		}
-
-		//Sensor
-		mSensorManager.unregisterListener(this);
-
-		super.onPause();
+		return c; // returns null if camera is unavailable
 	}
 
 	/**
@@ -210,54 +293,90 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 		}
 	}
 
-	@Override
-	public void onSensorChanged(SensorEvent sensorEvent) {
-		final int sensorType = sensorEvent.sensor.getType();
-		float[] rotationVector = null;
+	/**
+	 * Java Implementation of the AHRS algorithm by
+	 * S.O.H. Madgwick
+	 * Original version, published in
+	 * http://code.google.com/p/imumargalgorithm30042010sohm/
+	 * under LGPL
+	 *
+	 * @param halfT half the sample period (in second)
+	 */
+	private void AHRSUpdate(float halfT) {
+		float norm;
+		float ax = mAcceleration[0], ay = mAcceleration[1], az = mAcceleration[2];
+		float mx = mMagneticField[0], my = mMagneticField[1], mz = mMagneticField[2];
+		float gx = mGyroscope[0], gy = mGyroscope[1], gz = mGyroscope[2];
+		float q0 = mQuaternion[0], q1 = mQuaternion[1], q2 = mQuaternion[2], q3 = mQuaternion[3];
+		float hx, hy, hz, bx, bz;
+		float vx, vy, vz, wx, wy, wz;
+		float ex, ey, ez;
 
-		if (sensorType == Sensor.TYPE_ROTATION_VECTOR || sensorType == Sensor.TYPE_GAME_ROTATION_VECTOR) {
-			if (sensorEvent.values.length > 4) {
-				rotationVector = Arrays.copyOfRange(sensorEvent.values, 0, 4);
-			} else {
-				rotationVector = sensorEvent.values.clone();
-			}
+		// auxiliary variables to reduce number of repeated operations
+		float q0q0 = q0 * q0;
+		float q0q1 = q0 * q1;
+		float q0q2 = q0 * q2;
+		float q0q3 = q0 * q3;
+		float q1q1 = q1 * q1;
+		float q1q2 = q1 * q2;
+		float q1q3 = q1 * q3;
+		float q2q2 = q2 * q2;
+		float q2q3 = q2 * q3;
+		float q3q3 = q3 * q3;
 
-		} else if (sensorType == Sensor.TYPE_ACCELEROMETER || sensorType == Sensor.TYPE_MAGNETIC_FIELD) {
-			if (sensorType == Sensor.TYPE_ACCELEROMETER) {
-				mAccelerationBuffer = sensorEvent.values.clone();
-				filterAcceleration();
-			} else {
-				mMagneticFieldBuffer = sensorEvent.values.clone();
-				filterMagneticFieldVectorBis();
-				/*filterMagneticFieldVector();
-				Log.d("argonne", String.valueOf(isMagneticFieldNew()));
-				if(isMagneticFieldNew()) {
-					mMagneticField = mMagneticFieldBuffer.clone();
-				}*/
-			}
-			computeSupportRotationVector();
-			rotationVector = mCompatibilityModeRotationVector.clone();
+		// normalise the measurements
+		norm = (float) Math.sqrt(ax * ax + ay * ay + az * az);
+		ax = ax / norm;
+		ay = ay / norm;
+		az = az / norm;
+		norm = (float) Math.sqrt(mx * mx + my * my + mz * mz);
+		mx = mx / norm;
+		my = my / norm;
+		mz = mz / norm;
 
-		}
+		// compute reference direction of flux
+		hx = (float) (2 * mx * (0.5 - q2q2 - q3q3) + 2 * my * (q1q2 - q0q3) + 2 * mz * (q1q3 + q0q2));
+		hy = (float) (2 * mx * (q1q2 + q0q3) + 2 * my * (0.5 - q1q1 - q3q3) + 2 * mz * (q2q3 - q0q1));
+		hz = (float) (2 * mx * (q1q3 - q0q2) + 2 * my * (q2q3 + q0q1) + 2 * mz * (0.5 - q1q1 - q2q2));
+		bx = (float) Math.sqrt((hx * hx) + (hy * hy));
+		bz = hz;
 
-		if (rotationVector != null) {
-			SensorManager.getRotationMatrixFromVector(mRotationMatrix, rotationVector);
-			SensorManager.remapCoordinateSystem(mRotationMatrix, mRemappedXAxis, mRemappedYAxis, mRemappedRotationMatrix);
-			SensorManager.getOrientation(mRemappedRotationMatrix, mOrientationVals);
-			if (mCurrentRotation == Surface.ROTATION_0) {
-				//For some reasons, there is a difference of 100° on the Y coordinate
-				//between landscape and portrait orientation. This is a poor
-				//attempt at fixing this issue.
-				mOrientationVals[2] -= 1.7453292519;
-			}
-			onSmoothCoordinateChanged(new float[]{mOrientationVals[0], mOrientationVals[2]});
-		}
+		// estimated direction of gravity and flux (v and w)
+		vx = 2 * (q1q3 - q0q2);
+		vy = 2 * (q0q1 + q2q3);
+		vz = q0q0 - q1q1 - q2q2 + q3q3;
+		wx = (float) (2 * bx * (0.5 - q2q2 - q3q3) + 2 * bz * (q1q3 - q0q2));
+		wy = 2 * bx * (q1q2 - q0q3) + 2 * bz * (q0q1 + q2q3);
+		wz = (float) (2 * bx * (q0q2 + q1q3) + 2 * bz * (0.5 - q1q1 - q2q2));
 
-	}
+		// error is sum of cross product between reference direction of fields and direction measured by sensors
+		ex = (ay * vz - az * vy) + (my * wz - mz * wy);
+		ey = (az * vx - ax * vz) + (mz * wx - mx * wz);
+		ez = (ax * vy - ay * vx) + (mx * wy - my * wx);
 
+		// integral error scaled integral gain
+		mIntegralError[0] = mIntegralError[0] + ex * KI;
+		mIntegralError[1] = mIntegralError[1] + ey * KI;
+		mIntegralError[2] = mIntegralError[2] + ez * KI;
 
-	@Override
-	public void onAccuracyChanged(Sensor sensor, int i) {
+		// adjusted gyroscope measurements
+		gx = gx + KP * ex + mIntegralError[0];
+		gy = gy + KP * ey + mIntegralError[1];
+		gz = gz + KP * ez + mIntegralError[2];
+
+		// integrate quaternion rate and normalise
+		q0 = q0 + (-q1 * gx - q2 * gy - q3 * gz) * halfT;
+		q1 = q1 + (q0 * gx + q2 * gz - q3 * gy) * halfT;
+		q2 = q2 + (q0 * gy - q1 * gz + q3 * gx) * halfT;
+		q3 = q3 + (q0 * gz + q1 * gy - q2 * gx) * halfT;
+
+		// normalise quaternion
+		norm = (float) Math.sqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);
+
+		mQuaternion[0] = q0 / norm;
+		mQuaternion[1] = q1 / norm;
+		mQuaternion[2] = q2 / norm;
+		mQuaternion[3] = q3 / norm;
 	}
 
 	private final class CameraAsyncTask extends AsyncTask<Void, Void, Camera> {
@@ -277,7 +396,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 				return;
 			}
 
-			setCameraDisplayOrientation(ARActivity.this, mCamera);
+			setCameraDisplayOrientation(mCamera);
 
 			//Angle view
 			final Camera.Parameters params = mCamera.getParameters();
@@ -299,71 +418,12 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 			} else {
 				mSensorManager.registerListener(ARActivity.this, mAccelerationSensor, mSensorDelay);
 				mSensorManager.registerListener(ARActivity.this, mMagneticSensor, mSensorDelay);
+				mSensorManager.registerListener(ARActivity.this, mGyroscopeSensor, mSensorDelay);
 			}
 
 			onCameraReady(horizontalViewAngle, verticalViewAngle);
 
 		}
-	}
-
-	protected void computeSupportRotationVector() {
-		float[] R = new float[9];
-		SensorManager.getRotationMatrix(R, null, mAcceleration, mMagneticField);
-
-		mCompatibilityModeRotationVector = rotMat2rotVec(R);
-
-		float alpha = 0.1f;
-		mCompatibilityModeRotationVector[0] = alpha * mCompatibilityModeRotationVector[0] + (1 - alpha) * mCompatibilityModeRotationVectorBuffer[0];
-		mCompatibilityModeRotationVector[1] = alpha * mCompatibilityModeRotationVector[1] + (1 - alpha) * mCompatibilityModeRotationVectorBuffer[1];
-		mCompatibilityModeRotationVector[2] = alpha * mCompatibilityModeRotationVector[2] + (1 - alpha) * mCompatibilityModeRotationVectorBuffer[2];
-		mCompatibilityModeRotationVectorBuffer = mCompatibilityModeRotationVector.clone();
-	}
-
-	protected boolean isMagneticFieldNew() {
-		return Math.abs(mMagneticFieldFilter[0]) == MAGNETIC_FIELD_FILTER_THRESHOLD
-				|| Math.abs(mMagneticFieldFilter[1]) == MAGNETIC_FIELD_FILTER_THRESHOLD
-				|| Math.abs(mMagneticFieldFilter[2]) == MAGNETIC_FIELD_FILTER_THRESHOLD;
-	}
-
-	protected void filterAcceleration() {
-		float alpha = 0.40f;
-		mAcceleration[0] = alpha * mAcceleration[0] + (1 - alpha) * mAccelerationBuffer[0];
-		mAcceleration[1] = alpha * mAcceleration[1] + (1 - alpha) * mAccelerationBuffer[1];
-		mAcceleration[2] = alpha * mAcceleration[2] + (1 - alpha) * mAccelerationBuffer[2];
-	}
-
-	protected void filterMagneticFieldVectorBis() {
-		float alpha = 0.10f;
-		mMagneticField[0] = alpha * mMagneticField[0] + (1 - alpha) * mMagneticFieldBuffer[0];
-		mMagneticField[1] = alpha * mMagneticField[1] + (1 - alpha) * mMagneticFieldBuffer[1];
-		mMagneticField[2] = alpha * mMagneticField[2] + (1 - alpha) * mMagneticFieldBuffer[2];
-	}
-
-	protected void filterMagneticFieldVector() {
-		filterMagneticFieldVectorValue(0);
-		filterMagneticFieldVectorValue(1);
-		filterMagneticFieldVectorValue(2);
-	}
-
-	protected void filterMagneticFieldVectorValue(int i) {
-		if (mMagneticFieldBuffer[i] > mMagneticField[i]) {
-			mMagneticFieldFilter[i] = Math.min(mMagneticFieldFilter[i] + 1,
-					MAGNETIC_FIELD_FILTER_THRESHOLD);
-		} else if (mMagneticFieldBuffer[i] < mMagneticField[i]) {
-			mMagneticFieldFilter[i] = Math.max(mMagneticFieldFilter[i] - 1,
-					-MAGNETIC_FIELD_FILTER_THRESHOLD);
-		}
-	}
-
-
-	protected float[] rotMat2rotVec(float[] rotMat) {
-		double theta = Math.acos((rotMat[0] + rotMat[4] + rotMat[8] - 1) / 2);
-		double k = 0.5 / Math.sqrt(rotMat[0] + rotMat[4] + rotMat[8] + 1);
-
-		return new float[]{
-				(float) k * (rotMat[7] - rotMat[5]),
-				(float) k * (rotMat[2] - rotMat[6]),
-				(float) k * (rotMat[3] - rotMat[1])};
 	}
 
 	abstract void onSmoothCoordinateChanged(float[] smoothCoordinate);
