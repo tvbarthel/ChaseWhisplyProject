@@ -54,7 +54,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	protected Sensor mAccelerationSensor;
 	protected Sensor mMagneticSensor;
 	protected Sensor mGyroscopeSensor;
-	protected long lastUpdate = -1;
+	protected long mLastUpdate = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -173,14 +173,14 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 			mGyroscope = sensorEvent.values.clone();
 		}
 		long currentTime = System.nanoTime();
-		if (lastUpdate != -1) {
-			float halfSamplePeriod = ((currentTime - lastUpdate) * 1E-9f) / 2;
+		if (mLastUpdate != -1) {
+			float halfSamplePeriod = ((currentTime - mLastUpdate) * 1E-9f) / 2;
 			if (mAcceleration != null && mMagneticField != null && mGyroscope != null) {
 				AHRSUpdate(halfSamplePeriod);
 				rotationVector = Arrays.copyOfRange(mQuaternion, 1, 4);
 			}
 		}
-		lastUpdate = currentTime;
+		mLastUpdate = currentTime;
 		return rotationVector;
 	}
 
