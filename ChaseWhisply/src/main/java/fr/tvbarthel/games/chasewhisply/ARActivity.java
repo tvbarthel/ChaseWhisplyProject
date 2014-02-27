@@ -30,6 +30,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	protected Camera mCamera;
 	protected int mCameraId;
 	protected CameraPreview mCameraPreview;
+	protected boolean mIsCameraReady;
 
 	//Sensor
 	protected SensorManager mSensorManager;
@@ -83,6 +84,15 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	@Override
 	protected void onResume() {
 		super.onResume();
+		mIsCameraReady = false;
+		//Sensor
+		if (mRotationVectorSensor != null) {
+			mSensorManager.registerListener(ARActivity.this, mRotationVectorSensor, mSensorDelay);
+		} else {
+			mSensorManager.registerListener(ARActivity.this, mAccelerationSensor, mSensorDelay);
+			mSensorManager.registerListener(ARActivity.this, mMagneticSensor, mSensorDelay);
+			mSensorManager.registerListener(ARActivity.this, mGyroscopeSensor, mSensorDelay);
+		}
 		new CameraAsyncTask().execute();
 	}
 
@@ -110,7 +120,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 
 		rotationVector = getRotationVector(sensorEvent);
 
-		if (rotationVector != null) {
+		if (rotationVector != null && mIsCameraReady) {
 			updateCoordinate(rotationVector);
 		}
 	}
@@ -287,6 +297,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 	 * release camera properly
 	 */
 	private void releaseCamera() {
+		mIsCameraReady = false;
 		if (mCamera != null) {
 			mCamera.release();        // release the camera for other applications
 			mCamera = null;
@@ -411,16 +422,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 
 			mCameraPreview = new CameraPreview(ARActivity.this, mCamera);
 			setContentView(mCameraPreview);
-
-			//Sensor
-			if (mRotationVectorSensor != null) {
-				mSensorManager.registerListener(ARActivity.this, mRotationVectorSensor, mSensorDelay);
-			} else {
-				mSensorManager.registerListener(ARActivity.this, mAccelerationSensor, mSensorDelay);
-				mSensorManager.registerListener(ARActivity.this, mMagneticSensor, mSensorDelay);
-				mSensorManager.registerListener(ARActivity.this, mGyroscopeSensor, mSensorDelay);
-			}
-
+			mIsCameraReady = true;
 			onCameraReady(horizontalViewAngle, verticalViewAngle);
 
 		}
