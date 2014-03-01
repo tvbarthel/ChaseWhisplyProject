@@ -11,6 +11,7 @@ import fr.tvbarthel.games.chasewhisply.model.bonus.BonusInventoryItemConsumer;
 abstract public class GameInformation implements Parcelable {
 	protected float mCurrentX;
 	protected float mCurrentY;
+	protected float mCurrentZ;
 	protected GameMode mGameMode;
 
 	protected GameInformation(GameMode gameMode) {
@@ -24,6 +25,7 @@ abstract public class GameInformation implements Parcelable {
 	protected void readFromParcel(Parcel in) {
 		mCurrentX = in.readFloat();
 		mCurrentY = in.readFloat();
+		mCurrentZ = in.readFloat();
 		mGameMode = in.readParcelable(GameMode.class.getClassLoader());
 	}
 
@@ -31,16 +33,18 @@ abstract public class GameInformation implements Parcelable {
 	public void writeToParcel(Parcel out, int i) {
 		out.writeFloat(mCurrentX);
 		out.writeFloat(mCurrentY);
+		out.writeFloat(mCurrentZ);
 		out.writeParcelable(mGameMode, i);
 	}
 
-	public void setCurrentPosition(float x, float y) {
+	public void setCurrentPosition(float x, float y, float z) {
 		mCurrentX = x;
 		mCurrentY = y;
+		mCurrentZ = z;
 	}
 
 	public float[] getCurrentPosition() {
-		return new float[]{mCurrentX, mCurrentY};
+		return new float[]{mCurrentX, mCurrentY, mCurrentZ};
 	}
 
 	public GameMode getGameMode() {

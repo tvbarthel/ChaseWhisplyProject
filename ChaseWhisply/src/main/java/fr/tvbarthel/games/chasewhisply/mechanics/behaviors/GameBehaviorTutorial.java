@@ -26,8 +26,8 @@ public class GameBehaviorTutorial extends GameBehaviorStandard {
 	}
 
 	@Override
-	public void setCurrentPosition(float posX, float posY) {
-		mGameInformation.setCurrentPosition(posX, posY);
+	public void setCurrentPosition(float posX, float posY, float posZ) {
+		mGameInformation.setCurrentPosition(posX, posY, posZ);
 	}
 
 	@Override

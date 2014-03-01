@@ -12,7 +12,7 @@ public interface GameBehavior {
 
 	public GameInformation getGameInformation();
 
-	public void setCurrentPosition(float posX, float posY);
+	public void setCurrentPosition(float posX, float posY, float posZ);
 
 	public float[] getCurrentPosition();
 

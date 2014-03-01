@@ -3,6 +3,7 @@ package fr.tvbarthel.games.chasewhisply.ui.gameviews;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
@@ -18,6 +19,7 @@ public abstract class GameView extends View {
 
 	protected final Paint mPaint = new Paint();
 	protected final Rect mBounds = new Rect();
+	private Matrix mMatrix = new Matrix();
 	private GameEngine mGameEngine;
 	//ratio for displaying items
 	protected float mWidthRatioDegreeToPx;
@@ -103,26 +105,25 @@ public abstract class GameView extends View {
 	public void renderItem(final Canvas canvas, final Bitmap bitmap, final DisplayableItem item) {
 		final RenderInformation renderInformation = getRenderInformation(item, bitmap);
 		if (renderInformation.isOnScreen) {
-			canvas.drawBitmap(bitmap, renderInformation.mPositionX, renderInformation.mPositionY, mPaint);
+			mMatrix.reset();
+			mMatrix.setTranslate(renderInformation.mPositionX, renderInformation.mPositionY);
+			mMatrix.postRotate(renderInformation.mPositionZ, renderInformation.mPositionX + bitmap.getWidth() / 2,
+					renderInformation.mPositionY + bitmap.getHeight() / 2);
+			canvas.drawBitmap(bitmap, mMatrix, mPaint);
 		}
 	}
 
 	public RenderInformation getRenderInformation(DisplayableItem item, Bitmap bitmap) {
 		RenderInformation renderInformation = new RenderInformation();
 		final float[] currentPosInDegree = mGameEngine.getCurrentPosition();
-		final int bitmapWidth = bitmap.getWidth();
-		final int bitmapHeight = bitmap.getHeight();
-		//normalization, avoid negative value.
+
+		// Normalization, avoid negative value.
 		currentPosInDegree[0] += 180;
 		currentPosInDegree[1] += 180;
 
+		// Get the smallest angle between the current position and the position of the item.
+		// Torus ?
 		final float[] itemPosInDegree = new float[]{item.getX() + 180, item.getY() + 180};
-
-		final float windowXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx - mScreenWidth / 2;
-		final float windowYInPx = currentPosInDegree[1] * mHeightRatioDegreeToPx - mScreenHeight / 2;
-
-		float itemXInPx = itemPosInDegree[0];
-		float itemYInPx = itemPosInDegree[1];
 
 		float diffX = currentPosInDegree[0] - itemPosInDegree[0];
 		float diffY = currentPosInDegree[1] - itemPosInDegree[1];
@@ -131,27 +132,50 @@ public abstract class GameView extends View {
 		float distY = Math.abs(diffY);
 
 		if (distX > 360 - distX) {
-			itemXInPx = currentPosInDegree[0] - diffX + Math.signum(diffX) * 360;
+			itemPosInDegree[0] = currentPosInDegree[0] - diffX + Math.signum(diffX) * 360;
 		}
 
 		if (distY > 360 - distY) {
-			itemYInPx = currentPosInDegree[1] - diffY + Math.signum(diffY) * 360;
+			itemPosInDegree[1] = currentPosInDegree[1] - diffY + Math.signum(diffY) * 360;
 		}
 
-		itemXInPx = itemXInPx * mWidthRatioDegreeToPx - bitmapWidth / 2;
-		itemYInPx = itemYInPx * mHeightRatioDegreeToPx - bitmapHeight / 2;
+		// Get the current coordinates in pixels.
+		// (the current coordinate is the coordinate of the center of the device screen)
+		float currentXInPx = currentPosInDegree[0] * mWidthRatioDegreeToPx;
+		float currentYInPy = currentPosInDegree[1] * mHeightRatioDegreeToPx;
 
-		final float borderLeft = windowXInPx - bitmapWidth;
-		final float borderTop = windowYInPx - bitmapHeight;
-		final float borderRight = borderLeft + mScreenWidth + bitmapWidth;
-		final float borderBottom = borderTop + mScreenHeight + bitmapHeight;
+		// Get the item coordinates in pixels;
+		float itemXInPx = itemPosInDegree[0] * mWidthRatioDegreeToPx;
+		float itemYInPx = itemPosInDegree[1] * mHeightRatioDegreeToPx;
 
-		renderInformation.mPositionX = itemXInPx - windowXInPx;
-		renderInformation.mPositionY = itemYInPx - windowYInPx;
+		// Translate the item coordinates.
+		// The point of reference is now the center of the screen.
+		float itemXInPxAfterTranslation = itemXInPx - currentXInPx;
+		float itemYInPxAfterTranslation = itemYInPx - currentYInPy;
 
-		if (itemXInPx > borderLeft && itemXInPx < borderRight && itemYInPx < borderBottom && itemYInPx > borderTop) {
-			renderInformation.isOnScreen = true;
-		}
+		// Rotate the item coordinates.
+		float rotationAngle = (float) Math.toRadians(-currentPosInDegree[2]);
+		float itemXInPxAfterRotation = (float) (itemXInPxAfterTranslation * Math.cos(rotationAngle)
+				+ itemYInPxAfterTranslation * Math.sin(rotationAngle));
+		float itemYInPxAfterRotation = (float) (-itemXInPxAfterTranslation * Math.sin(rotationAngle)
+				+ itemYInPxAfterTranslation * Math.cos(rotationAngle));
+
+		// Translate the item coordinates
+		// The point of reference is now the top left corner of the screen.
+		itemXInPx = itemXInPxAfterRotation + mScreenWidth / 2;
+		itemYInPx = itemYInPxAfterRotation + mScreenHeight / 2;
+
+		// Set the render information.
+		renderInformation.mPositionX = itemXInPx - bitmap.getWidth() / 2;
+		renderInformation.mPositionY = itemYInPx - bitmap.getHeight() / 2;
+		renderInformation.mPositionZ = currentPosInDegree[2];
+
+		// Check if the item should be rendered
+		renderInformation.isOnScreen = renderInformation.mPositionX > -bitmap.getWidth()
+				&& renderInformation.mPositionY > -bitmap.getHeight()
+				&& renderInformation.mPositionX < mScreenWidth
+				&& renderInformation.mPositionY < mScreenHeight;
+
 		return renderInformation;
 	}
 
@@ -160,6 +184,7 @@ public abstract class GameView extends View {
 		mPaint.setStrokeWidth(3);
 		mPaint.setTextSize(mFontSize);
 		mPaint.setTextAlign(Paint.Align.CENTER);
+		mPaint.setAntiAlias(true);
 	}
 
 	protected void useGreenPainter() {

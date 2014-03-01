@@ -141,7 +141,7 @@ public abstract class ARActivity extends Activity implements SensorEventListener
 			//attempt at fixing this issue.
 			mOrientationVals[2] -= 1.7453292519;
 		}
-		onSmoothCoordinateChanged(new float[]{mOrientationVals[0], mOrientationVals[2]});
+		onSmoothCoordinateChanged(mOrientationVals.clone());
 	}
 
 	private boolean useRotationSensor() {

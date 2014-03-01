@@ -50,17 +50,17 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine {
 	@Override
 	void onSmoothCoordinateChanged(float[] smoothCoordinate) {
 		mGameEngine.changePosition((float) Math.toDegrees(smoothCoordinate[0]),
-				(float) Math.toDegrees(smoothCoordinate[1]));
+				(float) Math.toDegrees(smoothCoordinate[2]), (float) Math.toDegrees(smoothCoordinate[1]));
 	}
 
 	@Override
 	void onCameraReady(float horizontal, float vertical) {
 		//if no gameBehavior choose the one corresponding to the right gameMode
 		final Intent intent = getIntent();
-		if(mGameEngine != null) {
+		if (mGameEngine != null) {
 			configureGameEngine(horizontal, vertical);
 			mGameEngine.resume();
-		}else if (mLastGameInformationSaved != null) {
+		} else if (mLastGameInformationSaved != null) {
 			mGameEngine = GameEngineFactory.restore(this, this, mLastGameInformationSaved);
 			configureGameEngine(horizontal, vertical);
 			mGameEngine.resume();

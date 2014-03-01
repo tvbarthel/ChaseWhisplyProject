@@ -102,8 +102,8 @@ public abstract class GameEngine implements View.OnClickListener, GameBehavior.I
 		mRoutines.add(routine);
 	}
 
-	public void changePosition(float posX, float posY) {
-		mGameBehavior.setCurrentPosition(posX, posY);
+	public void changePosition(float posX, float posY, float posZ) {
+		mGameBehavior.setCurrentPosition(posX, posY, posZ);
 		mGameView.invalidate();
 	}
 
