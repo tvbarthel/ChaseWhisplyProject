@@ -16,83 +16,83 @@ import fr.tvbarthel.games.chasewhisply.model.bonus.BonusEntry;
 import fr.tvbarthel.games.chasewhisply.model.bonus.BonusSpeed;
 
 public class BonusEntryAdapter extends ArrayAdapter<BonusEntry> {
-	private BonusEntry[] mBonusEntries;
-	private BonusEntry mEquippedBonus;
+    private BonusEntry[] mBonusEntries;
+    private BonusEntry mEquippedBonus;
 
-	public BonusEntryAdapter(Context context, BonusEntry[] bonusEntries) {
-		super(context, R.layout.row_bonus_entry, bonusEntries);
-		this.mBonusEntries = bonusEntries;
-	}
+    public BonusEntryAdapter(Context context, BonusEntry[] bonusEntries) {
+        super(context, R.layout.row_bonus_entry, bonusEntries);
+        this.mBonusEntries = bonusEntries;
+    }
 
-	@Override
-	public View getView(final int position, View convertView, ViewGroup parent) {
-		final Context context = getContext();
-		final BonusEntry currentBonusEntry = mBonusEntries[position];
-		final long quantity = currentBonusEntry.getQuantity();
-		final Bonus bonus = currentBonusEntry.getBonus();
-		final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		final boolean isEquipped = currentBonusEntry.isEquipped();
-
-
-		View rowView = convertView;
-		if (rowView == null) {
-			rowView = inflater.inflate(R.layout.row_bonus_entry, parent, false);
-		}
-		final CheckBox equippedCheckBox = ((CheckBox) rowView.findViewById(R.id.row_bonus_entry_equipped));
-		equippedCheckBox.setChecked(isEquipped);
-
-		//display card
-		if (isEquipped) {
-			rowView.setBackgroundResource(R.drawable.card_shadow_pressed);
-		} else {
-			rowView.setBackgroundResource(R.drawable.card_shadow_base);
-		}
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final Context context = getContext();
+        final BonusEntry currentBonusEntry = mBonusEntries[position];
+        final long quantity = currentBonusEntry.getQuantity();
+        final Bonus bonus = currentBonusEntry.getBonus();
+        final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final boolean isEquipped = currentBonusEntry.isEquipped();
 
 
-		if (quantity > 0) {
-			rowView.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					final boolean afterClickState = !currentBonusEntry.isEquipped();
-					resetEquippedState();
-					if (afterClickState == true) {
-						mEquippedBonus = currentBonusEntry;
-					} else {
-						mEquippedBonus = null;
-					}
-					currentBonusEntry.setIsEquipped(afterClickState);
-					notifyDataSetChanged();
-				}
-			});
-		} else {
-			rowView.setBackgroundResource(R.drawable.card_shadow_disable);
-			equippedCheckBox.setEnabled(false);
-		}
+        View rowView = convertView;
+        if (rowView == null) {
+            rowView = inflater.inflate(R.layout.row_bonus_entry, parent, false);
+        }
+        final CheckBox equippedCheckBox = ((CheckBox) rowView.findViewById(R.id.row_bonus_entry_equipped));
+        equippedCheckBox.setChecked(isEquipped);
 
-		((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(context.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
-		((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText("x" + String.valueOf(currentBonusEntry.getQuantity()));
-		((ImageView) rowView.findViewById(R.id.row_bonus_entry_image)).setImageResource(currentBonusEntry.getImageResourceId());
+        //display card
+        if (isEquipped) {
+            rowView.setBackgroundResource(R.drawable.card_shadow_pressed);
+        } else {
+            rowView.setBackgroundResource(R.drawable.card_shadow_base);
+        }
 
-		if (bonus instanceof BonusDamage) {
-			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
-					context.getString(currentBonusEntry.getEffectResourceId()),
-					String.valueOf(((BonusDamage) bonus).getBonusDamage())));
-		} else if (bonus instanceof BonusSpeed) {
-			((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
-					context.getString(currentBonusEntry.getEffectResourceId()),
-					String.valueOf(((BonusSpeed) bonus).getSpeedReduction())));
-		}
 
-		return rowView;
-	}
+        if (quantity > 0) {
+            rowView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final boolean afterClickState = !currentBonusEntry.isEquipped();
+                    resetEquippedState();
+                    if (afterClickState == true) {
+                        mEquippedBonus = currentBonusEntry;
+                    } else {
+                        mEquippedBonus = null;
+                    }
+                    currentBonusEntry.setIsEquipped(afterClickState);
+                    notifyDataSetChanged();
+                }
+            });
+        } else {
+            rowView.setBackgroundResource(R.drawable.card_shadow_disable);
+            equippedCheckBox.setEnabled(false);
+        }
 
-	private void resetEquippedState() {
-		for (BonusEntry entry : mBonusEntries) {
-			entry.setIsEquipped(false);
-		}
-	}
+        ((TextView) rowView.findViewById(R.id.row_bonus_entry_title)).setText(context.getResources().getQuantityString(currentBonusEntry.getTitleResourceId(), 1));
+        ((TextView) rowView.findViewById(R.id.row_bonus_entry_quantity)).setText("x" + String.valueOf(currentBonusEntry.getQuantity()));
+        ((ImageView) rowView.findViewById(R.id.row_bonus_entry_image)).setImageResource(currentBonusEntry.getImageResourceId());
 
-	public Bonus getEquippedBonus() {
-		return mEquippedBonus == null ? new Bonus.DummyBonus() : mEquippedBonus.getBonus();
-	}
+        if (bonus instanceof BonusDamage) {
+            ((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
+                    context.getString(currentBonusEntry.getEffectResourceId()),
+                    String.valueOf(((BonusDamage) bonus).getBonusDamage())));
+        } else if (bonus instanceof BonusSpeed) {
+            ((TextView) rowView.findViewById(R.id.row_bonus_entry_effect)).setText(String.format(
+                    context.getString(currentBonusEntry.getEffectResourceId()),
+                    String.valueOf(((BonusSpeed) bonus).getSpeedReduction())));
+        }
+
+        return rowView;
+    }
+
+    private void resetEquippedState() {
+        for (BonusEntry entry : mBonusEntries) {
+            entry.setIsEquipped(false);
+        }
+    }
+
+    public Bonus getEquippedBonus() {
+        return mEquippedBonus == null ? new Bonus.DummyBonus() : mEquippedBonus.getBonus();
+    }
 }

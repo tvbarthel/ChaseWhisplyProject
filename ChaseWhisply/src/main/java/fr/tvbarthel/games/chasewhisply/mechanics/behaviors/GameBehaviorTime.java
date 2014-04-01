@@ -5,29 +5,29 @@ import fr.tvbarthel.games.chasewhisply.mechanics.informations.GameInformationTim
 
 public abstract class GameBehaviorTime extends GameBehaviorStandard {
 
-	protected GameInformationTime mGameInformation;
+    protected GameInformationTime mGameInformation;
 
-	@Override
-	public void setGameInformation(GameInformation gameInformation) {
-		super.setGameInformation(gameInformation);
-		mGameInformation = (GameInformationTime) gameInformation;
-	}
+    @Override
+    public void setGameInformation(GameInformation gameInformation) {
+        super.setGameInformation(gameInformation);
+        mGameInformation = (GameInformationTime) gameInformation;
+    }
 
-	public long getCurrentTime() {
-		return mGameInformation.getCurrentTime();
-	}
+    public long getCurrentTime() {
+        return mGameInformation.getCurrentTime();
+    }
 
-	public void setStartingTime() {
-		mGameInformation.setStartingTime();
-	}
+    public void setStartingTime() {
+        mGameInformation.setStartingTime();
+    }
 
-	public void setEndingTime() {
-		mGameInformation.setEndingTime();
-	}
+    public void setEndingTime() {
+        mGameInformation.setEndingTime();
+    }
 
-	public long getPlayingTime() {
-		return mGameInformation.getPlayingTime();
-	}
+    public long getPlayingTime() {
+        return mGameInformation.getPlayingTime();
+    }
 
-	public abstract void tick(long tickingTime);
+    public abstract void tick(long tickingTime);
 }
