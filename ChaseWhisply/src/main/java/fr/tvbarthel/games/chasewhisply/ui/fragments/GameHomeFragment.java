@@ -3,7 +3,6 @@ package fr.tvbarthel.games.chasewhisply.ui.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.view.animation.AnimationUtils;
 import fr.tvbarthel.games.chasewhisply.HomeActivity;
 import fr.tvbarthel.games.chasewhisply.R;
 
-public class GameHomeFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener {
+public class GameHomeFragment extends ParallaxFragment implements View.OnClickListener, View.OnLongClickListener {
     public static final String FRAGMENT_TAG = "GameHomeFragment_TAG";
     private static final String STATE_SIGNED_IN = "State_signed";
     private boolean mSignedIn;
@@ -21,6 +20,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
     //animation
     private Animation mWhisplyAnimation;
     private boolean mIsWhisplyAnimationRunning;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,9 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
 
         initWhisplyPicture(v);
         notifySignedStateChanged(mSignedIn, true, v);
+
+        //add menu buttons as foreground view
+        addForegroundView(v.findViewById(R.id.menu));
         return v;
     }
 
@@ -64,6 +67,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
         updateTutoButtonAnimation();
     }
 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -71,7 +75,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
             mListener = (GameHomeFragment.Listener) activity;
         } else {
             throw new ClassCastException(activity.toString()
-                    + " must implemenet GameHomeFragment.Listener");
+                    + " must implement GameHomeFragment.Listener");
         }
     }
 
