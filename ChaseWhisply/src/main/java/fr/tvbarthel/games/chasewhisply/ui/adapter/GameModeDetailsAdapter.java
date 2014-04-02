@@ -35,22 +35,26 @@ public class GameModeDetailsAdapter extends ArrayAdapter<GameMode> {
         final Context context = getContext();
         final Resources res = context.getResources();
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final GameMode currentGameMode = mGameModes.get(position);
+        final String[] grades = res.getStringArray(R.array.ranks_array_full);
+        final int currentRank = mPlayerProfile.getRankByGameMode(currentGameMode);
 
 
         View rowView = convertView;
         if (rowView == null) {
             rowView = inflater.inflate(R.layout.row_mode_details_entry, parent, false);
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.title = (TextView) rowView.findViewById(R.id.row_game_details_title);
+            viewHolder.icon = (ImageView) rowView.findViewById(R.id.row_game_details_icon);
+            viewHolder.rank = (TextView) rowView.findViewById(R.id.row_game_details_rank);
+            rowView.setTag(viewHolder);
         }
 
-        final GameMode currentGameMode = mGameModes.get(position);
-        final TextView title = (TextView) rowView.findViewById(R.id.row_game_details_title);
-        title.setText(currentGameMode.getTitle());
-        final ImageView icon = (ImageView) rowView.findViewById(R.id.row_game_details_icon);
-        icon.setBackgroundResource(currentGameMode.getImage());
-        final TextView rank = (TextView) rowView.findViewById(R.id.row_game_details_rank);
-        String[] grades = res.getStringArray(R.array.ranks_array_full);
-        final int currentRank = mPlayerProfile.getRankByGameMode(currentGameMode);
-        rank.setText(grades[currentRank]);
+
+        ViewHolder viewHolder = (ViewHolder) rowView.getTag();
+        viewHolder.title.setText(currentGameMode.getTitle());
+        viewHolder.icon.setBackgroundResource(currentGameMode.getImage());
+        viewHolder.rank.setText(grades[currentRank]);
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +63,12 @@ public class GameModeDetailsAdapter extends ArrayAdapter<GameMode> {
             }
         });
         return rowView;
+    }
+
+    private final class ViewHolder {
+        public TextView title;
+        public ImageView icon;
+        public TextView rank;
     }
 
     public interface Listener {
