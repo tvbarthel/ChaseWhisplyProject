@@ -45,7 +45,7 @@
             android:layout_marginRight="@dimen/default_half_horizontal_margin"
             android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
 
-        <LinearLayout
+        <fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout
             android:id="@+id/menu"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="0.08" />
 
-        </LinearLayout>
+        </fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

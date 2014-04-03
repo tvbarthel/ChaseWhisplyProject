@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 import fr.tvbarthel.games.chasewhisply.HomeActivity;
 import fr.tvbarthel.games.chasewhisply.R;
+import fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout;
 
 public class GameHomeFragment extends ParallaxFragment implements View.OnClickListener, View.OnLongClickListener {
     public static final String FRAGMENT_TAG = "GameHomeFragment_TAG";
@@ -57,7 +59,7 @@ public class GameHomeFragment extends ParallaxFragment implements View.OnClickLi
         notifySignedStateChanged(mSignedIn, true, v);
 
         //add menu buttons as foreground view
-        addForegroundView(v.findViewById(R.id.menu));
+        setParallaxLinearLayout((ParallaxLinearLayout)v.findViewById(R.id.menu));
         return v;
     }
 
