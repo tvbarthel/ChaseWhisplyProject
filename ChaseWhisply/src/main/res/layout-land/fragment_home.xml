@@ -5,9 +5,10 @@
     android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/parallax">
 
         <Button
             android:layout_width="wrap_content"
@@ -45,7 +46,7 @@
             android:layout_marginRight="@dimen/default_half_horizontal_margin"
             android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
 
-        <fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout
+        <LinearLayout
             android:id="@+id/menu"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -133,7 +134,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="0.08" />
 
-        </fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -201,6 +202,6 @@
             android:layout_marginLeft="-10dp"
             android:src="@drawable/ghost" />
 
-    </RelativeLayout>
+    </fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout>
 
 </ScrollView>

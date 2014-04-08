@@ -10,7 +10,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +19,27 @@ import java.util.List;
  * Relative layout which use tag to render a parallax experience
  * Don't forget to register this layout as sensor rotation listener
  */
-public class ParallaxLinearLayout extends LinearLayout implements SensorEventListener {
+public class ParallaxLinearLayout extends RelativeLayout implements SensorEventListener {
 
     /**
-     * foreground radius
-     * TODO use dp ?
+     * constant use to convert nano second into second
      */
-    private static final int MAX_RADIUS = 200;
+    private static final float NS2S = 1.0f / 1000000000.0f;
+
+    /**
+     * boundary minimum to avoid noise
+     */
+    private static final float MINIMUM_ACCELERATION = 0.18f;
+
+    /**
+     * boundary maximum, over it phone rotates
+     */
+    private static final float MAXIMUM_ACCELERATION = 3.50f;
+
+    /**
+     * duration for translation animation
+     */
+    private static final int ANIMATION_DURATION_IN_MILLI = 100;
 
     /**
      * remapped axis X according to current device orientation
@@ -57,6 +71,11 @@ public class ParallaxLinearLayout extends LinearLayout implements SensorEventLis
      */
     private float[] mCurrentRotation;
 
+    /**
+     * use to calculate dT
+     */
+    private long mTimeStamp;
+
 
     /**
      * Constructor
@@ -77,9 +96,10 @@ public class ParallaxLinearLayout extends LinearLayout implements SensorEventLis
 
         mChildrenToAnimate = new ArrayList<View>();
 
-        mCurrentRotation = new float[2];
-        mCurrentRotation[0] = 0;
-        mCurrentRotation[1] = 0;
+        mCurrentRotation = new float[]{0.0f, 0.0f};
+
+        mTimeStamp = 0;
+
     }
 
 
@@ -105,24 +125,24 @@ public class ParallaxLinearLayout extends LinearLayout implements SensorEventLis
         switch (rotation) {
             case Surface.ROTATION_0:
                 //remapped x axis : use sensor axis Y
-                mRemappedViewAxisX = 1;
+                mRemappedViewAxisX = 0;
                 //remapped x axis : use sensor axis X
-                mRemappedViewAxisY = 0;
-                //remapped x axis orientation : inverse on x axis
-                mRemappedViewOrientationX = -1;
-                //remapped y axis orientation : inverse on x axis
+                mRemappedViewAxisY = 1;
+                //remapped x axis orientation : default on x axis
+                mRemappedViewOrientationX = +1;
+                //remapped y axis orientation : inverse on y axis
                 mRemappedViewOrientationY = -1;
                 break;
 
             case Surface.ROTATION_90:
                 //remapped x axis : use sensor axis X
-                mRemappedViewAxisX = 0;
+                mRemappedViewAxisX = 1;
                 //remapped x axis : use sensor axis Y
-                mRemappedViewAxisY = 1;
+                mRemappedViewAxisY = 0;
                 //remapped x axis orientation : inverse  on x axis
                 mRemappedViewOrientationX = -1;
-                //remapped y axis orientation : default  on x axis
-                mRemappedViewOrientationY = +1;
+                //remapped y axis orientation : inverse  on y axis
+                mRemappedViewOrientationY = -1;
                 break;
 
             case Surface.ROTATION_270:
@@ -131,9 +151,9 @@ public class ParallaxLinearLayout extends LinearLayout implements SensorEventLis
                 //remapped x axis : use sensor axis X
                 mRemappedViewAxisY = 0;
                 //remapped x axis orientation : default  on x axis
-                mRemappedViewOrientationX = -1;
-                //remapped y axis orientation : default  on x axis
-                mRemappedViewOrientationY = -1;
+                mRemappedViewOrientationX = +1;
+                //remapped y axis orientation : default  on y axis
+                mRemappedViewOrientationY = +1;
                 break;
         }
     }
@@ -151,37 +171,75 @@ public class ParallaxLinearLayout extends LinearLayout implements SensorEventLis
     @Override
     public void onSensorChanged(SensorEvent event) {
 
+        final float accelerationX = event.values[mRemappedViewAxisX];
+        final float accelerationY = event.values[mRemappedViewAxisY];
+        float translationX;
+        float translationY;
 
-        //TODO compute position according to this values and dT
-        mCurrentRotation[mRemappedViewAxisX] += event.values[mRemappedViewAxisX];
-        mCurrentRotation[mRemappedViewAxisY] += event.values[mRemappedViewAxisY];
 
+        if (mTimeStamp != 0) {
+            final float dT = (event.timestamp - mTimeStamp) * NS2S;
 
-        /**
-         * Animate the layout and its children
-         *
-         * Can't only animate children since they won't be drawn outside the ParallaxLinearLayout
-         * boundaries.
-         *
-         * That's the reason why we decided to apply maximum radius motion to the
-         * ParallaxLinearLayout and then apply translation in the opposite direction to distinguish
-         * planes. Basically apply the same radius motion in
-         * opposite direction to your child and they won't move.
-         */
+            //process new value to determine current x translation
+            if (Math.abs(accelerationX) < MINIMUM_ACCELERATION) {
+                translationX = 0;
+            } else if (Math.abs(accelerationX) > MAXIMUM_ACCELERATION) {
+                translationX = mCurrentRotation[mRemappedViewAxisX] + 0.5f
+                        * MAXIMUM_ACCELERATION * dT * dT;
+            } else {
+                translationX = mCurrentRotation[mRemappedViewAxisX] + 0.5f
+                        * accelerationX * dT * dT;
+                mCurrentRotation[mRemappedViewAxisX] = accelerationX;
+            }
 
-        this.animate()
-                .translationX(mRemappedViewOrientationX * MAX_RADIUS *
-                        mCurrentRotation[mRemappedViewAxisX])
-                .translationY(mRemappedViewOrientationY * MAX_RADIUS *
-                        mCurrentRotation[mRemappedViewAxisY]);
-        ;
-        for (View v : mChildrenToAnimate) {
-            v.animate()
-                    .translationX(-mRemappedViewOrientationX * MAX_RADIUS / 2 *
-                            mCurrentRotation[mRemappedViewAxisX])
-                    .translationY(-mRemappedViewOrientationY * MAX_RADIUS / 2 *
-                            mCurrentRotation[mRemappedViewAxisY]);
+            //process new value to determine current x translation
+            if (Math.abs(accelerationY) < MINIMUM_ACCELERATION) {
+                translationY = 0;
+            } else if (Math.abs(accelerationY) > MAXIMUM_ACCELERATION) {
+                translationY = mCurrentRotation[mRemappedViewAxisY] + 0.5f
+                        * MAXIMUM_ACCELERATION * dT * dT;
+            } else {
+                translationY = mCurrentRotation[mRemappedViewAxisY] + 0.5f
+                        * accelerationY * dT * dT;
+                mCurrentRotation[mRemappedViewAxisY] = accelerationY;
+            }
+
+            /**
+             * Animate the layout and its children
+             *
+             * Can't only animate children since they won't be drawn outside the ParallaxLinearLayout
+             * boundaries.
+             *
+             * That's the reason why we decided to apply maximum radius motion to the
+             * ParallaxLinearLayout and then apply translation in the opposite direction to distinguish
+             * planes. Basically apply the same radius motion in
+             * opposite direction to your child and they won't move.
+             */
+
+            //TODO create own animator
+
+            //TODO apply maximum radius to background motion, add custom xml properties
+            this.animate()
+                    .translationX(mRemappedViewOrientationX * this.getWidth() / 10 *
+                            translationX)
+                    .translationY(mRemappedViewOrientationY * this.getHeight() / 10 *
+                            translationY).setDuration(ANIMATION_DURATION_IN_MILLI);
+            ;
+
+            //TODO don't animate all first ground child
+//            for (View v : mChildrenToAnimate) {
+//                v.animate()
+//                        .translationX(-mRemappedViewOrientationX * this.getWidth() / 10 *
+//                                translationX)
+//                        .translationY(-mRemappedViewOrientationY * this.getHeight() / 10 *
+//                                translationY).setDuration(ANIMATION_DURATION_IN_MILLI);
+//
+//            }
         }
+
+        mTimeStamp = event.timestamp;
+
+
     }
 
     @Override

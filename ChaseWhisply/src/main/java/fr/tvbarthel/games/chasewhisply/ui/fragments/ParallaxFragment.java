@@ -44,7 +44,7 @@ public class ParallaxFragment extends Fragment {
         mSensorManager = (SensorManager) activity.getSystemService(Context.SENSOR_SERVICE);
 
         //get rotation sensor
-        mRotationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        mRotationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }
 
     @Override
