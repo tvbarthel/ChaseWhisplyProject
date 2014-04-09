@@ -1,14 +1,16 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".MainActivity">
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:parallax="http://schemas.android.com/apk/res/fr.tvbarthel.games.chasewhisply"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            tools:context=".MainActivity">
 
     <fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/parallax">
+        android:id="@+id/parallax"
+        parallax:parallax_background="@drawable/parallax_background">
 
         <Button
             android:layout_width="wrap_content"
@@ -26,7 +28,7 @@
             android:background="@drawable/button_base"
             android:src="@drawable/button_help_tuto"
             android:layout_marginRight="@dimen/default_half_horizontal_margin"
-            android:layout_marginBottom="@dimen/default_half_vertical_margin" />
+            android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -58,7 +60,7 @@
             <android.support.v7.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.08" />
+                android:layout_weight="0.08"/>
 
             <LinearLayout
                 android:id="@+id/leftLayout"
@@ -78,7 +80,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_play"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/home_text_size" />
+                    android:textSize="@dimen/home_text_size"/>
 
                 <Button
                     android:id="@+id/home_profile"
@@ -90,7 +92,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_profile"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/home_text_size" />
+                    android:textSize="@dimen/home_text_size"/>
 
 
             </LinearLayout>
@@ -113,7 +115,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_leaderboard"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/home_text_size" />
+                    android:textSize="@dimen/home_text_size"/>
 
                 <Button
                     android:id="@+id/home_achievement"
@@ -124,7 +126,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_achievement"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/home_text_size" />
+                    android:textSize="@dimen/home_text_size"/>
 
 
             </LinearLayout>
@@ -132,7 +134,7 @@
             <android.support.v7.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.08" />
+                android:layout_weight="0.08"/>
 
         </LinearLayout>
 
@@ -155,7 +157,7 @@
                 android:background="@drawable/button_signin"
                 android:gravity="center"
                 android:text="@string/home_sign_in"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"/>
 
             <Button
                 android:id="@+id/home_sign_out"
@@ -166,7 +168,7 @@
                 android:gravity="center"
                 android:text="@string/home_sign_out"
                 android:textColor="@color/white"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/google_signin_info"
@@ -176,7 +178,7 @@
                 android:gravity="center"
                 android:text="@string/home_sign_info"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text_view_grey" />
+                android:textColor="@color/text_view_grey"/>
 
         </LinearLayout>
 
@@ -190,7 +192,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/text_view_grey"
             android:textIsSelectable="false"
-            android:textSize="36sp" />
+            android:textSize="36sp"/>
 
         <ImageView
             android:id="@+id/home_whisply_picture"
@@ -200,7 +202,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="-40dp"
             android:layout_marginLeft="-10dp"
-            android:src="@drawable/ghost" />
+            android:src="@drawable/ghost"/>
 
     </fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout>
 
