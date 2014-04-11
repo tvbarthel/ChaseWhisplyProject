@@ -6,7 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.support.v4.app.Fragment;
 
-import fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout;
+import fr.tvbarthel.games.chasewhisply.ui.customviews.parallax.ParallaxLinearLayout;
 
 /**
  * Handle sensor registration life cycle for parallax linear layout

@@ -1,4 +1,4 @@
-package fr.tvbarthel.games.chasewhisply.ui.customviews;
+package fr.tvbarthel.games.chasewhisply.ui.customviews.parallax;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,7 +11,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,7 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
     /**
      * duration for translation animation
      */
-    private static final int ANIMATION_DURATION_IN_MILLI = 100;
+    private static final int ANIMATION_DURATION_IN_MILLI = 200;
 
     /**
      * remapped axis X according to current device orientation
@@ -75,19 +74,14 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
     private List<View> mChildrenToAnimate;
 
     /**
-     * current rotation
+     * store last acceleration values
      */
-    private float[] mCurrentRotation;
+    private float[] mLastAcceleration;
 
     /**
      * use to calculate dT
      */
     private long mTimeStamp;
-
-    /**
-     * parallax background
-     */
-    private Bitmap mParallaxBackground;
 
     /**
      * Rect used to store original window
@@ -98,6 +92,11 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
      * Rect used to display the current window
      */
     private Rect mCurrentParallaxDim;
+
+    /**
+     * parallax Background
+     */
+    private ParallaxBackground mParallaxBackground;
 
 
     /**
@@ -117,7 +116,7 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
         //retrieve custom attribute
         try {
             final Drawable background = a.getDrawable(R.styleable.ParallaxLinearLayout_parallax_background);
-            mParallaxBackground = drawableToBitmap(background);
+            mParallaxBackground = new ParallaxBackground(context, drawableToBitmap(background));
         } finally {
             a.recycle();
         }
@@ -135,13 +134,12 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
 
         mChildrenToAnimate = new ArrayList<View>();
 
-        mCurrentRotation = new float[]{0.0f, 0.0f};
-
+        //init array
+        mLastAcceleration = new float[]{0.0f, 0.0f};
         mParallaxDim = new Rect(0, 0, 0, 0);
         mCurrentParallaxDim = new Rect(0, 0, 0, 0);
 
         mTimeStamp = 0;
-
     }
 
     public Bitmap drawableToBitmap(Drawable drawable) {
@@ -159,6 +157,11 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
     }
 
 
+    /**
+     * Add all children in order to apply parallax motion
+     *
+     * @param viewGroup
+     */
     private void addChildrenRecursively(ViewGroup viewGroup) {
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
             View childView = viewGroup.getChildAt(i);
@@ -166,7 +169,6 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
                 addChildrenRecursively((ViewGroup) childView);
             } else {
                 mChildrenToAnimate.add(childView);
-                Log.d("DEBUG===", "child added : " + childView.toString());
             }
         }
 
@@ -214,14 +216,6 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
         }
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-        //draw the background image with mCurrentParallaxDim as subset of original background
-        canvas.drawBitmap(mParallaxBackground, mCurrentParallaxDim, new Rect(0, 0, this.getRight(), this.getBottom()), null);
-    }
-
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -232,125 +226,85 @@ public class ParallaxLinearLayout extends RelativeLayout implements SensorEventL
             addChildrenRecursively(this);
         }
 
-        if (mParallaxDim.left == 0 && mParallaxDim.right == 0) {
 
-            //layout ratio
-            final float destRatio = (float) this.getWidth() / this.getHeight();
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        params.setMargins((int) (-this.getWidth() / 2.0f), (int) (-this.getHeight() / 2.0f), 0, 0);
+        this.removeView(mParallaxBackground);
+        this.addView(mParallaxBackground, 0, params);
 
-            //background ratio
-            final float srcRatio = (float) mParallaxBackground.getWidth() / mParallaxBackground.getHeight();
-
-            /**
-             * calculate a window for source background, which matches layout ratio
-             * to avoid stretched rendering
-             */
-
-            //original width and height
-            double fitWidth = mParallaxBackground.getWidth();
-            double fitHeight = mParallaxBackground.getHeight();
-
-            //compare ration to obtain width and height which match the destination ratio
-            if (srcRatio < destRatio) {
-                fitHeight = fitWidth / destRatio;
-            } else {
-                fitWidth = fitHeight * destRatio;
-            }
-
-
-            //remove padding used during parallax motion
-            final int windowWidth = (int) (fitWidth - 2 * fitWidth * MAXIMUM_ACCELERATION / 20);
-            final int windowHeight = (int) (fitHeight - 2 * fitHeight * MAXIMUM_ACCELERATION / 20);
-
-            //left corner window = original center - windowWidth/2
-            final int left = (int) (mParallaxBackground.getWidth() / 2.0f - windowWidth / 2.0f);
-            //top corner window = original center - windowHeight/2
-            final int top = (int) (mParallaxBackground.getHeight() / 2.0f - windowHeight / 2.0f);
-            final int right = left + windowWidth;
-            final int bottom = top + windowHeight;
-
-            mParallaxDim.set(left, top, right, bottom);
-        }
     }
+
 
     @Override
     public void onSensorChanged(SensorEvent event) {
 
         final float accelerationX = event.values[mRemappedViewAxisX];
         final float accelerationY = event.values[mRemappedViewAxisY];
-        float translationX;
-        float translationY;
+        float[] translation = new float[]{0.0f, 0.0f};
 
 
+        /**
+         * Process acceleration to determine motion and let ParallaxLinearLayout animate
+         * it's children and it's background
+         */
         if (mTimeStamp != 0) {
             final float dT = (event.timestamp - mTimeStamp) * NS2S;
 
             //process new value to determine current x translation
             if (Math.abs(accelerationX) < MINIMUM_ACCELERATION) {
-                translationX = 0;
+                translation[mRemappedViewAxisX] = 0;
             } else if (Math.abs(accelerationX) > MAXIMUM_ACCELERATION) {
-                translationX = mCurrentRotation[mRemappedViewAxisX] + 0.5f
+                translation[mRemappedViewAxisX] = mLastAcceleration[mRemappedViewAxisX] + 0.5f
                         * MAXIMUM_ACCELERATION * dT * dT;
             } else {
-                translationX = mCurrentRotation[mRemappedViewAxisX] + 0.5f
+                translation[mRemappedViewAxisX] = mLastAcceleration[mRemappedViewAxisX] + 0.5f
                         * accelerationX * dT * dT;
-                mCurrentRotation[mRemappedViewAxisX] = accelerationX;
+                mLastAcceleration[mRemappedViewAxisX] = accelerationX;
             }
 
             //process new value to determine current x translation
             if (Math.abs(accelerationY) < MINIMUM_ACCELERATION) {
-                translationY = 0;
+                translation[mRemappedViewAxisY] = 0;
             } else if (Math.abs(accelerationY) > MAXIMUM_ACCELERATION) {
-                translationY = mCurrentRotation[mRemappedViewAxisY] + 0.5f
+                translation[mRemappedViewAxisY] = mLastAcceleration[mRemappedViewAxisY] + 0.5f
                         * MAXIMUM_ACCELERATION * dT * dT;
             } else {
-                translationY = mCurrentRotation[mRemappedViewAxisY] + 0.5f
+                translation[mRemappedViewAxisY] = mLastAcceleration[mRemappedViewAxisY] + 0.5f
                         * accelerationY * dT * dT;
-                mCurrentRotation[mRemappedViewAxisY] = accelerationY;
+                mLastAcceleration[mRemappedViewAxisY] = accelerationY;
             }
 
-            /**
-             * Animate the layout and its children
-             *
-             * Can't only animate children since they won't be drawn outside the ParallaxLinearLayout
-             * boundaries.
-             *
-             * That's the reason why we decided to apply maximum radius motion to the
-             * ParallaxLinearLayout and then apply translation in the opposite direction to distinguish
-             * planes. Basically apply the same radius motion in
-             * opposite direction to your child and they won't move.
-             */
 
-            //TODO apply maximum radius to background motion, add custom xml properties
-//            this.animate()
-//                    .translationX(mRemappedViewOrientationX * this.getWidth() / 10 *
-//                            translationX)
-//                    .translationY(mRemappedViewOrientationY * this.getHeight() / 10 *
-//                            translationY).setDuration(ANIMATION_DURATION_IN_MILLI);
-//            ;
+//            //TODO extends Rect and add animation possibility, for smooth motion
+//            mCurrentParallaxDim.set(
+//                    mParallaxDim.left - (int) (mRemappedViewOrientationX
+//                            * mParallaxBackground.getWidth() / 20 * translation[mRemappedViewAxisX]),
+//                    mParallaxDim.top - (int) (mRemappedViewOrientationY
+//                            * mParallaxBackground.getHeight() / 20 * translation[mRemappedViewAxisY]),
+//                    mParallaxDim.right - (int) (mRemappedViewOrientationX
+//                            * mParallaxBackground.getWidth() / 20 * translation[mRemappedViewAxisX]),
+//                    mParallaxDim.bottom - (int) (mRemappedViewOrientationY
+//                            * mParallaxBackground.getHeight() / 20 * translation[mRemappedViewAxisY])
+//            );
 
-            //TODO extends Rect and add animation possibility, for smooth motion
-            mCurrentParallaxDim.set(
-                    mParallaxDim.left -
-                            (int) (mRemappedViewOrientationX * mParallaxBackground.getWidth() / 20 * translationX),
-                    mParallaxDim.top -
-                            (int) (mRemappedViewOrientationY * mParallaxBackground.getHeight() / 20 * translationY),
-                    mParallaxDim.right -
-                            (int) (mRemappedViewOrientationX * mParallaxBackground.getWidth() / 20 * translationX),
-                    mParallaxDim.bottom -
-                            (int) (mRemappedViewOrientationY * mParallaxBackground.getHeight() / 20 * translationY)
-            );
+            mParallaxBackground.animate()
+                    .translationX(mRemappedViewOrientationX * this.getWidth() / 10 *
+                            translation[mRemappedViewAxisX])
+                    .translationY(mRemappedViewOrientationY * this.getHeight() / 10 *
+                            translation[mRemappedViewAxisY]).setDuration(ANIMATION_DURATION_IN_MILLI);
 
-            this.invalidate();
 
             //TODO don't animate all first ground child
-//            for (View v : mChildrenToAnimate) {
-//                v.animate()
-//                        .translationX(-mRemappedViewOrientationX * this.getWidth() / 10 *
-//                                translationX)
-//                        .translationY(-mRemappedViewOrientationY * this.getHeight() / 10 *
-//                                translationY).setDuration(ANIMATION_DURATION_IN_MILLI);
-//
-//            }
+            //for (View v : mChildrenToAnimate) {
+//            mChildrenToAnimate.get(0).animate()
+//                    .translationX(-mRemappedViewOrientationX * this.getWidth() / 10 *
+//                            translation[mRemappedViewAxisX])
+//                    .translationY(-mRemappedViewOrientationY * this.getHeight() / 10 *
+//                            translation[mRemappedViewAxisY]).setDuration(ANIMATION_DURATION_IN_MILLI);
+
+            //}
         }
 
         mTimeStamp = event.timestamp;

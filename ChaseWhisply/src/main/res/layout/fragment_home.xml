@@ -6,7 +6,7 @@
             android:fillViewport="true"
             tools:context=".MainActivity">
 
-    <fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout
+    <fr.tvbarthel.games.chasewhisply.ui.customviews.parallax.ParallaxLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/parallax"
@@ -171,6 +171,6 @@
             android:minWidth="48dp"
             android:minHeight="48dp"/>
 
-    </fr.tvbarthel.games.chasewhisply.ui.customviews.ParallaxLinearLayout>
+    </fr.tvbarthel.games.chasewhisply.ui.customviews.parallax.ParallaxLinearLayout>
 
 </ScrollView>
