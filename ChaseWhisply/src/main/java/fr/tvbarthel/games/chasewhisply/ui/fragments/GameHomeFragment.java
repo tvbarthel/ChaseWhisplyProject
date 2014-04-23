@@ -22,6 +22,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
     private Animation mWhisplyAnimation;
     private boolean mIsWhisplyAnimationRunning;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
 
         initWhisplyPicture(v);
         notifySignedStateChanged(mSignedIn, true, v);
+
         return v;
     }
 
@@ -64,6 +66,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
         updateTutoButtonAnimation();
     }
 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -71,7 +74,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
             mListener = (GameHomeFragment.Listener) activity;
         } else {
             throw new ClassCastException(activity.toString()
-                    + " must implemenet GameHomeFragment.Listener");
+                    + " must implement GameHomeFragment.Listener");
         }
     }
 
