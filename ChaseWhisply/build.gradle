@@ -9,7 +9,6 @@ buildscript {
 apply plugin: 'android'
 
 dependencies {
-    compile 'com.google.android.gms:play-services:4.3.23'
     compile 'com.android.support:gridlayout-v7:18.0.0'
     compile files('libs/nineoldandroids-2.4.0.jar')
     compile project(':BaseGameUtils')
