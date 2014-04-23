@@ -35,7 +35,9 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(BUNDLE_GAME_INFORMATION, mGameEngine.getGameInformation());
+        if (mGameEngine != null) {
+            outState.putParcelable(BUNDLE_GAME_INFORMATION, mGameEngine.getGameInformation());
+        }
     }
 
     @Override
