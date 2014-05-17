@@ -176,6 +176,7 @@
     <string name="about_beta_test_section">Beta Test</string>
     <string name="about_compatibility_mode_label">Force compatibility mode</string>
     <string name="about_label_report_a_bug">Report a bug</string>
+    <string name="about_label_contact_us">Send us a tip or a suggestion</string>
 
     <!-- Tuto Activity -->
     <string name="tuto_default_title">Soon…</string>
@@ -434,5 +435,6 @@
     <string name="email_us_email">tvbarthel@gmail.com</string>
     <string name="email_us_uri">mailto:%1$s?subject=%2$s</string>
     <string name="email_us_subject_report_a_bug">[Chase Whisply] Bug Report</string>
+    <string name="email_us_subject_contact_us">[Chase Whisply] Here are some suggestions!</string>
 
 </resources>

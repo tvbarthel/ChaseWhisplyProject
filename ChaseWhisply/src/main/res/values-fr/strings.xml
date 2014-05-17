@@ -171,6 +171,7 @@
     </string>
     <string name="about_compatibility_mode_label">Forcer le mode de compatibilité</string>
     <string name="about_label_report_a_bug">Signaler un bug</string>
+    <string name="about_label_contact_us">Envoyez-nous un conseil ou une suggestion</string>
 
     <!-- Tuto Activity -->
     <string name="tuto_default_title">Bientôt…</string>
