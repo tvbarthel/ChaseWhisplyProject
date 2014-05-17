@@ -191,6 +191,19 @@
             android:textIsSelectable="false"
             android:textSize="36sp"/>
 
+
+        <TextView
+            android:id="@+id/home_version_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text_view_grey"
+            android:textIsSelectable="false"
+            tools:text="0.3.2" />
+
         <ImageView
             android:id="@+id/home_whisply_picture"
             android:layout_width="wrap_content"
