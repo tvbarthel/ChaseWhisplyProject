@@ -175,6 +175,7 @@
     </string>
     <string name="about_beta_test_section">Beta Test</string>
     <string name="about_compatibility_mode_label">Force compatibility mode</string>
+    <string name="about_label_report_a_bug">Report a bug</string>
 
     <!-- Tuto Activity -->
     <string name="tuto_default_title">Soon…</string>
@@ -428,5 +429,10 @@
     <string name="game_mode_memorize_wave">Wave %1$d</string>
 
     <string name="toast_compatibility_mode">Compatibility Mode</string>
+
+    <!-- Email Us -->
+    <string name="email_us_email">tvbarthel@gmail.com</string>
+    <string name="email_us_uri">mailto:%1$s?subject=%2$s</string>
+    <string name="email_us_subject_report_a_bug">[Chase Whisply] Bug Report</string>
 
 </resources>

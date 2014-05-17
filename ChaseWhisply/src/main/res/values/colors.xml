@@ -2,6 +2,7 @@
 <resources>
     <color name="card_grey">#ececec</color>
     <color name="white">#ffffff</color>
+    <color name="white_translucent">#ccffffff</color>
     <color name="black">#000000</color>
     <color name="card_shadow_grey">#cccccc</color>
     <color name="alpha_shadow">#66444444</color>

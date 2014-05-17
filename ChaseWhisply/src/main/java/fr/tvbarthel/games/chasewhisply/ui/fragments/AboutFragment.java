@@ -1,9 +1,11 @@
 package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -33,7 +35,7 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, container, false);
 
-        (v.findViewById(R.id.beta_sensor_delay)).setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.beta_sensor_delay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new SensorDelayDialogFragment().show(getFragmentManager(), null);
@@ -54,7 +56,23 @@ public class AboutFragment extends Fragment {
         });
 
         setVersionName(v);
+        initBugReporting(v);
         return v;
+    }
+
+    private void initBugReporting(View v) {
+        v.findViewById(R.id.fragment_about_btn_report_a_bug).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String uriString = getString(R.string.email_us_uri,
+                        Uri.encode(getString(R.string.email_us_email)),
+                        Uri.encode(getString(R.string.email_us_subject_report_a_bug)));
+                final Uri mailToUri = Uri.parse(uriString);
+                Intent sendToIntent = new Intent(Intent.ACTION_SENDTO);
+                sendToIntent.setData(mailToUri);
+                startActivity(sendToIntent);
+            }
+        });
     }
 
     private void setVersionName(View v) {
