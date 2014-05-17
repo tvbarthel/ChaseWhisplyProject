@@ -6,18 +6,17 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="@dimen/default_padding">
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/linearLayout2"
-            android:layout_alignRight="@+id/linearLayout2"
             android:layout_marginBottom="@dimen/default_vertical_margin"
             android:background="@drawable/card_shadow_base"
             android:orientation="vertical"
@@ -36,10 +35,84 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                tools:text="version 0.3.4"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                tools:text="version 0.3.4" />
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
+            android:background="@drawable/card_shadow_base"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding">
+
+            <TextView
+                android:id="@+id/fragment_about_setting_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin"
+                android:text="Settings"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text_view_grey" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/beta_sensor_delay"
+                    android:layout_width="63dp"
+                    android:layout_height="42dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/button_base"
+                    android:src="@drawable/ic_action_settings" />
+
+                <TextView
+                    android:id="@+id/fragment_about_sensor_delay_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/beta_sensor_delay"
+                    android:text="Sensor delay"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/beta_compatibility_button"
+                    android:layout_width="63dp"
+                    android:layout_height="42dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/beta_sensor_delay"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/button_base" />
+
+                <TextView
+                    android:id="@+id/fragment_about_compatibility_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/beta_compatibility_button"
+                    android:text="@string/about_compatibility_mode_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
 
         <RelativeLayout
             android:id="@+id/linearLayout2"
@@ -121,8 +194,8 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
                 android:layout_marginTop="@dimen/default_half_vertical_margin"
+                android:gravity="right"
                 android:text="@string/about_thanks_beat_the_dev_winners"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -138,14 +211,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout3"
             android:layout_centerHorizontal="true"
             android:background="@drawable/card_shadow_base"
             android:orientation="vertical"
-            android:padding="@dimen/default_padding"
-            android:id="@+id/linearLayout4">
+            android:padding="@dimen/default_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -182,51 +255,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/about_beta_test_section"
-            android:id="@+id/beta_section"
-            android:layout_below="@+id/linearLayout4"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/default_vertical_margin" />
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:id="@+id/linear_compatibility"
-            android:orientation="horizontal"
-            android:layout_below="@+id/beta_section"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/default_half_vertical_margin">
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/about_compatibility_mode_label"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:paddingRight="@dimen/half_padding"/>
-
-            <ToggleButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/beta_compatibility_button" />
-
-        </LinearLayout>
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sensor Delay"
-            android:id="@+id/beta_sensor_delay"
-            android:layout_alignParentBottom="false"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/linear_compatibility"
-            android:layout_marginTop="@dimen/default_half_vertical_margin" />
-
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </ScrollView>
