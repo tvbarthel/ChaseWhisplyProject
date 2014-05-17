@@ -56,7 +56,7 @@ public class AboutFragment extends Fragment {
         });
 
         setVersionName(v);
-        initBugReporting(v);
+        initReportButton(v);
         initEmailButton(v);
         return v;
     }
@@ -65,30 +65,28 @@ public class AboutFragment extends Fragment {
         v.findViewById(R.id.fragment_about_btn_contact_us).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String uriString = getString(R.string.email_us_uri,
-                        Uri.encode(getString(R.string.email_us_email)),
-                        Uri.encode(getString(R.string.email_us_subject_contact_us)));
-                final Uri mailToUri = Uri.parse(uriString);
-                Intent sendToIntent = new Intent(Intent.ACTION_SENDTO);
-                sendToIntent.setData(mailToUri);
-                startActivity(sendToIntent);
+                sendUsAnEmail(R.string.email_us_subject_contact_us);
             }
         });
     }
 
-    private void initBugReporting(View v) {
+    private void initReportButton(View v) {
         v.findViewById(R.id.fragment_about_btn_report_a_bug).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String uriString = getString(R.string.email_us_uri,
-                        Uri.encode(getString(R.string.email_us_email)),
-                        Uri.encode(getString(R.string.email_us_subject_report_a_bug)));
-                final Uri mailToUri = Uri.parse(uriString);
-                Intent sendToIntent = new Intent(Intent.ACTION_SENDTO);
-                sendToIntent.setData(mailToUri);
-                startActivity(sendToIntent);
+                sendUsAnEmail(R.string.email_us_subject_report_a_bug);
             }
         });
+    }
+
+    private void sendUsAnEmail(int subjectResourceId) {
+        final String uriString = getString(R.string.email_us_uri,
+                Uri.encode(getString(R.string.email_us_email)),
+                Uri.encode(getString(subjectResourceId)));
+        final Uri mailToUri = Uri.parse(uriString);
+        Intent sendToIntent = new Intent(Intent.ACTION_SENDTO);
+        sendToIntent.setData(mailToUri);
+        startActivity(sendToIntent);
     }
 
     private void setVersionName(View v) {
