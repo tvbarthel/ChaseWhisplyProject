@@ -1,7 +1,10 @@
 package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import fr.tvbarthel.games.chasewhisply.R;
@@ -40,6 +44,17 @@ public class AboutFragment extends Fragment {
             }
         });
 
+        setVersionName(v);
         return v;
+    }
+
+    private void setVersionName(View v) {
+        final TextView tvVersionName = (TextView) v.findViewById(R.id.fragment_about_version_name);
+        try {
+            final PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            tvVersionName.setText(getString(R.string.about_version_detail, packageInfo.versionName));
+        } catch (PackageManager.NameNotFoundException e) {
+            tvVersionName.setVisibility(View.GONE);
+        }
     }
 }

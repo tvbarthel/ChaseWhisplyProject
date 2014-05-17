@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -31,11 +32,11 @@
                 android:textColor="@color/text_view_grey" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/fragment_about_version_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="@string/about_version_detail"
+                tools:text="version 0.3.4"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
         </LinearLayout>

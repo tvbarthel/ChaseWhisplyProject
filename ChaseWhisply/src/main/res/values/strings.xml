@@ -154,7 +154,7 @@
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>
-    <string name="about_version_detail">version Beta.3.3</string>
+    <string name="about_version_detail">version %1$s</string>
     <string name="about_developer_card_title">Developers</string>
     <string name="about_tbarthel_name">Thomas “Tbarthel” Barthélémy</string>
     <string name="about_vbarthel_name">Vincent “Vbarthel” Barthélémy</string>
