@@ -16,6 +16,16 @@ import fr.tvbarthel.games.chasewhisply.R;
 
 public class SensorDelayDialogFragment extends DialogFragment {
 
+    /**
+     * Default Constructor.
+     *
+     * lint [ValidFragment]
+     * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
+     * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.
+     */
+    public SensorDelayDialogFragment() {
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

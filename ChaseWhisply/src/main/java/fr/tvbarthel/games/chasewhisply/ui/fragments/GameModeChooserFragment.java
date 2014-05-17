@@ -27,6 +27,16 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
     private GameModeViewAdapter mGameModeViewAdapter;
 
 
+    /**
+     * Default Constructor.
+     *
+     * lint [ValidFragment]
+     * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
+     * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.
+     */
+    public GameModeChooserFragment() {
+    }
+
     public interface Listener {
         public void onLevelChosen(GameModeView g);
     }

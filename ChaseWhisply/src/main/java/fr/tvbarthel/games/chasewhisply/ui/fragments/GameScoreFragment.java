@@ -95,6 +95,16 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         return fragment;
     }
 
+    /**
+     * Default Constructor.
+     *
+     * lint [ValidFragment]
+     * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
+     * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.
+     */
+    public GameScoreFragment() {
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

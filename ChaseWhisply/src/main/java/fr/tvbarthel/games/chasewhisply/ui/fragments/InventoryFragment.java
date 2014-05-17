@@ -31,6 +31,16 @@ public class InventoryFragment extends Fragment implements InventoryItemEntryVie
     private InventoryCraftListener mCraftListener;
     private InventoryItemEntryAdapter mInventoryEntryAdapter;
 
+    /**
+     * Default Constructor.
+     *
+     * lint [ValidFragment]
+     * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
+     * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.
+     */
+    public InventoryFragment() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_inventory, container, false);

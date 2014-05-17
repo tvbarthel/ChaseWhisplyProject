@@ -1,6 +1,5 @@
 package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -20,6 +19,17 @@ import fr.tvbarthel.games.chasewhisply.beta.BetaUtils;
 import fr.tvbarthel.games.chasewhisply.beta.SensorDelayDialogFragment;
 
 public class AboutFragment extends Fragment {
+
+    /**
+     * Default Constructor.
+     *
+     * lint [ValidFragment]
+     * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
+     * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.
+     */
+    public AboutFragment() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, container, false);

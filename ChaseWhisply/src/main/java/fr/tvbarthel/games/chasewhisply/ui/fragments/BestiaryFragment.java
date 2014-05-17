@@ -16,6 +16,17 @@ import fr.tvbarthel.games.chasewhisply.ui.adapter.BestiaryEntryAdapter;
 public class BestiaryFragment extends Fragment {
     private GridView mBestiaryGridView;
 
+
+    /**
+     * Default Constructor.
+     *
+     * lint [ValidFragment]
+     * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
+     * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.
+     */
+    public BestiaryFragment() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bestiary, container, false);
