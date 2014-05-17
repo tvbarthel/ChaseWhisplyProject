@@ -1,6 +1,8 @@
 package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
 import android.app.Activity;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import fr.tvbarthel.games.chasewhisply.HomeActivity;
 import fr.tvbarthel.games.chasewhisply.R;
@@ -55,6 +58,7 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
         }
 
         initWhisplyPicture(v);
+        initVersionName(v);
         notifySignedStateChanged(mSignedIn, true, v);
 
         return v;
@@ -82,6 +86,17 @@ public class GameHomeFragment extends Fragment implements View.OnClickListener, 
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private void initVersionName(View v) {
+        final TextView tvVersionName = (TextView) v.findViewById(R.id.home_version_name);
+        try {
+            final PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            tvVersionName.setText(packageInfo.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            tvVersionName.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     private void initWhisplyPicture(View v) {

@@ -14,10 +14,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/default_vertical_margin"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/default_padding">
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingBottom="@dimen/default_padding">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -116,13 +117,26 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/menu"
+            android:layout_above="@+id/home_version_name"
             android:layout_centerHorizontal="true"
             android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/text_view_grey"
             android:textIsSelectable="false"
             android:textSize="36sp"/>
+
+
+        <TextView
+            android:id="@+id/home_version_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/menu"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            tools:text="0.3.2"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text_view_grey"
+            android:textIsSelectable="false" />
 
         <ImageView
             android:id="@+id/home_whisply_picture"
