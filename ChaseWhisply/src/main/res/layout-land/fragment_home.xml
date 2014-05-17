@@ -1,49 +1,41 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <ImageButton
+            android:id="@+id/home_help_tuto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/home_help_tuto"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:text="@string/home_help_button"
-            android:textSize="@dimen/home_text_size"
-            android:textStyle="bold"
-            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/default_half_vertical_margin"
+            android:layout_marginRight="@dimen/default_half_horizontal_margin"
             android:layout_toLeftOf="@+id/home_help_tuto"
             android:background="@drawable/button_base"
-            android:src="@drawable/button_help_tuto"
-            android:layout_marginRight="@dimen/default_half_horizontal_margin"
-            android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:src="@drawable/ic_action_help" />
 
-        <Button
+        <ImageButton
+            android:id="@+id/home_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:id="@+id/home_about"
             android:layout_above="@+id/home_help_tuto"
-            android:src="@drawable/button_help_about"
-            android:text="@string/home_i_button"
-            android:textSize="@dimen/home_text_size"
-            android:textStyle="bold"
-            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/default_half_vertical_margin"
+            android:layout_marginRight="@dimen/default_half_horizontal_margin"
             android:layout_toLeftOf="@+id/home_help_tuto"
             android:background="@drawable/button_base"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/default_half_horizontal_margin"
-            android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:src="@drawable/ic_action_settings" />
 
         <LinearLayout
             android:id="@+id/menu"
@@ -57,7 +49,7 @@
             <android.support.v7.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.08"/>
+                android:layout_weight="0.08" />
 
             <LinearLayout
                 android:id="@+id/leftLayout"
@@ -77,7 +69,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_play"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/home_text_size"/>
+                    android:textSize="@dimen/home_text_size" />
 
                 <Button
                     android:id="@+id/home_profile"
@@ -89,7 +81,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_profile"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/home_text_size"/>
+                    android:textSize="@dimen/home_text_size" />
 
 
             </LinearLayout>
@@ -112,7 +104,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_leaderboard"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/home_text_size"/>
+                    android:textSize="@dimen/home_text_size" />
 
                 <Button
                     android:id="@+id/home_achievement"
@@ -123,7 +115,7 @@
                     android:paddingTop="12dp"
                     android:text="@string/home_achievement"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/home_text_size"/>
+                    android:textSize="@dimen/home_text_size" />
 
 
             </LinearLayout>
@@ -131,7 +123,7 @@
             <android.support.v7.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.08"/>
+                android:layout_weight="0.08" />
 
         </LinearLayout>
 
@@ -154,7 +146,7 @@
                 android:background="@drawable/button_signin"
                 android:gravity="center"
                 android:text="@string/home_sign_in"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/home_sign_out"
@@ -165,7 +157,7 @@
                 android:gravity="center"
                 android:text="@string/home_sign_out"
                 android:textColor="@color/white"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/google_signin_info"
@@ -175,7 +167,7 @@
                 android:gravity="center"
                 android:text="@string/home_sign_info"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text_view_grey"/>
+                android:textColor="@color/text_view_grey" />
 
         </LinearLayout>
 
@@ -189,15 +181,15 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/text_view_grey"
             android:textIsSelectable="false"
-            android:textSize="36sp"/>
+            android:textSize="36sp" />
 
 
         <TextView
             android:id="@+id/home_version_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
             android:layout_alignRight="@+id/textView2"
+            android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/text_view_grey"
@@ -212,7 +204,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="-40dp"
             android:layout_marginLeft="-10dp"
-            android:src="@drawable/ghost"/>
+            android:src="@drawable/ghost" />
 
     </RelativeLayout>
 
