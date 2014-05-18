@@ -90,7 +90,6 @@
                 android:layout_width="58dp"
                 android:layout_height="42dp"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/beta_sensor_delay"
                 android:layout_centerVertical="true"
                 android:background="@drawable/button_base"
                 android:textColor="@color/white_translucent" />
