@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/text_view_grey"
             android:textIsSelectable="false"
-            android:textSize="36sp"/>
+            android:textSize="36sp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -47,14 +47,14 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/holo_dark_green"
                 android:textIsSelectable="false"
-                android:textSize="@dimen/home_text_size"/>
+                android:textSize="@dimen/home_text_size" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/text_view_grey"
-                android:id="@+id/result_congratz_message"/>
+                android:id="@+id/result_congratz_message" />
 
         </LinearLayout>
 
@@ -73,8 +73,7 @@
                 android:id="@+id/imageView"
                 android:src="@drawable/double_green_square"
                 android:layout_alignParentRight="true"
-                android:layout_alignBottom="@+id/result_level_progess_bar"
-                />
+                android:layout_alignBottom="@+id/result_level_progess_bar" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +86,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="@dimen/default_vertical_margin"
                 android:layout_marginLeft="@dimen/default_half_horizontal_margin"
-                android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,7 +99,7 @@
                 android:layout_marginTop="@dimen/default_vertical_margin"
                 android:layout_marginLeft="@dimen/default_half_horizontal_margin"
                 android:layout_marginBottom="@dimen/default_half_vertical_margin"
-                android:layout_toRightOf="@+id/result_title_rang"/>
+                android:layout_toRightOf="@+id/result_title_rang" />
 
             <TextView
                 android:id="@+id/result_grade"
@@ -112,7 +111,7 @@
                 android:textStyle="bold"
                 android:textSize="50sp"
                 android:layout_marginRight="@dimen/default_vertical_margin"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,7 +122,7 @@
                 android:id="@+id/result_title_score"
                 android:layout_below="@+id/result_title_rang"
                 android:layout_alignLeft="@+id/result_title_rang"
-                android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -135,7 +134,7 @@
                 android:layout_below="@+id/result_title_rang"
                 android:layout_marginBottom="@dimen/default_half_vertical_margin"
                 android:layout_marginLeft="@dimen/default_half_horizontal_margin"
-                android:layout_toRightOf="@+id/result_title_score"/>
+                android:layout_toRightOf="@+id/result_title_score" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -146,7 +145,7 @@
                 android:text="@string/profile_level"
                 android:layout_below="@+id/result_title_score"
                 android:layout_alignLeft="@+id/result_title_rang"
-                android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -156,7 +155,7 @@
                 android:text="@string/score_current_exp"
                 android:id="@+id/result_current_exp"
                 android:layout_below="@+id/result_level"
-                android:layout_alignLeft="@+id/result_level"/>
+                android:layout_alignLeft="@+id/result_level" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -167,7 +166,7 @@
                 android:id="@+id/result_earned_exp"
                 android:layout_below="@+id/result_level"
                 android:layout_toRightOf="@+id/result_current_exp"
-                android:layout_marginLeft="@dimen/default_half_horizontal_margin"/>
+                android:layout_marginLeft="@dimen/default_half_horizontal_margin" />
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
@@ -179,7 +178,7 @@
                 android:paddingBottom="@dimen/half_padding"
                 android:paddingTop="@dimen/half_padding"
                 android:layout_toLeftOf="@+id/imageView"
-                android:progress="30"/>
+                android:progress="30" />
 
         </RelativeLayout>
 
@@ -204,7 +203,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/holo_dark_green"
                 android:textIsSelectable="false"
-                android:textSize="@dimen/home_text_size"/>
+                android:textSize="@dimen/home_text_size" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -212,7 +211,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/score_loot_default"
                 android:id="@+id/score_loot_list"
-                android:gravity="right"/>
+                android:gravity="right" />
 
         </LinearLayout>
 
@@ -251,7 +250,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/holo_dark_green"
                     android:textIsSelectable="false"
-                    android:textSize="@dimen/home_text_size"/>
+                    android:textSize="@dimen/home_text_size" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -272,7 +271,7 @@
                             android:layout_marginBottom="@dimen/half_padding"
                             android:text="@string/score_number_of_targets_killed"
                             android:textColor="@color/text_view_grey"
-                            android:textAppearance="@android:style/TextAppearance.Medium"/>
+                            android:textAppearance="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/textView3"
@@ -281,7 +280,7 @@
                             android:textColor="@color/text_view_grey"
                             android:layout_marginBottom="@dimen/half_padding"
                             android:text="@string/score_number_of_bullets_fired"
-                            android:textAppearance="@android:style/TextAppearance.Medium"/>
+                            android:textAppearance="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/textView4"
@@ -290,7 +289,7 @@
                             android:textColor="@color/text_view_grey"
                             android:layout_marginBottom="@dimen/half_padding"
                             android:text="@string/score_max_combo"
-                            android:textAppearance="@android:style/TextAppearance.Medium"/>
+                            android:textAppearance="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -299,7 +298,7 @@
                             android:textColor="@color/text_view_grey"
                             android:layout_marginBottom="@dimen/half_padding"
                             android:text="@string/score_exp_earned"
-                            android:textAppearance="@android:style/TextAppearance.Medium"/>
+                            android:textAppearance="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/textView8"
@@ -308,7 +307,7 @@
                             android:layout_marginTop="@dimen/default_padding"
                             android:text="@string/score_final_score"
                             android:textColor="@color/text_view_grey"
-                            android:textAppearance="@android:style/TextAppearance.Large"/>
+                            android:textAppearance="@android:style/TextAppearance.Large" />
 
                     </LinearLayout>
 
@@ -326,7 +325,7 @@
                             android:layout_gravity="right"
                             android:layout_marginBottom="@dimen/half_padding"
                             android:text="@string/integer_zero"
-                            android:textAppearance="@android:style/TextAppearance.Medium"/>
+                            android:textAppearance="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/numberOfBulletsFired"
@@ -335,7 +334,7 @@
                             android:layout_gravity="right"
                             android:layout_marginBottom="@dimen/half_padding"
                             android:text="@string/integer_zero"
-                            android:textAppearance="@android:style/TextAppearance.Medium"/>
+                            android:textAppearance="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/maxCombo"
@@ -344,7 +343,7 @@
                             android:layout_gravity="right"
                             android:layout_marginBottom="@dimen/half_padding"
                             android:text="@string/integer_zero"
-                            android:textAppearance="@android:style/TextAppearance.Medium"/>
+                            android:textAppearance="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/expEarned"
@@ -353,7 +352,7 @@
                             android:layout_gravity="right"
                             android:layout_marginBottom="@dimen/half_padding"
                             android:text="@string/integer_zero"
-                            android:textAppearance="@android:style/TextAppearance.Medium"/>
+                            android:textAppearance="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/finalScore"
@@ -362,7 +361,7 @@
                             android:layout_gravity="right"
                             android:layout_marginTop="@dimen/default_padding"
                             android:text="@string/integer_zero"
-                            android:textAppearance="@android:style/TextAppearance.Large"/>
+                            android:textAppearance="@android:style/TextAppearance.Large" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -391,7 +390,7 @@
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:minWidth="200dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/score_button_replay"
@@ -404,7 +403,7 @@
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:minWidth="200dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/score_button_next_mission"
@@ -417,7 +416,7 @@
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:minWidth="200dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/score_button_share"
@@ -430,7 +429,7 @@
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:minWidth="200dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/score_button_home"
@@ -443,7 +442,7 @@
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:minWidth="200dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
             </LinearLayout>
 
@@ -458,7 +457,7 @@
             android:text="@string/sign_in_message"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#888888"
-            android:textIsSelectable="false"/>
+            android:textIsSelectable="false" />
 
     </LinearLayout>
 

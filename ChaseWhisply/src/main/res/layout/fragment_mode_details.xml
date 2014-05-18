@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:padding="@dimen/default_padding">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/default_padding">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +14,7 @@
         android:text="@string/profile_missions_title"
         android:id="@+id/mode_details_tilte"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/default_vertical_margin"/>
+        android:layout_marginBottom="@dimen/default_vertical_margin" />
 
     <GridView
         android:layout_width="match_parent"
@@ -26,5 +26,5 @@
         android:verticalSpacing="@dimen/grid_view_spacing"
         android:horizontalSpacing="@dimen/grid_view_spacing"
         android:stretchMode="columnWidth"
-        android:scrollbarStyle="outsideInset"/>
+        android:scrollbarStyle="outsideInset" />
 </LinearLayout>

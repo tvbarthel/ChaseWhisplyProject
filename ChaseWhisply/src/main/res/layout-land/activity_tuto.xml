@@ -22,7 +22,7 @@
             android:id="@+id/imageView"
             android:src="@drawable/ic_tuto_logo"
             android:layout_marginLeft="@dimen/default_horizontal_margin"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true" />
 
         <TextSwitcher
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignRight="@id/imageView"
-            android:layout_above="@id/imageView"/>
+            android:layout_above="@id/imageView" />
 
     </RelativeLayout>
 
@@ -63,7 +63,7 @@
             android:paddingTop="12dp"
             android:background="@drawable/button_close"
             android:id="@+id/closeButton"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
     </FrameLayout>
 

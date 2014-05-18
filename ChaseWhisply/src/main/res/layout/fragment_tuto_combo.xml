@@ -38,5 +38,5 @@
         android:paddingTop="@dimen/default_padding"
         android:paddingRight="@dimen/tuto_fragment_padding"
         android:paddingLeft="@dimen/half_padding"
-        android:gravity="right"/>
+        android:gravity="right" />
 </LinearLayout>

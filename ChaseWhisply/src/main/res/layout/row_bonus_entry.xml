@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:paddingLeft="@dimen/half_padding"
-        android:layout_gravity="center_vertical"/>
+        android:layout_gravity="center_vertical" />
 
     <RelativeLayout
         android:layout_width="match_parent"

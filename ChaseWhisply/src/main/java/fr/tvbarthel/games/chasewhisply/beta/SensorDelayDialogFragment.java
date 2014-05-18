@@ -18,7 +18,7 @@ public class SensorDelayDialogFragment extends DialogFragment {
 
     /**
      * Default Constructor.
-     *
+     * <p/>
      * lint [ValidFragment]
      * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
      * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.

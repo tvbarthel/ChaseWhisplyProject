@@ -151,7 +151,7 @@ public class ScoreInformation implements Parcelable {
     };
 
 	/*
-		Getters & Setters
+        Getters & Setters
 	 */
 
     public int getScore() {

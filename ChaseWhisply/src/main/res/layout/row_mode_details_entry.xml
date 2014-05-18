@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/card_shadow">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_shadow">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -13,7 +13,7 @@
         android:layout_gravity="center_vertical"
         android:layout_margin="4dp"
         android:maxWidth="10dp"
-        android:maxHeight="10dp"/>
+        android:maxHeight="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/button_text_color"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@drawable/button_text_color"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -64,7 +64,7 @@
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/holo_dark_green"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true" />
         </LinearLayout>
 
     </LinearLayout>

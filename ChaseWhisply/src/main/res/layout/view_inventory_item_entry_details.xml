@@ -57,7 +57,7 @@
                 android:layout_marginBottom="@dimen/default_half_vertical_margin"
                 android:layout_alignParentTop="false"
                 android:layout_toRightOf="@+id/view_inventory_item_entry_details_item_image"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true" />
 
         </RelativeLayout>
 

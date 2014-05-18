@@ -6,13 +6,11 @@
         android:repeatCount="1"
         android:repeatMode="reverse"
         android:fromXDelta="0%p"
-        android:toXDelta="90%p"
-        />
+        android:toXDelta="90%p" />
     <translate
         android:duration="250"
         android:repeatCount="5"
         android:repeatMode="reverse"
         android:fromYDelta="0%p"
-        android:toYDelta="-10%p"
-        />
+        android:toYDelta="-10%p" />
 </set>

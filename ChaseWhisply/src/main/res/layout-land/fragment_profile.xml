@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:id="@+id/imageView"
                     android:src="@drawable/double_green_square"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="@dimen/default_vertical_margin"
                     android:layout_marginLeft="@dimen/default_half_horizontal_margin"
-                    android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                    android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -63,7 +63,7 @@
                         android:id="@+id/profile_level"
                         android:text="@string/profile_level"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                         android:id="@+id/profile_exp"
                         android:layout_marginBottom="@dimen/default_half_vertical_margin"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical" />
 
                     <ProgressBar
                         style="?android:attr/progressBarStyleHorizontal"
@@ -84,7 +84,7 @@
                         android:paddingBottom="@dimen/half_padding"
                         android:paddingTop="@dimen/half_padding"
                         android:progress="30"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -107,7 +107,7 @@
                     android:id="@+id/textView5"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="@dimen/default_vertical_margin"/>
+                    android:layout_marginBottom="@dimen/default_vertical_margin" />
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -125,7 +125,7 @@
                         android:text="@string/integer_zero"
                         android:gravity="right"
                         android:id="@+id/profile_games_played_integer"
-                        android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                         android:text="@string/integer_zero"
                         android:gravity="right"
                         android:id="@+id/profile_targets_killed_integer"
-                        android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -145,7 +145,7 @@
                         android:text="@string/integer_zero"
                         android:gravity="right"
                         android:id="@+id/profile_bullets_fired_integer"
-                        android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -154,7 +154,7 @@
                         android:textColor="@color/text_view_grey"
                         android:text="@string/integer_zero"
                         android:gravity="right"
-                        android:id="@+id/profile_accuracy_integer"/>
+                        android:id="@+id/profile_accuracy_integer" />
 
                 </LinearLayout>
 
@@ -174,7 +174,7 @@
                         android:textColor="@color/text_view_grey"
                         android:text="@string/profile_games_played"
                         android:id="@+id/textView7"
-                        android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
                         android:textColor="@color/text_view_grey"
                         android:text="@string/profile_targets_killed"
                         android:id="@+id/textView8"
-                        android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
                         android:textColor="@color/text_view_grey"
                         android:text="@string/profile_bullets_fired"
                         android:id="@+id/textView9"
-                        android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -201,7 +201,7 @@
                         android:textColor="@color/text_view_grey"
                         android:text="@string/profile_accuracy"
                         android:id="@+id/textView10"
-                        android:layout_marginBottom="@dimen/default_half_vertical_margin"/>
+                        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -232,7 +232,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:padding="2dp"
-                    android:layout_marginRight="@dimen/default_half_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/default_half_horizontal_margin" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -243,7 +243,7 @@
                     android:id="@+id/textView11"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imageView2"
-                    android:layout_marginTop="@dimen/half_padding"/>
+                    android:layout_marginTop="@dimen/half_padding" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -257,7 +257,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignBottom="@+id/imageView2"
                     android:paddingRight="@dimen/half_padding"
-                    android:paddingBottom="@dimen/half_padding"/>
+                    android:paddingBottom="@dimen/half_padding" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -277,7 +277,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:padding="2dp"
-                    android:layout_marginRight="@dimen/default_half_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/default_half_horizontal_margin" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -288,7 +288,7 @@
                     android:id="@+id/textView15"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imageView4"
-                    android:layout_marginTop="@dimen/half_padding"/>
+                    android:layout_marginTop="@dimen/half_padding" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -302,7 +302,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignBottom="@+id/imageView4"
                     android:paddingRight="@dimen/half_padding"
-                    android:paddingBottom="@dimen/half_padding"/>
+                    android:paddingBottom="@dimen/half_padding" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -329,7 +329,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:padding="2dp"
-                    android:layout_marginRight="@dimen/default_half_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/default_half_horizontal_margin" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -340,7 +340,7 @@
                     android:id="@+id/textView17"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imageView5"
-                    android:layout_marginTop="@dimen/half_padding"/>
+                    android:layout_marginTop="@dimen/half_padding" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -354,7 +354,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignBottom="@+id/imageView5"
                     android:paddingRight="@dimen/half_padding"
-                    android:paddingBottom="@dimen/half_padding"/>
+                    android:paddingBottom="@dimen/half_padding" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -374,7 +374,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:padding="2dp"
-                    android:layout_marginRight="@dimen/default_half_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/default_half_horizontal_margin" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -385,7 +385,7 @@
                     android:id="@+id/textView13"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/imageView3"
-                    android:layout_marginTop="@dimen/half_padding"/>
+                    android:layout_marginTop="@dimen/half_padding" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -399,7 +399,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignBottom="@+id/imageView3"
                     android:paddingRight="@dimen/half_padding"
-                    android:paddingBottom="@dimen/half_padding"/>
+                    android:paddingBottom="@dimen/half_padding" />
             </RelativeLayout>
 
         </LinearLayout>

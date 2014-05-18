@@ -27,5 +27,5 @@
         android:horizontalSpacing="@dimen/grid_view_spacing"
         android:stretchMode="columnWidth"
         android:padding="@dimen/half_padding"
-        android:scrollbarStyle="outsideInset"/>
+        android:scrollbarStyle="outsideInset" />
 </LinearLayout>

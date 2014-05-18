@@ -21,7 +21,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     /**
      * Default Constructor.
-     *
+     * <p/>
      * lint [ValidFragment]
      * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
      * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.
@@ -41,7 +41,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         ((TextView) v.findViewById(R.id.profile_level)).setText(String.format(getString(R.string.profile_level), levelInformation.getLevel()));
         ((TextView) v.findViewById(R.id.profile_exp)).setText(String.format(getString(R.string.profile_exp), levelInformation.getExpProgress(), levelInformation.getExpNeededToLevelUp()));
         ((ProgressBar) v.findViewById(R.id.profile_level_progess_bar)).setProgress(levelInformation.getProgressInPercent());
-
 
         final int[] clickable = new int[]{
                 R.id.profile_bestiary,
