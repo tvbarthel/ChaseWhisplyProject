@@ -327,10 +327,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         intent.putExtra(Intent.EXTRA_SUBJECT,
                 getResources().getString(R.string.score_share_subject));
-        intent.putExtra(Intent.EXTRA_TEXT,
-                String.format(getResources().getString(R.string.score_share_content),
-                        score)
-        );
+        intent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.score_share_content, score));
         startActivity(Intent.createChooser(intent,
                 getResources().getString(R.string.score_share_dialog)));
     }

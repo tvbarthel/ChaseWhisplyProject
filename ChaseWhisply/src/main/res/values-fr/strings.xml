@@ -129,7 +129,7 @@
     <string name="score_share_button">Partager</string>
     <string name="score_share_dialog">Partagez votre score avec l\'application de votre choix</string>
     <string name="score_share_subject">Chase Whisply</string>
-    <string name="score_share_content">Je joue à Chase Whisply. Pouvez-vous battre mon score : %1$l
+    <string name="score_share_content">Je joue à Chase Whisply. Pouvez-vous battre mon score : %1$d
         ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
     </string>
     <string name="score_loot_title">Durant la chasse vous avez trouvé</string>

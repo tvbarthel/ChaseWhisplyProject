@@ -133,7 +133,7 @@
     <string name="score_share_button">Share</string>
     <string name="score_share_dialog">How do you want to share?</string>
     <string name="score_share_subject">Chase Whisply</string>
-    <string name="score_share_content">I play Chase Whisply. Can you beat my score : %1$l
+    <string name="score_share_content">I play Chase Whisply. Can you beat my score : %1$d
         ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
     </string>
     <string name="sign_in_message">If you sign in with Google Plus, you will be able to share your

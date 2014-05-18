@@ -68,7 +68,7 @@
     <string name="score_share_button">Zdieľaj</string>
     <string name="score_share_dialog">Ako chceš zdieľať?</string>
     <string name="score_share_subject">Chase Whisply</string>
-    <string name="score_share_content">Hrám Chase Whisply. Dokážeš prekonať moje skóre : %1$l
+    <string name="score_share_content">Hrám Chase Whisply. Dokážeš prekonať moje skóre : %1$d
         ? \n \n https://play.google.com/store/apps/details?id=fr.tvbarthel.games.chasewhisply
     </string>
     <string name="sign_in_message">Ak sa prihlásiš cez Google Plus, budeš môcť zdieľať dosiahnuté skóre a úspechy so všetkými inými hráčmi !
