@@ -13,163 +13,166 @@
         android:orientation="vertical"
         android:padding="@dimen/default_padding">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_title"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey" />
+
+        <TextView
+            android:id="@+id/fragment_about_version_name"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/default_vertical_margin"
             android:background="@drawable/card_shadow_base"
-            android:orientation="vertical"
-            android:padding="@dimen/default_padding">
+            android:gravity="right"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="version 0.3.4" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/about_title"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/text_view_grey" />
-
-            <TextView
-                android:id="@+id/fragment_about_version_name"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="version 0.3.4" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <TextView
+            android:id="@+id/fragment_about_setting_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_vertical_margin"
-            android:background="@drawable/card_shadow_base"
-            android:orientation="vertical"
-            android:padding="@dimen/default_padding">
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="Settings"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding">
+
+            <ImageButton
+                android:id="@+id/beta_sensor_delay"
+                android:layout_width="58dp"
+                android:layout_height="42dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_base"
+                android:src="@drawable/ic_action_settings" />
 
             <TextView
-                android:id="@+id/fragment_about_setting_title"
+                android:id="@+id/fragment_about_sensor_delay_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/default_half_vertical_margin"
-                android:text="Settings"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/text_view_grey" />
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/beta_sensor_delay"
+                android:text="Sensor delay"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        </RelativeLayout>
 
-                <ImageButton
-                    android:id="@+id/beta_sensor_delay"
-                    android:layout_width="58dp"
-                    android:layout_height="42dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/button_base"
-                    android:src="@drawable/ic_action_settings" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding">
 
-                <TextView
-                    android:id="@+id/fragment_about_sensor_delay_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/beta_sensor_delay"
-                    android:text="Sensor delay"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <ToggleButton
+                android:id="@+id/beta_compatibility_button"
+                android:layout_width="58dp"
+                android:layout_height="42dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/beta_sensor_delay"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_base"
+                android:textColor="@color/white_translucent" />
 
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/fragment_about_compatibility_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/beta_compatibility_button"
+                android:text="@string/about_compatibility_mode_label"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding">
 
-                <ToggleButton
-                    android:id="@+id/beta_compatibility_button"
-                    android:layout_width="58dp"
-                    android:layout_height="42dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/beta_sensor_delay"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/white_translucent"
-                    android:background="@drawable/button_base" />
+            <ImageButton
+                android:id="@+id/fragment_about_btn_report_a_bug"
+                android:layout_width="58dp"
+                android:layout_height="42dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_base"
+                android:src="@drawable/ic_action_error" />
 
-                <TextView
-                    android:id="@+id/fragment_about_compatibility_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/beta_compatibility_button"
-                    android:text="@string/about_compatibility_mode_label"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/fragment_about_compatibility_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/fragment_about_btn_report_a_bug"
+                android:text="@string/about_label_report_a_bug"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding">
 
-                <ImageButton
-                    android:id="@+id/fragment_about_btn_report_a_bug"
-                    android:layout_width="58dp"
-                    android:layout_height="42dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/button_base"
-                    android:src="@drawable/ic_action_error" />
+            <ImageButton
+                android:id="@+id/fragment_about_btn_contact_us"
+                android:layout_width="58dp"
+                android:layout_height="42dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_base"
+                android:src="@drawable/ic_action_email" />
 
-                <TextView
-                    android:id="@+id/fragment_about_compatibility_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/fragment_about_btn_report_a_bug"
-                    android:text="@string/about_label_report_a_bug"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/fragment_about_compatibility_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/fragment_about_btn_contact_us"
+                android:text="@string/about_label_contact_us"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/fragment_about_btn_contact_us"
-                    android:layout_width="58dp"
-                    android:layout_height="42dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/button_base"
-                    android:src="@drawable/ic_action_email" />
-
-                <TextView
-                    android:id="@+id/fragment_about_compatibility_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/fragment_about_btn_contact_us"
-                    android:text="@string/about_label_contact_us"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            </RelativeLayout>
-
-
-        </LinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_padding"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
+            android:background="@drawable/card_shadow_base" />
 
         <RelativeLayout
             android:id="@+id/linearLayout2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout"
             android:layout_marginBottom="@dimen/default_vertical_margin"
             android:background="@drawable/card_shadow_base"
             android:padding="@dimen/default_padding">
@@ -214,97 +217,104 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/default_vertical_margin"
-            android:background="@drawable/card_shadow_base"
-            android:orientation="vertical"
-            android:padding="@dimen/default_padding">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/half_padding"
-                android:text="@string/about_thanks_section"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/text_view_grey" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="@string/about_thanks_tkeunebr"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_half_vertical_margin"
-                android:gravity="right"
-                android:text="@string/about_thanks_beat_the_dev_winners"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_half_vertical_margin"
-                android:gravity="right"
-                android:text="@string/about_thanks_beta_testers"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout4"
+        <TextView
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout3"
-            android:layout_centerHorizontal="true"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_thanks_section"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey" />
+
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="right"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_thanks_tkeunebr"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="right"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_thanks_beat_the_dev_winners"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
             android:background="@drawable/card_shadow_base"
-            android:orientation="vertical"
-            android:padding="@dimen/default_padding">
+            android:gravity="right"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_thanks_beta_testers"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/half_padding"
-                android:text="@string/about_license_section"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/text_view_grey" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/half_padding"
-                android:gravity="right"
-                android:text="@string/about_license_title"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text_view_grey" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_license_section"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_view_grey" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="@string/about_license_content"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="right"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_license_title"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text_view_grey" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:autoLink="web"
-                android:gravity="right"
-                android:text="@string/about_license_content_link"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="right"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_license_content"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:background="@drawable/card_shadow_base"
+            android:gravity="right"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/about_license_content_link"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>
 
