@@ -397,6 +397,8 @@
 
     <!-- GameMode details -->
     <string name="progression">Progress</string>
+    <string name="fragment_detail_important_title">Important!</string>
+    <string name="fragment_detail_important_content">If you experience any problems in game, you can force the compatibility mode from the settings. In most cases, it will fix them.</string>
 
     <!-- Military ranks -->
     <string name="military_ranks">Ranks</string>

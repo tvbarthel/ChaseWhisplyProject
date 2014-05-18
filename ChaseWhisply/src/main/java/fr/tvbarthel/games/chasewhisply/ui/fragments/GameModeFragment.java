@@ -38,7 +38,7 @@ public class GameModeFragment extends Fragment {
 
     /**
      * Default Constructor.
-     *
+     * <p/>
      * lint [ValidFragment]
      * http://developer.android.com/reference/android/app/Fragment.html#Fragment()
      * Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state.
@@ -108,6 +108,8 @@ public class GameModeFragment extends Fragment {
                     mListener.onPlayRequest(mGameMode);
                 }
             });
+            v.findViewById(R.id.fragment_detail_important_title).setVisibility(View.VISIBLE);
+            v.findViewById(R.id.fragment_detail_important_content).setVisibility(View.VISIBLE);
         }
 
         return v;
