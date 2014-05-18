@@ -54,7 +54,6 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_home);
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
                     new GameHomeFragment(), GameHomeFragment.FRAGMENT_TAG).commit();
