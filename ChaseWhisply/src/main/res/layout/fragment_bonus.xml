@@ -4,7 +4,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="@dimen/half_padding">
+    android:padding="@dimen/default_padding">
 
     <TextView
         android:id="@+id/textView"
@@ -22,7 +22,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/fragment_bonus_remember_title"
+        android:layout_above="@+id/bonus_start"
         android:layout_below="@+id/textView"
         android:clipToPadding="false"
         android:columnWidth="@dimen/bonus_row_entry_width"
@@ -33,32 +33,6 @@
         android:paddingTop="@dimen/default_padding"
         android:stretchMode="columnWidth"
         android:verticalSpacing="@dimen/grid_view_spacing" />
-
-    <TextView
-        android:id="@+id/fragment_bonus_remember_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/fragment_bonus_remember_content"
-        android:layout_marginTop="@dimen/default_half_vertical_margin"
-        android:background="@android:color/white"
-        android:paddingLeft="@dimen/default_padding"
-        android:paddingRight="@dimen/default_padding"
-        android:paddingTop="@dimen/default_padding"
-        android:text="@string/fragment_bonus_remember_title"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/holo_dark_green" />
-
-    <TextView
-        android:id="@+id/fragment_bonus_remember_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bonus_start"
-        android:background="@drawable/card_shadow_base"
-        android:paddingBottom="@dimen/default_padding"
-        android:paddingLeft="@dimen/default_padding"
-        android:paddingRight="@dimen/default_padding"
-        android:text="@string/fragment_bonus_remembre_content"
-        android:textColor="@color/text_view_grey" />
 
     <Button
         android:id="@+id/bonus_start"

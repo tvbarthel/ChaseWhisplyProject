@@ -34,6 +34,7 @@
 
     <!-- Level Chooser Activity !-->
     <string name="level_chooser">Sélectionnez une mission</string>
+    <string name="fragment_game_mode_chooser_remember">Ce jeu est en cours de développement, n\'hésitez pas à nous envoyez un rapport de bug ou une suggestion depuis les paramètres du jeu.</string>
 
     <!-- Leaderboard Chooser Fragment !-->
     <string name="leaderboard_chooser_title">Séléctionnez un classement</string>
@@ -373,8 +374,6 @@
     <string name="bonus_quantity">Quantité Disponible</string>
     <string name="bonus_damage_effect">Dégat +%1$s</string>
     <string name="bonus_speed_effect">Temps de rechargement -%1$s</string>
-    <string name="fragment_bonus_remember_title">N\'oubliez pas !</string>
-    <string name="fragment_bonus_remembre_content">Ce jeu est en cours de développement, n\'hésitez pas à nous envoyez un rapport de bug ou une suggestion depuis les paramètres du jeu.</string>
 
 
     <!-- In Game Tutorial -->
