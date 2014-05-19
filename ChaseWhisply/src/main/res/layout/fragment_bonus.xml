@@ -2,49 +2,49 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="@dimen/default_padding">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/holo_dark_green"
-        android:text="@string/bonus_title"
-        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/default_vertical_margin"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/bonus_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/holo_dark_green" />
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    <GridView
         android:id="@+id/bonus_grid_view"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:columnWidth="@dimen/bonus_row_entry_width"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="@dimen/grid_view_spacing"
-        android:horizontalSpacing="@dimen/grid_view_spacing"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
         android:layout_above="@+id/bonus_start"
-        android:layout_below="@+id/textView" />
+        android:layout_below="@+id/textView"
+        android:columnWidth="@dimen/bonus_row_entry_width"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/grid_view_spacing"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/grid_view_spacing" />
 
     <Button
         android:id="@+id/bonus_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/default_half_vertical_margin"
         android:background="@drawable/button_play"
         android:paddingBottom="12dp"
         android:paddingTop="12dp"
         android:text="@string/home_play"
         android:textColor="@color/white"
-        android:textSize="@dimen/home_text_size"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/default_half_vertical_margin" />
+        android:textSize="@dimen/home_text_size" />
 
 </RelativeLayout>
