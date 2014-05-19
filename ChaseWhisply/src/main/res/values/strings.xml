@@ -377,6 +377,8 @@
     <string name="bonus_quantity">Quantity Available</string>
     <string name="bonus_damage_effect">Damage +%1$s</string>
     <string name="bonus_speed_effect">Reloading time -%1$s</string>
+    <string name="fragment_bonus_remember_title">Remember!</string>
+    <string name="fragment_bonus_remembre_content">This game is under active development, feel free to send us a bug report or to send us a suggestion from the settings.</string>
 
     <!-- In Game Tutorial -->
     <string name="tuto_step_welcome">Welcome to the tutorial, touch the screen to continue.</string>
