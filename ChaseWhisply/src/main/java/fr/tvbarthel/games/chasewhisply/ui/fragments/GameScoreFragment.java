@@ -3,9 +3,14 @@ package fr.tvbarthel.games.chasewhisply.ui.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +21,13 @@ import android.widget.TextView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -268,7 +279,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
                     mListener.onReplayRequested(mGameInformation);
                     break;
                 case R.id.score_button_share:
-                    mListener.onShareScoreRequested(mRetrievedScore);
+                    handleShareScore();
                     break;
                 case R.id.score_button_next_mission:
                     mListener.onNextMissionRequested();
@@ -298,6 +309,51 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
             }
         } else {
             mSignInView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void handleShareScore() {
+        // TODO clean
+        // TODO factorize
+        // TODO optimize
+        final View viewToShare = getView().findViewById(R.id.result_card_grade);
+        viewToShare.setDrawingCacheEnabled(true);
+        final Bitmap bitmapToShare = viewToShare.getDrawingCache(true);
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmapToShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        viewToShare.setDrawingCacheEnabled(false);
+        bitmapToShare.recycle();
+
+        try {
+            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_HH_ss");
+            final String filePrefix = "score_";
+            final String fileSuffix = ".jpg";
+            final String fileName = filePrefix + simpleDateFormat.format(new Date()) + fileSuffix;
+            final File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "ChaseWhisply", fileName);
+            if(!f.getParentFile().isDirectory()) {
+                f.getParentFile().mkdirs();
+            }
+            f.createNewFile();
+            final FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            fo.close();
+
+            // Add the screen to the Media Provider's database.
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri contentUri = Uri.fromFile(f);
+            mediaScanIntent.setData(contentUri);
+            getActivity().sendBroadcast(mediaScanIntent);
+
+            // Share intent
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            shareIntent.setType("image/*");
+            Uri uri = Uri.fromFile(f);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            getActivity().startActivity(shareIntent);
+
+        } catch (IOException e) {
+            Log.e("GameScoreFragment", "error while sharing score", e);
         }
     }
 
