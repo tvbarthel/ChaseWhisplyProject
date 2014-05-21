@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -316,45 +317,53 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         // TODO clean
         // TODO factorize
         // TODO optimize
-        final View viewToShare = getView().findViewById(R.id.result_card_grade);
-        viewToShare.setDrawingCacheEnabled(true);
-        final Bitmap bitmapToShare = viewToShare.getDrawingCache(true);
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bitmapToShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        viewToShare.setDrawingCacheEnabled(false);
-        bitmapToShare.recycle();
+        new AsyncTask<Void, Void, Uri>() {
+            @Override
+            protected Uri doInBackground(Void... params) {
+                final View viewToShare = getView().findViewById(R.id.result_card_grade);
+                viewToShare.setDrawingCacheEnabled(true);
+                final Bitmap bitmapToShare = viewToShare.getDrawingCache(true);
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                bitmapToShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                viewToShare.setDrawingCacheEnabled(false);
+                bitmapToShare.recycle();
 
-        try {
-            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_HH_ss");
-            final String filePrefix = "score_";
-            final String fileSuffix = ".jpg";
-            final String fileName = filePrefix + simpleDateFormat.format(new Date()) + fileSuffix;
-            final File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "ChaseWhisply", fileName);
-            if(!f.getParentFile().isDirectory()) {
-                f.getParentFile().mkdirs();
+                try {
+                    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_HH_ss");
+                    final String filePrefix = "score_";
+                    final String fileSuffix = ".jpg";
+                    final String fileName = filePrefix + simpleDateFormat.format(new Date()) + fileSuffix;
+                    final File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "ChaseWhisply", fileName);
+                    if (!f.getParentFile().isDirectory()) {
+                        f.getParentFile().mkdirs();
+                    }
+                    f.createNewFile();
+                    final FileOutputStream fo = new FileOutputStream(f);
+                    fo.write(bytes.toByteArray());
+                    fo.close();
+                    return Uri.fromFile(f);
+                } catch (IOException e) {
+                    Log.e("GameScoreFragment", "error while sharing score", e);
+                    return null;
+                }
             }
-            f.createNewFile();
-            final FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-            fo.close();
 
-            // Add the screen to the Media Provider's database.
-            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            Uri contentUri = Uri.fromFile(f);
-            mediaScanIntent.setData(contentUri);
-            getActivity().sendBroadcast(mediaScanIntent);
+            @Override
+            protected void onPostExecute(Uri uri) {
+                super.onPostExecute(uri);
+                // Add the screen to the Media Provider's database.
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                mediaScanIntent.setData(uri);
+                getActivity().sendBroadcast(mediaScanIntent);
 
-            // Share intent
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-            shareIntent.setType("image/*");
-            Uri uri = Uri.fromFile(f);
-            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-            getActivity().startActivity(shareIntent);
-
-        } catch (IOException e) {
-            Log.e("GameScoreFragment", "error while sharing score", e);
-        }
+                // Share intent
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                shareIntent.setType("image/*");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                getActivity().startActivity(shareIntent);
+            }
+        }.execute();
     }
 
     private void retrieveGameDetails(GameInformationStandard gameInformation) {
