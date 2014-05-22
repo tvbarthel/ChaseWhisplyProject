@@ -346,7 +346,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         // Draw the grade card.
         gradeCard.setDrawingCacheEnabled(true);
         bitmap = gradeCard.getDrawingCache(true);
-        canvas.drawBitmap(bitmap, padding / 2, padding / 2, paint);
+        canvas.drawBitmap(bitmap, bitmapWidth / 2 - gradeCardWidth / 2, padding / 2, paint);
         gradeCard.setDrawingCacheEnabled(false);
         bitmap.recycle();
         bitmap = null;
@@ -354,7 +354,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         // Draw the details card.
         detailsCard.setDrawingCacheEnabled(true);
         bitmap = detailsCard.getDrawingCache(true);
-        canvas.drawBitmap(bitmap, padding / 2, gradeCardHeight + margin + padding / 2, paint);
+        canvas.drawBitmap(bitmap, bitmapWidth / 2 - detailsCardWidth / 2, gradeCardHeight + margin + padding / 2, paint);
         detailsCard.setDrawingCacheEnabled(false);
         bitmap.recycle();
         bitmap = null;
