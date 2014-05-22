@@ -217,7 +217,7 @@
             android:orientation="vertical"
             android:gravity="left"
             android:layout_marginBottom="@dimen/default_vertical_margin"
-            android:id="@+id/linearLayout2">
+            android:id="@+id/result_card_details">
 
             <TextView
                 android:id="@+id/textView2"

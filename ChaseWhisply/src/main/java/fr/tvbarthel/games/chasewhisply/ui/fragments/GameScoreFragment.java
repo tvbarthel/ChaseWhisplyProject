@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -320,12 +322,48 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         new AsyncTask<Void, Void, Uri>() {
             @Override
             protected Uri doInBackground(Void... params) {
-                final View viewToShare = getView().findViewById(R.id.result_card_grade);
-                viewToShare.setDrawingCacheEnabled(true);
-                final Bitmap bitmapToShare = viewToShare.getDrawingCache(true);
+                final View fragmentView = GameScoreFragment.this.getView();
+                final Paint paint = new Paint();
+
+                // Get the grade card.
+                final View gradeCard = fragmentView.findViewById(R.id.result_card_grade);
+                final int gradeCardWidth = gradeCard.getWidth();
+                final int gradeCardHeight = gradeCard.getHeight();
+
+                // Get the details card.
+                final View detailsCard = fragmentView.findViewById(R.id.result_card_details);
+                final int detailsCardWidth = detailsCard.getWidth();
+                final int detailsCardHeight = detailsCard.getHeight();
+
+                // Define some padding and a margin between the two card
+                final int padding = 30;
+                final int margin = 50;
+
+                // Get the bitmap dimension.
+                int bitmapWidth = Math.max(gradeCardWidth, detailsCardWidth) + padding;
+                int bitmapHeight = gradeCardHeight + padding + margin + detailsCardHeight;
+
+                Bitmap bitmapToShare = Bitmap.createBitmap(bitmapWidth, bitmapHeight, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmapToShare);
+                canvas.drawColor(GameScoreFragment.this.getResources().getColor(R.color.background_grey));
+
+                // Draw the grade card.
+                gradeCard.setDrawingCacheEnabled(true);
+                Bitmap gradeCardBitmap = gradeCard.getDrawingCache(true);
+                canvas.drawBitmap(gradeCardBitmap, padding / 2, padding / 2, paint);
+                gradeCard.setDrawingCacheEnabled(false);
+                gradeCardBitmap.recycle();
+
+                // Draw the details card.
+                detailsCard.setDrawingCacheEnabled(true);
+                Bitmap detailsCardBitmap = detailsCard.getDrawingCache(true);
+                canvas.drawBitmap(detailsCardBitmap, padding / 2, gradeCardHeight + margin + padding / 2, paint);
+                detailsCard.setDrawingCacheEnabled(false);
+                detailsCardBitmap.recycle();
+
+                // Compress the bitmap before saving and sharing.
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bitmapToShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                viewToShare.setDrawingCacheEnabled(false);
                 bitmapToShare.recycle();
 
                 try {
