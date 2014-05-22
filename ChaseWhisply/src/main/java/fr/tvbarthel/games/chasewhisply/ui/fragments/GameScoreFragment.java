@@ -315,91 +315,106 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         }
     }
 
+    private Bitmap getBitmapToShare() {
+        final View fragmentView = GameScoreFragment.this.getView();
+        final Paint paint = new Paint();
+        Bitmap bitmap;
+
+        // Get the grade card.
+        final View gradeCard = fragmentView.findViewById(R.id.result_card_grade);
+        final int gradeCardWidth = gradeCard.getWidth();
+        final int gradeCardHeight = gradeCard.getHeight();
+
+        // Get the details card.
+        final View detailsCard = fragmentView.findViewById(R.id.result_card_details);
+        final int detailsCardWidth = detailsCard.getWidth();
+        final int detailsCardHeight = detailsCard.getHeight();
+
+        // Define some padding and a margin between the two card
+        final int padding = 30;
+        final int margin = 50;
+
+        // Get the bitmap dimension.
+        int bitmapWidth = Math.max(gradeCardWidth, detailsCardWidth) + padding;
+        int bitmapHeight = gradeCardHeight + padding + margin + detailsCardHeight;
+
+        // Initialize a bitmap with a canvas.
+        Bitmap bitmapToShare = Bitmap.createBitmap(bitmapWidth, bitmapHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapToShare);
+        canvas.drawColor(GameScoreFragment.this.getResources().getColor(R.color.background_grey));
+
+        // Draw the grade card.
+        gradeCard.setDrawingCacheEnabled(true);
+        bitmap = gradeCard.getDrawingCache(true);
+        canvas.drawBitmap(bitmap, padding / 2, padding / 2, paint);
+        gradeCard.setDrawingCacheEnabled(false);
+        bitmap.recycle();
+        bitmap = null;
+
+        // Draw the details card.
+        detailsCard.setDrawingCacheEnabled(true);
+        bitmap = detailsCard.getDrawingCache(true);
+        canvas.drawBitmap(bitmap, padding / 2, gradeCardHeight + margin + padding / 2, paint);
+        detailsCard.setDrawingCacheEnabled(false);
+        bitmap.recycle();
+        bitmap = null;
+
+        return bitmapToShare;
+    }
+
+    private Uri writeScoreBytesToExternalStorage(ByteArrayOutputStream scoreBytes) {
+        try {
+            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_HH_ss");
+            final String filePrefix = "score_";
+            final String fileSuffix = ".jpg";
+            final String fileName = filePrefix + simpleDateFormat.format(new Date()) + fileSuffix;
+            final File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "ChaseWhisply", fileName);
+            if (!f.getParentFile().isDirectory()) {
+                f.getParentFile().mkdirs();
+            }
+            f.createNewFile();
+            final FileOutputStream fo = new FileOutputStream(f);
+            fo.write(scoreBytes.toByteArray());
+            fo.close();
+            return Uri.fromFile(f);
+        } catch (IOException e) {
+            Log.e("GameScoreFragment", "error while sharing score", e);
+            return null;
+        }
+    }
+
     private void handleShareScore() {
-        // TODO clean
-        // TODO factorize
-        // TODO optimize
         new AsyncTask<Void, Void, Uri>() {
             @Override
             protected Uri doInBackground(Void... params) {
-                final View fragmentView = GameScoreFragment.this.getView();
-                final Paint paint = new Paint();
+                final Bitmap bitmapToShare = getBitmapToShare();
 
-                // Get the grade card.
-                final View gradeCard = fragmentView.findViewById(R.id.result_card_grade);
-                final int gradeCardWidth = gradeCard.getWidth();
-                final int gradeCardHeight = gradeCard.getHeight();
-
-                // Get the details card.
-                final View detailsCard = fragmentView.findViewById(R.id.result_card_details);
-                final int detailsCardWidth = detailsCard.getWidth();
-                final int detailsCardHeight = detailsCard.getHeight();
-
-                // Define some padding and a margin between the two card
-                final int padding = 30;
-                final int margin = 50;
-
-                // Get the bitmap dimension.
-                int bitmapWidth = Math.max(gradeCardWidth, detailsCardWidth) + padding;
-                int bitmapHeight = gradeCardHeight + padding + margin + detailsCardHeight;
-
-                Bitmap bitmapToShare = Bitmap.createBitmap(bitmapWidth, bitmapHeight, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(bitmapToShare);
-                canvas.drawColor(GameScoreFragment.this.getResources().getColor(R.color.background_grey));
-
-                // Draw the grade card.
-                gradeCard.setDrawingCacheEnabled(true);
-                Bitmap gradeCardBitmap = gradeCard.getDrawingCache(true);
-                canvas.drawBitmap(gradeCardBitmap, padding / 2, padding / 2, paint);
-                gradeCard.setDrawingCacheEnabled(false);
-                gradeCardBitmap.recycle();
-
-                // Draw the details card.
-                detailsCard.setDrawingCacheEnabled(true);
-                Bitmap detailsCardBitmap = detailsCard.getDrawingCache(true);
-                canvas.drawBitmap(detailsCardBitmap, padding / 2, gradeCardHeight + margin + padding / 2, paint);
-                detailsCard.setDrawingCacheEnabled(false);
-                detailsCardBitmap.recycle();
-
-                // Compress the bitmap before saving and sharing.
+                //Compress the bitmap before saving and sharing.
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bitmapToShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
                 bitmapToShare.recycle();
 
-                try {
-                    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_HH_ss");
-                    final String filePrefix = "score_";
-                    final String fileSuffix = ".jpg";
-                    final String fileName = filePrefix + simpleDateFormat.format(new Date()) + fileSuffix;
-                    final File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "ChaseWhisply", fileName);
-                    if (!f.getParentFile().isDirectory()) {
-                        f.getParentFile().mkdirs();
-                    }
-                    f.createNewFile();
-                    final FileOutputStream fo = new FileOutputStream(f);
-                    fo.write(bytes.toByteArray());
-                    fo.close();
-                    return Uri.fromFile(f);
-                } catch (IOException e) {
-                    Log.e("GameScoreFragment", "error while sharing score", e);
-                    return null;
-                }
+                final Uri uriToShare = writeScoreBytesToExternalStorage(bytes);
+
+                return uriToShare;
             }
 
             @Override
             protected void onPostExecute(Uri uri) {
                 super.onPostExecute(uri);
-                // Add the screen to the Media Provider's database.
-                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                mediaScanIntent.setData(uri);
-                getActivity().sendBroadcast(mediaScanIntent);
+                if (uri != null) {
+                    // Add the screen to the Media Provider's database.
+                    Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    mediaScanIntent.setData(uri);
+                    getActivity().sendBroadcast(mediaScanIntent);
 
-                // Share intent
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                shareIntent.setType("image/*");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                getActivity().startActivity(shareIntent);
+                    // Share intent
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                    shareIntent.setType("image/*");
+                    shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                    getActivity().startActivity(shareIntent);
+                }
             }
         }.execute();
     }
