@@ -234,7 +234,7 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="@dimen/default_vertical_margin"
                 android:layout_marginRight="@dimen/default_horizontal_margin"
-                android:id="@+id/linearLayout2"
+                android:id="@+id/result_card_details"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@+id/linear_layout_buttons">
