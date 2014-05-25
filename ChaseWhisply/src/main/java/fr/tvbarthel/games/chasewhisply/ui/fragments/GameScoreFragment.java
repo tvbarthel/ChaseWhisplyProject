@@ -321,6 +321,11 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         final Paint paint = new Paint();
         Bitmap bitmap;
 
+        // Get the game name.
+        final View gameName = fragmentView.findViewById(R.id.fragment_score_game_mode_name);
+        final int gameNameWidth = gameName.getWidth();
+        final int gameNameHeight = gameName.getHeight();
+
         // Get the grade card.
         final View gradeCard = fragmentView.findViewById(R.id.result_card_grade);
         final int gradeCardWidth = gradeCard.getWidth();
@@ -331,23 +336,31 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         final int detailsCardWidth = detailsCard.getWidth();
         final int detailsCardHeight = detailsCard.getHeight();
 
-        // Define some padding and a margin between the two card
+        // Define some padding and a margin between the elements
         final int padding = 30;
         final int margin = 50;
 
         // Get the bitmap dimension.
-        int bitmapWidth = Math.max(gradeCardWidth, detailsCardWidth) + padding;
-        int bitmapHeight = gradeCardHeight + padding + margin + detailsCardHeight;
+        int bitmapWidth = Math.max(gameNameWidth, Math.max(gradeCardWidth, detailsCardWidth)) + padding;
+        int bitmapHeight = padding + gameNameHeight + margin + gradeCardHeight + margin + detailsCardHeight;
 
         // Initialize a bitmap with a canvas.
         Bitmap bitmapToShare = Bitmap.createBitmap(bitmapWidth, bitmapHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapToShare);
         canvas.drawColor(GameScoreFragment.this.getResources().getColor(R.color.background_grey));
 
+        // Draw the game name
+        gameName.setDrawingCacheEnabled(true);
+        bitmap = gameName.getDrawingCache(true);
+        canvas.drawBitmap(bitmap, bitmapWidth / 2 - gameNameWidth / 2, padding / 2 + margin / 2, paint);
+        gameName.setDrawingCacheEnabled(false);
+        bitmap.recycle();
+        bitmap = null;
+
         // Draw the grade card.
         gradeCard.setDrawingCacheEnabled(true);
         bitmap = gradeCard.getDrawingCache(true);
-        canvas.drawBitmap(bitmap, bitmapWidth / 2 - gradeCardWidth / 2, padding / 2, paint);
+        canvas.drawBitmap(bitmap, bitmapWidth / 2 - gradeCardWidth / 2, padding / 2 + gameNameHeight + margin, paint);
         gradeCard.setDrawingCacheEnabled(false);
         bitmap.recycle();
         bitmap = null;
@@ -355,7 +368,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         // Draw the details card.
         detailsCard.setDrawingCacheEnabled(true);
         bitmap = detailsCard.getDrawingCache(true);
-        canvas.drawBitmap(bitmap, bitmapWidth / 2 - detailsCardWidth / 2, gradeCardHeight + margin + padding / 2, paint);
+        canvas.drawBitmap(bitmap, bitmapWidth / 2 - detailsCardWidth / 2, padding / 2 + gameNameHeight + margin + gradeCardHeight + margin, paint);
         detailsCard.setDrawingCacheEnabled(false);
         bitmap.recycle();
         bitmap = null;
