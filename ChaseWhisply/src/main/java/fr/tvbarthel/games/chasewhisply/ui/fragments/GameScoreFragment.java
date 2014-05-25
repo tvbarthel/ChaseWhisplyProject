@@ -175,6 +175,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
             ((TextView) v.findViewById(R.id.numberOfBulletsFired)).setText(String.valueOf(mRetrievedBulletFired));
             ((TextView) v.findViewById(R.id.maxCombo)).setText(String.valueOf(mRetrievedCombo));
             ((TextView) v.findViewById(R.id.expEarned)).setText(String.valueOf(mRetrievedExpEarned));
+            ((TextView) v.findViewById(R.id.fragment_score_game_mode_name)).setText(mGameInformation.getGameMode().getTitle());
         }
 
         //update playerProfile with value of this game
