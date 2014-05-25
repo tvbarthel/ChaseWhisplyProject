@@ -66,7 +66,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
     private static final long CLICK_DELAY = 1400;
     private static final long TICK_INTERVAL = 100;
     private static final int NUMBER_OF_TICK = 30;
-    private static final int BITMAP_QUALITY = 70;
+    private static final int BITMAP_QUALITY = 80;
 
     private Listener mListener = null;
     private GameInformationStandard mGameInformation;
