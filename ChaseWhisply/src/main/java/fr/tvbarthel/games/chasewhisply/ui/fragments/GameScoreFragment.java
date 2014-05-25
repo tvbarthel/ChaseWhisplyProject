@@ -66,6 +66,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
     private static final long CLICK_DELAY = 1400;
     private static final long TICK_INTERVAL = 100;
     private static final int NUMBER_OF_TICK = 30;
+    private static final int BITMAP_QUALITY = 70;
 
     private Listener mListener = null;
     private GameInformationStandard mGameInformation;
@@ -413,7 +414,7 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
 
                 //Compress the bitmap before saving and sharing.
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bitmapToShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                bitmapToShare.compress(Bitmap.CompressFormat.JPEG, BITMAP_QUALITY, bytes);
                 bitmapToShare.recycle();
 
                 final Uri uriToShare = writeScoreBytesToExternalStorage(bytes);
