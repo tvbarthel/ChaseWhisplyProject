@@ -58,6 +58,7 @@ public class HomeActivity extends BaseGameActivity implements GameHomeFragment.L
             getSupportFragmentManager().beginTransaction().replace(R.id.game_home_fragment_container,
                     new GameHomeFragment(), GameHomeFragment.FRAGMENT_TAG).commit();
         }
+        getGameHelper().setConnectOnStart(false);
     }
 
     @Override
