@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
         android:layout_gravity="center"
-        android:src="@drawable/button_help_tuto"
+        android:src="@drawable/button_help_dark"
         android:background="@null"
         android:padding="@dimen/default_padding" />
 
