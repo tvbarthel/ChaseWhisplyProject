@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 
 import fr.tvbarthel.games.chasewhisply.R;
@@ -25,6 +26,8 @@ public class GameViewStandard extends GameView {
     protected final Bitmap[] mBlondGhostBitmap;
     protected final Bitmap[] mBlondTargetedBitmap;
     protected final Bitmap mAmmoBitmap;
+    protected final Bitmap mTimerBitmap;
+    protected final Bitmap mScoreBitmap;
     protected final Bitmap mBulletHoleBitmap;
     protected final Bitmap mBabyGhostBitmap;
     protected final Bitmap mTargetedBabyGhostBitmap;
@@ -55,7 +58,9 @@ public class GameViewStandard extends GameView {
                 BitmapFactory.decodeResource(res, R.drawable.blond_ghost_in_tears_targeted),
                 BitmapFactory.decodeResource(res, R.drawable.blond_ghost_targeted),
         };
-        mAmmoBitmap = BitmapFactory.decodeResource(res, R.drawable.ammo);
+        mAmmoBitmap = BitmapFactory.decodeResource(res, R.drawable.ic_ammo);
+        mTimerBitmap = BitmapFactory.decodeResource(res, R.drawable.ic_timer);
+        mScoreBitmap = BitmapFactory.decodeResource(res, R.drawable.ic_score);
         mBulletHoleBitmap = BitmapFactory.decodeResource(res, R.drawable.bullethole);
         mBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost);
         mTargetedBabyGhostBitmap = BitmapFactory.decodeResource(res, R.drawable.baby_ghost_targeted);
@@ -198,7 +203,13 @@ public class GameViewStandard extends GameView {
      */
     protected void drawAmmo(Canvas canvas) {
         final int currentAmmunition = mGameEngine.getCurrentAmmunition();
+        final String ammo = String.valueOf(currentAmmunition);
+        final int radius = Math.max(mAmmoBitmap.getWidth(), mAmmoBitmap.getHeight()) + (int) mPadding;
         resetPainter();
+
+        //draw transparent overlay
+        useTransparentBlackPainter();
+        canvas.drawOval(new RectF(mScreenWidth - radius, mScreenHeight - radius, mScreenWidth + radius, mScreenHeight + radius), mPaint);
 
         if (currentAmmunition == 0) {
             useRedPainter();
@@ -209,16 +220,17 @@ public class GameViewStandard extends GameView {
                     (mScreenHeight + mCrossHairs.getHeight()) / 2 + mBounds.height(),
                     mPaint);
         } else {
-            useGreenPainter();
+            useWhitePainter();
         }
 
-        canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth() - mPadding),
-                (float) (getHeight() - mAmmoBitmap.getHeight() - mPadding), mPaint);
+        canvas.drawBitmap(mAmmoBitmap, (float) (mScreenWidth - mAmmoBitmap.getWidth()),
+                (float) (getHeight() - mAmmoBitmap.getHeight()), mPaint);
 
         mPaint.setTextSize(mAmmoBitmap.getHeight() / 2);
-        canvas.drawText(String.valueOf(currentAmmunition)
-                , mScreenWidth - mAmmoBitmap.getWidth() - mPaint.getTextSize() / 2 - mPadding
-                , mScreenHeight - (mAmmoBitmap.getHeight() / 4)
+        mPaint.getTextBounds(ammo, 0, ammo.length(), mBounds);
+        canvas.drawText(ammo
+                , mScreenWidth - radius
+                , mScreenHeight - radius + mBounds.height() / 2
                 , mPaint);
     }
 
@@ -248,13 +260,22 @@ public class GameViewStandard extends GameView {
      */
     protected void drawScore(Canvas canvas) {
         resetPainter();
-        useGreenPainter();
-        final String score = String.format(mScoreString, mGameEngine.getCurrentScore());
+        final String score = String.valueOf(mGameEngine.getCurrentScore());
+        final int radius = Math.max(mScoreBitmap.getWidth(), mScoreBitmap.getHeight()) + (int) mPadding;
 
+        //draw transparent overlay
+        useTransparentBlackPainter();
+        canvas.drawOval(new RectF(-radius, mScreenHeight - radius, radius, mScreenHeight + radius), mPaint);
+
+        //draw score icon
+        useWhitePainter();
+        canvas.drawBitmap(mScoreBitmap, 0, mScreenHeight - mScoreBitmap.getHeight(), mPaint);
+
+        //draw score
         mPaint.getTextBounds(score, 0, score.length(), mBounds);
         canvas.drawText(score
-                , mBounds.width() / 2 + mPadding
-                , mScreenHeight - mPaint.getTextSize()
+                , radius + mBounds.width() / 2
+                , mScreenHeight - radius + mBounds.height() / 2
                 , mPaint);
 
     }
