@@ -41,6 +41,7 @@ public class GameViewTimeDecreasing extends GameViewTime {
         super.onDetachedFromWindow();
     }
 
+
     /**
      * draw time, in red if time < 10 sec else in green
      *
@@ -53,12 +54,7 @@ public class GameViewTimeDecreasing extends GameViewTime {
         resetPainter();
         if (seconds > 5) {
             if (!mRedCountDownTextView.getText().equals("")) mRedCountDownTextView.setText("");
-            useGreenPainter();
-            mPaint.getTextBounds(remainingTime, 0, remainingTime.length(), mBounds);
-            canvas.drawText(remainingTime
-                    , mPadding + mBounds.width() / 2
-                    , mPadding + mPaint.getTextSize()
-                    , mPaint);
+            super.drawTimer(canvas);
         } else if (seconds >= 0) {
             final Animation currentAnimation = mRedCountDownTextView.getAnimation();
             final String mayBeANewValue = String.valueOf(seconds);
