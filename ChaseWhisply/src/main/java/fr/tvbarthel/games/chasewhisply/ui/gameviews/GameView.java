@@ -197,6 +197,21 @@ public abstract class GameView extends View {
         mPaint.setShadowLayer(5, 5, 5, R.color.holo_dark_red);
     }
 
+    protected void useTransparentBlackPainter() {
+        mPaint.setColor(getResources().getColor(R.color.transparent_grey));
+        mPaint.setShadowLayer(0, 0, 0, R.color.transparent_grey);
+    }
+
+    protected void useTransparentGreenPainter() {
+        mPaint.setColor(getResources().getColor(R.color.transparent_green));
+        mPaint.setShadowLayer(0, 0, 0, R.color.transparent_green);
+    }
+
+    protected void useWhitePainter() {
+        mPaint.setColor(getResources().getColor(R.color.white));
+        mPaint.setShadowLayer(5, 5, 5, R.color.alpha_shadow);
+    }
+
     protected float getTextSizeFromStyle(Context context, int styleId) {
         final TextView textView = new TextView(context);
         textView.setTextAppearance(context, styleId);
