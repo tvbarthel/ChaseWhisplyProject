@@ -188,36 +188,53 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/result_card_drop"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/default_vertical_margin"
-            android:background="@drawable/card_shadow_base"
-            android:orientation="vertical"
-            android:padding="@dimen/default_padding">
+            android:background="@drawable/card_shadow_base">
 
             <TextView
                 android:id="@+id/result_title_drop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/default_vertical_margin"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/default_half_vertical_margin"
+                android:layout_toLeftOf="@+id/fragment_score_btn_loot_help"
                 android:gravity="left"
+                android:paddingLeft="@dimen/default_padding"
+                android:paddingRight="@dimen/default_padding"
+                android:paddingTop="@dimen/default_padding"
                 android:text="@string/score_loot_title"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/holo_dark_green"
                 android:textIsSelectable="false"
                 android:textSize="@dimen/home_text_size" />
 
+            <ImageButton
+                android:id="@+id/fragment_score_btn_loot_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@null"
+                android:src="@drawable/button_help_dark" />
+
             <TextView
                 android:id="@+id/score_loot_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/result_title_drop"
                 android:gravity="right"
+                android:paddingBottom="@dimen/default_padding"
+                android:paddingLeft="@dimen/default_padding"
+                android:paddingRight="@dimen/default_padding"
                 android:text="@string/score_loot_default"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/result_card_details"

@@ -143,6 +143,8 @@
     <string name="score_congratz_rank_up">Vous venez d\'améliorer votre grade.</string>
     <string name="score_title_congratz_card">Félicitations !</string>
     <string name="score_button_next_mission">Autre Mission</string>
+    <string name="score_loot_help_title">Aide</string>
+    <string name="score_loot_help_message">Les objets trouvés pendant votre chasse peuvent être transformés en bonus depuis votre inventaire. Vous trouverez votre inventaire dans votre profil.</string>
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>

@@ -45,6 +45,7 @@ import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntry;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemEntryFactory;
 import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.model.mode.GameModeFactory;
+import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.SimpleDialogFragment;
 
 public class GameScoreFragment extends Fragment implements View.OnClickListener {
     public static final String FRAGMENT_TAG = "GameScoreFragment_TAG";
@@ -153,7 +154,8 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
                 R.id.score_button_home,
                 R.id.score_button_skip,
                 R.id.score_button_share,
-                R.id.score_button_next_mission
+                R.id.score_button_next_mission,
+                R.id.fragment_score_btn_loot_help
         };
         for (int i : clickable) {
             v.findViewById(i).setOnClickListener(this);
@@ -289,6 +291,9 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
                 case R.id.score_button_next_mission:
                     mListener.onNextMissionRequested();
                     break;
+                case R.id.fragment_score_btn_loot_help:
+                    showLootHelpMessage();
+                    break;
             }
         }
     }
@@ -303,6 +308,11 @@ public class GameScoreFragment extends Fragment implements View.OnClickListener 
         outState.putFloat(BUNDLE_CURRENT_EXP_EARNED, mCurrentExpEarned);
         outState.putBoolean(BUNDLE_HAS_LEVELED_UP, mHasLeveledUp);
         outState.putBoolean(BUNDLE_HAS_INCREASED_RANK, mHasIncreaseRank);
+    }
+
+    private void showLootHelpMessage() {
+        SimpleDialogFragment.newInstance(R.string.score_loot_help_title,
+                R.string.score_loot_help_message).show(getFragmentManager(), null);
     }
 
     public void notifySignedStateChanged(boolean signedIn) {

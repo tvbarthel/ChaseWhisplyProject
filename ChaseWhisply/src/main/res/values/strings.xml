@@ -152,6 +152,8 @@
     <string name="score_current_exp">Exp %1$d/%2$d</string>
     <string name="score_added_exp">(+ %1$d)</string>
     <string name="score_button_next_mission">New Mission</string>
+    <string name="score_loot_help_title">Help</string>
+    <string name="score_loot_help_message">The items you found during the hunt can be transformed into bonus from your inventory. You will find your inventory in your profile.</string>
 
     <!-- About Fragment -->
     <string name="about_title">Chase Whisply</string>
