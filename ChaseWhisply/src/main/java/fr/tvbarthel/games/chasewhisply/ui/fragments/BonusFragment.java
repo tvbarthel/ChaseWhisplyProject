@@ -72,17 +72,8 @@ public class BonusFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_bonus, container, false);
         mBonusGridView = ((GridView) v.findViewById(R.id.bonus_grid_view));
 
-        (v.findViewById(R.id.bonus_start)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Bonus equippedBonus = mBonusEntryAdapter.getEquippedBonus();
-                mGameMode.setBonus(equippedBonus);
-                mListener.onGameStartRequest(mGameMode);
-            }
-        });
-
+        v.findViewById(R.id.bonus_start).setOnClickListener(this);
         v.findViewById(R.id.fragment_bonus_btn_help).setOnClickListener(this);
-
         return v;
     }
 
@@ -109,11 +100,20 @@ public class BonusFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         final int viewId = v.getId();
         if (viewId == R.id.fragment_bonus_btn_help) {
-            handleBtnHelpClicked();
+            showHelpMessage();
+        } else if (viewId == R.id.bonus_start) {
+            startGame();
         }
     }
 
-    private void handleBtnHelpClicked() {
+
+    private void startGame() {
+        final Bonus equippedBonus = mBonusEntryAdapter.getEquippedBonus();
+        mGameMode.setBonus(equippedBonus);
+        mListener.onGameStartRequest(mGameMode);
+    }
+
+    private void showHelpMessage() {
         SimpleDialogFragment.newInstance(R.string.bonus_help_title,
                 R.string.bonus_help_message).show(getFragmentManager(), null);
     }
