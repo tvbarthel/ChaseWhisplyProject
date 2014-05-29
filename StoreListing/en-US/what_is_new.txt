@@ -1,0 +1,1 @@
+A brand new compatibility mode is available : don't forget to turn it on if you are experiencing problems with the game!You can now share and immortalize your score with images.The interface has been tweaked a little.A bug in the GameActivity has been fixed.The game is still in public beta, please feel free to send us your suggestions for improvement. 
