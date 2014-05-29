@@ -374,6 +374,8 @@
     <string name="bonus_quantity">Quantité Disponible</string>
     <string name="bonus_damage_effect">Dégat +%1$s</string>
     <string name="bonus_speed_effect">Temps de rechargement -%1$s</string>
+    <string name="bonus_help_title">Aide</string>
+    <string name="bonus_help_message">Les bonus peuvent être fabriqués à partir de votre inventaire. Vous trouverez votre inventaire dans votre profil.</string>
 
 
     <!-- In Game Tutorial -->

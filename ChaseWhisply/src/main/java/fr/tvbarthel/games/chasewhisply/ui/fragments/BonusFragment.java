@@ -17,8 +17,9 @@ import fr.tvbarthel.games.chasewhisply.model.bonus.BonusEntryFactory;
 import fr.tvbarthel.games.chasewhisply.model.inventory.InventoryItemInformation;
 import fr.tvbarthel.games.chasewhisply.model.mode.GameMode;
 import fr.tvbarthel.games.chasewhisply.ui.adapter.BonusEntryAdapter;
+import fr.tvbarthel.games.chasewhisply.ui.dialogfragments.SimpleDialogFragment;
 
-public class BonusFragment extends Fragment {
+public class BonusFragment extends Fragment implements View.OnClickListener {
     public static final String EXTRA_GAME_MODE = "BonusFragment.Extra.GameMode";
     private Listener mListener;
     private GridView mBonusGridView;
@@ -80,6 +81,8 @@ public class BonusFragment extends Fragment {
             }
         });
 
+        v.findViewById(R.id.fragment_bonus_btn_help).setOnClickListener(this);
+
         return v;
     }
 
@@ -100,6 +103,19 @@ public class BonusFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        final int viewId = v.getId();
+        if (viewId == R.id.fragment_bonus_btn_help) {
+            handleBtnHelpClicked();
+        }
+    }
+
+    private void handleBtnHelpClicked() {
+        SimpleDialogFragment.newInstance(R.string.bonus_help_title,
+                R.string.bonus_help_message).show(getFragmentManager(), null);
     }
 
     public interface Listener {

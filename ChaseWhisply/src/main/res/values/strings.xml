@@ -378,6 +378,8 @@
     <string name="bonus_quantity">Quantity Available</string>
     <string name="bonus_damage_effect">Damage +%1$s</string>
     <string name="bonus_speed_effect">Reloading time -%1$s</string>
+    <string name="bonus_help_title">Help</string>
+    <string name="bonus_help_message">Bonus can be crafted from your inventory. You will find your inventory in your profile.</string>
 
     <!-- In Game Tutorial -->
     <string name="tuto_step_welcome">Welcome to the tutorial, touch the screen to continue.</string>

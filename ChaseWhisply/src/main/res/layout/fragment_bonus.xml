@@ -17,6 +17,15 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/holo_dark_green" />
 
+    <ImageButton
+        android:id="@+id/fragment_bonus_btn_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_help_dark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"/>
+
     <GridView
         android:id="@+id/bonus_grid_view"
         xmlns:android="http://schemas.android.com/apk/res/android"
