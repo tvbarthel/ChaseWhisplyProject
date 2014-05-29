@@ -14,4 +14,6 @@
     <color name="holo_dark_red">#CC0000</color>
     <color name="background_grey">#e5e5e5</color>
     <color name="text_view_grey">#888888</color>
+    <color name="transparent_grey">#AA666666</color>
+    <color name="transparent_green">#668a9d20</color>
 </resources>
