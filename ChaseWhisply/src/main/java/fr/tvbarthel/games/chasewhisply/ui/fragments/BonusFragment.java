@@ -95,7 +95,7 @@ public class BonusFragment extends Fragment implements View.OnClickListener {
                     PlayerProfile.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE));
         } else {
             throw new ClassCastException(activity.toString()
-                    + " must implemenet BonusFragment.Listener");
+                    + " must implement BonusFragment.Listener");
         }
     }
 

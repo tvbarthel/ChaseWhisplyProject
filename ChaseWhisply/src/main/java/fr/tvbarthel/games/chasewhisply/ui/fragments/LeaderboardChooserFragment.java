@@ -43,7 +43,7 @@ public class LeaderboardChooserFragment extends Fragment implements GameModeView
             mListener = (LeaderboardChooserFragment.Listener) activity;
         } else {
             throw new ClassCastException(activity.toString()
-                    + " must implemenet LeaderboardChooserFragment.Listener");
+                    + " must implement LeaderboardChooserFragment.Listener");
         }
     }
 

@@ -50,7 +50,7 @@ public class GameModeChooserFragment extends Fragment implements GameModeViewAda
                     PlayerProfile.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE));
         } else {
             throw new ClassCastException(activity.toString()
-                    + " must implemenet GameModeChooserFragment.Listener");
+                    + " must implement GameModeChooserFragment.Listener");
         }
     }
 
