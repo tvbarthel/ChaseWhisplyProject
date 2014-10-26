@@ -20,4 +20,10 @@
     <dimen name="inventory_item_entry_width">250dp</dimen>
     <dimen name="game_mode_width">240dp</dimen>
     <dimen name="leaderboard_mode_width">240dp</dimen>
+
+    <!-- card !-->
+    <dimen name="card_content_padding">16dp</dimen>
+    <dimen name="card_default_round_corner">4dp</dimen>
+    <dimen name="card_default_elevation">2dp</dimen>
+
 </resources>
