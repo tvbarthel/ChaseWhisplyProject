@@ -10,13 +10,14 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile 'com.android.support:gridlayout-v7:18.0.0'
+    compile 'com.android.support:support-v4:21.0.0'
     compile files('libs/nineoldandroids-2.4.0.jar')
     compile project(':BaseGameUtils')
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    compileSdkVersion 21
+    buildToolsVersion '21.0.2'
 
     lintOptions {
         // TODO fix and remove !
