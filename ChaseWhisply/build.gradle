@@ -11,7 +11,7 @@ apply plugin: 'com.android.application'
 dependencies {
     compile 'com.android.support:gridlayout-v7:18.0.0'
     compile 'com.android.support:support-v4:21.0.0'
-    compile files('libs/nineoldandroids-2.4.0.jar')
+    compile 'com.nineoldandroids:library:2.4.0'
     compile project(':BaseGameUtils')
 }
 
@@ -26,7 +26,7 @@ android {
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode 22
         versionName "0.3.6"
     }
