@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -61,7 +63,7 @@ public class GameModeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Resources res = getResources();
 
-        View v = inflater.inflate(R.layout.fragment_details, container, false);
+        final View v = inflater.inflate(R.layout.fragment_details, container, false);
 
         if (getArguments().containsKey(EXTRA_GAME_MODE)) {
             mGameMode = getArguments().getParcelable(EXTRA_GAME_MODE);
@@ -100,13 +102,29 @@ public class GameModeFragment extends Fragment {
         if (mListener != null) {
             //show button play
             final View start = v.findViewById(R.id.details_play);
-            start.setVisibility(View.VISIBLE);
             start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mListener.onPlayRequest(mGameMode);
                 }
             });
+
+            start.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    start.getViewTreeObserver().removeOnPreDrawListener(this);
+                    int offset = v.getHeight() - start.getTop();
+                    start.setTranslationY(offset);
+                    start.setVisibility(View.VISIBLE);
+                    start.animate()
+                            .translationY(0)
+                            .setDuration(getResources().getInteger(R.integer.animation_duration_short))
+                            .setInterpolator(new DecelerateInterpolator(2))
+                            .start();
+                    return false;
+                }
+            });
+
             v.findViewById(R.id.fragment_detail_important_title).setVisibility(View.VISIBLE);
             v.findViewById(R.id.fragment_detail_important_content).setVisibility(View.VISIBLE);
         }
