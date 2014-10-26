@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -100,7 +99,7 @@ public class GameModeFragment extends Fragment {
 
         if (mListener != null) {
             //show button play
-            final Button start = (Button) v.findViewById(R.id.details_play);
+            final View start = v.findViewById(R.id.details_play);
             start.setVisibility(View.VISIBLE);
             start.setOnClickListener(new View.OnClickListener() {
                 @Override
