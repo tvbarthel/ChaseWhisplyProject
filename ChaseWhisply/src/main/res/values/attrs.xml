@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Custom xml attr for a FloatingActionButton !-->
+    <declare-styleable name="FloatingActionButton">
+        <!-- used to define the icon display in the FAB !-->
+        <attr name="fab_icon" format="reference" localization="suggested" />
+        <!-- used to define the background color of the FAB !-->
+        <attr name="fab_color" format="color|reference" localization="suggested" />
+    </declare-styleable>
+
+</resources>
