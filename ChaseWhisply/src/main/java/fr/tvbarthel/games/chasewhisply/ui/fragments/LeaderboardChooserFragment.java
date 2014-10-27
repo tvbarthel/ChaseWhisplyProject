@@ -3,10 +3,11 @@ package fr.tvbarthel.games.chasewhisply.ui.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class LeaderboardChooserFragment extends Fragment implements GameModeView
 
     private Listener mListener;
     private GameModeViewAdapter mGameModeViewAdapter;
+    private ArrayList<GameMode> mGameModes;
 
     public interface Listener {
         public void onLeaderboardChosen(int leaderboardStringId);
@@ -57,8 +59,13 @@ public class LeaderboardChooserFragment extends Fragment implements GameModeView
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_leaderboard_chooser, container, false);
-        mGameModeViewAdapter = new GameModeViewAdapter(getActivity(), new ArrayList<GameMode>(), this);
-        ((GridView) v.findViewById(R.id.leaderboard_grid_view)).setAdapter(mGameModeViewAdapter);
+        mGameModes = new ArrayList<GameMode>();
+        mGameModeViewAdapter = new GameModeViewAdapter(mGameModes, this);
+
+        RecyclerView recyclerView = ((RecyclerView) v.findViewById(R.id.leaderboard_grid_view));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+        recyclerView.setAdapter(mGameModeViewAdapter);
 
         loadGameMode();
 
@@ -67,33 +74,33 @@ public class LeaderboardChooserFragment extends Fragment implements GameModeView
 
 
     private void loadGameMode() {
-        mGameModeViewAdapter.clear();
+        mGameModes.clear();
 
         //Overall Ranking
-        mGameModeViewAdapter.add(GameModeFactory.createOverallRanking());
+        mGameModes.add(GameModeFactory.createOverallRanking());
 
         //First mission: Scouts First
         //Sprint mode
-        mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(1));
+        mGameModes.add(GameModeFactory.createRemainingTimeGame(1));
 
         //Second mission: Everything is an illusion
         //Twenty in a row
-        mGameModeViewAdapter.add(GameModeFactory.createTwentyInARow(1));
+        mGameModes.add(GameModeFactory.createTwentyInARow(1));
 
         //Third mission: Prove your stamina
         //Marathon mode
-        mGameModeViewAdapter.add(GameModeFactory.createRemainingTimeGame(3));
+        mGameModes.add(GameModeFactory.createRemainingTimeGame(3));
 
         //Fourth mission: Brainteaser
         //Memorize
-        mGameModeViewAdapter.add(GameModeFactory.createMemorize(1));
+        mGameModes.add(GameModeFactory.createMemorize(1));
 
         //Fifth mission: Death to the king
         //Death to the king
-        mGameModeViewAdapter.add(GameModeFactory.createKillTheKingGame(1));
+        mGameModes.add(GameModeFactory.createKillTheKingGame(1));
 
         //Sixth mission: The Final Battle
-        mGameModeViewAdapter.add(GameModeFactory.createSurvivalGame(1));
+        mGameModes.add(GameModeFactory.createSurvivalGame(1));
 
         mGameModeViewAdapter.notifyDataSetChanged();
     }

@@ -1,44 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/default_padding">
+    android:layout_height="match_parent">
+
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/holo_dark_green"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/level_chooser"
-        android:id="@+id/textView"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/default_half_vertical_margin" />
-
-    <GridView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_view_grey"
+        android:gravity="center"
+        android:layout_gravity="top"
+        android:text="@string/level_chooser"
+        android:padding="@dimen/card_content_padding"
+        android:paddingBottom="30dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/gamemode_grid_view"
+        android:paddingLeft="@dimen/default_padding"
+        android:paddingRight="@dimen/default_padding"
+        android:paddingBottom="@dimen/default_padding"
+        android:paddingTop="100dp"
         android:layout_gravity="center"
         android:columnWidth="@dimen/game_mode_width"
         android:numColumns="auto_fit"
-        android:layout_above="@+id/fragment_game_mode_chooser_remember"
-        android:layout_below="@+id/textView"
         android:verticalSpacing="@dimen/grid_view_spacing"
         android:horizontalSpacing="@dimen/grid_view_spacing"
         android:stretchMode="columnWidth"
-        android:scrollbarStyle="outsideInset" />
+        android:scrollbarStyle="outsideOverlay"
+        android:clipToPadding="false" />
 
-    <TextView
-        android:id="@+id/fragment_game_mode_chooser_remember"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/card_shadow_base"
-        android:layout_marginTop="@dimen/default_half_vertical_margin"
-        android:padding="@dimen/half_padding"
-        android:text="@string/fragment_game_mode_chooser_remember"
-        android:textColor="@color/text_view_grey" />
-
-</RelativeLayout>
+</FrameLayout>
