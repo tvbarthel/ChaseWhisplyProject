@@ -16,9 +16,9 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/default_vertical_margin" />
 
-    <android.support.v7.widget.RecyclerView
+    <GridView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/leaderboard_grid_view"
         android:layout_gravity="center"
         android:columnWidth="@dimen/leaderboard_mode_width"
