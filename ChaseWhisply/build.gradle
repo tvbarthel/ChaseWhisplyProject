@@ -3,22 +3,22 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.13.0'
+        classpath 'com.android.tools.build:gradle:2.1.2'
     }
 }
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile 'com.android.support:gridlayout-v7:18.0.0'
-    compile 'com.android.support:support-v4:21.0.0'
-    compile 'com.android.support:cardview-v7:21.0.0'
+    compile 'com.android.support:gridlayout-v7:24.2.0'
+    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.android.support:cardview-v7:24.2.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile project(':BaseGameUtils')
 }
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.0.2'
+    compileSdkVersion 24
+    buildToolsVersion '21.1.2'
 
     lintOptions {
         // TODO fix and remove !
