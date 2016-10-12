@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngine;
 import fr.tvbarthel.games.chasewhisply.mechanics.engine.GameEngineFactory;
@@ -29,6 +30,7 @@ public class GameActivity extends ARActivity implements GameEngine.IGameEngine {
         if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_GAME_INFORMATION)) {
             mLastGameInformationSaved = savedInstanceState.getParcelable(BUNDLE_GAME_INFORMATION);
         }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
 
