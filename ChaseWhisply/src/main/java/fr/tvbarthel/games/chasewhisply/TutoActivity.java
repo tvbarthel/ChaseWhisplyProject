@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -36,6 +37,8 @@ public class TutoActivity extends FragmentActivity implements ViewSwitcher.ViewF
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_tuto);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         mLastPosition = 0;
 
         //load animation
