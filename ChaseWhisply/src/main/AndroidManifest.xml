@@ -24,7 +24,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/ChaseWhisplyTheme"
         tools:replace="android:label">
@@ -38,8 +38,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:label="@string/app_name"
-            android:name=".HomeActivity">
+            android:name=".HomeActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
