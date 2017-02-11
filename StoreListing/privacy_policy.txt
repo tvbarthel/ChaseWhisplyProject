@@ -1,0 +1,16 @@
+Welcome to the Chase Whisply Privacy Policy
+
+Personal data:
+Chase Whisply does not collect any personnal information.
+
+Camera usage:
+The camera is only used for the game purpose: the
+game world is overlayed above the camera preview.
+
+If you have a doubt about what the app is doing, feel
+free to browse the code source: the app is 100% open source
+and has nothing to hide =)
+
+https://github.com/tvbarthel/ChaseWhisplyProject
+
+Feel free to contact us at tvbarthel@gmail.com
